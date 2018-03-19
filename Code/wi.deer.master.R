@@ -29,8 +29,7 @@ detr.flag<-"none"
 scale.flag<-"both"
 
 #set directory
-#setwd("C:/Users/reulab/Desktop/TomA/Rwork/Synch/WI_deer/")
-setwd("e:/Research/PostDocKU/Rwork/Synch/WI_deer/")
+setwd("C:/Users/Tom/Documents/GitRepos/mbsync/AndersDeerShort/")
 
 #Clean data: end result are two lists of matrices called "cty.list" and "usda.list"
 system.time(source("Code/wi.deer.cleandata.R"))
