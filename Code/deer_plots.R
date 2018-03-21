@@ -220,7 +220,7 @@ mtext(text="Year",side=1,line=1.5,cex=0.75)
 
 cty.list.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 cty.list.tmp<-cty.list.tmp[(!row.names(cty.list.tmp)%in%cwd) & !is.na(rowMeans(cty.list.tmp)),]
-plot(1992:2016,rep(NA,25),ylim=c(min(cty.list.tmp,na.rm=T),max(cty.list.tmp,na.rm=T)),xlab="Year",ylab="Hunters",xlim=c(1981,2016))
+plot(1992:2016,rep(NA,25),ylim=c(min(cty.list.tmp,na.rm=T),max(cty.list.tmp,na.rm=T)),xlab="Year",ylab="Hunters",xlim=c(1981,2016),las=1)
 for(i in 1:nrow(cty.list.tmp)){
   lines(1992:2016,na.omit(cty.list.tmp[i,]),col=rainbow(53)[i])
 }
