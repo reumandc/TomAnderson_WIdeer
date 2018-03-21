@@ -23,6 +23,9 @@ minyear<-1981
 maxyear<-2016
   
 #normalize the data ("norm" for Box-Cox, "detr" for linearly detrend, or "none")
+##Code currently work using the "none" option; the normalization steps happen 
+##individually with each analysis step (e.g. see line 15 in "DeerAbundance.R" file), 
+##because of the conflicting data lengths and dimensions. 
 detr.flag<-"none"
 
 #set spatial scale flag for data generation ("usda", "county" or "both")
@@ -47,7 +50,7 @@ system.time(source("Code/wi_climate.R"))
   #large climate indices are the same values (nao,mei,pdo), just replicated into different dimensions to match scale.flag
 
 #set number of surrogates to use for spatial coherence
-nsurrogs<-100000
+nsurrogs<-10000
 
 #Run analysis on deer abundance and DVCs using county data
 system.time(source("Code/DeerAbundance.R"))

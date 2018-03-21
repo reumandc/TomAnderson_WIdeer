@@ -215,8 +215,8 @@ abun.resid<-residuals(lm(Abun~Year,data=ann.abun))
 plot(dvc.resid~ann.dvc$Year,type="b")
 
 #values for deer abundance
-peaks<-c(1989,1995,2000,2006,2012)
-troughs<-c(1992,1997,2002,2009,2014)
+peaks<-c(1989,1995,2000,2006,2012) #based on visual assessment
+troughs<-c(1992,1997,2002,2009,2014) #based on visual assessment
 diff<-matrix(NA,nrow=5,ncol=2)
 for(i in 1:length(peaks)){
   for(i in 1:length(troughs)){
