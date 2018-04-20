@@ -12,6 +12,7 @@ library(tools)
 library(fields)
 library(Reumannplatz)
 library(shape)
+library(devtools)
 
 #which density to use ("dnr" for original estimates, "tom" for your own calculations)
 dens.flag<-"dnr"
@@ -33,6 +34,7 @@ scale.flag<-"both"
 
 #set directory
 setwd("C:/Users/Tom/Documents/GitRepos/mbsync/AndersDeerShort/")
+#setwd("/mnt/hgfs/C/Reuman/gitrepos/mbsync/AndersDeerShort/")
 
 #Clean data: end result are two lists of matrices called "cty.list" and "usda.list"
 system.time(source("Code/wi.deer.cleandata.R"))
