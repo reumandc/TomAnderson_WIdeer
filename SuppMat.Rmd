@@ -27,11 +27,23 @@ for this paper as a bibtex file (.bib extension). This reference may help: https
 required, Tom? If not, wwe should use the callout style we prefer. What style do you
 prefer, Tom?-->
 
+<!--checkpoint package for CRAN-available packages-->
+```{r checkpoint_chunk, echo=F, warning=F, message=F, results="hide"}
+if (!dir.exists("./.checkpoint/")){
+  dir.create("./.checkpoint/")
+}
+library(checkpoint)
+checkpoint("2018-04-20",checkpointLocation = "./")
+```
+
 <!--Install the correct reumannplatz version from github, i.e., the one current on 2018 04 20, tagged
 in git with AndersonDeer-->
 ```{r rp_install}
+library(withr)
 library(devtools)
-devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer")
+#with_libpaths(new = "/usr/lib/R/site-library/", install_github('rCharts', 'ramnathv'))
+withr::with_libpaths(new="./.checkpoint",
+                     devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer",force=T))
 ```
 
 <!--Libraries. Should use checkpoint, but having trouble using reumannplatz from github and checkpoint
@@ -42,8 +54,8 @@ library(tidyr)
 library(plyr)
 library(tools)
 library(fields)
-library(Reumannplatz)
 library(shape)
+#library(reumannplatz)
 ```
 
 <!--Flags controlling the run and other setup-->
