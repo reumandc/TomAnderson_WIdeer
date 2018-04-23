@@ -286,9 +286,9 @@ for(resp in respvars){
 names(spring.clim)<-c("Tmin","Tmax","Prcp","Snwd")
 
 if(detr.flag=="norm"){
-  winter.clim.dt<-lapply(winter.clim,function(x){x<-CleanData(t(x))$cleandat;x})
-  spring.clim.dt<-lapply(spring.clim,function(x){x<-CleanData(t(x))$cleandat;x})
-  #hunt.clim.dt<-lapply(hunt.clim,function(x){x<-CleanData(t(x))$cleandat;x})
+  winter.clim.dt<-lapply(winter.clim,function(x){x<-reumannplatz::CleanData(t(x))$cleandat;x})
+  spring.clim.dt<-lapply(spring.clim,function(x){x<-reumannplatz::CleanData(t(x))$cleandat;x})
+  #hunt.clim.dt<-lapply(hunt.clim,function(x){x<-reumannplatz::CleanData(t(x))$cleandat;x})
   winter.clim.dt<-lapply(winter.clim.dt,function(x){rownames(x)<-colnames(wsi.mat);x})
   #hunt.clim.dt<-lapply(hunt.clim.dt,function(x){rownames(x)<-colnames(wsi.mat);x})
   names(winter.clim.dt)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
@@ -296,9 +296,9 @@ if(detr.flag=="norm"){
 }
 
 if(detr.flag=="detr"){
-  winter.clim.dt<-lapply(winter.clim,function(x){x<-CleanData(t(x),normalize=F)$cleandat;x})
-  spring.clim.dt<-lapply(spring.clim,function(x){x<-CleanData(t(x),normalize=F)$cleandat;x})
-  #hunt.clim.dt<-lapply(hunt.clim,function(x){x<-CleanData(t(x),normalize=F)$cleandat;x})
+  winter.clim.dt<-lapply(winter.clim,function(x){x<-reumannplatz::CleanData(t(x),normalize=F)$cleandat;x})
+  spring.clim.dt<-lapply(spring.clim,function(x){x<-reumannplatz::CleanData(t(x),normalize=F)$cleandat;x})
+  #hunt.clim.dt<-lapply(hunt.clim,function(x){x<-reumannplatz::CleanData(t(x),normalize=F)$cleandat;x})
   winter.clim.dt<-lapply(winter.clim.dt,function(x){rownames(x)<-colnames(wsi.mat);x})
   #hunt.clim.dt<-lapply(hunt.clim.dt,function(x){rownames(x)<-colnames(wsi.mat);x})
   names(winter.clim.dt)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
@@ -507,15 +507,15 @@ names(winter.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
 # names(hunt.clim.usda.dt)<-c("Tmin","Tmax","Prcp","Snwd","FixedTmax")
 
 if(detr.flag=="norm"){
-  winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-CleanData(t(x))$cleandat;x})
-  #hunt.clim.usda<-lapply(hunt.clim.usda,function(x){x<-CleanData(t(x))$cleandat;x})
+  winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-reumannplatz::CleanData(t(x))$cleandat;x})
+  #hunt.clim.usda<-lapply(hunt.clim.usda,function(x){x<-reumannplatz::CleanData(t(x))$cleandat;x})
   names(winter.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
   #names(hunt.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","FixedTmax")
 }
 
 if(detr.flag=="detr"){
-  winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-CleanData(t(x),normalize=F)$cleandat;x})
-  #hunt.clim.usda<-lapply(hunt.clim.usda,function(x){x<-CleanData(t(x),normalize=F)$cleandat;x})
+  winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-reumannplatz::CleanData(t(x),normalize=F)$cleandat;x})
+  #hunt.clim.usda<-lapply(hunt.clim.usda,function(x){x<-reumannplatz::CleanData(t(x),normalize=F)$cleandat;x})
   names(winter.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
   #names(hunt.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","FixedTmax")
 }
@@ -639,10 +639,10 @@ if(scale.flag=="usda"||scale.flag=="both"){
   climindex.usda<-list(win.nao.mat=win.nao.mat,win.pdo.mat=win.pdo.mat,win.mei.mat=win.mei.mat,win.enso.mat=win.enso.mat,
                   sum.nao.mat=sum.nao.mat,sum.pdo.mat=sum.pdo.mat,sum.mei.mat=sum.mei.mat,sum.enso.mat=sum.enso.mat)#nao.mat=nao.mat,pdo.mat=pdo.mat,mei.mat=mei.mat,
   if(detr.flag=="detr"){
-    climindex.usda<-lapply(climindex.usda,function(x){x<-CleanData(x,normalize=F)$cleandat;x})
+    climindex.usda<-lapply(climindex.usda,function(x){x<-reumannplatz::CleanData(x,normalize=F)$cleandat;x})
   }
   if(detr.flag=="norm"){
-    climindex.usda<-lapply(climindex.usda,function(x){x<-CleanData(x)$cleandat;x})
+    climindex.usda<-lapply(climindex.usda,function(x){x<-reumannplatz::CleanData(x)$cleandat;x})
   }
   names(climindex.usda)<-c("WinterNAO","WinterPDO","WinterMEI","WinterENSO","SummerNAO","SummerPDO","SummerMEI","SummerENSO")
 }
@@ -666,10 +666,10 @@ if(scale.flag=="county"||scale.flag=="both"){
   climindex<-lapply(climindex,function(x){row.names(x)<-unique(cty.clim$COUNTY_NAM);x})
 
   if(detr.flag=="detr"){
-    climindex<-lapply(climindex,function(x){x<-CleanData(x,normalize=F)$cleandat;x})
+    climindex<-lapply(climindex,function(x){x<-reumannplatz::CleanData(x,normalize=F)$cleandat;x})
   }
   if(detr.flag=="norm"){
-    climindex<-lapply(climindex,function(x){x<-CleanData(x)$cleandat;x})
+    climindex<-lapply(climindex,function(x){x<-reumannplatz::CleanData(x)$cleandat;x})
   }
   names(climindex)<-c("WinterNAO","WinterPDO","WinterMEI","WinterENSO","SummerNAO","SummerPDO","SummerMEI","SummerENSO")
 }

@@ -304,11 +304,11 @@ names(usda.list)[12:13]<-c("OpenDay","Crop")
 usda.list<-lapply(usda.list,function(x){row.names(x)<-sort(unique(usda$Zone));x})
 
 if(detr.flag=="norm"){
-  cty.list<-lapply(cty.list,function(x){x<-CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=T)$cleandat;x})
-  usda.list<-lapply(usda.list,function(x){x<-CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=T)$cleandat;x})
+  cty.list<-lapply(cty.list,function(x){x<-reumannplatz::CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=T)$cleandat;x})
+  usda.list<-lapply(usda.list,function(x){x<-reumannplatz::CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=T)$cleandat;x})
 }
 
 if(detr.flag=="detr"){
-  cty.list<-lapply(cty.list,function(x){x<-CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=F,detrend=T)$cleandat;x})
-  usda.list<-lapply(usda.list,function(x){x<-CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=F,detrend = T)$cleandat;x})
+  cty.list<-lapply(cty.list,function(x){x<-reumannplatz::CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=F,detrend=T)$cleandat;x})
+  usda.list<-lapply(usda.list,function(x){x<-reumannplatz::CleanData(x[,colSums(is.na(x)) != nrow(x)],normalize=F,detrend = T)$cleandat;x})
 }
