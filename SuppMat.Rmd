@@ -1,9 +1,31 @@
 ---
-title: "Master document, may become the supp mat if we push this approach of R markdown'ing everything"
-author: "Anderson et al"
+title: "Moran effects cause major cycles in deer populations and deer-vehicle collisions across Wisconsin: Supplementary Materials"
+author: "Anderson, Sheppard, Walter, Rolley, Reuman"
 date: "April 20, 2018"
-output: pdf_document
+geometry: "left=1cm,right=1cm,top=2.5cm,bottom=2.8cm"
+
+output: 
+  pdf_document:
+    keep_tex: yes
+    fig_caption: yes
+tables: True
+link-citations: True
+urlcolor : blue
+
+csl: science.csl
+bibliography: refs.bib
 ---
+
+<!--***DAN: Tom, in order for me to put in demos of how some things work here are some 
+items I need from you first:
+1) the name of an R variable in your code for some in-text number, and an indication of which number, e.g., your response might look like "the p-value in the first line under Table S1 is stored in the R variable  SnowDepthAbundanceCohP35".
+2) the name of an R data frame that contains Table S1, e.g., you might just call it TableS1df. 
+3) Please open Endnote and try to figure out how to expport your library of ciations that you are using
+for this paper as a bibtex file (.bib extension). This reference may help: https://www.reed.edu/cis/help/LaTeX/EndNote.html. Then commit and push the file to the repo in the same folder as this Rmd and let me know.-->
+
+<!--***DAN: Currently we are using science citation style in the supp mat, is this 
+required, Tom? If not, wwe should use the callout style we prefer. What style do you
+prefer, Tom?-->
 
 <!--Install the correct reumannplatz version from github, i.e., the one current on 2018 04 20, tagged
 in git with AndersonDeer-->
@@ -205,9 +227,10 @@ procedures at the county level.
 
 ## Statewide results
 
-# Supplementary figures
+\newpage
 
-\begin{figure}[!h]
+# Supplementary figures
+\begin{figure}[h!]
 \includegraphics[width=\textwidth]{Results/FigS1.png}
 \caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions, 
 (C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
@@ -215,8 +238,68 @@ procedures at the county level.
 MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
 Each line in A-C, E represents a county. Other variables are not shown 
 (e.g., Tmin) due to their lack of significance in this 
-study.\label{FigS1_timeseries}}
+study.\label{FigS1_Timeseries}}
 \end{figure}
+
+\newpage
+
+<!--***DAN: currently the figure is not include until Tom adds code for S2 or adds the figure itself to the repo if it was not created using R-->
+\begin{figure}[!h]
+%\includegraphics[width=\textwidth]{}
+\caption{Map of Wisconsin, USA. Black lines and yellow dots delineate county boundaries and centroids. Color shading and black dots delineate USDA district boundaries and centroids.\label{FigS2_CountiesDistricts}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/FigS3.png}
+\caption{Phase differences between variables as a function of timescale for all significant relationships of Table S1<!--***DAN: -->, county-level data: A) winter MEI and deer abundance, B) summer MEI and deer abundance, C) winter PDO and deer abundance, D) snow depth and deer abundance, E) deer abundance and deer-vehicle collisions, F) deer abundance and deer-vehicle collisions adjusted for traffic volume, and G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$ radians) for the shaded timescale bands. Horizontal axes differ in extent among panels due to different time ranges of available data for different variables. Vertical axes differ between left and right panels because time series were shorter for DVCs.\label{FigS3_PhaseDiffs}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/FigS4.png}
+\caption{Rank, by timescale, of spatial coherence values in surrogate coherence distributions (\emph{Methods}) for significant relationships (Table S1<!--***DAN: -->) using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $p$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS4_RanksInSurrogs}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=.6\textwidth]{Results/FigS5.png}
+\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunters (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundance, while contours show the actual wavelet mean field magnitude of deer abundance (from Fig. 2A<!--***DAN: -->). Agreement is poor, giving a visual indication of the statistical result that hunter abundance does not explain deer abundance or synchrony well on $3–7$-year timescales.\label{FigS5_WMFHunter}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[height=.8\textheight]{Results/FigS6.png}
+\caption{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, MEIw, and PDOw as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS6_WMFAndPredictionsDistricts}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[height=.9\textheight]{Results/FigS7.png}
+\caption{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in Fig 2A,B<!--***DAN: -->. \label{FigS7_WMFsAndWPMFsAncillary}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[height=.9\textheight]{Results/FigS8.png}
+\caption{Wavelet amplitude of the winter and summer PDO (A,B), NAO (C,D), and MEI (E,F), respectively. Amplitude is the magnitude of the wavelet transform, normalized by the square root of the time-averaged, squared magnitudes of the wavelet transform. Higher values indicate greater variation content at that time/or timescale. \label{FigS8_WaveletAmps}}
+\end{figure}
+
+\newpage
+\clearpage
 
 # Supplementary tables
 
+<!--***DAN: Table S1, currently commented until Dan gets the name of the R dataframe containing table S1 from Tom-->
+```{r TableS1,echo=F,results='markup'}
+#knitr::kable(,#Insert name of R dataframe containing table S1 here
+#             format='pandoc',
+#             caption = "Summary of spatial coherence tests and related results using county-level data #(\emph{Methods}). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3–7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (\emph{Methods}) are provided where meaningful (for significant tests; $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations.\\label{TabS1_CountyCoherenceSummary}",
+#             booktabs=T)
+```
