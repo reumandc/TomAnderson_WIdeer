@@ -19,7 +19,8 @@ pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
 pan.ht<-0.75*pan.wd+zwd #big ones are square
 tot.ht<-3*pan.ht+xht+3*gap
 
-tiff("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+png(filename="Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+#tiff("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
 wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wmf",tsrange=c(3,7),
@@ -36,7 +37,8 @@ mtext(text = "Year",line = -2,side = 1,cex=1.25)
 text(x=c(rep(1985.5,3)),y=c(log2(14),log2(7.5),log2(4)),labels=c("A)","B)","C)"),font=2)
 dev.off()
 
-tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+#tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
 wsurfplotTLA(dvc.dt,times=1987:2016,colorbar=T,type="wmf",tsrange=c(3,7),ylab="TS",xlab="",xtcklab = rep("",8),smallplot=c(0.95,0.99,0.05,0.95))
@@ -51,7 +53,8 @@ mtext(text = "Year",line = -1.5,side = 1,cex=1.25)
 text(x=c(rep(1990.5,3)),y=c(log2(11.3),log2(6.5),log2(3.7)),labels=c("A)","B)","C)"),font=2)
 dev.off()
 
-tiff("Results/FigS3.tiff",res=600,height=4800,width=3200,compression=c("lzw"))
+png("Results/FigS3.png",res=600,height=4800,width=3200)
+#tiff("Results/FigS3.tiff",res=600,height=4800,width=3200,compression=c("lzw"))
 source("Functions/Fn_phaseplot.R")
 par(mfrow=c(4,2),mar=c(2.5,4,1.5,0.5),mgp=c(1.5,0.5,0),cex.lab=1.5,las=1)
 phaseplot(climate.spcoh$WinterMEI.Abun$empirical,climate.spcoh$WinterMEI.Abun$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
@@ -78,7 +81,8 @@ dev.off()
 
 #make plot of ranks by timescale
 source("Functions/Fn_rankplot.R")
-tiff("Results/FigS4.tiff",res=600,height=3000,width=4800,compression=c("lzw"))
+png("Results/FigS4.png",res=600,height=3000,width=4800)
+#tiff("Results/FigS4.tiff",res=600,height=3000,width=4800,compression=c("lzw"))
 par(mfrow=c(1,2),mar=c(3.5,4,1,0),mgp=c(2.5,0.5,0))
 plot(climate.res$WinterMEI.Abun$timescale,climate.res$WinterMEI.Abun$emp.rank,las=1,ylim=c(0.5*nsurrogs,max(nsurrogs)),type="l",lwd=2,ylab="Rank",xlab="Timescale")
 abline(h=0.95*nsurrogs,col="red",lty=2)
@@ -108,7 +112,8 @@ dev.off()
 # abline(h=0.95*nsurrogs,col="red",lty=2)
 
 #Hunter Plots
-tiff("Results/FigS5.tiff",res=600,compression=c("lzw"),height=4800,width=3000)
+png("Results/png",res=600,height=4800,width=3000)
+#tiff("Results/FigS5.tiff",res=600,compression=c("lzw"),height=4800,width=3000)
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
 hunters.dt<-CleanData(hunters.tmp)$cleandat
@@ -124,7 +129,8 @@ mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
 #climate surface plots
-tiff("Results/FigS8.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
+png("Results/FigS8.png",res=600,height=9,width=7,unit="in")
+#tiff("Results/FigS8.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 wsurfplotTLA(CleanData(climindex$WinterPDO[1,])$cleandat,times=1981:2016,colorbar=T,type="power",xlab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
@@ -141,7 +147,8 @@ mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
 #weather surface plots
-tiff("Results/FigS7.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
+png("Results/FigS7.png",res=600,height=9,width=7,unit="in")
+#tiff("Results/FigS7.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 winter.clim.dt<-lapply(winter.clim,function(x){x<-CleanData(x[!(is.na(rowMeans(x))),])$cleandat;x})
 par(mfrow=c(4,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 wsurfplotTLA(winter.clim.dt$Tmin,times=1981:2016,colorbar=T,type="wmf",xlab="")
@@ -162,7 +169,8 @@ wsurfplotTLA(winter.clim.dt$Prcp,times=1981:2016,colorbar=T,type="wpmf",ylab="",
 mtext("H)",adj=0.05,font=2,line=-1.2,side=3)
 dev.off()
 
-tiff("Results/FigS6.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
+png("Results/FigS6.png",res=600,height=9,width=7,unit="in")
+#tiff("Results/FigS6.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 source("Functions/Fn_wsurfplot_modified.R")
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 wsurfplotTLA(CleanData(usda.list$Abun)$cleandat,times=1981:2016,colorbar=T,type="wmf",xlab="",ylab="")
@@ -192,7 +200,8 @@ plot(1981:2016,Re(snow.wt1[,10]),xlim=c(1984,2013),type="b",col="blue",ylab="Rea
 lines(1981:2016,Re(deer.wt1[,10]),type="b")
 
 #raw data plots
-tiff("Results/FigS1.tiff",res=600,compression=c("lzw"),height=3600,width=3600)
+png("Results/FigS1.png",res=600,height=3600,width=3600)
+#tiff("Results/FigS1.tiff",res=600,compression=c("lzw"),height=3600,width=3600)
 par(mfrow=c(3,2),mar=c(2.5,5,1.2,0),mgp=c(3,0.5,0))
 plot(1981:2016,rep(NA,36),las=1,ylim=c(min(cty.list$Abun),max(cty.list$Abun)),xlab="",ylab="Abundance")
 for(i in 1:nrow(cty.list$Abun)){
@@ -261,7 +270,8 @@ pan.wd.small<-pan.wd.big #small panel width param
 pan.ht.small<-0.33*pan.ht.big #small panel height param
 tot.ht<-2*pan.ht.big+2*pan.ht.small+2*xht+4*gap
 #pdf("Results/Fig4.pdf",width = tot.wd,height = tot.ht)
-tiff("Results/Fig4.tiff",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
+#tiff("Results/Fig4.tiff",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
+png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
 
 #Deer- little panel
 par(fig=c(ywd/tot.wd,
