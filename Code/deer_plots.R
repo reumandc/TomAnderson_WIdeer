@@ -112,7 +112,7 @@ dev.off()
 # abline(h=0.95*nsurrogs,col="red",lty=2)
 
 #Hunter Plots
-png("Results/png",res=600,height=4800,width=3000)
+png("Results/FigS5.png",res=600,height=4800,width=3000)
 #tiff("Results/FigS5.tiff",res=600,compression=c("lzw"),height=4800,width=3000)
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
