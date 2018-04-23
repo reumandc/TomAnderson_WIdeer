@@ -1,7 +1,6 @@
 
 
 Things to do:
-D - checkpoint and install_github need to play together, somehow
 T - set.seed in appropriate places make it exactly reproducible
 D - put pedagog fig code in
 DT - use cacheing, which means sorting out dependencies

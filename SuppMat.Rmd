@@ -34,7 +34,6 @@ if (!dir.exists("./.checkpoint/")){
 }
 library(checkpoint)
 checkpoint("2018-04-20",checkpointLocation = "./")
-#.libPaths()[1]
 ```
 
 <!--Install the correct reumannplatz version from github, i.e., the one current on 2018 04 20, tagged
@@ -42,13 +41,11 @@ in git with AndersonDeer-->
 ```{r rp_install}
 library(withr)
 library(devtools)
-#with_libpaths(new = "/usr/lib/R/site-library/", install_github('rCharts', 'ramnathv'))
 withr::with_libpaths(new=.libPaths()[1],
                      devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer",force=T))
 ```
 
-<!--Libraries. Should use checkpoint, but having trouble using reumannplatz from github and checkpoint
-at the same time. To be solved later if possible.-->
+<!--Libraries-->
 ```{r libraries}
 library(reshape2)
 library(tidyr)
@@ -56,9 +53,6 @@ library(plyr)
 library(tools)
 library(fields)
 library(shape)
-#x<-.libPaths()[1]
-#y<-library(lib.loc=.libPaths())
-#save(x,y,file="LibraryPath.RData")
 library(Reumannplatz,lib.loc=.libPaths())
 ```
 
@@ -93,7 +87,7 @@ nsurrogs<-10000
 source("Code/mtime.R") 
 ```
 
-<!--***DAN: Rum time is sufficiently long that we should probably use caching, but
+<!--***DAN: Run time is sufficiently long that we should probably use caching, but
 that will require a good understanding of dependencies of everything. I have begun.
 Other reasons to use cacheing include it will enforce a clearer specification of
 dependencies between chunks.-->
@@ -121,13 +115,8 @@ system.time(source("Code/wi_climate.R"))
 ```{r county_analysis, cache=T, cache.extra=list(mtime("Code/DeerAbundance.R"))}
 #Run analysis on deer abundance and DVCs using county data
 set.seed(101)
-#Rin<-require(Reumannplatz)
-#save(Rin,file="Rin.RData")
 system.time(source("Code/DeerAbundance.R"))
 ```
-
-<!--***DAN: You want this whole code suite to be *exactly* reproducible, so any random bits
-need to have the seed set first. Check for that.-->
 
 <!--District analysis-->
 <!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
