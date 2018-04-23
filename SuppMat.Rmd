@@ -79,8 +79,10 @@ system.time(source("Code/wi_climate.R"))
 ```
 
 <!--County analysis-->
-```{r county_analysis}
+<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
+```{r county_analysis, cache=T, cache.extra=list(mtime("Code/DeerAbundance.R"))}
 #Run analysis on deer abundance and DVCs using county data
+set.seed(101)
 system.time(source("Code/DeerAbundance.R"))
 ```
 
@@ -88,14 +90,18 @@ system.time(source("Code/DeerAbundance.R"))
 need to have the seed set first. Check for that.-->
 
 <!--District analysis-->
-```{r district_analysis}
+<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
+```{r district_analysis, cache=T, cache.extra=list(mtime("Code/DeerAbundanceUSDA.R"))}
 #Run analysis on deer abundance and DVCs using USDA district data
+set.seed(201)
 system.time(source("Code/DeerAbundanceUSDA.R"))
 ```
 
 <!--Make plots-->
-```{r make_plots}
+<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
+```{r make_plots, cache=T, cache.extra=list(mtime("Code/deer_plots.R"))}
 #generate raw data plots
+set.seed(301)
 system.time(source("Code/deer_plots.R"))
 
 #***DAN: I got the following warnings when I ran deer_plots.R, we have to get 
@@ -122,3 +128,95 @@ system.time(source("Code/deer_plots.R"))
 
 #***DAN: Fig 1 does not appear, the code for it needs to be put in
 ```
+
+# Materials and methods
+
+## Data and pre-processing
+
+<!--***DAN: I inserted a comment in each place that needs to be made 
+or may need to be made an automatic link to a reference, table, figure, 
+or R-produced value. As these are done, the comment can be deleted,
+as can the non-automatic text that the automatic link should replace.
+But leave the non-automatic text until you do a knit to make sure you
+get the same thing.-->
+
+<!--***DAN: demo of ordinary text-->
+We obtained deer abundance estimates from the Wisconsin Department of 
+Natural Resources (WIDNR) spanning a 36<!--***DAN-->-yr period 
+(1981–2016<!--***DAN-->; Fig. S1<!--***DAN-->). 
+From 1981–2013<!--***DAN-->, deer abundance was estimated for deer management units 
+(DMUs, N = 101–139<!--***DAN--> depending on the year). For most years and DMUs, 
+abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
+accounting models used for a smaller number of years and DMUs (1)<!--***DAN-->. 
+In $2014$, DMU boundaries were changed to match the administrative level of 
+county (N = 72<!--***DAN-->). Because of this, and because other 
+spatial variables (e.g., DVCs, climate) were gathered at the county level, 
+we transformed the 1981–2013<!--***DAN--> abundance estimates for DMUs 
+into county-level estimates. To do so, we first calculated the areas 
+of intersection between DMU and county boundaries for each year (as 
+DMU boundaries changed yearly), using the ‘intersect’ function in 
+Arc GIS 10.3 (ESRI, Redlands, CA). We then calculated deer abundance 
+for each intersection area by multiplying the amount of deer habitat in 
+each intersection area by the WIDNR density estimate of deer for the DMU 
+that the intersection fell within. Deer habitat was considered to comprise 
+areas of permanent cover (e.g., forests) that were $>4$ ha in size. DMU deer 
+densities were calculated by dividing the estimated abundance for the DMU 
+by the amount of deer habitat within the DMU (1)<!--***DAN-->. This procedure 
+assumes approximately spatially uniform densities of deer within deer 
+habitat across each DMU. The abundance for a county was the sum of 
+the estimated abundances of the county’s intersections with the DMUs. 
+We dropped one county (Menominee) due to incomplete data for most 
+variables, leaving 71<!--***DAN--> counties for statistical analysis.
+
+<!--***DAN: Much text skipped for now-->
+
+## Analysis
+
+We performed all analyses described below and in the main text 
+at three spatial scales: counties (N = 44–71<!--***DAN--> depending on 
+the variables involved; mean county 
+area $\pm$ SD = 2017<!--***DAN--> $\pm$ 799<!--***DAN--> $\text{km}^2$), 
+United States Department of Agriculture (USDA) districts ($N = 9$; mean 
+district area $\pm$ SD = 16138<!--***DAN--> $\pm$ 799<!--***DAN--> $\text{km}^2$), 
+and statewide (Fig. S2<!--***DAN-->). Analyses at three spatial scales 
+were performed because the SAK model used by the WIDNR to estimate deer 
+abundance for each management unit has been criticized as less accurate 
+at smaller spatial scales (5)<!--***DAN-->. However, the bias in abundance 
+estimates previously reported may overestimated, as more recent analyses 
+suggest the uncertainty in SAK estimates is substantially less 
+($\pm 20\%$ error rates; WIDNR, personal communication). Regardless, 
+to ensure our results were not biased by spatial extent, we analyzed 
+synchrony at multiple spatial extents. USDA districts were the sum or 
+average of county-level variables, as the two scales had nested boundaries, 
+roughly equating to $6$ to $8$ counties per district (Fig. S2<!--***DAN-->). 
+Statewide analysis used state total or average time series for each 
+variable. In general, the patterns of significance and phase relationships 
+we observed remained unchanged in their main substance using data 
+aggregated to larger spatial scales (Table S4<!--***DAN-->, S5<!--***DAN-->; 
+Fig. S6<!--***DAN-->), suggesting the results for counties are not 
+meaningfully biased by any possible inaccuracies in SAK abundance estimation 
+procedures at the county level.
+
+<!--***DAN: Much text skipped for now-->
+
+# Supplementary text
+
+## USDA district results
+
+## Statewide results
+
+# Supplementary figures
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/FigS1.png}
+\caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions, 
+(C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
+(D) winter climate indices (Multivariate El Ni\~no Southern Oscillation Index, 
+MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
+Each line in A-C, E represents a county. Other variables are not shown 
+(e.g., Tmin) due to their lack of significance in this 
+study.\label{FigS1_timeseries}}
+\end{figure}
+
+# Supplementary tables
+
