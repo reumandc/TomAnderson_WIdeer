@@ -12,8 +12,8 @@ indices.res<-list()
 ranges=rbind(c(3,7),c(7,15))
 
 #coherence of climate indices and abundance
-abun.dt<-reumannplatz::CleanData(usda.list$Abun)$cleandat
-climindex.dt<-lapply(climindex.usda[c(1:3,5:7)],function(x){x<-reumannplatz::CleanData(x)$cleandat;x})
+abun.dt<-Reumannplatz::CleanData(usda.list$Abun)$cleandat
+climindex.dt<-lapply(climindex.usda[c(1:3,5:7)],function(x){x<-Reumannplatz::CleanData(x)$cleandat;x})
 for(j in names(climindex.dt)){
   spatcoh.names<-paste(j,"Abun",sep=".")
   climate.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges = ranges)
@@ -22,7 +22,7 @@ for(j in names(climindex.dt)){
 lapply(climate.res,function(x){x$pvals})
 
 #coherenc of winter weather and abundance
-winter.clim.usda.dt<-lapply(winter.clim.usda,function(x){x<-reumannplatz::CleanData(x,normalize=T)$cleandat;x})
+winter.clim.usda.dt<-lapply(winter.clim.usda,function(x){x<-Reumannplatz::CleanData(x,normalize=T)$cleandat;x})
 for(j in names(winter.clim.usda.dt)){
   spatcoh.names<-paste(j,"Abun",sep=".")
   winter.res[[spatcoh.names]]<-cohtestfast(dat2=winter.clim.usda.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges=ranges)
@@ -62,29 +62,29 @@ abunmod<-wmrsig(indata=all.dat[c(1,2,3,4)],r=1,n=3,s=2,surr.test=F,n.surrog=1000
 # Sychrony explained --------------------------
 
 #Synchrony explained in abundance by winter mei
-win.mei.dt<-reumannplatz::CleanData(climindex.usda$WinterMEI,normalize=T)$cleandat
-abun.dt<-reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
+win.mei.dt<-Reumannplatz::CleanData(climindex.usda$WinterMEI,normalize=T)$cleandat
+abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
 abunwinmei.es<-modelsyncexp(abun.dt,win.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
 abunwinmei.es$avgsyncexp
 abunwinmei.es$avgxterm
 
 #synchrony explained in abundance by snow depth
-snowd.dt<-reumannplatz::CleanData(winter.clim.usda$Snwd,normalize=T)$cleandat
-abun.dt<-reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat #truncate abundance by snow
+snowd.dt<-Reumannplatz::CleanData(winter.clim.usda$Snwd,normalize=T)$cleandat
+abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat #truncate abundance by snow
 abunsnwd.es<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,5),plot=F)
 abunsnwd.es$avgsyncexp
 abunsnwd.es$avgxterm
 
 #Synchrony explained in abundance by summer mei
-sum.mei.dt<-reumannplatz::CleanData(climindex.usda$SummerMEI,normalize=T)$cleandat
-abun.dt<-reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
+sum.mei.dt<-Reumannplatz::CleanData(climindex.usda$SummerMEI,normalize=T)$cleandat
+abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
 abunsummei.es<-modelsyncexp(abun.dt,sum.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
 abunsummei.es$avgsyncexp
 abunsummei.es$avgxterm
 
 #Synchrony explained in abundance by winter pdo
-win.pdo.dt<-reumannplatz::CleanData(climindex.usda$WinterPDO,normalize=T)$cleandat
-abun.dt<-reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
+win.pdo.dt<-Reumannplatz::CleanData(climindex.usda$WinterPDO,normalize=T)$cleandat
+abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
 abunwinpdo.es<-modelsyncexp(abun.dt,win.pdo.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
 abunwinpdo.es$avgsyncexp
 abunwinpdo.es$avgxterm
@@ -99,9 +99,9 @@ model.es$ave.syncexp
 
 #coherence of hunters and abundance
 abun<-usda.list$Abun[(!row.names(usda.list$Abun)%in%cwd.usda),12:36]
-abun.dt<-reumannplatz::CleanData(abun,normalize=T)$cleandat
+abun.dt<-Reumannplatz::CleanData(abun,normalize=T)$cleandat
 hunters<-usda.list$Hunters[(!row.names(usda.list$Hunters)%in%cwd.usda),12:36]
-hunters.dt<-reumannplatz::CleanData(hunters,normalize=T)$cleandat
+hunters.dt<-Reumannplatz::CleanData(hunters,normalize=T)$cleandat
 hunter.res<-cohtestfast(dat1=abun.dt,dat2=hunters.dt,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
 hunter.spcoh<-swcoh(bio.dat=abun.dt,env.dat=hunters.dt,times = 1981:2016)
 hunter.res$pvals
@@ -112,7 +112,7 @@ hunterabun.es$avgsyncexp
 hunterabun.es$avgxterm
 
 #coherence of DVCs and abundance
-usda.list.dt<-lapply(usda.list[c(7,9)],function(x){x<-reumannplatz::CleanData(x[,!is.na(colSums(usda.list$Crashes))])$cleandat;x})
+usda.list.dt<-lapply(usda.list[c(7,9)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(usda.list$Crashes))])$cleandat;x})
 dvc.res<-cohtestfast(dat1=usda.list.dt$Crashes,dat2=usda.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
 dvc.spcoh<-swcoh(bio.dat=usda.list.dt$Crashes,env.dat=usda.list.dt$Abun,times = 1987:2016)
 dvc.res$pvals
@@ -123,7 +123,7 @@ dvcabun.es$avgsyncexp
 dvcabun.es$avgxterm
 
 #coherence of adjusted DVCs and abundance
-usda.list.dt<-lapply(usda.list[c(7,11)],function(x){x<-reumannplatz::CleanData(x[,!is.na(colSums(usda.list$AdjDVC))])$cleandat;x})
+usda.list.dt<-lapply(usda.list[c(7,11)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(usda.list$AdjDVC))])$cleandat;x})
 dvc.res1<-cohtestfast(dat1=usda.list.dt$AdjDVC,dat2=usda.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
 dvc.spcoh1<-swcoh(bio.dat=usda.list.dt$AdjDVC,env.dat=usda.list.dt$Abun,times = 1987:2016)
 dvc.res1$pvals

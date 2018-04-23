@@ -56,6 +56,10 @@ library(plyr)
 library(tools)
 library(fields)
 library(shape)
+#x<-.libPaths()[1]
+#y<-library(lib.loc=.libPaths())
+#save(x,y,file="LibraryPath.RData")
+library(Reumannplatz,lib.loc=.libPaths())
 ```
 
 <!--Flags controlling the run and other setup-->
@@ -117,6 +121,8 @@ system.time(source("Code/wi_climate.R"))
 ```{r county_analysis, cache=T, cache.extra=list(mtime("Code/DeerAbundance.R"))}
 #Run analysis on deer abundance and DVCs using county data
 set.seed(101)
+#Rin<-require(Reumannplatz)
+#save(Rin,file="Rin.RData")
 system.time(source("Code/DeerAbundance.R"))
 ```
 
