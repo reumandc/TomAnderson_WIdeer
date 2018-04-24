@@ -305,7 +305,247 @@ Fig. S6<!--***DAN-->), suggesting the results for counties are not
 meaningfully biased by possible inaccuracies in SAK abundance estimation 
 procedures at the county level.
 
+We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions (7<!--***DAN-->), which are necessary for the Fourier-surrogate-based  analyses described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony (8<!--***DAN-->). Time series
+variances were also standardized to 1.
 
+We visually assessed the strength of synchrony 
+and its dependence on time and timescale for 
+all spatiotemporal variables using two 
+statistical tools: the wavelet mean field and 
+the wavelet phasor mean field (7, 9<!--***DAN-->). 
+Both of these find standard application in 
+some biological fields; they are described in 
+detail elsewhere (7, 9<!--***DAN-->) and 
+operationally here. Both techniques take as 
+input time series measured at the same times 
+in several locations, and return as output 
+complex-number-valued functions of time 
+and timescale. When the complex magnitudes of 
+these functions are plotted against time 
+and timescale, the plots characterize the degree 
+of synchrony among the input time series and how 
+it may have changed over time or differed by 
+the timescale considered (Fig. 1<!--***DAN-->). 
+The wavelet phasor mean field magnitude 
+quantifies the degree to which phases of 
+oscillation in the input time series were the 
+same across locations, as a function of time 
+and timescale. The wavelet mean field 
+magnitude incorporates information not only 
+on phase synchronization but also on the 
+tendency of oscillatory components on any 
+given timescale to have magnitudes which are 
+correlated through time across the sampling 
+locations. Both quantities are based on Morlet 
+wavelet transforms of each input time series. 
+Statistical significance of the wavelet phasor mean 
+field, compared to a null hypothesis of no phase 
+synchrony, can be assayed for each combination of 
+time and timescale. For any given time and 
+timescale, significance testing compares the degree 
+of phase consistency between sampling locations for 
+real time series to a null hypothesis of random 
+phases. If real phase consistency was greater than 
+that of $99.9\%$ of sets of random phases 
+($P < 0.001$; one-tailed test), synchrony was 
+deemed significant and important 
+(10<!--***DAN-->). Wavelet mean field and 
+wavelet phasor mean field magnitude plots for 
+winter weather variables are in 
+Fig. S7<!--***DAN-->. 
+
+For climate indices (winter and growing season 
+NAO, PDO and MEI), which were single time series 
+rather than collections of time series measured at 
+multiple locations, we generated plots of 
+“normalized” wavelet magnitude 
+(Fig. S8<!--***DAN-->). Here, wavelet transforms 
+were first normalized at each timescale by dividing 
+by the square root of the time-averaged squared 
+wavelet transform magnitudes. Magnitudes of 
+normalized transforms were plotted as a function of 
+time and timescale (7<!--***DAN-->).  
+
+For both county- and district-level data, we 
+assessed pairwise relationships between 
+spatiotemporal variables using spatial coherence 
+techniques. These find standard application in 
+other fields, and are described in detail 
+elsewhere (7, 9, 11<!--***DAN-->) and operationally 
+here. Spatial coherence tests whether two 
+spatiotemporal variables exhibit consistent phase 
+differences and correlated magnitudes of 
+oscillation through time and across space as a 
+function of timescale. Significance is determined 
+by comparing spatial coherences of data with 
+spatial coherences of appropriately randomized, 
+surrogate data sets ($N=100,000$ surrogates 
+were used for all tests) that retain the same 
+temporal and spatial autocorrelation properties as 
+the original time series but are otherwise 
+unrelated (12, 13<!--***DAN-->). Standard Fourier 
+surrogates were used (7, 9, 13<!--***DAN-->). 
+We calculated how often observed spatial coherence 
+between pairs of variables was ranked higher than 
+coherences of surrogate data sets, aggregating 
+across the timescale band of interest using an 
+average-rank-based method described in detail 
+elsewhere (7<!--***DAN-->). A p-value of $0.05$ 
+means that coherences were higher, in an average 
+sense across the timescale band, than the same 
+quantities calculated for $95,000$ of $100,000$ 
+surrogate data sets. Ranks of actual spatial 
+coherences in surrogate spatial coherences can 
+also be plotted as a function of timescale 
+(Fig. S3<!--***DAN-->). 
+
+As opposed to correlation-based approaches that 
+assume in-phase relationships, spatial coherence 
+allows for any kind of phase relationship and 
+provides as output the average phase that occurred. 
+Therefore, when two variables were significantly 
+spatially coherent over a timescale band, we 
+calculated the mean phase difference between the 
+variables over the band, in units of $\pi$ 
+radians, to determine if oscillations had 
+approximately in-phase ($|\bar{\theta}|=0$ to 
+$0.25$), quarter-cycle ($|\bar{\theta}|=0.25$ to 
+$0.75$), or anti-phase ($|\bar{\theta}|=0.75$ to 
+$1$) relationships. We used the scalloped version 
+of the wavelet transforms of each variable for 
+calculating phase differences. 
+
+As with correlations, the causal direction of 
+spatial coherence is not directly revealed by the 
+coherence itself, though biological arguments 
+sometimes support one causal hypothesis more than 
+others. Weather could not reasonably be influenced 
+by deer abundance. Therefore, a highly significant 
+spatial coherence between a weather variable and 
+deer abundance on a timescale band of interest 
+provides strong evidence that either the weather 
+variable helped cause deer fluctuations and 
+synchrony for those timescales, possibly 
+indirectly, or some other weather variable, 
+highly spatially 
+coherent with the first variable, caused the 
+fluctuations and synchrony. The highly significant 
+coherence between deer abundances and DVCs we 
+present in the main text is likewise probably 
+indicative of greater deer abundances resulting in 
+more DVCs. DVCs are too uncommon to meaningfully 
+influence deer abundance (Fig. S1<!--***DAN-->), 
+and the 
+in-phase relationship our analyses showed between 
+deer abundances and DVCs on $3–7$-year timescales 
+is much more plausibly consistent with deer 
+dynamics driving DVC dynamics than the reverse. 
+
+We used spatial coherence to test for the effects 
+of the five weather variables (average winter Tmin, 
+Tmax, snow depth, precipitation, and WSI), six 
+climate variables (winter and growing season PDO, 
+MEI and NAO) and hunter abundance as potential 
+drivers of synchrony in deer abundance over the 
+$3–7$-year timescale band. We also used spatial 
+coherence to test for a relationship between deer 
+abundance and DVCs, and abundance with DVCs 
+adjusted for traffic volume. When the temporal and 
+spatial extents of two spatiotemporal variables 
+data were not identical, we retained only the 
+locations and time range for which data were 
+available for both variables when testing for 
+spatial coherence. When testing for spatial 
+coherence between a spatiotemporal variable and a 
+climate index (PDO, MEI or NAO, each of which 
+comprised only a single time series), we considered 
+that the same index time series pertained to all 
+locations for which the spatiotemporal variable was 
+measured. 
+
+For statewide analyses, for which all variables 
+were represented only by single, state average or 
+total time series, timescale-specific relationships 
+between variables were tested using ordinary 
+wavelet coherence. Wavelet coherence is a 
+non-spatial version of the spatial coherence, and 
+tests whether two time series exhibit consistent 
+phase differences and correlated magnitudes of 
+oscillation through time, as a function of 
+timescale. We tested for relationships between 
+statewide deer abundance time series and climate 
+indices, statewide averages for winter weather, 
+statewide hunter abundance time series, and 
+statewide total DVCs. 
+
+We calculated the amount of deer abundance 
+synchrony explained by individual weather and 
+climate variables, as well as the amount of DVC 
+synchrony explained by deer abundance, following 
+the wavelet Moran theorem of (7<!--***DAN-->). 
+As part of this procedure, we also calculated the 
+average “cross terms” of (7<!--***DAN-->) over 
+the timescale band of interest (see supplementary 
+files of ref 7, equation 22), again following the 
+procedures described in that reference. The precise 
+mathematical meaning of cross terms is explained in 
+(7<!--***DAN-->); for operational purposes, they 
+provide a test of whether modelling assumptions of 
+(7<!--***DAN-->) are sufficiently met to use the 
+wavelet Moran theorem to estimate fractions of 
+synchrony explained. Cross terms less than $50\%$ 
+<!--***DAN: 
+Tom said in a marginal comment on the Word version that preceded this one:
+This is somewhat of a guess- the only one that as really a problem was deer and dvcs using counties- something like 44% explained with cross terms of 30%. Snow and deer was about 50% though synchrony explained was very low. The rest of the results were high synchrony explained and no cross terms to speak of, or very low synchrony explained/not significant so cross terms didn’t matter anyways. 
+
+Dan says: we cannot use 50% here, it's too high. We need to revisit this. Anyway I suspect a lower number here could be used without having to change any of what you did.
+-->
+of estimated fractions of synchrony explained were 
+considered necessary.
+
+We calculated the amount of deer abundance 
+synchrony jointly explained by snow depth, 
+PDOw and MEIw using a wavelet multiple regression 
+model approach (10<!--***DAN-->). This novel 
+method, described in detail in (10<!--***DAN-->), 
+is analogous to multiple linear regression, with a 
+model describing the relationship between a 
+response variable and multiple predictor variables. 
+But in contrast to standard regression, response 
+and predictor variables are power-normalized 
+wavelet transforms of spatiotemporal variables. 
+Model coefficients are complex-valued functions of 
+timescale encoding estimated phase lags and 
+magnitude multipliers between a predictor variable 
+and its effects on the response variable. 
+Coefficients are estimated in a way that has the 
+effect of maximizing the spatial coherence between 
+response transforms and model-predicted transforms. 
+Thus, the predictor transforms in the model can be 
+used to statistically explain variation in the 
+wavelet transforms of the response, as well as to 
+produce a wavelet mean field plot of the predicted 
+synchrony as a function of time and timescale based 
+on the multiple explanatory variables (colors in 
+Figs 2C<!--***DAN-->, S6E<!--***DAN-->, colors). 
+Fractions of synchrony explained by model 
+predictors for a timescale band are again 
+available, through a generalization 
+(10<!--***DAN-->) of the wavelet Moran theorem 
+of (7<!--***DAN-->), again subject to checking 
+cross terms. 
+<!--***DAN: This is the para subject to not quite knowing what to do given Lawrence's paper is not published yet.-->
+
+<!--***DAN: stopped here 2018 04 24, 305pm-->
+
+In order to quantify the degree to which 
+synchronizing effects are responsible for 
+fluctuations in statewide total deer and DVC time 
+series (Fig. 4<!--***DAN--> and associated text), 
+we adapted the standard Fourier surrogate procedure 
+of (12<!--***DAN-->). We constructed artificial 
+deer abundance and DVC time series for each 
+location, having the same variance and spectral characteristics as the original data but no spatial synchrony in the 3–7-year timescale band of interest. Components of variability and synchrony outside this band (such as longer-term trend or fluctuations, and higher frequency components associated with 'spikiness' in the data) were left unchanged. To produce surrogate data for a given location, we took the Fourier transform of the time series and randomized the phases of the Fourier components inside the 3–7-year timescale band before inverse transforming to produce the surrogate time series. Because only phases of the Fourier transform are randomized, power spectra and variances of time series are unchanged. Additionally, Bbecause phases in the 3–7-year timescale band are randomized independently, surrogate time series so produced no longer exhibit a tendency to synchrony in the 3–7 year timescale range (13). Phase randomization was accomplished by adding a random phase increment between 0 and 2π to the phase of each Fourier component with a frequency greater than or equal to 1/7, but less than 1/3 cycles per year. Additionally, because the phase values of the Fourier components of a real signal are anti-symmetric about the Nyquist frequency (1/2 cycles/year), Fourier components with frequencies less than or equal to 6/7 and more than 2/3 cycles per year had the same set of phase increments subtracted to preserve the anti-symmetry property of Fourier transforms. We summed each set of surrogate time series spatially to produce a surrogate state-total time series representative of the hypothetical case in which 3–7-year timescale synchrony was absent. Such surrogate state-total time series were compared to the actual time series (deer abundance or DVCs) to show the nature of the additional variance in the state-total time series attributable to synchrony (Fig. 4).
 
 # Supplementary text
 
