@@ -1,7 +1,6 @@
 
 
 Things to do:
-D - put pedagog fig code in
 DT - use cacheing, which means sorting out dependencies
 T - sort out warnings, don't just supress them
 ? - ready to add data to repo?
