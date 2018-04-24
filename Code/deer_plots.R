@@ -2,6 +2,9 @@
 source("Functions/Fn_wsurfplot_modified.R")
 source("Functions/Fn_wmfwt.R")
 
+#Fig. 1
+source("Code/PedagogFig.R")
+
 #clean data for Figs 2 and 3
 abun.dt<-Reumannplatz::CleanData(cty.list$Abun)$cleandat
 dvc.dt<-Reumannplatz::CleanData(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))])$cleandat

@@ -1,7 +1,6 @@
 
 
 Things to do:
-T - set.seed in appropriate places make it exactly reproducible
 D - put pedagog fig code in
 DT - use cacheing, which means sorting out dependencies
 T - sort out warnings, don't just supress them

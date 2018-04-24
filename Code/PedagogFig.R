@@ -3,11 +3,6 @@
 #synchrony in deer and DVCs.
 #***
 
-rm(list=ls())
-graphics.off()
-
-require(Reumannplatz)
-
 #parameters for the example itself
 tslen<-35
 numts<-15
@@ -30,7 +25,8 @@ totht<-xht+2*panht.b+2*gap+panht.s+gap
 colmap<-rep(c("black","red"),times=numts)#rainbow(numts)
 adjmt<-0.5
 #pdf(file=paste("Fig1.pdf"),width=totwd,height=totht)
-tiff(file=paste("Fig1.tiff"),width=totwd,height=totht,compression=c("lzw"),units="in",res=600)
+#tiff(file=paste("Fig1.tiff"),width=totwd,height=totht,compression=c("lzw"),units="in",res=600)
+png(file="Results/Fig1.png",width=totwd,height=totht,units="in",res=600)
 
 #Example 1 - time series with no synchrony
 tm<-0:(tslen-1)
@@ -225,7 +221,6 @@ image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
 axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1), 
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
-
 
 dev.off()
 
