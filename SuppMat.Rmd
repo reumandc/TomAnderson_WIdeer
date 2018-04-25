@@ -287,7 +287,7 @@ at smaller spatial scales (5)<!--***DAN-->. However, the bias in abundance
 estimates previously reported may have been overestimated, as more recent analyses 
 suggest the uncertainty in SAK estimates is substantially less 
 ($\pm 20\%$ error rates; WIDNR, personal communication). 
-<!--***DAN: In was Robert that told is this, and he is a coathor, so perhaps we should take out the personal communication parens? It would be best if we could get a citation for this, even a white paper, if there is one and we can fit it in.-->
+<!--***DAN: It was Robert that told us this, and he is a coathor, so perhaps we should take out the personal communication parens? It would be best if we could get a citation for this, even a white paper, if there is one and we can fit it in.-->
 In addition, the criticism of the SAK (5)<!--***DAN--> was based 
 on a model that did not match perfectly with practices of the WIDNR. 
 <!--***DAN: I added the above sentence, Tom, based on a comment of Roberts that had been inserted as a marginal note in the Word doc that this Rmd replaces. Please check. If we keep the "personal communication" paren above then we should also insert one here.-->
@@ -437,7 +437,7 @@ more DVCs. DVCs are too uncommon to meaningfully
 influence deer abundance (Fig. S1<!--***DAN-->), 
 and the 
 in-phase relationship our analyses showed between 
-deer abundances and DVCs on $3–7$-year timescales 
+deer abundances and DVCs on $3-7$-year timescales 
 is much more plausibly consistent with deer 
 dynamics driving DVC dynamics than the reverse. 
 
@@ -447,7 +447,7 @@ Tmax, snow depth, precipitation, and WSI), six
 climate variables (winter and growing season PDO, 
 MEI and NAO) and hunter abundance as potential 
 drivers of synchrony in deer abundance over the 
-$3–7$-year timescale band. We also used spatial 
+$3-7$-year timescale band. We also used spatial 
 coherence to test for a relationship between deer 
 abundance and DVCs, and abundance with DVCs 
 adjusted for traffic volume. When the temporal and 
@@ -545,7 +545,7 @@ of (12<!--***DAN-->). We constructed artificial
 deer abundance and DVC time series for each 
 location, having the same variance and spectral 
 characteristics as the original data but no spatial 
-synchrony in the $3–7$-year timescale band of 
+synchrony in the $3-7$-year timescale band of 
 interest. Components of variability and synchrony 
 outside this band (such as longer-term trend or 
 fluctuations, and higher frequency components 
@@ -553,15 +553,15 @@ associated with 'spikiness' in the data) were left
 unchanged. To produce surrogate data for a given 
 location, we took the Fourier transform of the time 
 series and randomized the phases of the Fourier 
-components inside the $3–7$-year timescale band 
+components inside the $3-7$-year timescale band 
 before inverse transforming to produce the 
 surrogate time series. Because only phases of the 
 Fourier transform are randomized, power spectra and 
 variances of time series are unchanged. 
-Additionally, because phases in the $3–7$-year 
+Additionally, because phases in the $3-7$-year 
 timescale band are randomized independently, 
 surrogate time series so produced no longer exhibit 
-a tendency to synchrony in the $3–7$ year timescale 
+a tendency to synchrony in the $3-7$ year timescale 
 range (13<!--***DAN-->). Phase randomization was 
 accomplished by adding a random phase increment 
 between $0$ and $2\pi$ to the phase of each Fourier 
@@ -577,7 +577,7 @@ increments subtracted to preserve the anti-symmetry
 property of Fourier transforms. We summed each set 
 of surrogate time series spatially to produce a 
 surrogate state-total time series representative of 
-the hypothetical case in which $3–7$-year timescale 
+the hypothetical case in which $3-7$-year timescale 
 synchrony was absent. Such surrogate state-total 
 time series were compared to the actual time series 
 (deer abundance or DVCs) to show the nature of the 
@@ -608,7 +608,7 @@ costs may exceed US\$22M.
 ## USDA district results
 
 When aggregated to USDA districts, deer abundance 
-showed a prominent synchrony feature at $3–7$ year 
+showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
 (Fig. S6A,C<!--***DAN-->). 
 The wavelet phasor mean field of deer 
@@ -638,7 +638,7 @@ USDA district data (Fig. S6E<!--***DAN-->).
 
 <!--***DAN: Tom, I made some substantial edits to the below para, pls review-->
 DVCs aggregated to USDA districts had a similar 
-synchrony feature to deer abundance over $3–7$ year 
+synchrony feature to deer abundance over $3-7$ year 
 timescales (Fig. S6B,D<!--***DAN-->). As with 
 counties, deer abundance was a significant 
 predictor of DVC synchrony (Table S4<!--***DAN-->), 
@@ -676,15 +676,15 @@ interpretable.
 In general results of the statewide analysis 
 mostly agreed with the smaller spatial unit 
 analyses. Deer abundance and DVCs were marginally 
-significant over the $3–7$-year timescale band 
+significant over the $3-7$-year timescale band 
 ($P=0.07$<!--***DAN-->), with most of the 
 significance occurring over 
-the $3–5$ year part of the timescale average 
+the $3-5$ year part of the timescale average 
 ($P = 0.03$<!--***DAN-->). DVCs were not 
 significant with abundance after correcting for 
 traffic ($P = 0.51$<!--***DAN-->). Snow depth, 
 MEIs, MEIw and PDOw were all significantly 
-coherent with deer abundance over the $3–7$ 
+coherent with deer abundance over the $3-7$ 
 timescale band (Snow: $P = 0.003$<!--***DAN-->; 
 MEIw: $P = 0.006$<!--***DAN-->; MEIs: 
 $P = 0.001$<!--***DAN-->; PDOw: 
@@ -732,7 +732,7 @@ study.\label{FigS1_Timeseries}}
 
 \begin{figure}[!h]
 \includegraphics[width=.6\textwidth]{Results/FigS5.png}
-\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunters (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundance, while contours show the actual wavelet mean field magnitude of deer abundance (from Fig. 2A<!--***DAN: -->). Agreement is poor, giving a visual indication of the statistical result that hunter abundance does not explain deer abundance or synchrony well on $3–7$-year timescales.\label{FigS5_WMFHunter}}
+\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunters (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundance, while contours show the actual wavelet mean field magnitude of deer abundance (from Fig. 2A<!--***DAN: -->). Agreement is poor, giving a visual indication of the statistical result that hunter abundance does not explain deer abundance or synchrony well on $3-7$-year timescales.\label{FigS5_WMFHunter}}
 \end{figure}
 
 \newpage
@@ -765,6 +765,47 @@ study.\label{FigS1_Timeseries}}
 ```{r TableS1,echo=F,results='markup'}
 #knitr::kable(,#Insert name of R dataframe containing table S1 here
 #             format='pandoc',
-#             caption = "Summary of spatial coherence tests and related results using county-level data #(\emph{Methods}). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3–7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (\emph{Methods}) are provided where meaningful (for significant tests; $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations.\\label{TabS1_CountyCoherenceSummary}",
+#             caption = "Summary of spatial coherence tests and related results using county-level data #(\emph{Methods}). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (\emph{Methods}) are provided where meaningful (for significant tests; $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations.\\label{TabS1_CountyCoherenceSummary}",
+#             booktabs=T)
+```
+$^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.<!--***DAN: -->
+
+\noindent $^2$For $2-2.5$-year timescales, $p = 0.005$<!--***DAN: -->, phase $= -0.827$<!--***DAN: --> and synchrony explained $= 0.001$<!--***DAN: -->.
+
+<!--***DAN: once a variable exists, can uncomment this-->
+```{r TableS2,echo=F,results='markup'}
+#knitr::kable(,#Insert name of R dataframe containing table S2 here
+#             format='pandoc',
+#             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses indicate the mean phase difference ($\bar{\theta}$) between variables over $3-7$-year timescales (only shown for pairs of variables that were both significantly coherent [$p < 0.05$] with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
+#             booktabs=T)
+```
+
+<!--***DAN: once a variable exists, can uncomment this-->
+<!--***DAN: Tom, is this for 3-7-year timescales? The caption should say, please add-->
+```{r TableS3,echo=F,results='markup'}
+#knitr::kable(,#Insert name of R dataframe containing table S3 here
+#             format='pandoc',
+#             caption = "$P$-values of spatial coherence between climate indices and average winter weather conditions using county-level data. \\label{TabS3_SpatCohPWWAndClimInds}",
+#             booktabs=T)
+```
+
+<!--***DAN: once a variable exists, can uncomment this-->
+```{r TableS4,echo=F,results='markup'}
+#knitr::kable(,#Insert name of R dataframe containing table S4 here
+#             format='pandoc',
+#             caption = "Summary of spatial coherence tests and related results using USDA district-level data (\emph{Methods}). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (\emph{Methods}) are provided where meaningful (i.e., for significant tests, $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations. \\label{TabS4_SummaryDistrict}",
+#             booktabs=T)
+```
+<!--***DAN: the last sentence of the caption should probably be explained somewhere appropriate and there should be a reference here to that place-->
+$^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.860$<!--***DAN: -->, and synchrony explained $= 0.339$.<!--***DAN: -->
+
+\noindent $^2$For $2-2.5$-year timescales, $p = 0.012$<!--***DAN: -->, phase $= -0.326$<!--***DAN: --> and synchrony explained $= 0.002$.<!--***DAN: -->
+
+<!--***DAN: once a variable exists, can uncomment this-->
+<!--***DAN: Tom, is this for 3-7-year timescales? The caption should say, please add-->
+```{r TableS5,echo=F,results='markup'}
+#knitr::kable(,#Insert name of R dataframe containing table S5 here
+#             format='pandoc',
+#             caption = "$P$-values of spatial coherence between climate indices and average winter weather conditions using USDA district-level data. \\label{TabS5_SpatCohPWWAndClimInds_District}",
 #             booktabs=T)
 ```
