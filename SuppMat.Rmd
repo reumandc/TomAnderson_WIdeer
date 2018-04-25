@@ -13,7 +13,7 @@ link-citations: True
 urlcolor : blue
 
 csl: science.csl
-bibliography: refs.bib
+bibliography: AndersDeerShortRefs.bib
 ---
 
 \textbf{This PDF file includes:}
@@ -223,7 +223,7 @@ the number of police-investigated DVCs. These data represent an
 index of DVCs, as opposed to an absolute number of incidents, 
 as not all DVCs are reported. In Michigan, nearly half of 
 DVCs went unreported to the police or insurance companies 
-over a five year period (2<!--***DAN-->). Additionally, 
+over a five year period [@Marcoux2010_dvc]. Additionally, 
 DVC information was collected with reporting effort that 
 may have varied for different counties 
 (Daniel Storm, WIDNR, Personal Communication), and the 
@@ -583,8 +583,6 @@ time series were compared to the actual time series
 (deer abundance or DVCs) to show the nature of the 
 additional variance in the state-total time series 
 attributable to synchrony (Fig. 4<!--***DAN-->).
-
-We estimated the approximate monetary impact of synchrony in DVCs based on several reported assumptions about DVCs. Using an average difference between peak and trough DVC years (Fig. 4) of 2500629, Iand if we assume that each reported DVC results in an average of US$2024 of damage (14), the difference in damages statewide between peak and trough years is more than US$5M. Given that DVCs are only reported about 50% of the time (2), this number is actually likely greater than US$10M. Using different assumptions of the cost of DVCs (15), the difference between peak and trough years in DVCs costs exceeds US$22M.    
 
 <!--***DAN: Tom, you had attached a bunch of marginal comments to the version of this para in the Word doc, and I tried to act on those as best I could. Please revire the result-->
 We estimated the approximate monetary impact of 
