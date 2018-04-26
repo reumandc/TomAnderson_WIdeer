@@ -17,3 +17,5 @@ citations, etc.)
    year = {2011},
    type = {Government Document}
 }
+
+`r weatherpvals$Snwd.Abun`
