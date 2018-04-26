@@ -34,6 +34,13 @@ for(j in names(winter.clim)){
 }
 weathpvals<-lapply(winter.res,function(x){x$pvals})
 
+#rerun coherence for snow depth and abundance but for 3-5 year timescales
+snow.tmp<-winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),]
+snow.dt<-Reumannplatz::CleanData(snow.tmp,normalize=T)$cleandat
+abun.dt<-abun.dt[!is.na(rowMeans(snow.dt)),]
+snow.abun.spatcoh35<-cohtestfast(dat2=snow.dt,dat1=abun.dt,nsurrogs=nsurrogs,tsranges=rbind(c(3,5)))
+snow_abun_pval3_5<-snow.abun.spatcoh35$pvals
+
 #coherence of climate and weather
 TableS3<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
 for(j in 1:length(names(climindex))){
@@ -52,7 +59,7 @@ for(j in 1:length(names(climindex))){
 }
 
 #coherence between climate indices
-TableS4<-matrix(NA,6,6)
+TableS2<-matrix(NA,6,6)
 for(i in 1:(length(climindex.dt)-1)){
   for(j in (i+1):length(climindex.dt)){
     name1<-names(climindex.dt)[i]
@@ -60,12 +67,12 @@ for(i in 1:(length(climindex.dt)-1)){
     spatcoh.names<-paste(name2,name1,sep=".")
     indices.res[[spatcoh.names]]<-cohtestfast(dat1=climindex.dt[[j]],dat2=climindex.dt[[i]],nsurrogs=nsurrogs,tsranges=ranges)
     indices.spcoh[[spatcoh.names]]<-swcoh(bio.dat=climindex.dt[[j]],env.dat=climindex.dt[[i]],times=1981:2016)
-    TableS4[j,i]<-indices.res[[spatcoh.names]]$pvals
+    TableS2[j,i]<-indices.res[[spatcoh.names]]$pvals
   }
 }
-diag(TableS4)<-1
-row.names(TableS4)<-names(climindex.dt)
-colnames(TableS4)<-names(climindex.dt)
+diag(TableS2)<-1
+row.names(TableS2)<-names(climindex.dt)
+colnames(TableS2)<-names(climindex.dt)
 
 # Model Selection of Significant Coherence Pairs --------------------------
 #consolidate data to winter temperature size (60 counties)
