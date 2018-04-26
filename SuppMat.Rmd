@@ -33,10 +33,12 @@ items I need from you first:
 
 3) Please open Endnote and try to figure out how to expport your library of ciations that you are using
 for this paper as a bibtex file (.bib extension). This reference may help: https://www.reed.edu/cis/help/LaTeX/EndNote.html. Then commit and push the file to the repo in the same folder as this Rmd and let me know. ##Tom: Done
+-->
 
 <!--***DAN: Currently we are using science citation style in the supp mat, is this 
 required, Tom? If not, wwe should use the callout style we prefer. What style do you
 prefer ##Tom: from their website, "References only cited in the supplementary materials should be included at the end of the reference section of the main text, and the reference numbering should continue as if the Supplementary Materials was a continuation of the main text." We can talk about how to incorporate this whenever we talk again. 
+-->
 
 <!--checkpoint package for CRAN-available packages-->
 ```{r checkpoint_chunk, echo=F, results="hide",warning=F, message=F, results="hide"}
@@ -182,7 +184,7 @@ get the same thing.-->
 
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a 36<!--***DAN-->-yr period 
-(1981–2016<!--***DAN-->; Fig. S1<!--***DAN-->). 
+(1981–2016<!--***DAN-->; Fig. S1<!--***DAN use \ref{<label>}-->). 
 From 1981–2013<!--***DAN-->, deer abundance was estimated for deer management units 
 (DMUs, N = 101–139<!--***DAN--> depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
@@ -763,33 +765,47 @@ study.\label{FigS1_Timeseries}}
 
 # Supplementary tables
 
-<!--***DAN: Table S1, currently commented until Dan gets the name of the R dataframe containing table S1 from Tom-->
+<!--***DAN: the abundance/summer MEI synchrony explained and cross term values appear to be missing from the R variable TableS1 and need to be put in in the R code-->
 ```{r TableS1,echo=F,results='markup'}
-#knitr::kable(,#Insert name of R dataframe containing table S1 here
-#             format='pandoc',
-#             caption = "Summary of spatial coherence tests and related results using county-level data #(\emph{Methods}). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (\emph{Methods}) are provided where meaningful (for significant tests; $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations.\\label{TabS1_CountyCoherenceSummary}",
-#             booktabs=T)
+options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
+knitr::kable(TableS1,
+             format='pandoc',
+             digits=4,
+             col.names=c("Response","Predictor","P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             caption = "Summary of spatial coherence tests and related results using county-level data (\\emph{Methods}). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (\\emph{Methods}) are provided where meaningful (for significant tests, $P < 0.05$, or marginally significant tests). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations. All values were rounded so that four digits were displayed.\\label{TabS1_CountyCoherenceSummary}",
+             booktabs=T)
 ```
-$^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.<!--***DAN: -->
+
+\noindent $^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.<!--***DAN: -->
 
 \noindent $^2$For $2-2.5$-year timescales, $p = 0.005$<!--***DAN: -->, phase $= -0.827$<!--***DAN: --> and synchrony explained $= 0.001$<!--***DAN: -->.
 
-<!--***DAN: once a variable exists, can uncomment this-->
+\newpage
+
+<!--***DAN: once a variable exists, can uncomment this. It seems TableS2 does not exist even though Tom's email says it does.-->
 ```{r TableS2,echo=F,results='markup'}
-#knitr::kable(,#Insert name of R dataframe containing table S2 here
+#knitr::kable(TableS2,
+#             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
 #             format='pandoc',
-#             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses indicate the mean phase difference ($\bar{\theta}$) between variables over $3-7$-year timescales (only shown for pairs of variables that were both significantly coherent [$p < 0.05$] with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
+#             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses indicate the mean phase difference #($\bar{\theta}$) between variables over $3-7$-year timescales (only shown for pairs of variables that were both significantly coherent [$p < #0.05$] with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
 #             booktabs=T)
 ```
 
+\newpage
+
 <!--***DAN: once a variable exists, can uncomment this-->
 <!--***DAN: Tom, is this for 3-7-year timescales? The caption should say, please add-->
+<!--***DAN: Use Prcp or Precip (does not matter) consistently throughout paper-->
 ```{r TableS3,echo=F,results='markup'}
-#knitr::kable(,#Insert name of R dataframe containing table S3 here
-#             format='pandoc',
-#             caption = "$P$-values of spatial coherence between climate indices and average winter weather conditions using county-level data. \\label{TabS3_SpatCohPWWAndClimInds}",
-#             booktabs=T)
+rownames(TableS3)<-c("Tmin","Tmax","Precip","Snow depth","WSI")
+knitr::kable(TableS3,
+             format='pandoc',
+             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
+             caption = "$P$-values of spatial coherence between climate indices and average winter weather conditions using county-level data. \\label{TabS3_SpatCohPWWAndClimInds}",
+             booktabs=T)
 ```
+
+\newpage
 
 <!--***DAN: once a variable exists, can uncomment this-->
 ```{r TableS4,echo=F,results='markup'}
@@ -802,6 +818,8 @@ $^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.871$<!--**
 $^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.860$<!--***DAN: -->, and synchrony explained $= 0.339$.<!--***DAN: -->
 
 \noindent $^2$For $2-2.5$-year timescales, $p = 0.012$<!--***DAN: -->, phase $= -0.326$<!--***DAN: --> and synchrony explained $= 0.002$.<!--***DAN: -->
+
+\newpage
 
 <!--***DAN: once a variable exists, can uncomment this-->
 <!--***DAN: Tom, is this for 3-7-year timescales? The caption should say, please add-->
