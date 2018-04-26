@@ -26,13 +26,17 @@ bibliography: AndersDeerShortRefs.bib
 <!--***DAN: Tom, in order for me to put in demos of how some things work here are some 
 items I need from you first:
 1) the name of an R variable in your code for some in-text number, and an indication of which number, e.g., your response might look like "the p-value in the first line under Table S1 is stored in the R variable  SnowDepthAbundanceCohP35".
+##Tom: the snow depth pvalue would be the variable weatherpvals$Snwd.Abun
+
 2) the name of an R data frame that contains Table S1, e.g., you might just call it TableS1df. 
+##Tom: I just called TableS1. Likewise, TableS2 and TableS3 are named after themselves- both of the latter are matrices as that was easier to store things given my current code set up- let me know if that will be an issue. 
+
 3) Please open Endnote and try to figure out how to expport your library of ciations that you are using
-for this paper as a bibtex file (.bib extension). This reference may help: https://www.reed.edu/cis/help/LaTeX/EndNote.html. Then commit and push the file to the repo in the same folder as this Rmd and let me know.-->
+for this paper as a bibtex file (.bib extension). This reference may help: https://www.reed.edu/cis/help/LaTeX/EndNote.html. Then commit and push the file to the repo in the same folder as this Rmd and let me know. ##Tom: Done
 
 <!--***DAN: Currently we are using science citation style in the supp mat, is this 
 required, Tom? If not, wwe should use the callout style we prefer. What style do you
-prefer, Tom?-->
+prefer ##Tom: from their website, "References only cited in the supplementary materials should be included at the end of the reference section of the main text, and the reference numbering should continue as if the Supplementary Materials was a continuation of the main text." We can talk about how to incorporate this whenever we talk again. 
 
 <!--checkpoint package for CRAN-available packages-->
 ```{r checkpoint_chunk, echo=F, results="hide",warning=F, message=F, results="hide"}
