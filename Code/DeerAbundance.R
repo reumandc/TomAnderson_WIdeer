@@ -11,6 +11,8 @@ indices.spcoh<-list()
 nsurrogs=nsurrogs
 ranges=rbind(c(3,7))
 
+climindex<-climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")]#drop ENSO from all subsequent analysis, redundant to MEI
+
 #coherence of climate indices and abundance
 abun.dt<-Reumannplatz::CleanData(cty.list$Abun,normalize=T)$cleandat
 climindex.dt<-lapply(climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")],function(x){x<-Reumannplatz::CleanData(x,normalize=T,each.ts = T)$cleandat;x})
@@ -33,20 +35,24 @@ for(j in names(winter.clim)){
 weathpvals<-lapply(winter.res,function(x){x$pvals})
 
 #coherence of climate and weather
-for(j in names(climindex)){
-  for(i in names(winter.clim)){
-    climindex.tmp<-Reumannplatz::CleanData(climindex[[j]],normalize=T)$cleandat
-    winter.clim.dt<-winter.clim[[i]][!is.na(rowMeans(winter.clim[[i]])),]
-    climindex.tmp<-climindex.tmp[!is.na(rowMeans(winter.clim[[i]])),]
+TableS3<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
+for(j in 1:length(names(climindex))){
+  for(i in 1:length(names(winter.clim))){
+    name1<-names(climindex)[j]
+    name2<-names(winter.clim)[i]
+    climindex.tmp<-Reumannplatz::CleanData(climindex[[name1]],normalize=T)$cleandat
+    winter.clim.dt<-winter.clim[[name2]][!is.na(rowMeans(winter.clim[[name2]])),]
+    climindex.tmp<-climindex.tmp[!is.na(rowMeans(winter.clim[[name2]])),]
     winter.clim.dt.tmp<-Reumannplatz::CleanData(winter.clim.dt,normalize=T)$cleandat
-    spatcoh.names<-paste(j,i,sep=".")
-    weath.climind.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.tmp,dat1=winter.clim.dt.tmp,nsurrogs=nsurrogs,tsranges=ranges)
+    spatcoh.names<-paste(name1,name2,sep=".")
+    weath.climind.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.tmp,dat1=winter.clim.dt.tmp,nsurrogs=500,tsranges=ranges)
     weath.climind.spcoh[[spatcoh.names]]<-swcoh(bio.dat=winter.clim.dt.tmp,env.dat=climindex.tmp,times=1981:2016)
+    TableS3[i,j]<-weath.climind.res[[spatcoh.names]]$pvals
   }
 }
-TableS3<-lapply(weath.climind.res,function(x){x$pvals})
 
 #coherence between climate indices
+TableS4<-matrix(NA,6,6)
 for(i in 1:(length(climindex.dt)-1)){
   for(j in (i+1):length(climindex.dt)){
     name1<-names(climindex.dt)[i]
@@ -54,9 +60,12 @@ for(i in 1:(length(climindex.dt)-1)){
     spatcoh.names<-paste(name2,name1,sep=".")
     indices.res[[spatcoh.names]]<-cohtestfast(dat1=climindex.dt[[j]],dat2=climindex.dt[[i]],nsurrogs=nsurrogs,tsranges=ranges)
     indices.spcoh[[spatcoh.names]]<-swcoh(bio.dat=climindex.dt[[j]],env.dat=climindex.dt[[i]],times=1981:2016)
+    TableS4[j,i]<-indices.res[[spatcoh.names]]$pvals
   }
 }
-TableS4<-lapply(indices.res,function(x){x$pvals})
+diag(TableS4)<-1
+row.names(TableS4)<-names(climindex.dt)
+colnames(TableS4)<-names(climindex.dt)
 
 # Model Selection of Significant Coherence Pairs --------------------------
 #consolidate data to winter temperature size (60 counties)
@@ -184,8 +193,6 @@ TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEi",'Average.
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Average.Cross.Terms']<-dvc_abun_xterms
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Average.Cross.Terms']<-adjdvc_abun_xterms
 
-TableS1
-
 # Determine Mean Phase Relationships -------------------------------------------
 #compute mean phase and store in S1
 source("Functions/Fn_phasemean.R")
@@ -199,6 +206,8 @@ hunterphase2_2.5<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunte
 wpdo_wmei_phase<-phasemean(spatcoh = indices.spcoh$WinterMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wpdo_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wmei_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterMEI$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
+
+print(TableS1)
 
 # Do Statewide Analysis ---------------------------------------------------
 ann.abun.dt<-Reumannplatz::CleanData(colSums(cty.list$Abun),normalize=T)$cleandat
@@ -218,38 +227,32 @@ ann_abun_snow_pval<-ann.abun.res$pvals
 ann.abun.wmei<-cohtestfast(dat1=ann.abun.dt,dat2=win.mei.dt,tsranges=ranges,nsurrogs = nsurrogs)
 ann.abun.smei<-cohtestfast(dat1=ann.abun.dt,dat2=sum.mei.dt,tsranges=ranges,nsurrogs = nsurrogs)
 ann.abun.wpdo<-cohtestfast(dat1=ann.abun.dt,dat2=win.pdo.dt,tsranges=ranges,nsurrogs = nsurrogs)
-<-ann.abun.wmei$pvals
-ann.abun.smei$pvals
-ann.abun.wpdo$pvals
+ann_abun_wmei_pval<-ann.abun.wmei$pvals
+ann_abun_smei_pval<-ann.abun.smei$pvals
+ann_abun_wpdo_pval<-ann.abun.wpdo$pvals
 
-mod4<-cohtestfast(dat1=ann.snow.dt,dat2=win.mei.dt,tsranges=ranges,nsurrogs = nsurrogs)
-mod5<-cohtestfast(dat1=ann.snow.dt,dat2=sum.mei.dt,tsranges=ranges,nsurrogs = nsurrogs)
-mod6<-cohtestfast(dat1=ann.snow.dt,dat2=win.pdo.dt,tsranges=ranges,nsurrogs = nsurrogs)
-mod4$pvals
-mod5$pvals
-mod6$pvals
+ann.snwd.wmei<-cohtestfast(dat1=ann.snow.dt,dat2=win.mei.dt,tsranges=ranges,nsurrogs = nsurrogs)
+ann.snwd.smei<-cohtestfast(dat1=ann.snow.dt,dat2=sum.mei.dt,tsranges=ranges,nsurrogs = nsurrogs)
+ann.snwd.wpdo<-cohtestfast(dat1=ann.snow.dt,dat2=win.pdo.dt,tsranges=ranges,nsurrogs = nsurrogs)
+ann_snwd_wmei_pval<-ann.snwd.wmei$pvals
+ann_snwd_smei_pval<-ann.snwd.smei$pvals
+ann_snwd_wpdo_pval<-ann.snwd.wpdo$pvals
 
 ann.dvc.dt<-Reumannplatz::CleanData(colSums(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))]))$cleandat
 ann.abun.dt1<-Reumannplatz::CleanData(colSums(cty.list$Abun[,!is.na(colSums(cty.list$Crashes))]))$cleandat
 ann.dvc.res<-cohtestfast(dat1=ann.dvc.dt,dat2=ann.abun.dt1,tsranges = rbind(c(3,5)),nsurrogs = nsurrogs)
-ann.dvc.res$pvals
+ann_dvc_abun_pval<-ann.dvc.res$pvals
 
 ann.adjdvc.dt<-Reumannplatz::CleanData(colSums(cty.list$AdjDVC[,!is.na(colSums(cty.list$AdjDVC))]))$cleandat
 ann.abun.dt2<-Reumannplatz::CleanData(colSums(cty.list$Abun[,!is.na(colSums(cty.list$AdjDVC))]))$cleandat
 ann.adjdvc.res<-cohtestfast(dat1=ann.adjdvc.dt,dat2=ann.abun.dt2,tsranges = rbind(c(3,7)),nsurrogs = nsurrogs)
-ann.adjdvc.res$pvals
+ann_adjdvc_abun_pval<-ann.adjdvc.res$pvals
 
 # Peak to trough distance ------------------------------------------------
 ann.abun<-aggregate(Abun~Year,data=dat,FUN=sum)
 ann.dvc<-aggregate(Crashes~Year,data=dat,FUN=sum)
-par(mfrow=c(1,1))
-plot(ann.dvc.dt~ann.dvc$Year,type="b",ylab="Box-Cox Normalized Abundance",xlab="Year")
-lines(ann.abun$Year[ann.abun$Year>1986],ann.abun.dt1,col="red")
-points(ann.abun$Year[ann.abun$Year>1986],ann.abun.dt1,col="red")
-plot(Crashes~Year,data=ann.dvc,type="b")
 dvc.resid<-residuals(lm(Crashes~poly(Year,3),data=ann.dvc))
 abun.resid<-residuals(lm(Abun~Year,data=ann.abun))
-plot(dvc.resid~ann.dvc$Year,type="b")
 
 #values for deer abundance
 peaks<-c(1989,1995,2000,2006,2012) #based on visual assessment
@@ -261,7 +264,7 @@ for(i in 1:length(peaks)){
     diff[i,2]<-abun.resid[ann.abun$Year==peaks[i]]-abun.resid[ann.abun$Year==troughs[i]]
   }
 }
-colMeans(diff)
+avg.deer.flucuations<-colMeans(diff)[1]
 
 #values for dvcs
 peaks1<-c(1990,1994,2003,2007,2012)
@@ -273,4 +276,4 @@ for(i in 1:length(peaks1)){
     diff1[i,2]<-dvc.resid[ann.dvc$Year==peaks1[i]]-dvc.resid[ann.dvc$Year==troughs1[i]]
   }
 }
-colMeans(diff1)*2024
+avg.deer.cost<-colMeans(diff1)*2024
