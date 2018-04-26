@@ -9,7 +9,7 @@ weath.climind.spcoh<-list()
 weath.climind.res<-list()
 indices.spcoh<-list()
 indices.res<-list()
-ranges=rbind(c(3,7),c(7,15))
+ranges=rbind(c(3,7))
 
 #coherence of climate indices and abundance
 abun.dt<-Reumannplatz::CleanData(usda.list$Abun)$cleandat
@@ -81,7 +81,7 @@ usda_abunsnwd_xterms<-usda.abunsnwd.es$avgxterm
 #Synchrony explained in abundance by summer mei
 sum.mei.dt<-Reumannplatz::CleanData(climindex.usda$SummerMEI,normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
-abunsummei.es<-modelsyncexp(abun.dt,sum.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
+usda.abunsummei.es<-modelsyncexp(abun.dt,sum.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
 usda_abunsmei_syncexp<-usda.abunsummei.es$avgsyncexp
 usda_abunsmei_xterms<-usda.abunsummei.es$avgxterm
 
@@ -97,7 +97,7 @@ source("Functions/Fn_syncexpplot.R")
 
 abun.wt<-warray(all.dat[[1]],times=1981:2016)
 dvc.wt<-warray(CleanData(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))])$cleandat,times=1987:2016)
-usda.model.es<-syncexpwt(abun.wt$wave.array,model = abunmod$pred.wt,times = abun.wt$times,timescales = abun.wt$timescales,tsrange = c(3,7),plot = F)
+usda.model.es<-syncexpwt(abun.wt$wave.array,model = usda.abunmod$pred.wt,times = abun.wt$times,timescales = abun.wt$timescales,tsrange = c(3,7),plot = F)
 usda_model_syncexp<-usda.model.es$ave.syncexp
 
 #coherence of hunters and abundance
@@ -144,24 +144,24 @@ TableS4<-data.frame(matrix(NA, 14, 6,
 #store all p-values in vectors and add to Table S1
 resp<-c(rep("Abundance",(nrow(TableS1)-2)),"DVCs","Adjusted DVCs")
 preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
-pvals<-c(unlist(usda_weathpvals),usda_hunterpval,unlist(climpvals),dvcpval,adjdvcpval)
+pvals<-c(unlist(usda_weathpvals),usda_hunter_pval,unlist(climpvals),dvcpval,adjdvcpval)
 TableS4$Response<-resp
 TableS4$Predictor<-preds
 TableS4$P.value<-pvals
 
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Snwd",'Synchrony.Explained']<-
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterMEI",'Synchrony.Explained']<-
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Synchrony.Explained']<-
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Synchrony.Explained']<-
-TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Synchrony.Explained']<-
-TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Synchrony.Explained']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Snwd",'Synchrony.Explained']<-usda_abunsnwd_syncexp
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterMEI",'Synchrony.Explained']<-usda_abunwmei_syncexp
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Synchrony.Explained']<-usda_abunsmei_syncexp
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Synchrony.Explained']<-usda_abunwpdo_syncexp
+TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Synchrony.Explained']<-usda_dvc_syncexp
+TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Synchrony.Explained']<-usda_adjdvc_syncexp
 
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Snwd",'Average.Cross.Terms']<-
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterMEI",'Average.Cross.Terms']<-
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Average.Cross.Terms']<-
-TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Average.Cross.Terms']<-
-TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Average.Cross.Terms']<-
-TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Average.Cross.Terms']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Snwd",'Average.Cross.Terms']<-usda_abunsnwd_xterms
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterMEI",'Average.Cross.Terms']<-usda_abunwmei_xterms
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Average.Cross.Terms']<-usda_abunsmei_xterms
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Average.Cross.Terms']<-usda_abunwpdo_xterms
+TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Average.Cross.Terms']<-usda_dvc_xterms
+TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Average.Cross.Terms']<-usda_adjdvc_xterms
 
 #calculate mean phases
 source("Functions/Fn_phasemean.R")
