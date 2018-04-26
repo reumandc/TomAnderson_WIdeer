@@ -184,7 +184,7 @@ get the same thing.-->
 
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a 36<!--***DAN-->-yr period 
-(1981–2016<!--***DAN-->; Fig. S1<!--***DAN-->). 
+(1981–2016<!--***DAN-->; Fig. S1<!--***DAN use \ref{<label>}-->). 
 From 1981–2013<!--***DAN-->, deer abundance was estimated for deer management units 
 (DMUs, N = 101–139<!--***DAN--> depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
@@ -777,7 +777,6 @@ knitr::kable(TableS1,
 ```
 
 \noindent $^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.<!--***DAN: -->
-<!--***DAN: Tom, I tried to use weatherpvals$Snwd.Abun here but it said weatherpvals was not found-->
 
 \noindent $^2$For $2-2.5$-year timescales, $p = 0.005$<!--***DAN: -->, phase $= -0.827$<!--***DAN: --> and synchrony explained $= 0.001$<!--***DAN: -->.
 
@@ -796,8 +795,9 @@ knitr::kable(TableS1,
 
 <!--***DAN: once a variable exists, can uncomment this-->
 <!--***DAN: Tom, is this for 3-7-year timescales? The caption should say, please add-->
+<!--***DAN: Use Prcp or Precip (does not matter) consistently throughout paper-->
 ```{r TableS3,echo=F,results='markup'}
-rownames(TableS3)<-c("Tmin","Tmax","Prcp","Snow depth","WSI")
+rownames(TableS3)<-c("Tmin","Tmax","Precip","Snow depth","WSI")
 knitr::kable(TableS3,
              format='pandoc',
              col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
