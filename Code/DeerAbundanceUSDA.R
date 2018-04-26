@@ -60,81 +60,81 @@ lapply(indices.res,function(x){x$pvals})
 #store data in list
 all.dat<-list(abun.dt,snow=winter.clim.usda.dt$Snwd,
               climindex.dt$WinterMEI,climindex.dt$WinterPDO)
-abunmod<-wmrsig(indata=all.dat[c(1,2,3,4)],r=1,n=3,s=2,surr.test=F,n.surrog=1000)
+usda.abunmod<-wmrsig(indata=all.dat[c(1,2,3,4)],r=1,n=3,s=2,surr.test=F,n.surrog=1000)
 
 # Sychrony explained --------------------------
 
 #Synchrony explained in abundance by winter mei
 win.mei.dt<-Reumannplatz::CleanData(climindex.usda$WinterMEI,normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
-abunwinmei.es<-modelsyncexp(abun.dt,win.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
-abunwinmei.es$avgsyncexp
-abunwinmei.es$avgxterm
+usda.abunwinmei.es<-modelsyncexp(abun.dt,win.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
+usda_abunwmei_syncexp<-usda.abunwinmei.es$avgsyncexp
+usda_abunwmei_xterms<-usda.abunwinmei.es$avgxterm
 
 #synchrony explained in abundance by snow depth
 snowd.dt<-Reumannplatz::CleanData(winter.clim.usda$Snwd,normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat #truncate abundance by snow
-abunsnwd.es<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,5),plot=F)
-abunsnwd.es$avgsyncexp
-abunsnwd.es$avgxterm
+usda.abunsnwd.es<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,5),plot=F)
+usda_abunsnwd_syncexp<-usda.abunsnwd.es$avgsyncexp
+usda_abunsnwd_xterms<-usda.abunsnwd.es$avgxterm
 
 #Synchrony explained in abundance by summer mei
 sum.mei.dt<-Reumannplatz::CleanData(climindex.usda$SummerMEI,normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
 abunsummei.es<-modelsyncexp(abun.dt,sum.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
-abunsummei.es$avgsyncexp
-abunsummei.es$avgxterm
+usda_abunsmei_syncexp<-usda.abunsummei.es$avgsyncexp
+usda_abunsmei_xterms<-usda.abunsummei.es$avgxterm
 
 #Synchrony explained in abundance by winter pdo
 win.pdo.dt<-Reumannplatz::CleanData(climindex.usda$WinterPDO,normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(usda.list$Abun,normalize=T)$cleandat
-abunwinpdo.es<-modelsyncexp(abun.dt,win.pdo.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
-abunwinpdo.es$avgsyncexp
-abunwinpdo.es$avgxterm
+usda.abunwinpdo.es<-modelsyncexp(abun.dt,win.pdo.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
+usda_abunwpdo_syncexp<-usda.abunwinpdo.es$avgsyncexp
+usda_abunwpdo_xterms<-usda.abunwinpdo.es$avgxterm
 
 source("Functions/Fn_modelsyncexpwt.R")
 source("Functions/Fn_syncexpplot.R")
 
 abun.wt<-warray(all.dat[[1]],times=1981:2016)
 dvc.wt<-warray(CleanData(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))])$cleandat,times=1987:2016)
-model.es<-syncexpwt(abun.wt$wave.array,model = abunmod$pred.wt,times = abun.wt$times,timescales = abun.wt$timescales,tsrange = c(3,7),plot = F)
-model.es$ave.syncexp
+usda.model.es<-syncexpwt(abun.wt$wave.array,model = abunmod$pred.wt,times = abun.wt$times,timescales = abun.wt$timescales,tsrange = c(3,7),plot = F)
+usda_model_syncexp<-usda.model.es$ave.syncexp
 
 #coherence of hunters and abundance
 abun<-usda.list$Abun[(!row.names(usda.list$Abun)%in%cwd.usda),12:36]
 abun.dt<-Reumannplatz::CleanData(abun,normalize=T)$cleandat
 hunters<-usda.list$Hunters[(!row.names(usda.list$Hunters)%in%cwd.usda),12:36]
 hunters.dt<-Reumannplatz::CleanData(hunters,normalize=T)$cleandat
-hunter.res<-cohtestfast(dat1=abun.dt,dat2=hunters.dt,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
-hunter.spcoh<-swcoh(bio.dat=abun.dt,env.dat=hunters.dt,times = 1981:2016)
-hunter.res$pvals
+usda.hunter.res<-cohtestfast(dat1=abun.dt,dat2=hunters.dt,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
+usda.hunter.spcoh<-swcoh(bio.dat=abun.dt,env.dat=hunters.dt,times = 1981:2016)
+usda_hunter_pval<-usda.hunter.res$pvals
 
 #Synchrony explained in abundance by hunters
-hunterabun.es<-modelsyncexp(abun.dt,hunters.dt,times=1992:2016,tsrange=c(2,2.5),plot=F) 
-hunterabun.es$avgsyncexp
-hunterabun.es$avgxterm
+usda.hunterabun.es<-modelsyncexp(abun.dt,hunters.dt,times=1992:2016,tsrange=c(2,2.5),plot=F) 
+usda.hunterabun.es$avgsyncexp
+usda.hunterabun.es$avgxterm
 
 #coherence of DVCs and abundance
 usda.list.dt<-lapply(usda.list[c(7,9)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(usda.list$Crashes))])$cleandat;x})
-dvc.res<-cohtestfast(dat1=usda.list.dt$Crashes,dat2=usda.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
-dvc.spcoh<-swcoh(bio.dat=usda.list.dt$Crashes,env.dat=usda.list.dt$Abun,times = 1987:2016)
-dvc.res$pvals
+usda.dvc.res<-cohtestfast(dat1=usda.list.dt$Crashes,dat2=usda.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
+usda.dvc.spcoh<-swcoh(bio.dat=usda.list.dt$Crashes,env.dat=usda.list.dt$Abun,times = 1987:2016)
+usda_dvc_pval<-usda.dvc.res$pvals
 
 #Synchrony explained in DVCs by abundance
-dvcabun.es<-modelsyncexp(usda.list.dt$Crashes,usda.list.dt$Abun,times=1987:2016,tsrange=c(3,7),plot=F) 
-dvcabun.es$avgsyncexp
-dvcabun.es$avgxterm
+usda.dvcabun.es<-modelsyncexp(usda.list.dt$Crashes,usda.list.dt$Abun,times=1987:2016,tsrange=c(3,7),plot=F) 
+usda_dvc_syncexp<-usda.dvcabun.es$avgsyncexp
+usda_dvc_xterms<-usda.dvcabun.es$avgxterm
 
 #coherence of adjusted DVCs and abundance
 usda.list.dt<-lapply(usda.list[c(7,11)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(usda.list$AdjDVC))])$cleandat;x})
-dvc.res1<-cohtestfast(dat1=usda.list.dt$AdjDVC,dat2=usda.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
-dvc.spcoh1<-swcoh(bio.dat=usda.list.dt$AdjDVC,env.dat=usda.list.dt$Abun,times = 1987:2016)
-dvc.res1$pvals
+usda.adjdvc.res<-cohtestfast(dat1=usda.list.dt$AdjDVC,dat2=usda.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
+usda.adjdvc.spcoh<-swcoh(bio.dat=usda.list.dt$AdjDVC,env.dat=usda.list.dt$Abun,times = 1987:2016)
+usda_adjdvc_pval<-usda.adjdvc.res$pvals
 
 #Synchrony explained in adjusted DVCs by abundance
-dvcabun.es1<-modelsyncexp(usda.list.dt$AdjDVC,usda.list.dt$Abun,times=1988:2016,tsrange=c(3,7),plot=F) 
-dvcabun.es1$avgsyncexp
-dvcabun.es1$avgxterm
+usda.adjdvcabun.es<-modelsyncexp(usda.list.dt$AdjDVC,usda.list.dt$Abun,times=1988:2016,tsrange=c(3,7),plot=F) 
+usda_adjdvc_syncexp<-usda.adjdvcabun.es$avgsyncexp
+usda_adjdvc_xterms<-usda.adjdvcabun.es$avgxterm
 
 tableS4.names<-c("Response","Predictor","P-value","Mean Phase","Synchrony Explained", "Average Cross Terms")
 TableS4<-data.frame(matrix(NA, 14, 6,
@@ -144,17 +144,32 @@ TableS4<-data.frame(matrix(NA, 14, 6,
 #store all p-values in vectors and add to Table S1
 resp<-c(rep("Abundance",(nrow(TableS1)-2)),"DVCs","Adjusted DVCs")
 preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
-pvals<-c(unlist(usda_weathpvals),hunterpval,unlist(climpvals),dvcpval,adjdvcpval)
+pvals<-c(unlist(usda_weathpvals),usda_hunterpval,unlist(climpvals),dvcpval,adjdvcpval)
+TableS4$Response<-resp
+TableS4$Predictor<-preds
+TableS4$P.value<-pvals
 
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Snwd",'Synchrony.Explained']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterMEI",'Synchrony.Explained']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Synchrony.Explained']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Synchrony.Explained']<-
+TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Synchrony.Explained']<-
+TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Synchrony.Explained']<-
+
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Snwd",'Average.Cross.Terms']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterMEI",'Average.Cross.Terms']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Average.Cross.Terms']<-
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Average.Cross.Terms']<-
+TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Average.Cross.Terms']<-
+TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Average.Cross.Terms']<-
 
 #calculate mean phases
 source("Functions/Fn_phasemean.R")
-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,5))/3.14
-phasemean(spatcoh = climate.spcoh$WinterMEI.Abun$empirical, timescales = climate.spcoh$WinterMEI.Abun$timescales,tsrange=c(3,7))/3.14
-phasemean(spatcoh = climate.spcoh$SummerMEI.Abun$empirical, timescales = climate.spcoh$SummerMEI.Abun$timescales,tsrange=c(3,7))/3.14
-phasemean(spatcoh = climate.spcoh$WinterPDO.Abun$empirical, timescales = climate.spcoh$WinterPDO.Abun$timescales,tsrange=c(3,7))/3.14
-phasemean(spatcoh = dvc.spcoh$empirical, timescales = dvc.spcoh$timescales,tsrange=c(3,7))/3.14
-phasemean(spatcoh = dvc.spcoh1$empirical, timescales = dvc.spcoh1$timescales,tsrange=c(3,7))/3.14
-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
-phasemean(spatcoh = indices.spcoh$WinterMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Snwd",'Mean.Phase']<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,5))/3.14
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterMEI",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$WinterMEI.Abun$empirical, timescales = climate.spcoh$WinterMEI.Abun$timescales,tsrange=c(3,7))/3.14
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$SummerMEI.Abun$empirical, timescales = climate.spcoh$SummerMEI.Abun$timescales,tsrange=c(3,7))/3.14
+TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$WinterPDO.Abun$empirical, timescales = climate.spcoh$WinterPDO.Abun$timescales,tsrange=c(3,7))/3.14
+TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.dvc.spcoh$empirical, timescales = usda.dvc.spcoh$timescales,tsrange=c(3,7))/3.14
+TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.adjdvc.spcoh$empirical, timescales = usda.adjdvc.spcoh$timescales,tsrange=c(3,7))/3.14
+usda_hunterphase2_2.5<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
 

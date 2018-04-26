@@ -188,7 +188,7 @@ TableS1$P.value<-pvals
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd",'Synchrony.Explained']<-abun_snwd_syncexp3_7
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI",'Synchrony.Explained']<-abun_wmei_syncexp
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO",'Synchrony.Explained']<-abun_wpdo_syncexp
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEi",'Synchrony.Explained']<-abun_smei_syncexp
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEI",'Synchrony.Explained']<-abun_smei_syncexp
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Synchrony.Explained']<-dvc_abun_syncexp
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Synchrony.Explained']<-adjdvc_abun_syncexp
 
@@ -196,7 +196,7 @@ TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Sync
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd",'Average.Cross.Terms']<-abun_snwd_xterms3_7
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI",'Average.Cross.Terms']<-abun_wmei_xterms
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO",'Average.Cross.Terms']<-abun_wpdo_xterms
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEi",'Average.Cross.Terms']<-abun_smei_xterms
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEI",'Average.Cross.Terms']<-abun_smei_xterms
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Average.Cross.Terms']<-dvc_abun_xterms
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Average.Cross.Terms']<-adjdvc_abun_xterms
 
