@@ -19,7 +19,7 @@ for(j in names(climindex.dt)){
   climate.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges = ranges)
   climate.spcoh[[spatcoh.names]]<-swcoh(bio.dat=abun.dt,env.dat=climindex.dt[[j]],times=1981:2016)
 }
-lapply(climate.res,function(x){x$pvals})
+usda_climpvals<-lapply(climate.res,function(x){x$pvals})
 
 #coherenc of winter weather and abundance
 winter.clim.usda.dt<-lapply(winter.clim.usda,function(x){x<-Reumannplatz::CleanData(x,normalize=T)$cleandat;x})
@@ -28,17 +28,20 @@ for(j in names(winter.clim.usda.dt)){
   winter.res[[spatcoh.names]]<-cohtestfast(dat2=winter.clim.usda.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges=ranges)
   winter.spcoh[[spatcoh.names]]<-swcoh(bio.dat=abun.dt,env.dat=winter.clim.usda.dt[[j]],times=1981:2016)
 }
-lapply(winter.res,function(x){x$pvals})
+usda_weathpvals<-lapply(winter.res,function(x){x$pvals})
 
 #coherence of climate and weather
-for(j in names(climindex.dt)){
-  for(i in names(winter.clim.usda.dt)){
-    spatcoh.names<-paste(j,i,sep=".")
-    weath.climind.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[j]],dat1=winter.clim.usda.dt[[i]],nsurrogs=nsurrogs,tsranges=ranges)
-    weath.climind.spcoh[[spatcoh.names]]<-swcoh(bio.dat=winter.clim.usda.dt[[i]],env.dat=climindex.dt[[j]],times=1981:2016)
+TableS5<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
+for(j in 1:length(names(climindex.dt))){
+  for(i in 1:length(names(winter.clim.usda.dt))){
+    name1<-names(climindex.dt)[j]
+    name2<-names(winter.clim.usda.dt)[i]
+    spatcoh.names<-paste(name1,name2,sep=".")
+    weath.climind.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[name1]],dat1=winter.clim.usda.dt[[name2]],nsurrogs=nsurrogs,tsranges=ranges)
+    weath.climind.spcoh[[spatcoh.names]]<-swcoh(bio.dat=winter.clim.usda.dt[[name2]],env.dat=climindex.dt[[name1]],times=1981:2016)
+    TableS5[i,j]<-weath.climind.res[[spatcoh.names]]$pvals
   }
 }
-lapply(weath.climind.res,function(x){x$pvals})
 
 #coherence between climate indices
 for(i in 1:(length(climindex.dt)-1)){
@@ -132,6 +135,17 @@ dvc.res1$pvals
 dvcabun.es1<-modelsyncexp(usda.list.dt$AdjDVC,usda.list.dt$Abun,times=1988:2016,tsrange=c(3,7),plot=F) 
 dvcabun.es1$avgsyncexp
 dvcabun.es1$avgxterm
+
+tableS4.names<-c("Response","Predictor","P-value","Mean Phase","Synchrony Explained", "Average Cross Terms")
+TableS4<-data.frame(matrix(NA, 14, 6,
+                           dimnames=list(c(), tableS1.names)),
+                    stringsAsFactors=F)
+
+#store all p-values in vectors and add to Table S1
+resp<-c(rep("Abundance",(nrow(TableS1)-2)),"DVCs","Adjusted DVCs")
+preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
+pvals<-c(unlist(usda_weathpvals),hunterpval,unlist(climpvals),dvcpval,adjdvcpval)
+
 
 #calculate mean phases
 source("Functions/Fn_phasemean.R")
