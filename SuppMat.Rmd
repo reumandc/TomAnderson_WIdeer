@@ -184,18 +184,18 @@ get the same thing.-->
 
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a 36<!--***DAN-->-yr period 
-(1981–2016<!--***DAN-->; Fig. S1<!--***DAN use \ref{<label>}-->). 
-From 1981–2013<!--***DAN-->, deer abundance was estimated for deer management units 
-(DMUs, N = 101–139<!--***DAN--> depending on the year). For most years and DMUs, 
+(1981-2016`minyear`-`r maxyear`; Fig. S1<!--***DAN use \ref{<label>}-->). 
+From 1981-2013<!--***TOM-->, deer abundance was estimated for deer management units 
+(DMUs, N = 101-139<!--***TOM--> depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
 accounting models used for a smaller number of years and DMUs (1)<!--***DAN-->. 
 In $2014$, DMU boundaries were changed to match the administrative level of 
-county (N = 72<!--***DAN-->). Because of this, and because other 
+county (N = 72 `r length(unique(cty.deer$COUNTY_NAM))`). Because of this, and because other 
 spatial variables (e.g., DVCs, climate) were gathered at the county level, 
-we transformed the 1981–2013<!--***DAN--> abundance estimates for DMUs 
+we transformed the 1981-2013<!--***TOM--> abundance estimates for DMUs 
 into county-level estimates. To do so, we first calculated the areas 
 of intersection between DMU and county boundaries for each year (as 
-DMU boundaries changed yearly), using the ‘intersect’ function in 
+DMU boundaries changed yearly), using the 'intersect' function in 
 Arc GIS 10.3 (ESRI, Redlands, CA). We then calculated deer abundance 
 for each intersection area by multiplying the amount of deer habitat in 
 each intersection area by the WIDNR density estimate of deer for the DMU 
@@ -205,25 +205,26 @@ densities were calculated by dividing the estimated abundance for the DMU
 by the amount of deer habitat within the DMU (1)<!--***DAN-->. This procedure 
 assumes approximately spatially uniform densities of deer within deer 
 habitat across each DMU. The abundance for a county was the sum of 
-the estimated abundances of the county’s intersections with the DMUs. 
+the estimated abundances of the county's intersections with the DMUs. 
 We dropped one county (Menominee) due to incomplete data for most 
-variables, leaving 71<!--***DAN--> counties for statistical analysis.
+variables, leaving 71`r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
 
 We obtained estimated hunter abundance data for each DMU from the WIDNR 
-that spanned the years 1992<!--***DAN-->-2016<!--***DAN--> 
+that spanned the years 1992-2016`r maxyear`
 (Fig. S1<!--***DAN-->), which constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season (1<!--***DAN-->), assuming this was a good proxy 
 for hunter numbers across the season. 
 <!--***DAN: I think we should add 1-2 sentences arguing why this is a  reasonable assumption, perhaps by giving data, if available, on how many gun v other types of hunters there are, and how many people go the opening 2 days versus later in the week. Let's discuss, Tom.-->
+<!--***I dobout the whether there is any data on your last statement, how many go early versus late. I'm not sure I follow the gun v other types of hunters argument- do you mean that the majority of deer get killed by gun hunters and thus that would be the best estimate of hunters for regulating deer?-->
 We estimated hunter abundances 
 for counties using the same method as for deer abundance. We 
-dropped 18<!--***DAN--> counties due to incomplete survey 
+dropped 18<!--***Dan--> counties due to incomplete survey 
 efforts of hunters or missing data, leaving 53<!--***DAN--> 
 counties for subsequent analysis. 
 
 We obtained estimates of DVCs for each county, spanning the 
-years 1987<!--***DAN-->–2016<!--***DAN-->, from the WI Department 
+years 1987-2016`r maxyear`, from the WI Department 
 of Transportation (WIDOT; Fig. S1<!--***DAN-->). These data reflect 
 the number of police-investigated DVCs. These data represent an 
 index of DVCs, as opposed to an absolute number of incidents, 
@@ -256,10 +257,10 @@ annual time series of winter weather by county which were used in
 all subsequent analyses (Fig. S1<!--***DAN-->). The number of 
 weather stations per county and data collected at each station 
 varied, resulting in different spatial extents for each variable 
-in order to retain the full temporal extent: Tmin ($N=$ 62<!--***DAN--> 
-counties), Tmax ($N=$ 62<!--***DAN-->), precipitation 
-($N=$ 64<!--***DAN-->), snow depth ($N=$ 60<!--***DAN-->). 
-We also calculated a Winter Severity Index (WSI, $N=$ 44<!--***DAN-->), 
+in order to retain the full temporal extent: Tmin ($N=$ 62 `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
+counties), Tmax ($N=$ 62`r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`), precipitation 
+($N=$ 64`r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`), snow depth ($N=$ 60`r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Tmin)),])[1]`). 
+We also calculated a Winter Severity Index (WSI, $N=$ 44`r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
 a metric known to impact deer populations (1). WSI is the cumulative 
 sum of the total number of days for which snow depth was greater 
 than 18 inches and Tmin was simultaneously less than $0^\circ$F. 
@@ -270,7 +271,7 @@ El Ni\~no/Southern Oscillation Index (MEI), and the Pacific
 Decadal Oscillation (PDO), all of which have been shown to 
 influence large ungulate population dynamics in the northcentral 
 USA (3, 4<!--***DAN-->). We averaged monthly values across the 
-approximate growing season (Apr–Nov), and the winter 
+approximate growing season (Apr-Nov), and the winter 
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
 (Fig. S1<!--***DAN-->). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
