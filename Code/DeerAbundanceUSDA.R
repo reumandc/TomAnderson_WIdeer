@@ -31,7 +31,7 @@ for(j in names(winter.clim.usda.dt)){
 usda_weathpvals<-lapply(winter.res,function(x){x$pvals})
 
 #coherence of climate and weather
-TableS5<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
+TableS5<-matrix(NA,nrow=length(names(winter.clim.usda)),ncol=length(names(climindex.dt)))
 for(j in 1:length(names(climindex.dt))){
   for(i in 1:length(names(winter.clim.usda.dt))){
     name1<-names(climindex.dt)[j]
@@ -42,6 +42,8 @@ for(j in 1:length(names(climindex.dt))){
     TableS5[i,j]<-weath.climind.res[[spatcoh.names]]$pvals
   }
 }
+colnames(TableS5)<-names(climindex.dt)
+row.names(TableS5)<-names(winter.clim.usda.dt)
 
 #coherence between climate indices
 for(i in 1:(length(climindex.dt)-1)){
@@ -105,14 +107,18 @@ abun<-usda.list$Abun[(!row.names(usda.list$Abun)%in%cwd.usda),12:36]
 abun.dt<-Reumannplatz::CleanData(abun,normalize=T)$cleandat
 hunters<-usda.list$Hunters[(!row.names(usda.list$Hunters)%in%cwd.usda),12:36]
 hunters.dt<-Reumannplatz::CleanData(hunters,normalize=T)$cleandat
-usda.hunter.res<-cohtestfast(dat1=abun.dt,dat2=hunters.dt,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
-usda.hunter.spcoh<-swcoh(bio.dat=abun.dt,env.dat=hunters.dt,times = 1981:2016)
-usda_hunter_pval<-usda.hunter.res$pvals
+usda.hunter.res37<-cohtestfast(dat1=abun.dt,dat2=hunters.dt,nsurrogs=nsurrogs,tsranges=ranges)
+usda.hunter.spcoh37<-swcoh(bio.dat=abun.dt,env.dat=hunters.dt,times = 1981:2016)
+usda_hunter_pval37<-usda.hunter.res37$pvals
 
-#Synchrony explained in abundance by hunters
+usda.hunter.res2_2.5<-cohtestfast(dat1=abun.dt,dat2=hunters.dt,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
+usda.hunter.spcoh2_2.5<-swcoh(bio.dat=abun.dt,env.dat=hunters.dt,times = 1981:2016)
+usda_hunter_pval2_2.5<-usda.hunter.res2_2.5$pvals
+
+#Synchrony explained in abundance by hunters over 2-2.5 year timescales
 usda.hunterabun.es<-modelsyncexp(abun.dt,hunters.dt,times=1992:2016,tsrange=c(2,2.5),plot=F) 
-usda.hunterabun.es$avgsyncexp
-usda.hunterabun.es$avgxterm
+usda_hunterabun_syncexp2_2.5<-usda.hunterabun.es$avgsyncexp
+usda_hunterabun_xterms<-usda.hunterabun.es$avgxterm
 
 #coherence of DVCs and abundance
 usda.list.dt<-lapply(usda.list[c(7,9)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(usda.list$Crashes))])$cleandat;x})
@@ -138,13 +144,13 @@ usda_adjdvc_xterms<-usda.adjdvcabun.es$avgxterm
 
 tableS4.names<-c("Response","Predictor","P-value","Mean Phase","Synchrony Explained", "Average Cross Terms")
 TableS4<-data.frame(matrix(NA, 14, 6,
-                           dimnames=list(c(), tableS1.names)),
+                           dimnames=list(c(), tableS4.names)),
                     stringsAsFactors=F)
 
 #store all p-values in vectors and add to Table S1
-resp<-c(rep("Abundance",(nrow(TableS1)-2)),"DVCs","Adjusted DVCs")
-preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
-pvals<-c(unlist(usda_weathpvals),usda_hunter_pval,unlist(climpvals),dvcpval,adjdvcpval)
+resp<-c(rep("Abundance",(nrow(TableS4)-2)),"DVCs","Adjusted DVCs")
+preds<-c(unlist(names(winter.clim.usda)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
+pvals<-c(unlist(usda_weathpvals),usda_hunter_pval37,unlist(usda_climpvals),usda_dvc_pval,usda_adjdvc_pval)
 TableS4$Response<-resp
 TableS4$Predictor<-preds
 TableS4$P.value<-pvals
@@ -171,5 +177,5 @@ TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="SummerMEI",'Mean.Pha
 TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$WinterPDO.Abun$empirical, timescales = climate.spcoh$WinterPDO.Abun$timescales,tsrange=c(3,7))/3.14
 TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.dvc.spcoh$empirical, timescales = usda.dvc.spcoh$timescales,tsrange=c(3,7))/3.14
 TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.adjdvc.spcoh$empirical, timescales = usda.adjdvc.spcoh$timescales,tsrange=c(3,7))/3.14
-usda_hunterphase2_2.5<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
+usda_hunterphase2_2.5<-phasemean(spatcoh = usda.hunter.spcoh2_2.5$empirical, timescales = usda.hunter.spcoh2_2.5$timescales,tsrange=c(2,2.5))/3.14
 
