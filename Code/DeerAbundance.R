@@ -23,7 +23,7 @@ for(j in names(climindex.dt)){
 }
 climpvals<-lapply(climate.res,function(x){x$pvals})
 
-#coherenc of winter weather and abundance
+#coherence of winter weather and abundance
 for(j in names(winter.clim)){
   winter.clim.dt.tmp<-winter.clim[[j]][!is.na(rowMeans(winter.clim[[j]])),]
   winter.clim.dt.tmp<-Reumannplatz::CleanData(winter.clim.dt.tmp,normalize=T)$cleandat
@@ -37,7 +37,7 @@ weathpvals<-lapply(winter.res,function(x){x$pvals})
 #rerun coherence for snow depth and abundance but for 3-5 year timescales
 snow.tmp<-winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),]
 snow.dt<-Reumannplatz::CleanData(snow.tmp,normalize=T)$cleandat
-abun.dt<-abun.dt[!is.na(rowMeans(snow.dt)),]
+abun.dt<-abun.dt[!is.na(rowMeans(winter.clim$Snwd)),]
 snow.abun.spatcoh35<-cohtestfast(dat2=snow.dt,dat1=abun.dt,nsurrogs=nsurrogs,tsranges=rbind(c(3,5)))
 snow_abun_pval3_5<-snow.abun.spatcoh35$pvals
 
