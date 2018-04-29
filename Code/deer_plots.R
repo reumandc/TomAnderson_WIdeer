@@ -27,7 +27,7 @@ png(filename="Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
 wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wmf",tsrange=c(3,7),
-             xlab="Year",ylab="Timescales",xtcklab=rep("",9),las=1,smallplot=c(0.95,0.99,0.05,0.95))
+             xlab="Year",ylab="Timescales",xtcklab=rep("",9),smallplot=c(0.95,0.99,0.05,0.95))
 par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
 wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wpmf",tsrange=c(3,7),siglevel = c(0.999),zlims = c(0,1),xlab="",xtcklab=rep("",9),ylab="Timescales",smallplot=c(0.95,0.99,0.05,0.95))
 abline(h=c(3,7),lty=c(2,2))
@@ -190,18 +190,6 @@ syncexpplot(resp.wmf=wmfwt(dvc.wt$wave.array),exp.sync = dvcabun.es$pred.wmf,tim
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
-#Plot the five year fluctuations
-deer.wt<-warray(Reumannplatz::CleanData(cty.list$Abun)$cleandat,times=1981:2016)
-deer.wt1<-apply(deer.wt$wave.array,c(2,3),mean,na.rm=T)
-mei.wt<-wt(Reumannplatz::CleanData(win.mei.mat[1,])$cleandat,times=1981:2016)
-snow.wt<-warray(winter.clim.dt$Snwd,times=1981:2016)
-snow.wt1<-apply(snow.wt$wave.array,c(2,3),mean,na.rm=T)
-par(mfrow=c(1,2))
-plot(1981:2016,Re(deer.wt1[,20]),type="b",xlim=c(1984,2013),ylab="Real part of wt at 5-yr timescales",xlab="Year")
-lines(1981:2016,Re(mei.wt$wave[,20]),type="b",col="blue")
-plot(1981:2016,Re(snow.wt1[,10]),xlim=c(1984,2013),type="b",col="blue",ylab="Real part of wt at 3-yr timescales",xlab="Year")
-lines(1981:2016,Re(deer.wt1[,10]),type="b")
-
 #raw data plots
 png("Results/FigS1.png",res=600,height=3600,width=3600)
 #tiff("Results/FigS1.tiff",res=600,compression=c("lzw"),height=3600,width=3600)
@@ -243,23 +231,6 @@ dev.off()
 #make Lawrence's plot showing how synchronous impacts statewide fluctuations
 abunsurr<-read.csv("Data/abunsurrsum.csv")
 dvcsurr<-read.csv("Data/dvcsurrsum.csv")
-
-# par(mfrow=c(2,1),mar=c(4,6,1,1))
-# plot(1981:2016,rep(NA,36),ylim=c(min(abunsurr),max(abunsurr)),ylab="",xlab="",las=1,yaxt="n")
-# for(i in 1:nrow(abunsurr)){
-#   lines(1981:2016,abunsurr[i,],col=rainbow(25)[i])
-# }
-# lines(1981:2016,apply(cty.list$Abun,2,sum),lwd=2)
-# axis(2,labels= format(seq(600000,1300000,100000),scientific=T),at = seq(600000,1300000,100000),las=1)
-# mtext("a)",side=3,adj=0,font=2)
-# mtext("Abundance",side=2,line=4.5)
-# plot(1987:2016,rep(NA,30),ylim=c(min(dvcsurr),max(dvcsurr)),ylab="",xlab="Year",las=1)
-# for(i in 1:nrow(dvcsurr)){
-#   lines(1987:2016,dvcsurr[i,],col=rainbow(25)[i])
-# }
-# lines(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],lwd=2)
-# mtext("DVCs",side=2,line=4.5)
-# mtext("b)",side=3,adj=0,font=2)
 
 #Figure 4
 #***plotting dimensions, units inches
@@ -344,53 +315,3 @@ text(x=1997.5,y=-1800,labels="1421 DVCs",font=2,cex=0.75,adj=0,col="red")
 mtext("Departure from Surrogate Mean",side=2,line=3.5,cex=0.9)
 mtext("Year",side=1,line=1.5)
 dev.off()
-
-#Make Fig 4 as single plots with insets
-#deer
-# par(mfrow=c(1,1))
-# colors<-gray.colors(25)[sample(1:25, 999, replace=TRUE)]
-# plot(1981:2016,rep(NA,36),ylab="",xlab="",ylim=c(-180000,300000),las=1)
-# for(i in 1:nrow(dvcsurr)){
-#   lines(1981:2016,abunsurr[i,]-apply(abunsurr,2,mean),col=colors[i])
-# }
-# lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=3,type="b",pch=19)
-# Arrows(x0 = 1999,y0 = 0,y1=140000,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-# Arrows(x0 = 1997,y0 = 0,y1=-150000,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-# text(x=1999.5,y=160000,labels="159054 deer",font=2,cex=0.75,adj=0,col="red")
-# text(x=1997.5,y=-174000,labels="174339 deer",font=2,cex=0.75,adj=0,col="red")
-# mtext("Departure from Surrogate Mean (Deer)",side=2,line=3.5)
-# par(fig = c(0.15,0.5, 0.8, 1), new = T) #for inset graphs
-# plot(1981:2016,rep(NA,36),ylim=c(min(abunsurr),max(abunsurr)),ylab="",xlab="",las=1,axes=F)
-# for(i in 1:nrow(abunsurr)){
-#   lines(1981:2016,abunsurr[i,],col=colors[i])
-# }
-# lines(1981:2016,apply(cty.list$Abun,2,sum),lwd=2)
-# axis(2,labels= format(seq(600000,1300000,200000),scientific=T),at = seq(600000,1300000,200000),las=1,tck=-.05,cex.axis=0.75)
-# axis(1,labels=c("'80","","'90","","'00","","'10",""),at = seq(1980,2016,5),tck=-0.05,cex.axis=0.75)
-# mtext("Deer",side=2,line=3.5,cex=0.75)
-# 
-# #DVC Plot
-# #tiff("Results/dvc.researchstatement.tiff",res=600,width=3600,height=2400,compression=c("lzw"))
-# par(mfrow=c(1,1),mar=c(4,6,0.5,0.5))
-# plot(1987:2016,rep(NA,30),type="b",xlab="",ylab="",ylim=c(-2000,4000),las=1)
-# for(i in 1:nrow(dvcsurr)){
-#   lines(1987:2016,dvcsurr[i,]-apply(dvcsurr,2,mean),col=colors[i])
-# }
-# lines(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="b",pch=19,lwd=3)
-# Arrows(x0 = 1999,y0 = 0,y1=1500,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-# Arrows(x0 = 1997,y0 = 0,y1=-1300,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-# text(x=1999.5,y=1600,labels="1597 DVCs",font=2,cex=0.75,adj=0,col="red")
-# text(x=1997.5,y=-1600,labels="1421 DVCs",font=2,cex=0.75,adj=0,col="red")
-# mtext("Departure from DVC Simulations Mean",side=2,line=3.5,cex=0.9)
-# mtext("Year",side=1,line=2)
-# par(fig = c(0.15,0.7, 0.6, 0.98), mgp=c(3, .25, 0),new = T) #for inset graphs
-# plot(1987:2016,rep(NA,30),ylim=c(min(dvcsurr),max(dvcsurr)),ylab="",xlab="",las=1,axes=F,cex.axis=0.75)
-# for(i in 1:nrow(dvcsurr)){
-#   lines(1987:2016,dvcsurr[i,],col=colors[i])
-# }
-# lines(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],lwd=2)
-# axis(1,labels=c("","'90","","'00","","'10",""),at = seq(1985,2016,5),tck=-0.05,cex.axis=0.75,line=1)
-# axis(2,labels= format(seq(14000,24000,2000),scientific=T),at = seq(14000,24000,2000),las=1,tck=-.05,cex.axis=0.75)
-# mtext("DVCs",side=2,line=2.5,cex=0.75)
-# 
-# #dev.off()
