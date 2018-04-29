@@ -1,6 +1,5 @@
 wsurfplotTLA<-function (dat, times, type, colorbar=F, zlims = NULL, colorfill = NULL,tsrange=NULL, 
-          neat = T,siglevel=NULL,title = NULL, xlab=NULL,ylab=NULL,xtcklab=NULL,ytcklab=NULL,xlim=NULL,
-          ...) 
+          neat = T,siglevel=NULL,title = NULL, xlab=NULL,ylab=NULL,xtcklab=NULL,ytcklab=NULL,xlim=NULL,smallplot=NULL)
 {
   library(fields)
   if (is.null(type)) {
@@ -59,7 +58,7 @@ wsurfplotTLA<-function (dat, times, type, colorbar=F, zlims = NULL, colorfill = 
   }
   image(x = times, y = log2(timescales), z = wav, xlab = xlab, 
         zlim = zlims, ylab = ylab, axes = F, col = colorfill(100), 
-        main = title, xlim=xlim,...)
+        main = title,xlim=xlim,las=1)
   if(!is.null(tsrange)){
     abline(h=c(log2(tsrange[1]),log2(tsrange[2])),lty=c(2,2))
   }
@@ -93,13 +92,13 @@ wsurfplotTLA<-function (dat, times, type, colorbar=F, zlims = NULL, colorfill = 
   #Add color bar- must do last otherwise chaos ensues
   if(colorbar){
     if(is.null(xlim)){
-      image.plot(x = times, y = timescales, z = wav, zlim = zlims, 
-                 legend.only = T, 100, col = colorfill(100),...)
+      image.plot(x = times, y = timescales, z = wav, zlim = zlims, las=1,
+                 legend.only = T, 100, col = colorfill(100),smallplot=smallplot)
     }
     else{
-      image.plot(x = times, y = timescales, z = wav, zlim = zlims, 
+      image.plot(x = times, y = timescales, z = wav, zlim = zlims, las=1,
                  legend.only = T, 100, col = colorfill(100),
-                 xlim=c(as.numeric(as.factor(times))[(times==xlim[1])]/length(times),as.numeric(as.factor(times))[(times==xlim[2])]/length(times)))
+                 xlim=c(as.numeric(as.factor(times))[(times==xlim[1])]/length(times),as.numeric(as.factor(times))[(times==xlim[2])]/length(times)),smallplot=smallplot)
     }
 
   }
