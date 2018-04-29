@@ -15,7 +15,7 @@ syncexpplot<-function(resp.wmf,exp.sync,times,timescales,xlab,ylab,smallplot=NUL
         ylab = ylab, axes = F, col = colorfill(100),las=1)
   axis(1, at = xlocs, labels = xlocs)
   axis(2, at = log2(ylocs), labels = ylocs, las = 1)
-  contour(x = times, y = log2(timescales),z=Mod(resp.wmf),add=T,frame=F,las=1)
+  contour(x = times, y = log2(timescales),z=Mod(resp.wmf),add=T,frame=F,las=1,lwd=2)
   image.plot(x = times, y = timescales, z = Mod(exp.sync),
              legend.only = T, 100, col = colorfill(100),las=1,smallplot=smallplot)
   
