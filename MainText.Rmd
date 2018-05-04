@@ -1,0 +1,87 @@
+---
+title: Moran Effects Cause Major Cycles in Deer Populations
+  and Deer-Vehicle Collisions Across Wisconsin
+author: Thomas L. Anderson\textsuperscript{1}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{3}, Robert E. Rolley\textsuperscript{4}, Daniel C. Reuman\textsuperscript{2}\   \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology, University of Kansas; \textsuperscript{3}University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources
+date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+  word_document: default
+  html_document:
+    df_print: paged
+geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
+link-citations: yes
+csl: science.csl
+tables: yes
+bibliography: AndersDeerShortRefs.bib
+urlcolor: blue
+---
+##One Sentence Summary#
+Winter-climate Moran effects drive synchrony in deer abundances and 
+deer-vehicle collisions, thereby influencing associated industries.
+
+#Abstract:
+Spatial synchrony of exploited or economically important taxa should have substantial impacts for humans, 
+especially as synchrony can produce high-amplitude oscillations across large spatial regions. We investigated 
+causes of synchrony in white-tailed deer (*Odocoileus virginianus*), an exploited species across North America, 
+and whether deer synchrony had subsequent impacts on human populations through deer-vehicle collisions (DVCs). We
+found that synchronized environmental variation (i.e., Moran effects) over the winter months explained a
+substantial fraction of deer synchrony, but only at specific timescales of fluctuations. Synchrony in DVCs were in
+turn synchronized by deer populations at the same timescales, indicating that Moran effects cascaded through this
+system. This timescale-specific synchrony resulted in large region-wide fluctuations of both deer and DVCs that
+would not occur if the synchrony was absent, meaning spatial synchrony can cause local dynamics to sum to a
+substantial phenomenon on statewide spatial scales. This study is the first to identify how synchrony in exploited
+or economically important taxa can impact humans across large spatial scales. 
+
+#Main Text:
+Spatial population synchrony, i.e., the tendency for populations of a species in different locations to exhibit
+correlated fluctuations through time, is a ubiquitous phenomenon, documented in hundreds of taxa
+[@Leibhold2004_sync]. In theory, synchrony should be important for industries such as hunting and agriculture that
+exploit multiple populations
+across space because synchrony can markedly influence the strength of temporal variability in the sum of the
+populations (Fig. 1A-F)\ref{Fig1_example}. Thus, industries exploiting synchronous taxa should be subject to temporal variability in
+yield. Likewise, synchrony of pests or other species with harmful effects may increase the magnitude of
+fluctuations in regional total damage caused by the pests [@Allstad2015_gypsysync]. It is well known theoretically that a spatially
+synchronous environmental driver can induce population synchrony, called a Moran effect [@Leibhold2004_sync, @Moran1953, @Ranta1997_moran]. But it has
+historically been difficult to attribute synchrony in natural populations to specific environmental drivers versus
+other potential causes of synchrony such as dispersal [@Kendall2000_moran,@Abbott2007_moran]. Partly for this reason, the real, as opposed to
+theoretical, importance of Moran effects for exploited species and their associated industries has rarely been
+explored. 
+
+#Acknowledgements: 
+D. Lyden, J. Steinglein and the WIDNR for data access; and D. Storm, T. Van Deelen, and J. Millspaugh for initial
+consultation on deer populations in Wisconsin. Funding was provided by the James S McDonnell Foundation, the
+University of Kansas General Research Fund, United States National Science Foundation grants 1442595 and 0075516,
+United States Department of Agriculture award 2016-67012-24694, the University of Virginia, and The Nature
+Conservancy. 
+
+\newpage
+
+\begin{figure}[!h]  
+\includegraphics[width=.6\textwidth]{Results/Fig1.png}
+\caption{\label{Fig1_example}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=.6\textwidth]{Results/Fig2.png}
+\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) of deer abundance (Methods). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at P = 0.001. Horizontal lines in (A) and (B) indicate the timescales that were the focus of statistical analysis (3-7 years). Colors in (C) show synchrony in deer abundance predicted from a wavelet model using snow depth, MEIw, and PDOw as predictors, while contours in (C) show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony.
+\label{FigS2_DeerSync}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=.6\textwidth]{Results/Fig3.png}
+\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) of DVCs. Colors, contours, and horizontal lines in A and B indicate the same as in Fig. 2A,B. Colors in (C) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours in (C) show the actual wavelet mean field magnitude of DVCs from (A), for comparison. Agreement is good, giving a visual indication of the statistical result that deer synchrony explains DVC synchrony.
+\label{Fig3_DvcSync}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=.6\textwidth]{Results/Fig4.png}
+\caption{Magnitude of the effects of synchrony on state-total deer abundance and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (B) time series (black lines) and surrogate totals obtained via a randomization procedure (Methods) that eliminates synchrony among counties at 3–7-year timescales (grey lines, 1000 lines plotted). Increased variation due to synchrony is particularly notable when trends and long-timescale (longer than 7 years) variability are filtered out by subtracting the mean of the grey lines (large panels). Red arrows highlight example fluctuations that are attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due to synchrony amounts to an estimated difference of US$10-22M in damages statewide (*Methods*). \label{Fig4_StateWideFluctuations}}
+\end{figure}
