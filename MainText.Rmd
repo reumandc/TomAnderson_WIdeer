@@ -1,7 +1,7 @@
 ---
 title: Moran Effects Cause Major Cycles in Deer Populations
   and Deer-Vehicle Collisions Across Wisconsin
-author: Thomas L. Anderson\textsuperscript{1}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{3}, Robert E. Rolley\textsuperscript{4}, Daniel C. Reuman\textsuperscript{2}\   \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology, University of Kansas; \textsuperscript{3}University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources
+author: Thomas L. Anderson\textsuperscript{1,2}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{2,3}, Robert E. Rolley\textsuperscript{4}, Daniel C. Reuman\textsuperscript{2}\   \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology, University of Kansas; \textsuperscript{3}University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
   pdf_document:
