@@ -5,11 +5,11 @@ author: Thomas L. Anderson, Lawrence W. Sheppard, Jonathan A. Walter, Robert E. 
   Daniel C. Reuman
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
-  html_document:
-    df_print: paged
   pdf_document:
     fig_caption: yes
     keep_tex: yes
+  html_document:
+    df_print: paged
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
@@ -175,13 +175,13 @@ get the same thing.-->
 
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a 36 `r dim(cty.list$Abun)[2]`-yr period 
-(1981-2016`minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 
+(1981-2016`r minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 
 From 1981-2013<!--***TOM-->, deer abundance was estimated for deer management units 
-(DMUs, N = 101-139<!--***TOM--> depending on the year). For most years and DMUs, 
+(DMUs, $N=$ 101-139<!--***TOM--> depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
 accounting models used for a smaller number of years and DMUs (1)<!--***DAN-->. 
 In $2014$, DMU boundaries were changed to match the administrative level of 
-county (N = 72 `r length(unique(cty.deer$COUNTY_NAM))`). Because of this, and because other 
+county ($N=$ 72 `r length(unique(cty.deer$COUNTY_NAM))`). Because of this, and because other 
 spatial variables (e.g., DVCs, climate) were gathered at the county level, 
 we transformed the 1981-2013<!--***TOM--> abundance estimates for DMUs 
 into county-level estimates. To do so, we first calculated the areas 
@@ -202,7 +202,7 @@ variables, leaving 71`r length(unique(dat$COUNTY_NAM))` counties for statistical
 
 We obtained estimated hunter abundance data for each DMU from the WIDNR 
 that spanned the years 1992-2016`r maxyear`
-(Fig. S1\ref{FigS1_Timeseries}), which constituted an index of the estimated 
+(Fig. S1 \ref{FigS1_Timeseries}), which constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season (1<!--***DAN-->), assuming this was a good proxy 
 for hunter numbers across the season. 
@@ -235,7 +235,7 @@ noise to the DVC data and likely obscured the relationship
 with deer abundance, so that if better DVC data were available 
 this relationship may have been even stronger than that reported. 
 We also obtained traffic volume estimates (millions of miles 
-driven) for each county spanning the years 1988–`r maxyear` from the 
+driven) for each county spanning the years 1988-`r maxyear` from the 
 WIDOT, to control for traffic in our analysis of DVCs.
 
 We obtained daily weather data (minimum and maximum air temperature 
@@ -245,12 +245,12 @@ National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.n
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
-all subsequent analyses (Fig. S1\ref{FigS1_Timeseries}). The number of 
+all subsequent analyses (Fig. S1 \ref{FigS1_Timeseries}). The number of 
 weather stations per county and data collected at each station 
 varied, resulting in different spatial extents for each variable 
 in order to retain the full temporal extent: Tmin ($N=$ 62 `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
 counties), Tmax ($N=$ 62`r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`), precipitation 
-($N=$ 64`r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`), snow depth ($N=$ 60`r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Tmin)),])[1]`). 
+($N=$ 64`r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`), snow depth ($N=$ 60`r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`). 
 We also calculated a Winter Severity Index (WSI, $N=$ 44`r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
 a metric known to impact deer populations (1). WSI is the cumulative 
 sum of the total number of days for which snow depth was greater 
@@ -264,7 +264,7 @@ influence large ungulate population dynamics in the northcentral
 USA (3, 4<!--***DAN-->). We averaged monthly values across the 
 approximate growing season (Apr-Nov), and the winter 
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
-(Fig. S1<!--***DAN-->). We used a total of 11 weather and 
+(Fig. S1 \ref{FigS1_Timeseries}). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. All were annual 
@@ -273,7 +273,7 @@ time series at the county level.
 ## Analysis
 
 We performed all analyses described below and in the main text 
-at three spatial scales: counties (N = 44–71<!--***DAN--> depending on 
+at three spatial scales: counties (N = 44-71<!--***DAN--> depending on 
 the variables involved; mean county 
 area $\pm$ SD = 2017<!--***DAN--> $\pm$ 799<!--***DAN--> $\text{km}^2$), 
 United States Department of Agriculture (USDA) districts ($N = 9$; mean 
