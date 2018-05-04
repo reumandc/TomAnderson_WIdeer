@@ -5,11 +5,11 @@ author: Thomas L. Anderson, Lawrence W. Sheppard, Jonathan A. Walter, Robert E. 
   Daniel C. Reuman
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
+  html_document:
+    df_print: paged
   pdf_document:
     fig_caption: yes
     keep_tex: yes
-  html_document:
-    df_print: paged
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
@@ -175,7 +175,7 @@ get the same thing.-->
 
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a 36 `r dim(cty.list$Abun)[2]`-yr period 
-(1981-2016`minyear`-`r maxyear`; Fig. S1<\ref{FigS1_Timeseries}). 
+(1981-2016`minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 
 From 1981-2013<!--***TOM-->, deer abundance was estimated for deer management units 
 (DMUs, N = 101-139<!--***TOM--> depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 

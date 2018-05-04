@@ -40,14 +40,16 @@ correlated fluctuations through time, is a ubiquitous phenomenon, documented in 
 [@Leibhold2004_sync]. In theory, synchrony should be important for industries such as hunting and agriculture that
 exploit multiple populations
 across space because synchrony can markedly influence the strength of temporal variability in the sum of the
-populations (Fig. 1A-F)\ref{Fig1_example}. Thus, industries exploiting synchronous taxa should be subject to temporal variability in
+populations (Fig. 1A-F) \ref{Fig1_example}. Thus, industries exploiting synchronous taxa should be subject to temporal variability in
 yield. Likewise, synchrony of pests or other species with harmful effects may increase the magnitude of
 fluctuations in regional total damage caused by the pests [@Allstad2015_gypsysync]. It is well known theoretically that a spatially
-synchronous environmental driver can induce population synchrony, called a Moran effect [@Leibhold2004_sync, @Moran1953, @Ranta1997_moran]. But it has
+synchronous environmental driver can induce population synchrony, called a Moran effect [@Leibhold2004_sync; @Moran1953; @Ranta1997_moran]. But it has
 historically been difficult to attribute synchrony in natural populations to specific environmental drivers versus
-other potential causes of synchrony such as dispersal [@Kendall2000_moran,@Abbott2007_moran]. Partly for this reason, the real, as opposed to
+other potential causes of synchrony such as dispersal [@Kendall2000_moran;@Abbott2007_moran]. Partly for this reason, the real, as opposed to
 theoretical, importance of Moran effects for exploited species and their associated industries has rarely been
 explored. 
+
+However, recent analytical advances facilitate more precise identification of Moran drivers [@Allstad2015_gypsysync;@Defriez20016_plankton;@Sheppard2016_aphids;@Defriez2017_terrestrial;@Defriez2017_marine,@Sheppard2017_surrogates;@Walter2017_geogsync]. The effectiveness of these tools is due in part to their capacity to decompose synchrony according to the distinct timescales on which it can occur (Fig. 1G-I \ref{Fig1_example}). We here investigate the importance of timescale-specific Moran effects for white-tailed deer (Odocoileus virginianus) and deer-vehicle collisions (DVCs) in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover1997_dvc]. Across the USA, US$34$Bn were spent on deer hunting in 2006. In WI, 15% of adults hunt deer [@Winkler2013_hunters], and hunting-related economic activity accounts for ~1% of state GDP (17). DVCs cause an estimated 50 human fatalities and US$1.5Bn in damage to vehicles annually across the USA (18). Thus, it is an important applied question whether environmental synchrony and Moran effects drive some or all of the year-to-year variability in statewide deer abundance and DVC totals, as well as being a case study of a potentially widespread phenomenon. We consider possible Moran effects originating from both environmental drivers and the direct effects of hunting on deer synchrony (i.e., synchrony of hunting activity itself may, a priori, induce observed synchrony in deer populations). We use data from 1981 to 2016 (Fig. S1 \ref{FigS1_Timeseries}) aggregated at two different spatial resolutions, counties and United States Department of Agricultural (USDA) districts (Fig. S2). 
 
 #Acknowledgements: 
 D. Lyden, J. Steinglein and the WIDNR for data access; and D. Storm, T. Van Deelen, and J. Millspaugh for initial
