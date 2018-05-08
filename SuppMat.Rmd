@@ -137,27 +137,7 @@ system.time(source("Code/DeerAbundanceUSDA.R"))
 set.seed(301)
 system.time(source("Code/deer_plots.R"))
 
-#***DAN: I got the following warnings when I ran deer_plots.R, we have to get 
-#to the bottom of these and make them stop by solving the underlying problem:
-#Warning messages:
-#  1: In plot.window(...) : "smallplot" is not a graphical parameter
-#2: In plot.xy(xy, type, ...) : "smallplot" is not a graphical parameter
-#3: In title(...) : "smallplot" is not a graphical parameter
-#4: In plot.window(...) : "smallplot" is not a graphical parameter
-#5: In plot.xy(xy, type, ...) : "smallplot" is not a graphical parameter
-#6: In title(...) : "smallplot" is not a graphical parameter
-#7: In plot.window(...) : "smallplot" is not a graphical parameter
-#8: In plot.xy(xy, type, ...) : "smallplot" is not a graphical parameter
-#9: In title(...) : "smallplot" is not a graphical parameter
-#10: In plot.window(...) : "smallplot" is not a graphical parameter
-#11: In plot.xy(xy, type, ...) : "smallplot" is not a graphical parameter
-#12: In title(...) : "smallplot" is not a graphical parameter
-#13: In plot.window(...) : "smallplot" is not a graphical parameter
-#14: In plot.xy(xy, type, ...) : "smallplot" is not a graphical parameter
-#15: In title(...) : "smallplot" is not a graphical parameter
-#16: In plot.window(...) : "smallplot" is not a graphical parameter
-#17: In plot.xy(xy, type, ...) : "smallplot" is not a graphical parameter
-#18: In title(...) : "smallplot" is not a graphical parameter
+#***Tom: Warnings on plots should all be fixed
 
 #***DAN: Fig 1 does not appear, the code for it needs to be put in
 ```
@@ -207,7 +187,7 @@ number of hunters during the first two days of the 9-day gun
 hunting season (1<!--***DAN-->), assuming this was a good proxy 
 for hunter numbers across the season. 
 <!--***DAN: I think we should add 1-2 sentences arguing why this is a  reasonable assumption, perhaps by giving data, if available, on how many gun v other types of hunters there are, and how many people go the opening 2 days versus later in the week. Let's discuss, Tom.-->
-<!--***I dobout the whether there is any data on your last statement, how many go early versus late. I'm not sure I follow the gun v other types of hunters argument- do you mean that the majority of deer get killed by gun hunters and thus that would be the best estimate of hunters for regulating deer?-->
+<!--***Tom::I doubt whether there is any data on your last statement, how many go early versus late. I'm not sure I follow the gun v other types of hunters argument- do you mean that the majority of deer get killed by gun hunters and thus that would be the best estimate of hunters for regulating deer?-->
 We estimated hunter abundances 
 for counties using the same method as for deer abundance. We 
 dropped 18<!--***Dan--> counties due to incomplete survey 
@@ -357,7 +337,7 @@ NAO, PDO and MEI), which were single time series
 rather than collections of time series measured at 
 multiple locations, we generated plots of 
 'normalized' wavelet magnitude 
-(Fig. S8\ref{FigS8___WaveletAmps}). Here, wavelet transforms 
+(Fig. S8\ref{FigS8_WaveletAmps}). Here, wavelet transforms 
 were first normalized at each timescale by dividing 
 by the square root of the time-averaged squared 
 wavelet transform magnitudes. Magnitudes of 
@@ -704,9 +684,8 @@ study.\label{FigS1_Timeseries}}
 
 \newpage
 
-<!--***DAN: currently the figure is not include until Tom adds code for S2 or adds the figure itself to the repo if it was not created using R-->
 \begin{figure}[!h]
-%\includegraphics[width=\textwidth]{}
+\includegraphics[width=\textwidth]{Results/FigS2.png}
 \caption{Map of Wisconsin, USA. Black lines and yellow dots delineate county boundaries and centroids. Color shading and black dots delineate USDA district boundaries and centroids.\label{FigS2_map}}
 \end{figure}
 
@@ -721,7 +700,7 @@ study.\label{FigS1_Timeseries}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption{Rank, by timescale, of spatial coherence values in surrogate coherence distributions (\emph{Methods}) for significant relationships (Table S1\ref{TabS1_CountyCoherenceSummary}) using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $p$-value of $0.05$ for an individual timescale (*Methods*).\label{FigS4_RanksInSurrogs}}
+\caption{Rank, by timescale, of spatial coherence values in surrogate coherence distributions (*Methods*}) for significant relationships (Table S1\ref{TabS1_CountyCoherenceSummary}) using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $p$-value of $0.05$ for an individual timescale (*Methods*).\label{FigS4_RanksInSurrogs}}
 \end{figure}
 
 \newpage
@@ -757,7 +736,6 @@ study.\label{FigS1_Timeseries}}
 
 # Supplementary tables
 
-<!--***DAN: the abundance/summer MEI synchrony explained and cross term values appear to be missing from the R variable TableS1 and need to be put in in the R code-->
 ```{r TableS1,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 knitr::kable(TableS1,
@@ -768,7 +746,7 @@ knitr::kable(TableS1,
              booktabs=T)
 ```
 
-\noindent $^1$For $3-5$-year timescales, $p = 0.028$<!--***DAN: -->, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.<!--***DAN: -->
+\noindent $^1$For $3-5$-year timescales, $p = 0.028$, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.
 
 \noindent $^2$For $2-2.5$-year timescales, $p = 0.005$<!--***DAN: -->, phase $= -0.827$<!--***DAN: --> and synchrony explained $= 0.001$<!--***DAN: -->.
 
@@ -776,11 +754,11 @@ knitr::kable(TableS1,
 
 <!--***DAN: once a variable exists, can uncomment this. It seems TableS2 does not exist even though Tom's email says it does.-->
 ```{r TableS2,echo=F,results='markup'}
-knitr::kable(TableS2,
-             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
-             format='pandoc',
-             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses indicate the mean phase difference #($\bar{\theta}$) between variables over $3-7$-year timescales (only shown for pairs of variables that were both significantly coherent [$p < #0.05$] with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
-             booktabs=T)
+# knitr::kable(TableS2,
+#             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
+#             format='pandoc',
+#             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses #indicate the mean phase difference #($\bar{\theta}$) between variables over $3-7$-year timescales (only shown #for pairs of variables that were both significantly coherent [$p < #0.05$] with deer abundance). #\\label{TabS2_PairwiseClimVarSpatCoh}",
+#             booktabs=T)
 ```
 
 \newpage
