@@ -132,7 +132,7 @@ system.time(source("Code/DeerAbundanceUSDA.R"))
 
 <!--Make plots-->
 <!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(mtime("Code/deer_plots.R"))}
+```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(snow_abun_pval3_5,mtime("Code/deer_plots.R"))}
 #generate raw data plots
 set.seed(301)
 system.time(source("Code/deer_plots.R"))
@@ -700,7 +700,7 @@ study.\label{FigS1_Timeseries}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption{Rank, by timescale, of spatial coherence values in surrogate coherence distributions (*Methods*}) for significant relationships (Table S1\ref{TabS1_CountyCoherenceSummary}) using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $p$-value of $0.05$ for an individual timescale (*Methods*).\label{FigS4_RanksInSurrogs}}
+\caption{Rank, by timescale, of spatial coherence values in surrogate coherence distributions (\emph{Methods}) for significant relationships (Table S1\ref{TabS1_CountyCoherenceSummary}) using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (*Methods*).\label{FigS4_RanksInSurrogs}}
 \end{figure}
 
 \newpage
@@ -754,7 +754,7 @@ knitr::kable(TableS1,
 
 <!--***DAN: once a variable exists, can uncomment this. It seems TableS2 does not exist even though Tom's email says it does.-->
 ```{r TableS2,echo=F,results='markup'}
-# knitr::kable(TableS2,
+#knitr::kable(TableS2,
 #             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
 #             format='pandoc',
 #             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses #indicate the mean phase difference #($\bar{\theta}$) between variables over $3-7$-year timescales (only shown #for pairs of variables that were both significantly coherent [$p < #0.05$] with deer abundance). #\\label{TabS2_PairwiseClimVarSpatCoh}",

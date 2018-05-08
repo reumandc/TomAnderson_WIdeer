@@ -69,9 +69,9 @@ for(i in 1:(length(climindex.dt)-1)){
     TableS2[j,i]<-indices.res[[spatcoh.names]]$pvals
   }
 }
-diag(TableS2)<-1
-row.names(TableS2)<-names(climindex.dt)
-colnames(TableS2)<-names(climindex.dt)
+#diag(TableS2)<-1
+#row.names(TableS2)<-names(climindex.dt)
+#colnames(TableS2)<-names(climindex.dt)
 
 # Model Selection of Significant Coherence Pairs --------------------------
 #consolidate data to winter temperature size (60 counties)

@@ -43,18 +43,6 @@ for(j in 1:length(names(climindex.dt))){
 colnames(TableS5)<-names(climindex.dt)
 row.names(TableS5)<-names(winter.clim.usda.dt)
 
-#coherence between climate indices
-for(i in 1:(length(climindex.dt)-1)){
-  for(j in (i+1):length(climindex.dt)){
-    name1<-names(climindex.dt)[i]
-    name2<-names(climindex.dt)[j]
-    spatcoh.names<-paste(name2,name1,sep=".")
-    indices.res[[spatcoh.names]]<-cohtestfast(dat1=climindex.dt[[j]],dat2=climindex.dt[[i]],nsurrogs=nsurrogs,tsranges=ranges)
-    indices.spcoh[[spatcoh.names]]<-swcoh(bio.dat=climindex.dt[[j]],env.dat=climindex.dt[[i]],times=1981:2016)
-  }
-}
-lapply(indices.res,function(x){x$pvals})
-
 # Model Selection of Significant Coherence Pairs --------------------------
 
 #store data in list
