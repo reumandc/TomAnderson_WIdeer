@@ -69,9 +69,9 @@ for(i in 1:(length(climindex.dt)-1)){
     TableS2[j,i]<-indices.res[[spatcoh.names]]$pvals
   }
 }
-#diag(TableS2)<-1
-#row.names(TableS2)<-names(climindex.dt)
-#colnames(TableS2)<-names(climindex.dt)
+diag(TableS2)<-1
+row.names(TableS2)<-names(climindex.dt)
+colnames(TableS2)<-names(climindex.dt)
 
 # Model Selection of Significant Coherence Pairs --------------------------
 #consolidate data to winter temperature size (60 counties)
@@ -137,14 +137,17 @@ mod.coefs<-abunmod$coefs[abunmod$timescales<=7& abunmod$timescales>=3,1:3]
 cty.list.dt<-lapply(cty.list[c(7,8)],function(x){x<-x[,12:36];x})
 cty.list.dt<-lapply(cty.list.dt,function(x){x[(!row.names(cty.list.dt$Abun)%in%cwd) & !is.na(rowMeans(cty.list.dt$Hunters)),]})
 cty.list.dt<-lapply(cty.list.dt,function(x){x<-Reumannplatz::CleanData(x)$cleandat;x})
-hunter.res<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=rbind(c(3,7)))
+hunter.res3_7<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=rbind(c(3,7)))
 hunter.spcoh<-swcoh(bio.dat=cty.list.dt$Abun,env.dat=cty.list.dt$Hunters,times = 1992:2016)
-hunterpval<-hunter.res$pvals
+hunterpval3_7<-hunter.res3_7$pvals
+
+hunter.res2_2.5<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
+hunterpval2_2.5<-hunter.res2_2.5$pvals
 
 #Synchrony explained in abundance by hunters
-hunterabun.es<-modelsyncexp(cty.list.dt$Abun,cty.list.dt$Hunters,times=1992:2016,tsrange=c(2,2.5),plot=F) 
-hunterabun.es$avgsyncexp
-hunterabun.es$avgxterm
+hunterabun.es2_2.5<-modelsyncexp(cty.list.dt$Abun,cty.list.dt$Hunters,times=1992:2016,tsrange=c(2,2.5),plot=F) 
+hunterabun.es2_2.5$avgsyncexp
+hunterabun.es2_2.5$avgxterm
 
 #Coherence of DVCs and abundance
 cty.list.dt<-lapply(cty.list[c(7,9)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(cty.list$Crashes))])$cleandat;x})
@@ -177,7 +180,7 @@ TableS1<-data.frame(matrix(NA, 14, 6,
 #store all p-values in vectors and add to Table S1
 resp<-c(rep("Abundance",(nrow(TableS1)-2)),"DVCs","Adjusted DVCs")
 preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
-pvals<-c(unlist(weathpvals),hunterpval,unlist(climpvals),dvcpval,adjdvcpval)
+pvals<-c(unlist(weathpvals),hunterpval3_7,unlist(climpvals),dvcpval,adjdvcpval)
 
 TableS1$Response<-resp
 TableS1$Predictor<-preds
@@ -224,7 +227,7 @@ win.mei.dt<-Reumannplatz::CleanData(climindex$WinterMEI[1,])$cleandat
 win.pdo.dt<-Reumannplatz::CleanData(climindex$WinterPDO[1,])$cleandat
 sum.mei.dt<-Reumannplatz::CleanData(climindex$SummerMEI[1,])$cleandat
 
-ann.abun.hunter<-cohtestfast(dat1=ann.abun.dt,dat2=ann.hunter.dt,tsranges=rbind(c(3,5)),nsurrogs = nsurrogs)
+ann.abun.hunter<-cohtestfast(dat1=ann.abun.dt,dat2=ann.hunter.dt,tsranges=rbind(c(3,7)),nsurrogs = nsurrogs)
 ann_abun_hunter_pval<-ann.abun.hunter$pvals
 
 ann.abun.res<-cohtestfast(dat1=ann.abun.dt,dat2=ann.snow.dt,tsranges=ranges,nsurrogs = nsurrogs)
@@ -246,8 +249,9 @@ ann_snwd_wpdo_pval<-ann.snwd.wpdo$pvals
 
 ann.dvc.dt<-Reumannplatz::CleanData(colSums(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))]))$cleandat
 ann.abun.dt1<-Reumannplatz::CleanData(colSums(cty.list$Abun[,!is.na(colSums(cty.list$Crashes))]))$cleandat
-ann.dvc.res<-cohtestfast(dat1=ann.dvc.dt,dat2=ann.abun.dt1,tsranges = rbind(c(3,5)),nsurrogs = nsurrogs)
-ann_dvc_abun_pval<-ann.dvc.res$pvals
+ann.dvc.res<-cohtestfast(dat1=ann.dvc.dt,dat2=ann.abun.dt1,tsranges = rbind(c(3,5),c(3,7)),nsurrogs = nsurrogs)
+ann_dvc_abun_pval3_5<-ann.dvc.res$pvals[1]
+ann_dvc_abun_pval3_7<-ann.dvc.res$pvals[2]
 
 ann.adjdvc.dt<-Reumannplatz::CleanData(colSums(cty.list$AdjDVC[,!is.na(colSums(cty.list$AdjDVC))]))$cleandat
 ann.abun.dt2<-Reumannplatz::CleanData(colSums(cty.list$Abun[,!is.na(colSums(cty.list$AdjDVC))]))$cleandat
@@ -270,7 +274,7 @@ for(i in 1:length(peaks)){
     diff[i,2]<-abun.resid[ann.abun$Year==peaks[i]]-abun.resid[ann.abun$Year==troughs[i]]
   }
 }
-avg.deer.flucuations<-colMeans(diff)[1]
+avg.deer.fluctuations<-colMeans(diff)[1]
 
 #values for dvcs
 peaks1<-c(1990,1994,2003,2007,2012)

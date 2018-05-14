@@ -132,7 +132,7 @@ system.time(source("Code/DeerAbundanceUSDA.R"))
 
 <!--Make plots-->
 <!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(snow_abun_pval3_5,mtime("Code/deer_plots.R"))}
+```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(avg.deer.fluctuations,snow_abun_pval3_5,TableS1,TableS2,TableS3,TableS4,TableS5,abun_snwd_xterms3_5,abun_snwd_syncexp3_5,wpdo_wmei_phase,smei_wmei_phase,smei_wpdo_phase,ann_abun_hunter_pval,ann_abun_wmei_pval,ann_abun_wpdo_pval,ann_abun_smei_pval,hunterphase2_2.5,hunterpval2_2.5,usda_abunsnwd_syncexp,abun_snwd_syncexp3_5,usda_model_syncexp,usda_dvc_syncexp,usda_adjdvc_syncexp,mtime("Code/deer_plots.R"))}
 #generate raw data plots
 set.seed(301)
 system.time(source("Code/deer_plots.R"))
@@ -140,6 +140,11 @@ system.time(source("Code/deer_plots.R"))
 #***Tom: Warnings on plots should all be fixed
 
 #***DAN: Fig 1 does not appear, the code for it needs to be put in
+```
+
+```{r echo=F}
+#need to run so that objects that are large numbers can be evaluated with inline code
+options(scipen = 999999)
 ```
 
 # Materials and methods
@@ -154,14 +159,14 @@ But leave the non-automatic text until you do a knit to make sure you
 get the same thing.-->
 
 We obtained deer abundance estimates from the Wisconsin Department of 
-Natural Resources (WIDNR) spanning a 36 `r dim(cty.list$Abun)[2]`-yr period 
-(1981-2016`r minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 
+Natural Resources (WIDNR) spanning a `r dim(cty.list$Abun)[2]`-yr period 
+(`r minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 
 From 1981-2013<!--***TOM-->, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139<!--***TOM--> depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
 accounting models used for a smaller number of years and DMUs (1)<!--***DAN-->. 
 In $2014$, DMU boundaries were changed to match the administrative level of 
-county ($N=$ 72 `r length(unique(cty.deer$COUNTY_NAM))`). Because of this, and because other 
+county ($N=$ `r length(unique(cty.deer$COUNTY_NAM))`). Because of this, and because other 
 spatial variables (e.g., DVCs, climate) were gathered at the county level, 
 we transformed the 1981-2013<!--***TOM--> abundance estimates for DMUs 
 into county-level estimates. To do so, we first calculated the areas 
@@ -178,10 +183,10 @@ assumes approximately spatially uniform densities of deer within deer
 habitat across each DMU. The abundance for a county was the sum of 
 the estimated abundances of the county's intersections with the DMUs. 
 We dropped one county (Menominee) due to incomplete data for most 
-variables, leaving 71`r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
+variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
 
 We obtained estimated hunter abundance data for each DMU from the WIDNR 
-that spanned the years 1992-2016`r maxyear`
+that spanned the years 1992-`r maxyear`
 (Fig. S1 \ref{FigS1_Timeseries}), which constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season (1<!--***DAN-->), assuming this was a good proxy 
@@ -195,7 +200,7 @@ efforts of hunters or missing data, leaving 53<!--***DAN-->
 counties for subsequent analysis. 
 
 We obtained estimates of DVCs for each county, spanning the 
-years 1987-2016`r maxyear`, from the WI Department 
+years 1987-`r maxyear`, from the WI Department 
 of Transportation (WIDOT; Fig. S1\ref{FigS1_Timeseries}). These data reflect 
 the number of police-investigated DVCs. These data represent an 
 index of DVCs, as opposed to an absolute number of incidents, 
@@ -238,7 +243,7 @@ than 18 inches and Tmin was simultaneously less than $0^\circ$F.
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
-El Ni\~no/Southern Oscillation Index (MEI), and the Pacific 
+El Niño/Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO), all of which have been shown to 
 influence large ungulate population dynamics in the northcentral 
 USA (3, 4<!--***DAN-->). We averaged monthly values across the 
@@ -253,11 +258,11 @@ time series at the county level.
 ## Analysis
 
 We performed all analyses described below and in the main text 
-at three spatial scales: counties (N = 44-71<!--***DAN--> depending on 
+at three spatial scales: counties (N = 44-71<!--DAN--> depending on 
 the variables involved; mean county 
-area $\pm$ SD = 2017<!--***DAN--> $\pm$ 799<!--***DAN--> $\text{km}^2$), 
+area $\pm$ SD = `r round(mean(gps$Area_km2),0)`2017 $\pm$ 799`r round(sd(gps$Area_km2),0)` $\text{km}^2$), 
 United States Department of Agriculture (USDA) districts ($N = 9$; mean 
-district area $\pm$ SD = 16138<!--***DAN--> $\pm$ 799<!--***DAN--> $\text{km}^2$), 
+district area $\pm$ SD = 16138 `r round(mean(usda.centroid$Area_km2),0)` $\pm$ 799 `r round(sd(usda.centroid$Area_km2),0)` $\text{km}^2$), 
 and statewide (Fig. S2\ref{FigS2_map}). Analyses at three spatial scales 
 were performed because the SAK model used by the WIDNR to estimate deer 
 abundance for each management unit has been criticized as less accurate 
@@ -330,7 +335,7 @@ deemed significant and important
 (10<!--***DAN-->). Wavelet mean field and 
 wavelet phasor mean field magnitude plots for 
 winter weather variables are in 
-Fig. S7\ref{FigS7__WMFsAndWPMFsAncillary}. 
+Fig. S7\ref{FigS7_WMFsAndWPMFsAncillary}. 
 
 For climate indices (winter and growing season 
 NAO, PDO and MEI), which were single time series 
@@ -375,7 +380,7 @@ quantities calculated for $95,000$ of $100,000$
 surrogate data sets. Ranks of actual spatial 
 coherences in surrogate spatial coherences can 
 also be plotted as a function of timescale 
-(Fig. S3\ref{FigS3__PhaseDiffs}). 
+(Fig. S3\ref{FigS3_PhaseDiffs}). 
 
 As opposed to correlation-based approaches that 
 assume in-phase relationships, spatial coherence 
@@ -567,7 +572,7 @@ We estimated the approximate monetary impact of
 synchrony in DVCs based on several reported 
 assumptions about DVCs. Using an average difference 
 between peak and trough DVC years 
-(Fig. 4<!--***DAN-->) of 2629, and if we assume 
+(Fig. 4<!--***DAN-->) of `r avg.deer.fluctuations`, and if we assume 
 that each reported DVC results in an average of 
 US\$2024 of damage (14<!--***DAN-->), the 
 difference in damages statewide between peak and 
@@ -586,7 +591,7 @@ costs may exceed US\$22M.
 When aggregated to USDA districts, deer abundance 
 showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
-(Fig. S6A,C\ref{FigS6__WMFAndPredictionsDistricts}). 
+(Fig. S6A,C\ref{FigS6_WMFAndPredictionsDistricts}). 
 The wavelet phasor mean field of deer 
 abundance showed the phase synchrony was quite 
 strong, and significantly different from random 
@@ -606,20 +611,20 @@ quarter-cycle phase shifts (Table S4\ref{TabS4_SummaryDistrict}).
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
 data, but snow explained a higher amount of 
-synchrony at $34\%$ for $3-5$-year timescales, as 
-compared with $15\%$ at the county-level. Combined, 
-snow depth, MEIw, and PDOw explained $90\%$ of the 
+synchrony at $`r round(100*usda_abunsnwd_syncexp,0)`\%$ for $3-5$-year timescales, as 
+compared with $`r round(100*abun_snwd_syncexp3_5,0)`\%$ at the county-level. Combined, 
+snow depth, MEIw, and PDOw explained $`r round(100*usda_model_syncexp,0)`\%$ of the 
 synchrony in deer abundance using 
-USDA district data (Fig. S6E<!--***DAN-->).
+USDA district data (Fig. S6E\ref{FigS6_WMFAndPredictionsDistricts}).
 
 <!--***DAN: Tom, I made some substantial edits to the below para, pls review-->
 DVCs aggregated to USDA districts had a similar 
 synchrony feature to deer abundance over $3-7$ year 
-timescales (Fig. S6B,D<!--***DAN-->). As with 
+timescales (Fig. S6B,D\ref{FigS6_WMFAndPredictionsDistricts}). As with 
 counties, deer abundance was a significant 
 predictor of DVC synchrony (Table S4\ref{TabS4_SummaryDistrict}), 
-and explained a substantial fraction ($80\%$) of 
-the synchrony (Fig. S6F<!--***DAN-->). This value 
+and explained a substantial fraction ($`r round(100*usda_dvc_syncexp,0)`\%$) of 
+the synchrony (Fig. S6F\ref{FigS6_WMFAndPredictionsDistricts}). This value 
 is nearly double the synchrony explained for 
 county-level analysis. Additionally, the 
 county-level 
@@ -627,8 +632,7 @@ analysis of the possible synchronizing effects of
 deer abundance on DVCs had cross-terms that were 
 high relative to 
 the synchrony `explained' in DVCs by abundance 
-(Table S1\ref{TabS1_CountyCoherenceSummary}). The renders the estimate of synchrony explained uniterpretable. 
-<!--***DAN: need a citation to some other point in the ms, e.g., Methods-->
+(Table S1\ref{TabS1_CountyCoherenceSummary}). The renders the estimate of synchrony explained uniterpretable (*Methods*). 
 Large cross terms may reflect the 
 effects of dispersal of 
 deer between counties or movement of cars between 
@@ -640,11 +644,11 @@ with our results that cross terms were small
 enough to be ignored 
 at district level. The amount of DVC 
 synchrony explained by 
-abundance remained high ($73\%$) even after 
+abundance remained high ($`r round(100*usda_adjdvc_syncexp,0)`\%$) even after 
 controlling for traffic volume. 
 Thus, in contrast to the county-level result, the 
 result that deer abundance synchrony explained
-$80\%$ of DVC synchrony was straightforwardly 
+$`r round(100*usda_dvc_syncexp,0)`\%$ of DVC synchrony was straightforwardly 
 interpretable.
 
 ## Statewide results
@@ -746,19 +750,18 @@ knitr::kable(TableS1,
              booktabs=T)
 ```
 
-\noindent $^1$For $3-5$-year timescales, $p = 0.028$, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.
+\noindent $^1$For $3-5$-year timescales, $p = 0.028$ $p= $ `r snow_abun_pval3_5`, phase $= 0.871$<!--***DAN: -->, and synchrony explained $= 0.288$.
 
 \noindent $^2$For $2-2.5$-year timescales, $p = 0.005$<!--***DAN: -->, phase $= -0.827$<!--***DAN: --> and synchrony explained $= 0.001$<!--***DAN: -->.
 
 \newpage
 
-<!--***DAN: once a variable exists, can uncomment this. It seems TableS2 does not exist even though Tom's email says it does.-->
 ```{r TableS2,echo=F,results='markup'}
-#knitr::kable(TableS2,
-#             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
-#             format='pandoc',
-#             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses #indicate the mean phase difference #($\bar{\theta}$) between variables over $3-7$-year timescales (only shown #for pairs of variables that were both significantly coherent [$p < #0.05$] with deer abundance). #\\label{TabS2_PairwiseClimVarSpatCoh}",
-#             booktabs=T)
+knitr::kable(TableS2,
+             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
+             format='pandoc',
+             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses indicate the mean phase difference between variables over $3-7$ year timescales (only shown for pairs of variables that were both significantly coherent with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
+             booktabs=T)
 ```
 
 \newpage
@@ -768,7 +771,7 @@ rownames(TableS3)<-c("Tmin","Tmax","Prcp","Snow depth","WSI")
 knitr::kable(TableS3,
              format='pandoc',
              col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
-             caption = "$P$-values of spatial coherence between climate indices and average winter weather conditions using county-level data over 3-7 year timescales. \\label{TabS3_SpatCohPWWAndClimInds}",
+             caption = "$P$-values of spatial coherence between climate indices and average winter weather conditions using county-level data over $3-7$ year timescales. \\label{TabS3_SpatCohPWWAndClimInds}",
              booktabs=T)
 ```
 
