@@ -98,7 +98,7 @@ mtext("A)",font=2,adj=0)
 plot(dvc.res$timescales,dvc.res$emp.rank,type="l",lwd=2,ylab="",xlab="Timescale",las=1,ylim=c(0.5*nsurrogs,max(nsurrogs)))
 lines(adjdvc.res$timescales,adjdvc.res$emp.rank,lty=1,lwd=2,col="purple")
 abline(h=0.95*nsurrogs,col="red",lty=2)
-lines(hunter.res$timescales,hunter.res$emp.rank,lty=1,lwd=2,col="darkgray")
+lines(hunter.res3_7$timescales,hunter.res3_7$emp.rank,lty=1,lwd=2,col="darkgray")
 legend("topright",c("Abun-DVCs","Abun-Adj. DVCs","Hunters-Abun"),lty=c(1,1,1),
        col=c("black","purple","darkgray"),bty="n",cex=0.75)
 mtext("B)",font=2,adj=0)
@@ -127,7 +127,7 @@ wsurfplotTLA(hunters.dt,times=1992:2016,colorbar=T,zlims = c(0,1),type="wpmf",xl
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
 abun.dt1<-Reumannplatz::CleanData(cty.list$Abun[rownames(hunters.tmp),12:dim(cty.list$Hunters)[2]])
 abun.wt1<-warray(abun.dt1$cleandat,times=1992:2016)
-syncexpplot(resp.wmf=wmfwt(abun.wt1$wave.array),exp.sync = hunterabun.es$pred.wmf,1992:2016,hunterabun.es$timescales,ylab = "",xlab="Year")
+syncexpplot(resp.wmf=wmfwt(abun.wt1$wave.array),exp.sync = hunterabun.es2_2.5$pred.wmf,1992:2016,hunterabun.es2_2.5$timescales,ylab = "",xlab="Year")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
