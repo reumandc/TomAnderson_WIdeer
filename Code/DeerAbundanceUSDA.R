@@ -27,6 +27,8 @@ for(j in names(winter.clim.usda.dt)){
   winter.spcoh[[spatcoh.names]]<-swcoh(bio.dat=abun.dt,env.dat=winter.clim.usda.dt[[j]],times=1981:2016)
 }
 usda_weathpvals<-lapply(winter.res,function(x){x$pvals})
+snow.res<-cohtestfast(dat2=winter.clim.usda.dt$Snwd,dat1=abun.dt,nsurrogs=nsurrogs,tsranges=rbind(c(3,5)))
+usda_snowabun_pval3_5<-snow.res$pvals
 
 #coherence of climate and weather
 TableS5<-matrix(NA,nrow=length(names(winter.clim.usda)),ncol=length(names(climindex.dt)))
@@ -164,4 +166,5 @@ TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO",'Mean.Pha
 TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.dvc.spcoh$empirical, timescales = usda.dvc.spcoh$timescales,tsrange=c(3,7))/3.14
 TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.adjdvc.spcoh$empirical, timescales = usda.adjdvc.spcoh$timescales,tsrange=c(3,7))/3.14
 usda_hunterphase2_2.5<-phasemean(spatcoh = usda.hunter.spcoh2_2.5$empirical, timescales = usda.hunter.spcoh2_2.5$timescales,tsrange=c(2,2.5))/3.14
+usda_snwdabunphase_3_5<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange=c(3,5))/3.14
 

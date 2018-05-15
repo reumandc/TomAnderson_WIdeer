@@ -101,7 +101,7 @@ abun_wmei_xterms<-abunwinmei.es$avgxterm
 snowd.dt<-Reumannplatz::CleanData(winter.clim$Snwd[!is.na(rowSums(winter.clim$Snwd)),],normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(cty.list$Abun[!is.na(rowSums(winter.clim$Snwd)),],normalize=T)$cleandat #truncate abundance by snow
 abunsnwd.es37<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,7),plot=F)
-abunsnwd.es35<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,7),plot=F)
+abunsnwd.es35<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,5),plot=F)
 
 abun_snwd_syncexp3_7<-abunsnwd.es37$avgsyncexp
 abun_snwd_xterms3_7<-abunsnwd.es37$avgxterm
@@ -146,7 +146,7 @@ hunterpval2_2.5<-hunter.res2_2.5$pvals
 
 #Synchrony explained in abundance by hunters
 hunterabun.es2_2.5<-modelsyncexp(cty.list.dt$Abun,cty.list.dt$Hunters,times=1992:2016,tsrange=c(2,2.5),plot=F) 
-hunterabun.es2_2.5$avgsyncexp
+hunterabun_syncexp2_2.5<-hunterabun.es2_2.5$avgsyncexp
 hunterabun.es2_2.5$avgxterm
 
 #Coherence of DVCs and abundance
