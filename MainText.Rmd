@@ -10,6 +10,8 @@ output:
   pdf_document:
     fig_caption: yes
     keep_tex: yes
+    includes:
+      in_header: head_maintext.sty
   word_document: default
   html_document:
     df_print: paged

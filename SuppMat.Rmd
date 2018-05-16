@@ -8,6 +8,8 @@ output:
   pdf_document:
     fig_caption: yes
     keep_tex: yes
+    includes:
+      in_header: head_supp.sty
   html_document:
     df_print: paged
   word_document: default
@@ -30,15 +32,6 @@ urlcolor: blue
 required, Tom? If not, wwe should use the callout style we prefer. What style do you
 prefer ##Tom: from their website, "References only cited in the supplementary materials should be included at the end of the reference section of the main text, and the reference numbering should continue as if the Supplementary Materials was a continuation of the main text." We can talk about how to incorporate this whenever we talk again. 
 -->
-
-<!--checkpoint package for CRAN-available packages-->
-```{r checkpoint_chunk, echo=F, results="hide",warning=F, message=F, results="hide"}
-if (!dir.exists("./.checkpoint/")){
-  dir.create("./.checkpoint/")
-}
-library(checkpoint,quietly=T)
-checkpoint("2018-04-20",checkpointLocation = "./")
-```
 
 <!--Install the correct reumannplatz version from github, i.e., the one current on 2018 04 20, tagged
 in git with AndersonDeer-->
