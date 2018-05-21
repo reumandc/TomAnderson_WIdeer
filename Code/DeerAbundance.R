@@ -39,6 +39,7 @@ snow.dt<-Reumannplatz::CleanData(snow.tmp,normalize=T)$cleandat
 abun.dt<-abun.dt[!is.na(rowMeans(winter.clim$Snwd)),]
 snow.abun.spatcoh35<-cohtestfast(dat2=snow.dt,dat1=abun.dt,nsurrogs=nsurrogs,tsranges=rbind(c(3,5)))
 snow_abun_pval3_5<-snow.abun.spatcoh35$pvals
+saveRDS(snow_abun_pval3_5,file = "Results/snowabunpval3_5.rds")
 
 #coherence of climate and weather
 TableS3<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
@@ -56,7 +57,7 @@ for(j in 1:length(names(climindex))){
     TableS3[i,j]<-weath.climind.res[[spatcoh.names]]$pvals
   }
 }
-
+saveRDS(TableS3,file="Results/TabS3_results.rds")
 #coherence between climate indices
 TableS2<-matrix(NA,6,6)
 for(i in 1:(length(climindex.dt)-1)){
@@ -72,6 +73,7 @@ for(i in 1:(length(climindex.dt)-1)){
 diag(TableS2)<-1
 row.names(TableS2)<-names(climindex.dt)
 colnames(TableS2)<-names(climindex.dt)
+saveRDS(TableS2,file="Results/TabS2_results.rds")
 
 # Model Selection of Significant Coherence Pairs --------------------------
 #consolidate data to winter temperature size (60 counties)
@@ -107,6 +109,7 @@ abun_snwd_syncexp3_7<-abunsnwd.es37$avgsyncexp
 abun_snwd_xterms3_7<-abunsnwd.es37$avgxterm
 abun_snwd_syncexp3_5<-abunsnwd.es35$avgsyncexp
 abun_snwd_xterms3_5<-abunsnwd.es35$avgxterm
+saveRDS(abun_snwd_syncexp3_5,file="Results/abunsnowSyncExp3_5.rds")
 
 #Synchrony explained in abundance by summer mei
 sum.mei.dt<-Reumannplatz::CleanData(climindex$SummerMEI,normalize=T)$cleandat
@@ -129,6 +132,7 @@ abun.wt<-warray(norm.dat[[1]],times=1981:2016)
 dvc.wt<-warray(Reumannplatz::CleanData(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))])$cleandat,times=1987:2016)
 model.es<-syncexpwt(abun.wt$wave.array,model = abunmod$pred.wt,times = abun.wt$times,timescales = abun.wt$timescales,tsrange = c(3,7),plot = F)
 abun_model_syncexp<-model.es$ave.syncexp
+saveRDS(abun_model_syncexp,file="Results/abunmodelSyncExp.rds")
 
 #get phases from model
 mod.coefs<-abunmod$coefs[abunmod$timescales<=7& abunmod$timescales>=3,1:3]
@@ -137,17 +141,19 @@ mod.coefs<-abunmod$coefs[abunmod$timescales<=7& abunmod$timescales>=3,1:3]
 cty.list.dt<-lapply(cty.list[c(7,8)],function(x){x<-x[,12:36];x})
 cty.list.dt<-lapply(cty.list.dt,function(x){x[(!row.names(cty.list.dt$Abun)%in%cwd) & !is.na(rowMeans(cty.list.dt$Hunters)),]})
 cty.list.dt<-lapply(cty.list.dt,function(x){x<-Reumannplatz::CleanData(x)$cleandat;x})
-hunter.res3_7<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=rbind(c(3,7)))
+hunter.res3_7<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=ranges)
 hunter.spcoh<-swcoh(bio.dat=cty.list.dt$Abun,env.dat=cty.list.dt$Hunters,times = 1992:2016)
 hunterpval3_7<-hunter.res3_7$pvals
 
 hunter.res2_2.5<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
 hunterpval2_2.5<-hunter.res2_2.5$pvals
+saveRDS(hunterpval2_2.5,file="Results/hunterabun_pval2_2.5.rds")
 
 #Synchrony explained in abundance by hunters
 hunterabun.es2_2.5<-modelsyncexp(cty.list.dt$Abun,cty.list.dt$Hunters,times=1992:2016,tsrange=c(2,2.5),plot=F) 
 hunterabun_syncexp2_2.5<-hunterabun.es2_2.5$avgsyncexp
 hunterabun.es2_2.5$avgxterm
+saveRDS(hunterabun_syncexp2_2.5,file="Results/hunterabunSyncExp2_2.5.rds")
 
 #Coherence of DVCs and abundance
 cty.list.dt<-lapply(cty.list[c(7,9)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(cty.list$Crashes))])$cleandat;x})
@@ -217,7 +223,8 @@ wpdo_wmei_phase<-phasemean(spatcoh = indices.spcoh$WinterMEI.WinterPDO$empirical
 smei_wpdo_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wmei_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterMEI$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 
-print(TableS1)
+saveRDS(TableS1,file = "Results/TableS1.rds")
+saveRDS(hunterphase2_2.5,file="Results/hunterabunphase2_2.5")
 
 # Do Statewide Analysis ---------------------------------------------------
 ann.abun.dt<-Reumannplatz::CleanData(colSums(cty.list$Abun),normalize=T)$cleandat
@@ -276,6 +283,7 @@ for(i in 1:length(peaks)){
   }
 }
 avg.deer.fluctuations<-colMeans(diff)[1]
+saveRDS(avg.deer.fluctuations[1],file="Results/totaldeerfluctuations.rds")
 
 #values for dvcs
 peaks1<-c(1990,1994,2003,2007,2012)
@@ -287,4 +295,9 @@ for(i in 1:length(peaks1)){
     diff1[i,2]<-dvc.resid[ann.dvc$Year==peaks1[i]]-dvc.resid[ann.dvc$Year==troughs1[i]]
   }
 }
-avg.deer.cost<-colMeans(diff1)*2024
+avg.dvc.fluctuations<-colMeans(diff1)
+avg.dvc.costLow<-avg.dvc.fluctuations*2024
+avg.dvc.costHigh<-avg.dvc.fluctuations*8388
+saveRDS(avg.dvc.fluctuations[1],file="Results/totaldvcfluctuations.rds")
+saveRDS(avg.dvc.costLow[1],file="Results/totaldvccostsLow.rds")
+saveRDS(avg.dvc.costHigh[1],file="Results/totaldvccostsHigh.rds")
