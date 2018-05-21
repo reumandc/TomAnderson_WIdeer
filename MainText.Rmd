@@ -22,7 +22,7 @@ bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 ---
 
-```{r echo=F}
+```{r echo=F, results="hide"}
 #load in results
 options(scipen=6)
 TabS1_results<-readRDS(file = "Results/TableS1.rds")
