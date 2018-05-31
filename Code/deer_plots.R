@@ -2,7 +2,7 @@
 source("Functions/Fn_wsurfplot_modified.R")
 source("Functions/Fn_wmfwt.R")
 
-#Fig. 1
+#Make Fig. 1
 source("Code/PedagogFig.R")
 
 #clean data for Figs 2 and 3
@@ -22,6 +22,8 @@ pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
 pan.ht<-0.75*pan.wd+zwd #big ones are square
 tot.ht<-3*pan.ht+xht+3*gap
 
+#Make abundance wavelet mean field, wavelet phasor mean field, and predicted synchrony in deer abundance 
+#by snow depth, winter MEI and winter PDo (Fig 2)
 png(filename="Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 #tiff("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
@@ -40,6 +42,7 @@ mtext(text = "Year",line = -2,side = 1,cex=1.25)
 text(x=c(rep(1985.5,3)),y=c(log2(14),log2(7.5),log2(4)),labels=c("A)","B)","C)"),font=2)
 dev.off()
 
+#Make DVC wavelet mean field, wavelet phasor mean field, and predicted synchrony in DVCs by deer abundance (Fig 3)
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 #tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
@@ -56,6 +59,7 @@ mtext(text = "Year",line = -1.5,side = 1,cex=1.25)
 text(x=c(rep(1990.5,3)),y=c(log2(11.3),log2(6.5),log2(3.7)),labels=c("A)","B)","C)"),font=2)
 dev.off()
 
+#make plots of phase by timescale for all significant pairs of variables (Fig S3)
 png("Results/FigS3.png",res=600,height=4800,width=3200)
 #tiff("Results/FigS3.tiff",res=600,height=4800,width=3200,compression=c("lzw"))
 source("Functions/Fn_phaseplot.R")
@@ -82,7 +86,7 @@ mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(0.151))))
 mtext(line=1,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(-0.836))))
 dev.off()
 
-#make plot of ranks by timescale
+#Make plot of ranks by timescale for all significant pairs of variables (Fig S4)
 source("Functions/Fn_rankplot.R")
 png("Results/FigS4.png",res=600,height=3000,width=4800)
 #tiff("Results/FigS4.tiff",res=600,height=3000,width=4800,compression=c("lzw"))
@@ -104,17 +108,7 @@ legend("topright",c("Abun-DVCs","Abun-Adj. DVCs","Hunters-Abun"),lty=c(1,1,1),
 mtext("B)",font=2,adj=0)
 dev.off()
 
-# #plot weather and climate indices ranks to see whether relationship exists outside of the 3-7 year timescales
-# plot(2:14,rep(NA,13),ylim=c(0.5*nsurrogs,max(nsurrogs)))
-# for(i in 1:length(weath.climind.spcoh)){
-#   lines(weath.climind.res$WinterMEI.Snwd$timescales,weath.climind.res[[i]]$emp.rank,col=rainbow(40)[i],main=i)
-#   abline(h=0.95*nsurrogs,col="red",lty=2)
-# }
-# plot(weath.climind.res$WinterMEI.Snwd$timescales,weath.climind.res$WinterMEI.Snwd$emp.rank,type="l")
-# lines(weath.climind.res$WinterPDO.Snwd$timescales,weath.climind.res$WinterPDO.Snwd$emp.rank,col="green")
-# abline(h=0.95*nsurrogs,col="red",lty=2)
-
-#Hunter Plots
+#Make wavelet mean field, wavelet phasor meanfield and predicted synchrony plot for hunters (Fig S5)
 png("Results/FigS5.png",res=600,height=4800,width=3000)
 #tiff("Results/FigS5.tiff",res=600,compression=c("lzw"),height=4800,width=3000)
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
@@ -149,7 +143,7 @@ wsurfplotTLA(Reumannplatz::CleanData(climindex$SummerMEI[1,])$cleandat,times=198
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
-#weather surface plots
+#Make winter weather wavelet mean field and wavelet phasor mean field plots
 png("Results/FigS7.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS7.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 winter.clim.dt<-lapply(winter.clim,function(x){x<-Reumannplatz::CleanData(x[!(is.na(rowMeans(x))),])$cleandat;x})
@@ -172,6 +166,8 @@ wsurfplotTLA(winter.clim.dt$Prcp,times=1981:2016,colorbar=T,type="wpmf",ylab="",
 mtext("H)",adj=0.05,font=2,line=-1.2,side=3)
 dev.off()
 
+#Make plots of wavelet mean field, wavelet phasor mean field, and predicted synchrony of 
+#deer abundance and DVCs using USDA district data
 png("Results/FigS6.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS6.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 source("Functions/Fn_wsurfplot_modified.R")
@@ -190,7 +186,7 @@ syncexpplot(resp.wmf=wmfwt(dvc.wt$wave.array),exp.sync = dvcabun.es$pred.wmf,tim
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
-#raw data plots
+#Make raw data plots (Fig S1)
 png("Results/FigS1.png",res=600,height=3600,width=3600)
 #tiff("Results/FigS1.tiff",res=600,compression=c("lzw"),height=3600,width=3600)
 par(mfrow=c(3,2),mar=c(2.5,5,1.2,0),mgp=c(3,0.5,0))
@@ -232,8 +228,8 @@ dev.off()
 abunsurr<-read.csv("Data/abunsurrsum.csv")
 dvcsurr<-read.csv("Data/dvcsurrsum.csv")
 
-#Figure 4
-#***plotting dimensions, units inches
+#Make plots showing statewide magnitude of deer and DVC fluctuatoins (Fig 4)
+#***Set up plotting dimensions, units are inches
 tot.wd<-3.5
 xht<-.5   #height of x axis label region
 ywd<-1    #width of y axis label region
@@ -281,7 +277,7 @@ text(x=2001,y=160000,labels="159054 deer",font=2,cex=0.75,adj=0,col="red")
 text(x=1999,y=-174000,labels="174339 deer",font=2,cex=0.75,adj=0,col="red")
 mtext("Departure from Surrogate Mean",side=2,line=3.5,cex=0.9)
 
-#DVC Plot
+#DVC little panel
 par(fig=c(ywd/tot.wd,
           (ywd+pan.wd.small)/tot.wd,
           (pan.ht.big+xht+gap)/tot.ht,
