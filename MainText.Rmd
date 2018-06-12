@@ -1,9 +1,9 @@
 ---
-title: Moran Effects Cause Major Cycles in Deer Populations
+title: Synchrony Causes Major Cycles in Deer Populations
   and Deer-Vehicle Collisions Across Wisconsin
 author:
  - Thomas L. Anderson\textsuperscript{1,2}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{2,3}, Robert E. Rolley\textsuperscript{4},  Daniel C. Reuman\textsuperscript{2}  
- - \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology, University of Kansas; \textsuperscript{3}University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources
+ - \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas; \textsuperscript{3}University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
   pdf_document:
@@ -21,6 +21,11 @@ tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 ---
+
+<!--Tom, I changed the title to one you suggested in an earlier version. At the moment, this
+title seems better for the Science audience, many of whom won't know what Moran effects are.
+For the record, the old title was: Moran Effects Cause Major Cycles in Deer Populations and 
+Deer-Vehicle Collisions Across Wisconsin-->
 
 ```{r echo=F, results="hide"}
 #load in results
@@ -44,13 +49,12 @@ avgdeerfluc<-readRDS(file="Results/totaldeerfluctuations.rds")
 avgdvcfluc<-readRDS(file="Results/totaldvcfluctuations.rds")
 avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
 avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
-
-
 ```
 
 ##One Sentence Summary#
-Winter-climate Moran effects drive synchrony in deer abundances and deer-vehicle collisions, thereby
-influencing associated industries.
+Winter climate synchronizes changes in deer abundance and deer-vehicle collisions across 
+Wisconsin, thereby producing large fluctuations at the whole-state scale that influence 
+associated industries.
 
 #Abstract:
 Spatial synchrony of exploited or economically important taxa should have substantial impacts for humans,

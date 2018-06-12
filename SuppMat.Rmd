@@ -1,6 +1,6 @@
 ---
-title: Supplementary Materials for Moran Effects Cause Major Cycles in Deer Populations
-  and Deer-Vehicle Collisions Across Wisconsin
+title: Supplementary Materials for "Synchrony Causes Major Cycles in Deer Populations
+  and Deer-Vehicle Collisions Across Wisconsin"
 author: Thomas L. Anderson, Lawrence W. Sheppard, Jonathan A. Walter, Robert E. Rolley,
   Daniel C. Reuman
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
