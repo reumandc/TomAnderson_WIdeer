@@ -85,9 +85,17 @@ nsurrogs<-10000
 source("Code/mtime.R") 
 ```
 
-
 <!--The whole analysis-->
-```{r whole_analysis, echo=F, cahce=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,detr.flag,scale.flag,samplesize.flag,nsurrogs,mtime("Code/wi.deer.cleandata.R"),mtime("Data/State_Kill.csv"),mtime("Data/County_KillTotal.csv"),mtime("Data/County_Kill_BuckOnly.csv"),mtime("Data/County_Kill_DoeOnly.csv"),mtime("Data/County_KillGunBuck.csv"),mtime("Data/County_KillGunDoe.csv"),mtime("Data/County_KillBowBuck.csv"),mtime("Data/County_KillBowDoe.csv"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/OpeningDay.csv"),mtime("Data/CornHarvest.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/wi_climate.R"),mtime())}
+```{r whole_analysis, echo=F, cahce=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,detr.flag,scale.flag,samplesize.flag,nsurrogs,mtime("Code/wi.deer.cleandata.R"),mtime("Data/State_Kill.csv"),mtime("Data/County_KillTotal.csv"),mtime("Data/County_Kill_BuckOnly.csv"),mtime("Data/County_Kill_DoeOnly.csv"),mtime("Data/County_KillGunBuck.csv"),mtime("Data/County_KillGunDoe.csv"),mtime("Data/County_KillBowBuck.csv"),mtime("Data/County_KillBowDoe.csv"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/OpeningDay.csv"),mtime("Data/CornHarvest.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/wi_climate.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"),mtime("Data/ENSO.csv"),mtime("Code/DeerAbundance.R"),mtime("Code/DeerAbundanceUSDA.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
+
+#Dependencies (listed in cache.extra above):
+#1) Settings variables from the setup chunk
+#2) all the data csvs (see Data folder)
+#3) all the scripts sourced below (see Code folder)
+#4) all the functions called (see Functions folder)
+
+#Basically this is set up so if anything but the write-up changes, everything is rerun. Simple and safe 
+#but may waste some CPU time
 
 #Clean population data: end result are two lists of matrices called "cty.list" and "usda.list"
 system.time(source("Code/wi.deer.cleandata.R"))
@@ -103,35 +111,17 @@ system.time(source("Code/wi_climate.R"))
   #scale.flag == "county": wsi.mat,wsi.matN,hunt.clim,winter.clim,nao.mat,pdo.mat,mei.mat,winter.nao,winter.pdo,winter.mei
   #large climate indices are the same values (nao,mei,pdo), just replicated into different dimensions to match scale.flag
 
-#county analysis
-
-```
-
-
-
-<!--County analysis-->
-<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r county_analysis, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(nsurrogs,mtime("Code/DeerAbundance.R"))}
 #Run analysis on deer abundance and DVCs using county data
 set.seed(101)
 system.time(source("Code/DeerAbundance.R"))
-```
 
-<!--District analysis-->
-<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r district_analysis, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(mtime("Code/DeerAbundanceUSDA.R"))}
 #Run analysis on deer abundance and DVCs using USDA district data
 set.seed(201)
 system.time(source("Code/DeerAbundanceUSDA.R"))
-```
 
-<!--Make plots-->
-<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(avg.deer.fluctuations,snow_abun_pval3_5,TableS1,TableS2,TableS3,TableS4,TableS5,abun_snwd_xterms3_5,abun_snwd_syncexp3_5,wpdo_wmei_phase,smei_wmei_phase,smei_wpdo_phase,ann_abun_hunter_pval,ann_abun_wmei_pval,ann_abun_wpdo_pval,ann_abun_smei_pval,hunterphase2_2.5,hunterpval2_2.5,hunterabun_syncexp2_2.5,usda_abunsnwd_syncexp,abun_snwd_syncexp3_5,usda_model_syncexp,usda_dvc_syncexp,usda_adjdvc_syncexp,ann_abun_hunter_pval,ann_abun_snow_pval,ann_abun_wmei_pval,ann_abun_smei_pval,ann_abun_wpdo_pval,ann_dvc_abun_pval3_5,ann_dvc_abun_pval3_7,ann_adjdvc_abun_pval,snowabun_phase3_5,usda_snowabun_pval3_5,usda_hunter_pval2_2.5,usda_hunterabun_syncexp2_2.5,usda_snowabun_pval3_5,usda_abunsnwd_syncexp,usda_hunterphase2_2.5,mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
-#generate raw data plots
+#generate plots
 set.seed(301)
 system.time(source("Code/deer_plots.R"))
-
 #***Tom: Warnings on plots should all be fixed
 ```
 
