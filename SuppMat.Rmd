@@ -125,7 +125,7 @@ system.time(source("Code/DeerAbundanceUSDA.R"))
 
 <!--Make plots-->
 <!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(avg.deer.fluctuations,snow_abun_pval3_5,TableS1,TableS2,TableS3,TableS4,TableS5,abun_snwd_xterms3_5,abun_snwd_syncexp3_5,wpdo_wmei_phase,smei_wmei_phase,smei_wpdo_phase,ann_abun_hunter_pval,ann_abun_wmei_pval,ann_abun_wpdo_pval,ann_abun_smei_pval,hunterphase2_2.5,hunterpval2_2.5,hunterabun_syncexp2_2.5,usda_abunsnwd_syncexp,abun_snwd_syncexp3_5,usda_model_syncexp,usda_dvc_syncexp,usda_adjdvc_syncexp,ann_abun_hunter_pval,ann_abun_snow_pval,ann_abun_wmei_pval,ann_abun_smei_pval,ann_abun_wpdo_pval,ann_dvc_abun_pval3_5,ann_dvc_abun_pval3_7,ann_adjdvc_abun_pval,snowabun_phase3_5,usda_snowabun_pval3_5,usda_hunter_pval2_2.5,usda_hunterabun_syncexp2_2.5,usda_snowabun_pval3_5,usda_abunsnwd_syncexp,usda_hunterphase2_2.5,mtime("Code/deer_plots.R"))}
+```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(avg.deer.fluctuations,snow_abun_pval3_5,TableS1,TableS2,TableS3,TableS4,TableS5,abun_snwd_xterms3_5,abun_snwd_syncexp3_5,wpdo_wmei_phase,smei_wmei_phase,smei_wpdo_phase,ann_abun_hunter_pval,ann_abun_wmei_pval,ann_abun_wpdo_pval,ann_abun_smei_pval,hunterphase2_2.5,hunterpval2_2.5,hunterabun_syncexp2_2.5,usda_abunsnwd_syncexp,abun_snwd_syncexp3_5,usda_model_syncexp,usda_dvc_syncexp,usda_adjdvc_syncexp,ann_abun_hunter_pval,ann_abun_snow_pval,ann_abun_wmei_pval,ann_abun_smei_pval,ann_abun_wpdo_pval,ann_dvc_abun_pval3_5,ann_dvc_abun_pval3_7,ann_adjdvc_abun_pval,snowabun_phase3_5,usda_snowabun_pval3_5,usda_hunter_pval2_2.5,usda_hunterabun_syncexp2_2.5,usda_snowabun_pval3_5,usda_abunsnwd_syncexp,usda_hunterphase2_2.5,mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
 #generate raw data plots
 set.seed(301)
 system.time(source("Code/deer_plots.R"))
@@ -674,15 +674,16 @@ state level ($P = `r ann_abun_hunter_pval`$).
 (C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
 (D) winter climate indices (Multivariate El Niño Southern Oscillation Index, 
 MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
-Each line in A-C, E represents a county. Other variables are not shown 
-(e.g., Tmin) due to their lack of significance in this 
+Each line in A-C, E represents a county. Other variables (e.g., Tmin) were 
+used in analyses but are not shown here due to lack of significant 
+assocations with the deer and DVC variables that were the focus of the 
 study.\label{FigS1_Timeseries}}
 \end{figure}
 
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{Results/FigS2.png}
+\includegraphics[height=0.8\textheight]{Results/FigS2.png}
 \caption{Map of Wisconsin, USA. Black lines and yellow dots delineate county boundaries and centroids. Color shading and black dots delineate USDA district boundaries and centroids.\label{FigS2_map}}
 \end{figure}
 

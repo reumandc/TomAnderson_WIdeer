@@ -25,7 +25,8 @@ urlcolor: blue
 <!--Tom, I changed the title to one you suggested in an earlier version. At the moment, this
 title seems better for the Science audience, many of whom won't know what Moran effects are.
 For the record, the old title was: Moran Effects Cause Major Cycles in Deer Populations and 
-Deer-Vehicle Collisions Across Wisconsin-->
+Deer-Vehicle Collisions Across Wisconsin. The length limit is 96 characters, we are just under 
+that now.-->
 
 ```{r echo=F, results="hide"}
 #load in results
@@ -51,24 +52,25 @@ avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
 avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
 ```
 
+##Short title
+Synchrony and regional population cycles
+<!--Limit 40 characters-->
+
 ##One Sentence Summary#
-Winter climate synchronizes changes in deer abundance and deer-vehicle collisions across 
-Wisconsin, thereby producing large fluctuations at the whole-state scale that influence 
-associated industries.
+Spatial synchrony produces oscillatory dynamics in deer and deer-vehicle collisions in Wisconsin.
+<!--The earlier sentence was longer than the 125 character limit. This is shorter.-->
 
 #Abstract:
-Spatial synchrony of exploited or economically important taxa should have substantial impacts for humans,
-especially as synchrony can produce high-amplitude oscillations across large spatial regions. We
-investigated causes of synchrony in white-tailed deer (*Odocoileus virginianus*), an exploited species
-across North America, and whether deer synchrony had subsequent impacts on human populations through
-deer-vehicle collisions (DVCs). We found that synchronized environmental variation (i.e., Moran effects)
-over the winter months explained a substantial fraction of deer synchrony, but only at specific
-timescales of fluctuations. Synchrony in DVCs were in turn synchronized by deer populations at the same
-timescales, indicating that Moran effects cascaded through this system. This timescale-specific synchrony
-resulted in large region-wide fluctuations of both deer and DVCs that would not occur if the synchrony
-was absent, meaning spatial synchrony can cause local dynamics to sum to a substantial phenomenon on
-statewide spatial scales. This study is the first to identify how synchrony in exploited or economically
-important taxa can impact humans across large spatial scales. 
+We investigated causes and consequences of spatial synchrony in populations of white-tailed deer, a widely 
+exploited species, and in deer-vehicle collisions (DVCs) across Wisconsin. Deer synchrony occurred principally at 
+$3-7$-year timescales of fluctuation, and synchronous winter environmental 
+variation explained almost 90% of deer synchrony through a process called the Moran effect. 
+DVCs were in turn synchronized by deer populations: 
+Moran effects cascaded through the system. Timescale-specific synchrony caused large fluctuations 
+in statewide total deer populations and DVCs that would not have occurred without synchrony. Thus synchrony 
+caused local dynamics to sum to a major cyclic phenomenon on large spatial scales. Results demonstrate 
+empirically for the first time how Moran effects and synchrony in exploited taxa can produce cycles and impact industries over large areas.
+<!--The old abstract was too long. We are now at 124 words (125-word limit).-->
 
 #Main Text:
 Spatial population synchrony, i.e., the tendency for populations of a species in different locations to exhibit
@@ -89,10 +91,24 @@ However, recent analytical advances facilitate more precise identification of Mo
 [@Allstad2015_gypsysync;@Defriez2016_plankton;@Sheppard2016_aphids;@Defriez2017_terrestrial;@Defriez2017_marine,
 @Sheppard2017_surrogates;@Walter2017_geogsync]. The effectiveness of these tools is due in part to their capacity
 to decompose synchrony according to the distinct timescales on which it can occur (Fig. \ref{Fig1_example}G-I).
-We here investigate the importance of timescale-specific Moran effects for white-tailed deer (*Odocoileus virginianus*) and deer-vehicle collisions (DVCs) in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover1997_dvc]. Across the USA, US\$$34$Bn were spent on deer hunting in 2006. In WI, 15% of adults hunt deer [@Winkler2013_hunters], and hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey] DVCs cause an estimated 50 human fatalities and US\$$1.5$Bn in damage to vehicles annually across the USA [@Conover2011_bookchp] Thus, it is an important applied question whether environmental synchrony and Moran effects drive some or all of the year-to-year variability in statewide deer abundance and DVC totals, as well as being a case study of a potentially widespread phenomenon. We consider possible Moran effects originating from both environmental drivers and the direct effects of hunting on deer synchrony (i.e., synchrony of hunting activity itself may, a priori, induce observed synchrony in deer populations). We use data from 1981-2016 (Fig.  \ref{SM-FigS1_Timeseries}) aggregated at two different spatial resolutions, counties and United States Department of Agricultural (USDA) districts (Fig. \ref{SM-FigS2_map}). 
+We here investigate the importance of timescale-specific Moran effects for white-tailed deer (*Odocoileus 
+virginianus*) and deer-vehicle collisions (DVCs) in Wisconsin (WI), USA. White-tailed deer is a species of 
+considerable interest due to its major economic and cultural benefits and impacts on ecosystems 
+[@Cote2004_deerimpacts;@Conover1997_dvc]. Across the USA, US\$$34$Bn were spent on deer hunting in 2006. In WI, 15% 
+of adults hunt deer [@Winkler2013_hunters], and hunting-related economic activity accounts for ~$1\%$ of state 
+GDP [@usfws2011_survey]. DVCs cause an estimated 50 human fatalities and US\$$1.5$Bn in damage to vehicles annually 
+across the USA [@Conover2011_bookchp]. Thus, it is an important applied question whether environmental synchrony and 
+Moran effects drive some or all of the year-to-year variability in statewide deer abundance and DVC totals, as well 
+as being a case study of a potentially widespread phenomenon. We consider possible Moran effects originating from 
+both environmental drivers and the direct effects of hunting on deer synchrony (i.e., synchrony of hunting activity 
+itself may, *a priori*, induce observed synchrony in deer populations). We use data from 1981-2016 
+(Fig.  \ref{SM-FigS1_Timeseries}) aggregated at two different spatial resolutions, counties ($n=71$) 
+and United States Department of Agricultural (USDA) districts ($n=9$, Fig. \ref{SM-FigS2_map}). 
 
 The wavelet mean field [@Sheppard2016_aphids], a technique for visualizing the strength of synchrony as a
-function of time and timescale (*Methods*), revealed that the most prominent synchrony in county-level deer abundances occurred at $3-7$-year timescales (Fig. \ref{Fig2_DeerSync}A). A related technique, the wavelet phasor mean field (*Methods*), demonstrated the strong statistical significance of this phenomenon (Fig. \ref{Fig2_DeerSync}B). We therefore focused our analysis on the $3-7$-year timescale band. Most past analyses of synchrony have used correlation methods that conflate timescales. But recent results show this can hinder detection of synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Spatial wavelet coherence, wavelet regression techniques and a wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard2017_surrogates;@Sheppard_wavmodel]; *Methods*) demonstrated that deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. Synchrony in deer abundance was related to winter snow depth ($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="Snwd"]`; Table \ref{SM-TabS1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase difference between abundance and snow depth across $3-7$-year timescales, in units of ${\pi}$ radians: $\bar{\theta} =$ `r TabS1_results$Mean.Phase[TabS1_results$Predictor=="Snwd"]`; Fig. \ref{SM-FigS3_PhaseDiffs}): deer abundances tended to peak in years of below-average snow. This effect probably occurs because deeper snow limits access to winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility to starvation or predators and reduced parturtion rates
+function of time and timescale (*Methods*, Fig. \ref{Fig1_example}G-I provide examples), revealed that 
+<!--***DAN: when you add the pedagog figs on the wmf and wpmf to the supp mat, cite the wmf one here-->
+the most prominent synchrony in county-level deer abundances occurred at $3-7$-year timescales (Fig. \ref{Fig2_DeerSync}A). A related technique, the wavelet phasor mean field (*Methods*), demonstrated the strong statistical significance of this phenomenon (Fig. \ref{Fig2_DeerSync}B). We therefore focused our analysis on the $3-7$-year timescale band. Most past analyses of synchrony have used correlation methods that conflate timescales. But recent results show this can hinder detection of synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Spatial wavelet coherence, wavelet regression techniques and a wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard2017_surrogates;@Sheppard_wavmodel]; *Methods*) demonstrated that deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. Synchrony in deer abundance was related to winter snow depth ($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="Snwd"]`; Table \ref{SM-TabS1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase difference between abundance and snow depth across $3-7$-year timescales, in units of ${\pi}$ radians: $\bar{\theta} =$ `r TabS1_results$Mean.Phase[TabS1_results$Predictor=="Snwd"]`; Fig. \ref{SM-FigS3_PhaseDiffs}): deer abundances tended to peak in years of below-average snow. This effect probably occurs because deeper snow limits access to winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility to starvation or predators and reduced parturtion rates
 [@Delguidice2008_deersurvival;@Mysterud2008_deerclimate;@Hegel2012_caribou]. Deer abundance was
 also related to the multivariate El Niño Southern Oscillation index ($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="WinterMEI"]`) and Pacific Decadal Oscillation ($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="WinterPDO"]`; Table \ref{SM-TabS1_CountyCoherenceSummary}), both averaged over the winter months ($\text{Dec}_{t-1}$ to $\text{Mar}_t$; abbreviations MEIw and PDOw). High values of these indices generally correspond to mild winter weather over WI [@Anderson1996_elnino;@Rodionov2003_elnino]. The two indices were strongly coherent and in-phase with each other on $3-7$-year timescales over the period 1981-2016 ($P =$ `r TabS2_results["WinterMEI","WinterPDO"]`; $\bar{\theta}  =$ 0.01, Table \ref{SM-TabS2_PairwiseClimVarSpatCoh}). Both indices showed approximate quarter-cycle phase shifts with deer (PDOw: $\bar{\theta}  =$ `r TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterPDO"]`; MEIw: $\bar{\theta}  =$ `r TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterMEI"]`; Fig. \ref{SM-FigS3_PhaseDiffs}). At $5$-yr periodicity, these phase lags correspond to deer populations
 peaking about $1.4$ years after mild winters, similar to other reported lag times of climatic effects on deer populations [@Post1998_popgrowth]. Winter weather and climatic oscillations have been identified previously as mechanisms influencing ungulate dynamics across multiple regions
@@ -116,13 +132,9 @@ Overall, we have demonstrated that Moran effects, by synchronizing local dynamic
 #Acknowledgements: 
 D. Lyden, J. Steinglein and the WIDNR for data access; and D. Storm, T. Van Deelen, and J. Millspaugh for initial
 consultation on deer populations in Wisconsin. Funding was provided by the James S McDonnell Foundation, the
-University of Kansas General Research Fund, United States National Science Foundation grants 1442595 and 0075516,
+University of Kansas General Research Fund, United States National Science Foundation grants 1442595 and 1714195,
 United States Department of Agriculture award 2016-67012-24694, the University of Virginia, and The Nature
 Conservancy. 
-
-\newpage
-
-#References
 
 \newpage
 
@@ -130,21 +142,28 @@ Conservancy.
 \includegraphics[width=.6\textwidth]{Results/Fig1.png}
 \caption{In theory, synchrony between populations influences the dynamics of the total population. Panels A-C show
 three alternative scenarios for time series measured at 15 locations across a region, and differ in that
-populations are unsynchronized (A), or are partially synchronized on short (B; 3-year period) or long (C; 10-year
+populations are unsynchronized (A), or are partially synchronized on short (B, 3-year period) or long (C, 10-year
 period) timescales, though synchrony cannot readily be detected visually. Differences in synchrony produce
 differences in variability and periodicity of the corresponding spatially summed population time series (D-F
 correspond to A-C, respectively). Synchrony on a given timescale produces variability on that timescale in the
 total. If time series in A-C were deer populations in 15 locales so that D-F were the total population across the
-region, differences among D-F could impact the hunting industry even though local difference across scenarios are
-not so noticeable. Difference between D and E are due solely to differences in synchrony. The population at
-location $i$ ($i=1,…,15$) and time $t$ was modelled via $p_i(t) = sin \left( \frac{2\pi t}{w}+2 \pi\mu_i\right) + \epsilon_i(t)$ where $w=3$ (A,B), or $w=3$ (C), $\mu_i = 0$ for all $i$ (B,C) or the $\mu_i$ are independent draws from a uniformly distribution on (0,1) (A). Wavelet mean field magnitude plots (\textit{Methods}) computed from A-C (G-I) sensitively reveal the timescale structure of synchrony. Higher values mean greater synchrony at the given time on the given timescale. 
+region, differences among D-F could impact the hunting industry even though local differences across scenarios are
+not so noticeable. Differences between D and E are due solely to differences in synchrony. The population at
+location $i$ ($i=1,…,15$) and time $t$ was modelled via 
+$p_i(t) = \sin \left( \frac{2\pi t}{w}+2 \pi u_i \right) + \epsilon_i(t)$, where $w=3$ (A,B) or $w=10$ (C), 
+and $u_i = 0$ for all $i$ (B,C) or the $u_i$ are independent draws from a uniform distribution on $(0,1)$ (A). 
+Wavelet mean field magnitude plots (\textit{Methods}) computed from A-C (G-I, respectively) 
+sensitively reveal the timescale 
+structure of synchrony. Higher values mean greater synchrony at the given time on the given timescale. 
 \label{Fig1_example}}
 \end{figure}
-<!--***Tom: Dan, please double check this equation to make sure I copied it correctly-->
+<!--***Tom: Dan, please double check this equation to make sure I copied it correctly.
+***DAN: I checked and made a couple corrections. Tom pls delete these comments once you read them.-->
+
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=.6\textwidth]{Results/Fig2.png}
+\includegraphics[height=.7\textheight]{Results/Fig2.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) of deer abundance (Methods). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at $P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were the focus of statistical analysis ($3-7$-years). Colors in (C) show synchrony in deer abundance predicted from a wavelet model using snow depth, MEIw, and PDOw as predictors, while contours in (C) show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony.
 \label{Fig2_DeerSync}}
 \end{figure}
@@ -152,7 +171,7 @@ location $i$ ($i=1,…,15$) and time $t$ was modelled via $p_i(t) = sin \left( \
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=.6\textwidth]{Results/Fig3.png}
+\includegraphics[height=.7\textheight]{Results/Fig3.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) of DVCs. Colors, contours, and horizontal lines in A and B indicate the same as in Fig. 2A,B. Colors in (C) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours in (C) show the actual wavelet mean field magnitude of DVCs from (A), for comparison. Agreement is good, giving a visual indication of the statistical result that deer synchrony explains DVC synchrony.
 \label{Fig3_DvcSync}}
 \end{figure}
@@ -162,6 +181,14 @@ location $i$ ($i=1,…,15$) and time $t$ was modelled via $p_i(t) = sin \left( \
 \begin{figure}[!h]
 \includegraphics[width=.6\textwidth]{Results/Fig4.png}
 \caption{Magnitude of the effects of synchrony on state-total deer abundance
-and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (B) time series (black lines) and surrogate totals obtained via a randomization procedure (Methods) that eliminates synchrony among counties at $3–7$-year timescales (grey lines, 1000 lines plotted). Increased variation due to synchrony is particularly notable when trends and long-timescale (longer than 7 years) variability are filtered out by subtracting the mean of the grey lines (large panels). Red arrows highlight example fluctuations that are attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due to synchrony amounts to an estimated difference of US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ in damages statewide (*Methods*). 
+and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (B) time series (black lines) and surrogate totals obtained via a randomization procedure (Methods) that eliminates synchrony among counties at $3–7$-year timescales (grey lines, 1000 lines plotted). Increased variation due to synchrony is particularly notable when trends and long-timescale (longer than 7 years) variability are filtered out by subtracting the mean of the grey lines (large panels). Red arrows highlight example fluctuations that are attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due to synchrony amounts to an estimated difference of US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ in damages statewide (\textit{Methods}). 
 \label{Fig4_StateWideFluctuations}}
 \end{figure}
+
+\newpage
+\clearpage
+
+#References
+<!--***DAN: Currently the references come after the figs, but perhaps they are supposed to come first
+under Science format. If so, we can fix this in the latex at the very end, along with some other fixes
+we need to do to the references.-->

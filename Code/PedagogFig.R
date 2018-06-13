@@ -16,7 +16,7 @@ set.seed(101)
 panwd.b<-1.25
 panht.b<-panwd.b
 panwd.s<-panwd.b
-panht.s<-panwd.s/3
+panht.s<-panwd.s/2.25
 xht<-0.5
 ywd<-0.5
 gap<-0.1
@@ -94,9 +94,10 @@ xlimits<-range(tm)
 ylimits.b<-range(d1,d2,d3)
 #ss<-diff(ylimits.b)*panht.s/panht.b/4.5
 #ylimits.s<-mean(ylimits.b)+c(-ss/2-adjmt,ss/2-adjmt)
-ylimits.s<-range(d1sm,d2sm,d3sm)
+#ylimits.s<-range(d1sm,d2sm,d3sm)
 ylimits.b[2]<-ylimits.b[2]+.1*diff(ylimits.b)
-ylimits.s[2]<-ylimits.s[2]+.2*diff(ylimits.s)
+#ylimits.s[2]<-ylimits.s[2]+.2*diff(ylimits.s)
+ylimits.s<-c(300,420)
 par(fig=c(ywd/totwd,
           (ywd+panwd.b)/totwd,
           (xht+panht.b+panht.s+2*gap)/totht,
@@ -118,7 +119,8 @@ par(fig=c(ywd/totwd,
           (xht+panht.b+gap+panht.s)/totht),
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 plot(tm,d1sm,type='l',xlim=xlimits,ylim=ylimits.s,
-     xaxt='n')
+     xaxt='n',yaxt='n')
+axis(side=2,at=c(300,400),labels=c("300","400"),cex.axis=1)
 text(xlimits[1],ylimits.s[2],'D)',adj=c(0,1),font=2)
 mtext("Tot. pop.",side=2,line=1.2)
 
@@ -137,7 +139,7 @@ image(x=tm,y=l2ts,z=Mod(wmf1$wmf),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r')
 ylocs <- pretty(wmf1$timescales, n = 8)
 axis(2, at = log2(ylocs), labels = ylocs)
-mtext("Timescale",side=2,line=1.2)
+mtext("Timescale (yrs)",side=2,line=1.2)
 text(xlimits[1],max(l2ts),'G)',adj=c(0,1),font=2)
 
 #Plot example 2 - time series
@@ -173,7 +175,7 @@ par(fig=c((ywd+panwd.b+gap)/totwd,
 image(x=tm,y=l2ts,z=Mod(wmf2$wmf),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r')
 text(xlimits[1],max(l2ts),'H)',adj=c(0,1),font=2)
-mtext("Time step",side=1,line=1.2)
+mtext("Time step (yrs)",side=1,line=1.2)
 
 #Plot example 3 - time series
 par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
