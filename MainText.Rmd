@@ -132,6 +132,7 @@ Table \ref{SM-TabS1_CountyCoherenceSummary}),
 in a near anti-phase relationship (mean phase difference between abundance and snow depth across $3-7$-year 
 timescales, in units of ${\pi}$ radians, was $\bar{\theta} =$ 
 `r round(TabS1_results$Mean.Phase[TabS1_results$Predictor=="Snwd"],2)`; 
+<!--***DAN: Tom, this mean phase difference differs slightly from that in Fig. S3D, which is 0.854. Why? They should agree *exactly* because they should come from the same calculation, the result of which should be dynamically include (not re-typed) in both places. Please check and reconcile. Likewise, for all other numbers occurring both in Fig. S3 and in this paragraph, the same variable should be dynamically included in both locations - please check even for cases where the numbers agree to the significant figures currently displayed.-->
 Fig. \ref{SM-FigS3_PhaseDiffs}): deer abundances 
 tended to peak in years of below-average snow. This effect probably occurred because deeper snow limits access to 
 winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility 
@@ -158,7 +159,7 @@ similar to other reported lag times of climatic effects on deer
 populations [@Post1998_popgrowth]. Winter weather and climatic oscillations have been identified previously as 
 mechanisms influencing ungulate dynamics across multiple 
 regions [@Post2004_greenland;@Grotan2005_roedeer;@Hegel2012_caribou]. Our results show these drivers also induce 
-synchrony in deer populations through Moran effects. 
+synchrony in deer through Moran effects. 
 Snow depth and climate index results seemed to indicate distinct or partly distinct phenomena synchronizing 
 deer on different timescales within the $3-7$-year range. Applying the wavelet Moran 
 theorem ([@Sheppard2016_aphids;@Sheppard_wavmodel]; *Methods*), 
