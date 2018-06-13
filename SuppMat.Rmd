@@ -39,7 +39,7 @@ in git with AndersonDeer-->
 library(devtools,quietly=T,verbose=F)
 library(withr,quietly=T,verbose=F)
 withr::with_libpaths(new=.libPaths()[1],
-                     devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer",force=T))
+                     devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer",force=FALSE))
 ```
 
 <!--Libraries-->
