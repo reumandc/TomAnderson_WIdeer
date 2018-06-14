@@ -132,26 +132,29 @@ Table \ref{SM-TabS1_CountyCoherenceSummary}),
 in a near anti-phase relationship (mean phase difference between abundance and snow depth across $3-7$-year 
 timescales, in units of ${\pi}$ radians, was $\bar{\theta} =$ 
 `r round(TabS1_results$Mean.Phase[TabS1_results$Predictor=="Snwd"],2)`; 
-<!--***DAN: Tom, this mean phase difference differs slightly from that in Fig. S3D, which is 0.854. Why? They should agree *exactly* because they should come from the same calculation, the result of which should be dynamically include (not re-typed) in both places. Please check and reconcile. Likewise, for all other numbers occurring both in Fig. S3 and in this paragraph, the same variable should be dynamically included in both locations - please check even for cases where the numbers agree to the significant figures currently displayed.-->
+<!--***DAN: Tom, this mean phase difference differs slightly from that in Fig. S3D, which is 0.854. Why? They should agree *exactly* (except for possible differences in how many digits it is rounded to, if the rounding is done differently in the two places) because they should come from the same calculation, the result of which should be dynamically included (not re-typed) in both places. Please check and reconcile. Likewise, for all other numbers occurring both in Fig. S3 and in this paragraph, the same variable should be dynamically included in both locations - please check even for cases where the numbers agree to the significant figures currently displayed. Likewise, numbers in Table S1 should be the same as the numbers in this paragraph and in Fig. S3.-->
 Fig. \ref{SM-FigS3_PhaseDiffs}): deer abundances 
 tended to peak in years of below-average snow. This effect probably occurred because deeper snow limits access to 
 winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility 
 to starvation or predators and reduced parturition 
 rates [@Delguidice2008_deersurvival;@Mysterud2008_deerclimate;@Hegel2012_caribou]. Deer abundance was
 also related to the multivariate El Niño Southern Oscillation index 
-($P =$ `r round(TabS1_results$P.value[TabS1_results$Predictor=="WinterMEI"],2)`) and to the 
+($P =$ `r round(TabS1_results$P.value[TabS1_results$Predictor=="WinterMEI"],3)`) and to the 
 Pacific Decadal Oscillation 
-($P =$ `r round(TabS1_results$P.value[TabS1_results$Predictor=="WinterPDO"],2)`, 
+($P =$ `r round(TabS1_results$P.value[TabS1_results$Predictor=="WinterPDO"],3)`, 
 Table \ref{SM-TabS1_CountyCoherenceSummary}), 
 both averaged over the winter months ($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations 
 $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$). High values 
 of these indices generally correspond to mild winter weather over WI [@Anderson1996_elnino;@Rodionov2003_elnino]. The 
 two indices were strongly coherent and in-phase with each other on $3-7$-year timescales over the period 1981-2016 
 (wavelet coherence $P =$ `r round(TabS2_results["WinterMEI","WinterPDO"],4)`, $\bar{\theta}  =$ 0.01,
-<!--***DAN: Tom, you missed replacing this typed number (0.01) with a dynamic link to the computed result, pls fix-->
+<!--***DAN: Tom, you missed replacing this typed number (0.01) with a dynamic link to the computed result, pls fix.
+Also please see comment on Table S2 - there is a need to make sure these are the results of wavelet coherence,
+not spatial coherence, though it may not make a difference.-->
 Table \ref{SM-TabS2_PairwiseClimVarSpatCoh}). Both indices showed approximate quarter-cycle phase shifts with 
 deer ($\text{PDO}_{\text{w}}$, $\bar{\theta}  =$ `r round(TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterPDO"],2)`; 
 $\text{MEI}_{\text{w}}$, $\bar{\theta}  =$ `r round(TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterMEI"],2)`; 
+<!--***DAN: Tom, these values agree with Table S1, but differ from the values in Fig S3, please fix.-->
 Fig. \ref{SM-FigS3_PhaseDiffs}). At $5$-yr periodicity, these phase lags correspond to deer populations
 peaking about `r round(-5*TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterPDO"]/2,1)` or 
 `r round(-5*TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterMEI"]/2,1)` years after mild winters, 
@@ -172,6 +175,32 @@ to deer synchrony over $4-7$-year timescales (Fig. \ref{SM-FigS4_RanksInSurrogs}
 $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(100*abunwmeiSyncExp,)`\%$ and $`r round(100*abunwpdoSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales, respectively, but snow depth, 
 $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
 $`r round(100*abunmodelSyncExp,0)`\%$ of deer synchrony on those timescales (Fig. \ref{Fig2_DeerSync}C). 
+<!--***DAN: There are several values in the above para that occur in the para, and in Fig S3, and in Table
+S1. When this is the case, values in the para seem to agree with Table S1 but disagree with Fig. S3. In 
+addition, most or all of the values in Fig S3 differ from the values in Table S1. So my guess is you have
+systematically included different values in Fig S3 compared to Table S1 and here. So, Tom, can you please
+go back to the code that produced Fig S3 and see where the numeric values included in that figure come from?
+It could be they are hard-coded into the code that makes that figure (i.e., retyped into the code), in which
+case they need to be dynamically loaded into the figure. It could be they are computed again in the process
+of making the figure, so they are computed once for Table S1 and then that value is saved and used above in 
+this para, and then they are computed again, from scratch, for the figure. Since values based on surrogates 
+are slightly stochastic, this would lead to small differences such as observed above. In that case you would
+need to modify the code so instead of recomputing these values you just load in the values created for the 
+table. Let me know if anything is unclear, please.-->
+<!--***DAN: Tom, there is another possible change to the above para I want to discuss with you that would also
+make for changes in some of the related tables and figures. It is slightly awkward that we use ranges 3-5 and 
+4-7 in the last few sentences of the above para - these ranges overlap. Relatedly, when you look at Fig. S4,
+the snow depth line is above the significance threshold for 3-4 years, and it seems to me to cross back below 
+the threshold closer to 4 years than to 5 years. Also, the MEI and PDO lines seem to cross to above the threshold at 
+about 4 years. So I wonder whether we should be using 3-4 years and 4-7 years? This wouldd require changes to 
+some of the values in the above paragraph, and also to some of the values in Table S1, and also to both values and
+the cross-hatching in some panels of Fig. S3. If we do this, I think it would also be useful to put
+vertical lines in Fig. S4A at timescales 3, 4 and 7, or else to put the timescale axis on the top edge of the
+plot as well as on the bottom edge (and if you chose the latter, you also have to do it for B). If we make the
+change, it would probably also be useful to add complete results to Table S1 for snow depth and abundance for
+the timescales 3-4 and 4-7, for Winter MEI and abundance for 3-4 and 4-7, and for Winter PDO and abundance 
+for 3-4 and 4-7. That way the numeric results are presented as well as the visual results of Fig. S4. Let's
+discuss.-->
 
 Deer abundance synchrony was not caused by hunting on $3-7$-year timescales. County-level hunter and deer abundances were not significantly spatially coherent ($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="Hunters"]`) over $3-7$-year timescales (Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS4_RanksInSurrogs}, \ref{SM-FigS5_WMFHunter}). However, hunter abundances were significantly related to deer abundance on shorter timescales, around $2-2.5$-years ($P =$ `r round(hunterabunPVal2_2.5,3)`), and were in approximate anti-phase with deer abundance on those timescales ($\bar{\theta}  =$ `r round(hunterabunphase2_2.5,2)`; Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS3_PhaseDiffs},\ref{SM-FigS4_RanksInSurrogs}). These patterns are consistent with the hypothesis that hunters can regulate deer populations over short timescales but do not do so across longer time periods. The lack of longer-timescale coherence between hunters and deer abundance is likely also related to the facts that hunters prefer to shoot bucks, the removal of which can have limited population effects, and the state regulates antlerless harvest in an attempt to maintain populations at a desirable size.  
 
