@@ -209,14 +209,48 @@ abundances were not significantly spatially coherent
 However, hunter abundances were significantly related to deer abundance on shorter timescales, around 
 $2-2.5$-years ($P =$ `r round(hunterabunPVal2_2.5,3)`), and were in approximate anti-phase with deer abundance 
 on those timescales ($\bar{\theta}  =$ `r round(hunterabunphase2_2.5,2)`; 
-Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS3_PhaseDiffs},\ref{SM-FigS4_RanksInSurrogs}). 
+Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS3_PhaseDiffs}, \ref{SM-FigS4_RanksInSurrogs}).
+<!--***DAN: Tom, the average phase values in Fig S3 and Table S1 disagree, please fix.-->
 These patterns are consistent with the hypothesis that hunters can regulate deer populations over short 
 timescales but do not do so across longer time periods. The lack of longer-timescale coherence between 
 hunters and deer abundance is likely also related to the facts that hunters prefer to shoot bucks, the 
-removal of which can have limited population effects, and the state regulates antlerless harvest in an 
+removal of which has limited population effects, and the state regulates antlerless harvest in an 
 attempt to maintain populations at a desirable size.  
 
-Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic Moran effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year timescales: Moran effects pass from climate to deer to DVCs in a cascading manner, and in this way are ultimately responsible for synchrony of DVCs. The wavelet mean field and phasor mean field of DVCs revealed time- and timescale-specific synchrony, and patterns were remarkably similar to those shown by deer (compare Figs \ref{Fig2_DeerSync}A,B and \ref{Fig3_DvcSync}A,B). Spatial wavelet coherence [@Sheppard2016_aphids;@Sheppard2017_surrogates; *Methods*] showed deer abundance and DVCs were significantly related ($P =$ `r TabS1_results$P.value[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"]`, Table \ref{SM-TabS1_CountyCoherenceSummary}) on $3-7$-year timescales, and had a nearly in-phase relationship ($\bar{\theta} =$ `r TabS1_results$Mean.Phase[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"]`, Fig. \ref{SM-FigS3_PhaseDiffs}). Greater deer abundance almost certainly caused greater DVCs rather than DVCs driving deer fluctuations because DVCs were too infrequent to meaningfully impact deer abundance (Fig. \ref{SM-FigS1_Timeseries}), and if they did an anti-phase relationship would have been expected. Deer abundance explained $`r round(100*usda_dvcabunSyncExp,0)`\%$ of the synchrony in DVCs when data were aggregated to USDA districts (*Methods*). As a visual manifestation of this statistical result, patterns of synchrony in DVCs predicted by a wavelet regression model with sole predictor deer abundance match the patterns actually present in DVC synchrony (Fig. \ref{Fig3_DvcSync}C). Statistical significance, phase relationships, and the amount of synchrony explained between abundance and DVCs ($`r round(100*usda_adjdvcabunSyncExp,0)`\%$) remained similar after accounting for fluctuations in traffic volume (Table \ref{SM-TabS1_CountyCoherenceSummary}).
+<!--***DAN: We may be sometimes using the terms "spatial coherence" and "spatial wavelet coherence"
+interchageably. Likewise for "coherence" and "wavelet coherence". This can confuse the reader. Do some
+searches and enforce homogeneity throughout the ms and supp mat. I am not sure, but suspect the best
+choice of terminology is "spatial wavelet coherence" and "wavelet coherence", even though those are
+the longest.-->
+
+Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic Moran 
+effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year timescales: Moran 
+effects pass from climate to deer to DVCs in a cascading manner, and in this way are ultimately responsible 
+for synchrony of DVCs. The wavelet mean field and phasor mean field of DVCs revealed time- and 
+timescale-specific synchrony, and patterns were remarkably similar to those shown by deer 
+(compare Figs \ref{Fig2_DeerSync}A,B and \ref{Fig3_DvcSync}A,B). Spatial wavelet 
+coherence ([@Sheppard2016_aphids;@Sheppard2017_surrogates]; *Methods*) 
+<!--***DAN: Would be nice if we could fix the parens in the above citations-->
+showed deer abundance and DVCs were 
+significantly related 
+($P =$ `r TabS1_results$P.value[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"]`, 
+Table \ref{SM-TabS1_CountyCoherenceSummary}) on $3-7$-year timescales, and had a nearly in-phase 
+relationship ($\bar{\theta} =$ `r TabS1_results$Mean.Phase[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"]`, 
+Fig. \ref{SM-FigS3_PhaseDiffs}). 
+<!--***DAN: Tom, as above, the values here agree with Table S1 but disagree with Fig. S3, please fix.-->
+Greater deer abundance almost certainly caused greater DVCs rather 
+than DVCs driving deer fluctuations because DVCs were too infrequent to meaningfully impact deer 
+abundance (Fig. \ref{SM-FigS1_Timeseries}), and if they did an anti-phase relationship would have 
+been expected. Deer abundance explained $`r round(100*usda_dvcabunSyncExp,0)`\%$ of the synchrony in 
+DVCs when data were aggregated to USDA districts (*Methods*, Table \ref{SM-TabS4_SummaryDistrict}). 
+As a visual manifestation of this 
+statistical result, patterns of synchrony in DVCs predicted by a wavelet regression model with sole 
+predictor deer abundance match the patterns actually present in DVC synchrony (Fig. \ref{Fig3_DvcSync}C). 
+Statistical significance, phase relationships, and the amount of DVC synchrony explained by deer abundance 
+($`r round(100*usda_adjdvcabunSyncExp,0)`\%$) remained similar after accounting for fluctuations 
+in traffic volume (Tables \ref{SM-TabS1_CountyCoherenceSummary}, \ref{SM-TabS4_SummaryDistrict}).
+
+<!--***DAN: Dan got to here 2018 06 14, 1028am central-->
 
 As mentioned above, synchrony is theoretically important for exploited or harmful populations because it leads to high-amplitude variability in spatial-total or spatial-average time series, which means alternating relative abundance and scarcity of economically important species over large areas [@Allstad2015_gypsysync]. Our data show the reality of this effect and its strength. Statewide oscillations due to synchrony correspond to an average difference of $>`r round(avgdeerfluc,-4)`$ deer and $> `r round(avgdvcfluc,-2)`$ DVCs between peak and trough years 
 (Fig. \ref{Fig4_StateWideFluctuations}). Importantly, these high amplitude statewide oscillations in deer and DVCs disappear when synchrony between counties on $3-7$-year timescales is removed via a randomization procedure 

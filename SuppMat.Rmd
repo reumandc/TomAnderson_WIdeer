@@ -711,7 +711,8 @@ time series, and predicted synchrony of deer abundance based on a wavelet model 
 abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
 time series at the indicated times and timescales. Contours on (B) indicate statistical significance of phase 
 synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundance, while contours show the 
-actual wavelet mean field magnitude of deer abundance (from Fig. 2A\ref{MT-Fig2}A). Agreement is poor, giving a 
+actual wavelet mean field magnitude of deer abundance (from Fig. \ref{MT-Fig2_DeerSync}A). Agreement is poor, 
+giving a 
 visual indication of the statistical result that hunter abundance does not explain deer abundance or synchrony 
 well on $3-7$-year timescales.\label{FigS5_WMFHunter}}
 \end{figure}
@@ -723,7 +724,7 @@ They do not (they are not even particularly close!). What's going on?-->
 
 \begin{figure}[!h]
 \includegraphics[height=.8\textheight]{Results/FigS6.png}
-\caption{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, MEIw, and PDOw as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS6_WMFAndPredictionsDistricts}}
+\caption{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS6_WMFAndPredictionsDistricts}}
 \end{figure}
 
 <!--***DAN: Tom, the contours on F look to me like they might not be the contours of the colors that
