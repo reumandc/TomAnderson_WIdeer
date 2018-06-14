@@ -1,6 +1,6 @@
 ---
-title: Supplementary Materials for Moran Effects Cause Major Cycles in Deer Populations
-  and Deer-Vehicle Collisions Across Wisconsin
+title: Supplementary Materials for "Synchrony Causes Major Cycles in Deer Populations
+  and Deer-Vehicle Collisions Across Wisconsin"
 author: Thomas L. Anderson, Lawrence W. Sheppard, Jonathan A. Walter, Robert E. Rolley,
   Daniel C. Reuman
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
@@ -39,7 +39,7 @@ in git with AndersonDeer-->
 library(devtools,quietly=T,verbose=F)
 library(withr,quietly=T,verbose=F)
 withr::with_libpaths(new=.libPaths()[1],
-                     devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer",force=T))
+                     devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer",force=FALSE))
 ```
 
 <!--Libraries-->
@@ -74,6 +74,7 @@ detr.flag<-"none"
 scale.flag<-"both"
 
 #***DAN: Not sure what this is, Tom, if this is not necessary should be deleted? 
+#In that case it should also be deleted from the cache.extra list below.
 #calculate how many missing climate values there were (don't need to run anymore)
 samplesize.flag<-"n"
 
@@ -84,55 +85,44 @@ nsurrogs<-10000
 source("Code/mtime.R") 
 ```
 
-<!--***DAN: Run time is sufficiently long that we should probably use caching, but
-that will require a good understanding of dependencies of everything. I have begun.
-Other reasons to use cacheing include it will enforce a clearer specification of
-dependencies between chunks.-->
+<!--The whole analysis-->
+```{r whole_analysis, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,detr.flag,scale.flag,samplesize.flag,nsurrogs,mtime("Code/wi.deer.cleandata.R"),mtime("Data/State_Kill.csv"),mtime("Data/County_KillTotal.csv"),mtime("Data/County_Kill_BuckOnly.csv"),mtime("Data/County_Kill_DoeOnly.csv"),mtime("Data/County_KillGunBuck.csv"),mtime("Data/County_KillGunDoe.csv"),mtime("Data/County_KillBowBuck.csv"),mtime("Data/County_KillBowDoe.csv"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/OpeningDay.csv"),mtime("Data/CornHarvest.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/wi_climate.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"),mtime("Data/ENSO.csv"),mtime("Code/DeerAbundance.R"),mtime("Code/DeerAbundanceUSDA.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
 
-<!--Clean the population data-->
-```{r clean_pop_data, echo=F, cache=T, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,detr.flag,mtime("Code/wi.deer.cleandata.R"),mtime("Data/State_Kill.csv"),mtime("Data/County_KillTotal.csv"),mtime("Data/County_Kill_BuckOnly.csv"),mtime("Data/County_Kill_DoeOnly.csv"),mtime("Data/County_KillGunBuck.csv"),mtime("Data/County_KillGunDoe.csv"),mtime("Data/County_KillBowBuck.csv"),mtime("Data/County_KillBowDoe.csv"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/OpeningDay.csv"),mtime("Data/CornHarvest.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"))}
+#Dependencies (listed in cache.extra above):
+#1) Settings variables from the setup chunk
+#2) all the data csvs (see Data folder)
+#3) all the scripts sourced below (see Code folder)
+#4) all the functions called (see Functions folder)
+
+#Basically this is set up so if anything but the write-up changes, everything is rerun. Simple and safe 
+#but may waste some CPU time
+
 #Clean population data: end result are two lists of matrices called "cty.list" and "usda.list"
 system.time(source("Code/wi.deer.cleandata.R"))
   #list of files generated by wi.deer.cleandata.R:
     #scale.flag == "usda": usda.list, includes data on abundance, kill data, crops, DVCs and traffic
     #scale.flag == "county": cty.list, includes data on abundance, kill data, crops, DVCs and traffic
-```
+    #scale.flag == "both": both the above
 
-<!--Clean the climate data-->
-```{r clean_clim_data, cache=T, echo=F, results="hide", fig.show="hide", cache.extra=list(minyear,maxyear,detr.flag,scale.flag,mtime("Code/wi_climate.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"),mtime("Data/ENSO.csv"))}
+#clean climate data
 system.time(source("Code/wi_climate.R"))
 #list of files generated by wi_climate.R:
   #scale.flag == "usda": wsi.usda.mat,hunt.clim.usda, winter.clim.usda,nao.mat,pdo.mat,mei.mat,winter.nao,winter.pdo,winter.mei
   #scale.flag == "county": wsi.mat,wsi.matN,hunt.clim,winter.clim,nao.mat,pdo.mat,mei.mat,winter.nao,winter.pdo,winter.mei
   #large climate indices are the same values (nao,mei,pdo), just replicated into different dimensions to match scale.flag
-```
 
-<!--County analysis-->
-<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r county_analysis, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(mtime("Code/DeerAbundance.R"))}
 #Run analysis on deer abundance and DVCs using county data
 set.seed(101)
 system.time(source("Code/DeerAbundance.R"))
-```
 
-<!--District analysis-->
-<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r district_analysis, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(mtime("Code/DeerAbundanceUSDA.R"))}
 #Run analysis on deer abundance and DVCs using USDA district data
 set.seed(201)
 system.time(source("Code/DeerAbundanceUSDA.R"))
-```
 
-<!--Make plots-->
-<!--***DAN: DANGER this list of dependencies not complete, need to fill in!-->
-```{r make_plots, echo=F, results="hide", fig.show="hide", cache=T, cache.extra=list(avg.deer.fluctuations,snow_abun_pval3_5,TableS1,TableS2,TableS3,TableS4,TableS5,abun_snwd_xterms3_5,abun_snwd_syncexp3_5,wpdo_wmei_phase,smei_wmei_phase,smei_wpdo_phase,ann_abun_hunter_pval,ann_abun_wmei_pval,ann_abun_wpdo_pval,ann_abun_smei_pval,hunterphase2_2.5,hunterpval2_2.5,hunterabun_syncexp2_2.5,usda_abunsnwd_syncexp,abun_snwd_syncexp3_5,usda_model_syncexp,usda_dvc_syncexp,usda_adjdvc_syncexp,ann_abun_hunter_pval,ann_abun_snow_pval,ann_abun_wmei_pval,ann_abun_smei_pval,ann_abun_wpdo_pval,ann_dvc_abun_pval3_5,ann_dvc_abun_pval3_7,ann_adjdvc_abun_pval,snowabun_phase3_5,usda_snowabun_pval3_5,usda_hunter_pval2_2.5,usda_hunterabun_syncexp2_2.5,usda_snowabun_pval3_5,usda_abunsnwd_syncexp,usda_hunterphase2_2.5,mtime("Code/deer_plots.R"))}
-#generate raw data plots
+#generate plots
 set.seed(301)
 system.time(source("Code/deer_plots.R"))
-
 #***Tom: Warnings on plots should all be fixed
-
-#***DAN: Fig 1 does not appear, the code for it needs to be put in
 ```
 
 ```{r echo=F}
@@ -674,15 +664,16 @@ state level ($P = `r ann_abun_hunter_pval`$).
 (C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
 (D) winter climate indices (Multivariate El Niño Southern Oscillation Index, 
 MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
-Each line in A-C, E represents a county. Other variables are not shown 
-(e.g., Tmin) due to their lack of significance in this 
+Each line in A-C, E represents a county. Other variables (e.g., Tmin) were 
+used in analyses but are not shown here due to lack of significant 
+assocations with the deer and DVC variables that were the focus of the 
 study.\label{FigS1_Timeseries}}
 \end{figure}
 
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{Results/FigS2.png}
+\includegraphics[height=0.8\textheight]{Results/FigS2.png}
 \caption{Map of Wisconsin, USA. Black lines and yellow dots delineate county boundaries and centroids. Color shading and black dots delineate USDA district boundaries and centroids.\label{FigS2_map}}
 \end{figure}
 
@@ -690,14 +681,25 @@ study.\label{FigS1_Timeseries}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS3.png}
-\caption{Phase differences between variables as a function of timescale for all significant relationships of Table S1\ref{TabS1_CountyCoherenceSummary}, county-level data: A) winter MEI and deer abundance, B) summer MEI and deer abundance, C) winter PDO and deer abundance, D) snow depth and deer abundance, E) deer abundance and deer-vehicle collisions, F) deer abundance and deer-vehicle collisions adjusted for traffic volume, and G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$ radians) for the shaded timescale bands. Horizontal axes differ in extent among panels due to different time ranges of available data for different variables. Vertical axes differ between left and right panels because time series were shorter for DVCs.\label{FigS3_PhaseDiffs}}
+\caption{Phase differences between variables as a function of timescale for all significant relationships of 
+Table \ref{TabS1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
+and deer abundance, B) summer MEI and 
+deer abundance, C) winter PDO ($\text{PDO}_{\text{w}}$) and deer abundance, 
+D) snow depth and deer abundance, E) deer abundance and 
+deer-vehicle collisions, F) deer abundance and deer-vehicle collisions adjusted for traffic volume, and 
+G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$ radians) for 
+the shaded timescale bands. Horizontal axes differ in extent among panels due to different time ranges of 
+available data for different variables. \label{FigS3_PhaseDiffs}}
 \end{figure}
+<!--***DAN: Tom, I found this sentence included as the last sentence of the above caption: "Vertical axes differ between left and right panels because time series were shorter for DVCs." This does not make any sense to me.
+I think it must be an error, so I removed it. But if I am mistaken and the sentence should be put back, please
+put it back and clarify/correct it. For one thing, the vertical axes do not differ across panels.-->
 
 \newpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption{Rank, by timescale, of spatial coherence values in surrogate coherence distributions (\emph{Methods}) for significant relationships (Table S1\ref{TabS1_CountyCoherenceSummary}) using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (*Methods*).\label{FigS4_RanksInSurrogs}}
+\caption{Rank, by timescale, of spatial coherence values in surrogate spatial coherence distributions (\emph{Methods}) for significant relationships (Table \ref{TabS1_CountyCoherenceSummary}) using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\textit{Methods}).\label{FigS4_RanksInSurrogs}}
 \end{figure}
 
 \newpage
@@ -739,13 +741,19 @@ knitr::kable(TableS1,
              format='pandoc',
              digits=4,
              col.names=c("Response","Predictor","P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial coherence tests and related results using county-level data (*Methods*). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (*Methods*) are provided where meaningful (for significant tests, $P < 0.05$, or marginally significant tests). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations. All values were rounded so that four digits were displayed.\\label{TabS1_CountyCoherenceSummary}",
+             caption = "Summary of spatial coherence tests and related results using county-level data (*Methods*). Each row is based on a test of spatial wavelet coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (*Methods*) are provided where meaningful (for significant tests, $P < 0.05$, or marginally significant tests). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations (*Methods*). All values were rounded to display four digits.$^1$ \\label{TabS1_CountyCoherenceSummary}",
              booktabs=T)
 ```
 
-\noindent $^1$For $3-5$-year timescales, $P = `r round(snow_abun_pval3_5,4)`$, phase $= `r round(snowabun_phase3_5,4)`$, and synchrony explained $= `r round(abun_snwd_syncexp3_5,4)`$.
+<!--***DAN: Tom, it is a bit awkward to put this info here. It could be in the caption (but then I cannot get the 
+dynamic links to work), or in the table itself (by adding another column called "Timescales"). What do you think,
+Tom? We could either leave it here (maybe awkward) or make a new column (might be a pain).-->
+$^1$ For snow depth and deer abundance over $3-5$-year timescales, $P=$ `r round(snow_abun_pval3_5,4)`, $\bar{\theta}=$ `r round(snowabun_phase3_5,4)`, and synchrony explained is `r round(abun_snwd_syncexp3_5,4)`. For hunters and deer abundance over $2-2.5$-year timescales, $P=$ `r round(hunterpval2_2.5,3)`, $\bar{\theta}=$ `r round(hunterphase2_2.5,4)`, and synchrony explained is `r round(hunterabun_syncexp2_2.5,4)`.
 
-\noindent $^2$For $2-2.5$-year timescales, $P = `r round(hunterpval2_2.5,3)`$, phase $= `r round(hunterphase2_2.5,4)`$ and synchrony explained $= `r round(hunterabun_syncexp2_2.5,4)`$.
+<!--***DAN: Tom, can you please replace "WinterNAO" with "Winter NAO", and likewise add spaces for "WinterPDO", "WinterMEI", etc, in the above table?-->
+<!--***DAN: Tom, the mean phase over 3-7-year timescales in Table S1 for snow depth and deer abundance differs frm that in Fig. S3D, but they should be identical because they should both be dynamically linked to the same variable.
+Likewise the values disagree for hunters and abundance over 2-2.5-year timescales.
+Please check *all* the entries in Table S1 and numeric values in Fig S3 to see whether they are dynamically linked to the correct variables.-->
 
 \newpage
 
@@ -753,9 +761,20 @@ knitr::kable(TableS1,
 knitr::kable(TableS2,
              col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
              format='pandoc',
-             caption = "$P$-values of spatial coherence between climate indices. Values inside parentheses indicate the mean phase difference between variables over $3-7$ year timescales (only shown for pairs of variables that were both significantly coherent with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
+             caption = "$P$-values of wavelet coherence between climate indices. Values inside parentheses indicate the mean phase difference between variables, over $3-7$ year timescales (only shown for pairs of variables that were both significantly coherent with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
              booktabs=T)
 ```
+
+<!--***DAN: The values in parens did not come out in the pdf. Can you fix, please, Tom.-->
+<!--***DAN: Also, and very importantly, it used to say
+"P-values of spatial coherence between..." but these are all wavelet coherences (or should be) not spatial 
+coherences, since these are all single time series. I changed it, but Tom can you please go back to the code
+and look and see whether you actually computed spatial coherences with spatially replicated time series
+or wavelet coherences between single time series? Should be the latter. It may (or may not) turn out to make
+a difference, I am not sure, but we should anyway do the appropriate thing. See also the point in the main text 
+in the para that begins "Spatial wavelet coherence, wavelet regression techniques...", in which a value from 
+this table is quoted (the one for Winter MEI and Winter PDO). I added a note there that it was a wavelet coherence
+result (not a spatial coherence result), so it needs to be checked that it is.-->
 
 \newpage
 

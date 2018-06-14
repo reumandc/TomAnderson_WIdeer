@@ -52,7 +52,7 @@ system.time(source("Code/wi_climate.R"))
   #large climate indices are the same values (nao,mei,pdo), just replicated into different dimensions to match scale.flag
 
 #set number of surrogates to use for spatial coherence
-nsurrogs<-10000
+nsurrogs<-1000
 
 #Run analysis on deer abundance and DVCs using county data
 system.time(source("Code/DeerAbundance.R"))

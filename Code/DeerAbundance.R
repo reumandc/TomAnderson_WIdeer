@@ -10,8 +10,7 @@ indices.res<-list()
 indices.spcoh<-list()
 
 #Set number of surrogates and timescales over which to compute spatial coherence
-nsurrogs=nsurrogs
-ranges=rbind(c(3,7))
+ranges<-rbind(c(3,7))
 
 #Extract climate indices used, dropping ENSO
 climindex<-climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")]
@@ -56,7 +55,7 @@ for(j in 1:length(names(climindex))){
     climindex.tmp<-climindex.tmp[!is.na(rowMeans(winter.clim[[name2]])),]
     winter.clim.dt.tmp<-Reumannplatz::CleanData(winter.clim.dt,normalize=T)$cleandat
     spatcoh.names<-paste(name1,name2,sep=".")
-    weath.climind.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.tmp,dat1=winter.clim.dt.tmp,nsurrogs=500,tsranges=ranges)
+    weath.climind.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.tmp,dat1=winter.clim.dt.tmp,nsurrogs=nsurrogs,tsranges=ranges)
     weath.climind.spcoh[[spatcoh.names]]<-swcoh(bio.dat=winter.clim.dt.tmp,env.dat=climindex.tmp,times=1981:2016)
     TableS3[i,j]<-weath.climind.res[[spatcoh.names]]$pvals
   }
