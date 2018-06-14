@@ -11,6 +11,7 @@ indices.spcoh<-list()
 
 #Set number of surrogates and timescales over which to compute spatial coherence
 ranges<-rbind(c(3,7))
+climranges<-rbind(c(4,7))
 
 #Extract climate indices used, dropping ENSO
 climindex<-climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")]
@@ -20,10 +21,11 @@ abun.dt<-Reumannplatz::CleanData(cty.list$Abun,normalize=T)$cleandat
 climindex.dt<-lapply(climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")],function(x){x<-Reumannplatz::CleanData(x,normalize=T,each.ts = T)$cleandat;x})
 for(j in names(climindex.dt)){
   spatcoh.names<-paste(j,"Abun",sep=".")
-  climate.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges = ranges)
+  climate.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges = rbind(ranges,climranges))
   climate.spcoh[[spatcoh.names]]<-swcoh(bio.dat=abun.dt,env.dat=climindex.dt[[j]],times=1981:2016)
 }
-climpvals<-lapply(climate.res,function(x){x$pvals})
+climpvals37<-lapply(climate.res,function(x){x$pvals[1]})
+climpvals47<-lapply(climate.res,function(x){x$pvals[2]})
 
 #Run coherence of winter weather and deer abundance
 for(j in names(winter.clim)){
@@ -44,6 +46,9 @@ snow.abun.spatcoh35<-cohtestfast(dat2=snow.dt,dat1=abun.dt,nsurrogs=nsurrogs,tsr
 snow_abun_pval3_5<-snow.abun.spatcoh35$pvals
 saveRDS(snow_abun_pval3_5,file = "Results/snowabunpval3_5.rds")
 
+snow.abun.spatcoh34<-cohtestfast(dat2=snow.dt,dat1=abun.dt,nsurrogs=nsurrogs,tsranges=rbind(c(3,4)))
+snow_abun_pval3_4<-snow.abun.spatcoh34$pvals
+
 #Run coherence of climate indices and winter weather
 TableS3<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
 for(j in 1:length(names(climindex))){
@@ -62,15 +67,15 @@ for(j in 1:length(names(climindex))){
 }
 saveRDS(TableS3,file="Results/TabS3_results.rds")
 
-#Run coherence among climate indices
+#Run wavelet coherence among climate indices
 TableS2<-matrix(NA,6,6)
 for(i in 1:(length(climindex.dt)-1)){
   for(j in (i+1):length(climindex.dt)){
     name1<-names(climindex.dt)[i]
     name2<-names(climindex.dt)[j]
     spatcoh.names<-paste(name2,name1,sep=".")
-    indices.res[[spatcoh.names]]<-cohtestfast(dat1=climindex.dt[[j]],dat2=climindex.dt[[i]],nsurrogs=nsurrogs,tsranges=ranges)
-    indices.spcoh[[spatcoh.names]]<-swcoh(bio.dat=climindex.dt[[j]],env.dat=climindex.dt[[i]],times=1981:2016)
+    indices.res[[spatcoh.names]]<-cohtestfast(dat1=climindex.dt[[j]][1,],dat2=climindex.dt[[i]][1,],nsurrogs=100000,tsranges=ranges)
+    #indices.spcoh[[spatcoh.names]]<-swcoh(bio.dat=climindex.dt[[j]][1,],env.dat=climindex.dt[[i]][1,],times=1981:2016)
     TableS2[j,i]<-indices.res[[spatcoh.names]]$pvals
   }
 }
@@ -194,7 +199,7 @@ TableS1<-data.frame(matrix(NA, 14, 6,
 #store all p-values in vectors and add to Table S1
 resp<-c(rep("Abundance",(nrow(TableS1)-2)),"DVCs","Adjusted DVCs")
 preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
-pvals<-c(unlist(weathpvals),hunterpval3_7,unlist(climpvals),dvcpval,adjdvcpval)
+pvals<-c(unlist(weathpvals),hunterpval3_7,unlist(climpvals37),dvcpval,adjdvcpval)
 
 TableS1$Response<-resp
 TableS1$Predictor<-preds
@@ -225,6 +230,7 @@ TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO",'Mean.Pha
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = dvc.spcoh$empirical, timescales = dvc.spcoh$timescales,tsrange=c(3,7))/3.14
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = adjdvc.spcoh$empirical, timescales = adjdvc.spcoh$timescales,tsrange=c(3,7))/3.14
 snowabun_phase3_5<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,5))/3.14
+snowabun_phase3_7<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,7))/3.14
 hunterphase2_2.5<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
 wpdo_wmei_phase<-phasemean(spatcoh = indices.spcoh$WinterMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wpdo_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
