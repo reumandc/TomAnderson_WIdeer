@@ -140,7 +140,7 @@ or R-produced value. As these are done, the comment can be deleted,
 as can the non-automatic text that the automatic link should replace.
 But leave the non-automatic text until you do a knit to make sure you
 get the same thing.-->
-
+<!---To do citations, insert all the citations from the main text up here, but have them be invisible and then the numbers should line up starting below. Then in the main text, have the citations from the supp mat at the end of the main text --->
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a `r dim(cty.list$Abun)[2]`-yr period 
 (`r minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 

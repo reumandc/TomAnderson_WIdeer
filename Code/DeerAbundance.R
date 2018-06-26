@@ -12,7 +12,7 @@ indices.spcoh<-list()
 #Set number of surrogates and timescales over which to compute spatial coherence
 ranges<-rbind(c(3,7))
 climranges<-rbind(c(4,7))
-
+snowranges<-rbind(c(3,4))
 #Extract climate indices used, dropping ENSO
 climindex<-climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")]
 
@@ -21,11 +21,12 @@ abun.dt<-Reumannplatz::CleanData(cty.list$Abun,normalize=T)$cleandat
 climindex.dt<-lapply(climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")],function(x){x<-Reumannplatz::CleanData(x,normalize=T,each.ts = T)$cleandat;x})
 for(j in names(climindex.dt)){
   spatcoh.names<-paste(j,"Abun",sep=".")
-  climate.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges = rbind(ranges,climranges))
+  climate.res[[spatcoh.names]]<-cohtestfast(dat2=climindex.dt[[j]],dat1=abun.dt,nsurrogs=nsurrogs,tsranges = rbind(ranges,climranges,snowranges))
   climate.spcoh[[spatcoh.names]]<-swcoh(bio.dat=abun.dt,env.dat=climindex.dt[[j]],times=1981:2016)
 }
 climpvals37<-lapply(climate.res,function(x){x$pvals[1]})
 climpvals47<-lapply(climate.res,function(x){x$pvals[2]})
+climpvals34<-lapply(climate.res,function(x){x$pvals[3]})
 
 #Run coherence of winter weather and deer abundance
 for(j in names(winter.clim)){
@@ -33,21 +34,12 @@ for(j in names(winter.clim)){
   winter.clim.dt.tmp<-Reumannplatz::CleanData(winter.clim.dt.tmp,normalize=T)$cleandat
   abun.dt.tmp<-abun.dt[!is.na(rowMeans(winter.clim[[j]])),]
   spatcoh.names<-paste(j,"Abun",sep=".")
-  winter.res[[spatcoh.names]]<-cohtestfast(dat2=winter.clim.dt.tmp,dat1=abun.dt.tmp,nsurrogs=nsurrogs,tsranges=ranges)
+  winter.res[[spatcoh.names]]<-cohtestfast(dat2=winter.clim.dt.tmp,dat1=abun.dt.tmp,nsurrogs=nsurrogs,tsranges=rbind(ranges,climranges,snowranges))
   winter.spcoh[[spatcoh.names]]<-swcoh(bio.dat=abun.dt.tmp,env.dat=winter.clim.dt.tmp,times=1981:2016)
 }
-weathpvals<-lapply(winter.res,function(x){x$pvals})
-
-#rerun coherence for snow depth and deer abundance over 3-5 year timescales
-snow.tmp<-winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),]
-snow.dt<-Reumannplatz::CleanData(snow.tmp,normalize=T)$cleandat
-abun.dt<-abun.dt[!is.na(rowMeans(winter.clim$Snwd)),]
-snow.abun.spatcoh35<-cohtestfast(dat2=snow.dt,dat1=abun.dt,nsurrogs=nsurrogs,tsranges=rbind(c(3,5)))
-snow_abun_pval3_5<-snow.abun.spatcoh35$pvals
-saveRDS(snow_abun_pval3_5,file = "Results/snowabunpval3_5.rds")
-
-snow.abun.spatcoh34<-cohtestfast(dat2=snow.dt,dat1=abun.dt,nsurrogs=nsurrogs,tsranges=rbind(c(3,4)))
-snow_abun_pval3_4<-snow.abun.spatcoh34$pvals
+weathpvals37<-lapply(winter.res,function(x){x$pvals[1]})
+weathpvals47<-lapply(winter.res,function(x){x$pvals[2]})
+weathpvals34<-lapply(winter.res,function(x){x$pvals[3]})
 
 #Run coherence of climate indices and winter weather
 TableS3<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
@@ -75,7 +67,7 @@ for(i in 1:(length(climindex.dt)-1)){
     name2<-names(climindex.dt)[j]
     spatcoh.names<-paste(name2,name1,sep=".")
     indices.res[[spatcoh.names]]<-cohtestfast(dat1=climindex.dt[[j]][1,],dat2=climindex.dt[[i]][1,],nsurrogs=100000,tsranges=ranges)
-    #indices.spcoh[[spatcoh.names]]<-swcoh(bio.dat=climindex.dt[[j]][1,],env.dat=climindex.dt[[i]][1,],times=1981:2016)
+    indices.spcoh[[spatcoh.names]]<-swcoh(bio.dat=climindex.dt[[j]],env.dat=climindex.dt[[i]],times=1981:2016)
     TableS2[j,i]<-indices.res[[spatcoh.names]]$pvals
   }
 }
@@ -100,39 +92,46 @@ norm.dat<-lapply(all.dat,function(x){x<-Reumannplatz::CleanData(x,normalize=T)$c
 abunmod<-wmrsig(indata=norm.dat[c(1,2,3,4)],r=1,n=3,s=2,surr.test=F,n.surrog=1000)
 
 # Determine Sychrony Explained --------------------------
-
-#Synchrony explained and average cross terms for abundance and winter mei
-win.mei.dt<-Reumannplatz::CleanData(climindex$WinterMEI,normalize=T)$cleandat
-abun.dt<-Reumannplatz::CleanData(cty.list$Abun,normalize=T)$cleandat
-abunwinmei.es<-modelsyncexp(abun.dt,win.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
-abun_wmei_syncexp<-abunwinmei.es$avgsyncexp
-abun_wmei_xterms<-abunwinmei.es$avgxterm
+range37<-c(3,7)
+range34<-c(3,4)
+range47<-c(4,7)
 
 #synchrony explained and average cross terms for abundance and snow depth over both 3-7 and 3-5 year timescales
 snowd.dt<-Reumannplatz::CleanData(winter.clim$Snwd[!is.na(rowSums(winter.clim$Snwd)),],normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(cty.list$Abun[!is.na(rowSums(winter.clim$Snwd)),],normalize=T)$cleandat #truncate abundance by snow
-abunsnwd.es37<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,7),plot=F)
-abunsnwd.es35<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=c(3,5),plot=F)
-
+abunsnwd.es37<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=range37,plot=F)
+abunsnwd.es34<-modelsyncexp(abun.dt,snowd.dt,times=1981:2016,tsrange=range34,plot=F)
 abun_snwd_syncexp3_7<-abunsnwd.es37$avgsyncexp
 abun_snwd_xterms3_7<-abunsnwd.es37$avgxterm
-abun_snwd_syncexp3_5<-abunsnwd.es35$avgsyncexp
-abun_snwd_xterms3_5<-abunsnwd.es35$avgxterm
-saveRDS(abun_snwd_syncexp3_5,file="Results/abunsnowSyncExp3_5.rds")
+abun_snwd_syncexp3_4<-abunsnwd.es34$avgsyncexp
+abun_snwd_xterms3_4<-abunsnwd.es34$avgxterm
+
+#Synchrony explained and average cross terms for abundance and winter mei
+win.mei.dt<-Reumannplatz::CleanData(climindex$WinterMEI,normalize=T)$cleandat
+abun.dt<-Reumannplatz::CleanData(cty.list$Abun,normalize=T)$cleandat
+abunwinmei.es37<-modelsyncexp(abun.dt,win.mei.dt,times=1981:2016,tsrange=range37,plot=F)
+abunwinmei.es47<-modelsyncexp(abun.dt,win.mei.dt,times=1981:2016,tsrange=range47,plot=F) 
+abun_wmei_syncexp37<-abunwinmei.es37$avgsyncexp
+abun_wmei_xterms37<-abunwinmei.es37$avgxterm
+abun_wmei_syncexp47<-abunwinmei.es47$avgsyncexp
+abun_wmei_xterms47<-abunwinmei.es47$avgxterm
 
 #Synchrony explained and average cross terms for abundance and summer MEI
 sum.mei.dt<-Reumannplatz::CleanData(climindex$SummerMEI,normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(cty.list$Abun,normalize=T)$cleandat
-abunsummei.es<-modelsyncexp(abun.dt,sum.mei.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
+abunsummei.es<-modelsyncexp(abun.dt,sum.mei.dt,times=1981:2016,tsrange=range37,plot=F) 
 abun_smei_syncexp<-abunsummei.es$avgsyncexp
 abun_smei_xterms<-abunsummei.es$avgxterm
 
 #Synchrony explained and average cross terms for abundance and winter PDO
 win.pdo.dt<-Reumannplatz::CleanData(climindex$WinterPDO,normalize=T)$cleandat
 abun.dt<-Reumannplatz::CleanData(cty.list$Abun,normalize=T)$cleandat
-abunwinpdo.es<-modelsyncexp(abun.dt,win.pdo.dt,times=1981:2016,tsrange=c(3,7),plot=F) 
-abun_wpdo_syncexp<-abunwinpdo.es$avgsyncexp
-abun_wpdo_xterms<-abunwinpdo.es$avgxterm
+abunwinpdo.es37<-modelsyncexp(abun.dt,win.pdo.dt,times=1981:2016,tsrange=range37,plot=F) 
+abunwinpdo.es47<-modelsyncexp(abun.dt,win.pdo.dt,times=1981:2016,tsrange=range47,plot=F) 
+abun_wpdo_syncexp37<-abunwinpdo.es37$avgsyncexp
+abun_wpdo_xterms37<-abunwinpdo.es37$avgxterm
+abun_wpdo_syncexp47<-abunwinpdo.es47$avgsyncexp
+abun_wpdo_xterms47<-abunwinpdo.es47$avgxterm
 
 #calculate synchrony explained by a model of snow depth, winter mei and winter pdo
 source("Functions/Fn_modelsyncexpwt.R")
@@ -147,31 +146,26 @@ saveRDS(abun_model_syncexp,file="Results/abunmodelSyncExp.rds")
 
 ##Run coherence of hunters and abundance
 #first filter data to match dimensions of hunter data
-cty.list.dt<-lapply(cty.list[c(7,8)],function(x){x<-x[,12:36];x})
+cty.list.dt<-lapply(cty.list[c('Abun','Hunters')],function(x){x<-x[,12:36];x})
 cty.list.dt<-lapply(cty.list.dt,function(x){x[(!row.names(cty.list.dt$Abun)%in%cwd) & !is.na(rowMeans(cty.list.dt$Hunters)),]})
 cty.list.dt<-lapply(cty.list.dt,function(x){x<-Reumannplatz::CleanData(x)$cleandat;x})
 
 #run coherence
-hunter.res3_7<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=ranges)
+hunter.res<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=rbind(ranges,c(2,2.5)))
 hunter.spcoh<-swcoh(bio.dat=cty.list.dt$Abun,env.dat=cty.list.dt$Hunters,times = 1992:2016)
-hunterpval3_7<-hunter.res3_7$pvals
-
-#re-run coherence over 2-2.5 year timescales
-hunter.res2_2.5<-cohtestfast(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,nsurrogs=nsurrogs,tsranges=rbind(c(2,2.5)))
-hunterpval2_2.5<-hunter.res2_2.5$pvals
-saveRDS(hunterpval2_2.5,file="Results/hunterabun_pval2_2.5.rds")
+hunterpval3_7<-hunter.res$pvals[1]
+hunterpval2_2.5<-hunter.res$pvals[2]
 
 #Determine synchrony explained in abundance by hunters over 2-2.5 year timescales
 hunterabun.es2_2.5<-modelsyncexp(cty.list.dt$Abun,cty.list.dt$Hunters,times=1992:2016,tsrange=c(2,2.5),plot=F) 
 hunterabun_syncexp2_2.5<-hunterabun.es2_2.5$avgsyncexp
-hunterabun.es2_2.5$avgxterm
-saveRDS(hunterabun_syncexp2_2.5,file="Results/hunterabunSyncExp2_2.5.rds")
+hunterabun_xterms2_2.5<-hunterabun.es2_2.5$avgxterm
 
 ##Run coherence of DVCs and abundance
 #first filter data to match dimensions of DVC data
-cty.list.dt<-lapply(cty.list[c(7,9)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(cty.list$Crashes))])$cleandat;x})
+cty.list.dt<-lapply(cty.list[c('Abun','Crashes')],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(cty.list$Crashes))])$cleandat;x})
 dvc.res<-cohtestfast(dat1=cty.list.dt$Crashes,dat2=cty.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
-dvc.spcoh<-swcoh(bio.dat=cty.list.dt$Crashes,env.dat=cty.list.dt$Abun,times = 1981:2016)
+dvc.spcoh<-swcoh(bio.dat=cty.list.dt$Crashes,env.dat=cty.list.dt$Abun,times = 1987:2016)
 dvcpval<-dvc.res$pvals
 
 #Determine synchrony explained and average cross terms in DVCs by abundance
@@ -180,9 +174,9 @@ dvc_abun_syncexp<-dvcabun.es$avgsyncexp
 dvc_abun_xterms<-dvcabun.es$avgxterm
 
 #Run coherence of traffic-adjusted DVCs and abundance,again filtering to match dimensions of adjusted DVCs
-cty.list.dt<-lapply(cty.list[c(7,11)],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(cty.list$AdjDVC))])$cleandat;x})
+cty.list.dt<-lapply(cty.list[c('Abun','AdjDVC')],function(x){x<-Reumannplatz::CleanData(x[,!is.na(colSums(cty.list$AdjDVC))])$cleandat;x})
 adjdvc.res<-cohtestfast(dat1=cty.list.dt$AdjDVC,dat2=cty.list.dt$Abun,nsurrogs=nsurrogs,tsranges=ranges)
-adjdvc.spcoh<-swcoh(bio.dat=cty.list.dt$AdjDVC,env.dat=cty.list.dt$Abun,times = 1981:2016)
+adjdvc.spcoh<-swcoh(bio.dat=cty.list.dt$AdjDVC,env.dat=cty.list.dt$Abun,times = 1988:2016)
 adjdvcpval<-adjdvc.res$pvals
 
 #Determine synchrony explained and average cross terms of adjusted DVCs and abundance
@@ -191,53 +185,75 @@ adjdvc_abun_syncexp<-adjdvcabun.es$avgsyncexp
 adjdvc_abun_xterms<-adjdvcabun.es$avgxterm
 
 #Make blank data frame to store results
-tableS1.names<-c("Response","Predictor","P-value","Mean Phase","Synchrony Explained", "Average Cross Terms")
-TableS1<-data.frame(matrix(NA, 14, 6,
+tableS1.names<-c("Response","Predictor","Timescale","P-value","Mean Phase","Synchrony Explained", "Average Cross Terms")
+TableS1<-data.frame(matrix(NA, 21, 7,
                            dimnames=list(c(), tableS1.names)),
                     stringsAsFactors=F)
 
 #store all p-values in vectors and add to Table S1
 resp<-c(rep("Abundance",(nrow(TableS1)-2)),"DVCs","Adjusted DVCs")
-preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep("Abundance",2))
-pvals<-c(unlist(weathpvals),hunterpval3_7,unlist(climpvals37),dvcpval,adjdvcpval)
+ts<-c(rep("3-7",12),rep("3-4",3),rep("4-7",3),"2-2.5",rep("3-7",2))
+preds<-c(unlist(names(winter.clim)),"Hunters",unlist(names(climindex.dt)),rep(c("Snwd","WinterMEI","WinterPDO"),2),"Hunters",rep("Abundance",2))
+pvals<-c(unlist(weathpvals37),hunterpval3_7,unlist(climpvals37),
+         weathpvals34$Snwd.Abun,climpvals34$WinterMEI.Abun,climpvals34$WinterPDO.Abun,
+         weathpvals47$Snwd.Abun,climpvals47$WinterMEI.Abun,climpvals47$WinterPDO.Abun,
+         hunterpval2_2.5,
+         dvcpval,adjdvcpval)
 
+TableS1$Timescale<-ts
 TableS1$Response<-resp
 TableS1$Predictor<-preds
 TableS1$P.value<-pvals
 
 #Store synchrony explained for significant pairs of variables
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd",'Synchrony.Explained']<-abun_snwd_syncexp3_7
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI",'Synchrony.Explained']<-abun_wmei_syncexp
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO",'Synchrony.Explained']<-abun_wpdo_syncexp
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale=="3-7",'Synchrony.Explained']<-abun_snwd_syncexp3_7
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale=="3-4",'Synchrony.Explained']<-abun_snwd_syncexp3_4
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale=="4-7",'Synchrony.Explained']<-abun_snwd_syncexp4_7
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI" & TableS1$Timescale=="3-7",'Synchrony.Explained']<-abun_wmei_syncexp37
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI" & TableS1$Timescale=="4-7",'Synchrony.Explained']<-abun_wmei_syncexp47
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO" & TableS1$Timescale=="3-7",'Synchrony.Explained']<-abun_wpdo_syncexp37
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO" & TableS1$Timescale=="4-7",'Synchrony.Explained']<-abun_wpdo_syncexp47
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEI",'Synchrony.Explained']<-abun_smei_syncexp
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Hunters" & TableS1$Timescale=="2-2.5",'Synchrony.Explained']<-hunterabun_syncexp2_2.5
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Synchrony.Explained']<-dvc_abun_syncexp
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Synchrony.Explained']<-adjdvc_abun_syncexp
 
 #Store average cross terms for significant pairs of variables
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd",'Average.Cross.Terms']<-abun_snwd_xterms3_7
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI",'Average.Cross.Terms']<-abun_wmei_xterms
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO",'Average.Cross.Terms']<-abun_wpdo_xterms
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEI",'Average.Cross.Terms']<-abun_smei_xterms
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd"& TableS1$Timescale=="3-7",'Average.Cross.Terms']<-abun_snwd_xterms3_7
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale=="3-4",'Average.Cross.Terms']<-abun_snwd_xterms3_4
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI"& TableS1$Timescale=="3-7",'Average.Cross.Terms']<-abun_wmei_xterms37
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO"& TableS1$Timescale=="3-7",'Average.Cross.Terms']<-abun_wpdo_xterms37
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEI"& TableS1$Timescale=="3-7",'Average.Cross.Terms']<-abun_smei_xterms
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Average.Cross.Terms']<-dvc_abun_xterms
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Average.Cross.Terms']<-adjdvc_abun_xterms
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Hunters" & TableS1$Timescale=="2-2.5",'Average.Cross.Terms']<-hunterabun_xterms2_2.5
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI" & TableS1$Timescale=="4-7",'Average.Cross.Terms']<-abun_wmei_xterms47
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO" & TableS1$Timescale=="4-7",'Average.Cross.Terms']<-abun_wpdo_xterms47
 
 #Compute mean phase for significant pairs of variables and store in Table S1
 source("Functions/Fn_phasemean.R")
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd",'Mean.Phase']<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,7))/3.14
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$WinterMEI.Abun$empirical, timescales = climate.spcoh$WinterMEI.Abun$timescales,tsrange=c(3,7))/3.14
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEI",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$SummerMEI.Abun$empirical, timescales = climate.spcoh$SummerMEI.Abun$timescales,tsrange=c(3,7))/3.14
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$WinterPDO.Abun$empirical, timescales = climate.spcoh$WinterPDO.Abun$timescales,tsrange=c(3,7))/3.14
+snowabun_phase3_7<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,7))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd"& TableS1$Timescale =="3-7",'Mean.Phase']<-snowabun_phase3_7
+snowabun_phase3_4<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,7))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale =="3-4",'Mean.Phase']<-snowabun_phase3_4
+wmeiabun_phase37<-phasemean(spatcoh = climate.spcoh$WinterMEI.Abun$empirical, timescales = climate.spcoh$WinterMEI.Abun$timescales,tsrange=c(3,7))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI"& TableS1$Timescale =="3-7",'Mean.Phase']<-wmeiabun_phase37
+wmeiabun_phase47<-phasemean(spatcoh = climate.spcoh$WinterMEI.Abun$empirical, timescales = climate.spcoh$WinterMEI.Abun$timescales,tsrange=c(4,7))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI"& TableS1$Timescale =="4-7",'Mean.Phase']<-wmeiabun_phase47
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="SummerMEI"& TableS1$Timescale =="3-7",'Mean.Phase']<-phasemean(spatcoh = climate.spcoh$SummerMEI.Abun$empirical, timescales = climate.spcoh$SummerMEI.Abun$timescales,tsrange=c(3,7))/3.14
+wpdoabun_phase37<-phasemean(spatcoh = climate.spcoh$WinterPDO.Abun$empirical, timescales = climate.spcoh$WinterPDO.Abun$timescales,tsrange=c(3,7))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO"& TableS1$Timescale =="3-7",'Mean.Phase']<-wpdoabun_phase37
+wpdoabun_phase47<-phasemean(spatcoh = climate.spcoh$WinterPDO.Abun$empirical, timescales = climate.spcoh$WinterPDO.Abun$timescales,tsrange=c(4,7))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO"& TableS1$Timescale =="4-7",'Mean.Phase']<-wpdoabun_phase47
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = dvc.spcoh$empirical, timescales = dvc.spcoh$timescales,tsrange=c(3,7))/3.14
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = adjdvc.spcoh$empirical, timescales = adjdvc.spcoh$timescales,tsrange=c(3,7))/3.14
-snowabun_phase3_5<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,5))/3.14
-snowabun_phase3_7<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,7))/3.14
-hunterphase2_2.5<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Hunters" & TableS1$Timescale=="2-2.5",'Mean.Phase']<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
 wpdo_wmei_phase<-phasemean(spatcoh = indices.spcoh$WinterMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wpdo_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wmei_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterMEI$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 
 saveRDS(TableS1,file = "Results/TableS1.rds")
-saveRDS(hunterphase2_2.5,file="Results/hunterabunphase2_2.5")
+saveRDS(wpdo_wmei_phase,file = "Results/wpdo_wmei_phase.rds")
 
 # Do Statewide Analysis ---------------------------------------------------
 #annualize and clean data
