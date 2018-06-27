@@ -208,7 +208,6 @@ TableS1$P.value<-pvals
 #Store synchrony explained for significant pairs of variables
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale=="3-7",'Synchrony.Explained']<-abun_snwd_syncexp3_7
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale=="3-4",'Synchrony.Explained']<-abun_snwd_syncexp3_4
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale=="4-7",'Synchrony.Explained']<-abun_snwd_syncexp4_7
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI" & TableS1$Timescale=="3-7",'Synchrony.Explained']<-abun_wmei_syncexp37
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI" & TableS1$Timescale=="4-7",'Synchrony.Explained']<-abun_wmei_syncexp47
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO" & TableS1$Timescale=="3-7",'Synchrony.Explained']<-abun_wpdo_syncexp37
@@ -247,7 +246,8 @@ wpdoabun_phase47<-phasemean(spatcoh = climate.spcoh$WinterPDO.Abun$empirical, ti
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO"& TableS1$Timescale =="4-7",'Mean.Phase']<-wpdoabun_phase47
 TableS1[TableS1$Response=="DVCs" & TableS1$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = dvc.spcoh$empirical, timescales = dvc.spcoh$timescales,tsrange=c(3,7))/3.14
 TableS1[TableS1$Response=="Adjusted DVCs" & TableS1$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = adjdvc.spcoh$empirical, timescales = adjdvc.spcoh$timescales,tsrange=c(3,7))/3.14
-TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Hunters" & TableS1$Timescale=="2-2.5",'Mean.Phase']<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
+hunterphase2_2.5<-phasemean(spatcoh = hunter.spcoh$empirical, timescales = hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
+TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Hunters" & TableS1$Timescale=="2-2.5",'Mean.Phase']
 wpdo_wmei_phase<-phasemean(spatcoh = indices.spcoh$WinterMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wpdo_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterPDO$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14
 smei_wmei_phase<-phasemean(spatcoh = indices.spcoh$SummerMEI.WinterMEI$empirical, timescales = indices.spcoh$WinterMEI.WinterPDO$timescales,tsrange=c(3,7))/3.14

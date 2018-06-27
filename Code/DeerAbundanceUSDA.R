@@ -147,7 +147,7 @@ TableS4<-data.frame(matrix(NA, 21, 7,
 #Store all p-values in vectors and add to Table S4
 resp<-c(rep("Abundance",(nrow(TableS4)-2)),"DVCs","Adjusted DVCs")
 preds<-c(unlist(names(winter.clim.usda)),"Hunters",unlist(names(usda.climindex.dt)),rep(c("Snwd","WinterMEI","WinterPDO"),2),"Hunters",rep("Abundance",2))
-pvals<-c(unlist(usda_weathpvals),usda_hunter_pval37,unlist(usda_climpvals),
+pvals<-c(unlist(usda_weathpvals37),usda_hunter_pval37,unlist(usda_climpvals37),
          usda_weathpvals34$Snwd.Abun,usda_climpvals34$WinterMEI.Abun,usda_climpvals34$WinterPDO.Abun,
          usda_weathpvals47$Snwd.Abun,usda_climpvals47$WinterMEI.Abun,usda_climpvals47$WinterPDO.Abun,usda_hunter_pval2_2.5,
          usda_dvc_pval,usda_adjdvc_pval)
@@ -193,7 +193,7 @@ usda_wpdoabun_phase47<-phasemean(spatcoh = usda.climate.spcoh$WinterPDO.Abun$emp
 TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="WinterPDO"& TableS4$Timescale=="4-7",'Mean.Phase']<-usda_wpdoabun_phase47
 TableS4[TableS4$Response=="DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.dvc.spcoh$empirical, timescales = usda.dvc.spcoh$timescales,tsrange=c(3,7))/3.14
 TableS4[TableS4$Response=="Adjusted DVCs" & TableS4$Predictor=="Abundance",'Mean.Phase']<-phasemean(spatcoh = usda.adjdvc.spcoh$empirical, timescales = usda.adjdvc.spcoh$timescales,tsrange=c(3,7))/3.14
-usda_hunterphase2_2.5<-phasemean(spatcoh = usda.hunter.spcoh2_2.5$empirical, timescales = usda.hunter.spcoh2_2.5$timescales,tsrange=c(2,2.5))/3.14
+usda_hunterphase2_2.5<-phasemean(spatcoh = usda.hunter.spcoh$empirical, timescales = usda.hunter.spcoh$timescales,tsrange=c(2,2.5))/3.14
 TableS4[TableS4$Response=="Abundance" & TableS4$Predictor=="Hunters"& TableS4$Timescale=="2-2.5",'Mean.Phase']<-usda_hunterphase2_2.5
 
 saveRDS(TableS4,file="Results/TabS4_results.rds")
