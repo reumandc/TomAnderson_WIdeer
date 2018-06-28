@@ -43,7 +43,7 @@ usda_dvcabunSyncExp<-TabS4_results$Synchrony.Explained[TabS4_results$Response=="
                                                         TabS4_results$Predictor=="Abundance"]
 usda_adjdvcabunSyncExp<-TabS4_results$Synchrony.Explained[TabS4_results$Response=="Adjusted DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
-wpdo_wmeiPhase<-readRDS(wpdo_wmei_phase,file = "Results/wpdo_wmei_phase.rds")
+wpdo_wmeiPhase<-readRDS(file = "Results/wpdo_wmei_phase.rds")
 avgdeerfluc<-readRDS(file="Results/totaldeerfluctuations.rds")
 avgdvcfluc<-readRDS(file="Results/totaldvcfluctuations.rds")
 avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
@@ -136,11 +136,11 @@ discuss. TOM: I've done the change to 3-4 and 4-7 split, updated the phase plots
 
 Deer abundance synchrony was not caused by hunting on $3-7$-year timescales. County-level hunter and deer
 abundances were not significantly spatially coherent 
-($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="Hunters" & TabS1$results$Timescale=="3-7"]`) over $3-7$-year timescales 
+($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="3-7"]`) over $3-7$-year timescales 
 (Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS4_RanksInSurrogs}, \ref{SM-FigS5_WMFHunter}). 
 However, hunter abundances were significantly related to deer abundance on shorter timescales, around 
-$2-2.5$-years ($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="Hunters" & TabS1$results$Timescale=="2-2.5"]`), and were in approximate anti-phase with deer abundance 
-on those timescales ($\bar{\theta}  =$ `r TabS1_results$Mean.Phase[TabS1_results$Predictor=="Hunters" & TabS1$results$Timescale=="2-2.5"]`; 
+$2-2.5$-years ($P =$ `r TabS1_results$P.value[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="2-2.5"]`), and were in approximate anti-phase with deer abundance 
+on those timescales ($\bar{\theta}  =$ `r TabS1_results$Mean.Phase[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="2-2.5"]`; 
 Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS3_PhaseDiffs}, \ref{SM-FigS4_RanksInSurrogs}).
 <!--***DAN: Tom, the average phase values in Fig S3 and Table S1 disagree, please fix.-->
 These patterns are consistent with the hypothesis that hunters can regulate deer populations over short 

@@ -595,7 +595,7 @@ The climate indices explained similar amounts of
 deer abundance synchrony as for the county-level 
 data, but snow explained a higher amount of 
 synchrony at $`r round(100*usda_abunsnwd_syncexp,0)`\%$ for $3-5$-year timescales, as 
-compared with $`r round(100*abun_snwd_syncexp3_5,0)`\%$ at the county-level. Combined, 
+compared with $`r round(100*abun_snwd_syncexp3_4,0)`\%$ at the county-level. Combined, 
 snow depth, MEIw, and PDOw explained $`r round(100*usda_model_syncexp,0)`\%$ of the 
 synchrony in deer abundance using 
 USDA district data (Fig. S6E\ref{FigS6_WMFAndPredictionsDistricts}).
@@ -760,20 +760,10 @@ options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 knitr::kable(TableS1,
              format='pandoc',
              digits=4,
-             col.names=c("Response","Predictor","P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             col.names=c("Response","Predictor","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption = "Summary of spatial coherence tests and related results using county-level data (*Methods*). Each row is based on a test of spatial wavelet coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (*Methods*) are provided where meaningful (for significant tests, $P < 0.05$, or marginally significant tests). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations (*Methods*). All values were rounded to display four digits.$^1$ \\label{TabS1_CountyCoherenceSummary}",
              booktabs=T)
 ```
-
-<!--***DAN: Tom, it is a bit awkward to put this info here. It could be in the caption (but then I cannot get the 
-dynamic links to work), or in the table itself (by adding another column called "Timescales"). What do you think,
-Tom? We could either leave it here (maybe awkward) or make a new column (might be a pain).-->
-$^1$ For snow depth and deer abundance over $3-5$-year timescales, $P=$ `r round(snow_abun_pval3_5,4)`, $\bar{\theta}=$ `r round(snowabun_phase3_5,4)`, and synchrony explained is `r round(abun_snwd_syncexp3_5,4)`. For hunters and deer abundance over $2-2.5$-year timescales, $P=$ `r round(hunterpval2_2.5,3)`, $\bar{\theta}=$ `r round(hunterphase2_2.5,4)`, and synchrony explained is `r round(hunterabun_syncexp2_2.5,4)`.
-
-<!--***DAN: Tom, can you please replace "WinterNAO" with "Winter NAO", and likewise add spaces for "WinterPDO", "WinterMEI", etc, in the above table?-->
-<!--***DAN: Tom, the mean phase over 3-7-year timescales in Table S1 for snow depth and deer abundance differs frm that in Fig. S3D, but they should be identical because they should both be dynamically linked to the same variable.
-Likewise the values disagree for hunters and abundance over 2-2.5-year timescales.
-Please check *all* the entries in Table S1 and numeric values in Fig S3 to see whether they are dynamically linked to the correct variables.-->
 
 \newpage
 
@@ -787,14 +777,7 @@ knitr::kable(TableS2,
 
 <!--***DAN: The values in parens did not come out in the pdf. Can you fix, please, Tom.-->
 <!--***DAN: Also, and very importantly, it used to say
-"P-values of spatial coherence between..." but these are all wavelet coherences (or should be) not spatial 
-coherences, since these are all single time series. I changed it, but Tom can you please go back to the code
-and look and see whether you actually computed spatial coherences with spatially replicated time series
-or wavelet coherences between single time series? Should be the latter. It may (or may not) turn out to make
-a difference, I am not sure, but we should anyway do the appropriate thing. See also the point in the main text 
-in the para that begins "Spatial wavelet coherence, wavelet regression techniques...", in which a value from 
-this table is quoted (the one for Winter MEI and Winter PDO). I added a note there that it was a wavelet coherence
-result (not a spatial coherence result), so it needs to be checked that it is.-->
+"P-values of spatial coherence between..." but these are all wavelet coherences (or should be) not spatial coherences, since these are all single time series. I changed it, but Tom can you please go back to the code and look and see whether you actually computed spatial coherences with spatially replicated time series or wavelet coherences between single time series? Should be the latter. It may (or may not) turn out to make a difference, I am not sure, but we should anyway do the appropriate thing. See also the point in the main text in the para that begins "Spatial wavelet coherence, wavelet regression techniques...", in which a value from this table is quoted (the one for Winter MEI and Winter PDO). I added a note there that it was a wavelet coherence result (not a spatial coherence result), so it needs to be checked that it is.-->
 
 \newpage
 
@@ -815,11 +798,6 @@ knitr::kable(TableS4,
              caption = "Summary of spatial coherence tests and related results using USDA district-level data (*Methods*). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (*Methods*) are provided where meaningful (i.e., for significant tests, $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations. \\label{TabS4_SummaryDistrict}",
              booktabs=T)
 ```
-
-$^1$For $3-5$-year timescales, $p = 0.028 `r usda_snowabun_pval3_5`$, phase $= 0.860 `r usda_snwdabunphase_3_5`$, and synchrony explained $= 0.339`r usda_abunsnwd_syncexp`$.
-
-\noindent $^2$For $2-2.5$-year timescales, $p = 0.012`r usda_hunter_pval2_2.5`$, phase $= -0.326`r usda_hunterphase2_2.5`$ and synchrony explained $= 0.002`r usda_hunterabun_syncexp2_2.5`$.
-<!--***DAN: the last sentence of the caption should probably be explained somewhere appropriate and there should be a reference here to that place-->
 \newpage
 
 ```{r TableS5,echo=F,results='markup'}
