@@ -13,6 +13,7 @@ library(fields)
 library(Reumannplatz)
 library(shape)
 library(devtools)
+library(wsyn)
 
 #which density to use ("dnr" for original estimates, "tom" for your own calculations)
 dens.flag<-"dnr"
@@ -52,7 +53,7 @@ system.time(source("Code/wi_climate.R"))
   #large climate indices are the same values (nao,mei,pdo), just replicated into different dimensions to match scale.flag
 
 #set number of surrogates to use for spatial coherence
-nsurrogs<-1000
+nsurrogs<-10000
 
 #Run analysis on deer abundance and DVCs using county data
 system.time(source("Code/DeerAbundance.R"))
