@@ -15,6 +15,7 @@ same directory as this file.-->
 #scans for them.
 library(checkpoint)
 library(rmarkdown)
+library(tinytex)
 if (!dir.exists("./.checkpoint/")){
   dir.create("./.checkpoint/")
 }

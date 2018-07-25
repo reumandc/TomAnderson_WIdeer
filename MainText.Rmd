@@ -20,8 +20,9 @@ csl: science.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
+nocite: | 
+  @widnr2001, @Ciuti2015, @Millspaugh2009, @Buonaccorsi2001, @Sheppard2013, @Sheppard_wavmodel, @Theiler1992, @Schreiber2000
 ---
-
 <!--Tom, I changed the title to one you suggested in an earlier version. At the moment, this
 title seems better for the Science audience, many of whom won't know what Moran effects are.
 For the record, the old title was: Moran Effects Cause Major Cycles in Deer Populations and 
@@ -197,6 +198,10 @@ University of Kansas General Research Fund, United States National Science Found
 United States Department of Agriculture award 2016-67012-24694, the University of Virginia, and The Nature
 Conservancy. 
 
+# References {-}
+
+<div id="refs"></div>
+<!--The part above moves the references before the figures- not sure what its exactly doing as I found it on StackOverflow, but it appears to work-->
 \newpage
 
 \begin{figure}[!h]  
@@ -271,13 +276,4 @@ and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (
 <!--***DAN: Tom, note the font sizes are not consistent across panels. Nor are they consistent across 
 figures. I think we are probably going to have to make them consistent across all figs in main text and 
 supp mat.-->
-
-\newpage
-\clearpage
-
-#References
-<!--***DAN: Currently the references come after the figs, but perhaps they are supposed to come first
-under Science format. If so, we can fix this in the latex at the very end, along with some other fixes
-we need to do to the references. Doing it in the Rmarkdown does not seem to work, though perhaps there is
-a way that I did not discover.-->
 

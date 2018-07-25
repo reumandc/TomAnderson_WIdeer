@@ -233,7 +233,7 @@ TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterPDO" & TableS1
 source("Functions/Fn_phasemean.R")
 snowabun_phase3_7<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,7))/3.14
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd"& TableS1$Timescale =="3-7",'Mean.Phase']<-snowabun_phase3_7
-snowabun_phase3_4<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,7))/3.14
+snowabun_phase3_4<-phasemean(spatcoh = winter.spcoh$Snwd.Abun$empirical, timescales = winter.spcoh$Snwd.Abun$timescales,tsrange = c(3,4))/3.14
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="Snwd" & TableS1$Timescale =="3-4",'Mean.Phase']<-snowabun_phase3_4
 wmeiabun_phase37<-phasemean(spatcoh = climate.spcoh$WinterMEI.Abun$empirical, timescales = climate.spcoh$WinterMEI.Abun$timescales,tsrange=c(3,7))/3.14
 TableS1[TableS1$Response=="Abundance" & TableS1$Predictor=="WinterMEI"& TableS1$Timescale =="3-7",'Mean.Phase']<-wmeiabun_phase37

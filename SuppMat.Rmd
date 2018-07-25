@@ -51,6 +51,7 @@ library(tools,quietly=T)
 library(fields,quietly=T)
 library(shape,quietly=T)
 library(Reumannplatz,lib.loc=.libPaths(),quietly=T)
+library(wysn,lib.loc=.libPaths(),quietly=T)
 ```
 
 <!--Flags controlling the run and other setup-->
@@ -147,7 +148,7 @@ Natural Resources (WIDNR) spanning a `r dim(cty.list$Abun)[2]`-yr period
 From 1981-2013<!--***TOM-->, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139<!--***TOM--> depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
-accounting models used for a smaller number of years and DMUs (1)<!--***DAN-->. 
+accounting models used for a smaller number of years and DMUs [@widnr2001]. 
 In $2014$, DMU boundaries were changed to match the administrative level of 
 county ($N=$ `r length(unique(cty.deer$COUNTY_NAM))`). Because of this, and because other 
 spatial variables (e.g., DVCs, climate) were gathered at the county level, 
@@ -161,7 +162,7 @@ each intersection area by the WIDNR density estimate of deer for the DMU
 that the intersection fell within. Deer habitat was considered to comprise 
 areas of permanent cover (e.g., forests) that were $>4$ ha in size. DMU deer 
 densities were calculated by dividing the estimated abundance for the DMU 
-by the amount of deer habitat within the DMU (1)<!--***DAN-->. This procedure 
+by the amount of deer habitat within the DMU [@widnr2001]. This procedure 
 assumes approximately spatially uniform densities of deer within deer 
 habitat across each DMU. The abundance for a county was the sum of 
 the estimated abundances of the county's intersections with the DMUs. 
@@ -220,7 +221,7 @@ in order to retain the full temporal extent: Tmin ($N=$ `r dim(winter.clim$Tmin[
 counties), Tmax ($N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`), precipitation 
 ($N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`), snow depth ($N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`). 
 We also calculated a Winter Severity Index (WSI, $N=$ `r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
-a metric known to impact deer populations (1). WSI is the cumulative 
+a metric known to impact deer populations [@widnr2001]. WSI is the cumulative 
 sum of the total number of days for which snow depth was greater 
 than 18 inches and Tmin was simultaneously less than $0^\circ$F. 
 
@@ -229,7 +230,7 @@ the North Atlantic Oscillation (NAO), the multivariate
 El Niño/Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO), all of which have been shown to 
 influence large ungulate population dynamics in the northcentral 
-USA (3, 4<!--***DAN-->). We averaged monthly values across the 
+USA [@Post1998_popgrowth,@Post2004_greenland]. We averaged monthly values across the 
 approximate growing season (Apr-Nov), and the winter 
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
 (Fig. S1 \ref{FigS1_Timeseries}). We used a total of 11 weather and 
@@ -249,12 +250,12 @@ district area $\pm$ SD = 16138 `r round(mean(usda.centroid$Area_km2),0)` $\pm$ 7
 and statewide (Fig. S2\ref{FigS2_map}). Analyses at three spatial scales 
 were performed because the SAK model used by the WIDNR to estimate deer 
 abundance for each management unit has been criticized as less accurate 
-at smaller spatial scales (5)<!--***DAN-->. However, the bias in abundance 
+at smaller spatial scales [@Millspaugh2009]. However, the bias in abundance 
 estimates previously reported may have been overestimated, as more recent analyses 
 suggest the uncertainty in SAK estimates is substantially less 
 ($\pm 20\%$ error rates; WIDNR, personal communication). 
 <!--***DAN: It was Robert that told us this, and he is a coathor, so perhaps we should take out the personal communication parens? It would be best if we could get a citation for this, even a white paper, if there is one and we can fit it in.-->
-In addition, the criticism of the SAK (5)<!--***DAN--> was based 
+In addition, the criticism of the SAK [@Millspaugh2009] was based 
 on a model that did not match perfectly with practices of the WIDNR. 
 <!--***DAN: I added the above sentence, Tom, based on a comment of Roberts that had been inserted as a marginal note in the Word doc that this Rmd replaces. Please check. If we keep the "personal communication" paren above then we should also insert one here.-->
 Regardless, 
@@ -271,17 +272,17 @@ Fig. S6\ref{FigS6_WMFAndPredictionsDistricts}, suggesting the results for counti
 meaningfully biased by possible inaccuracies in SAK abundance estimation 
 procedures at the county level.
 
-We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions (7<!--***DAN-->), which are necessary for the Fourier-surrogate-based  analyses described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony (8<!--***DAN-->). Time series
+We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based  analyses described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001] Time series
 variances were also standardized to 1.
 
 We visually assessed the strength of synchrony 
 and its dependence on time and timescale for 
 all spatiotemporal variables using two 
 statistical tools: the wavelet mean field and 
-the wavelet phasor mean field (7, 9<!--***DAN-->). 
+the wavelet phasor mean field [@Sheppard2013,@Sheppard2016_aphids]. 
 Both of these find standard application in 
 some biological fields; they are described in 
-detail elsewhere (7, 9<!--***DAN-->) and 
+detail elsewhere [@Sheppard2013,@Sheppard2016_aphids] and 
 operationally here. Both techniques take as 
 input time series measured at the same times 
 in several locations, and return as output 
@@ -315,7 +316,7 @@ phases. If real phase consistency was greater than
 that of $99.9\%$ of sets of random phases 
 ($P < 0.001$; one-tailed test), synchrony was 
 deemed significant and important 
-(10<!--***DAN-->). Wavelet mean field and 
+[@Sheppard_wavmodel]. Wavelet mean field and 
 wavelet phasor mean field magnitude plots for 
 winter weather variables are in 
 Fig. S7\ref{FigS7_WMFsAndWPMFsAncillary}. 
@@ -330,14 +331,14 @@ were first normalized at each timescale by dividing
 by the square root of the time-averaged squared 
 wavelet transform magnitudes. Magnitudes of 
 normalized transforms were plotted as a function of 
-time and timescale (7<!--***DAN-->).  
+time and timescale [@Sheppard2016_aphids].  
 
 For both county- and district-level data, we 
 assessed pairwise relationships between 
 spatiotemporal variables using spatial coherence 
 techniques. These find standard application in 
 other fields, and are described in detail 
-elsewhere (7, 9, 11<!--***DAN-->) and operationally 
+elsewhere [@Sheppard2013,@Sheppard2016_aphids,@Sheppard2017_surrogates] and operationally
 here. Spatial coherence tests whether two 
 spatiotemporal variables exhibit consistent phase 
 differences and correlated magnitudes of 
@@ -349,14 +350,14 @@ surrogate data sets ($N=100,000$ surrogates
 were used for all tests) that retain the same 
 temporal and spatial autocorrelation properties as 
 the original time series but are otherwise 
-unrelated (12, 13<!--***DAN-->). Standard Fourier 
-surrogates were used (7, 9, 13<!--***DAN-->). 
+unrelated [@Theiler1992,@Schreiber2000]. Standard Fourier 
+surrogates were used [@Schreiber2000,@Sheppard2013,@Sheppard2016_aphids,]. 
 We calculated how often observed spatial coherence 
 between pairs of variables was ranked higher than 
 coherences of surrogate data sets, aggregating 
 across the timescale band of interest using an 
 average-rank-based method described in detail 
-elsewhere (7<!--***DAN-->). A p-value of $0.05$ 
+elsewhere [@Sheppard2016_aphids]. A p-value of $0.05$ 
 means that coherences were higher, in an average 
 sense across the timescale band, than the same 
 quantities calculated for $95,000$ of $100,000$ 
@@ -448,16 +449,16 @@ We calculated the amount of deer abundance
 synchrony explained by individual weather and 
 climate variables, as well as the amount of DVC 
 synchrony explained by deer abundance, following 
-the wavelet Moran theorem of (7<!--***DAN-->). 
+the wavelet Moran theorem of [@Sheppard2016_aphids]. 
 As part of this procedure, we also calculated the 
-average 'cross terms' of (7<!--***DAN-->) over 
+average 'cross terms' of [@Sheppard2016_aphids] over 
 the timescale band of interest (see supplementary 
-files of ref 7, equation 22), again following the 
+files of ref @Sheppard2016_aphids, equation 22), again following the 
 procedures described in that reference. The precise 
 mathematical meaning of cross terms is explained in 
-(7<!--***DAN-->); for operational purposes, they 
+[@Sheppard2016_aphids]; for operational purposes, they 
 provide a test of whether modelling assumptions of 
-(7<!--***DAN-->) are sufficiently met to use the 
+[@Sheppard2016_aphids] are sufficiently met to use the 
 wavelet Moran theorem to estimate fractions of 
 synchrony explained. Cross terms less than $50\%$ 
 <!--***DAN: 
@@ -472,8 +473,8 @@ considered necessary.
 We calculated the amount of deer abundance 
 synchrony jointly explained by snow depth, 
 PDOw and MEIw using a wavelet multiple regression 
-model approach (10<!--***DAN-->). This novel 
-method, described in detail in (10<!--***DAN-->), 
+model approach [@Sheppard_wavmodel]. This novel 
+method, described in detail in [@Sheppard_wavmodel], 
 is analogous to multiple linear regression, with a 
 model describing the relationship between a 
 response variable and multiple predictor variables. 
@@ -497,8 +498,8 @@ Figs 2C\ref{Fig2}, S6E\ref{FigS6_}, colors).
 Fractions of synchrony explained by model 
 predictors for a timescale band are again 
 available, through a generalization 
-(10<!--***DAN-->) of the wavelet Moran theorem 
-of (7<!--***DAN-->), again subject to checking 
+[@Sheppard_wavmodel] of the wavelet Moran theorem 
+of @Sheppard2016_aphids, again subject to checking 
 cross terms. 
 <!--***DAN: This is the para subject to not quite knowing what to do given Lawrence's paper is not published yet.-->
 
@@ -507,7 +508,7 @@ synchronizing effects are responsible for
 fluctuations in statewide total deer and DVC time 
 series (Fig. 4\ref{Fig4} and associated text), 
 we adapted the standard Fourier surrogate procedure 
-of (12<!--***DAN-->). We constructed artificial 
+of @Theiler1992. We constructed artificial 
 deer abundance and DVC time series for each 
 location, having the same variance and spectral 
 characteristics as the original data but no spatial 
@@ -528,7 +529,7 @@ Additionally, because phases in the $3-7$-year
 timescale band are randomized independently, 
 surrogate time series so produced no longer exhibit 
 a tendency to synchrony in the $3-7$ year timescale 
-range (13<!--***DAN-->). Phase randomization was 
+range [@Schreiber2000]. Phase randomization was 
 accomplished by adding a random phase increment 
 between $0$ and $2\pi$ to the phase of each Fourier 
 component with a frequency greater than or equal to 
@@ -557,13 +558,13 @@ assumptions about DVCs. Using an average difference
 between peak and trough DVC years 
 (Fig. 4\ref{Fig4}) of `r avg.deer.fluctuations`, and if we assume 
 that each reported DVC results in an average of 
-US\$2024 of damage (14<!--***DAN-->), the 
+US\$2024 of damage [@Conover2011_bookchp], the 
 difference in damages statewide between peak and 
 trough years is more than US\$5M. Given that DVCs 
 are only reported about 50% of the time 
-(2<!--***DAN-->), this number is actually likely 
+[@Marcoux2010_dvc], this number is actually likely 
 greater than US\$10M. Using different assumptions 
-of the cost of DVCs (15<!--***DAN-->), the 
+of the cost of DVCs [@Huijser2008_dvc], the 
 difference between peak and trough years in DVCs 
 costs may exceed US\$22M.    
 

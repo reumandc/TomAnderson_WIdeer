@@ -13,7 +13,7 @@ library(fields)
 library(Reumannplatz)
 library(shape)
 library(devtools)
-library(wsyn)
+#library(wsyn)
 
 #which density to use ("dnr" for original estimates, "tom" for your own calculations)
 dens.flag<-"dnr"
