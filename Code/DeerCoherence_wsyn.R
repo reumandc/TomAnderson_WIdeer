@@ -97,6 +97,8 @@ for(j in names(weath.climind.res)){
 TabS3<-do.call(rbind,lapply(weath.climind.res,get_bandp))
 TabS3<-cbind(matrix(unlist(strsplit(row.names(TabS3),'.',fixed=TRUE)),ncol=2,byrow=T),TabS3)
 TabS3$mn_phs<-as.numeric(as.character(ifelse(TabS3$p_val>0.06,"",TabS3$mn_phs)))
+TabS3<-data.frame(TabS3[,1:2],paste(TabS3$ts_low_bd,TabS3$ts_hi_bd,sep="-"),TabS3[,c("p_val","mn_phs")])
+colnames(TabS3)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
 saveRDS(TabS3,file="Results/TabS3_results.rds")
 
 #Run wavelet coherence among climate indices
@@ -117,7 +119,8 @@ for(j in names(indices.res)){
 TabS2<-do.call(rbind,lapply(indices.res,get_bandp))
 TabS2<-cbind(matrix(unlist(strsplit(row.names(TabS2),'.',fixed=TRUE)),ncol=2,byrow=T),TabS2)
 TabS2$mn_phs<-as.numeric(as.character(ifelse(TabS2$p_val>0.06,"",TabS2$mn_phs)))
-colnames(TabS2)[1:2]<-c("Predictor","Response")
+TabS2<-data.frame(TabS2[,1:2],paste(TabS2$ts_low_bd,TabS2$ts_hi_bd,sep="-"),TabS2[,c("p_val","mn_phs")])
+colnames(TabS2)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
 saveRDS(TabS2,file="Results/TabS2_results.rds")
 
 ## Run wavelet multiple regression model for deer abundance
@@ -137,6 +140,7 @@ wlm_abun<-wlm(norm.dat,times=minyear:maxyear,resp=1,pred=2:4,norm="powall")
 abun_se<-syncexpl(wlm_abun)
 se_short<-abun_se[abun_se$timescales>=3 & abun_se$timescales<=7,]
 abunmod_se<-round(100*colMeans(se_short[,c(3:12)])/mean(se_short$sync),4)
+saveRDS(abunmod_se[[1]],file="Results/abunmodelSyncExp.rds")
 
 ##Run coherence of hunters and abundance
 #first filter data to match dimensions of hunter data
@@ -195,19 +199,16 @@ for(i in names(weath.resP)){
 TabS1<-rbind(do.call(rbind,tmp.list))
 TabS1<-rbind(TabS1,rbind(c(dvc.resP,dvcabun_se37),c(adjdvc.resP,adjdvcabun_se37)))
 row.names(TabS1)[(dim(TabS1)[1]-1):dim(TabS1)[1]]<-c("Abun.DVC.1","Abun.AdjDVC.1")
-
 TabS1.mat<-matrix(unlist(TabS1), ncol = length(TabS1), byrow = F)
-colnames(TabS1.mat)<-names(TabS1)
-row.names(TabS1.mat)<-row.names(TabS1)
-TabS1.mat<-round(TabS1.mat[,apply(TabS1.mat,2,is.numeric)],4)
-TabS1.mat<-cbind(matrix(unlist(strsplit(row.names(TabS1.mat),'.',fixed=TRUE)),ncol=3,byrow=T)[,1:2],TabS1.mat)
-colnames(TabS1.mat)[1:2]<-c("Predictor","Response")
-row.names(TabS1.mat)<-NULL
-saveRDS(TableS1,file="Results/TableS1.rds")
+TabS1.mat<-data.frame(matrix(unlist(strsplit(row.names(TabS1),'.',fixed=TRUE)),ncol=3,byrow=T)[,1:2],TabS1.mat)
+colnames(TabS1.mat)<-c("Predictor","Response",colnames(TabS1))
+TabS1.mat<-data.frame(TabS1.mat[,1:2],paste(TabS1.mat$ts_low_bd,TabS1.mat$ts_hi_bd,sep="-"),TabS1.mat[,c("p_val","mn_phs",'syncexpl',"crossterms","resids","pred1")])
+colnames(TabS1.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","SynchronyExplained","CrossTerms","Residuals","Pred1")
+TabS1.mat<-TabS1.mat[,!colnames(TabS1.mat)%in%c("Residuals","Pred1")]
+TabS1.mat<-TabS1.mat[complete.cases(TabS1.mat),]
+saveRDS(TabS1.mat,file="Results/TableS1.rds")
 
 write.csv(TabS1.mat,"../../../TableS1.csv")
-ns.res<-row.names(TabS1.mat[(TabS1.mat[,"p_val"]>0.06 & TabS1.mat[,"ts_low_bd"]=="4") | (TabS1.mat[,"p_val"]>0.06 & TabS1.mat[,"ts_hi_bd"]=="4"),])
-TableS1<-TabS1[!row.names(TabS1)%in%ns.res,]
 
 # USDA Analysis -----------------------------------------------------------
 
