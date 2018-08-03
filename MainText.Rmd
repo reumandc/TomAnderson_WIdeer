@@ -102,8 +102,7 @@ Pacific Decadal Oscillation
 ($P =$ `r round(TabS1_results$P.value[TabS1_results$Predictor=="WinterPDO"&TabS1_results$Timescale=="3-7"],3)`, 
 Table \ref{SM-TabS1_CountyCoherenceSummary}), both averaged over the winter months ($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$). High values 
 of these indices generally correspond to mild winter weather over WI [@Anderson1996_elnino;@Rodionov2003_elnino]. The two indices were strongly coherent and in-phase with each other on $3-7$-year timescales over the period 1981-2016 
-(wavelet coherence $P =$ `r round(TabS2_results["WinterMEI","WinterPDO"],4)`, $\bar{\theta}  =$ r` round(wpdo_wmeiPhase,4)`,
-<!--Also please see comment on Table S2 - there is a need to make sure these are the results of wavelet coherence,not spatial coherence, though it may not make a difference.-->
+(wavelet coherence $P =$ `r round(TabS2_results$p_val[TabS2_results$Predictor=="WinterMEI" & TabS2_results$Response=="WinterPDO"],4)`, $\bar{\theta}  =$ r` round(TabS2_results$mn_phs[TabS2_results$Predictor=="WinterMEI" & TabS2_results$Response=="WinterPDO"],4)`,
 Table \ref{SM-TabS2_PairwiseClimVarSpatCoh}). Both indices showed approximate quarter-cycle phase shifts with 
 deer ($\text{PDO}_{\text{w}}$, $\bar{\theta}  =$ `r round(TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterPDO"&TabS1_results$Timescale=="3-7"],2)`; 
 $\text{MEI}_{\text{w}}$, $\bar{\theta}  =$ `r round(TabS1_results$Mean.Phase[TabS1_results$Predictor=="WinterMEI"&TabS1_results$Timescale=="3-7"],2)`; 
