@@ -28,14 +28,14 @@ for(j in names(clim.res)){
       tmp.p<-bandtest(clim.res[[j]],bands[i,])
       clim.res[[j]]<-tmp.p
       tmp.se<-wlm_climabun[[j]][wlm_climabun[[j]]$timescales>=bands[i,1] & wlm_climabun[[j]]$timescales<=bands[i,2],]
-      se_mat[i,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp)[2])])/mean(tmp.se$sync),4)
+      se_mat[i,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp.se)[2])])/mean(tmp.se$sync),4)
     }
   }
   climabun_se[[j]]<-se_mat
 }
 
 clim.resP<-lapply(clim.res,get_bandp)
-climabun_se<-lapply(climabun_se,function(x){colnames(x)<-colnames(tmp)[3:dim(tmp)[2]];x})
+climabun_se<-lapply(climabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp)[2]];x})
 climabun_se<-lapply(climabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
 
 #Run coherence of winter weather and deer abundance
@@ -64,14 +64,14 @@ for(j in names(weath.res)){
       tmp.p<-bandtest(weath.res[[j]],bands[i,])
       weath.res[[j]]<-tmp.p
       tmp.se<-wlm_weathabun[[j]][wlm_weathabun[[j]]$timescales>=bands[i,1] & wlm_weathabun[[j]]$timescales<=bands[i,2],]
-      se_mat[i,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp)[2])])/mean(tmp.se$sync),4)
+      se_mat[i,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp.se)[2])])/mean(tmp.se$sync),4)
     }
   }
   weathabun_se[[j]]<-se_mat
 }
 
 weath.resP<-lapply(weath.res,get_bandp)
-weathabun_se<-lapply(weathabun_se,function(x){colnames(x)<-colnames(tmp)[3:dim(tmp)[2]];x})
+weathabun_se<-lapply(weathabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp)[2]];x})
 weathabun_se<-lapply(weathabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
 
 #Run coherence of climate indices and winter weather
@@ -97,11 +97,12 @@ for(j in names(weath.climind.res)){
 TabS3<-do.call(rbind,lapply(weath.climind.res,get_bandp))
 TabS3<-cbind(matrix(unlist(strsplit(row.names(TabS3),'.',fixed=TRUE)),ncol=2,byrow=T),TabS3)
 TabS3$mn_phs<-as.numeric(as.character(ifelse(TabS3$p_val>0.06,"",TabS3$mn_phs)))
-TabS3<-data.frame(TabS3[,1:2],paste(TabS3$ts_low_bd,TabS3$ts_hi_bd,sep="-"),TabS3[,c("p_val","mn_phs")])
-colnames(TabS3)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
-saveRDS(TabS3,file="Results/TabS3_results.rds")
+TableS3<-data.frame(TabS3[,1:2],paste(TabS3$ts_low_bd,TabS3$ts_hi_bd,sep="-"),TabS3[,c("p_val","mn_phs")])
+colnames(TableS3)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
+saveRDS(TableS3,file="Results/TabS3_results.rds")
 
 #Run wavelet coherence among climate indices
+set.seed(101)
 indices.res<-list()
 for(i in 1:(length(climindex.dt)-1)){
   for(j in (i+1):length(climindex.dt)){
@@ -119,9 +120,10 @@ for(j in names(indices.res)){
 TabS2<-do.call(rbind,lapply(indices.res,get_bandp))
 TabS2<-cbind(matrix(unlist(strsplit(row.names(TabS2),'.',fixed=TRUE)),ncol=2,byrow=T),TabS2)
 TabS2$mn_phs<-as.numeric(as.character(ifelse(TabS2$p_val>0.06,"",TabS2$mn_phs)))
-TabS2<-data.frame(TabS2[,1:2],paste(TabS2$ts_low_bd,TabS2$ts_hi_bd,sep="-"),TabS2[,c("p_val","mn_phs")])
-colnames(TabS2)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
-saveRDS(TabS2,file="Results/TabS2_results.rds")
+TableS2<-data.frame(TabS2[,1:2],paste(TabS2$ts_low_bd,TabS2$ts_hi_bd,sep="-"),TabS2[,c("p_val","mn_phs")])
+colnames(TableS2)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
+TableS2
+saveRDS(TableS2,file="Results/TabS2_results.rds")
 
 ## Run wavelet multiple regression model for deer abundance
 # first consolidate data to dimensions of winter snow depth (60 counties)
@@ -155,14 +157,16 @@ hunter.res<-coh(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,times=1992:maxyea
 wlm_hunters<-wlm(list(cty.list.dt$Abun,cty.list.dt$Hunters),times=1992:maxyear,resp=1,pred=2,norm="powall",f0=1)
 hunters_se<-syncexpl(wlm_hunters)
 
-se_tmp<-matrix(NA,ncol=ncol(hunters_se)-2,nrow=nrow(hunter.bands))
+hunter_se<-matrix(NA,ncol=ncol(hunters_se)-2,nrow=nrow(hunter.bands))
 for(i in 1:nrow(hunter.bands)){
   hunter.res<-bandtest(hunter.res,hunter.bands[i,])
   tmp<-hunters_se[hunters_se$timescales>=hunter.bands[i,1] & hunters_se$timescales<=hunter.bands[i,2],]
-  se_tmp[i,]<-round(100*colMeans(tmp[,c(3:dim(tmp)[2])])/mean(tmp$sync),4)
+  hunter_se[i,]<-round(100*colMeans(tmp[,c(3:dim(tmp)[2])])/mean(tmp$sync),4)
   }
 hunter.resP<-get_bandp(hunter.res)
-se_tmp
+colnames(hunter_se)<-colnames(tmp)[3:dim(tmp)[2]]
+row.names(hunter_se)<-paste(hunter.bands[,1],hunter.bands[,2],sep="-")
+
 
 ##Run coherence of DVCs and abundance
 #first filter data to match dimensions of DVC data
@@ -187,6 +191,15 @@ adjdvc_se<-syncexpl(wlm_adjdvc)
 adjdvcabun_se<-adjdvc_se[adjdvc_se$timescales>=3 & adjdvc_se$timescales<=7,]
 adjdvcabun_se37<-round(100*colMeans(adjdvcabun_se[,c(3:dim(adjdvcabun_se)[2])])/mean(adjdvcabun_se$sync),4)
 
+#Run coherence of traffic and DVCs
+cty.list.dt<-lapply(cty.list[c('Crashes','Traffic')],function(x){x<-cleandat(x[,!is.na(colSums(cty.list$Traffic))],clev = 5,times=1988:2016)$cdat;x})
+traffic.dvc.res<-coh(dat1=cty.list.dt$Traffic,dat2=cty.list.dt$Crashes,times=1988:maxyear,norm="powall",
+                sigmethod="fast",nrand=nsurrogs,f0=1)
+traffic.dvc.res<-bandtest(traffic.dvc.res,c(3,7))
+traffic.dvc.res<-bandtest(traffic.dvc.res,c(7,18))
+traffic.dvc.resP<-get_bandp(traffic.dvc.res)
+traffic.dvc.resP
+
 #Build Table S1
 tmp.list<-list()
 for(i in names(clim.resP)){
@@ -196,7 +209,11 @@ TabS1<-do.call(rbind,tmp.list)
 for(i in names(weath.resP)){
   tmp.list[[i]]<-cbind(weath.resP[[i]],weathabun_se[[i]])
 }
+
+##Need to add hunters to the table
 TabS1<-rbind(do.call(rbind,tmp.list))
+TabS1<-rbind(TabS1,cbind(do.call(cbind,hunter.resP),hunter_se))
+row.names(TabS1)[(dim(TabS1)[1]-1):dim(TabS1)[1]]<-c("Hunter.Abun.1","Hunter.Abun.2")
 TabS1<-rbind(TabS1,rbind(c(dvc.resP,dvcabun_se37),c(adjdvc.resP,adjdvcabun_se37)))
 row.names(TabS1)[(dim(TabS1)[1]-1):dim(TabS1)[1]]<-c("Abun.DVC.1","Abun.AdjDVC.1")
 TabS1.mat<-matrix(unlist(TabS1), ncol = length(TabS1), byrow = F)
@@ -205,35 +222,186 @@ colnames(TabS1.mat)<-c("Predictor","Response",colnames(TabS1))
 TabS1.mat<-data.frame(TabS1.mat[,1:2],paste(TabS1.mat$ts_low_bd,TabS1.mat$ts_hi_bd,sep="-"),TabS1.mat[,c("p_val","mn_phs",'syncexpl',"crossterms","resids","pred1")])
 colnames(TabS1.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","SynchronyExplained","CrossTerms","Residuals","Pred1")
 TabS1.mat<-TabS1.mat[,!colnames(TabS1.mat)%in%c("Residuals","Pred1")]
-TabS1.mat<-TabS1.mat[complete.cases(TabS1.mat),]
-saveRDS(TabS1.mat,file="Results/TableS1.rds")
+TableS1<-TabS1.mat[complete.cases(TabS1.mat),]
+saveRDS(TableS1,file="Results/TableS1.rds")
 
 write.csv(TabS1.mat,"../../../TableS1.csv")
 
 # USDA Analysis -----------------------------------------------------------
+if(scale.flag=="both"||scale.flag=="usda"){
+library(wsyn)
+bands<-rbind(c(3,7),c(3,4),c(4,7))
+  
+#Run coherence of climate indices and deer abundance
+usda.clim.res<-list()
+usda.wlm_climabun<-list()
+usda.abun.dt<-cleandat(usda.list$Abun,clev=5,times=1981:2016)$cdat
+climindex.usda<-climindex.usda[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")]
+usda.climindex.dt<-lapply(climindex.usda,function(x){x<-cleandat(x,times=1981:2016,clev=5)$cdat;x})
+usda.clim.res<-list()
+wlm_climabun<-list()
+for(j in names(usda.climindex.dt)){
+  spatcoh.names<-paste(j,"Abun",sep=".")
+  usda.clim.res[[spatcoh.names]]<-coh(dat1=usda.abun.dt,dat2=usda.climindex.dt[[j]],times=minyear:maxyear,norm="powall",
+                                 sigmethod="fast",nrand=nsurrogs,f0=1)
+  mod<-wlm(list(usda.abun.dt,usda.climindex.dt[[j]]),times=minyear:maxyear,resp=1,pred=2,norm="powall")
+  usda.wlm_climabun[[spatcoh.names]]<-syncexpl(mod)
+}
 
-#Run coherence of traffic-adjusted DVCs and abundance,again filtering to match dimensions of adjusted DVCs
+#Calculate abundance p-values and synchrony explained by climate indices
+usda.climabun_se<-list()
+for(j in names(usda.clim.res)){
+  se_mat<-matrix(NA,ncol=ncol(usda.wlm_climabun[[1]])-2,nrow=nrow(bands))
+  usda.clim.res[[j]]<-bandtest(usda.clim.res[[j]],bands[1,])
+  tmp.se<-usda.wlm_climabun[[j]][usda.wlm_climabun[[j]]$timescales>=bands[1,1] & usda.wlm_climabun[[j]]$timescales<=bands[1,2],]
+  se_mat[1,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp.se)[2])])/mean(tmp.se$sync),4)
+  if(usda.clim.res[[j]]$bandp['p_val']<0.06){
+    for(i in 2:nrow(bands)){
+      tmp.p<-bandtest(usda.clim.res[[j]],bands[i,])
+      usda.clim.res[[j]]<-tmp.p
+      tmp.se<-usda.wlm_climabun[[j]][usda.wlm_climabun[[j]]$timescales>=bands[i,1] & usda.wlm_climabun[[j]]$timescales<=bands[i,2],]
+      se_mat[i,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp)[2])])/mean(tmp.se$sync),4)
+    }
+  }
+  usda.climabun_se[[j]]<-se_mat
+}
 
+usda.clim.resP<-lapply(usda.clim.res,get_bandp)
+usda.climabun_se<-lapply(usda.climabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp.se)[2]];x})
+usda.climabun_se<-lapply(usda.climabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
+
+#Run coherence of winter weather and deer abundance
+usda.weath.res<-list()
+usda.wlm_weathabun<-list()
+for(j in names(winter.clim.usda)){
+  usda.winter.clim.dt<-cleandat(winter.clim.usda[[j]],clev=5,times=minyear:maxyear)$cdat
+  spatcoh.names<-paste(j,"Abun",sep=".")
+  usda.weath.res[[spatcoh.names]]<-coh(dat1=usda.abun.dt,dat2=usda.winter.clim.dt,times=minyear:maxyear,norm="powall",
+                                  sigmethod="fast",nrand=nsurrogs,f0=1)
+  mod<-wlm(list(usda.abun.dt,usda.winter.clim.dt),times=minyear:maxyear,resp=1,pred=2,norm="powall")
+  usda.wlm_weathabun[[spatcoh.names]]<-syncexpl(mod)
+}
+
+#Calculate abundance synchrony explained by weather
+usda.weathabun_se<-list()
+for(j in names(usda.weath.res)){
+  se_mat<-matrix(NA,ncol=ncol(usda.wlm_weathabun[[1]])-2,nrow=nrow(bands))
+  usda.weath.res[[j]]<-bandtest(usda.weath.res[[j]],bands[1,])
+  tmp.se<-usda.wlm_weathabun[[j]][usda.wlm_weathabun[[j]]$timescales>=bands[1,1] & usda.wlm_weathabun[[j]]$timescales<=bands[1,2],]
+  se_mat[1,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp.se)[2])])/mean(tmp.se$sync),4)
+  if(usda.weath.res[[j]]$bandp['p_val']<0.06){
+    for(i in 2:nrow(bands)){
+      tmp.p<-bandtest(usda.weath.res[[j]],bands[i,])
+      usda.weath.res[[j]]<-tmp.p
+      tmp.se<-usda.wlm_weathabun[[j]][usda.wlm_weathabun[[j]]$timescales>=bands[i,1] & usda.wlm_weathabun[[j]]$timescales<=bands[i,2],]
+      se_mat[i,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp.se)[2])])/mean(tmp.se$sync),4)
+    }
+  }
+  usda.weathabun_se[[j]]<-se_mat
+}
+usda.weath.res$Snwd.Abun<-bandtest(usda.weath.res$Snwd.Abun,c(3,4))
+usda.weath.res$Snwd.Abun<-bandtest(usda.weath.res$Snwd.Abun,c(4,7))
+tmp.se<-usda.wlm_weathabun$Snwd.Abun[usda.wlm_weathabun$Snwd.Abun$timescales>=bands[2,1] & usda.wlm_weathabun$Snwd.Abun$timescales<=bands[2,2],]
+usda.weathabun_se$Snwd.Abun[2,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp.se)[2])])/mean(tmp.se$sync),4)
+tmp.se<-usda.wlm_weathabun$Snwd.Abun[usda.wlm_weathabun$Snwd.Abun$timescales>=bands[3,1] & usda.wlm_weathabun$Snwd.Abun$timescales<=bands[3,2],]
+usda.weathabun_se$Snwd.Abun[3,]<-round(100*colMeans(tmp.se[,c(3:dim(tmp.se)[2])])/mean(tmp.se$sync),4)
+
+usda.weath.resP<-lapply(usda.weath.res,get_bandp)
+usda.weathabun_se<-lapply(usda.weathabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp.se)[2]];x})
+usda.weathabun_se<-lapply(usda.weathabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
+
+#Run coherence of climate indices and winter weather
+usda.weath.climind.res<-list()
+for(j in 1:length(names(climindex.usda))){
+  for(i in 1:length(names(winter.clim.usda))){
+    name1<-names(climindex.usda)[j]
+    name2<-names(winter.clim.usda)[i]
+    usda.climindex.tmp<-cleandat(climindex.usda[[name1]],times=minyear:maxyear,clev=5)$cdat
+    usda.winter.clim.dt.tmp<-cleandat(winter.clim.usda[[name2]],times=minyear:maxyear,clev=5)$cdat
+    spatcoh.names<-paste(name1,name2,sep=".")
+    usda.weath.climind.res[[spatcoh.names]]<-coh(dat2=usda.climindex.tmp,dat1=usda.winter.clim.dt.tmp,times=minyear:maxyear,norm="powall",
+                                            sigmethod="fast",nrand=nsurrogs,f0=1)
+  }
+}
+
+for(j in names(usda.weath.climind.res)){
+  usda.weath.climind.res[[j]]<-bandtest(usda.weath.climind.res[[j]],bands[1,])
+}
+TabS5<-do.call(rbind,lapply(weath.climind.res,get_bandp))
+TabS5<-cbind(matrix(unlist(strsplit(row.names(TabS5),'.',fixed=TRUE)),ncol=2,byrow=T),TabS5)
+TabS5$mn_phs<-as.numeric(as.character(ifelse(TabS5$p_val>0.06,"",TabS5$mn_phs)))
+TableS5<-data.frame(TabS5[,1:2],paste(TabS5$ts_low_bd,TabS5$ts_hi_bd,sep="-"),TabS5[,c("p_val","mn_phs")])
+colnames(TableS5)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
+saveRDS(TableS5,file="Results/TabS5_results.rds")
+
+##Run coherence of hunters and abundance
+#first filter data to match dimensions of hunter data
+usda.list.dt<-lapply(usda.list[c('Abun','Hunters')],function(x){x<-x[,12:36];x})
+usda.list.dt<-lapply(usda.list.dt,function(x){x[(!row.names(usda.list.dt$Abun)%in%cwd) & !is.na(rowMeans(usda.list.dt$Hunters)),]})
+usda.list.dt<-lapply(usda.list.dt,function(x){x<-cleandat(x,clev=5,times=1992:2016)$cdat;x})
+
+#run coherence
+hunter.bands<-rbind(c(3,7),c(2,2.5))
+usda.hunter.res<-coh(dat1=usda.list.dt$Abun,dat2=usda.list.dt$Hunters,times=1992:maxyear,norm="powall",
+                sigmethod="fast",nrand=nsurrogs,f0=1)
+usda.wlm_hunters<-wlm(list(usda.list.dt$Abun,usda.list.dt$Hunters),times=1992:maxyear,resp=1,pred=2,norm="powall",f0=1)
+usda.hunters_se<-syncexpl(usda.wlm_hunters)
+
+usda.hunter_se<-matrix(NA,ncol=ncol(usda.hunters_se)-2,nrow=nrow(hunter.bands))
+for(i in 1:nrow(hunter.bands)){
+  usda.hunter.res<-bandtest(usda.hunter.res,hunter.bands[i,])
+  tmp<-usda.hunters_se[usda.hunters_se$timescales>=hunter.bands[i,1] & usda.hunters_se$timescales<=hunter.bands[i,2],]
+  usda.hunter_se[i,]<-round(100*colMeans(tmp[,c(3:dim(tmp)[2])])/mean(tmp$sync),4)
+}
+usda.hunter.resP<-get_bandp(usda.hunter.res)
+colnames(usda.hunter_se)<-colnames(tmp)[3:dim(tmp)[2]]
+row.names(usda.hunter_se)<-paste(hunter.bands[,1],hunter.bands[,2],sep="-")
+
+#Run coherence of DVCs and traffic-adjusted DVCs with abundance,filtering to match temporal dimensions
 usda.list.dt<-lapply(usda.list[c('Abun','Crashes')],function(x){x<-cleandat(x[,!is.na(colSums(usda.list$Crashes))],clev = 5,times=1987:2016)$cdat;x})
 usda.dvc.res<-coh(dat1=usda.list.dt$Crashes,dat2=usda.list.dt$Abun,times=1987:maxyear,norm="powall",
                   sigmethod="fast",nrand=nsurrogs,f0=1)
 usda.dvc.res<-bandtest(usda.dvc.res,c(3,7))
-get_bandp(usda.dvc.res)
+usda.dvc.resP<-get_bandp(usda.dvc.res)
 usda.wlm_dvc<-wlm(list(usda.list.dt$Crashes,usda.list.dt$Abun),times=1987:maxyear,resp=1,pred=2,norm="powall")
 usda.dvc_se<-syncexpl(usda.wlm_dvc)
 usda.dvcabun_se<-usda.dvc_se[usda.dvc_se$timescales>=3 & usda.dvc_se$timescales<=7,]
-round(100*colMeans(usda.dvcabun_se[,c(3:dim(usda.dvcabun_se)[2])])/mean(usda.dvcabun_se$sync),4)
+usda.dvcabun_se37<-round(100*colMeans(usda.dvcabun_se[,c(3:dim(usda.dvcabun_se)[2])])/mean(usda.dvcabun_se$sync),4)
 
 #Run coherence of traffic-adjusted DVCs and abundance,again filtering to match dimensions of adjusted DVCs
 usda.list.dt<-lapply(usda.list[c('Abun','AdjDVC')],function(x){x<-cleandat(x[,!is.na(colSums(cty.list$AdjDVC))],clev = 5,times=1988:2016)$cdat;x})
 usda.adjdvc.res<-coh(dat1=usda.list.dt$AdjDVC,dat2=usda.list.dt$Abun,times=1988:maxyear,norm="powall",
                 sigmethod="fast",nrand=nsurrogs,f0=1)
-usda.adjdvc.res<-bandtest(adjdvc.res,c(3,7))
-get_bandp(adjdvc.res)
+usda.adjdvc.res<-bandtest(usda.adjdvc.res,c(3,7))
+usda.adjdvc.resP<-get_bandp(usda.adjdvc.res)
 usda.wlm_adjdvc<-wlm(list(usda.list.dt$AdjDVC,usda.list.dt$Abun),times=1988:maxyear,resp=1,pred=2,norm="powall")
 usda.adjdvc_se<-syncexpl(usda.wlm_adjdvc)
 usda.adjdvcabun_se<-usda.adjdvc_se[usda.adjdvc_se$timescales>=3 & usda.adjdvc_se$timescales<=7,]
-usda.adjdvcabun_se<-round(100*colMeans(usda.adjdvcabun_se[,c(3:dim(usda.adjdvcabun_se)[2])])/mean(usda.adjdvcabun_se$sync),4)
+usda.adjdvcabun_se37<-round(100*colMeans(usda.adjdvcabun_se[,c(3:dim(usda.adjdvcabun_se)[2])])/mean(usda.adjdvcabun_se$sync),4)
 
+#Build Table S4
+tmp.list<-list()
+for(i in names(usda.clim.resP)){
+  tmp.list[[i]]<-cbind(usda.clim.resP[[i]],usda.climabun_se[[i]])
+}
+TabS4<-do.call(rbind,tmp.list)
+for(i in names(usda.weath.resP)){
+  tmp.list[[i]]<-cbind(usda.weath.resP[[i]],usda.weathabun_se[[i]])
+}
 
+##Need to add hunters to the table
+TabS4<-rbind(do.call(rbind,tmp.list))
+TabS4<-rbind(TabS4,cbind(do.call(cbind,usda.hunter.resP),usda.hunter_se))
+row.names(TabS4)[(dim(TabS4)[1]-1):dim(TabS4)[1]]<-c("Hunter.Abun.1","Hunter.Abun.2")
+TabS4<-rbind(TabS4,rbind(c(usda.dvc.resP,usda.dvcabun_se37),c(usda.adjdvc.resP,usda.adjdvcabun_se37)))
+row.names(TabS4)[(dim(TabS4)[1]-1):dim(TabS4)[1]]<-c("Abun.DVC.1","Abun.AdjDVC.1")
+TabS4.mat<-matrix(unlist(TabS4), ncol = length(TabS4), byrow = F)
+TabS4.mat<-data.frame(matrix(unlist(strsplit(row.names(TabS4),'.',fixed=TRUE)),ncol=3,byrow=T)[,1:2],TabS4.mat)
+colnames(TabS4.mat)<-c("Predictor","Response",colnames(TabS4))
+TabS4.mat<-data.frame(TabS4.mat[,1:2],paste(TabS4.mat$ts_low_bd,TabS4.mat$ts_hi_bd,sep="-"),TabS4.mat[,c("p_val","mn_phs",'syncexpl',"crossterms","resids","pred1")])
+colnames(TabS4.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","SynchronyExplained","CrossTerms","Residuals","Pred1")
+TabS4.mat<-TabS4.mat[,!colnames(TabS4.mat)%in%c("Residuals","Pred1")]
+TableS4<-TabS4.mat[complete.cases(TabS4.mat),]
+saveRDS(TabS4.mat,file="Results/TableS4.rds")
 
+}

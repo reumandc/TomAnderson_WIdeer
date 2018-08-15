@@ -35,6 +35,7 @@ prefer ##Tom: from their website, "References only cited in the supplementary ma
 
 <!--Install the correct reumannplatz version from github, i.e., the one current on 2018 04 20, tagged
 in git with AndersonDeer-->
+<!--NEED TO SWITCH TO WSYN HERE-->
 ```{r rp_install, echo=F, message=FALSE}
 library(devtools,quietly=T,verbose=F)
 library(withr,quietly=T,verbose=F)
@@ -766,7 +767,7 @@ options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 knitr::kable(TableS1,
              format='pandoc',
              digits=4,
-             col.names=c("Response","Predictor","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption = "Summary of spatial coherence tests and related results using county-level data (*Methods*). Each row is based on a test of spatial wavelet coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (*Methods*) are provided where meaningful (for significant tests, $P < 0.05$, or marginally significant tests). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations (*Methods*). All values were rounded to display four digits.$^1$ \\label{TabS1_CountyCoherenceSummary}",
              booktabs=T)
 ```
@@ -775,15 +776,13 @@ knitr::kable(TableS1,
 
 ```{r TableS2,echo=F,results='markup'}
 knitr::kable(TableS2,
-             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
+             col.names=c("Predictor","Response","P-value","Mean phase ($\\bar{\\theta}$)"),
              format='pandoc',
-             caption = "$P$-values of wavelet coherence between climate indices. Values inside parentheses indicate the mean phase difference between variables, over $3-7$ year timescales (only shown for pairs of variables that were both significantly coherent with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
+             caption = "$P$-values of wavelet coherence and mean phase difference between climate indices. Values are over $3-7$ year timescales Mean phases are only shown for pairs of variables that were both significantly coherent with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
              booktabs=T)
 ```
 
-<!--***DAN: The values in parens did not come out in the pdf. Can you fix, please, Tom.-->
-<!--***DAN: Also, and very importantly, it used to say
-"P-values of spatial coherence between..." but these are all wavelet coherences (or should be) not spatial coherences, since these are all single time series. I changed it, but Tom can you please go back to the code and look and see whether you actually computed spatial coherences with spatially replicated time series or wavelet coherences between single time series? Should be the latter. It may (or may not) turn out to make a difference, I am not sure, but we should anyway do the appropriate thing. See also the point in the main text in the para that begins "Spatial wavelet coherence, wavelet regression techniques...", in which a value from this table is quoted (the one for Winter MEI and Winter PDO). I added a note there that it was a wavelet coherence result (not a spatial coherence result), so it needs to be checked that it is.-->
+<!--TOM: The new code runs these as wavelet coherences- I checked these and it gives identifcal values using either one time series or multiple time series for phase and p-value (after using set.seed).-->
 
 \newpage
 
@@ -801,6 +800,7 @@ knitr::kable(TableS3,
 ```{r TableS4,echo=F,results='markup'}
 knitr::kable(TableS4,
              format='pandoc',
+             col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption = "Summary of spatial coherence tests and related results using USDA district-level data (*Methods*). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (*Methods*) are provided where meaningful (i.e., for significant tests, $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations. \\label{TabS4_SummaryDistrict}",
              booktabs=T)
 ```
