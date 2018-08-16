@@ -1,10 +1,8 @@
 #Analysis with wsyn
-library(wsyn)
 bands<-rbind(c(3,7),c(3,4),c(4,7))
 
 #Run coherence of climate indices and deer abundance
 abun.dt<-cleandat(cty.list$Abun,clev=5,times=1981:2016)$cdat
-climindex<-climindex[c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")]
 climindex.dt<-lapply(climindex,function(x){x<-cleandat(x,times=1981:2016,clev=5)$cdat;x})
 clim.res<-list()
 wlm_climabun<-list()
@@ -35,7 +33,7 @@ for(j in names(clim.res)){
 }
 
 clim.resP<-lapply(clim.res,get_bandp)
-climabun_se<-lapply(climabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp)[2]];x})
+climabun_se<-lapply(climabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp.se)[2]];x})
 climabun_se<-lapply(climabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
 
 #Run coherence of winter weather and deer abundance
@@ -71,7 +69,7 @@ for(j in names(weath.res)){
 }
 
 weath.resP<-lapply(weath.res,get_bandp)
-weathabun_se<-lapply(weathabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp)[2]];x})
+weathabun_se<-lapply(weathabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp.se)[2]];x})
 weathabun_se<-lapply(weathabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
 
 #Run coherence of climate indices and winter weather
@@ -224,8 +222,6 @@ colnames(TabS1.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","
 TabS1.mat<-TabS1.mat[,!colnames(TabS1.mat)%in%c("Residuals","Pred1")]
 TableS1<-TabS1.mat[complete.cases(TabS1.mat),]
 saveRDS(TableS1,file="Results/TableS1.rds")
-
-write.csv(TabS1.mat,"../../../TableS1.csv")
 
 # USDA Analysis -----------------------------------------------------------
 if(scale.flag=="both"||scale.flag=="usda"){
