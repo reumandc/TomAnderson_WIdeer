@@ -100,7 +100,6 @@ colnames(TableS3)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
 saveRDS(TableS3,file="Results/TabS3_results.rds")
 
 #Run wavelet coherence among climate indices
-set.seed(101)
 indices.res<-list()
 for(i in 1:(length(climindex.dt)-1)){
   for(j in (i+1):length(climindex.dt)){
@@ -333,7 +332,7 @@ saveRDS(TableS5,file="Results/TabS5_results.rds")
 ##Run coherence of hunters and abundance
 #first filter data to match dimensions of hunter data
 usda.list.dt<-lapply(usda.list[c('Abun','Hunters')],function(x){x<-x[,12:36];x})
-usda.list.dt<-lapply(usda.list.dt,function(x){x[(!row.names(usda.list.dt$Abun)%in%cwd) & !is.na(rowMeans(usda.list.dt$Hunters)),]})
+usda.list.dt<-lapply(usda.list.dt,function(x){x[(!row.names(usda.list.dt$Abun)%in%cwd.usda) & !is.na(rowMeans(usda.list.dt$Hunters)),]})
 usda.list.dt<-lapply(usda.list.dt,function(x){x<-cleandat(x,clev=5,times=1992:2016)$cdat;x})
 
 #run coherence
