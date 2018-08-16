@@ -1,16 +1,19 @@
 #Make figures for the manuscript
 source("Functions/Fn_wsurfplot_modified.R")
 source("Functions/Fn_wmfwt.R")
+source("Functions/Fn_syncexpplot.R")
 
 #Make Fig. 1
+library(wsyn)
 source("Code/PedagogFig.R")
-
 #clean data for Figs 2 and 3
-abun.dt<-Reumannplatz::CleanData(cty.list$Abun)$cleandat
-dvc.dt<-Reumannplatz::CleanData(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))])$cleandat
+abun.dt<-cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
+dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,times=1987:maxyear)$cdat
+library(Reumannplatz)
+
 #generate wavelet transforms
-abun.wt<-warray(abun.dt,times=1981:2016)
-dvc.wt<-warray(dvc.dt,times=1987:2016)
+abun.wt<-warray(abun.dt,times=minyear:maxyear)
+dvc.wt<-warray(dvc.dt,times=1987:maxyear)
 
 # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
 tot.wd<-4.75
@@ -96,22 +99,22 @@ source("Functions/Fn_rankplot.R")
 png("Results/FigS4.png",res=600,height=3000,width=4800)
 #tiff("Results/FigS4.tiff",res=600,height=3000,width=4800,compression=c("lzw"))
 par(mfrow=c(1,2),mar=c(3.5,4,1.5,0),mgp=c(2.5,0.5,0))
-plot(climate.res$WinterMEI.Abun$timescale,climate.res$WinterMEI.Abun$emp.rank,xaxt="n",las=1,ylim=c(0.5*nsurrogs,max(nsurrogs)),type="l",lwd=2,ylab="Rank",xlab="Timescale")
+plot(clim.res$WinterMEI.Abun$timescale,clim.res$WinterMEI.Abun$ranks$coher,xaxt="n",las=1,type="l",lwd=2,ylab="Rank",xlab="Timescale")
 axis(1,at = seq(2,12,1),labels=c(2,"","4","",6,"",8,"",10,"",12))
 axis(3,at = seq(2,12,1),labels=c(2,"","4","",6,"",8,"",10,"",12))
-abline(h=0.95*nsurrogs,col="red",lty=2)
-lines(climate.res$SummerMEI.Abun$timescales,climate.res$SummerMEI.Abun$emp.rank,lwd=2,col="green")
-lines(climate.res$WinterPDO.Abun$timescales,climate.res$WinterPDO.Abun$emp.rank,lty=1,lwd=2,col="orange")
-lines(winter.res$Snwd.Abun$timescales,winter.res$Snwd.Abun$emp.rank,lty=1,lwd=2,col="blue")
+abline(h=0.95,col="red",lty=2)
+lines(clim.res$SummerMEI.Abun$timescales,clim.res$SummerMEI.Abun$ranks$coher,lwd=2,col="green")
+lines(clim.res$WinterPDO.Abun$timescales,clim.res$WinterPDO.Abun$ranks$coher,lty=1,lwd=2,col="orange")
+lines(weath.res$Snwd.Abun$timescales,weath.res$Snwd.Abun$ranks$coher,lty=1,lwd=2,col="blue")
 legend("topright",lty=c(1,1),c("Winter MEI","Winter PDO","Summer MEI","Snow Depth"),cex=0.75,bty = "n",col=c("black","orange","green","blue"))
 mtext("A)",font=2,adj=-0.1)
 
-plot(dvc.res$timescales,dvc.res$emp.rank,type="l",lwd=2,ylab="",xlab="Timescale",xaxt="n",las=1,ylim=c(0.5*nsurrogs,max(nsurrogs)))
-lines(adjdvc.res$timescales,adjdvc.res$emp.rank,lty=1,lwd=2,col="purple")
+plot(dvc.res$timescales,dvc.res$ranks$coher,type="l",lwd=2,ylab="",xlab="Timescale",xaxt="n",las=1)
+lines(adjdvc.res$timescales,adjdvc.res$ranks$coher,lty=1,lwd=2,col="purple")
 axis(1,at = seq(2,10,1),labels=c(2,"",4,"",6,"",8,"",10))
 axis(3,at = seq(2,10,1),labels=c(2,"",4,"",6,"",8,"",10))
-abline(h=0.95*nsurrogs,col="red",lty=2)
-lines(hunter.res$timescales,hunter.res$emp.rank,lty=1,lwd=2,col="darkgray")
+abline(h=0.95,col="red",lty=2)
+lines(hunter.res$timescales,hunter.res$ranks$coher,lty=1,lwd=2,col="darkgray")
 legend("topright",c("Abun-DVCs","Abun-Adj. DVCs","Hunters-Abun"),lty=c(1,1,1),
        col=c("black","purple","darkgray"),bty="n",cex=0.75)
 mtext("B)",font=2,adj=-0.1)
@@ -122,14 +125,14 @@ png("Results/FigS5.png",res=600,height=4800,width=3000)
 #tiff("Results/FigS5.tiff",res=600,compression=c("lzw"),height=4800,width=3000)
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
-hunters.dt<-Reumannplatz::CleanData(hunters.tmp)$cleandat
+hunters.dt<-cleandat(hunters.tmp,clev=5,times=1992:2016)$cdat
 par(mfrow=c(3,1),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 wsurfplotTLA(hunters.dt,times=1992:2016,colorbar=T,type="wmf",ylab="",xlab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
 wsurfplotTLA(hunters.dt,times=1992:2016,colorbar=T,zlims = c(0,1),type="wpmf",xlab="",siglevel=0.999)
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-abun.dt1<-Reumannplatz::CleanData(cty.list$Abun[rownames(hunters.tmp),12:dim(cty.list$Hunters)[2]])
-abun.wt1<-warray(abun.dt1$cleandat,times=1992:2016)
+abun.dt1<-cleandat(cty.list$Abun[rownames(hunters.tmp),12:dim(cty.list$Hunters)[2]],clev=5,times=1992:2016)
+abun.wt1<-warray(abun.dt1$cdat,times=1992:2016)
 syncexpplot(resp.wmf=wmfwt(abun.wt1$wave.array),exp.sync = hunterabun.es2_2.5$pred.wmf,1992:2016,hunterabun.es2_2.5$timescales,ylab = "",xlab="Year")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
@@ -138,24 +141,24 @@ dev.off()
 png("Results/FigS8.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS8.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-wsurfplotTLA(Reumannplatz::CleanData(climindex$WinterPDO[1,])$cleandat,times=1981:2016,colorbar=T,type="power",xlab="")
+wsurfplotTLA(cleandat(climindex$WinterPDO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(Reumannplatz::CleanData(climindex$SummerPDO[1,])$cleandat,times=1981:2016,colorbar=T,type="power",xlab="",ylab="")
+wsurfplotTLA(cleandat(climindex$SummerPDO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="",ylab="")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(Reumannplatz::CleanData(climindex$WinterNAO[1,])$cleandat,times=1981:2016,colorbar=T,type="power",xlab="")
+wsurfplotTLA(cleandat(climindex$WinterNAO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(Reumannplatz::CleanData(climindex$SummerNAO[1,])$cleandat,times=1981:2016,colorbar=T,type="power",ylab="",xlab="")
+wsurfplotTLA(cleandat(climindex$SummerNAO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",ylab="",xlab="")
 mtext("D)",adj=0.05,font=2,line=-1.2,side=3)
-wsurfplotTLA(Reumannplatz::CleanData(climindex$WinterMEI[1,])$cleandat,times=1981:2016,colorbar=T,type="power",xlab="Year",ylab="Timescale")
+wsurfplotTLA(cleandat(climindex$WinterMEI[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="Year",ylab="Timescale")
 mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(Reumannplatz::CleanData(climindex$SummerMEI[1,])$cleandat,times=1981:2016,colorbar=T,type="power",xlab="Year",ylab="Timescale")
+wsurfplotTLA(cleandat(climindex$SummerMEI[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="Year",ylab="Timescale")
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
 #Make winter weather wavelet mean field and wavelet phasor mean field plots
 png("Results/FigS7.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS7.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
-winter.clim.dt<-lapply(winter.clim,function(x){x<-Reumannplatz::CleanData(x[!(is.na(rowMeans(x))),])$cleandat;x})
+winter.clim.dt<-lapply(winter.clim,function(x){x<-cleandat(x[!(is.na(rowMeans(x))),],clev=5,times=minyear:maxyear)$cdat;x})
 par(mfrow=c(4,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 wsurfplotTLA(winter.clim.dt$Tmin,times=1981:2016,colorbar=T,type="wmf",xlab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
@@ -180,20 +183,20 @@ dev.off()
 png("Results/FigS6.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS6.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 source("Functions/Fn_wsurfplot_modified.R")
-usda.abun.dt<-Reumannplatz::CleanData(usda.list$Abun)$cleandat
-usda.dvc.dt<-Reumannplatz::CleanData(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))])$cleandat
+usda.abun.dt<-cleandat(usda.list$Abun,clev=5,times=minyear:maxyear)$cdat
+usda.dvc.dt<-cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=minyear:maxyear)$cdat
 #generate wavelet transforms
 usda.abun.wt<-warray(usda.abun.dt,times=1981:2016)
 usda.dvc.wt<-warray(usda.dvc.dt,times=1987:2016)
 
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-wsurfplotTLA(Reumannplatz::CleanData(usda.list$Abun)$cleandat,times=1981:2016,colorbar=T,type="wmf",xlab="",ylab="")
+wsurfplotTLA(cleandat(usda.list$Abun,clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="wmf",xlab="",ylab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(Reumannplatz::CleanData(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))])$cleandat,times=1987:2016,colorbar=T,type="wmf",xlab="",ylab="")
+wsurfplotTLA(cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=minyear:maxyear)$cdat,times=1987:2016,colorbar=T,type="wmf",xlab="",ylab="")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(Reumannplatz::CleanData(usda.list$Abun)$cleandat,times=1981:2016,colorbar=T,type="wpmf",siglevel = 0.999,xlab="")
+wsurfplotTLA(cleandat(usda.list$Abun)$cdat,times=1981:2016,colorbar=T,type="wpmf",siglevel = 0.999,xlab="")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(Reumannplatz::CleanData(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))])$cleandat,times=1987:2016,colorbar=T,type="wpmf",siglevel = 0.999,xlab="",ylab="")
+wsurfplotTLA(cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=minyear:maxyear)$cdat,times=1987:2016,colorbar=T,type="wpmf",siglevel = 0.999,xlab="",ylab="")
 mtext("D)",adj=0.05,line=-1.2,side=3,font=2)
 syncexpplot(resp.wmf=wmfwt(usda.abun.wt$wave.array),exp.sync = usda.model.es$exp.sync,times=1981:2016,abun.wt$timescales,ylab="")
 mtext("E)",adj=0.05,line=-1.2,side=3,font=2)

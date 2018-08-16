@@ -22,20 +22,15 @@ urlcolor: blue
 ---
 
 \textbf{This PDF file includes:}
-
-* Materials and Methods
-* Supplementary Text
-* Figs. S1 to S8
-* Tables S1 to S5
-
-<!--***DAN: Currently we are using science citation style in the supp mat, is this 
-required, Tom? If not, wwe should use the callout style we prefer. What style do you
-prefer ##Tom: from their website, "References only cited in the supplementary materials should be included at the end of the reference section of the main text, and the reference numbering should continue as if the Supplementary Materials was a continuation of the main text." We can talk about how to incorporate this whenever we talk again. 
--->
+> Materials and Methods  
+> Supplementary Text  
+> Figs S1 to S8  
+> Table S1 to S5  
+> Full Reference list[@Leibhold2004_sync; @Allstad2015_gypsysync; @Moran1953; @Ranta1997_moran; @Kendall2000_moran; @Abbott2007_moran;@Defriez2016_plankton;@Sheppard2016_aphids;@Defriez2017_terrestrial; @Defriez2017_marine; @Sheppard2017_surrogates; @Walter2017_geogsync; @Cote2004_deerimpacts; @Conover1997_dvc; @Winkler2013_hunters; @usfws2011_survey; @Conover2011_bookchp; @Sheppard_wavmodel; @Delguidice2008_deersurvival; @Mysterud2008_deerclimate; @Hegel2012_caribou; @Anderson1996_elnino; @Rodionov2003_elnino; @Post1998_popgrowth; @Post2004_greenland; @Grotan2005_roedeer; @Huijser2008_dvc; @Marcoux2010_dvc; @Koenig2016_birdsync; @Shestakova2016_forestsync; @Cai2014_elnino;@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
 <!--Install the correct reumannplatz version from github, i.e., the one current on 2018 04 20, tagged
 in git with AndersonDeer-->
-<!--NEED TO SWITCH TO WSYN HERE-->
+<!--TOM: We need to switch this to wsyn, not sure how to do that-->
 ```{r rp_install, echo=F, message=FALSE}
 library(devtools,quietly=T,verbose=F)
 library(withr,quietly=T,verbose=F)
@@ -52,7 +47,7 @@ library(tools,quietly=T)
 library(fields,quietly=T)
 library(shape,quietly=T)
 library(Reumannplatz,lib.loc=.libPaths(),quietly=T)
-#library(wysn,lib.loc=.libPaths(),quietly=T)
+library(wsyn,lib.loc=.libPaths(),quietly=T)
 ```
 
 <!--Flags controlling the run and other setup-->
@@ -65,30 +60,19 @@ minyear<-1981
 
 #what is the last year you want? (max is 2016)
 maxyear<-2016
-  
-#normalize the data ("norm" for Box-Cox, "detr" for linearly detrend, or "none")
-##Code currently work using the "none" option; the normalization steps happen 
-##individually with each analysis step (e.g. see line 15 in "DeerAbundance.R" file), 
-##because of the conflicting data lengths and dimensions. 
-detr.flag<-"none"
 
 #set spatial scale flag for data generation ("usda", "county" or "both")
 scale.flag<-"both"
 
-#***DAN: Not sure what this is, Tom, if this is not necessary should be deleted? 
-#In that case it should also be deleted from the cache.extra list below.
-#calculate how many missing climate values there were (don't need to run anymore)
-samplesize.flag<-"n"
-
 #set number of surrogates to use for spatial coherence
-nsurrogs<-10000
+nsurrogs<-100
 
 #a function needed for caching
 source("Code/mtime.R") 
 ```
 
 <!--The whole analysis-->
-```{r whole_analysis, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,detr.flag,scale.flag,samplesize.flag,nsurrogs,mtime("Code/wi.deer.cleandata.R"),mtime("Data/State_Kill.csv"),mtime("Data/County_KillTotal.csv"),mtime("Data/County_Kill_BuckOnly.csv"),mtime("Data/County_Kill_DoeOnly.csv"),mtime("Data/County_KillGunBuck.csv"),mtime("Data/County_KillGunDoe.csv"),mtime("Data/County_KillBowBuck.csv"),mtime("Data/County_KillBowDoe.csv"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/OpeningDay.csv"),mtime("Data/CornHarvest.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/wi_climate.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"),mtime("Data/ENSO.csv"),mtime("Code/DeerAbundance.R"),mtime("Code/DeerAbundanceUSDA.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
+```{r whole_analysis, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,scale.flag,nsurrogs,mtime("Code/Deer_DataGeneration.R"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/Climate_DataGeneration.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
 
 #Dependencies (listed in cache.extra above):
 #1) Settings variables from the setup chunk
@@ -100,29 +84,25 @@ source("Code/mtime.R")
 #but may waste some CPU time
 
 #Clean population data: end result are two lists of matrices called "cty.list" and "usda.list"
-system.time(source("Code/wi.deer.cleandata.R"))
+system.time(source("Code/Deer_DataGeneration.R"))
   #list of files generated by wi.deer.cleandata.R:
-    #scale.flag == "usda": usda.list, includes data on abundance, kill data, crops, DVCs and traffic
-    #scale.flag == "county": cty.list, includes data on abundance, kill data, crops, DVCs and traffic
+    #scale.flag == "usda": usda.list, includes data on abundance, DVCs and traffic
+    #scale.flag == "county": cty.list, includes data on abundance, DVCs and traffic
     #scale.flag == "both": both the above
 
 #clean climate data
-system.time(source("Code/wi_climate.R"))
-#list of files generated by wi_climate.R:
-  #scale.flag == "usda": wsi.usda.mat,hunt.clim.usda, winter.clim.usda,nao.mat,pdo.mat,mei.mat,winter.nao,winter.pdo,winter.mei
-  #scale.flag == "county": wsi.mat,wsi.matN,hunt.clim,winter.clim,nao.mat,pdo.mat,mei.mat,winter.nao,winter.pdo,winter.mei
-  #large climate indices are the same values (nao,mei,pdo), just replicated into different dimensions to match scale.flag
+system.time(source("Code/Climate_DataGeneration.R"))
+#creates four lists of data: winter weather and climate indices each for counties and USDA districts
+    #scale.flag == "usda": usda.list, includes data on abundance, DVCs and traffic
+    #scale.flag == "county": cty.list, includes data on abundance, DVCs and traffic
+    #scale.flag == "both": both the above
 
-#Run analysis on deer abundance and DVCs using county data
+#Run analysis on deer abundance and DVCs using county and district data depending on scale.flag
 set.seed(101)
-system.time(source("Code/DeerAbundance.R"))
-
-#Run analysis on deer abundance and DVCs using USDA district data
-set.seed(201)
-system.time(source("Code/DeerAbundanceUSDA.R"))
+system.time(source("Code/DeerCoherence_wsyn.R"))
 
 #generate plots
-set.seed(301)
+set.seed(201)
 system.time(source("Code/deer_plots.R"))
 #***Tom: Warnings on plots should all be fixed
 ```
@@ -136,24 +116,17 @@ options(scipen = 999999)
 
 ## Data and pre-processing
 
-<!--***DAN: I inserted a comment in each place that needs to be made 
-or may need to be made an automatic link to a reference, table, figure, 
-or R-produced value. As these are done, the comment can be deleted,
-as can the non-automatic text that the automatic link should replace.
-But leave the non-automatic text until you do a knit to make sure you
-get the same thing.-->
-<!---To do citations, insert all the citations from the main text up here, but have them be invisible and then the numbers should line up starting below. Then in the main text, have the citations from the supp mat at the end of the main text --->
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a `r dim(cty.list$Abun)[2]`-yr period 
 (`r minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 
-From 1981-2013<!--***TOM-->, deer abundance was estimated for deer management units 
-(DMUs, $N=$ 101-139<!--***TOM--> depending on the year). For most years and DMUs, 
+From 1981-2013, deer abundance was estimated for deer management units 
+(DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
 accounting models used for a smaller number of years and DMUs [@widnr2001]. 
 In $2014$, DMU boundaries were changed to match the administrative level of 
-county ($N=$ `r length(unique(cty.deer$COUNTY_NAM))`). Because of this, and because other 
+county ($N=$ `r length(unique(dat$COUNTY_NAM))`). Because of this, and because other 
 spatial variables (e.g., DVCs, climate) were gathered at the county level, 
-we transformed the 1981-2013<!--***TOM--> abundance estimates for DMUs 
+we transformed the 1981-2013 abundance estimates for DMUs 
 into county-level estimates. To do so, we first calculated the areas 
 of intersection between DMU and county boundaries for each year (as 
 DMU boundaries changed yearly), using the 'intersect' function in 
@@ -174,14 +147,14 @@ We obtained estimated hunter abundance data for each DMU from the WIDNR
 that spanned the years 1992-`r maxyear`
 (Fig. S1 \ref{FigS1_Timeseries}), which constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
-hunting season (1<!--***DAN-->), assuming this was a good proxy 
+hunting season [@widnr2001], assuming this was a good proxy 
 for hunter numbers across the season. 
 <!--***DAN: I think we should add 1-2 sentences arguing why this is a  reasonable assumption, perhaps by giving data, if available, on how many gun v other types of hunters there are, and how many people go the opening 2 days versus later in the week. Let's discuss, Tom.-->
 <!--***Tom::I doubt whether there is any data on your last statement, how many go early versus late. I'm not sure I follow the gun v other types of hunters argument- do you mean that the majority of deer get killed by gun hunters and thus that would be the best estimate of hunters for regulating deer?-->
 We estimated hunter abundances 
 for counties using the same method as for deer abundance. We 
-dropped 18<!--***Dan--> counties due to incomplete survey 
-efforts of hunters or missing data, leaving 53<!--***DAN--> 
+dropped 18 counties due to incomplete survey 
+efforts of hunters or missing data, leaving 53
 counties for subsequent analysis. 
 
 We obtained estimates of DVCs for each county, spanning the 
@@ -462,12 +435,6 @@ provide a test of whether modelling assumptions of
 [@Sheppard2016_aphids] are sufficiently met to use the 
 wavelet Moran theorem to estimate fractions of 
 synchrony explained. Cross terms less than $50\%$ 
-<!--***DAN: 
-Tom said in a marginal comment on the Word version that preceded this one:
-This is somewhat of a guess- the only one that as really a problem was deer and dvcs using counties- something like 44% explained with cross terms of 30%. Snow and deer was about 50% though synchrony explained was very low. The rest of the results were high synchrony explained and no cross terms to speak of, or very low synchrony explained/not significant so cross terms didn’t matter anyways. 
-
-Dan says: we cannot use 50% here, it's too high. We need to revisit this. Anyway I suspect a lower number here could be used without having to change any of what you did.
--->
 of estimated fractions of synchrony explained were 
 considered necessary.
 

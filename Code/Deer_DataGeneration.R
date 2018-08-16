@@ -199,12 +199,3 @@ for(j in vars){
 }
 usda.list<-lapply(usda.list,function(x){row.names(x)<-sort(unique(usda$Zone));x})
 
-if(detr.flag=="norm"){
-  cty.norm.list<-lapply(cty.list,function(x){x<-cleandat(x[,colSums(is.na(x)) != nrow(x)],clev=5,times=minyear:maxyear)$cdat;x})
-  usda.norm.list<-lapply(usda.list,function(x){x<-cleandat(x[,colSums(is.na(x)) != nrow(x)],times=minyear:maxyear)$cleandat;x})
-}
-
-if(detr.flag=="detr"){
-  cty.detr.list<-lapply(cty.list,function(x){x<-cleandat(x[,colSums(is.na(x)) != nrow(x)],clev=3,times=minyear:maxyear)$cdat;x})
-  usda.detr.list<-lapply(usda.list,function(x){x<-cleandat(x[,colSums(is.na(x)) != nrow(x)],clev=3,times=minyear:maxyear)$cdat;x})
-}

@@ -130,12 +130,12 @@ par(fig=c(ywd/totwd,
           (xht)/totht,
           (xht+panht.b)/totht),
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
-zlimits<-range(Mod(wmf1$wmf),Mod(wmf2$wmf),Mod(wmf3$wmf),na.rm=T)
+zlimits<-range(Mod(wmf1$values),Mod(wmf2$values),Mod(wmf3$values),na.rm=T)
 jetcolors <- c("#00007F", "blue", "#007FFF", "cyan", 
                "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
 colorfill <- colorRampPalette(jetcolors)
 l2ts<-log2(wmf1$timescales)
-image(x=tm,y=l2ts,z=Mod(wmf1$wmf),xlim=xlimits,
+image(x=tm,y=l2ts,z=Mod(wmf1$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r')
 ylocs <- pretty(wmf1$timescales, n = 8)
 axis(2, at = log2(ylocs), labels = ylocs)
@@ -172,7 +172,7 @@ par(fig=c((ywd+panwd.b+gap)/totwd,
           (xht)/totht,
           (xht+panht.b)/totht),
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
-image(x=tm,y=l2ts,z=Mod(wmf2$wmf),xlim=xlimits,
+image(x=tm,y=l2ts,z=Mod(wmf2$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r')
 text(xlimits[1],max(l2ts),'H)',adj=c(0,1),font=2)
 mtext("Time step (yrs)",side=1,line=1.2)
@@ -207,7 +207,7 @@ par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
           (xht)/totht,
           (xht+panht.b)/totht),
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
-image(x=tm,y=l2ts,z=Mod(wmf3$wmf),xlim=xlimits,
+image(x=tm,y=l2ts,z=Mod(wmf3$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r')
 text(xlimits[1],max(l2ts),'I)',adj=c(0,1),font=2)
 
