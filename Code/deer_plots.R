@@ -2,97 +2,172 @@
 source("Functions/Fn_wsurfplot_modified.R")
 source("Functions/Fn_wmfwt.R")
 source("Functions/Fn_syncexpplot.R")
-
+source("Functions/deer_plotting_functions.R")
 #Make Fig. 1
 library(wsyn)
 source("Code/PedagogFig.R")
+
 #clean data for Figs 2 and 3
 abun.dt<-cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
 dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,times=1987:maxyear)$cdat
-library(Reumannplatz)
+# library(Reumannplatz)
+# 
+# #generate wavelet transforms
+# abun.wt<-warray(abun.dt,times=minyear:maxyear)
+# dvc.wt<-warray(dvc.dt,times=1987:maxyear)
 
-#generate wavelet transforms
-abun.wt<-warray(abun.dt,times=minyear:maxyear)
-dvc.wt<-warray(dvc.dt,times=1987:maxyear)
-
-# Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
-tot.wd<-4.75
-xht<-0.75   #height of x axis label region
-ywd<-0.5    #width of y axis label region
-zwd<-0.5    #width of z-axes label region
-gap<-.2   #small gap 
-pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
-pan.ht<-0.75*pan.wd+zwd #big ones are square
-tot.ht<-3*pan.ht+xht+3*gap
+# # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
+# tot.wd<-4.75
+# xht<-0.75   #height of x axis label region
+# ywd<-0.5    #width of y axis label region
+# zwd<-0.5    #width of z-axes label region
+# gap<-.2   #small gap 
+# pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
+# pan.ht<-0.75*pan.wd+zwd #big ones are square
+# tot.ht<-3*pan.ht+xht+3*gap
 
 #Make abundance wavelet mean field, wavelet phasor mean field, and predicted synchrony in deer abundance 
 #by snow depth, winter MEI and winter PDo (Fig 2)
-png(filename="Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-#tiff("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-#pdf("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
-wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wmf",tsrange=c(3,7),
-             xlab="Year",ylab="Timescales",xtcklab=rep("",9),smallplot=c(0.95,0.99,0.05,0.95))
-par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wpmf",tsrange=c(3,7),siglevel = c(0.999),zlims = c(0,1),xlab="",xtcklab=rep("",9),ylab="Timescales",smallplot=c(0.95,0.99,0.05,0.95))
-abline(h=c(3,7),lty=c(2,2))
-par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-contour(Mod(wpmf(abun.dt,times=1981:2016)$wpmf),levels = 0.31,drawlabels=F,lwd=2,xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),frame=F,font=2)
-mtext(text = "Timescales",line = 1.3,side = 2,cex=1.25)
-par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,xht/tot.ht,(xht+pan.ht)/tot.ht),mai=c(0,0,0,0),new=T)
-syncexpplot(resp.wmf=wmfwt(abun.wt$wave.array),exp.sync = model.es$exp.sync,times=1981:2016,abun.wt$timescales,smallplot=c(0.95,0.99,0.05,0.95))
-mtext(text = "Year",line = -2,side = 1,cex=1.25)
-text(x=c(rep(1985.5,3)),y=c(log2(14),log2(7.5),log2(4)),labels=c("A)","B)","C)"),font=2)
-dev.off()
+# png(filename="Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+# #tiff("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+# #pdf("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
+# wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wmf",tsrange=c(3,7),
+#              xlab="Year",ylab="Timescales",xtcklab=rep("",9),smallplot=c(0.95,0.99,0.05,0.95))
+# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
+# wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wpmf",tsrange=c(3,7),siglevel = c(0.999),zlims = c(0,1),xlab="",xtcklab=rep("",9),ylab="Timescales",smallplot=c(0.95,0.99,0.05,0.95))
+# abline(h=c(3,7),lty=c(2,2))
+# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
+# contour(Mod(wpmf(abun.dt,times=1981:2016)$wpmf),levels = 0.31,drawlabels=F,lwd=2,xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),frame=F,font=2)
+# mtext(text = "Timescales",line = 1.3,side = 2,cex=1.25)
+# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,xht/tot.ht,(xht+pan.ht)/tot.ht),mai=c(0,0,0,0),new=T)
+# syncexpplot(resp.wmf=wmfwt(wlm_abun$wts[[1]]),exp.sync = predsync(wlm_abun)[[3]],times=1981:2016,abun.wt$timescales,smallplot=c(0.95,0.99,0.05,0.95))
+# mtext(text = "Year",line = -2,side = 1,cex=1.25)
+# text(x=c(rep(1985.5,3)),y=c(log2(14),log2(7.5),log2(4)),labels=c("A)","B)","C)"),font=2)
+# dev.off()
+# 
+# #Make DVC wavelet mean field, wavelet phasor mean field, and predicted synchrony in DVCs by deer abundance (Fig 3)
+# png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+# #tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+# #pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
+# wsurfplotTLA(dvc.dt,times=1987:2016,colorbar=T,type="wmf",tsrange=c(3,7),ylab="TS",xlab="",xtcklab = rep("",8),smallplot=c(0.95,0.99,0.05,0.95))
+# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
+# wsurfplotTLA(dvc.dt,times=1987:2016,colorbar=T,type="wpmf",tsrange=c(3,7),zlims = c(0,1),xlab="",siglevel = c(0.999),xtcklab = rep("",8),smallplot=c(0.95,0.99,0.05,0.95))
+# #par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
+# contour(Mod(wpmf(dvc.dt,times=1987:2016)$wpmf),levels = 0.31,drawlabels=F,lwd=2,xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),frame=F)
+# mtext(text = "Timescales",line = 1.3,side = 2,cex=1.25)
+# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,xht/tot.ht,(xht+pan.ht)/tot.ht),mai=c(0,0,0,0),new=T)
+# syncexpplot(resp.wmf=wmfwt(wlm_dvc$wts[[1]]),exp.sync = predsync(wlm_dvc)[[3]],1987:2016,wlm_dvc$timescales,ylab = "",xlab="Year",smallplot=c(0.95,0.99,0.05,0.95))
+# mtext(text = "Year",line = -1.5,side = 1,cex=1.25)
+# text(x=c(rep(1990.5,3)),y=c(log2(11.3),log2(6.5),log2(3.7)),labels=c("A)","B)","C)"),font=2)
+# dev.off()
 
-#Make DVC wavelet mean field, wavelet phasor mean field, and predicted synchrony in DVCs by deer abundance (Fig 3)
+abun.wpmf<-wsyn::wpmf(abun.dt,times = minyear:maxyear,sigmethod = "quick")
+abun.wmf<-wsyn::wmf(abun.dt,times = minyear:maxyear)
+dvc.wpmf<-wsyn::wpmf(dvc.dt,times = 1987:maxyear,sigmethod = "quick")
+dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
+
+#New Abundance plot
+png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+#tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+#pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
+par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.25,0.75,0.1,0))
+deer_wmfplot(abun.wmf,xlab="",ylab="Timescale")
+deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale")
+par(new=T)
+q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
+contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
+        xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
+syncexpplot(resp.wmf=wmfwt(wlm_abun$wts[[1]]),exp.sync = predsync(wlm_abun)[[3]],1981:2016,
+            wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
+
+#New DVC plot
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 #tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
-wsurfplotTLA(dvc.dt,times=1987:2016,colorbar=T,type="wmf",tsrange=c(3,7),ylab="TS",xlab="",xtcklab = rep("",8),smallplot=c(0.95,0.99,0.05,0.95))
-par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-wsurfplotTLA(dvc.dt,times=1987:2016,colorbar=T,type="wpmf",tsrange=c(3,7),zlims = c(0,1),xlab="",siglevel = c(0.999),xtcklab = rep("",8),smallplot=c(0.95,0.99,0.05,0.95))
-#par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-#contour(Mod(wpmf(dvc.dt,times=1987:2016)$wpmf),levels = 0.31,drawlabels=F,lwd=2,xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),frame=F)
-mtext(text = "Timescales",line = 1.3,side = 2,cex=1.25)
-par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,xht/tot.ht,(xht+pan.ht)/tot.ht),mai=c(0,0,0,0),new=T)
-syncexpplot(resp.wmf=wmfwt(dvc.wt$wave.array),exp.sync = dvcabun.es$pred.wmf,1987:2016,dvcabun.es$timescales,ylab = "",xlab="Year",smallplot=c(0.95,0.99,0.05,0.95))
-mtext(text = "Year",line = -1.5,side = 1,cex=1.25)
-text(x=c(rep(1990.5,3)),y=c(log2(11.3),log2(6.5),log2(3.7)),labels=c("A)","B)","C)"),font=2)
-dev.off()
+par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.25,0.75,0.1,0))
+deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale")
+deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale")
+par(new=T)
+q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
+contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
+        xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
+syncexpplot(resp.wmf=wmfwt(wlm_dvc$wts[[1]]),exp.sync = predsync(wlm_dvc)[[3]],1987:2016,
+            wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
 
 #make plots of phase by timescale for all significant pairs of variables (Fig S3)
 png("Results/FigS3.png",res=600,height=4800,width=3200)
 #tiff("Results/FigS3.tiff",res=600,height=4800,width=3200,compression=c("lzw"))
 source("Functions/Fn_phaseplot.R")
+TabS1_results<-readRDS(file = "Results/TableS1.rds")
+TabS1_results<-cbind(TabS1_results[,1:3],apply(TabS1_results[,4:7],2,function(x){round(x,4)}))
+wmeiabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterMEI" &  TabS1_results$Timescale=="4-7"]
+wmeiabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterMEI" &  TabS1_results$Timescale=="3-7"]
+wpdoabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterPDO" &  TabS1_results$Timescale=="4-7"]
+wpdoabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterPDO" &  TabS1_results$Timescale=="3-7"]
+snowabun_phase34<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-4"]
+snowabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-7"]
+hunterphase2_2.5<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-7"]
+
 par(mfrow=c(4,2),mar=c(2.5,4,2.5,0.5),mgp=c(1.5,0.5,0),cex.lab=1.5,las=1)
-phaseplot(climate.spcoh$WinterMEI.Abun$empirical,climate.spcoh$WinterMEI.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
+phaseplot(get_coher(clim.res$WinterMEI.Abun),clim.res$WinterMEI.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
 rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wmeiabun_phase37,3)))))
 mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wmeiabun_phase47,3)))))
 mtext("A)",font=2,adj=0)
-phaseplot(climate.spcoh$SummerMEI.Abun$empirical,climate.spcoh$SummerMEI.Abun$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="")
+phaseplot(get_coher(clim.res$SummerMEI.Abun),clim.res$SummerMEI.Abun$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="")
 mtext("B)",font=2,adj=0)
-phaseplot(climate.spcoh$WinterPDO.Abun$empirical,climate.spcoh$WinterPDO.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
+phaseplot(get_coher(clim.res$WinterPDO.Abun),clim.res$WinterPDO.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
 rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wpdoabun_phase37,3)))))
 mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wpdoabun_phase47,3)))))
 mtext("C)",font=2,adj=0)
-phaseplot(winter.spcoh$Snwd.Abun$empirical,winter.spcoh$Snwd.Abun$timescales,showphase=F,type="pi",tsrange=c(3,7),ylab="",xlab="")
+phaseplot(get_coher(weath.res$Snwd.Abun),weath.res$Snwd.Abun$timescales,showphase=F,type="pi",tsrange=c(3,7),ylab="",xlab="")
 mtext("D)",font=2,adj=0)
 rect(xleft=3,ybottom = -pi,xright = 4,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
-mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(snowabun_phase3_7,3)))))
-mtext(line=1,adj=1,cex=0.75,bquote(paste("3-4, ",bar(theta)==.(round(snowabun_phase3_4,3)))))
-phaseplot(dvc.spcoh$empirical,dvc.spcoh$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
+mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(snowabun_phase37,3)))))
+mtext(line=1,adj=1,cex=0.75,bquote(paste("3-4, ",bar(theta)==.(round(snowabun_phase34,3)))))
+phaseplot(get_coher(dvc.res),dvc.res$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
 mtext("E)",font=2,adj=0)
-phaseplot(adjdvc.spcoh$empirical,adjdvc.spcoh$timescales,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="")
+phaseplot(get_coher(adjdvc.res),adjdvc.res$timescales,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="")
 mtext("F)",font=2,adj=0)
-phaseplot(hunter.spcoh$empirical,hunter.spcoh$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="Phase")
+phaseplot(get_coher(hunter.res),hunter.res$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="Phase")
 mtext("G)",font=2,adj=0)
 rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))
 dev.off()
+#make plots of phase by timescale for all significant pairs of variables (Fig S3)
+# png("Results/FigS3.png",res=600,height=4800,width=3200)
+# #tiff("Results/FigS3.tiff",res=600,height=4800,width=3200,compression=c("lzw"))
+# source("Functions/Fn_phaseplot.R")
+# par(mfrow=c(4,2),mar=c(2.5,4,2.5,0.5),mgp=c(1.5,0.5,0),cex.lab=1.5,las=1)
+# phaseplot(climate.spcoh$WinterMEI.Abun$empirical,climate.spcoh$WinterMEI.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
+# rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
+# mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wmeiabun_phase37,3)))))
+# mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wmeiabun_phase47,3)))))
+# mtext("A)",font=2,adj=0)
+# phaseplot(climate.spcoh$SummerMEI.Abun$empirical,climate.spcoh$SummerMEI.Abun$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="")
+# mtext("B)",font=2,adj=0)
+# phaseplot(climate.spcoh$WinterPDO.Abun$empirical,climate.spcoh$WinterPDO.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
+# rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
+# mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wpdoabun_phase37,3)))))
+# mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wpdoabun_phase47,3)))))
+# mtext("C)",font=2,adj=0)
+# phaseplot(winter.spcoh$Snwd.Abun$empirical,winter.spcoh$Snwd.Abun$timescales,showphase=F,type="pi",tsrange=c(3,7),ylab="",xlab="")
+# mtext("D)",font=2,adj=0)
+# rect(xleft=3,ybottom = -pi,xright = 4,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
+# mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(snowabun_phase3_7,3)))))
+# mtext(line=1,adj=1,cex=0.75,bquote(paste("3-4, ",bar(theta)==.(round(snowabun_phase3_4,3)))))
+# phaseplot(dvc.spcoh$empirical,dvc.spcoh$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
+# mtext("E)",font=2,adj=0)
+# phaseplot(adjdvc.spcoh$empirical,adjdvc.spcoh$timescales,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="")
+# mtext("F)",font=2,adj=0)
+# phaseplot(hunter.spcoh$empirical,hunter.spcoh$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="Phase")
+# mtext("G)",font=2,adj=0)
+# rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
+# mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))
+# dev.off()
 
 #Make plot of ranks by timescale for all significant pairs of variables (Fig S4)
 source("Functions/Fn_rankplot.R")
