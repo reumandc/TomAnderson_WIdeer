@@ -17,14 +17,14 @@ dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,tim
 # dvc.wt<-warray(dvc.dt,times=1987:maxyear)
 
 # # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
-# tot.wd<-4.75
-# xht<-0.75   #height of x axis label region
-# ywd<-0.5    #width of y axis label region
-# zwd<-0.5    #width of z-axes label region
-# gap<-.2   #small gap 
-# pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
-# pan.ht<-0.75*pan.wd+zwd #big ones are square
-# tot.ht<-3*pan.ht+xht+3*gap
+ tot.wd<-4.75
+ xht<-0.75   #height of x axis label region
+ ywd<-0.5    #width of y axis label region
+ zwd<-0.5    #width of z-axes label region
+ gap<-.2   #small gap 
+ pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
+ pan.ht<-0.75*pan.wd+zwd #big ones are square
+ tot.ht<-3*pan.ht+xht+3*gap
 
 #Make abundance wavelet mean field, wavelet phasor mean field, and predicted synchrony in deer abundance 
 #by snow depth, winter MEI and winter PDo (Fig 2)
