@@ -1,8 +1,8 @@
 #Make figures for the manuscript
-source("Functions/Fn_wsurfplot_modified.R")
 source("Functions/Fn_wmfwt.R")
 source("Functions/Fn_syncexpplot.R")
 source("Functions/deer_plotting_functions.R")
+
 #Make Fig. 1
 library(wsyn)
 source("Code/PedagogFig.R")
@@ -10,11 +10,7 @@ source("Code/PedagogFig.R")
 #clean data for Figs 2 and 3
 abun.dt<-cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
 dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,times=1987:maxyear)$cdat
-# library(Reumannplatz)
 # 
-# #generate wavelet transforms
-# abun.wt<-warray(abun.dt,times=minyear:maxyear)
-# dvc.wt<-warray(dvc.dt,times=1987:maxyear)
 
 # # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
  tot.wd<-4.75
@@ -26,49 +22,12 @@ dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,tim
  pan.ht<-0.75*pan.wd+zwd #big ones are square
  tot.ht<-3*pan.ht+xht+3*gap
 
-#Make abundance wavelet mean field, wavelet phasor mean field, and predicted synchrony in deer abundance 
-#by snow depth, winter MEI and winter PDo (Fig 2)
-# png(filename="Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-# #tiff("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-# #pdf("Results/Fig2.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
-# wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wmf",tsrange=c(3,7),
-#              xlab="Year",ylab="Timescales",xtcklab=rep("",9),smallplot=c(0.95,0.99,0.05,0.95))
-# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-# wsurfplotTLA(abun.dt,times=1981:2016,colorbar=T,type="wpmf",tsrange=c(3,7),siglevel = c(0.999),zlims = c(0,1),xlab="",xtcklab=rep("",9),ylab="Timescales",smallplot=c(0.95,0.99,0.05,0.95))
-# abline(h=c(3,7),lty=c(2,2))
-# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-# contour(Mod(wpmf(abun.dt,times=1981:2016)$wpmf),levels = 0.31,drawlabels=F,lwd=2,xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),frame=F,font=2)
-# mtext(text = "Timescales",line = 1.3,side = 2,cex=1.25)
-# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,xht/tot.ht,(xht+pan.ht)/tot.ht),mai=c(0,0,0,0),new=T)
-# syncexpplot(resp.wmf=wmfwt(wlm_abun$wts[[1]]),exp.sync = predsync(wlm_abun)[[3]],times=1981:2016,abun.wt$timescales,smallplot=c(0.95,0.99,0.05,0.95))
-# mtext(text = "Year",line = -2,side = 1,cex=1.25)
-# text(x=c(rep(1985.5,3)),y=c(log2(14),log2(7.5),log2(4)),labels=c("A)","B)","C)"),font=2)
-# dev.off()
-# 
-# #Make DVC wavelet mean field, wavelet phasor mean field, and predicted synchrony in DVCs by deer abundance (Fig 3)
-# png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-# #tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-# #pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+2*pan.ht+2*gap)/tot.ht,(xht+3*pan.ht+2*gap)/tot.ht),mai=c(0,0,0,0),mgp=c(1,0.5,0))
-# wsurfplotTLA(dvc.dt,times=1987:2016,colorbar=T,type="wmf",tsrange=c(3,7),ylab="TS",xlab="",xtcklab = rep("",8),smallplot=c(0.95,0.99,0.05,0.95))
-# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-# wsurfplotTLA(dvc.dt,times=1987:2016,colorbar=T,type="wpmf",tsrange=c(3,7),zlims = c(0,1),xlab="",siglevel = c(0.999),xtcklab = rep("",8),smallplot=c(0.95,0.99,0.05,0.95))
-# #par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,(xht+pan.ht+gap)/tot.ht,(xht+2*pan.ht+gap)/tot.ht),mai=c(0,0,0,0),new=T)
-# contour(Mod(wpmf(dvc.dt,times=1987:2016)$wpmf),levels = 0.31,drawlabels=F,lwd=2,xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),frame=F)
-# mtext(text = "Timescales",line = 1.3,side = 2,cex=1.25)
-# par(fig=c(ywd/tot.wd,(ywd+pan.wd)/tot.wd,xht/tot.ht,(xht+pan.ht)/tot.ht),mai=c(0,0,0,0),new=T)
-# syncexpplot(resp.wmf=wmfwt(wlm_dvc$wts[[1]]),exp.sync = predsync(wlm_dvc)[[3]],1987:2016,wlm_dvc$timescales,ylab = "",xlab="Year",smallplot=c(0.95,0.99,0.05,0.95))
-# mtext(text = "Year",line = -1.5,side = 1,cex=1.25)
-# text(x=c(rep(1990.5,3)),y=c(log2(11.3),log2(6.5),log2(3.7)),labels=c("A)","B)","C)"),font=2)
-# dev.off()
-
 abun.wpmf<-wsyn::wpmf(abun.dt,times = minyear:maxyear,sigmethod = "quick")
 abun.wmf<-wsyn::wmf(abun.dt,times = minyear:maxyear)
 dvc.wpmf<-wsyn::wpmf(dvc.dt,times = 1987:maxyear,sigmethod = "quick")
 dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 
-#New Abundance plot
+#Make Figure 2
 png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 #tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
@@ -82,7 +41,7 @@ contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),l
 syncexpplot(resp.wmf=wmfwt(wlm_abun$wts[[1]]),exp.sync = predsync(wlm_abun)[[3]],1981:2016,
             wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
 
-#New DVC plot
+#Make Figure 3
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 #tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 #pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
@@ -137,37 +96,6 @@ mtext("G)",font=2,adj=0)
 rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))
 dev.off()
-#make plots of phase by timescale for all significant pairs of variables (Fig S3)
-# png("Results/FigS3.png",res=600,height=4800,width=3200)
-# #tiff("Results/FigS3.tiff",res=600,height=4800,width=3200,compression=c("lzw"))
-# source("Functions/Fn_phaseplot.R")
-# par(mfrow=c(4,2),mar=c(2.5,4,2.5,0.5),mgp=c(1.5,0.5,0),cex.lab=1.5,las=1)
-# phaseplot(climate.spcoh$WinterMEI.Abun$empirical,climate.spcoh$WinterMEI.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
-# rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
-# mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wmeiabun_phase37,3)))))
-# mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wmeiabun_phase47,3)))))
-# mtext("A)",font=2,adj=0)
-# phaseplot(climate.spcoh$SummerMEI.Abun$empirical,climate.spcoh$SummerMEI.Abun$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="")
-# mtext("B)",font=2,adj=0)
-# phaseplot(climate.spcoh$WinterPDO.Abun$empirical,climate.spcoh$WinterPDO.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
-# rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
-# mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wpdoabun_phase37,3)))))
-# mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wpdoabun_phase47,3)))))
-# mtext("C)",font=2,adj=0)
-# phaseplot(winter.spcoh$Snwd.Abun$empirical,winter.spcoh$Snwd.Abun$timescales,showphase=F,type="pi",tsrange=c(3,7),ylab="",xlab="")
-# mtext("D)",font=2,adj=0)
-# rect(xleft=3,ybottom = -pi,xright = 4,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
-# mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(snowabun_phase3_7,3)))))
-# mtext(line=1,adj=1,cex=0.75,bquote(paste("3-4, ",bar(theta)==.(round(snowabun_phase3_4,3)))))
-# phaseplot(dvc.spcoh$empirical,dvc.spcoh$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
-# mtext("E)",font=2,adj=0)
-# phaseplot(adjdvc.spcoh$empirical,adjdvc.spcoh$timescales,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="")
-# mtext("F)",font=2,adj=0)
-# phaseplot(hunter.spcoh$empirical,hunter.spcoh$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="Phase")
-# mtext("G)",font=2,adj=0)
-# rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
-# mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))
-# dev.off()
 
 #Make plot of ranks by timescale for all significant pairs of variables (Fig S4)
 source("Functions/Fn_rankplot.R")
@@ -201,14 +129,15 @@ png("Results/FigS5.png",res=600,height=4800,width=3000)
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
 hunters.dt<-cleandat(hunters.tmp,clev=5,times=1992:2016)$cdat
+hunters.wpmf<-wsyn::wpmf(hunters.dt,times=1992:2016,sigmethod = "quick")
+hunters.wmf<-wsyn::wmf(hunters.dt,times=1992:2016)
 par(mfrow=c(3,1),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-wsurfplotTLA(hunters.dt,times=1992:2016,colorbar=T,type="wmf",ylab="",xlab="")
+deer_wmfplot(hunters.wmf,colorbar=T,ylab="",xlab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(hunters.dt,times=1992:2016,colorbar=T,zlims = c(0,1),type="wpmf",xlab="",siglevel=0.999)
+deer_wpmfplot(hunters.wpmf,colorbar=T,zlims = c(0,1),xlab="",sigthresh=0.999,ylab="Timescale")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-abun.dt1<-cleandat(cty.list$Abun[rownames(hunters.tmp),12:dim(cty.list$Hunters)[2]],clev=5,times=1992:2016)
-abun.wt1<-warray(abun.dt1$cdat,times=1992:2016)
-syncexpplot(resp.wmf=wmfwt(abun.wt1$wave.array),exp.sync = hunterabun.es2_2.5$pred.wmf,1992:2016,hunterabun.es2_2.5$timescales,ylab = "",xlab="Year")
+syncexpplot(resp.wmf=wmfwt(wlm_hunters$wts[[1]]),exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
+            wlm_hunters$timescales,ylab = "",xlab="Year")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
@@ -216,17 +145,17 @@ dev.off()
 png("Results/FigS8.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS8.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-wsurfplotTLA(cleandat(climindex$WinterPDO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="")
+deer_wmfplot(wsyn::wt(cleandat(climindex$WinterPDO[1,],clev=5,times=minyear:maxyear)$cdat,times=minyear:maxyear),colorbar=T,xlab="",ylab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(cleandat(climindex$SummerPDO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="",ylab="")
+deer_wmfplot(cleandat(climindex$SummerPDO[1,],clev=5,times=minyear:maxyear)$cdat,colorbar=T,xlab="",ylab="")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(cleandat(climindex$WinterNAO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="")
+deer_wmfplot(cleandat(climindex$WinterNAO[1,],clev=5,times=minyear:maxyear)$cdat,colorbar=T,xlab="")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(cleandat(climindex$SummerNAO[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",ylab="",xlab="")
+deer_wmfplot(cleandat(climindex$SummerNAO[1,],clev=5,times=minyear:maxyear)$cdat,colorbar=T,ylab="",xlab="")
 mtext("D)",adj=0.05,font=2,line=-1.2,side=3)
-wsurfplotTLA(cleandat(climindex$WinterMEI[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="Year",ylab="Timescale")
+deer_wmfplot(cleandat(climindex$WinterMEI[1,],clev=5,times=minyear:maxyear)$cdat,colorbar=T,xlab="Year",ylab="Timescale")
 mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(cleandat(climindex$SummerMEI[1,],clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="power",xlab="Year",ylab="Timescale")
+deer_wmfplot(cleandat(climindex$SummerMEI[1,],clev=5,times=minyear:maxyear)$cdat,colorbar=T,xlab="Year",ylab="Timescale")
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
@@ -235,21 +164,21 @@ png("Results/FigS7.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS7.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 winter.clim.dt<-lapply(winter.clim,function(x){x<-cleandat(x[!(is.na(rowMeans(x))),],clev=5,times=minyear:maxyear)$cdat;x})
 par(mfrow=c(4,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-wsurfplotTLA(winter.clim.dt$Tmin,times=1981:2016,colorbar=T,type="wmf",xlab="")
+deer_wmfplot(wmf(winter.clim.dt$Tmin,times=1981:2016),colorbar=T,xlab="",ylab="Timescale")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(winter.clim.dt$Tmin,times=1981:2016,colorbar=T,type="wpmf",xlab="",siglevel = 0.999)
+deer_wpmfplot(wpmf(winter.clim.dt$Tmin,times=1981:2016,sigmethod="quick"),colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(winter.clim.dt$Tmax,times=1981:2016,colorbar=T,type="wmf",ylab="",xlab="")
+deer_wmfplot(wmf(winter.clim.dt$Tmax,times=1981:2016),colorbar=T,xlab="",ylab="Timescale")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(winter.clim.dt$Tmax,times=1981:2016,colorbar=T,type="wpmf",ylab="",xlab="",siglevel = 0.999)
+deer_wpmfplot(wpmf(winter.clim.dt$Tmax,times=1981:2016,sigmethod="quick"),colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
 mtext("D)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(winter.clim.dt$Snwd,times=1981:2016,colorbar=T,type="wmf")
+deer_wmfplot(wmf(winter.clim.dt$Snwd,times=1981:2016),colorbar=T,xlab="",ylab="Timescale")
 mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(winter.clim.dt$Snwd,times=1981:2016,colorbar=T,type="wpmf",siglevel = 0.999)
+deer_wpmfplot(wpmf(winter.clim.dt$Snwd,times=1981:2016,sigmethod="quick"),colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(winter.clim.dt$Prcp,times=1981:2016,colorbar=T,type="wmf",ylab="")
+deer_wmfplot(wmf(winter.clim.dt$Prcp,times=1981:2016),colorbar=T,xlab="",ylab="Timescale")
 mtext("G)",adj=0.05,font=2,line=-1.2,side=3)
-wsurfplotTLA(winter.clim.dt$Prcp,times=1981:2016,colorbar=T,type="wpmf",ylab="",siglevel = 0.999)
+deer_wpmfplot(wpmf(winter.clim.dt$Prcp,times=1981:2016,sigmethod="quick"),colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
 mtext("H)",adj=0.05,font=2,line=-1.2,side=3)
 dev.off()
 
@@ -257,25 +186,38 @@ dev.off()
 #deer abundance and DVCs using USDA district data
 png("Results/FigS6.png",res=600,height=9,width=7,unit="in")
 #tiff("Results/FigS6.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
-source("Functions/Fn_wsurfplot_modified.R")
 usda.abun.dt<-cleandat(usda.list$Abun,clev=5,times=minyear:maxyear)$cdat
-usda.dvc.dt<-cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=minyear:maxyear)$cdat
-#generate wavelet transforms
-usda.abun.wt<-warray(usda.abun.dt,times=1981:2016)
-usda.dvc.wt<-warray(usda.dvc.dt,times=1987:2016)
+usda.dvc.dt<-cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=1987:maxyear)$cdat
 
+#generate mean fields
+abun.wpmf.usda<-wsyn::wpmf(usda.abun.dt,times = minyear:maxyear,sigmethod = "quick")
+abun.wmf.usda<-wsyn::wmf(usda.abun.dt,times = minyear:maxyear)
+dvc.wpmf.usda<-wsyn::wpmf(usda.dvc.dt,times = 1987:maxyear,sigmethod = "quick")
+dvc.wmf.usda<-wsyn::wmf(usda.dvc.dt,times = 1987:maxyear)
+
+#make plots
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-wsurfplotTLA(cleandat(usda.list$Abun,clev=5,times=minyear:maxyear)$cdat,times=1981:2016,colorbar=T,type="wmf",xlab="",ylab="")
+deer_wmfplot(abun.wmf.usda,xlab="",ylab="Timescale")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=minyear:maxyear)$cdat,times=1987:2016,colorbar=T,type="wmf",xlab="",ylab="")
+deer_wmfplot(dvc.wmf.usda,xlab="",ylab="Timescale")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(cleandat(usda.list$Abun)$cdat,times=1981:2016,colorbar=T,type="wpmf",siglevel = 0.999,xlab="")
+deer_wpmfplot(abun.wpmf.usda,sigthresh = 0.001,xlab="",ylab="Timescale")
+par(new=T)
+q<-stats::quantile(abun.wpmf.usda$signif[[2]],0.999)
+contour(x=abun.wpmf.usda$times,y=log2(abun.wpmf.usda$timescales),z=Mod(abun.wpmf.usda$values),levels=q,drawlabels=F,lwd=2,
+        xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-wsurfplotTLA(cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=minyear:maxyear)$cdat,times=1987:2016,colorbar=T,type="wpmf",siglevel = 0.999,xlab="",ylab="")
+deer_wpmfplot(dvc.wpmf.usda,sigthresh = 0.001,xlab="",ylab="Timescale")
+par(new=T)
+q<-stats::quantile(dvc.wpmf.usda$signif[[2]],0.999)
+contour(x=dvc.wpmf.usda$times,y=log2(dvc.wpmf.usda$timescales),z=Mod(dvc.wpmf.usda$values),levels=q,drawlabels=F,lwd=2,
+        xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
 mtext("D)",adj=0.05,line=-1.2,side=3,font=2)
-syncexpplot(resp.wmf=wmfwt(usda.abun.wt$wave.array),exp.sync = usda.model.es$exp.sync,times=1981:2016,abun.wt$timescales,ylab="")
+syncexpplot(resp.wmf=wmfwt(usda.wlm_abun$wts[[1]]),exp.sync = predsync(usda.wlm_abun)[[3]],1981:2016,
+            usda.wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
 mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
-syncexpplot(resp.wmf=wmfwt(usda.dvc.wt$wave.array),exp.sync = usda.dvcabun.es$pred.wmf,times=1987:2016,dvc.wt$timescales,ylab="")
+syncexpplot(resp.wmf=wmfwt(usda.wlm_dvc$wts[[1]]),exp.sync = predsync(usda.wlm_dvc)[[3]],1987:2016,
+            usda.wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 

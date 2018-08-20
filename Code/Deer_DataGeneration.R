@@ -184,6 +184,7 @@ for(j in vars){
   cty.list[[j]]<-cty.mat
 }
 cty.list<-lapply(cty.list,function(x){row.names(x)<-unique(dat$COUNTY_NAM);x})
+saveRDS(cty.list,"Results/cty.list.rds")
 
 #Generate raw district data
 usda.mat<-matrix(NA,length(unique(usda.dat$Zone)),length(minyear:maxyear))
@@ -198,4 +199,4 @@ for(j in vars){
   usda.list[[j]]<-usda.mat
 }
 usda.list<-lapply(usda.list,function(x){row.names(x)<-sort(unique(usda$Zone));x})
-
+saveRDS(usda.list,"Results/usda.list.rds")

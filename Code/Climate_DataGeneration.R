@@ -112,133 +112,130 @@ usda.clim<-merge(cty.clim,usda,by.x="COUNTY_NAM",by.y="County",all=T)
 usda.month<-merge(cty.month,usda,by.x="COUNTY_NAM",by.y="County",all=T)
 
 # County Climate Data -----------------------------------------------------
-if(scale.flag=="county"||scale.flag=="both"){
-  
-  #Winter weather conditions
-  winter.tmp<-matrix(NA, ncol=length(unique(cty.month$COUNTY_NAM)),nrow=length(minyear:maxyear))
-  winter.clim<-list()
-  years<-minyear:maxyear
-  ctynames<-sort(unique(cty.month$COUNTY_NAM))
-  respvars<-c("Tmin","Tmax","Pcp","Snwd")
-  
-  for(resp in respvars){
-    for(ctyname in ctynames){      
-      for(year in years){
-        tmp<-cty.month[cty.month$COUNTY_NAM==ctyname & cty.month$Year==year & cty.month$Month<=3,] 
-        tmp<-rbind(tmp, cty.month[cty.month$COUNTY_NAM==ctyname & cty.month$Year==(year-1) & cty.month$Month>=12,])
-        
-        if(length(tmp)==0){
-          winter.tmp[years %in% year,ctynames %in% ctyname]<-NA
-        }
-        else{
-          tmp1<-mean(tmp[,resp],na.rm=T)
-          winter.tmp[years %in% year,ctynames %in% ctyname]<-tmp1
-        }
-      }
+#Winter weather conditions
+winter.tmp<-matrix(NA, ncol=length(unique(cty.month$COUNTY_NAM)),nrow=length(minyear:maxyear))
+winter.clim<-list()
+years<-minyear:maxyear
+ctynames<-sort(unique(cty.month$COUNTY_NAM))
+respvars<-c("Tmin","Tmax","Pcp","Snwd")
+
+for(resp in respvars){
+for(ctyname in ctynames){      
+  for(year in years){
+    tmp<-cty.month[cty.month$COUNTY_NAM==ctyname & cty.month$Year==year & cty.month$Month<=3,] 
+    tmp<-rbind(tmp, cty.month[cty.month$COUNTY_NAM==ctyname & cty.month$Year==(year-1) & cty.month$Month>=12,])
+    
+    if(length(tmp)==0){
+      winter.tmp[years %in% year,ctynames %in% ctyname]<-NA
     }
-    winter.clim[[resp]]<-winter.tmp
+    else{
+      tmp1<-mean(tmp[,resp],na.rm=T)
+      winter.tmp[years %in% year,ctynames %in% ctyname]<-tmp1
+    }
   }
+}
+winter.clim[[resp]]<-winter.tmp
+}
+
+#calculate winter severity index (wsi) for each location
+#wsi is the sum of number of days below 0 temp, and number of days with greater than 18" (45cm) snow
+wsi.mat<-matrix(NA, ncol=length(unique(cty.month$COUNTY_NAM)),nrow=length(minyear:maxyear))
+years<-minyear:maxyear
+ctynames<-sort(unique(cty.month$COUNTY_NAM))
+
+for(ctyname in ctynames){      
+for(year in years){
+  tmp<-cty.clim[cty.clim$COUNTY_NAM==ctyname & cty.clim$Year==year & cty.clim$Month<=4,] 
+  tmp<-rbind(tmp, cty.clim[cty.clim$COUNTY_NAM==ctyname & cty.clim$Year==(year-1) & cty.clim$Month>=12,])
   
-  #calculate winter severity index (wsi) for each location
-  #wsi is the sum of number of days below 0 temp, and number of days with greater than 18" (45cm) snow
-  wsi.mat<-matrix(NA, ncol=length(unique(cty.month$COUNTY_NAM)),nrow=length(minyear:maxyear))
-  years<-minyear:maxyear
-  ctynames<-sort(unique(cty.month$COUNTY_NAM))
-  
-  for(ctyname in ctynames){      
+  if(nrow(tmp)==0){
+    wsi.mat[years %in% year,ctynames %in% ctyname]<-NA
+  }
+  else{
+    if(sum(is.na(tmp$TMIN))>(0.10*dim(tmp)[1])||sum(is.na(tmp$SNWD))>(0.10*dim(tmp)[1])){
+      wsi.mat[years %in% year,ctynames %in% ctyname]<-NA
+    }
+    else{
+      air<-sum(tmp$TMIN<(-17.778),na.rm=T)
+      snow<-sum(tmp$SNWD/10>45.72,na.rm=T)
+      wsi<-air+snow
+      wsi.mat[years %in% year,ctynames %in% ctyname]<-wsi
+    }
+  }
+}
+}
+colnames(wsi.mat)<-ctynames
+
+#impute mean value if the number of NAs in a county is 2 or less
+wsi.mat1<-matrix(wsi.mat,ncol=ncol(wsi.mat),nrow=nrow(wsi.mat))
+for(i in 1:ncol(wsi.mat1)){
+if(sum(is.na(wsi.mat1[,i]))<3){
+  wsi.mat1[is.na(wsi.mat1[,i]), i] <- mean(wsi.mat1[,i], na.rm = TRUE)
+}
+}
+winter.clim[[5]]<-wsi.mat1
+winter.clim<-lapply(winter.clim,t)
+winter.clim<-lapply(winter.clim,function(x){rownames(x)<-colnames(wsi.mat);x})
+names(winter.clim)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
+saveRDS(winter.clim,"Results/winter.clim.usda.rds")
+
+#Winter conditions for USDA districts
+winter.tmp<-matrix(NA, ncol=length(unique(usda.month$Zone)),nrow=length(minyear:maxyear))
+winter.clim.usda<-list()
+years<-minyear:maxyear
+usda.names<-sort(unique(usda.month$Zone))
+respvars<-c("Tmin","Tmax","Pcp","Snwd")
+
+for(resp in respvars){
+  for(usdaname in usda.names){      
     for(year in years){
-      tmp<-cty.clim[cty.clim$COUNTY_NAM==ctyname & cty.clim$Year==year & cty.clim$Month<=4,] 
-      tmp<-rbind(tmp, cty.clim[cty.clim$COUNTY_NAM==ctyname & cty.clim$Year==(year-1) & cty.clim$Month>=12,])
+      tmp<-usda.month[usda.month$Zone==usdaname & usda.month$Year==year & usda.month$Month<=3,] 
+      tmp<-rbind(tmp, usda.month[usda.month$Zone==usdaname & usda.month$Year==(year-1) & usda.month$Month>=12,])
       
-      if(nrow(tmp)==0){
-        wsi.mat[years %in% year,ctynames %in% ctyname]<-NA
+      if(length(tmp)==0){
+        winter.tmp[years %in% year,usda.names %in% usdaname]<-NA
       }
       else{
-        if(sum(is.na(tmp$TMIN))>(0.10*dim(tmp)[1])||sum(is.na(tmp$SNWD))>(0.10*dim(tmp)[1])){
-          wsi.mat[years %in% year,ctynames %in% ctyname]<-NA
-        }
-        else{
-          air<-sum(tmp$TMIN<(-17.778),na.rm=T)
-          snow<-sum(tmp$SNWD/10>45.72,na.rm=T)
-          wsi<-air+snow
-          wsi.mat[years %in% year,ctynames %in% ctyname]<-wsi
-        }
+        tmp1<-mean(tmp[,resp],na.rm=T)
+        winter.tmp[years %in% year,usda.names %in% usdaname]<-tmp1
       }
     }
   }
-  colnames(wsi.mat)<-ctynames
-  
-  #impute mean value if the number of NAs in a county is 2 or less
-  wsi.mat1<-matrix(wsi.mat,ncol=ncol(wsi.mat),nrow=nrow(wsi.mat))
-  for(i in 1:ncol(wsi.mat1)){
-    if(sum(is.na(wsi.mat1[,i]))<3){
-      wsi.mat1[is.na(wsi.mat1[,i]), i] <- mean(wsi.mat1[,i], na.rm = TRUE)
-    }
-  }
-  winter.clim[[5]]<-wsi.mat1
-  winter.clim<-lapply(winter.clim,t)
-  winter.clim<-lapply(winter.clim,function(x){rownames(x)<-colnames(wsi.mat);x})
-  names(winter.clim)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
-}  
-
-if(scale.flag=="usda"||scale.flag=="both"){
-    #Winter conditions for USDA districts
-    winter.tmp<-matrix(NA, ncol=length(unique(usda.month$Zone)),nrow=length(minyear:maxyear))
-    winter.clim.usda<-list()
-    years<-minyear:maxyear
-    usda.names<-sort(unique(usda.month$Zone))
-    respvars<-c("Tmin","Tmax","Pcp","Snwd")
-    
-    for(resp in respvars){
-      for(usdaname in usda.names){      
-        for(year in years){
-          tmp<-usda.month[usda.month$Zone==usdaname & usda.month$Year==year & usda.month$Month<=3,] 
-          tmp<-rbind(tmp, usda.month[usda.month$Zone==usdaname & usda.month$Year==(year-1) & usda.month$Month>=12,])
-          
-          if(length(tmp)==0){
-            winter.tmp[years %in% year,usda.names %in% usdaname]<-NA
-          }
-          else{
-            tmp1<-mean(tmp[,resp],na.rm=T)
-            winter.tmp[years %in% year,usda.names %in% usdaname]<-tmp1
-          }
-        }
-      }
-      winter.clim.usda[[resp]]<-winter.tmp
-    }
-    
-    #calculate winter severity index (wsi) for each usda district
-    #wsi is the sum of number of days below 0 temp, and number of days with greater than 18" (45cm) snow
-    wsi.usda.mat<-matrix(NA, ncol=length(unique(usda.clim$Zone)),nrow=length(minyear:maxyear))
-    years<-minyear:maxyear
-    usda.names<-sort(unique(usda$Zone))
-    
-    for(usdaname in usda.names){      
-      for(year in years){
-        tmp<-usda.clim[usda.clim$Zone==usdaname & usda.clim$Year==year & usda.clim$Month<=4,] 
-        tmp<-rbind(tmp, usda.clim[usda.clim$Zone==usdaname & usda.clim$Year==(year-1) & usda.clim$Month>=12,])
-        tmp<-aggregate(cbind(TMIN,TMAX,PRCP,SNWD)~Year+Month+Jdate,FUN="mean",data=tmp,na.rm=T) #average values across district
-        if(nrow(tmp)==0){
-          wsi.mat[years %in% year,usda.names %in% usdaname]<-NA
-        }
-        else{
-          if(sum(is.na(tmp$TMIN))>(0.10*dim(tmp)[1])||sum(is.na(tmp$SNWD))>(0.10*dim(tmp)[1])){
-            wsi.usda.mat[years %in% year,usda.names %in% usdaname]<-NA
-          }
-          else{
-            air<-sum(tmp$TMIN<(-17.778),na.rm=T)
-            snow<-sum(tmp$SNWD/10>45.72,na.rm=T)
-            wsi<-air+snow
-            wsi.usda.mat[years %in% year,usda.names %in% usdaname]<-wsi
-          }
-        }
-      }
-    }
-    colnames(wsi.usda.mat)<-usda.names
-    winter.clim.usda[[5]]<-wsi.usda.mat
-    winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-t(x);x})
-    names(winter.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
+  winter.clim.usda[[resp]]<-winter.tmp
 }
+
+#calculate winter severity index (wsi) for each usda district
+#wsi is the sum of number of days below 0 temp, and number of days with greater than 18" (45cm) snow
+wsi.usda.mat<-matrix(NA, ncol=length(unique(usda.clim$Zone)),nrow=length(minyear:maxyear))
+years<-minyear:maxyear
+usda.names<-sort(unique(usda$Zone))
+
+for(usdaname in usda.names){      
+  for(year in years){
+    tmp<-usda.clim[usda.clim$Zone==usdaname & usda.clim$Year==year & usda.clim$Month<=4,] 
+    tmp<-rbind(tmp, usda.clim[usda.clim$Zone==usdaname & usda.clim$Year==(year-1) & usda.clim$Month>=12,])
+    tmp<-aggregate(cbind(TMIN,TMAX,PRCP,SNWD)~Year+Month+Jdate,FUN="mean",data=tmp,na.rm=T) #average values across district
+    if(nrow(tmp)==0){
+      wsi.mat[years %in% year,usda.names %in% usdaname]<-NA
+    }
+    else{
+      if(sum(is.na(tmp$TMIN))>(0.10*dim(tmp)[1])||sum(is.na(tmp$SNWD))>(0.10*dim(tmp)[1])){
+        wsi.usda.mat[years %in% year,usda.names %in% usdaname]<-NA
+      }
+      else{
+        air<-sum(tmp$TMIN<(-17.778),na.rm=T)
+        snow<-sum(tmp$SNWD/10>45.72,na.rm=T)
+        wsi<-air+snow
+        wsi.usda.mat[years %in% year,usda.names %in% usdaname]<-wsi
+      }
+    }
+  }
+}
+colnames(wsi.usda.mat)<-usda.names
+winter.clim.usda[[5]]<-wsi.usda.mat
+winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-t(x);x})
+names(winter.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
+saveRDS(winter.clim.usda,"Results/winter.clim.usda.rds")
 
 #load large climate indice data
 climate_indices <- read.csv("Data/climate_indices.csv")
@@ -312,33 +309,32 @@ for(year in years){
 }
 
 #put into repeating matrices
-if(scale.flag=="usda"||scale.flag=="both"){
-  win.nao.mat<-matrix(winter.nao[1:length(winter.nao)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
-  win.pdo.mat<-matrix(winter.pdo[1:length(winter.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
-  win.mei.mat<-matrix(winter.mei[1:length(winter.mei)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
+win.nao.mat<-matrix(winter.nao[1:length(winter.nao)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
+win.pdo.mat<-matrix(winter.pdo[1:length(winter.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
+win.mei.mat<-matrix(winter.mei[1:length(winter.mei)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
 
-  #summer indices
-  sum.nao.mat<-matrix(summer.nao[1:length(summer.nao)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
-  sum.pdo.mat<-matrix(summer.pdo[1:length(summer.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
-  sum.mei.mat<-matrix(summer.mei[1:length(summer.mei)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
-  climindex.usda<-list(win.nao.mat=win.nao.mat,win.pdo.mat=win.pdo.mat,win.mei.mat=win.mei.mat,
-                       sum.nao.mat=sum.nao.mat,sum.pdo.mat=sum.pdo.mat,sum.mei.mat=sum.mei.mat)#nao.mat=nao.mat,pdo.mat=pdo.mat,mei.mat=mei.mat,
-  names(climindex.usda)<-c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")
-}
-if(scale.flag=="county"||scale.flag=="both"){
-  #winter indices
-  win.nao.mat<-matrix(winter.nao[1:length(winter.nao)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
-  win.pdo.mat<-matrix(winter.pdo[1:length(winter.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T) 
-  win.mei.mat<-matrix(winter.mei[1:length(winter.mei)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T) 
-  #summer indices
-  sum.nao.mat<-matrix(summer.nao[1:length(summer.nao)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
-  sum.pdo.mat<-matrix(summer.pdo[1:length(summer.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
-  sum.mei.mat<-matrix(summer.mei[1:length(summer.mei)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
-  climindex<-list(win.nao.mat=win.nao.mat,win.pdo.mat=win.pdo.mat,win.mei.mat=win.mei.mat,
-                  sum.nao.mat=sum.nao.mat,sum.pdo.mat=sum.pdo.mat,sum.mei.mat=sum.mei.mat)
-  climindex<-lapply(climindex,function(x){row.names(x)<-unique(cty.clim$COUNTY_NAM);x})
-  names(climindex)<-c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")
-}
+#summer indices
+sum.nao.mat<-matrix(summer.nao[1:length(summer.nao)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
+sum.pdo.mat<-matrix(summer.pdo[1:length(summer.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
+sum.mei.mat<-matrix(summer.mei[1:length(summer.mei)],ncol=length(minyear:maxyear),nrow=length(unique(usda.clim$Zone)),byrow=T)
+climindex.usda<-list(win.nao.mat=win.nao.mat,win.pdo.mat=win.pdo.mat,win.mei.mat=win.mei.mat,
+                     sum.nao.mat=sum.nao.mat,sum.pdo.mat=sum.pdo.mat,sum.mei.mat=sum.mei.mat)#nao.mat=nao.mat,pdo.mat=pdo.mat,mei.mat=mei.mat,
+names(climindex.usda)<-c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")
+saveRDS(climindex.usda,"Results/climindex.usda.rds")
 
+
+#winter indices
+win.nao.mat<-matrix(winter.nao[1:length(winter.nao)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
+win.pdo.mat<-matrix(winter.pdo[1:length(winter.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T) 
+win.mei.mat<-matrix(winter.mei[1:length(winter.mei)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T) 
+#summer indices
+sum.nao.mat<-matrix(summer.nao[1:length(summer.nao)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
+sum.pdo.mat<-matrix(summer.pdo[1:length(summer.pdo)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
+sum.mei.mat<-matrix(summer.mei[1:length(summer.mei)],ncol=length(minyear:maxyear),nrow=length(unique(cty.clim$COUNTY_NAM)),byrow=T)
+climindex<-list(win.nao.mat=win.nao.mat,win.pdo.mat=win.pdo.mat,win.mei.mat=win.mei.mat,
+                sum.nao.mat=sum.nao.mat,sum.pdo.mat=sum.pdo.mat,sum.mei.mat=sum.mei.mat)
+climindex<-lapply(climindex,function(x){row.names(x)<-unique(cty.clim$COUNTY_NAM);x})
+names(climindex)<-c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")
+saveRDS(climindex,"Results/climindex.rds")
 
 
