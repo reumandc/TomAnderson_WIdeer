@@ -4,7 +4,7 @@ deer_wpmfplot<-function(object,zlims=NULL,neat=TRUE,xlab,ylab,colorfill=NULL,sig
   times<-get_times(object)
   timescales<-get_timescales(object)
   signif<-get_signif(object)
-  
+
   if (any(sigthresh>=1 | sigthresh<=0))
   {
     stop("Error in plotmag.wpmf: inappropriate value for sigthresh")
@@ -77,12 +77,18 @@ deer_wpmfplot<-function(object,zlims=NULL,neat=TRUE,xlab,ylab,colorfill=NULL,sig
   return(NULL) 
 }
 
-deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,xlab,ylab,colorbar=TRUE,title=NULL,filename=NA,...)
+deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=F,xlab,ylab,colorbar=TRUE,title=NULL,filename=NA,...)
 {
-  wav<-Mod(get_values(object))
   times<-get_times(object)
   timescales<-get_timescales(object)
-  
+  if(power){
+    wav <- Mod(get_values(object))
+    denom<-sqrt(apply(wav,2,mean,na.rm=T))
+    wav<-sweep(wav,2,denom,`/`)
+  }
+  else{
+    wav<-Mod(get_values(object))
+  }
   if(is.null(zlims)){
     zlims<-range(wav,na.rm=T)
   }else

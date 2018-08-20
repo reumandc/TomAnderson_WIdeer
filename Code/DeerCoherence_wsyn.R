@@ -223,9 +223,6 @@ TableS1<-TabS1.mat[complete.cases(TabS1.mat),]
 saveRDS(TableS1,file="Results/TableS1.rds")
 
 # USDA Analysis -----------------------------------------------------------
-if(scale.flag=="both"||scale.flag=="usda"){
-library(wsyn)
-bands<-rbind(c(3,7),c(3,4),c(4,7))
   
 #Run coherence of climate indices and deer abundance
 usda.clim.res<-list()
@@ -329,6 +326,20 @@ TableS5<-data.frame(TabS5[,1:2],paste(TabS5$ts_low_bd,TabS5$ts_hi_bd,sep="-"),Ta
 colnames(TableS5)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
 saveRDS(TableS5,file="Results/TabS5_results.rds")
 
+
+#store data in list
+all.usda.dat<-list(Abun=usda.list$Abun,Snwd=winter.clim.usda$Snwd,WinterMEI=climindex.usda$WinterMEI,WinterPDO=climindex.usda$WinterPDO)
+
+#normalize data
+norm.usda.dat<-lapply(all.usda.dat,function(x){x<-cleandat(x,clev=5,times=minyear:maxyear)$cdat;x})
+
+#Run model and calculate expected synchrony
+usda.wlm_abun<-wlm(norm.usda.dat,times=minyear:maxyear,resp=1,pred=2:4,norm="powall")
+usda.abun_se<-syncexpl(usda.wlm_abun)
+usda.se_short<-abun_se[usda.abun_se$timescales>=3 & usda.abun_se$timescales<=7,]
+usda.abunmod_se<-round(100*colMeans(usda.se_short[,c(3:12)])/mean(usda.se_short$sync),4)
+saveRDS(usda.abunmod_se[[1]],file="Results/usda.abunmodelSyncExp.rds")
+
 ##Run coherence of hunters and abundance
 #first filter data to match dimensions of hunter data
 usda.list.dt<-lapply(usda.list[c('Abun','Hunters')],function(x){x<-x[,12:36];x})
@@ -399,4 +410,3 @@ TabS4.mat<-TabS4.mat[,!colnames(TabS4.mat)%in%c("Residuals","Pred1")]
 TableS4<-TabS4.mat[complete.cases(TabS4.mat),]
 saveRDS(TabS4.mat,file="Results/TableS4.rds")
 
-}

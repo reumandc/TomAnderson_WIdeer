@@ -28,29 +28,21 @@ urlcolor: blue
 > Table S1 to S5  
 > Full Reference list[@Leibhold2004_sync; @Allstad2015_gypsysync; @Moran1953; @Ranta1997_moran; @Kendall2000_moran; @Abbott2007_moran;@Defriez2016_plankton;@Sheppard2016_aphids;@Defriez2017_terrestrial; @Defriez2017_marine; @Sheppard2017_surrogates; @Walter2017_geogsync; @Cote2004_deerimpacts; @Conover1997_dvc; @Winkler2013_hunters; @usfws2011_survey; @Conover2011_bookchp; @Sheppard_wavmodel; @Delguidice2008_deersurvival; @Mysterud2008_deerclimate; @Hegel2012_caribou; @Anderson1996_elnino; @Rodionov2003_elnino; @Post1998_popgrowth; @Post2004_greenland; @Grotan2005_roedeer; @Huijser2008_dvc; @Marcoux2010_dvc; @Koenig2016_birdsync; @Shestakova2016_forestsync; @Cai2014_elnino;@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
-<!--Install the correct reumannplatz version from github, i.e., the one current on 2018 04 20, tagged
-in git with AndersonDeer-->
-<!--TOM: We need to switch this to wsyn, not sure how to do that-->
 ```{r rp_install, echo=F, message=FALSE}
 library(devtools,quietly=T,verbose=F)
 library(withr,quietly=T,verbose=F)
 withr::with_libpaths(new=.libPaths()[1],
-                     devtools::install_github(repo="reumandc/reumannplatz",ref="AndersonDeer",force=FALSE))
-
-#devtools::install_github(repo="reumandc/wsyn",ref="AndersonDeer",force=FALSE))
+                     devtools::install_github(repo="reumandc/wsyn",ref="AndersonDeer",force=FALSE))
 
 ```
 
 <!--Libraries-->
 ```{r libraries, echo=F, message=FALSE}
 library(reshape2,quietly=T)
-library(tidyr,quietly=T)
-library(plyr,quietly=T)
 library(tools,quietly=T)
 library(fields,quietly=T)
 library(shape,quietly=T)
-library(Reumannplatz,lib.loc=.libPaths(),quietly=T)
-library(wsyn,lib.loc=.libPaths(),quietly=T)
+library(wsyn,quietly=T)
 ```
 
 <!--Flags controlling the run and other setup-->
@@ -64,9 +56,6 @@ minyear<-1981
 #what is the last year you want? (max is 2016)
 maxyear<-2016
 
-#set spatial scale flag for data generation ("usda", "county" or "both")
-scale.flag<-"both"
-
 #set number of surrogates to use for spatial coherence
 nsurrogs<-100
 
@@ -75,7 +64,7 @@ source("Code/mtime.R")
 ```
 
 <!--The whole analysis-->
-```{r whole_analysis, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,scale.flag,nsurrogs,mtime("Code/Deer_DataGeneration.R"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/Climate_DataGeneration.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
+```{r data_generation, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,nsurrogs,mtime("Code/Deer_DataGeneration.R"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/Climate_DataGeneration.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"))}
 
 #Dependencies (listed in cache.extra above):
 #1) Settings variables from the setup chunk
@@ -86,28 +75,22 @@ source("Code/mtime.R")
 #Basically this is set up so if anything but the write-up changes, everything is rerun. Simple and safe 
 #but may waste some CPU time
 
-#Clean population data: end result are two lists of matrices called "cty.list" and "usda.list". Cty stands for county. All elements of cty.list are matrices, counties by year. Elements are named abun (abundance), crashes (DVCs) ...
-#***TOM: pls add sufficient details of what the format is for cty.list and usda.list, enough so whoever reads this comment would then be able to use those data
-#***TOM: get rid of the flag - just make it do both, no is as good a time as any to do that
-#***TOM: make the code save these objects as .rds and say to here
+#Clean population data: end result are two lists of matrices called "cty.list" and "usda.list". Cty stands for county. All elements of cty.list are matrices, counties (rows) by year (columns). Elements are named Abun (abundance), Crashes (DVCs), Traffic (traffic), and AdjDVC (Traffic-adjusted DVCs). USDA stands for USDA districts, and all elements in "usda.list" are matrices, districts (rows) by year (columns) and named similarly to cty.list. In both lists, the data sets were complete in spatial dimension but varied in temporal dimension: deer span the years 1981-2016, Crashes 1987-2016 and Traffice/AdjDVCs 1988-2016. Missing years are filled with NAs. Both objects are saved as .rds files in the Results folder.
+
 #***TOM: make a scruipt called tests_datagen_deer. R or similar, which is simple, it just calls the two separate deer data cleaning scripts and compares the two outputs for exact equality. Same for tests_datagen_climate.R.
 #***TOM: might want to have tests_master.R which calls all the tests scripts that we may develop, but we can leave this.
 system.time(source("Code/Deer_DataGeneration.R"))
-  #list of files generated by deer_DataGeneration.R:
-    #scale.flag == "usda": usda.list, includes data on abundance, DVCs and traffic
-    #scale.flag == "county": cty.list, includes data on abundance, DVCs and traffic
-    #scale.flag == "both": both the above
 
-#clean climate data
-#***TOM: similar comments to above 
+#Clean winter weather and climate data: end results are four lists of matrices called "winter.clim", climindex, winter.clim.usda, and climindex.usda. "winter.clim"" includes matrices, counties (rows) by year (columns) that are the averages of NOAA weather station data from Dec[t-1] to Mar[t], with named elements of Tmin (minimum temperature), Tmax (maximum temperature), Prcp (precipitation), and Snwd(snow depth). Not all counties had weather data in all years and are filled with NAs where missing. "winter.clim.usda"" are matrices, districts (rows) by year (columns) and includes the same variables and variable names as "winter.clim"" but averaged over USDA districts (~ 7 counties per district). All objects are saved as .rds files in the Results folder."climindex" and "climindex.usda" are matrices of climate indices averaged over winter (Dec[t-1]-Mar[t]) and summer (Apr[t]-Nov[t]). Values in each matrices are repeated across rows because the climate indices are not a spatial variable. The dimensions of each match the spatial dimensions of other county (climindex) or district (cliindex.usda) data sets. 
 system.time(source("Code/Climate_DataGeneration.R"))
-#creates four lists of data: winter weather and climate indices each for counties and USDA districts
-    #scale.flag == "usda": usda.list, includes data on abundance, DVCs and traffic
-    #scale.flag == "county": cty.list, includes data on abundance, DVCs and traffic
-    #scale.flag == "both": both the above
+
+```
+
+```{r analysis_plots, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
 
 #Run analysis on deer abundance and DVCs using county and district data depending on scale.flag
 set.seed(101)
+nsurrogs=100000
 system.time(source("Code/DeerCoherence_wsyn.R"))
 
 #generate plots
