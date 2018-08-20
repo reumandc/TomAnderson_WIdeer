@@ -39,7 +39,7 @@ for (counter in 1:numts)
 }
 d1mn<-apply(FUN=mean,X=d1,MARGIN=2)
 d1sm<-apply(FUN=sum,X=d1,MARGIN=2)
-wmf1<-wmf(dat=d1mm,times=tm)
+wmf1<-wsyn::wmf(dat=d1mm,times=tm)
 allcors1<-c()
 for (i in 1:(numts-1))
 {
@@ -59,7 +59,7 @@ for (counter in 1:numts)
 }
 d2mn<-apply(FUN=mean,X=d2,MARGIN=2)
 d2sm<-apply(FUN=sum,X=d2,MARGIN=2)
-wmf2<-wmf(dat=d2mm,times=tm)
+wmf2<-wsyn::wmf(dat=d2mm,times=tm)
 allcors2<-c()
 for (i in 1:(numts-1))
 {
@@ -79,7 +79,7 @@ for (counter in 1:numts)
 }
 d3mn<-apply(FUN=mean,X=d3,MARGIN=2)
 d3sm<-apply(FUN=sum,X=d3,MARGIN=2)
-wmf3<-wmf(dat=d3mm,times=tm)
+wmf3<-wsyn::wmf(dat=d3mm,times=tm)
 allcors3<-c()
 for (i in 1:(numts-1))
 {

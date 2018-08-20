@@ -86,7 +86,7 @@ system.time(source("Code/Climate_DataGeneration.R"))
 
 ```
 
-```{r analysis_plots, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wsurfplot_modified.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
+```{r analysis_plots, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
 
 #Run analysis on deer abundance and DVCs using county and district data depending on scale.flag
 set.seed(101)
