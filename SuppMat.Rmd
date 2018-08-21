@@ -86,11 +86,10 @@ system.time(source("Code/Climate_DataGeneration.R"))
 
 ```
 
-```{r analysis_plots, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
+```{r analysis_plots, echo=F, cache=TRUE, error=T,results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
 
 #Run analysis on deer abundance and DVCs using county and district data depending on scale.flag
 set.seed(101)
-nsurrogs=100000
 system.time(source("Code/DeerCoherence_wsyn.R"))
 
 #generate plots
@@ -99,11 +98,23 @@ system.time(source("Code/deer_plots.R"))
 #***TOM: for every panel in the main text or supp mat for which a wsyn plotting routine can make that panel (albeit without nice formatting), lets try to make sure the paanel has been made and saved to Results, albeit not imported into the paper.
 ```
 
-```{r echo=F}
+```{r echo=F, results="hide"}
+
 #need to run so that objects that are large numbers can be evaluated with inline code
 options(scipen = 999999)
-```
 
+#load in results
+options(scipen=6)
+TabS4_results<-readRDS(file = "Results/TabS4_results.rds")
+usda_dvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="DVCs" &
+                                                        TabS4_results$Predictor=="Abundance"]
+usda_adjdvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Adjusted DVCs" &
+                                                        TabS4_results$Predictor=="Abundance"]
+avgdeerfluc<-readRDS(file="Results/totaldeerfluctuations.rds")
+avgdvcfluc<-readRDS(file="Results/totaldvcfluctuations.rds")
+avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
+avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
+```
 # Materials and methods
 
 ## Data and pre-processing
@@ -601,18 +612,18 @@ In general results of the statewide analysis
 mostly agreed with the smaller spatial unit 
 analyses. Deer abundance and DVCs were marginally 
 significant over the $3-7$-year timescale band 
-($P = `r ann_dvc_abun_pval3_7`$), with most of the 
+($P = `r ann.dvc.abun_pval`$), with most of the 
 significance occurring over 
 the $3-5$ year part of the timescale average 
-($P = `r ann_dvc_abun_pval3_5`$). DVCs were not 
+($P = ann.dvc.abun_pval35$). DVCs were not 
 significant with abundance after correcting for 
-traffic ($P = `r ann_adjdvc_abun_pval`$). Snow depth, 
+traffic ($P = `r ann.adjdvc.abun_pval`$). Snow depth, 
 MEIs, MEIw and PDOw were all significantly 
 coherent with deer abundance over the $3-7$ 
-timescale band (Snow: $P = `r ann_abun_snow_pval`$; 
-MEIw: $P = `r ann_abun_wmei_pval`$; MEIs: 
-$P = `r ann_abun_smei_pval`$; PDOw: 
-$P = `r ann_abun_wpdo_pval`$). Deer hunters and deer 
+timescale band (Snow: $P = `r ann.abun_snow_pval`$; 
+MEIw: $P = `r ann.abun.wmei_pval`$; MEIs: 
+$P = `r ann.abun.smeiP`$; PDOw: 
+$P = `r ann.abun.wpdo_pval`$). Deer hunters and deer 
 abundance were not significantly coherent at the 
 state level ($P = `r ann_abun_hunter_pval`$).
 

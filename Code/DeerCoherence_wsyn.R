@@ -424,26 +424,31 @@ ann.abun.hunter<-coh(dat1=ann.abun.dt,dat2=ann.hunter.dt,times=minyear:maxyear,n
                      sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.abun.hunter<-bandtest(ann.abun.hunter,c(3,7))
 ann.abun.hunterP<-get_bandp(ann.abun.hunter)
+ann.abun.hunter_pval<-ann.abun.hunterP$p_val
 
 #run coherence between abundance and snow depth for 3-7 year timescales
 ann.abun.snow<-coh(dat1=ann.abun.dt,dat2=ann.snow.dt,times=minyear:maxyear,norm="powall",
                   sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.abun.snow<-bandtest(ann.abun.snow,c(3,7))
 ann.abun.snowP<-get_bandp(ann.abun.snow)
+ann.abun.snow_pval<-ann.abun.snowP$p_val
 
 #Run coherence between abundance and climate indices for 3-7 year timescales
 ann.abun.wmei<-coh(dat1=ann.abun.dt,dat2=win.mei.dt,times=minyear:maxyear,norm="powall",
                            sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.abun.wmei<-bandtest(ann.abun.wmei,c(3,7))
-ann.abun.wmeiwP<-get_bandp(ann.abun.wmei)
+ann.abun.wmeiP<-get_bandp(ann.abun.wmei)
+ann.abun.wmei_pval<-ann.abun.wmeiP$p_val
 ann.abun.smei<-coh(dat1=ann.abun.dt,dat2=sum.mei.dt,times=minyear:maxyear,norm="powall",
                            sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.abun.smei<-bandtest(ann.abun.smei,c(3,7))
 ann.abun.smeiP<-get_bandp(ann.abun.smei)
+ann.abun.smei_pval<-ann.abun.smeiP$p_val
 ann.abun.wpdo<-coh(dat1=ann.abun.dt,dat2=win.pdo.dt,times=minyear:maxyear,norm="powall",
                            sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.abun.wpdo<-bandtest(ann.abun.wpdo,c(3,7))
 ann.abun.wpdoP<-get_bandp(ann.abun.wpdo)
+ann.abun.wpdo_pval<-ann.abun.wpdoP$p_val
 
 #Run coherence between climate indices and snow depth for 3-7 year timescales
 ann.snwd.wmei<-coh(dat1=ann.snow.dt,dat2=win.mei.dt,times=minyear:maxyear,norm="powall",
@@ -452,20 +457,27 @@ ann.snwd.smei<-coh(dat1=ann.snow.dt,dat2=sum.mei.dt,times=minyear:maxyear,norm="
                            sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.snwd.wpdo<-coh(dat1=ann.snow.dt,dat2=win.pdo.dt,times=minyear:maxyear,norm="powall",
                            sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.snwd.wmei<-bandtest(ann.snwd.wpdo,c(3,7))
+ann.snwd.wmeiP<-get_bandp(ann.snwd.wmei)
+ann.snwd.wmei_pval<-ann.snwd.wmeiP$p_val
+ann.snwd.smei<-bandtest(ann.snwd.smei,c(3,7))
+ann.snwd.smeiP<-get_bandp(ann.snwd.smei)
+ann.snwd.smei_pval<-ann.snwd.smeiP$p_val
 ann.snwd.wpdo<-bandtest(ann.snwd.wpdo,c(3,7))
 ann.snwd.wpdoP<-get_bandp(ann.snwd.wpdo)
-ann.snwd.wpdo<-bandtest(ann.snwd.wpdo,c(3,7))
-ann.snwd.wpdoP<-get_bandp(ann.snwd.wpdo)
-ann.snwd.wpdo<-bandtest(ann.snwd.wpdo,c(3,7))
-ann.snwd.wpdoP<-get_bandp(ann.snwd.wpdo)
+ann.snwd.wpdo_pval<-ann.snwd.wpdoP$p_val
 
 #Filter data to match time dimensions, and run coherence between DVCs and abundance for 3-7 year timescales
 ann.dvc.dt<-cleandat(colSums(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))]),clev=4,times=1987:2016)$cdat
 ann.abun.dt1<-cleandat(colSums(cty.list$Abun[,!is.na(colSums(cty.list$Crashes))]),clev=4,times=1987:2016)$cdat
 ann.dvc.abun<-coh(dat1=ann.dvc.dt,dat2=ann.abun.dt1,times=1987:maxyear,norm="powall",
-                  sigmethod="fast",nrand=nsurrogs,f0=1)
+                  sigmethod="fast",nrand=100000,f0=1)
 ann.dvc.abun<-bandtest(ann.dvc.abun,c(3,7))
+ann.dvc.abun<-bandtest(ann.dvc.abun,c(3,5))
 ann.dvc.abunP<-get_bandp(ann.dvc.abun)
+ann.dvc.abun_pval<-ann.dvc.abunP$p_val
+ann.adjdvc.abun_pval<-ann.adjdvc.abunP$p_val[1]
+ann.adjdvc.abun_pval35<-ann.adjdvc.abunP$p_val[[2]]
 
 #Filter data to match time dimensions, and run coherence between traffic-adjusted DVCs and abundance for 3-7 year timescales
 ann.adjdvc.dt<-cleandat(colSums(cty.list$AdjDVC[,!is.na(colSums(cty.list$AdjDVC))]),clev=4,times=1988:2016)$cdat
@@ -474,6 +486,7 @@ ann.adjdvc.abun<-coh(dat1=ann.adjdvc.dt,dat2=ann.abun.dt2,times=1988:maxyear,nor
                     sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.adjdvc.abun<-bandtest(ann.adjdvc.abun,c(3,7))
 ann.adjdvc.abunP<-get_bandp(ann.adjdvc.abun)
+
 
 # Determine peak to trough distance for DVCs and deer abundance
 ann.abun<-aggregate(Abun~Year,data=dat,FUN=sum)
