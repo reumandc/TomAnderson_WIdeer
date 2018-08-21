@@ -3,6 +3,7 @@
 #Load Data
 gps <- read.csv("Data/WI_Cty_CentroidDD.csv")
 usda.centroid<-read.csv("Data/USDA_centroids.csv")
+state.totals <- read.csv("Data/State_Kill.csv")
 crash <- read.csv("Data/DOT_Accidents1987_2016.csv")
 adj.crash <- read.csv("Data/Adj_DOT_Accidents1987_2016.csv")
 usda<-read.csv("Data/WI_USDA_Sections.csv")

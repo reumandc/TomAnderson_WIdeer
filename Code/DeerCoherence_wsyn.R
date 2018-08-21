@@ -410,3 +410,103 @@ TabS4.mat<-TabS4.mat[,!colnames(TabS4.mat)%in%c("Residuals","Pred1")]
 TableS4<-TabS4.mat[complete.cases(TabS4.mat),]
 saveRDS(TabS4.mat,file="Results/TableS4.rds")
 
+# Do Statewide Analysis ---------------------------------------------------
+#annualize and clean data
+ann.abun.dt<-cleandat(colSums(cty.list$Abun),clev=5,times=minyear:maxyear)$cdat
+ann.snow.dt<-cleandat(colSums(winter.clim$Snwd[!(is.na(rowSums(winter.clim$Snwd))),]),clev=5,times=minyear:maxyear)$cdat
+ann.hunter.dt<-cleandat(state.totals$GunHunters[state.totals$Year>1980],clev=5,times=minyear:maxyear)$cdat
+win.mei.dt<-cleandat(climindex$WinterMEI[1,],clev=5,times=minyear:maxyear)$cdat
+win.pdo.dt<-cleandat(climindex$WinterPDO[1,],clev=5,times=minyear:maxyear)$cdat
+sum.mei.dt<-cleandat(climindex$SummerMEI[1,],clev=5,times=minyear:maxyear)$cdat
+
+#Run coherence between abundance and hunters for 3-7 year timescales
+ann.abun.hunter<-coh(dat1=ann.abun.dt,dat2=ann.hunter.dt,times=minyear:maxyear,norm="powall",
+                     sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.abun.hunter<-bandtest(ann.abun.hunter,c(3,7))
+ann.abun.hunterP<-get_bandp(ann.abun.hunter)
+
+#run coherence between abundance and snow depth for 3-7 year timescales
+ann.abun.snow<-coh(dat1=ann.abun.dt,dat2=ann.snow.dt,times=minyear:maxyear,norm="powall",
+                  sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.abun.snow<-bandtest(ann.abun.snow,c(3,7))
+ann.abun.snowP<-get_bandp(ann.abun.snow)
+
+#Run coherence between abundance and climate indices for 3-7 year timescales
+ann.abun.wmei<-coh(dat1=ann.abun.dt,dat2=win.mei.dt,times=minyear:maxyear,norm="powall",
+                           sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.abun.wmei<-bandtest(ann.abun.wmei,c(3,7))
+ann.abun.wmeiwP<-get_bandp(ann.abun.wmei)
+ann.abun.smei<-coh(dat1=ann.abun.dt,dat2=sum.mei.dt,times=minyear:maxyear,norm="powall",
+                           sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.abun.smei<-bandtest(ann.abun.smei,c(3,7))
+ann.abun.smeiP<-get_bandp(ann.abun.smei)
+ann.abun.wpdo<-coh(dat1=ann.abun.dt,dat2=win.pdo.dt,times=minyear:maxyear,norm="powall",
+                           sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.abun.wpdo<-bandtest(ann.abun.wpdo,c(3,7))
+ann.abun.wpdoP<-get_bandp(ann.abun.wpdo)
+
+#Run coherence between climate indices and snow depth for 3-7 year timescales
+ann.snwd.wmei<-coh(dat1=ann.snow.dt,dat2=win.mei.dt,times=minyear:maxyear,norm="powall",
+                           sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.snwd.smei<-coh(dat1=ann.snow.dt,dat2=sum.mei.dt,times=minyear:maxyear,norm="powall",
+                           sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.snwd.wpdo<-coh(dat1=ann.snow.dt,dat2=win.pdo.dt,times=minyear:maxyear,norm="powall",
+                           sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.snwd.wpdo<-bandtest(ann.snwd.wpdo,c(3,7))
+ann.snwd.wpdoP<-get_bandp(ann.snwd.wpdo)
+ann.snwd.wpdo<-bandtest(ann.snwd.wpdo,c(3,7))
+ann.snwd.wpdoP<-get_bandp(ann.snwd.wpdo)
+ann.snwd.wpdo<-bandtest(ann.snwd.wpdo,c(3,7))
+ann.snwd.wpdoP<-get_bandp(ann.snwd.wpdo)
+
+#Filter data to match time dimensions, and run coherence between DVCs and abundance for 3-7 year timescales
+ann.dvc.dt<-cleandat(colSums(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))]),clev=4,times=1987:2016)$cdat
+ann.abun.dt1<-cleandat(colSums(cty.list$Abun[,!is.na(colSums(cty.list$Crashes))]),clev=4,times=1987:2016)$cdat
+ann.dvc.abun<-coh(dat1=ann.dvc.dt,dat2=ann.abun.dt1,times=1987:maxyear,norm="powall",
+                  sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.dvc.abun<-bandtest(ann.dvc.abun,c(3,7))
+ann.dvc.abunP<-get_bandp(ann.dvc.abun)
+
+#Filter data to match time dimensions, and run coherence between traffic-adjusted DVCs and abundance for 3-7 year timescales
+ann.adjdvc.dt<-cleandat(colSums(cty.list$AdjDVC[,!is.na(colSums(cty.list$AdjDVC))]),clev=4,times=1988:2016)$cdat
+ann.abun.dt2<-cleandat(colSums(cty.list$Abun[,!is.na(colSums(cty.list$AdjDVC))]),clev=4,times=1988:2016)$cdat
+ann.adjdvc.abun<-coh(dat1=ann.adjdvc.dt,dat2=ann.abun.dt2,times=1988:maxyear,norm="powall",
+                    sigmethod="fast",nrand=nsurrogs,f0=1)
+ann.adjdvc.abun<-bandtest(ann.adjdvc.abun,c(3,7))
+ann.adjdvc.abunP<-get_bandp(ann.adjdvc.abun)
+
+# Determine peak to trough distance for DVCs and deer abundance
+ann.abun<-aggregate(Abun~Year,data=dat,FUN=sum)
+ann.dvc<-aggregate(Crashes~Year,data=dat,FUN=sum)
+dvc.resid<-residuals(lm(Crashes~poly(as.numeric(Year),3),data=ann.dvc))
+abun.resid<-residuals(lm(Abun~as.numeric(Year),data=ann.abun))
+
+#values for deer abundance
+peaks<-c(1989,1995,2000,2006,2012) #based on visual assessment of raw data in Fig S1
+troughs<-c(1992,1997,2002,2009,2014) #based on visual assessment of raw data plots in Fig S1
+diff<-matrix(NA,nrow=5,ncol=2)
+for(i in 1:length(peaks)){
+  for(i in 1:length(troughs)){
+    diff[i,1]<-ann.abun$Abun[ann.abun$Year==peaks[i]]-ann.abun$Abun[ann.abun$Year==troughs[i]]
+    diff[i,2]<-abun.resid[ann.abun$Year==peaks[i]]-abun.resid[ann.abun$Year==troughs[i]]
+  }
+}
+avg.deer.fluctuations<-colMeans(diff)[1]
+saveRDS(avg.deer.fluctuations[1],file="Results/totaldeerfluctuations.rds")
+
+#values for dvcs
+peaks1<-c(1990,1994,2003,2007,2012)
+troughs1<-c(1991,1997,2005,2008,2014)
+diff1<-matrix(NA,nrow=5,ncol=2)
+for(i in 1:length(peaks1)){
+  for(i in 1:length(troughs1)){
+    diff1[i,1]<-ann.dvc$Crashes[ann.dvc$Year==peaks1[i]]-ann.dvc$Crashes[ann.dvc$Year==troughs1[i]]
+    diff1[i,2]<-dvc.resid[ann.dvc$Year==peaks1[i]]-dvc.resid[ann.dvc$Year==troughs1[i]]
+  }
+}
+avg.dvc.fluctuations<-colMeans(diff1)
+avg.dvc.costLow<-avg.dvc.fluctuations*2024
+avg.dvc.costHigh<-avg.dvc.fluctuations*8388
+saveRDS(avg.dvc.fluctuations[1],file="Results/totaldvcfluctuations.rds")
+saveRDS(avg.dvc.costLow[1],file="Results/totaldvccostsLow.rds")
+saveRDS(avg.dvc.costHigh[1],file="Results/totaldvccostsHigh.rds")
