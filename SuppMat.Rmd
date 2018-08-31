@@ -63,7 +63,7 @@ nsurrogs<-100
 source("Code/mtime.R") 
 ```
 
-<!--The whole analysis-->
+<!--Generate the data-->
 ```{r data_generation, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,mtime("Code/Deer_DataGeneration.R"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/Climate_DataGeneration.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"))}
 
 #Dependencies (listed in cache.extra above):
@@ -71,9 +71,6 @@ source("Code/mtime.R")
 #2) all the data csvs (see Data folder)
 #3) all the scripts sourced below (see Code folder)
 #4) all the functions called (see Functions folder)
-
-#Basically this is set up so if anything but the write-up changes, everything is rerun. Simple and safe 
-#but may waste some CPU time
 
 #Clean population data: end result are two lists of matrices called "cty.list" and "usda.list". Cty stands for county. All elements of cty.list are matrices, counties (rows) by year (columns). Elements are named Abun (abundance), Crashes (DVCs), Traffic (traffic), and AdjDVC (Traffic-adjusted DVCs). USDA stands for USDA districts, and all elements in "usda.list" are matrices, districts (rows) by year (columns) and named similarly to cty.list. In both lists, the data sets were complete in spatial dimension but varied in temporal dimension: deer span the years 1981-2016, Crashes 1987-2016 and Traffice/AdjDVCs 1988-2016. Missing years are filled with NAs. Both objects are saved as .rds files in the Results folder.
 
