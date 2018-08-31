@@ -21,9 +21,6 @@ minyear<-1981
 #what is the last year you want? (max is 2016)
 maxyear<-2016
 
-#set spatial scale flag for data generation ("usda", "county" or "both")
-scale.flag<-"both"
-
 #set directory
 setwd("C:/Users/Tom/Documents/GitRepos/mbsync/AndersDeerShort/")
 #setwd("/mnt/hgfs/C/Reuman/gitrepos/mbsync/AndersDeerShort/")

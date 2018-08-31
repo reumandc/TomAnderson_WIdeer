@@ -64,7 +64,7 @@ source("Code/mtime.R")
 ```
 
 <!--The whole analysis-->
-```{r data_generation, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,nsurrogs,mtime("Code/Deer_DataGeneration.R"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/Climate_DataGeneration.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"),mtime("Data/npi.csv"))}
+```{r data_generation, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(dens.flag,minyear,maxyear,mtime("Code/Deer_DataGeneration.R"),mtime("Data/WI_Cty_CentroidDD.csv"),mtime("Data/DOT_Accidents1987_2016.csv"),mtime("Data/Adj_DOT_Accidents1987_2016.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/USDA_centroids.csv"),mtime("Data/Cty_Traffic.csv"),mtime("Data/DMU_DeerAbundance1981_2013.csv"),mtime("Data/DMU_DeerDensity1981_2013.csv"),mtime("Data/DMU_HunterAbundance1975_2013.csv"),mtime("Data/DMU_HunterDensity1975_2013.csv"),mtime("Data/hunterdens1416.csv"),mtime("Data/hunterabun1416.csv"),mtime("Data/Cty_Abun_2014_2016.csv"),mtime("Data/permit_issued1970_2013.csv"),mtime("Code/Climate_DataGeneration.R"),mtime("Data/noaa_latlongUpd.csv"),mtime("Data/WI_USDA_Sections.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set1.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set2.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set3.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set4.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set5.csv"),mtime("Data/Cty_NOAA_Temp1981_2015_set6.csv"),mtime("Data/Cty_NOAA_Temp2016_2017.csv"),mtime("Data/Cty_NOAA_Precip1981_1985.csv"),mtime("Data/Cty_NOAA_Precip1986_1991.csv"),mtime("Data/Cty_NOAA_Precip1992_1997.csv"),mtime("Data/Cty_NOAA_Precip1998_2003.csv"),mtime("Data/Cty_NOAA_Precip2004_2009.csv"),mtime("Data/Cty_NOAA_Precip2010_2015.csv"),mtime("Data/Cty_NOAA_Precip2016_2017.csv"),mtime("Data/climate_indices.csv"),mtime("Data/mei.csv"),mtime("Data/pdo.csv"))}
 
 #Dependencies (listed in cache.extra above):
 #1) Settings variables from the setup chunk
@@ -86,12 +86,15 @@ system.time(source("Code/Climate_DataGeneration.R"))
 
 ```
 
-```{r analysis_plots, echo=F, cache=TRUE, error=T,results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"),mtime("Code/deer_plots.R"),mtime("Code/PedagogFig.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"))}
+```{r analysis, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,nsurrogs,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"))}
 
 #Run analysis on deer abundance and DVCs using county and district data depending on scale.flag
 set.seed(101)
 system.time(source("Code/DeerCoherence_wsyn.R"))
+```
 
+<!---generate plots--->
+```{r plots, echo=F, cache=T, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,wlm_abun,wlm_dvc,mtime("Code/deer_plots.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"),mtime("Code/PedagogFig.R"),mtime("Functions/deer_plotting_functions.R"))}
 #generate plots
 set.seed(201)
 system.time(source("Code/deer_plots.R"))
@@ -105,11 +108,16 @@ options(scipen = 999999)
 
 #load in results
 options(scipen=6)
+#Load tables of results
 TabS4_results<-readRDS(file = "Results/TabS4_results.rds")
+TabS1_results<-readRDS(file = "Results/TableS1.rds")
+
+usda_abunsnwd_syncexp34<-TableS4$SynchronyExplained[TableS4$Predictor=="Snwd" & TableS4$Response=="Abun" & TableS4$Timescale=="3-4"]
 usda_dvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
 usda_adjdvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Adjusted DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
+snowabunSyncExp34<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-4"]
 avgdeerfluc<-readRDS(file="Results/totaldeerfluctuations.rds")
 avgdvcfluc<-readRDS(file="Results/totaldvcfluctuations.rds")
 avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
@@ -527,7 +535,7 @@ We estimated the approximate monetary impact of
 synchrony in DVCs based on several reported 
 assumptions about DVCs. Using an average difference 
 between peak and trough DVC years 
-(Fig. 4\ref{Fig4}) of `r avg.deer.fluctuations`, and if we assume 
+(Fig. 4\ref{Fig4}) of `r avgdvcfluc`, and if we assume 
 that each reported DVC results in an average of 
 US\$2024 of damage [@Conover2011_bookchp], the 
 difference in damages statewide between peak and 
@@ -566,9 +574,9 @@ quarter-cycle phase shifts (Table S4\ref{TabS4_SummaryDistrict}).
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
 data, but snow explained a higher amount of 
-synchrony at $`r round(100*usda_abunsnwd_syncexp,0)`\%$ for $3-5$-year timescales, as 
-compared with $`r round(100*abun_snwd_syncexp3_4,0)`\%$ at the county-level. Combined, 
-snow depth, MEIw, and PDOw explained $`r round(100*usda_model_syncexp,0)`\%$ of the 
+synchrony at $`r round(100*usda_abunsnwd_syncexp34,0)`\%$ for $3-4$-year timescales, as 
+compared with $`r round(100*snowabunSyncExp34,0)`\%$ at the county-level. Combined, 
+snow depth, MEIw, and PDOw explained $`r round(100*usda.abunmod_se[[1]],0)`\%$ of the 
 synchrony in deer abundance using 
 USDA district data (Fig. S6E\ref{FigS6_WMFAndPredictionsDistricts}).
 
@@ -578,7 +586,7 @@ synchrony feature to deer abundance over $3-7$ year
 timescales (Fig. S6B,D\ref{FigS6_WMFAndPredictionsDistricts}). As with 
 counties, deer abundance was a significant 
 predictor of DVC synchrony (Table S4\ref{TabS4_SummaryDistrict}), 
-and explained a substantial fraction ($`r round(100*usda_dvc_syncexp,0)`\%$) of 
+and explained a substantial fraction ($`r round(100*usda_dvcabunSyncExp,0)`\%$) of 
 the synchrony (Fig. S6F\ref{FigS6_WMFAndPredictionsDistricts}). This value 
 is nearly double the synchrony explained for 
 county-level analysis. Additionally, the 
@@ -599,13 +607,12 @@ with our results that cross terms were small
 enough to be ignored 
 at district level. The amount of DVC 
 synchrony explained by 
-abundance remained high ($`r round(100*usda_adjdvc_syncexp,0)`\%$) even after 
+abundance remained high ($`r round(100*usda_adjdvcabunSyncExp,0)`\%$) even after 
 controlling for traffic volume. 
 Thus, in contrast to the county-level result, the 
 result that deer abundance synchrony explained
-$`r round(100*usda_dvc_syncexp,0)`\%$ of DVC synchrony was straightforwardly 
+$`r round(100*usda_dvcabunSyncExp,0)`\%$ of DVC synchrony was straightforwardly 
 interpretable.
-
 ## Statewide results
 
 In general results of the statewide analysis 
@@ -620,12 +627,12 @@ significant with abundance after correcting for
 traffic ($P = `r ann.adjdvc.abun_pval`$). Snow depth, 
 MEIs, MEIw and PDOw were all significantly 
 coherent with deer abundance over the $3-7$ 
-timescale band (Snow: $P = `r ann.abun_snow_pval`$; 
+timescale band (Snow: $P = `r ann.abun.snow_pval`$; 
 MEIw: $P = `r ann.abun.wmei_pval`$; MEIs: 
-$P = `r ann.abun.smeiP`$; PDOw: 
+$P = `r ann.abun.smei_pval`$; PDOw: 
 $P = `r ann.abun.wpdo_pval`$). Deer hunters and deer 
 abundance were not significantly coherent at the 
-state level ($P = `r ann_abun_hunter_pval`$).
+state level ($P = `r ann.abun.hunter_pval`$).
 
 \newpage
 
@@ -664,9 +671,9 @@ and deer abundance, B) summer MEI and
 deer abundance, C) winter PDO ($\text{PDO}_{\text{w}}$) and deer abundance, 
 D) snow depth and deer abundance, E) deer abundance and 
 deer-vehicle collisions, F) deer abundance and deer-vehicle collisions adjusted for traffic volume, and 
-G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$ radians) for 
-the shaded timescale bands. Horizontal axes differ in extent among panels due to different time ranges of 
-available data for different variables. \label{FigS3_PhaseDiffs}}
+G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$
+radians) for the shaded timescale bands. Horizontal axes differ in extent among panels due to different
+time ranges of available data for different variables. \label{FigS3_PhaseDiffs}}
 \end{figure}
 <!--***DAN: Tom, I found this sentence included as the last sentence of the above caption: "Vertical axes differ between left and right panels because time series were shorter for DVCs." This does not make any sense to me.
 I think it must be an error, so I removed it. But if I am mistaken and the sentence should be put back, please
@@ -704,15 +711,6 @@ They do not (they are not even particularly close!). What's going on?-->
 \caption{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS6_WMFAndPredictionsDistricts}}
 \end{figure}
 
-<!--***DAN: Tom, the contours on F look to me like they might not be the contours of the colors that
-are mapped on B. I cannot be sure (it is not so easy to visually do such a comparison in much detail),
-but there are enough discrepancies so that I want to ask you to check whether the contours mapped on F
-actually are the contours of the colors on B. The main discrepancy that I imagine might exist centers
-on the red blob on B that is centered at 2005 and about timescale about 3.5 That red blob does not seem
-to be well refelcted in the contours in F. In fact, F to me looks identical to Fig. 3C - I think you may
-have plotted the county-level data here instead of the distrct data. Likewise, E looks identical to Fig. 
-2C, so I think the error might affect that panel, too.-->
-
 \newpage
 
 \begin{figure}[!h]
@@ -746,21 +744,18 @@ knitr::kable(TableS1,
 
 ```{r TableS2,echo=F,results='markup'}
 knitr::kable(TableS2,
-             col.names=c("Predictor","Response","P-value","Mean phase ($\\bar{\\theta}$)"),
+             col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
              format='pandoc',
              caption = "$P$-values of wavelet coherence and mean phase difference between climate indices. Values are over $3-7$ year timescales Mean phases are only shown for pairs of variables that were both significantly coherent with deer abundance). \\label{TabS2_PairwiseClimVarSpatCoh}",
              booktabs=T)
 ```
 
-<!--TOM: The new code runs these as wavelet coherences- I checked these and it gives identifcal values using either one time series or multiple time series for phase and p-value (after using set.seed).-->
-
 \newpage
 
 ```{r TableS3,echo=F,results='markup'}
-rownames(TableS3)<-c("Tmin","Tmax","Prcp","Snow depth","WSI")
 knitr::kable(TableS3,
              format='pandoc',
-             col.names=c("Winter NAO","Winter PDO","Winter MEI","Summer NAO","Summer PDO","Summer MEI"),
+             col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
              caption = "$P$-values of spatial coherence between climate indices and average winter weather conditions using county-level data over $3-7$ year timescales. \\label{TabS3_SpatCohPWWAndClimInds}",
              booktabs=T)
 ```

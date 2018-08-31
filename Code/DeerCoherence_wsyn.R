@@ -140,6 +140,7 @@ abun_se<-syncexpl(wlm_abun)
 se_short<-abun_se[abun_se$timescales>=3 & abun_se$timescales<=7,]
 abunmod_se<-round(100*colMeans(se_short[,c(3:12)])/mean(se_short$sync),4)
 saveRDS(abunmod_se[[1]],file="Results/abunmodelSyncExp.rds")
+saveRDS(wlm_abun,file="Results/wlm_abun.rds")
 
 ##Run coherence of hunters and abundance
 #first filter data to match dimensions of hunter data
@@ -164,7 +165,6 @@ hunter.resP<-get_bandp(hunter.res)
 colnames(hunter_se)<-colnames(tmp)[3:dim(tmp)[2]]
 row.names(hunter_se)<-paste(hunter.bands[,1],hunter.bands[,2],sep="-")
 
-
 ##Run coherence of DVCs and abundance
 #first filter data to match dimensions of DVC data
 cty.list.dt<-lapply(cty.list[c('Abun','Crashes')],function(x){x<-cleandat(x[,!is.na(colSums(cty.list$Crashes))],clev = 5,times=1987:2016)$cdat;x})
@@ -176,6 +176,7 @@ wlm_dvc<-wlm(list(cty.list.dt$Crashes,cty.list.dt$Abun),times=1987:maxyear,resp=
 dvc_se<-syncexpl(wlm_dvc)
 dvcabun_se<-dvc_se[dvc_se$timescales>=3 & dvc_se$timescales<=7,]
 dvcabun_se37<-round(100*colMeans(dvcabun_se[,c(3:dim(dvcabun_se)[2])])/mean(dvcabun_se$sync),4)
+saveRDS(wlm_dvc,file="Results/wlm_dvc.rds")
 
 #Run coherence of traffic-adjusted DVCs and abundance,again filtering to match dimensions of adjusted DVCs
 cty.list.dt<-lapply(cty.list[c('Abun','AdjDVC')],function(x){x<-cleandat(x[,!is.na(colSums(cty.list$AdjDVC))],clev = 5,times=1988:2016)$cdat;x})
@@ -475,9 +476,8 @@ ann.dvc.abun<-coh(dat1=ann.dvc.dt,dat2=ann.abun.dt1,times=1987:maxyear,norm="pow
 ann.dvc.abun<-bandtest(ann.dvc.abun,c(3,7))
 ann.dvc.abun<-bandtest(ann.dvc.abun,c(3,5))
 ann.dvc.abunP<-get_bandp(ann.dvc.abun)
-ann.dvc.abun_pval<-ann.dvc.abunP$p_val
-ann.adjdvc.abun_pval<-ann.adjdvc.abunP$p_val[1]
-ann.adjdvc.abun_pval35<-ann.adjdvc.abunP$p_val[[2]]
+ann.dvc.abun_pval<-ann.dvc.abunP$p_val[1]
+ann.dvc.abun_pval35<-ann.dvc.abunP$p_val[[2]]
 
 #Filter data to match time dimensions, and run coherence between traffic-adjusted DVCs and abundance for 3-7 year timescales
 ann.adjdvc.dt<-cleandat(colSums(cty.list$AdjDVC[,!is.na(colSums(cty.list$AdjDVC))]),clev=4,times=1988:2016)$cdat
@@ -486,7 +486,7 @@ ann.adjdvc.abun<-coh(dat1=ann.adjdvc.dt,dat2=ann.abun.dt2,times=1988:maxyear,nor
                     sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.adjdvc.abun<-bandtest(ann.adjdvc.abun,c(3,7))
 ann.adjdvc.abunP<-get_bandp(ann.adjdvc.abun)
-
+ann.adjdvc.abun_pval<-ann.adjdvc.abunP$p_val
 
 # Determine peak to trough distance for DVCs and deer abundance
 ann.abun<-aggregate(Abun~Year,data=dat,FUN=sum)
