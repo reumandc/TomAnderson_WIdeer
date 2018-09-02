@@ -4,7 +4,6 @@ source("Functions/Fn_syncexpplot.R")
 source("Functions/deer_plotting_functions.R")
 
 #Make Fig. 1
-library(wsyn)
 source("Code/PedagogFig.R")
 
 #clean data for Figs 2 and 3

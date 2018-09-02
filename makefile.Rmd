@@ -19,7 +19,7 @@ library(tinytex)
 if (!dir.exists("./.checkpoint/")){
   dir.create("./.checkpoint/")
 }
-checkpoint("2018-04-20",checkpointLocation = "./")
+checkpoint("2018-08-31",checkpointLocation = "./")
 ```
 
 # Get tex files and pdf files for the supp mat, but the pdf files 
