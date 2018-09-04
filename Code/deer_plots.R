@@ -2,6 +2,8 @@
 source("Functions/Fn_wmfwt.R")
 source("Functions/Fn_syncexpplot.R")
 source("Functions/deer_plotting_functions.R")
+source("Functions/Fn_phaseplot.R")
+source("Functions/Fn_rankplot.R")
 
 #Make Fig. 1
 source("Code/PedagogFig.R")
@@ -59,7 +61,6 @@ syncexpplot(resp.wmf=wmfwt(wlm_dvc$wts[[1]]),exp.sync = predsync(wlm_dvc)[[3]],1
 
 #make plots of phase by timescale for all significant pairs of variables (Fig S3)
 png("Results/FigS3.png",res=600,height=4800,width=3200)
-source("Functions/Fn_phaseplot.R")
 TabS1_results<-readRDS(file = "Results/TableS1.rds")
 TabS1_results<-cbind(TabS1_results[,1:3],apply(TabS1_results[,4:7],2,function(x){round(x,4)}))
 wmeiabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterMEI" &  TabS1_results$Timescale=="4-7"]
@@ -99,7 +100,6 @@ mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterpha
 dev.off()
 
 #Make plot of ranks by timescale for all significant pairs of variables (Fig S4)
-source("Functions/Fn_rankplot.R")
 png("Results/FigS4.png",res=600,height=3000,width=4800)
 par(mfrow=c(1,2),mar=c(3.5,4,1.5,0),mgp=c(2.5,0.5,0))
 plot(clim.res$WinterMEI.Abun$timescale,clim.res$WinterMEI.Abun$ranks$coher,xaxt="n",las=1,type="l",lwd=2,ylab="Rank",xlab="Timescale")
