@@ -24,6 +24,7 @@ checkpoint("2018-08-31",checkpointLocation = "./")
 ```{r rp_install, echo=F, message=FALSE}
 withr::with_libpaths(new=.libPaths()[1],
                      devtools::install_github(repo="reumandc/wsyn",ref="AndersonDeer",force=FALSE))
+library(wsyn)
 ```
 
 # Get tex files and pdf files for the supp mat, but the pdf files 
