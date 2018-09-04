@@ -4,7 +4,6 @@ source("Functions/Fn_syncexpplot.R")
 source("Functions/deer_plotting_functions.R")
 
 #Make Fig. 1
-library(wsyn)
 source("Code/PedagogFig.R")
 
 #clean data for Figs 2 and 3
@@ -32,35 +31,34 @@ dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 
 #Make Figure 2
 png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-#tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-#pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.25,0.75,0.1,0))
 deer_wmfplot(abun.wmf,xlab="",ylab="Timescale")
+abline(h=c(log2(3),log2(7)),lty=2)
 deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale")
 par(new=T)
 q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
 contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
+abline(h=c(log2(3),log2(7)),lty=2)
 syncexpplot(resp.wmf=wmfwt(wlm_abun$wts[[1]]),exp.sync = predsync(wlm_abun)[[3]],1981:2016,
             wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
 
 #Make Figure 3
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-#tiff("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
-#pdf("Results/Fig3.tiff",res=600,compression=c("lzw"),height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.25,0.75,0.1,0))
 deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale")
+abline(h=c(log2(3),log2(7)),lty=2)
 deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale")
 par(new=T)
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
+abline(h=c(log2(3),log2(7)),lty=2)
 syncexpplot(resp.wmf=wmfwt(wlm_dvc$wts[[1]]),exp.sync = predsync(wlm_dvc)[[3]],1987:2016,
             wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
 
 #make plots of phase by timescale for all significant pairs of variables (Fig S3)
 png("Results/FigS3.png",res=600,height=4800,width=3200)
-#tiff("Results/FigS3.tiff",res=600,height=4800,width=3200,compression=c("lzw"))
 source("Functions/Fn_phaseplot.R")
 TabS1_results<-readRDS(file = "Results/TableS1.rds")
 TabS1_results<-cbind(TabS1_results[,1:3],apply(TabS1_results[,4:7],2,function(x){round(x,4)}))
@@ -103,7 +101,6 @@ dev.off()
 #Make plot of ranks by timescale for all significant pairs of variables (Fig S4)
 source("Functions/Fn_rankplot.R")
 png("Results/FigS4.png",res=600,height=3000,width=4800)
-#tiff("Results/FigS4.tiff",res=600,height=3000,width=4800,compression=c("lzw"))
 par(mfrow=c(1,2),mar=c(3.5,4,1.5,0),mgp=c(2.5,0.5,0))
 plot(clim.res$WinterMEI.Abun$timescale,clim.res$WinterMEI.Abun$ranks$coher,xaxt="n",las=1,type="l",lwd=2,ylab="Rank",xlab="Timescale")
 axis(1,at = seq(2,12,1),labels=c(2,"","4","",6,"",8,"",10,"",12))
@@ -128,7 +125,6 @@ dev.off()
 
 #Make wavelet mean field, wavelet phasor meanfield and predicted synchrony plot for hunters (Fig S5)
 png("Results/FigS5.png",res=600,height=4800,width=3000)
-#tiff("Results/FigS5.tiff",res=600,compression=c("lzw"),height=4800,width=3000)
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
 hunters.dt<-cleandat(hunters.tmp,clev=5,times=1992:2016)$cdat
@@ -171,7 +167,6 @@ dev.off()
 
 #Make winter weather wavelet mean field and wavelet phasor mean field plots
 png("Results/FigS7.png",res=600,height=9,width=7,unit="in")
-#tiff("Results/FigS7.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 winter.clim.dt<-lapply(winter.clim,function(x){x<-cleandat(x[!(is.na(rowMeans(x))),],clev=5,times=minyear:maxyear)$cdat;x})
 par(mfrow=c(4,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 tmin.wmf<-wsyn::wmf(winter.clim.dt$Tmin,times=1981:2016)
@@ -202,8 +197,6 @@ dev.off()
 
 #Make plots of wavelet mean field, wavelet phasor mean field, and predicted synchrony of 
 #deer abundance and DVCs using USDA district data
-png("Results/FigS6.png",res=600,height=9,width=7,unit="in")
-#tiff("Results/FigS6.tiff",res=600,compression=c("lzw"),height=9,width=7,unit="in")
 usda.abun.dt<-cleandat(usda.list$Abun,clev=5,times=minyear:maxyear)$cdat
 usda.dvc.dt<-cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=1987:maxyear)$cdat
 
@@ -214,6 +207,7 @@ dvc.wpmf.usda<-wsyn::wpmf(usda.dvc.dt,times = 1987:maxyear,sigmethod = "quick")
 dvc.wmf.usda<-wsyn::wmf(usda.dvc.dt,times = 1987:maxyear)
 
 #make plots
+png("Results/FigS6.png",res=600,height=9,width=7,unit="in")
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 deer_wmfplot(abun.wmf.usda,xlab="",ylab="Timescale")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
@@ -241,7 +235,6 @@ dev.off()
 
 #Make raw data plots (Fig S1)
 png("Results/FigS1.png",res=600,height=3600,width=3600)
-#tiff("Results/FigS1.tiff",res=600,compression=c("lzw"),height=3600,width=3600)
 par(mfrow=c(3,2),mar=c(2.5,5,1.2,0),mgp=c(3,0.5,0))
 plot(1981:2016,rep(NA,36),las=1,ylim=c(min(cty.list$Abun),max(cty.list$Abun)),xlab="",ylab="Abundance")
 for(i in 1:nrow(cty.list$Abun)){
@@ -292,8 +285,7 @@ pan.ht.big<-pan.wd.big #big ones are square
 pan.wd.small<-pan.wd.big #small panel width param
 pan.ht.small<-0.33*pan.ht.big #small panel height param
 tot.ht<-2*pan.ht.big+2*pan.ht.small+2*xht+4*gap
-#pdf("Results/Fig4.pdf",width = tot.wd,height = tot.ht)
-#tiff("Results/Fig4.tiff",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
+
 png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
 
 #Deer- little panel

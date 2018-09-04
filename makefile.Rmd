@@ -17,7 +17,7 @@ library(checkpoint)
 if (!dir.exists("./.checkpoint/")){
   dir.create("./.checkpoint/")
 }
-checkpoint("2018-04-20",checkpointLocation = "./")
+checkpoint("2018-08-31",checkpointLocation = "./")
 ```
 
 <!--For installing packages from github-->

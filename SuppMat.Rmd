@@ -761,6 +761,7 @@ knitr::kable(TableS4,
              caption = "Summary of spatial coherence tests and related results using USDA district-level data (*Methods*). Each row is based on a test of spatial coherence of the variables in the first two columns. Tests were across the $3-7$-year timescale band, except for ancillary results in the footnotes. $P$-values are provided for all tests, and average phases over the timescale band used, fractions of synchrony explained, and average cross terms (*Methods*) are provided where meaningful (i.e., for significant tests, $P < 0.05$). A positive mean phase indicates the response is leading, and a negative mean phase indicates the predictor is leading. Cross-terms are zero for the climate indices because they used the same values for all locations. \\label{TabS4_SummaryDistrict}",
              booktabs=T)
 ```
+
 \newpage
 
 ```{r TableS5,echo=F,results='markup'}
