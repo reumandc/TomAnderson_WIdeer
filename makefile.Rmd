@@ -17,13 +17,15 @@ library(checkpoint)
 if (!dir.exists("./.checkpoint/")){
   dir.create("./.checkpoint/")
 }
-checkpoint("2018-08-31",checkpointLocation = "./")
+checkpoint("2018-08-21",checkpointLocation = "./")
 ```
 
 <!--For installing packages from github-->
 ```{r rp_install, echo=F, message=FALSE}
+library(devtools)
+library(withr)
 withr::with_libpaths(new=.libPaths()[1],
-                     devtools::install_github(repo="reumandc/wsyn",ref="AndersonDeer",force=FALSE))
+                     devtools::install_github(repo="reumandc/wsyn",ref="master",force=TRUE))
 library(wsyn)
 ```
 

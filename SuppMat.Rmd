@@ -30,6 +30,8 @@ urlcolor: blue
 
 <!--Libraries-->
 ```{r libraries, echo=F, message=FALSE}
+library(plyr)
+library(tidyr)
 library(reshape2,quietly=T)
 library(tools,quietly=T)
 library(fields,quietly=T)
