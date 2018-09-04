@@ -42,7 +42,7 @@ library(reshape2,quietly=T)
 library(tools,quietly=T)
 library(fields,quietly=T)
 library(shape,quietly=T)
-library(wsyn,quietly=T)
+#library(wsyn,quietly=T)
 ```
 
 <!--Flags controlling the run and other setup-->
