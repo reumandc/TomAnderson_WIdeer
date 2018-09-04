@@ -28,21 +28,18 @@ urlcolor: blue
 > Table S1 to S5  
 > Full Reference list[@Leibhold2004_sync; @Allstad2015_gypsysync; @Moran1953; @Ranta1997_moran; @Kendall2000_moran; @Abbott2007_moran;@Defriez2016_plankton;@Sheppard2016_aphids;@Defriez2017_terrestrial; @Defriez2017_marine; @Sheppard2017_surrogates; @Walter2017_geogsync; @Cote2004_deerimpacts; @Conover1997_dvc; @Winkler2013_hunters; @usfws2011_survey; @Conover2011_bookchp; @Sheppard_wavmodel; @Delguidice2008_deersurvival; @Mysterud2008_deerclimate; @Hegel2012_caribou; @Anderson1996_elnino; @Rodionov2003_elnino; @Post1998_popgrowth; @Post2004_greenland; @Grotan2005_roedeer; @Huijser2008_dvc; @Marcoux2010_dvc; @Koenig2016_birdsync; @Shestakova2016_forestsync; @Cai2014_elnino;@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
-```{r rp_install, echo=F, message=FALSE}
-library(devtools,quietly=T,verbose=F)
-library(withr,quietly=T,verbose=F)
-withr::with_libpaths(new=.libPaths()[1],
-                     devtools::install_github(repo="reumandc/wsyn",ref="AndersonDeer",force=FALSE))
-
-```
-
 <!--Libraries-->
 ```{r libraries, echo=F, message=FALSE}
+library(plyr)
+library(tidyr)
 library(reshape2,quietly=T)
 library(tools,quietly=T)
 library(fields,quietly=T)
 library(shape,quietly=T)
-#library(wsyn,quietly=T)
+library(rmarkdown)
+library(tinytex)
+library(devtools,quietly=T)
+library(withr,quietly=T)
 ```
 
 <!--Flags controlling the run and other setup-->
