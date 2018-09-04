@@ -33,7 +33,6 @@ urlcolor: blue
 library(reshape2,quietly=T)
 library(tools,quietly=T)
 library(fields,quietly=T)
-library(shape,quietly=T)
 library(rmarkdown)
 library(tinytex)
 library(devtools,quietly=T)

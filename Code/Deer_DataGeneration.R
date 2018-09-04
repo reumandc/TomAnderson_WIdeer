@@ -1,5 +1,4 @@
 #Deer and DVC Data Cleaning and Management Steps
-library(wsyn)
 
 #Load Data
 gps <- read.csv("Data/WI_Cty_CentroidDD.csv")
