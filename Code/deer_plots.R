@@ -70,13 +70,13 @@ dev.off()
 png("Results/FigS3.png",res=600,height=4800,width=3200)
 TabS1_results<-readRDS(file = "Results/TableS1.rds")
 TabS1_results<-cbind(TabS1_results[,1:3],apply(TabS1_results[,4:7],2,function(x){round(x,4)}))
-wmeiabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterMEI" &  TabS1_results$Timescale=="4-7"]
-wmeiabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterMEI" &  TabS1_results$Timescale=="3-7"]
-wpdoabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterPDO" &  TabS1_results$Timescale=="4-7"]
-wpdoabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="WinterPDO" &  TabS1_results$Timescale=="3-7"]
-snowabun_phase34<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-4"]
-snowabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-7"]
-hunterphase2_2.5<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-7"]
+wmeiabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI" &  TabS1_results$Timescale=="4-7"]
+wmeiabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI" &  TabS1_results$Timescale=="3-7"]
+wpdoabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO" &  TabS1_results$Timescale=="4-7"]
+wpdoabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO" &  TabS1_results$Timescale=="3-7"]
+snowabun_phase34<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth" & TabS1_results$Timescale=="3-4"]
+snowabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth" & TabS1_results$Timescale=="3-7"]
+hunterphase2_2.5<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth" & TabS1_results$Timescale=="3-7"]
 
 par(mfrow=c(4,2),mar=c(2.5,4,2.5,0.5),mgp=c(1.5,0.5,0),cex.lab=1.5,las=1)
 phaseplot(get_coher(clim.res$WinterMEI.Abun),clim.res$WinterMEI.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
