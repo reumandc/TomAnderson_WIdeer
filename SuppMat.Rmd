@@ -51,7 +51,7 @@ minyear<-1981
 maxyear<-2016
 
 #set number of surrogates to use for spatial coherence
-nsurrogs<-100000
+nsurrogs<-10000
 
 #a function needed for caching
 source("Code/mtime.R") 
@@ -147,7 +147,7 @@ variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical a
 
 We obtained estimated hunter abundance data for each DMU from the WIDNR 
 that spanned the years 1992-`r maxyear`
-(Fig. S1 \ref{FigS1_Timeseries}), which constituted an index of the estimated 
+(Fig. \ref{FigS1_Timeseries}), which constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season [@widnr2001], assuming this was a good proxy 
 for hunter numbers across the season. 
@@ -161,7 +161,7 @@ counties for subsequent analysis.
 
 We obtained estimates of DVCs for each county, spanning the 
 years 1987-`r maxyear`, from the WI Department 
-of Transportation (WIDOT; Fig. S1\ref{FigS1_Timeseries}). These data reflect 
+of Transportation (WIDOT; Fig. \ref{FigS1_Timeseries}). These data reflect 
 the number of police-investigated DVCs. These data represent an 
 index of DVCs, as opposed to an absolute number of incidents, 
 as not all DVCs are reported. In Michigan, nearly half of 
@@ -190,7 +190,7 @@ National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.n
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
-all subsequent analyses (Fig. S1 \ref{FigS1_Timeseries}). The number of 
+all subsequent analyses (Fig. \ref{FigS1_Timeseries}). The number of 
 weather stations per county and data collected at each station 
 varied, resulting in different spatial extents for each variable 
 in order to retain the full temporal extent: Tmin ($N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
@@ -209,7 +209,7 @@ influence large ungulate population dynamics in the northcentral
 USA [@Post1998_popgrowth,@Post2004_greenland]. We averaged monthly values across the 
 approximate growing season (Apr-Nov), and the winter 
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
-(Fig. S1 \ref{FigS1_Timeseries}). We used a total of 11 weather and 
+(Fig. \ref{FigS1_Timeseries}). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. All were annual 
@@ -223,7 +223,7 @@ the variables involved; mean county
 area $\pm$ SD = `r round(mean(gps$Area_km2),0)`2017 $\pm$ 799`r round(sd(gps$Area_km2),0)` $\text{km}^2$), 
 United States Department of Agriculture (USDA) districts ($N = 9$; mean 
 district area $\pm$ SD = 16138 `r round(mean(usda.centroid$Area_km2),0)` $\pm$ 799 `r round(sd(usda.centroid$Area_km2),0)` $\text{km}^2$), 
-and statewide (Fig. S2\ref{FigS2_map}). Analyses at three spatial scales 
+and statewide (Fig. \ref{FigS2_map}). Analyses at three spatial scales 
 were performed because the SAK model used by the WIDNR to estimate deer 
 abundance for each management unit has been criticized as less accurate 
 at smaller spatial scales [@Millspaugh2009]. However, the bias in abundance 
@@ -239,12 +239,12 @@ to ensure our results were not biased by spatial extent, we analyzed
 synchrony at multiple spatial extents. USDA district data were 
 produced as the sum or 
 average of county-level variables, as the two scales had nested boundaries. 
-There were roughly $6$ to $8$ counties per district (Fig. S2\ref{FigS2_map}). 
+There were roughly $6$ to $8$ counties per district (Fig. \ref{FigS2_map}). 
 Statewide analysis used state total or average time series for each 
 variable. In general, the patterns of significance and phase relationships 
 we observed remained unchanged in their main substance using data 
-aggregated to larger spatial scales (Table S4\ref{TabS4_SummaryDistrict}, S5\ref{TabS5_SpatCohPWWAndClimInds_District}; 
-Fig. S6\ref{FigS6_WMFAndPredictionsDistricts}, suggesting the results for counties are not 
+aggregated to larger spatial scales (Table \ref{TabS4_SummaryDistrict}, \ref{TabS5_SpatCohPWWAndClimInds_District}; 
+Fig. \ref{FigS6_WMFAndPredictionsDistricts}, suggesting the results for counties are not 
 meaningfully biased by possible inaccuracies in SAK abundance estimation 
 procedures at the county level.
 
@@ -302,7 +302,7 @@ NAO, PDO and MEI), which were single time series
 rather than collections of time series measured at 
 multiple locations, we generated plots of 
 'normalized' wavelet magnitude 
-(Fig. S8\ref{FigS8_WaveletAmps}). Here, wavelet transforms 
+(Fig. \ref{FigS8_WaveletAmps}). Here, wavelet transforms 
 were first normalized at each timescale by dividing 
 by the square root of the time-averaged squared 
 wavelet transform magnitudes. Magnitudes of 
@@ -340,7 +340,7 @@ quantities calculated for $95,000$ of $100,000$
 surrogate data sets. Ranks of actual spatial 
 coherences in surrogate spatial coherences can 
 also be plotted as a function of timescale 
-(Fig. S3\ref{FigS3_PhaseDiffs}). 
+(Fig. \ref{FigS3_PhaseDiffs}). 
 
 As opposed to correlation-based approaches that 
 assume in-phase relationships, spatial coherence 
@@ -377,7 +377,7 @@ coherence between deer abundances and DVCs we
 present in the main text is likewise probably 
 indicative of greater deer abundances resulting in 
 more DVCs. DVCs are too uncommon to meaningfully 
-influence deer abundance (Fig. S1\ref{FigS1_Timeseries}), 
+influence deer abundance (Fig. \ref{FigS1_Timeseries}), 
 and the 
 in-phase relationship our analyses showed between 
 deer abundances and DVCs on $3-7$-year timescales 
@@ -464,7 +464,7 @@ wavelet transforms of the response, as well as to
 produce a wavelet mean field plot of the predicted 
 synchrony as a function of time and timescale based 
 on the multiple explanatory variables (colors in 
-Figs 2C\ref{Fig2}, S6E\ref{FigS6_}, colors). 
+Figs \ref{Fig2}C, \ref{FigS6_}E, colors). 
 Fractions of synchrony explained by model 
 predictors for a timescale band are again 
 available, through a generalization 
@@ -519,14 +519,14 @@ synchrony was absent. Such surrogate state-total
 time series were compared to the actual time series 
 (deer abundance or DVCs) to show the nature of the 
 additional variance in the state-total time series 
-attributable to synchrony (Fig. 4\ref{Fig4}).
+attributable to synchrony (Fig. \ref{Fig4}).
 
 <!--***DAN: Tom, you had attached a bunch of marginal comments to the version of this para in the Word doc, and I tried to act on those as best I could. Please revire the result-->
 We estimated the approximate monetary impact of 
 synchrony in DVCs based on several reported 
 assumptions about DVCs. Using an average difference 
 between peak and trough DVC years 
-(Fig. 4\ref{Fig4}) of `r avgdvcfluc`, and if we assume 
+(Fig. \ref{Fig4}) of `r avgdvcfluc`, and if we assume 
 that each reported DVC results in an average of 
 US\$2024 of damage [@Conover2011_bookchp], the 
 difference in damages statewide between peak and 
@@ -545,7 +545,7 @@ costs may exceed US\$22M.
 When aggregated to USDA districts, deer abundance 
 showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
-(Fig. S6A,C\ref{FigS6_WMFAndPredictionsDistricts}). 
+(Fig. \ref{FigS6_WMFAndPredictionsDistricts}A,C). 
 The wavelet phasor mean field of deer 
 abundance showed the phase synchrony was quite 
 strong, and significantly different from random 
@@ -553,7 +553,7 @@ phase orientations.
 
 Deer abundance was significantly related to snow 
 depth, MEIw, MEIs, and PDOw 
-(Table S4\ref{TabS4_SummaryDistrict}); these three 
+(Table \ref{TabS4_SummaryDistrict}); these three 
 variables were the same ones identified as 
 significantly coherent with deer abundance using 
 county-level analyses. The phase relationships 
@@ -561,7 +561,7 @@ between these variables were also similar to
 county-level relationships, where snow depth and 
 abundance were nearly anti-phase, and climate 
 indices and abundance showed approximately 
-quarter-cycle phase shifts (Table S4\ref{TabS4_SummaryDistrict}). 
+quarter-cycle phase shifts (Table \ref{TabS4_SummaryDistrict}). 
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
 data, but snow explained a higher amount of 
@@ -569,16 +569,16 @@ synchrony at $`r round(usda_abunsnwd_syncexp34,0)`\%$ for $3-4$-year timescales,
 compared with $`r round(snowabunSyncExp34,0)`\%$ at the county-level. Combined, 
 snow depth, MEIw, and PDOw explained $`r round(usda.abunmod_se[[1]],0)`\%$ of the 
 synchrony in deer abundance using 
-USDA district data (Fig. S6E\ref{FigS6_WMFAndPredictionsDistricts}).
+USDA district data (Fig. \ref{FigS6_WMFAndPredictionsDistricts}E).
 
 <!--***DAN: Tom, I made some substantial edits to the below para, pls review-->
 DVCs aggregated to USDA districts had a similar 
 synchrony feature to deer abundance over $3-7$ year 
-timescales (Fig. S6B,D\ref{FigS6_WMFAndPredictionsDistricts}). As with 
+timescales (Fig. \ref{FigS6_WMFAndPredictionsDistricts}B,D). As with 
 counties, deer abundance was a significant 
-predictor of DVC synchrony (Table S4\ref{TabS4_SummaryDistrict}), 
+predictor of DVC synchrony (Table \ref{TabS4_SummaryDistrict}), 
 and explained a substantial fraction ($`r round(usda_dvcabunSyncExp,0)`\%$) of 
-the synchrony (Fig. S6F\ref{FigS6_WMFAndPredictionsDistricts}). This value 
+the synchrony (Fig. \ref{FigS6_WMFAndPredictionsDistricts}F). This value 
 is nearly double the synchrony explained for 
 county-level analysis. Additionally, the 
 county-level 
@@ -586,7 +586,7 @@ analysis of the possible synchronizing effects of
 deer abundance on DVCs had cross-terms that were 
 high relative to 
 the synchrony `explained' in DVCs by abundance 
-(Table S1\ref{TabS1_CountyCoherenceSummary}). The renders the estimate of synchrony explained uniterpretable (*Methods*). 
+(Table \ref{TabS1_CountyCoherenceSummary}). The renders the estimate of synchrony explained uniterpretable (*Methods*). 
 Large cross terms may reflect the 
 effects of dispersal of 
 deer between counties or movement of cars between 

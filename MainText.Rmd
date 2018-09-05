@@ -6,12 +6,12 @@ author:
  - \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas; \textsuperscript{3}University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     includes:
       in_header: head_maintext.sty
+  word_document: default
   html_document:
     df_print: paged
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
@@ -29,22 +29,22 @@ nocite: |
 options(scipen=6)
 TabS1_results<-readRDS(file = "Results/TableS1.rds")
 TabS1_results<-cbind(TabS1_results[,1:3],apply(TabS1_results[,4:7],2,function(x){round(x,4)}))
-abunwmeiSyncExp37<-round(TabS1_results$SynchronyExplained[TabS1_results$Predictor=="WinterMEI"&TabS1_results$Timescale=="3-7"],2)
-abunwpdoSyncExp37<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="WinterPDO" &  TabS1_results$Timescale=="3-7"]
+abunwmeiSyncExp37<-round(TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)
+abunwpdoSyncExp37<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Winter PDO" &  TabS1_results$Timescale=="3-7"]
 snowabunSyncExp3_4<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-4"]
 abunmodelSyncExp<-readRDS(file="Results/abunmodelSyncExp.rds")
 
 #load Table S2 results
 TabS2_results<-readRDS(file="Results/TabS2_results.rds")
-wmei_wpdo_pval<-round(TabS2_results$Pvalue[TabS2_results$Predictor=="WinterMEI" & TabS2_results$Response=="WinterPDO"],4)
-wmei_wpdo_phase<-round(TabS2_results$MeanPhase[TabS2_results$Predictor=="WinterMEI" & TabS2_results$Response=="WinterPDO"],4)
-abunwmeiSyncExp47<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="WinterMEI" &  TabS1_results$Timescale=="4-7"]
+wmei_wpdo_pval<-round(TabS2_results$Pvalue[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO"],4)
+wmei_wpdo_phase<-round(TabS2_results$MeanPhase[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO"],4)
+abunwmeiSyncExp47<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Winter MEI" &  TabS1_results$Timescale=="4-7"]
 
 #load Table S4 results
-TabS4_results<-readRDS(file = "Results/TabS4_results.rds")
+TabS4_results<-readRDS(file = "Results/TableS4.rds")
 usda_dvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
-usda_adjdvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Adjusted DVCs" &
+usda_adjdvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Traffic-adj. DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
 avgdeerfluc<-readRDS(file="Results/totaldeerfluctuations.rds")
 avgdvcfluc<-readRDS(file="Results/totaldvcfluctuations.rds")
@@ -137,18 +137,18 @@ coherence ([@Sheppard2016_aphids;@Sheppard2017_surrogates]; *Methods*)
 showed deer abundance and DVCs were significantly related 
 ($P =$ `r TabS1_results$Pvalue[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"]`, 
 Table \ref{SM-TabS1_CountyCoherenceSummary}) on $3-7$-year timescales, and had a nearly in-phase 
-relationship ($\bar{\theta} =$ `r TabS1_results$MeanPhase[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"]`, Fig. \ref{SM-FigS3_PhaseDiffs}). 
+relationship ($\bar{\theta} =$ `r TabS1_results$MeanPhase[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abun"]`, Fig. \ref{SM-FigS3_PhaseDiffs}). 
 <!--***DAN: Tom, as above, the values here agree with Table S1 but disagree with Fig. S3, please fix.-->
 Greater deer abundance almost certainly caused greater DVCs rather 
 than DVCs driving deer fluctuations because DVCs were too infrequent to meaningfully impact deer 
 abundance (Fig. \ref{SM-FigS1_Timeseries}), and if they did an anti-phase relationship would have 
-been expected. Deer abundance explained $`r round(100*usda_dvcabunSyncExp,0)`\%$ of the synchrony in 
+been expected. Deer abundance explained $`r round(usda_dvcabunSyncExp,0)`\%$ of the synchrony in 
 DVCs when data were aggregated to USDA districts (*Methods*, Table \ref{SM-TabS4_SummaryDistrict}). 
 As a visual manifestation of this statistical result, patterns of synchrony in DVCs predicted by a
 wavelet regression model with sole predictor deer abundance match the patterns actually present in DVC
 synchrony (Fig. \ref{Fig3_DvcSync}C). 
 Statistical significance, phase relationships, and the amount of DVC synchrony explained by deer
-abundance ($`r round(100*usda_adjdvcabunSyncExp,0)`\%$) remained similar after accounting for
+abundance ($`r round(usda_adjdvcabunSyncExp,0)`\%$) remained similar after accounting for
 fluctuations in traffic volume (Tables \ref{SM-TabS1_CountyCoherenceSummary}, \ref{SM-TabS4_SummaryDistrict}).
 
 <!--***DAN: Dan got to here 2018 06 14, 1028am central-->
@@ -195,7 +195,7 @@ structure of synchrony. Higher values mean greater synchrony at the given time o
 \newpage
 
 <!--***DAN: Tom, there is a p-value in the below caption that is still manually typed in, and needs to be
-replaced, please, with a dynamic link to a code variable.-->
+replaced, please, with a dynamic link to a code variable. TOM: It's indicating the threshold so it shouldn't be a dynamic link.-->
 \begin{figure}[!h]
 \includegraphics[height=.7\textheight]{Results/Fig2.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) 
@@ -221,9 +221,6 @@ show the actual wavelet mean field magnitude of DVCs from (A), for comparison. A
 visual indication of the statistical result that deer synchrony explains DVC synchrony.
 \label{Fig3_DvcSync}}
 \end{figure}
-<!--***DAN: Tom, something is wrong with the contours in Fig. 2b and 3b - according to the caption, there 
-should only be one contour, at the P=0.001 confidence threshold. But there are two. Furthermore, these two
-contours cross each other, which contours should never do. Can you get to the bottom of this, please?-->
 
 \newpage
 
