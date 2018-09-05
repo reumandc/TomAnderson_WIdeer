@@ -219,8 +219,14 @@ TabS1.mat<-data.frame(matrix(unlist(strsplit(row.names(TabS1),'.',fixed=TRUE)),n
 colnames(TabS1.mat)<-c("Predictor","Response",colnames(TabS1))
 TabS1.mat<-data.frame(TabS1.mat[,1:2],paste(TabS1.mat$ts_low_bd,TabS1.mat$ts_hi_bd,sep="-"),TabS1.mat[,c("p_val","mn_phs",'syncexpl',"crossterms","resids","pred1")])
 colnames(TabS1.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","SynchronyExplained","CrossTerms","Residuals","Pred1")
+TabS1.mat$MeanPhase<-TabS1.mat$MeanPhase/pi #change units to pi radians
 TabS1.mat<-TabS1.mat[,!colnames(TabS1.mat)%in%c("Residuals","Pred1")]
 TableS1<-TabS1.mat[complete.cases(TabS1.mat),]
+levels(TableS1$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
+                      "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO",
+                      "Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI",
+                      "Abundance"="Abun","Hunters"="Hunter")
+levels(TableS1$Response)<-list("Abundance"="Abun","DVCs"="DVC","Traffic-adj. DVCs"="AdjDVC")
 saveRDS(TableS1,file="Results/TableS1.rds")
 
 # USDA Analysis -----------------------------------------------------------
@@ -408,8 +414,14 @@ colnames(TabS4.mat)<-c("Predictor","Response",colnames(TabS4))
 TabS4.mat<-data.frame(TabS4.mat[,1:2],paste(TabS4.mat$ts_low_bd,TabS4.mat$ts_hi_bd,sep="-"),TabS4.mat[,c("p_val","mn_phs",'syncexpl',"crossterms","resids","pred1")])
 colnames(TabS4.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","SynchronyExplained","CrossTerms","Residuals","Pred1")
 TabS4.mat<-TabS4.mat[,!colnames(TabS4.mat)%in%c("Residuals","Pred1")]
+TabS4.mat$MeanPhase<-TabS4.mat$MeanPhase/pi
 TableS4<-TabS4.mat[complete.cases(TabS4.mat),]
-saveRDS(TabS4.mat,file="Results/TableS4.rds")
+levels(TableS4$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
+                                "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO",
+                                "Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI",
+                                "Abundance"="Abun","Hunters"="Hunter")
+levels(TableS4$Response)<-list("Abundance"="Abun","DVCs"="DVC","Traffic-adj. DVCs"="AdjDVC")
+saveRDS(TableS4,file="Results/TableS4.rds")
 
 # Do Statewide Analysis ---------------------------------------------------
 #annualize and clean data

@@ -44,14 +44,14 @@ library(withr,quietly=T)
 #which density to use ("dnr" for original estimates, "tom" for your own calculations)
 dens.flag<-"dnr"
 
-#what is the earliest year you want? (hunting only: 1960; abundance: 1981; DVC: 1987; Traffic: 1988, Hunters: 1992)
+#what is the earliest year you want? (abundance: 1981; DVC: 1987; Traffic: 1988, Hunters: 1992)
 minyear<-1981
 
 #what is the last year you want? (max is 2016)
 maxyear<-2016
 
 #set number of surrogates to use for spatial coherence
-nsurrogs<-100
+nsurrogs<-100000
 
 #a function needed for caching
 source("Code/mtime.R") 
@@ -100,15 +100,15 @@ options(scipen = 999999)
 #load in results
 options(scipen=6)
 #Load tables of results
-TabS4_results<-readRDS(file = "Results/TabS4_results.rds")
+TabS4_results<-readRDS(file = "Results/TableS4.rds")
 TabS1_results<-readRDS(file = "Results/TableS1.rds")
 
-usda_abunsnwd_syncexp34<-TableS4$SynchronyExplained[TableS4$Predictor=="Snwd" & TableS4$Response=="Abun" & TableS4$Timescale=="3-4"]
+usda_abunsnwd_syncexp34<-TabS4_results$SynchronyExplained[TabS4_results$Predictor=="Snow Depth" & TabS4_results$Response=="Abunance" & TabS4_results$Timescale=="3-4"]
 usda_dvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
-usda_adjdvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Adjusted DVCs" &
+usda_adjdvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Traffic-adj. DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
-snowabunSyncExp34<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Snwd" & TabS1_results$Timescale=="3-4"]
+snowabunSyncExp34<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Snow Depth" & TabS1_results$Timescale=="3-4"]
 avgdeerfluc<-readRDS(file="Results/totaldeerfluctuations.rds")
 avgdvcfluc<-readRDS(file="Results/totaldvcfluctuations.rds")
 avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
@@ -120,7 +120,7 @@ avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
 
 We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning a `r dim(cty.list$Abun)[2]`-yr period 
-(`r minyear`-`r maxyear`; Fig. S1 \ref{FigS1_Timeseries}). 
+(`r minyear`-`r maxyear`; Fig. \ref{FigS1_Timeseries}). 
 From 1981-2013, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
@@ -565,9 +565,9 @@ quarter-cycle phase shifts (Table S4\ref{TabS4_SummaryDistrict}).
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
 data, but snow explained a higher amount of 
-synchrony at $`r round(100*usda_abunsnwd_syncexp34,0)`\%$ for $3-4$-year timescales, as 
-compared with $`r round(100*snowabunSyncExp34,0)`\%$ at the county-level. Combined, 
-snow depth, MEIw, and PDOw explained $`r round(100*usda.abunmod_se[[1]],0)`\%$ of the 
+synchrony at $`r round(usda_abunsnwd_syncexp34,0)`\%$ for $3-4$-year timescales, as 
+compared with $`r round(snowabunSyncExp34,0)`\%$ at the county-level. Combined, 
+snow depth, MEIw, and PDOw explained $`r round(usda.abunmod_se[[1]],0)`\%$ of the 
 synchrony in deer abundance using 
 USDA district data (Fig. S6E\ref{FigS6_WMFAndPredictionsDistricts}).
 
@@ -577,7 +577,7 @@ synchrony feature to deer abundance over $3-7$ year
 timescales (Fig. S6B,D\ref{FigS6_WMFAndPredictionsDistricts}). As with 
 counties, deer abundance was a significant 
 predictor of DVC synchrony (Table S4\ref{TabS4_SummaryDistrict}), 
-and explained a substantial fraction ($`r round(100*usda_dvcabunSyncExp,0)`\%$) of 
+and explained a substantial fraction ($`r round(usda_dvcabunSyncExp,0)`\%$) of 
 the synchrony (Fig. S6F\ref{FigS6_WMFAndPredictionsDistricts}). This value 
 is nearly double the synchrony explained for 
 county-level analysis. Additionally, the 
@@ -598,7 +598,7 @@ with our results that cross terms were small
 enough to be ignored 
 at district level. The amount of DVC 
 synchrony explained by 
-abundance remained high ($`r round(100*usda_adjdvcabunSyncExp,0)`\%$) even after 
+abundance remained high ($`r round(usda_adjdvcabunSyncExp,0)`\%$) even after 
 controlling for traffic volume. 
 Thus, in contrast to the county-level result, the 
 result that deer abundance synchrony explained
