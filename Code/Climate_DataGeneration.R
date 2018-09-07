@@ -41,10 +41,11 @@ pcp86_91<-read.csv("Data/Cty_NOAA_Precip1986_1991.csv",na.strings=c("","unknown"
 pcp92_97<-read.csv("Data/Cty_NOAA_Precip1992_1997.csv",na.strings=c("","unknown","-9999"))
 pcp98_03<-read.csv("Data/Cty_NOAA_Precip1998_2003.csv",na.strings=c("","unknown","-9999"))
 pcp04_09<-read.csv("Data/Cty_NOAA_Precip2004_2009.csv",na.strings=c("","unknown","-9999"))
-pcp10_15<-read.csv("Data/Cty_NOAA_Precip2010_2015.csv",na.strings=c("","unknown","-9999"))
+pcp10_15a<-read.csv("Data/Cty_NOAA_Precip2010_2015set1.csv",na.strings=c("","unknown","-9999"))
+pcp10_15b<-read.csv("Data/Cty_NOAA_Precip2010_2015set2.csv",na.strings=c("","unknown","-9999"))
 pcp16_17<-read.csv("Data/Cty_NOAA_Precip2016_2017.csv",na.strings=c("","unknown","-9999"))
 
-wi.pcp<-rbind(pcp81_85,pcp86_91,pcp92_97,pcp98_03,pcp04_09,pcp10_15)  #combine all files but '16-'17 into one
+wi.pcp<-rbind(pcp81_85,pcp86_91,pcp92_97,pcp98_03,pcp04_09,pcp10_15a,pcp10_15b)  #combine all files but '16-'17 into one
 wi.pcp<-wi.pcp[,c("STATION","STATION_NAME","DATE","PRCP","SNWD")]  #filter to relevant columns 
 pcp16_17<-pcp16_17[,c("STATION","STATION_NAME","DATE","PRCP","SNWD")]  #filter to relevant columns 
 wi.pcp<-rbind(wi.pcp,pcp16_17)
