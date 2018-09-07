@@ -1,0 +1,244 @@
+Deer Management Zone,County,Deer Range,HunterDens,Year
+Northern Forest,ASHLAND,821.69,5.3,2014
+Northern Forest,BAYFIELD,1409.69,7.8,2014
+Northern Forest,BURNETT,762.68,12.5,2014
+Northern Forest,DOUGLAS,1238.2,6.1,2014
+Northern Forest,FLORENCE,477.22,18,2014
+Northern Forest,FOREST,996.54,9.2,2014
+Northern Forest,IRON,711.55,4.7,2014
+Northern Forest,LANGLADE,748.59,11.7,2014
+Northern Forest,LINCOLN,797.12,14.2,2014
+Northern Forest,MARINETTE,920.62,16.7,2014
+Northern Forest,MENOMINEE,,,2014
+Northern Forest,OCONTO,336.93,21.1,2014
+Northern Forest,ONEIDA,1072.2,10,2014
+Northern Forest,PRICE,1199.87,10.3,2014
+Northern Forest,RUSK,818.11,11.1,2014
+Northern Forest,SAWYER,1113.47,9.2,2014
+Northern Forest,TAYLOR,814.2,16.5,2014
+Northern Forest,VILAS,769.09,12.4,2014
+Northern Forest,WASHBURN,745.84,11.9,2014
+Central Forest,ADAMS,430.39,23.2,2014
+Central Forest,CLARK,474.71,22.6,2014
+Central Forest,EAU CLAIRE,173.23,14.8,2014
+Central Forest,JACKSON,452.88,9,2014
+Central Forest,JUNEAU,380.52,13.9,2014
+Central Forest,MONROE,108.57,12.5,2014
+Central Forest,WOOD,294.58,13.8,2014
+Central Farmland,ADAMS,72.07,31.4,2014
+Central Farmland,BARRON,530.99,14.2,2014
+Central Farmland,BROWN,113.47,37.3,2014
+Central Farmland,BUFFALO,559.95,15.4,2014
+Central Farmland,CALUMET,68.6,33,2014
+Central Farmland,CHIPPEWA,665.88,10,2014
+Central Farmland,CLARK,273.17,13.3,2014
+Central Farmland,DOOR,272.16,20,2014
+Central Farmland,DUNN,585.77,12.9,2014
+Central Farmland,EAU CLAIRE,287.72,13.1,2014
+Central Farmland,FOND DU LAC,214.43,32.4,2014
+Central Farmland,GREEN LAKE,179.13,26.1,2014
+Central Farmland,JACKSON,374.28,21,2014
+Central Farmland,JUNEAU,231.29,18.9,2014
+Central Farmland,KEWAUNEE,97.56,52.6,2014
+Central Farmland,LA CROSSE,320.14,20.3,2014
+Central Farmland,MANITOWOC,174.95,30.2,2014
+Central Farmland,MARATHON,1000.16,18,2014
+Central Farmland,MARINETTE,345.96,13.5,2014
+Central Farmland,MARQUETTE,342.73,20.3,2014
+Central Farmland,MONROE,539.21,17.9,2014
+Central Farmland,OCONTO,413.03,25.2,2014
+Central Farmland,OUTAGAMIE,192.9,27.4,2014
+Central Farmland,PEPIN,165.04,20.1,2014
+Central Farmland,PIERCE,266.77,20.4,2014
+Central Farmland,POLK,623.37,17.9,2014
+Central Farmland,PORTAGE,502.89,23.4,2014
+Central Farmland,SHAWANO,579.7,24,2014
+Central Farmland,SHEBOYGAN,190.74,27.7,2014
+Central Farmland,ST. CROIX,239.24,23.3,2014
+Central Farmland,TREMPEALEAU,541.65,17.8,2014
+Central Farmland,WAUPACA,480.64,33.3,2014
+Central Farmland,WAUSHARA,383.45,28.3,2014
+Central Farmland,WINNEBAGO,112.94,26.7,2014
+Central Farmland,WOOD,263.13,18.4,2014
+Southern Farmland,COLUMBIA,370.92,33,2014
+Southern Farmland,CRAWFORD,455.33,12.9,2014
+Southern Farmland,DANE,428.74,14.4,2014
+Southern Farmland,DODGE,272.75,22.7,2014
+Southern Farmland,GRANT,547.09,16,2014
+Southern Farmland,GREEN,179.79,12.6,2014
+Southern Farmland,IOWA,417.64,21.3,2014
+Southern Farmland,JEFFERSON,196.83,29.9,2014
+Southern Farmland,KENOSHA,92.74,6.5,2014
+Southern Farmland,LAFAYETTE,146.29,26.8,2014
+Southern Farmland,MILWAUKEE,46.42,,2014
+Southern Farmland,OZAUKEE,78.21,13.5,2014
+Southern Farmland,RACINE,100.29,12,2014
+Southern Farmland,RICHLAND,415.11,20,2014
+Southern Farmland,ROCK,138.42,15.3,2014
+Southern Farmland,SAUK,525.39,15.8,2014
+Southern Farmland,VERNON,525.85,16.1,2014
+Southern Farmland,WALWORTH,177.47,10.2,2014
+Southern Farmland,WASHINGTON,187.83,17.7,2014
+Southern Farmland,WAUKESHA,245.97,9.2,2014
+Northern Forest,ASHLAND,821.69,5.3,2015
+Northern Forest,BAYFIELD,1409.69,8.9,2015
+Northern Forest,BURNETT,762.68,13.2,2015
+Northern Forest,DOUGLAS,1238.2,7.9,2015
+Northern Forest,FLORENCE,477.22,17.6,2015
+Northern Forest,FOREST,996.54,9.7,2015
+Northern Forest,IRON,711.55,5.6,2015
+Northern Forest,LANGLADE,748.59,13.8,2015
+Northern Forest,LINCOLN,797.12,13.3,2015
+Northern Forest,MARINETTE,920.62,20.3,2015
+Northern Forest,MENOMINEE,,,2015
+Northern Forest,OCONTO,336.93,14.2,2015
+Northern Forest,ONEIDA,1072.2,11.9,2015
+Northern Forest,PRICE,1199.87,11.5,2015
+Northern Forest,RUSK,818.11,11.2,2015
+Northern Forest,SAWYER,1113.47,7.5,2015
+Northern Forest,TAYLOR,814.2,14.7,2015
+Northern Forest,VILAS,769.09,12.1,2015
+Northern Forest,WASHBURN,745.84,14.4,2015
+Central Forest,ADAMS,430.39,24.9,2015
+Central Forest,CLARK,474.71,18.2,2015
+Central Forest,EAU CLAIRE,173.23,10.4,2015
+Central Forest,JACKSON,452.88,7.7,2015
+Central Forest,JUNEAU,380.52,12.9,2015
+Central Forest,MONROE,108.57,7.1,2015
+Central Forest,WOOD,294.58,9.6,2015
+Central Farmland,ADAMS,72.07,25.1,2015
+Central Farmland,BARRON,530.99,18,2015
+Central Farmland,BROWN,113.47,34.1,2015
+Central Farmland,BUFFALO,559.95,18.2,2015
+Central Farmland,CALUMET,68.6,58.3,2015
+Central Farmland,CHIPPEWA,665.88,15.1,2015
+Central Farmland,CLARK,273.17,18.4,2015
+Central Farmland,DOOR,272.16,20.9,2015
+Central Farmland,DUNN,585.77,13.4,2015
+Central Farmland,EAU CLAIRE,287.72,12.1,2015
+Central Farmland,FOND DU LAC,214.43,34.3,2015
+Central Farmland,GREEN LAKE,179.13,26.7,2015
+Central Farmland,JACKSON,374.28,15.9,2015
+Central Farmland,JUNEAU,231.29,15.6,2015
+Central Farmland,KEWAUNEE,97.56,43.6,2015
+Central Farmland,LA CROSSE,320.14,17.7,2015
+Central Farmland,MANITOWOC,174.95,53.1,2015
+Central Farmland,MARATHON,1000.16,23.2,2015
+Central Farmland,MARINETTE,345.96,16,2015
+Central Farmland,MARQUETTE,342.73,31.2,2015
+Central Farmland,MONROE,539.21,15.6,2015
+Central Farmland,OCONTO,413.03,30.9,2015
+Central Farmland,OUTAGAMIE,192.9,32.8,2015
+Central Farmland,PEPIN,165.04,17.2,2015
+Central Farmland,PIERCE,266.77,24.2,2015
+Central Farmland,POLK,623.37,21.3,2015
+Central Farmland,PORTAGE,502.89,18.2,2015
+Central Farmland,SHAWANO,579.7,27.4,2015
+Central Farmland,SHEBOYGAN,190.74,30.4,2015
+Central Farmland,ST. CROIX,239.24,18.9,2015
+Central Farmland,TREMPEALEAU,541.65,17.6,2015
+Central Farmland,WAUPACA,480.64,41.3,2015
+Central Farmland,WAUSHARA,383.45,27.3,2015
+Central Farmland,WINNEBAGO,112.94,35.4,2015
+Central Farmland,WOOD,263.13,25,2015
+Southern Farmland,COLUMBIA,370.92,29.9,2015
+Southern Farmland,CRAWFORD,455.33,15,2015
+Southern Farmland,DANE,428.74,13.8,2015
+Southern Farmland,DODGE,272.75,26,2015
+Southern Farmland,GRANT,547.09,16.7,2015
+Southern Farmland,GREEN,179.79,20.1,2015
+Southern Farmland,IOWA,417.64,17.3,2015
+Southern Farmland,JEFFERSON,196.83,17.7,2015
+Southern Farmland,KENOSHA,92.74,7,2015
+Southern Farmland,LAFAYETTE,146.29,23.8,2015
+Southern Farmland,MILWAUKEE,46.42,,2015
+Southern Farmland,OZAUKEE,78.21,21.4,2015
+Southern Farmland,RACINE,100.29,5.1,2015
+Southern Farmland,RICHLAND,415.11,19.9,2015
+Southern Farmland,ROCK,138.42,19.6,2015
+Southern Farmland,SAUK,525.39,20.6,2015
+Southern Farmland,VERNON,525.85,22.3,2015
+Southern Farmland,WALWORTH,177.47,13.8,2015
+Southern Farmland,WASHINGTON,187.83,17.9,2015
+Southern Farmland,WAUKESHA,245.97,7.9,2015
+Central Farmland ,Adams,72.07,19,2016
+Central Farmland ,Barron,530.99,12.3,2016
+Central Farmland ,Brown,113.47,23.2,2016
+Central Farmland ,Buffalo,559.95,11.6,2016
+Central Farmland ,Calumet,68.6,33.7,2016
+Central Farmland ,Chippewa,665.88,11.7,2016
+Central Farmland ,Clark,273.17,27.3,2016
+Central Farmland ,Door,272.16,22.8,2016
+Central Farmland ,Dunn,585.77,13.1,2016
+Central Farmland ,Eau Claire,287.72,11.3,2016
+Central Farmland ,Fond Du Lac,214.43,34.8,2016
+Central Farmland ,Green Lake,179.13,35.8,2016
+Central Farmland ,Jackson,374.28,18,2016
+Central Farmland ,Juneau,231.29,12.3,2016
+Central Farmland ,Kewaunee,97.56,55,2016
+Central Farmland ,La Crosse,320.14,20.4,2016
+Central Farmland ,Manitowoc,174.95,30,2016
+Central Farmland ,Marathon,1000.16,19.3,2016
+Central Farmland ,Marinette,345.96,16.1,2016
+Central Farmland ,Marquette,342.73,27.3,2016
+Central Farmland ,Monroe,539.21,16.6,2016
+Central Farmland ,Oconto,413.03,23.2,2016
+Central Farmland ,Outagamie,192.9,26.2,2016
+Central Farmland ,Pepin,165.04,15.3,2016
+Central Farmland ,Pierce,266.77,21.7,2016
+Central Farmland ,Polk,623.37,18.7,2016
+Central Farmland ,Portage,502.89,24.3,2016
+Central Farmland ,St. Croix,239.24,18,2016
+Central Farmland ,Shawano,579.7,27.6,2016
+Central Farmland ,Sheboygan,190.74,22.6,2016
+Central Farmland ,Trempealeau,541.65,16.7,2016
+Central Farmland ,Waupaca,480.64,27.8,2016
+Central Farmland ,Waushara,383.45,28.8,2016
+Central Farmland ,Winnebago,112.94,27,2016
+Central Farmland ,Wood,263.13,16.4,2016
+Central Forest ,Adams,430.39,21.3,2016
+Central Forest ,Clark,474.71,20.2,2016
+Central Forest ,Eau Claire,173.23,15.8,2016
+Central Forest ,Jackson,452.88,10,2016
+Central Forest ,Juneau,380.52,12.7,2016
+Central Forest ,Monroe,108.57,7.7,2016
+Central Forest ,Wood,294.58,8.9,2016
+Northern Forest ,Ashland,821.69,5.9,2016
+Northern Forest ,Bayfield,1409.69,7.6,2016
+Northern Forest ,Burnett,762.68,10.1,2016
+Northern Forest ,Douglas,1238.2,6.3,2016
+Northern Forest ,Florence,477.22,13.9,2016
+Northern Forest ,Forest,996.54,7.5,2016
+Northern Forest ,Iron,711.55,4.6,2016
+Northern Forest ,Langlade,748.59,11.1,2016
+Northern Forest ,Lincoln,797.12,14.6,2016
+Northern Forest ,Marinette,920.62,13.9,2016
+Northern Forest,Menominee,182,,2016
+Northern Forest ,Oconto,336.93,14.7,2016
+Northern Forest ,Oneida,1072.2,9,2016
+Northern Forest ,Price,1199.87,8.9,2016
+Northern Forest ,Rusk,818.11,12,2016
+Northern Forest ,Sawyer,1113.47,7.2,2016
+Northern Forest ,Taylor,814.2,10.1,2016
+Northern Forest ,Vilas,769.09,12.9,2016
+Northern Forest ,Washburn,745.84,11.3,2016
+Southern Farmland ,Columbia,370.92,24.9,2016
+Southern Farmland ,Crawford,455.33,15.7,2016
+Southern Farmland ,Dane,428.74,13.7,2016
+Southern Farmland ,Dodge,272.75,22,2016
+Southern Farmland ,Grant,547.09,17.7,2016
+Southern Farmland ,Green,179.79,15.2,2016
+Southern Farmland ,Iowa,417.64,15.1,2016
+Southern Farmland ,Jefferson,196.83,18.2,2016
+Southern Farmland ,Kenosha,92.74,9.1,2016
+Southern Farmland ,Lafayette,146.29,20.8,2016
+Southern Farmland ,Milwaukee,46.42,,2016
+Southern Farmland ,Ozaukee,78.21,13.4,2016
+Southern Farmland ,Racine,100.29,7.3,2016
+Southern Farmland ,Richland,415.11,20.8,2016
+Southern Farmland ,Rock,138.42,26.6,2016
+Southern Farmland ,Sauk,525.39,22.4,2016
+Southern Farmland ,Vernon,525.85,20.8,2016
+Southern Farmland ,Walworth,177.47,11.8,2016
+Southern Farmland ,Washington,187.83,11.8,2016
+Southern Farmland ,Waukesha,245.97,9.4,2016

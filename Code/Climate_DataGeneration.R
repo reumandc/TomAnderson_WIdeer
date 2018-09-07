@@ -241,12 +241,9 @@ saveRDS(winter.clim.usda,"Results/winter.clim.usda.rds")
 climate_indices <- read.csv("Data/climate_indices.csv")
 mei<-read.csv("Data/mei.csv")
 pdo<-read.csv("Data/pdo.csv")
-npi<-read.csv("Data/npi.csv",na.strings = c("-999"))
 
 #compute yearly averages
 mei$Mean<-rowMeans(mei[,2:dim(mei)[2]],na.rm=T)
-npi$Mean<-rowMeans(npi[,2:dim(npi)[2]],na.rm=T)
-npi$MeanZ<-scale(npi$Mean)#double check that this is right for z transformation
 mean.clim<-aggregate(cbind(NAO,EA,WP,EP_NP,PNA,EA.WR)~Year,FUN="mean",data=climate_indices)
 mean.pdo<-aggregate(Value~Year,pdo,FUN="mean")
 
