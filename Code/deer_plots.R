@@ -83,25 +83,25 @@ phaseplot(get_coher(clim.res$WinterMEI.Abun),clim.res$WinterMEI.Abun$timescales,
 rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wmeiabun_phase37,3)))))
 mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wmeiabun_phase47,3)))))
-mtext("A)",font=2,adj=0)
+mtext("A)",font=2,adj=0.05)
 phaseplot(get_coher(clim.res$SummerMEI.Abun),clim.res$SummerMEI.Abun$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="")
-mtext("B)",font=2,adj=0)
+mtext("B)",font=2,adj=0.05)
 phaseplot(get_coher(clim.res$WinterPDO.Abun),clim.res$WinterPDO.Abun$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
 rect(xleft=4,ybottom = -pi,xright = 7,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(wpdoabun_phase37,3)))))
 mtext(line=1,adj=1,cex=0.75,bquote(paste("4-7, ",bar(theta)==.(round(wpdoabun_phase47,3)))))
-mtext("C)",font=2,adj=0)
+mtext("C)",font=2,adj=0.05)
 phaseplot(get_coher(weath.res$Snwd.Abun),weath.res$Snwd.Abun$timescales,showphase=F,type="pi",tsrange=c(3,7),ylab="",xlab="")
-mtext("D)",font=2,adj=0)
+mtext("D)",font=2,adj=0.05)
 rect(xleft=3,ybottom = -pi,xright = 4,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(snowabun_phase37,3)))))
 mtext(line=1,adj=1,cex=0.75,bquote(paste("3-4, ",bar(theta)==.(round(snowabun_phase34,3)))))
 phaseplot(get_coher(dvc.res),dvc.res$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
-mtext("E)",font=2,adj=0)
+mtext("E)",font=2,adj=0.05)
 phaseplot(get_coher(adjdvc.res),adjdvc.res$timescales,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="")
-mtext("F)",font=2,adj=0)
+mtext("F)",font=2,adj=0.05)
 phaseplot(get_coher(hunter.res),hunter.res$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="Phase")
-mtext("G)",font=2,adj=0)
+mtext("G)",font=2,adj=0.05)
 rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))
 dev.off()
@@ -246,24 +246,24 @@ plot(1981:2016,rep(NA,36),las=1,ylim=c(min(cty.list$Abun),max(cty.list$Abun)),xl
 for(i in 1:nrow(cty.list$Abun)){
   lines(1981:2016,cty.list$Abun[i,],col=rainbow(71)[i])
 }
-mtext(text = "A)",side=3,adj=0,font=2)
+mtext(text = "A)",side=3,adj=0.05,font=2)
 plot(1987:2016,rep(NA,30),las=1,ylim=c(min(cty.list$Crashes,na.rm=T),max(cty.list$Crashes,na.rm=T)),xlim=c(1981,2016),xlab="Year",ylab="DVCs")
 for(i in 1:nrow(cty.list$Crashes)){
   lines(1987:2016,na.omit(cty.list$Crashes[i,]),col=rainbow(71)[i])
 }
-mtext(text = "B)",side=3,adj=0,font=2)
+mtext(text = "B)",side=3,adj=0.05,font=2)
 
 winter.clim.tmp<-lapply(winter.clim,function(x){x[(!is.na(rowMeans(x))),]})
 plot(1981:2016,rep(NA,36),las=1,ylim=c(min(winter.clim.tmp$Snwd),max(winter.clim.tmp$Snwd)),xlab="",ylab="Winter Snow Depth (cm)")
 for(i in 1:nrow(winter.clim.tmp$Snwd)){
   lines(1981:2016,winter.clim.tmp$Snwd[i,],col=rainbow(nrow(winter.clim.tmp$Snwd))[i])
 }
-mtext(text = "C)",side=3,adj=0,font=2)
+mtext(text = "C)",side=3,adj=0.05,font=2)
 
 plot(mei$YEAR[mei$YEAR>1980],win.mei.mat[1,],las=1,col="blue",type="l",xlab="Year",ylab="Index Value",lwd=2)
 lines(mean.pdo$Year[mean.pdo$Year>1980],win.pdo.mat[1,],col="green",lwd=2)
 legend("topright",bty="n",c("Winter MEI","Winter PDO"),col=c("blue","green"),lty=c(1,1),cex=0.75)
-mtext(text = "D)",side=3,adj=0,font=2)
+mtext(text = "D)",side=3,adj=0.05,font=2)
 mtext(text="Year",side=1,line=1.5,cex=0.75)
 
 cty.list.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
@@ -272,7 +272,7 @@ plot(1992:2016,rep(NA,25),ylim=c(min(cty.list.tmp,na.rm=T),max(cty.list.tmp,na.r
 for(i in 1:nrow(cty.list.tmp)){
   lines(1992:2016,na.omit(cty.list.tmp[i,]),col=rainbow(53)[i])
 }
-mtext(text = "E)",side=3,adj=0,font=2)
+mtext(text = "E)",side=3,adj=0.05,font=2)
 mtext(text="Year",side=1,line=1.5,cex=0.75)
 dev.off()
 
@@ -309,7 +309,7 @@ lines(1981:2016,apply(cty.list$Abun,2,sum),lwd=2)
 axis(2,labels= format(seq(600000,1300000,200000),scientific=T),at = seq(600000,1300000,200000),las=1,tck=-.05,cex.axis=0.75)
 axis(1,labels=c(rep("",8)),at = seq(1980,2016,5),tck=-0.05,cex.axis=0.75)
 mtext("Deer",side=2,line=3.5,cex=0.75)
-mtext("A)",font=2,side=3,line=0,adj=0)
+mtext("A)",font=2,side=3,line=0,adj=0.05)
 box()
 #Deer- big panel
 par(fig=c(ywd/tot.wd,
@@ -324,8 +324,8 @@ for(i in 1:nrow(dvcsurr)){
 lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=3,type="b",pch=19)
 Arrows(x0 = 1999,y0 = 0,y1=140000,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-150000,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=2001,y=160000,labels="159054 deer",font=2,cex=0.75,adj=0,col="red")
-text(x=1999,y=-174000,labels="174339 deer",font=2,cex=0.75,adj=0,col="red")
+text(x=2001,y=160000,labels="159054 deer",font=2,cex=0.75,adj=0.05,col="red")
+text(x=1999,y=-174000,labels="174339 deer",font=2,cex=0.75,adj=0.05,col="red")
 mtext("Departure from Surrogate Mean",side=2,line=3.5,cex=0.9)
 
 #DVC little panel
@@ -342,7 +342,7 @@ lines(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],lwd=2)
 axis(1,labels=c(rep("",7)),at = seq(1985,2016,5),tck=-0.05,cex.axis=0.75)
 axis(2,labels= format(seq(16000,24000,2000),scientific=T),at = seq(16000,24000,2000),las=1,tck=-.05,cex.axis=0.75)
 mtext("DVCs",side=2,line=3.5,cex=0.75)
-mtext("B)",font=2,side=3,line=0,adj=0)
+mtext("B)",font=2,side=3,line=0,adj=0.05)
 box()
 #DVC big panel
 par(fig=c(ywd/tot.wd,
@@ -357,8 +357,8 @@ for(i in 1:nrow(dvcsurr)){
 lines(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="b",pch=19,lwd=3)
 Arrows(x0 = 1999,y0 = 0,y1=1500,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-1300,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=1999.5,y=1800,labels="1597 DVCs",font=2,cex=0.75,adj=0,col="red")
-text(x=1997.5,y=-1800,labels="1421 DVCs",font=2,cex=0.75,adj=0,col="red")
+text(x=1999.5,y=1800,labels="1597 DVCs",font=2,cex=0.75,adj=0.05,col="red")
+text(x=1997.5,y=-1800,labels="1421 DVCs",font=2,cex=0.75,adj=0.05,col="red")
 mtext("Departure from Surrogate Mean",side=2,line=3.5,cex=0.9)
 mtext("Year",side=1,line=1.5)
 dev.off()

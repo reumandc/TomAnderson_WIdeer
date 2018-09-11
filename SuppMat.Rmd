@@ -34,6 +34,7 @@ library(reshape2,quietly=T)
 library(tools,quietly=T)
 library(fields,quietly=T)
 library(rmarkdown)
+library(shape)
 library(tinytex)
 library(devtools,quietly=T)
 library(withr,quietly=T)
@@ -79,7 +80,7 @@ system.time(source("Code/Climate_DataGeneration.R"))
 
 ```{r analysis, echo=F, cache=TRUE, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,nsurrogs,mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),mtime("Code/DeerCoherence_wsyn.R"))}
 
-#Run analysis on deer abundance and DVCs using county and district data depending on scale.flag
+#Run analysis on deer abundance and DVCs using county and district data
 set.seed(101)
 system.time(source("Code/DeerCoherence_wsyn.R"))
 ```
