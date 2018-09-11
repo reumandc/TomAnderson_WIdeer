@@ -22,7 +22,7 @@ minyear<-1981
 maxyear<-2016
 
 #set directory
-setwd("C:/Users/Tom/Documents/GitRepos/mbsync/AndersDeerShort/")
+setwd("C:/Users/Tom/Documents/deer_test/mbsync/AndersDeerShort/")
 #setwd("/mnt/hgfs/C/Reuman/gitrepos/mbsync/AndersDeerShort/")
 
 #Clean data: end result are two lists of matrices called "cty.list" and "usda.list"
