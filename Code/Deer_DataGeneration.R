@@ -149,7 +149,7 @@ usda.abun <- by(dat$Abun, INDICES=list(dat$Year, dat$Zone), FUN=sum)
 usda.abun<-cbind(expand.grid(attributes(usda.abun)$dimnames), as.vector(usda.abun))
 names(usda.abun)<-c("Year","Zone","Abun")
 
-usda.hunters <- by(dat$Abun, INDICES=list(dat$Year, dat$Zone), FUN=sum)
+usda.hunters <- by(dat$Hunters, INDICES=list(dat$Year, dat$Zone), FUN=sum,na.rm=T)
 usda.hunters<-cbind(expand.grid(attributes(usda.hunters)$dimnames), as.vector(usda.hunters))
 names(usda.hunters)<-c("Year","Zone","Hunters")
 
