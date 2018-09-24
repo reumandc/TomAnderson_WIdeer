@@ -227,6 +227,9 @@ levels(TableS1$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI
                       "Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI",
                       "Abundance"="Abun","Hunters"="Hunter")
 levels(TableS1$Response)<-list("Abundance"="Abun","DVCs"="DVC","Traffic-adj. DVCs"="AdjDVC")
+TableS1$MeanPhase<-as.numeric(as.character(ifelse(TableS1$Pvalue>0.06,"",TableS1$MeanPhase)))
+TableS1$SynchronyExplained<-as.numeric(as.character(ifelse(TableS1$Pvalue>0.06,"",TableS1$SynchronyExplained)))
+TableS1$CrossTerms<-as.numeric(as.character(ifelse(TableS1$Pvalue>0.06,"",TableS1$CrossTerms)))
 saveRDS(TableS1,file="Results/TableS1.rds")
 
 # USDA Analysis -----------------------------------------------------------
@@ -421,6 +424,9 @@ levels(TableS4$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI
                                 "Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI",
                                 "Abundance"="Abun","Hunters"="Hunter")
 levels(TableS4$Response)<-list("Abundance"="Abun","DVCs"="DVC","Traffic-adj. DVCs"="AdjDVC")
+TableS4$MeanPhase<-as.numeric(as.character(ifelse(TableS4$Pvalue>0.06,"",TableS4$MeanPhase)))
+TableS4$SynchronyExplained<-as.numeric(as.character(ifelse(TableS4$Pvalue>0.06,"",TableS4$SynchronyExplained)))
+TableS4$CrossTerms<-as.numeric(as.character(ifelse(TableS4$Pvalue>0.06,"",TableS4$CrossTerms)))
 saveRDS(TableS4,file="Results/TableS4.rds")
 
 # Do Statewide Analysis ---------------------------------------------------
