@@ -69,8 +69,7 @@ source("Code/mtime.R")
 
 #Clean population data: end result are two lists of matrices called "cty.list" and "usda.list". Cty stands for county. All elements of cty.list are matrices, counties (rows) by year (columns). Elements are named Abun (abundance), Crashes (DVCs), Traffic (traffic), and AdjDVC (Traffic-adjusted DVCs). USDA stands for USDA districts, and all elements in "usda.list" are matrices, districts (rows) by year (columns) and named similarly to cty.list. In both lists, the data sets were complete in spatial dimension but varied in temporal dimension: deer span the years 1981-2016, Crashes 1987-2016 and Traffice/AdjDVCs 1988-2016. Missing years are filled with NAs. Both objects are saved as .rds files in the Results folder.
 
-#***TOM: make a scruipt called tests_datagen_deer. R or similar, which is simple, it just calls the two separate deer data cleaning scripts and compares the two outputs for exact equality. Same for tests_datagen_climate.R.
-#***TOM: might want to have tests_master.R which calls all the tests scripts that we may develop, but we can leave this.
+#***QC_Tests/tests_datagen_deer.R and QC_Tests/tests_datagen_climate.R are testing scripts to verify different data aggregatoin steps provide identical lists of raw data
 system.time(source("Code/Deer_DataGeneration.R"))
 
 #Clean winter weather and climate data: end results are four lists of matrices called "winter.clim", climindex, winter.clim.usda, and climindex.usda. "winter.clim"" includes matrices, counties (rows) by year (columns) that are the averages of NOAA weather station data from Dec[t-1] to Mar[t], with named elements of Tmin (minimum temperature), Tmax (maximum temperature), Prcp (precipitation), and Snwd(snow depth). Not all counties had weather data in all years and are filled with NAs where missing. "winter.clim.usda"" are matrices, districts (rows) by year (columns) and includes the same variables and variable names as "winter.clim"" but averaged over USDA districts (~ 7 counties per district). All objects are saved as .rds files in the Results folder."climindex" and "climindex.usda" are matrices of climate indices averaged over winter (Dec[t-1]-Mar[t]) and summer (Apr[t]-Nov[t]). Values in each matrices are repeated across rows because the climate indices are not a spatial variable. The dimensions of each match the spatial dimensions of other county (climindex) or district (cliindex.usda) data sets. 
@@ -86,11 +85,11 @@ system.time(source("Code/DeerCoherence_wsyn.R"))
 ```
 
 <!---generate plots--->
+<!---QC_Tests/test_plots.R produces code to provide roughly identical plots to those used in the paper, as a means of checking that the manuscript versions accurately reproduce the correct output.-->
 ```{r plots, echo=F, cache=T, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,wlm_abun,wlm_dvc,mtime("Code/deer_plots.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"),mtime("Code/PedagogFig.R"),mtime("Functions/deer_plotting_functions.R"))}
 #generate plots
 set.seed(201)
 system.time(source("Code/deer_plots.R"))
-#***TOM: for every panel in the main text or supp mat for which a wsyn plotting routine can make that panel (albeit without nice formatting), lets try to make sure the paanel has been made and saved to Results, albeit not imported into the paper.
 ```
 
 ```{r echo=F, results="hide"}
