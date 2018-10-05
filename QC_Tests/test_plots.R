@@ -25,6 +25,10 @@ plotmag(abun.wmf)
 title("Fig2A",adj=0)
 plotmag(abun.wpmf,sigthresh=0.999,zlims = c(0,1))
 title("Fig2B",adj=0)
+plotmag(predsync(wlm_abun))
+contour(x=abun.wmf$times,y=log2(abun.wmf$timescales),z=Mod(abun.wmf$values),add=T,
+        drawlabels=T,lwd=2,frame=F)
+title("Fig2C",adj=0)
 
 #Figure 3
 dvc.dt<-wsyn::cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,times=1987:2016)$cdat
@@ -35,6 +39,10 @@ plotmag(dvc.wmf)
 title("Fig3A",adj=0)
 plotmag(dvc.wpmf,sigthresh = 0.999,zlims = c(0,1))
 title("Fig3B",adj=0)
+plotmag(predsync(wlm_dvc))
+contour(x=dvc.wmf$times,y=log2(dvc.wmf$timescales),z=Mod(dvc.wmf$values),add=T,
+        drawlabels=T,lwd=2,frame=F)
+title("Fig3C",adj=0)
 
 #Figure S3
 par(mfrow=c(4,2),mar=c(3,3,1.2,0.2),mgp=c(1.5,0.5,0))
@@ -73,14 +81,22 @@ mtext("FigS4A",adj=0,font=2)
 #Figure S5-hunter plots
 hunters.tmp<-cty.list$Hunters[!(row.names(cty.list$Hunters)%in%cwd),12:36]
 hunters.tmp<-hunters.tmp[!is.na(rowSums(hunters.tmp)),]
+abun.tmp<-cty.list$Abun[row.names(cty.list$Abun)%in%c(row.names(hunters.tmp)),12:36]
 hunter.dt<-wsyn::cleandat(hunters.tmp,clev=5,times=1992:2016)$cdat
+abun.tmp.dt<-wsyn::cleandat(abun.tmp,clev=5,times=1992:2016)$cdat
+
 hunter.wmf<-wsyn::wmf(hunter.dt,times=1992:2016)
 hunter.wpmf<-wsyn::wpmf(hunter.dt,times=1992:2016,sigmethod = "quick")
-par(mfrow=c(3,1))
+abun.tmp.wmf<-wsyn::wmf(abun.tmp.dt,times=1992:2016)
+par(mfrow=c(3,1),mar=c(3,3,1.2,0.2),mgp=c(1.5,0.5,0))
 plotmag(hunter.wmf)
 mtext("FigS5A",adj=0)
 plotmag(hunter.wpmf,zlims = c(0,1),sigthresh=0.999)
 mtext("FigS5B",adj=0)
+plotmag(predsync(wlm_hunters))
+mtext("FigS5C",adj=0)
+contour(x=abun.tmp.wmf$times,y=log2(abun.tmp.wmf$timescales),z=Mod(abun.tmp.wmf$values),add=T,
+        drawlabels=T,lwd=2,frame=F)
 
 #Figure S6
 usda.abun.dt<-cleandat(usda.list$Abun,clev=5,times=minyear:maxyear)$cdat
