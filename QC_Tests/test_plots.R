@@ -107,7 +107,7 @@ abun.wmf.usda<-wsyn::wmf(usda.abun.dt,times = minyear:maxyear)
 dvc.wpmf.usda<-wsyn::wpmf(usda.dvc.dt,times = 1987:maxyear,sigmethod = "quick")
 dvc.wmf.usda<-wsyn::wmf(usda.dvc.dt,times = 1987:maxyear)
 
-par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
+par(mfrow=c(3,2),mar=c(2.5,3,0.5,4),mgp=c(1.5,0.5,0))
 plotmag(abun.wmf.usda)
 mtext("FigS6A",adj=0.05,line=-1.2,side=3,font=2)
 plotmag(dvc.wmf.usda)
