@@ -152,7 +152,7 @@ mtext("FigS7H)",adj=0.05,font=2,line=-1.2,side=3)
 climindex.dt<-lapply(climindex,function(x){x<-cleandat(x[1,],clev=5,times=minyear:maxyear)$cdat;x})
 climindex.wt<-lapply(climindex.dt,function(x){x<-wsyn::wt(x,times=1981:2016);x})
 
-par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
+par(mfrow=c(3,2),mar=c(2.5,3,0.5,4),mgp=c(1.5,0.5,0))
 plotmag(climindex.wt$WinterPDO,colorbar=T)
 mtext("FigS8A)",adj=0.05,line=-1.2,side=3,font=2)
 plotmag(climindex.wt$SummerPDO,colorbar=T)
