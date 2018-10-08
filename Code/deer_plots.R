@@ -144,7 +144,7 @@ deer_wmfplot(hunters.wmf,colorbar=T,ylab="",xlab="")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
 deer_wpmfplot(hunters.wpmf,colorbar=T,zlims = c(0,1),xlab="",sigthresh=0.999,ylab="Timescale")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-syncexpplot(resp.wmf=wmfwt(wlm_hunters$wts[[1]]),exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
+syncexpplot(resp.wmf=hunters.wmf$values,exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
             wlm_hunters$timescales,ylab = "",xlab="Year")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
