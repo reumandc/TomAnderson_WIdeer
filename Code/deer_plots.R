@@ -1,5 +1,4 @@
 #Make figures for the manuscript
-#source("Functions/Fn_wmfwt.R")
 source("Functions/Fn_syncexpplot.R")
 source("Functions/deer_plotting_functions.R")
 source("Functions/Fn_phaseplot.R")
