@@ -1,6 +1,5 @@
 #***
-#For making a pedagogical figure in support of Tom Anderson's paper intended for Science about
-#synchrony in deer and DVCs.
+#For making the pedagogical figure, Fig. 1
 #***
 
 #parameters for the example itself

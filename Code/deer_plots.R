@@ -15,15 +15,15 @@ dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,tim
 wlm_abun<-readRDS(file="Results/wlm_abun.rds")
 wlm_dvc<-readRDS(file="Results/wlm_dvc.rds")
 
-# # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
- tot.wd<-4.75
- xht<-0.75   #height of x axis label region
- ywd<-0.5    #width of y axis label region
- zwd<-0.5    #width of z-axes label region
- gap<-.2   #small gap 
- pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
- pan.ht<-0.75*pan.wd+zwd #big ones are square
- tot.ht<-3*pan.ht+xht+3*gap
+# Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
+tot.wd<-4.75
+xht<-0.75   #height of x axis label region
+ywd<-0.5    #width of y axis label region
+zwd<-0.5    #width of z-axes label region
+gap<-.2   #small gap 
+pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
+pan.ht<-0.75*pan.wd+zwd #big ones are square
+tot.ht<-3*pan.ht+xht+3*gap
 
 abun.wpmf<-wsyn::wpmf(abun.dt,times = minyear:maxyear,sigmethod = "quick")
 abun.wmf<-wsyn::wmf(abun.dt,times = minyear:maxyear)
@@ -33,10 +33,10 @@ dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 #Make Figure 2
 png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.5,0.75,0.1,0))
-deer_wmfplot(abun.wmf,xlab="",ylab="Timescale")
+deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)")
 abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1)
-deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale")
+deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)")
 par(new=T)
 q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
 contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
@@ -44,17 +44,17 @@ contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),l
 abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1)
 syncexpplot(resp.wmf=abun.wmf$values,exp.sync = predsync(wlm_abun)[[3]],1981:2016,
-            wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
+            wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)")
 mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1)
 dev.off()
 
 #Make Figure 3
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.5,0.75,0.1,0))
-deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale")
+deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)")
 mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1)
 abline(h=c(log2(3),log2(7)),lty=2)
-deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale")
+deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)")
 par(new=T)
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
@@ -62,7 +62,7 @@ contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),leve
 abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1)
 syncexpplot(resp.wmf=dvc.wmf$values,exp.sync = predsync(wlm_dvc)[[3]],1987:2016,
-            wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
+            wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)")
 mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1)
 dev.off()
 
@@ -98,9 +98,9 @@ mtext(line=0,adj=1,cex=0.75,bquote(paste("3-7, ",bar(theta)==.(round(snowabun_ph
 mtext(line=1,adj=1,cex=0.75,bquote(paste("3-4, ",bar(theta)==.(round(snowabun_phase34,3)))))
 phaseplot(get_coher(dvc.res),dvc.res$timescales,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
 mtext("E)",font=2,adj=0.05)
-phaseplot(get_coher(adjdvc.res),adjdvc.res$timescales,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="")
+phaseplot(get_coher(adjdvc.res),adjdvc.res$timescales,type="pi",tsrange=c(3,7),xlab="Timescale (yrs)",ylab="")
 mtext("F)",font=2,adj=0.05)
-phaseplot(get_coher(hunter.res),hunter.res$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale",ylab="Phase")
+phaseplot(get_coher(hunter.res),hunter.res$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale (yrs)",ylab="Phase")
 mtext("G)",font=2,adj=0.05)
 rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))
@@ -109,7 +109,7 @@ dev.off()
 #Make plot of ranks by timescale for all significant pairs of variables (Fig S4)
 png("Results/FigS4.png",res=600,height=3000,width=4800)
 par(mfrow=c(1,2),mar=c(3.5,4,1.5,0),mgp=c(2.5,0.5,0))
-plot(clim.res$WinterMEI.Abun$timescale,clim.res$WinterMEI.Abun$ranks$coher,xaxt="n",las=1,type="l",lwd=2,ylab="Rank",xlab="Timescale")
+plot(clim.res$WinterMEI.Abun$timescale,clim.res$WinterMEI.Abun$ranks$coher,xaxt="n",las=1,type="l",lwd=2,ylab="Rank",xlab="Timescale (yrs)")
 axis(1,at = seq(2,12,1),labels=c(2,"","4","",6,"",8,"",10,"",12))
 axis(3,at = seq(2,12,1),labels=c(2,"","4","",6,"",8,"",10,"",12))
 abline(h=0.95,col="red",lty=2)
@@ -119,7 +119,7 @@ lines(weath.res$Snwd.Abun$timescales,weath.res$Snwd.Abun$ranks$coher,lty=1,lwd=2
 legend("topright",lty=c(1,1),c("Winter MEI","Winter PDO","Summer MEI","Snow Depth"),cex=0.75,bty = "n",col=c("black","orange","green","blue"))
 mtext("A)",font=2,adj=-0.1)
 
-plot(dvc.res$timescales,dvc.res$ranks$coher,type="l",lwd=2,ylab="",xlab="Timescale",xaxt="n",las=1)
+plot(dvc.res$timescales,dvc.res$ranks$coher,type="l",lwd=2,ylab="",xlab="Timescale (yrs)",xaxt="n",las=1)
 lines(adjdvc.res$timescales,adjdvc.res$ranks$coher,lty=1,lwd=2,col="purple")
 axis(1,at = seq(2,10,1),labels=c(2,"",4,"",6,"",8,"",10))
 axis(3,at = seq(2,10,1),labels=c(2,"",4,"",6,"",8,"",10))
@@ -141,7 +141,7 @@ par(mfrow=c(3,1),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 deer_wmfplot(hunters.wmf,colorbar=T,ylab="",xlab="")
 #abline(h=c(log2(3),log2(7)))
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wpmfplot(hunters.wpmf,colorbar=T,zlims = c(0,1),xlab="",sigthresh=0.999,ylab="Timescale")
+deer_wpmfplot(hunters.wpmf,colorbar=T,zlims = c(0,1),xlab="",sigthresh=0.999,ylab="Timescale (yrs)")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
 syncexpplot(resp.wmf=hunters.wmf$values,exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
             wlm_hunters$timescales,ylab = "",xlab="Year")
@@ -158,7 +158,7 @@ spdo.wmf<-wsyn::wt(cleandat(climindex$SummerPDO[1,],clev=5,times=minyear:maxyear
 deer_wmfplot(spdo.wmf,colorbar=T,xlab="",ylab="",power=T)
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
 wnao.wmf<-wsyn::wt(cleandat(climindex$WinterNAO[1,],clev=5,times=minyear:maxyear)$cdat,times=minyear:maxyear)
-deer_wmfplot(wnao.wmf,colorbar=T,xlab="",ylab="Timescale",power=T)
+deer_wmfplot(wnao.wmf,colorbar=T,xlab="",ylab="Timescale (yrs)",power=T)
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 snao.wmf<-wsyn::wt(cleandat(climindex$SummerNAO[1,],clev=5,times=minyear:maxyear)$cdat,times=minyear:maxyear)
 deer_wmfplot(snao.wmf,colorbar=T,ylab="",xlab="",power=T)
@@ -176,28 +176,28 @@ png("Results/FigS7.png",res=600,height=9,width=7,unit="in")
 winter.clim.dt<-lapply(winter.clim,function(x){x<-cleandat(x[!(is.na(rowMeans(x))),],clev=5,times=minyear:maxyear)$cdat;x})
 par(mfrow=c(4,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 tmin.wmf<-wsyn::wmf(winter.clim.dt$Tmin,times=1981:2016)
-deer_wmfplot(tmin.wmf,colorbar=T,xlab="",ylab="Timescale")
+deer_wmfplot(tmin.wmf,colorbar=T,xlab="",ylab="Timescale (yrs)")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
 tmin.wpmf<-wsyn::wpmf(winter.clim.dt$Tmin,times=1981:2016,sigmethod="quick")
-deer_wpmfplot(tmin.wpmf,colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
+deer_wpmfplot(tmin.wpmf,colorbar=T,ylab="Timescale (yrs)",xlab="",sigthresh = 0.999)
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
 tmax.wmf<-wsyn::wmf(winter.clim.dt$Tmax,times=1981:2016)
-deer_wmfplot(tmax.wmf,colorbar=T,xlab="",ylab="Timescale")
+deer_wmfplot(tmax.wmf,colorbar=T,xlab="",ylab="Timescale (yrs)")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 tmax.wpmf<-wsyn::wpmf(winter.clim.dt$Tmax,times=1981:2016,sigmethod="quick")
-deer_wpmfplot(tmax.wpmf,colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
+deer_wpmfplot(tmax.wpmf,colorbar=T,ylab="Timescale (yrs)",xlab="",sigthresh = 0.999)
 mtext("D)",adj=0.05,line=-1.2,side=3,font=2)
 snwd.wmf<-wsyn::wmf(winter.clim.dt$Snwd,times=1981:2016)
-deer_wmfplot(snwd.wmf,colorbar=T,xlab="",ylab="Timescale")
+deer_wmfplot(snwd.wmf,colorbar=T,xlab="",ylab="Timescale (yrs)")
 mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
 snwd.wpmf<-wsyn::wpmf(winter.clim.dt$Snwd,times=1981:2016,sigmethod="quick")
-deer_wpmfplot(snwd.wpmf,colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
+deer_wpmfplot(snwd.wpmf,colorbar=T,ylab="Timescale (yrs)",xlab="",sigthresh = 0.999)
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 prcp.wmf<-wsyn::wmf(winter.clim.dt$Prcp,times=1981:2016)
-deer_wmfplot(prcp.wmf,colorbar=T,xlab="",ylab="Timescale")
+deer_wmfplot(prcp.wmf,colorbar=T,xlab="",ylab="Timescale (yrs)")
 mtext("G)",adj=0.05,font=2,line=-1.2,side=3)
 prcp.wpmf<-wsyn::wpmf(winter.clim.dt$Prcp,times=1981:2016,sigmethod="quick")
-deer_wpmfplot(prcp.wpmf,colorbar=T,ylab="Timescale",xlab="",sigthresh = 0.999)
+deer_wpmfplot(prcp.wpmf,colorbar=T,ylab="Timescale (yrs)",xlab="",sigthresh = 0.999)
 mtext("H)",adj=0.05,font=2,line=-1.2,side=3)
 dev.off()
 
@@ -215,27 +215,27 @@ dvc.wmf.usda<-wsyn::wmf(usda.dvc.dt,times = 1987:maxyear)
 #make plots
 png("Results/FigS6.png",res=600,height=9,width=7,unit="in")
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-deer_wmfplot(abun.wmf.usda,xlab="",ylab="Timescale")
+deer_wmfplot(abun.wmf.usda,xlab="",ylab="Timescale (yrs)")
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wmfplot(dvc.wmf.usda,xlab="",ylab="Timescale")
+deer_wmfplot(dvc.wmf.usda,xlab="",ylab="Timescale (yrs)")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wpmfplot(abun.wpmf.usda,sigthresh = 0.999,xlab="",ylab="Timescale")
+deer_wpmfplot(abun.wpmf.usda,sigthresh = 0.999,xlab="",ylab="Timescale (yrs)")
 par(new=T)
 q<-stats::quantile(abun.wpmf.usda$signif[[2]],0.999)
 contour(x=abun.wpmf.usda$times,y=log2(abun.wpmf.usda$timescales),z=Mod(abun.wpmf.usda$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wpmfplot(dvc.wpmf.usda,sigthresh = 0.999,xlab="",ylab="Timescale")
+deer_wpmfplot(dvc.wpmf.usda,sigthresh = 0.999,xlab="",ylab="Timescale (yrs)")
 par(new=T)
 q<-stats::quantile(dvc.wpmf.usda$signif[[2]],0.999)
 contour(x=dvc.wpmf.usda$times,y=log2(dvc.wpmf.usda$timescales),z=Mod(dvc.wpmf.usda$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
 mtext("D)",adj=0.05,line=-1.2,side=3,font=2)
 syncexpplot(resp.wmf=abun.wmf.usda$values,exp.sync = predsync(usda.wlm_abun)[[3]],1981:2016,
-            usda.wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
+            usda.wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales (yrs)")
 mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
 syncexpplot(resp.wmf=dvc.wmf.usda$values,exp.sync = predsync(usda.wlm_dvc)[[3]],1987:2016,
-            usda.wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales")
+            usda.wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales (yrs)")
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 

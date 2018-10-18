@@ -21,7 +21,7 @@ bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 ---
 
-\textbf{This PDF file includes:}
+\textbf{This PDF file includes:}  
 > Materials and Methods  
 > Supplementary Text  
 > Figs S1 to S8  
@@ -640,8 +640,8 @@ state level ($P = `r round(ann.abun.hunter_pval,4)`$).
 (C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
 (D) winter climate indices (Multivariate El Niño Southern Oscillation Index, 
 MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
-Each line in A-C, E represents a county. Other variables (e.g., Tmin) were 
-used in analyses but are not shown here due to lack of significant 
+Each line in A-C, E represents a county. Other variables were 
+used in analyses (see text) but are not shown here due to lack of significant 
 assocations with the deer and DVC variables that were the focus of the 
 study.\label{FigS1_Timeseries}}
 \end{figure}
@@ -651,6 +651,45 @@ study.\label{FigS1_Timeseries}}
 \begin{figure}[!h]
 \includegraphics[height=0.8\textheight]{Results/FigS2.png}
 \caption{Map of Wisconsin, USA. Black lines and yellow dots delineate county boundaries and centroids. Color shading and black dots delineate USDA district boundaries and centroids.\label{FigS2_map}}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
+\caption[Demonstration of the wavelet mean field]{Detecting time- and timescale-specific
+synchrony with the wavelet mean field. This figure was taken without change from
+[@Sheppard2016_aphids], where additional details are also available. Panels a-d show the principle of how synchrony
+can differ for different timescales of dynamics. Time series y1 and y2 (a)
+are exactly anti-correlated (out of phase), as are y3 and y4 (b). Combining
+y1 with y3 and y1 with y4
+gives two time series (c) which are synchronized on long timescales, but anti-synchronized
+on short timescales. The reverse is also possible (d). This timescale-specific
+structure of synchrony cannot be detected with correlation coefficients, which are
+0 for both c and d, because contributions from different timescales cancel.
+In practice, real population and environmental signals are broadband, and exact cancellation
+is unlikely, but asynchrony at some frequencies can strongly conceal important
+synchrony at other frequencies. Panels e-k demonstrate this concealment, using artificial data,
+and also show how the wavelet mean field detects time- and timescale-specific synchrony.
+Each of 11 artificial time series were constructed as the sum of: 1) a single common
+signal of amplitude 1 that changes its oscillatory period at $t=50$ from 10 years
+to 5 years (e); 2) oscillations
+of amplitude 3 that have the same oscillatory period
+(3 years), but random and independent phases in
+each of the 11 constructed
+time series (f); and 3) white noise of standard deviation 1.5, again independently
+generated for each of the 11 time series (g). Synchrony in the resulting time series cannot
+be visually detected (i), nor is it readily apparent by examining the
+55 pairwise correlation coefficients between time series (j), which spanned a
+wide range of values including 0. But the wavelet mean field magnitude (k)
+showed clear color bands at 10-year period for $t<50$ and 5-year period for
+$t>50$. The wavelet mean field magnitude displays strength of
+synchrony as a function of timescale
+of dynamics and time, here with red indicating synchrony and blue asynchrony.
+Wavelet phasor mean fields provide plots similar to (k) but with values
+between 0 and 1 that indicate the strength of phase synchrony and that can be
+straightforwardly significance tested as described in [@Sheppard_wavmodel].
+\label{PedagogFigWMF}}
 \end{figure}
 
 \newpage
@@ -670,6 +709,46 @@ time ranges of available data for different variables. \label{FigS3_PhaseDiffs}}
 <!--***DAN: Tom, I found this sentence included as the last sentence of the above caption: "Vertical axes differ between left and right panels because time series were shorter for DVCs." This does not make any sense to me.
 I think it must be an error, so I removed it. But if I am mistaken and the sentence should be put back, please
 put it back and clarify/correct it. For one thing, the vertical axes do not differ across panels.-->
+
+\newpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/PedagogFig_SpatCoh.png}
+\caption[Demonstration of spatial wavelet coherence]{Measuring relationships between variables using spatial wavelet coherence.
+This figure was adapted with only minor changes
+from supplementary figure 5 of [@Sheppard2016_aphids].
+The time series of panel e were used as drivers in producing the time series of
+panel f and the figure shows
+how this relationship can be detected with the spatial wavelet coherence technique.
+The time series of panel e
+were constructed as the sum of: 1) a single common signal of amplitude $1$ and
+period $12$ years (a); 2) a
+single common signal of amplitude $5$ and period $2$ years (b); and 3)
+normally distributed white noise of standard deviation $1.5$,
+independently generated for each of the $10$ time series (c). The time series
+of panel f were produced via the
+relationship $y_n(t) = (x_n(t)+x_n(t-1))/2 + \epsilon_n (t)$ where
+the $\epsilon_n (t)$ were independent normal random numbers
+of mean $0$ and standard deviation $3$. This transmits the period-$12$
+component of the $x$ signals to the $y$ but
+not the period-$2$ component because averaging covers a whole
+period for that component. Correlations (f,
+green numbers) between $x_n(t)$ and $y_n(t)$ did not indicate
+any particular relationship. Correlations cannot
+detect the relationship between the $x$ and $y$ because the technique confounds
+phenomena occurring on different
+timescales. Spatial wavelet coherence revealed a highly significant relationship
+at periods around $12$ years (g) and on
+average over long timescales (left $P$-value on panel g, long timescales
+defined as $>4$ years) but no relationship
+(right $P$-value) for short timescales ($<4$ years). The red line on g is the
+spatial wavelet coherence and black lines are
+$50$th, $95$th, and $99$th percentiles of spatial wavelet coherences
+of synchrony-preserving surrogate data sets [@Sheppard2016_aphids]
+appropriately representing the
+null hypothesis of no relationship between the $x$ and $y$.
+Also see [@Sheppard2016_aphids] for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
+\end{figure}
 
 \newpage
 
