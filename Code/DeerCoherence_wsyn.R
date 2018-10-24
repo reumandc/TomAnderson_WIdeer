@@ -140,6 +140,7 @@ abun_se<-syncexpl(wlm_abun)
 se_short<-abun_se[abun_se$timescales>=3 & abun_se$timescales<=7,]
 abunmod_se<-round(100*colMeans(se_short[,c(3:12)])/mean(se_short$sync),4)
 saveRDS(abunmod_se[[1]],file="Results/abunmodelSyncExp.rds")
+saveRDS(abunmod_se[[2]],file="Results/abunmodelXterms.rds")
 saveRDS(wlm_abun,file="Results/wlm_abun.rds")
 
 ##Run coherence of hunters and abundance
@@ -346,9 +347,10 @@ norm.usda.dat<-lapply(all.usda.dat,function(x){x<-cleandat(x,clev=5,times=minyea
 #Run model and calculate expected synchrony
 usda.wlm_abun<-wlm(norm.usda.dat,times=minyear:maxyear,resp=1,pred=2:4,norm="powall")
 usda.abun_se<-syncexpl(usda.wlm_abun)
-usda.se_short<-abun_se[usda.abun_se$timescales>=3 & usda.abun_se$timescales<=7,]
+usda.se_short<-usda.abun_se[usda.abun_se$timescales>=3 & usda.abun_se$timescales<=7,]
 usda.abunmod_se<-round(100*colMeans(usda.se_short[,c(3:12)])/mean(usda.se_short$sync),4)
 saveRDS(usda.abunmod_se[[1]],file="Results/usda.abunmodelSyncExp.rds")
+saveRDS(usda.abunmod_se[[2]],file="Results/usda.abunmodelXterms.rds")
 
 ##Run coherence of hunters and abundance
 #first filter data to match dimensions of hunter data
