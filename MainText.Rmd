@@ -113,7 +113,6 @@ Applying the wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard_wavmodel]; *
 snow depth, 
 $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
 $`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales. 
-<!--***DAN: It needs to be made explicit somewhere (Methods, not here) that this is a county-level result (assuming it is - I heard from Tom and it is), what the cross terms were, and what the result was for district level. Not sure these kinds of details for these multivariate analyses are given anywhere. I assume this is county level, since the next sentence talks about Fig 2C, which as far as I know is from county level data. That is right according to Tom email of 2018 10 24.-->
 See Fig. \ref{Fig2_DeerSync}C for a visual manifestation of this statistical result. 
 
 Snow depth and climate index results seemed to indicate distinct or partly distinct phenomena synchronizing deer on different timescales within the $3-7$-year range. Again applying the wavelet Moran theorem, 
@@ -237,6 +236,5 @@ and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (
 \label{Fig4_StateWideFluctuations}}
 \end{figure}
 <!--***DAN: Tom, note the font sizes are not consistent across panels. Nor are they consistent across 
-figures. I think we are probably going to have to make them consistent across all figs in main text and 
-supp mat.-->
+figures. I think we are probably going to have to make them consistent across all figs in main text.-->
 
