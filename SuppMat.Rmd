@@ -577,7 +577,6 @@ USDA district data, and patterns of synchrony in deer abundance predicted by tha
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
 data (Table \ref{TabS4_SummaryDistrict}). Cross terms for snow depth and deer abundance over $3-4$-year timescales were too large at the county level to make a reliable statement of synchrony explained at that level, but cross terms were not too large for the district-level analysis, and snow depth explained $`r round(usda_abunsnwd_syncexp34,0)`\%$ of synchrony at $3-4$-year timescales. This makes sense in light of possible effects of dispersal at smaller spatial scales, as explained in the section "Wavelet Moran theorem..." above; effects of dispersal would have been reduced at district level because fewer deer disperse between spatial units for larger spatial units.
-<!--***DAN: dont forget to add a para there from Lawrence-->
 The result that snow depth appeared to influence deer on $3-4$-year timescales, while $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly spatially coherent and explained synchrony at $4-7$-year timescales pertained for district-level data as it did for county-level data.
 
 As in the county-level analyses, hunter abundance time series were not spatially coherent with deer abundance time series on $3-7$-year timescales (Table \ref{TabS4_SummaryDistrict}), so any synchrony there may have been in hunter abundances at those timescales could not have explained synchrony in deer. Again similar to the county-level analyses, hunter abundance time series were significantly coherent with deer abundance on $2-2.5$-year timescales (Table \ref{TabS4_SummaryDistrict}), but there was little deer abundance synchrony on those timescales to explain (Fig. \ref{FigS6_WMFAndPredictionsDistricts}A,C).
@@ -648,7 +647,7 @@ study.\label{FigS1_Timeseries}}
 
 <!--***DAN: To get the references in the below caption to work,
 I had to do them manually. Right now I am using author-date, but it needs to be changed to
-numeric callouts right at the very end.-->
+numeric callouts right at the very end. If you could figure out a way to automate those, it would be great, but I don't think its possible because the below is latex code.-->
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
