@@ -82,9 +82,7 @@ deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=F,xlab,y
   times<-get_times(object)
   timescales<-get_timescales(object)
   if(power){
-    wav <- Mod(get_values(object))
-    denom<-sqrt(apply(wav,2,mean,na.rm=T))
-    wav<-sweep(wav,2,denom,`/`)
+    wav<-wavnorm(object$values)
   }
   else{
     wav<-Mod(get_values(object))
