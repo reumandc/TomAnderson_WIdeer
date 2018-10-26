@@ -307,19 +307,6 @@ winter weather variables are in
 Fig. \ref{FigS7_WMFsAndWPMFsAncillary}. Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed using the function `wpmf`. Both of these functions are in the `wsyn` package for the R programming language.
 
-For climate indices (winter and growing season 
-NAO, PDO and MEI), which were single time series 
-rather than collections of time series measured at 
-multiple locations, we generated plots of 
-'normalized' wavelet magnitude 
-(Fig. \ref{FigS8_WaveletAmps}). Here, wavelet transforms 
-were first normalized at each timescale by dividing 
-by the square root of the time-averaged squared 
-wavelet transform magnitudes. Magnitudes of 
-normalized transforms were plotted as a function of 
-time and timescale [@Sheppard2016_aphids].
-<!--***DAN: Do we even need S10 and the associated methods?-->
-
 All plots based on wavelet transforms are "scalloped", i.e., values corresponding to longer timescales and times closer to the start or end of available data are not plotted. This is because the wavelet transform is based on convolutions of wavelet functions with the timeseries being transformed; convolutions for which a sunstantial portion of the wavelet function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is standard practice.
 
 ## Spatial wavelet coherence and wavelet coherence
@@ -783,13 +770,6 @@ They do not (they are not even particularly close!). What's going on?-->
 \begin{figure}[!h]
 \includegraphics[height=.9\textheight]{Results/FigS7.png}
 \caption{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in Fig \ref{MT-Fig2_DeerSync}A,B. \label{FigS7_WMFsAndWPMFsAncillary}}
-\end{figure}
-
-\newpage
-
-\begin{figure}[!h]
-\includegraphics[height=.9\textheight]{Results/FigS8.png}
-\caption{Wavelet amplitude of the winter and summer PDO (A,B), NAO (C,D), and MEI (E,F), respectively. Amplitude is the magnitude of the wavelet transform, normalized by the square root of the time-averaged, squared magnitudes of the wavelet transform. Higher values indicate greater variation content at that time/or timescale. \label{FigS8_WaveletAmps}}
 \end{figure}
 
 \newpage
