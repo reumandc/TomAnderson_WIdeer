@@ -77,7 +77,7 @@ deer_wpmfplot<-function(object,zlims=NULL,neat=TRUE,xlab,ylab,colorfill=NULL,sig
   return(NULL) 
 }
 
-deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=F,xlab,ylab,colorbar=TRUE,title=NULL,filename=NA,...)
+deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=FALSE,xlab,ylab,colorbar=TRUE,title=NULL,filename=NA,...)
 {
   times<-get_times(object)
   timescales<-get_timescales(object)

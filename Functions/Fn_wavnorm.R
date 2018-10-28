@@ -9,6 +9,6 @@
 ##by the square root of the time-averaged squared wavelet transform magnitudes)
 wavnorm<-function(wav){
   modwav <- Mod(wav)
-  denom<-sqrt(apply(wav,2,mean,na.rm=T))
-  normwav<-sweep(modwav^2,2,denom,`/`)
+  denom<-sqrt(apply(modwav^2,2,mean,na.rm=T))
+  normwav<-sweep(modwav,2,denom,`/`)
 }
