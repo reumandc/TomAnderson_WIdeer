@@ -1,18 +1,18 @@
 # Synchrony Causes Major Cycles in Deer Populations and Deer-Vehicle Collisions Across Wisconsin: Introduction to the Repository of All Analyses Supporting the Paper
 
-Thomas L. Anderson, Southeast Missouri State University
-Lawrence W. Sheppard, University of Kansas
-Jonathan A. Walter, University of Virginia
-Robert E. Rolley, Wisconsin Department of Natural Resources
-Daniel C. Reuman, University of Kansas
+Thomas L. Anderson, Southeast Missouri State University  
+Lawrence W. Sheppard, University of Kansas  
+Jonathan A. Walter, University of Virginia  
+Robert E. Rolley, Wisconsin Department of Natural Resources  
+Daniel C. Reuman, University of Kansas  
 
 ## Introduction
 
-This repository can be used to reproduce the complete analyses behind the paper "Synchrony Causes Major Cycles in Deer Populations and Deer-Vehicle Collisions Across Wisconsin" and to recompile the paper itself. Data are also included in the repository. The repository should provide a complete record of the computations from data to paper.
+This repository can be used to reproduce the complete analyses behind the paper "Synchrony Causes Major Cycles in Deer Populations and Deer-Vehicle Collisions Across Wisconsin" and to recompile the paper itself. Data are also included in the repository. 
 
 ## How to compile
 
-Knit the makefile.Rmd. If all dependencies are in place (see next section) this should re-compute all analyses from data to paper, resulting in three pdfs: MainText.pdf (the main text of the paper), SuppMat.pdf (the supporting information file for the paper), and makefile.pdf (notes on the compilation process - can be useful for error mitigation in the event of failure). 
+Knit the makefile.Rmd using R markdown. If all dependencies are in place (see next section) this should re-compute all analyses from data to paper, resulting in three pdfs: MainText.pdf (the main text of the paper), SuppMat.pdf (the supporting information file for the paper), and makefile.pdf (notes on the compilation process - can be useful for error mitigation in the event of failure). 
 
 The knit may take a few hours, depending on your computer speed and other factors. Subsequent knits, if any, can be faster because packages will be installed (see below) and because intermediate results are cached.
 
@@ -32,7 +32,7 @@ This codes uses the R `checkpoint` package. This is set up in the master file `m
 
     checkpoint("2018-08-31",checkpointLocation = "./")
 
-The `checkpoint` package then automatically scans through other files looking for other required R packages. It then downloads and installs the newest versions of those packages available on the given date. This helps ensure that re-compiling the document uses _exactly_ the same code that was originally used. This can take some time on first run (you are warned) but it is faster on subsequent runs because the packages are already installed. This also means that R package dependencies should only be the `checkpoint` package, since that package should scan for other packages and install them locally. 
+The `checkpoint` package then automatically scans through other files looking for other required R packages. It then downloads and installs the newest versions of those packages available on the given date. This helps ensure that re-compiling the document uses _exactly_ the same code that was originally used. This can take some time on first run (you are warned) but it is faster on subsequent runs because the packages are already installed. This also means that R package dependencies should only be the `checkpoint` package, since that package should scan for other packages and install them locally. Quite a few MB disk space are used (200-300).
 
 ### Dependencies on `pandoc`
 
@@ -48,7 +48,7 @@ The makefile makes a system call to `pdflatex`, so software supporting that need
 
 ### Additional dependencies?
 
-If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 and by Anderson on Windows 7. It has not been tested on Mac.
+If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 and by Anderson on Windows 7. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines.
 
 ## Intermediate files:
 
