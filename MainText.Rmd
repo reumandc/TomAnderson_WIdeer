@@ -48,6 +48,7 @@ usda_dvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="D
                                                         TabS4_results$Predictor=="Abundance"]
 usda_adjdvcabunSyncExp<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Traffic-adj. DVCs" &
                                                         TabS4_results$Predictor=="Abundance"]
+usda.snowabunSyncExp3_4<-TabS4_results$SynchronyExplained[TabS4_results$Response=="Abundance" &  TabS4_results$Predictor=="Snow Depth" & TabS4_results$Timescale=="3-4"]
 avgdeerfluc<-readRDS(file="Results/totaldeerfluctuations.rds")
 avgdvcfluc<-readRDS(file="Results/totaldvcfluctuations.rds")
 avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
@@ -115,8 +116,8 @@ $`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales.
 See Fig. \ref{Fig2_DeerSync}C for a visual manifestation of this statistical result. 
 
 Snow depth and climate index results seemed to indicate distinct or partly distinct phenomena synchronizing deer on different timescales within the $3-7$-year range. Again applying the wavelet Moran theorem, 
-snow depth explained $47\%$ 
-<!--***DAN: Tom, pls make this 47 into a dynamic link - I typed in the value from Table S4 but I would like the correct value to appear via a link-->
+snow depth explained $`r usda.snowabunSyncExp3_4`\%$ 
+<!--***DAN: Tom, pls make this 47 into a dynamic link - I typed in the value from Table S4 but I would like the correct value to appear via a link--><!--TOM: Done -->
 of synchrony in deer abundance
 at $3-4$-year timescales when data were aggregated to USDA districts (*Methods*, Table \ref{SM-TabS4_SummaryDistrict}). Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
 to deer synchrony over $4-7$-year timescales (Tables \ref{SM-TabS1_CountyCoherenceSummary} and \ref{SM-TabS4_SummaryDistrict}, Fig. \ref{SM-FigS4_RanksInSurrogs}A). 
