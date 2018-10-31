@@ -103,7 +103,7 @@ phaseplot(get_coher(dvc.res),dvc.res$timescales,type="pi",tsrange=c(3,7),xlab=""
 mtext("E)",font=2,adj=0.05)
 phaseplot(get_coher(adjdvc.res),adjdvc.res$timescales,type="pi",tsrange=c(3,7),xlab="Timescale (yrs)",ylab="")
 mtext("F)",font=2,adj=0.05)
-phaseplot(get_coher(hunter.res),hunter.res$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale (yrs)",ylab="Phase")
+phaseplot(get_coher(hunter.res),hunter.res$timescales,showphase=F,type="pi",tsrange=c(3,7),xlab="Timescale (yrs)",ylab="Phase",colrect=F)
 mtext("G)",font=2,adj=0.05)
 rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,lwd=2,angle=-45)
 mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))

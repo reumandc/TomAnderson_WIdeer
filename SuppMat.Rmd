@@ -118,7 +118,7 @@ abunmodelSyncExp<-readRDS(file="Results/abunmodelSyncExp.rds")
 abunmodelXterms<-readRDS(file="Results/abunmodelXterms.rds")
 usda.abunmodelSyncExp<-readRDS(file="Results/usda.abunmodelSyncExp.rds")
 usda.abunmodelXterms<-readRDS(file="Results/usda.abunmodelXterms.rds")
-
+gunhunter_percent<-round(100*mean(state.totals$GunHunters[state.totals$Year>1980]/(state.totals$GunHunters[state.totals$Year>1980]+state.totals$BowHunters[state.totals$Year>1980])),0)
 ```
 # Materials and methods
 
@@ -153,7 +153,7 @@ We obtained from the WIDNR estimated hunter abundance data for each DMU for the 
 (Fig. \ref{FigS1_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season [@widnr2001], assuming this was a good proxy 
-for hunter numbers across the season. Gun hunters on average represent `r round(100*mean(state.totals$GunHunters[state.totals$Year>1980]/(state.totals$GunHunters[state.totals$Year>1980]+state.totals$BowHunters[state.totals$Year>1980])),0)\%` of the total hunters in WI each year over the years of this study.
+for hunter numbers across the season. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI each year over the years of this study.
 <!--***DAN: I think we should add 1-2 sentences arguing why this is a  reasonable assumption, perhaps by giving data, if available, on how many gun v other types of hunters there are, and how many people go the opening 2 days versus later in the week. Let's discuss, Tom.-->
 <!--***Tom::I doubt whether there is any data on your last statement, how many go early versus late. I'm not sure I follow the gun v other types of hunters argument- do you mean that the majority of deer get killed by gun hunters and thus that would be the best estimate of hunters for regulating deer?-->
 <!--***DAN: Yes, that is what I mean. We are using numbers of gun hunters during the first two days of the gun season as an index for total hunters of all kinds during all of the hunting seasons for weapons of different types. So, if possible, it would be good to give some supporting evidence that numbers of gun hunters in the whole 9-day gun season are correlated with numbers in the first weekend, and that numbers of total hunters are well-represented by numbers of gun hunter (which could be either because there is a correlation between total hunters and gun hunter, or because the large majority of hunters are gun hunters).--><!--***TOM::--See if my statement helps. -->
@@ -236,11 +236,11 @@ abundance for each management unit has been criticized as less accurate
 at smaller spatial scales [@Millspaugh2009]. The bias in abundance 
 estimates previously reported [@Millspaugh2009] may have been overestimated, as more recent analyses 
 suggest the uncertainty in SAK estimates is substantially less 
-($\pm 20\%$ error rates; WIDNR, personal communication). 
-<!--***DAN: It was Robert that told us this, and he is a coathor, so perhaps we should take out the personal communication parens? It would be best if we could get a citation for this, even a white paper, if there is one and we can fit it in. If we leave it as "personal communication" then that begs the question "personal communicccation with whom?" The WIDNR is not a person.-->
+($\pm 20\%$ error rates). 
+<!--***DAN: It was Robert that told us this, and he is a coathor, so perhaps we should take out the personal communication parens? It would be best if we could get a citation for this, even a white paper, if there is one and we can fit it in. If we leave it as "personal communication" then that begs the question "personal communicccation with whom?" The WIDNR is not a person.--><!--TOM:Yeah we could probably take it out, which I did. Science doesn't permit references to unpublished things, so we couldn't do (...;Stenglein [the woman who did that analysis], unpublished data)-->
 In addition, the criticism of the SAK [@Millspaugh2009] was based 
 on a model that did not match perfectly with practices of the WIDNR. 
-<!--***DAN: I added the above sentence, Tom, based on a comment of Roberts that had been inserted as a marginal note in the Word doc that this Rmd replaces. Please check. If we keep the "personal communication" paren above then we should also insert one here.-->
+<!--***DAN: I added the above sentence, Tom, based on a comment of Roberts that had been inserted as a marginal note in the Word doc that this Rmd replaces. Please check. If we keep the "personal communication" paren above then we should also insert one here.--><!--TOM: I took the one out above, so should be fine here-->
 Nevertheless, 
 to ensure our results were not biased, we analyzed 
 synchrony on multiple spatial scales. USDA district data were 
@@ -326,7 +326,7 @@ spatial wavelet coherences of appropriately randomized,
 surrogate data sets ($N=$ `r nsurrogs` surrogates 
 were used for all tests) 
 <!--***DAN: Tom, there is an nsurrogs variable defined near the top of this document that is currently 10000. Do you plan to rerun with 100000 later? Either way, unless I am mistaken about the purpose of that variable, please turn the above N=100000 into a dynamic link so it updates automatically and displays the correct number of surrogates that were actually used on the latest run. I made the change but I am flagging it here to make sure you see it so that in case it causes problems somehow that I'm not aware of you can do something about it. Delete this comment if the change makese sense to you.
-Also, and importantly, when you rerun with 100000 (if indeed we do - not clear to me it's strictly necessary) we will have to re-check that all statements are consistent with the new results, because all the results will change. They should not change much, but they will change. Will have to review for this.-->
+Also, and importantly, when you rerun with 100000 (if indeed we do - not clear to me it's strictly necessary) we will have to re-check that all statements are consistent with the new results, because all the results will change. They should not change much, but they will change. Will have to review for this.--><!--TOM: Yeah, making it dynamic makes sense, jsut something I hadn't caught yet since I hadn't edited the text in a while. I dropped down the surrogate number just to decrease run time when I was working out all the kinks of knitting- we can raise it back up. -->
 that retain the same 
 temporal and spatial autocorrelation properties as 
 the original time series but are otherwise 
@@ -341,7 +341,7 @@ elsewhere [@Sheppard2016_aphids]. A $p$-value of $0.05$
 means that the empirical spatial wavelet coherence was higher, in an average 
 sense across the timescale band of interest, than the same 
 quantity calculated for `r 0.95*nsurrogs` of `r nsurrogs` 
-<!--***DAN: Tom, see previous comment. I also changed the line right above this to be an automated link-->
+<!--***DAN: Tom, see previous comment. I also changed the line right above this to be an automated link--><!--TOM: looks good-->
 surrogate data sets representing the null hypothesis of no relationship between variables. Ranks of actual spatial wavelet
 coherences in surrogate spatial wavelet coherences were 
 also plotted as a function of timescale 
@@ -588,20 +588,17 @@ significantly coherent over $3-7$-year timescales
 ($P = `r round(ann.dvc.abun_pval,4)`$), with the strongest relationship occurring over 
 $3-5$-year timescales ($P = `r round(ann.dvc.abun_pval35,4)`$). 
 <!--***DAN: commented this out because if it is here we should also look at the 3-5 range and maybe over other sub-ranges of 3-7. Tom, please delete or add a slightly more complete analysis-->
-<!-- DVCs were not 
-significant with abundance after correcting for 
-traffic ($P = `r round(ann.adjdvc.abun_pval,4)`$). -->
-$\text{MEI}_{\text{s}}$, $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$, but not snow depth, were significantly 
+<!-- ***TOM: Deleted it, didn't really seem necessary or add much. -->
+$\text{MEI}_{\text{s}}$, $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly 
 coherent with deer abundance over the $3-7$-year 
-timescale band (snow depth, $P = `r round(ann.abun.snow_pval,4)`$; 
-$\text{MEI}_{\text{w}}$, $P = `r round(ann.abun.wmei_pval,4)`$; $\text{MEI}_{\text{s}}$, 
+timescale band ($\text{MEI}_{\text{w}}$, $P = `r round(ann.abun.wmei_pval,4)`$; $\text{MEI}_{\text{s}}$, 
 $P = `r round(ann.abun.smei_pval,4)`$; $\text{PDO}_{\text{w}}$, 
-$P = `r round(ann.abun.wpdo_pval,4)`$). 
-<!--***DAN: Tom: please add a test for snow depth on 3-4-year timescales-->
+$P = `r round(ann.abun.wpdo_pval,4)`$). Snow depth was not significant over $3-7$-year timescales ($P = `r round(ann.abun.snow_pval37,4)`$), but was significant at $3-4$-year timescales ($P = `r round(ann.abun.snow_pval34,4)`$), consistent with the results at other spatial resolutions. 
+<!--***DAN: Tom: please add a test for snow depth on 3-4-year timescales--><!--TOM: Done; was significant-->
 Hunter abundance and deer 
 abundance were not significantly coherent at the 
-state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval,4)`$).
-<!--***DAN: Tom, pls add a test for 2-2.5-year timescales-->
+state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
+<!--***DAN: Tom, pls add a test for 2-2.5-year timescales--><!--TOM: Done, not significant-->
 
 \newpage
 
@@ -687,7 +684,7 @@ radians) for the shaded timescale bands. Horizontal axes differ in extent among 
 time ranges of available data for different variables. \label{FigS3_PhaseDiffs}}
 \end{figure}
 
-<!--***DAN: Tom, can you please remove the blue cross-hatching on panel G, as there is no corresponding mean phase given for that range (and there should not be a mean phase given since the coherence was not significant over that range).-->
+<!--***DAN: Tom, can you please remove the blue cross-hatching on panel G, as there is no corresponding mean phase given for that range (and there should not be a mean phase given since the coherence was not significant over that range).--><!--TOM: Removed it, but my code leaves vertical dashed lines at 3-7. 
 
 \newpage
 

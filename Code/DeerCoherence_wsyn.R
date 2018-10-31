@@ -444,15 +444,21 @@ sum.mei.dt<-cleandat(climindex$SummerMEI[1,],clev=5,times=minyear:maxyear)$cdat
 ann.abun.hunter<-coh(dat1=ann.abun.dt,dat2=ann.hunter.dt,times=minyear:maxyear,norm="powall",
                      sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.abun.hunter<-bandtest(ann.abun.hunter,c(3,7))
+ann.abun.hunter<-bandtest(ann.abun.hunter,c(2,2.5))
+
 ann.abun.hunterP<-get_bandp(ann.abun.hunter)
-ann.abun.hunter_pval<-ann.abun.hunterP$p_val
+ann.abun.hunter_pval37<-ann.abun.hunterP$p_val[1]
+ann.abun.hunter_pval2_2.5<-ann.abun.hunterP$p_val[2]
 
 #run coherence between abundance and snow depth for 3-7 year timescales
 ann.abun.snow<-coh(dat1=ann.abun.dt,dat2=ann.snow.dt,times=minyear:maxyear,norm="powall",
                   sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.abun.snow<-bandtest(ann.abun.snow,c(3,7))
+ann.abun.snow<-bandtest(ann.abun.snow,c(3,4))
+
 ann.abun.snowP<-get_bandp(ann.abun.snow)
-ann.abun.snow_pval<-ann.abun.snowP$p_val
+ann.abun.snow_pval37<-ann.abun.snowP$p_val[1]
+ann.abun.snow_pval34<-ann.abun.snowP$p_val[2]
 
 #Run coherence between abundance and climate indices for 3-7 year timescales
 ann.abun.wmei<-coh(dat1=ann.abun.dt,dat2=win.mei.dt,times=minyear:maxyear,norm="powall",
