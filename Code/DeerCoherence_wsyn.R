@@ -342,8 +342,12 @@ TabS5<-cbind(matrix(unlist(strsplit(row.names(TabS5),'.',fixed=TRUE)),ncol=2,byr
 TabS5$mn_phs<-as.numeric(as.character(ifelse(TabS5$p_val>0.06,"",TabS5$mn_phs)))
 TableS5<-data.frame(TabS5[,1:2],paste(TabS5$ts_low_bd,TabS5$ts_hi_bd,sep="-"),TabS5[,c("p_val","mn_phs")])
 colnames(TableS5)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
+levels(TableS5$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
+                                "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO",
+                                "Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI",
+                                "Abundance"="Abun","Hunters"="Hunter")
+levels(TableS5$Response)<-list("Abundance"="Abun","DVCs"="DVC","Traffic-adj. DVCs"="AdjDVC")
 saveRDS(TableS5,file="Results/TabS5_results.rds")
-
 
 #store data in list
 all.usda.dat<-list(Abun=usda.list$Abun,Snwd=winter.clim.usda$Snwd,WinterMEI=climindex.usda$WinterMEI,WinterPDO=climindex.usda$WinterPDO)
