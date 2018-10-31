@@ -47,7 +47,7 @@ mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 syncexpplot(resp.wmf=abun.wmf$values,exp.sync = predsync(wlm_abun)[[3]],1981:2016,
             wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
             cex.lab=3,cex.axis=2.5)
-mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex.axis=2)
+mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 dev.off()
 
 #Make Figure 3
