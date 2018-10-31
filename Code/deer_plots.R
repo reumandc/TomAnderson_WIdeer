@@ -15,6 +15,7 @@ dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,tim
 #load model results needed
 wlm_abun<-readRDS(file="Results/wlm_abun.rds")
 wlm_dvc<-readRDS(file="Results/wlm_dvc.rds")
+wlm_hunters<-readRDS(file="Results/wlm_hunters.rds")
 
 # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
 tot.wd<-4.75
@@ -137,16 +138,21 @@ dev.off()
 png("Results/FigS5.png",res=600,height=4800,width=3000)
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
+abun.tmp<-cty.list$Abun[row.names(cty.list$Abun)%in%row.names(hunters.tmp),12:36]
 hunters.dt<-cleandat(hunters.tmp,clev=5,times=1992:2016)$cdat
+abun.dt<-cleandat(abun.tmp,clev=5,times=1992:2016)$cdat
+
 hunters.wpmf<-wsyn::wpmf(hunters.dt,times=1992:2016,sigmethod = "quick")
 hunters.wmf<-wsyn::wmf(hunters.dt,times=1992:2016)
+abun.wmf.short<-wsyn::wmf(abun.dt,times=1992:2016)
+
 par(mfrow=c(3,1),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 deer_wmfplot(hunters.wmf,colorbar=T,ylab="",xlab="")
 #abline(h=c(log2(3),log2(7)))
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
 deer_wpmfplot(hunters.wpmf,colorbar=T,zlims = c(0,1),xlab="",sigthresh=0.999,ylab="Timescale (yrs)")
 mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-syncexpplot(resp.wmf=hunters.wmf$values,exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
+syncexpplot(resp.wmf=abun.wmf.short$values,exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
             wlm_hunters$timescales,ylab = "",xlab="Year")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()

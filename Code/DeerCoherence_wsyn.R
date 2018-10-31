@@ -155,6 +155,7 @@ hunter.res<-coh(dat1=cty.list.dt$Abun,dat2=cty.list.dt$Hunters,times=1992:maxyea
                 sigmethod="fast",nrand=nsurrogs,f0=1)
 wlm_hunters<-wlm(list(cty.list.dt$Abun,cty.list.dt$Hunters),times=1992:maxyear,resp=1,pred=2,norm="powall",f0=1)
 hunters_se<-syncexpl(wlm_hunters)
+saveRDS(wlm_hunters,file="Results/wlm_hunters.rds")
 
 hunter_se<-matrix(NA,ncol=ncol(hunters_se)-2,nrow=nrow(hunter.bands))
 for(i in 1:nrow(hunter.bands)){

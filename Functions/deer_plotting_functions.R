@@ -134,6 +134,13 @@ deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=FALSE,xl
   return(NULL)
 }
 
+
+###Plot expected synchrony based on output of wlm call in wsyn package
+#resp.wmf- wavelet transforms of the response variable in location x time x timescale format, from wmf function
+#exp.sync- expected synchrony from a predsync call on a wlm object
+#times = timestep vector
+#timescales = timescale vector
+
 syncexpplot<-function(resp.wmf,exp.sync,times,timescales,xlab,ylab,smallplot=NULL,...){
   ylocs <- pretty(timescales, n = 8)
   xlocs <- pretty(times, n = 8)
