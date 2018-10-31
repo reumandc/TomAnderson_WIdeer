@@ -50,8 +50,8 @@ deer_wpmfplot<-function(object,zlims=NULL,neat=TRUE,xlab,ylab,colorfill=NULL,sig
   {
     fields::image.plot(x=times,y=log2(timescales),z=wav,xlab=xlab,zlim=zlims,
                        ylab=ylab,axes=F,col=colorfill(100),main=title,...)
-    graphics::axis(1,at = xlocs,labels=xlocs)
-    graphics::axis(2,at = log2(ylocs),labels = ylocs)
+    graphics::axis(1,at = xlocs,labels=xlocs,...)
+    graphics::axis(2,at = log2(ylocs),labels = ylocs,...)
   }
   if (!all(is.na(signif)))
   {
@@ -118,14 +118,14 @@ deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=FALSE,xl
   {
     graphics::image(x=times,y=log2(timescales),z=wav,xlab=xlab,zlim=zlims,
                     ylab=ylab,axes=F,col=colorfill(100),main=title,...)
-    graphics::axis(1,at = xlocs,labels=xlocs)
-    graphics::axis(2,at = log2(ylocs),labels = ylocs)
+    graphics::axis(1,at = xlocs,labels=xlocs,...)
+    graphics::axis(2,at = log2(ylocs),labels = ylocs,...)
   }else
   {
     fields::image.plot(x=times,y=log2(timescales),z=wav,xlab=xlab,zlim=zlims,
                        ylab=ylab,axes=F,col=colorfill(100),main=title,...)
-    graphics::axis(1,at = xlocs,labels=xlocs)
-    graphics::axis(2,at = log2(ylocs),labels = ylocs)
+    graphics::axis(1,at = xlocs,labels=xlocs,...)
+    graphics::axis(2,at = log2(ylocs),labels = ylocs,...)
   }
   if (!is.na(filename))
   {
@@ -134,17 +134,17 @@ deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=FALSE,xl
   return(NULL)
 }
 
-syncexpplot<-function(resp.wmf,exp.sync,times,timescales,xlab,ylab,smallplot=NULL){
+syncexpplot<-function(resp.wmf,exp.sync,times,timescales,xlab,ylab,smallplot=NULL,...){
   ylocs <- pretty(timescales, n = 8)
   xlocs <- pretty(times, n = 8)
   jetcolors <- c("#00007F", "blue", "#007FFF", "cyan", 
                  "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
   colorfill <- colorRampPalette(jetcolors)
   image(x = times, y = log2(timescales), z = Mod(exp.sync), xlab = xlab, 
-        ylab = ylab, axes = F, col = colorfill(100),las=1)
-  axis(1, at = xlocs, labels = xlocs)
-  axis(2, at = log2(ylocs), labels = ylocs, las = 1)
+        ylab = ylab, axes = F, col = colorfill(100),las=1,...)
+  axis(1, at = xlocs, labels = xlocs,...)
+  axis(2, at = log2(ylocs), labels = ylocs, las = 1,...)
   contour(x = times, y = log2(timescales),z=Mod(resp.wmf),add=T,frame=F,las=1,lwd=2)
   image.plot(x = times, y = timescales, z = Mod(exp.sync),
-             legend.only = T, 100, col = colorfill(100),las=1)
+             legend.only = T, 100, col = colorfill(100),las=1,...)
 }

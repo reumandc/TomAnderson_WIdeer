@@ -33,38 +33,40 @@ dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 
 #Make Figure 2
 png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.5,0.75,0.1,0))
-deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)")
+par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
+deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.5)
 abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1)
-deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)")
+mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
+deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.5)
 par(new=T)
 q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
 contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
 abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1)
+mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 syncexpplot(resp.wmf=abun.wmf$values,exp.sync = predsync(wlm_abun)[[3]],1981:2016,
-            wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)")
-mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1)
+            wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
+            cex.lab=3,cex.axis=2.5)
+mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex.axis=2)
 dev.off()
 
 #Make Figure 3
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-par(mfrow=c(3,1),mgp=c(1.5,0.5,0),mai=c(0.5,0.75,0.1,0))
-deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)")
-mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1)
+par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
+deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.5)
+mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 abline(h=c(log2(3),log2(7)),lty=2)
-deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)")
+deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.5)
 par(new=T)
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
 abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1)
+mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 syncexpplot(resp.wmf=dvc.wmf$values,exp.sync = predsync(wlm_dvc)[[3]],1987:2016,
-            wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)")
-mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1)
+            wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
+            cex.lab=3,cex.axis=2.5)
+mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 dev.off()
 
 #make plots of phase by timescale for all significant pairs of variables (Fig S3)
@@ -147,24 +149,6 @@ mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
 syncexpplot(resp.wmf=hunters.wmf$values,exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
             wlm_hunters$timescales,ylab = "",xlab="Year")
 mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-dev.off()
-
-# #climate surface plots
-png("Results/FigS8.png",res=600,height=9,width=7,unit="in")
-par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-climindex.wt<-lapply(climindex,function(x){wsyn::wt(cleandat(x[1,],clev=5,times=minyear:maxyear)$cdat,times=minyear:maxyear)})
-deer_wmfplot(climindex.wt$WinterPDO,colorbar=T,xlab="",ylab="",power=T)
-mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wmfplot(climindex.wt$SummerPDO,colorbar=T,xlab="",ylab="",power=T)
-mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wmfplot(climindex.wt$WinterNAO,colorbar=T,xlab="",ylab="Timescale (yrs)",power=T)
-mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wmfplot(climindex.wt$SummerNAO,colorbar=T,ylab="",xlab="",power=T)
-mtext("D)",adj=0.05,font=2,line=-1.2,side=3)
-deer_wmfplot(climindex.wt$WinterMEI,colorbar=T,xlab="Year",ylab="",power=T)
-mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wmfplot(climindex.wt$SummerMEI,colorbar=T,xlab="Year",ylab="",power=T)
-mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
 #Make winter weather wavelet mean field and wavelet phasor mean field plots
