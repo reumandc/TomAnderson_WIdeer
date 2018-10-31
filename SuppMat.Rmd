@@ -684,7 +684,7 @@ radians) for the shaded timescale bands. Horizontal axes differ in extent among 
 time ranges of available data for different variables. \label{FigS3_PhaseDiffs}}
 \end{figure}
 
-<!--***DAN: Tom, can you please remove the blue cross-hatching on panel G, as there is no corresponding mean phase given for that range (and there should not be a mean phase given since the coherence was not significant over that range).--><!--TOM: Removed it, but my code leaves vertical dashed lines at 3-7. 
+<!--***DAN: Tom, can you please remove the blue cross-hatching on panel G, as there is no corresponding mean phase given for that range (and there should not be a mean phase given since the coherence was not significant over that range).--><!--TOM: Removed it, but my code leaves vertical dashed lines at 3-7. If you think those need to go as well- the alternative would be to just add text saying we tested that but wasn't significant.-->
 
 \newpage
 
@@ -746,14 +746,14 @@ time series, and predicted synchrony of deer abundance based on a wavelet model 
 abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
 time series at the indicated times and timescales. Contours on (B) indicate statistical significance of phase 
 synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundance, while contours show the 
-actual wavelet mean field magnitude of deer abundance (from Fig. \ref{MT-Fig2_DeerSync}A). Agreement is poor, 
+actual wavelet mean field magnitude of deer abundance, similar to the one shown in Fig. \ref{MT-Fig2_DeerSync}A). Slight differences exist here vs \ref{MT-Fig2_DeerSync}A) because of different spatiotemporal extents of the data used in hunter analyses. In any case, agreement is poor, 
 giving a 
 visual indication of the statistical result that hunter abundance does not explain deer abundance or synchrony 
 well on $3-7$-year timescales.\label{FigS5_WMFHunter}}
 \end{figure}
 
 <!--***DAN: Tom, the contours on C are supposed to look *exactly* the same as the countours on Fig. 2C, right?
-They do not (they are not even particularly close!). What's going on?-->
+They do not (they are not even particularly close!). What's going on?--><!--TOM: Two things: first, I was plotting HUNTER abundance as the contours, not deer abundance- so that's why they looked so bad was because it was the wrong thing to be plotted. Second, it won't look identical to 2A because of the differences in spatial extent (only 53 counties could be used for the hunter analysis. It also is 10 years shorter so truncates things as a bit in the temporal dimension as well. I tried to specify that above. I did make a wmf plot of the deer abundance truncated to the hunter data set dimensions and they do now visually match- this way seems more appropriate so that everything lines up, but let me know if you disagree.)-->
 
 \newpage
 
