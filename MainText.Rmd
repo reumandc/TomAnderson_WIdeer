@@ -6,14 +6,14 @@ author:
  - \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas; \textsuperscript{3}Department of Environmental Sciences, University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources; \textsuperscript{5}Laboratory of Populations, Rockefeller University
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
+  html_document:
+    df_print: paged
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     includes:
       in_header: head_maintext.sty
   word_document: default
-  html_document:
-    df_print: paged
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
 csl: science.csl
@@ -236,5 +236,5 @@ and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (
 \label{Fig4_StateWideFluctuations}}
 \end{figure}
 <!--***DAN: Tom, note the font sizes are not consistent across panels. Nor are they consistent across 
-figures. I think we are probably going to have to make them consistent across all figs in main text.-->
+figures. I think we are probably going to have to make them consistent across all figs in main text.--><!--TOM: SHould be fixed now-->
 

@@ -52,7 +52,7 @@ minyear<-1981
 maxyear<-2016
 
 #set number of surrogates to use for spatial wavelet coherence
-nsurrogs<-100
+nsurrogs<-100000
 
 #a function needed for caching
 source("Code/mtime.R") 
@@ -141,7 +141,7 @@ for each intersection area by multiplying the amount of deer habitat in
 each intersection area by the WIDNR density estimate of deer for the DMU 
 that the intersection fell within. Deer habitat was considered to comprise 
 areas of permanent cover (e.g., forests) that were $>4$ ha in size. DMU deer 
-densities were calculated by dividing the DMU abundances originally provided to us  
+densities were calculated by dividing the DMU abundances originally provided to us
 by the amount of deer habitat within the DMU [@widnr2001]. This procedure 
 assumes approximately spatially uniform densities of deer within deer 
 habitat across each DMU. The abundance for a county was the sum of 
@@ -172,7 +172,7 @@ the number of police-investigated DVCs; they are an
 index of DVCs, as opposed to an absolute number of incidents, 
 since not all DVCs are reported. In Michigan, nearly half of 
 DVCs went unreported to the police or insurance companies 
-over a five year period [@Marcoux2010_dvc]. Additionally, 
+over a five-year period [@Marcoux2010_dvc]. Additionally, 
 DVC information was collected with reporting effort that 
 may have varied for different counties 
 (Daniel Storm, WIDNR, Personal Communication), and the 
@@ -209,7 +209,7 @@ than 18 inches and Tmin was simultaneously less than $0^\circ$F.
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
-El Niño/Southern Oscillation Index (MEI), and the Pacific 
+El Ni$\tilde{n}$o<!--TOM: I can't get the tilde to be produced correctly over the n. This is the closest I got but it makes it italic.-->/Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO). All of these have been shown to 
 influence large ungulate population dynamics in the north central 
 USA [@Post1998_popgrowth;@Post2004_greenland]. 
@@ -220,7 +220,7 @@ approximate growing season (Apr-Nov), and the winter
 climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. All were annual 
-time series at the county level.
+time series at the county level. <!--TOM: Is this technically correct for teh climate indices, since its one value for all-->
 
 ## Data pre-processing
 
@@ -237,7 +237,7 @@ at smaller spatial scales [@Millspaugh2009]. The bias in abundance
 estimates previously reported [@Millspaugh2009] may have been overestimated, as more recent analyses 
 suggest the uncertainty in SAK estimates is substantially less 
 ($\pm 20\%$ error rates). 
-<!--***DAN: It was Robert that told us this, and he is a coathor, so perhaps we should take out the personal communication parens? It would be best if we could get a citation for this, even a white paper, if there is one and we can fit it in. If we leave it as "personal communication" then that begs the question "personal communicccation with whom?" The WIDNR is not a person.--><!--TOM:Yeah we could probably take it out, which I did. Science doesn't permit references to unpublished things, so we couldn't do (...;Stenglein [the woman who did that analysis], unpublished data)-->
+<!--***DAN: It was Robert that told us this, and he is a coathor, so perhaps we should take out the personal communication parens? It would be best if we could get a citation for this, even a white paper, if there is one and we can fit it in. If we leave it as "personal communication" then that begs the question "personal communicccation with whom?" The WIDNR is not a person.--><!--TOM: Yeah we could probably take it out, which I did. Science doesn't permit references to unpublished things, so we couldn't do (...;Stenglein [the woman who did that analysis], unpublished data)-->
 In addition, the criticism of the SAK [@Millspaugh2009] was based 
 on a model that did not match perfectly with practices of the WIDNR. 
 <!--***DAN: I added the above sentence, Tom, based on a comment of Roberts that had been inserted as a marginal note in the Word doc that this Rmd replaces. Please check. If we keep the "personal communication" paren above then we should also insert one here.--><!--TOM: I took the one out above, so should be fine here-->
@@ -307,7 +307,7 @@ winter weather variables are in
 Fig. \ref{FigS9_WMFsAndWPMFsAncillary}. Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed using the function `wpmf`. Both of these functions are in the `wsyn` package for the R programming language.
 
-All plots based on wavelet transforms are "scalloped", i.e., values corresponding to longer timescales and times closer to the start or end of available data are not plotted. This is because the wavelet transform is based on convolutions of wavelet functions with the timeseries being transformed; convolutions for which a sunstantial portion of the wavelet function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is standard practice.
+All plots based on wavelet transforms are "scalloped", i.e., values corresponding to longer timescales and times closer to the start or end of available data are not plotted. This is because the wavelet transform is based on convolutions of wavelet functions with the timeseries being transformed; convolutions for which a substantial portion of the wavelet function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is standard practice.
 
 ## Spatial wavelet coherence and wavelet coherence
 
@@ -345,10 +345,9 @@ quantity calculated for `r 0.95*nsurrogs` of `r nsurrogs`
 surrogate data sets representing the null hypothesis of no relationship between variables. Ranks of actual spatial wavelet
 coherences in surrogate spatial wavelet coherences were 
 also plotted as a function of timescale 
-(Fig. \ref{FigS3_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package for the R programming language. The fast algorithm of [@Sheppard2017_surrogates] for assessing the statistical significance of spatial wavelet coherence was used.
+(Fig. \ref{FigS4_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package for the R programming language. The fast algorithm of [@Sheppard2017_surrogates] for assessing the statistical significance of spatial wavelet coherence was used.
 
-In contrast to correlation-based approaches that 
-assume in-phase relationships, spatial wavelet coherence 
+Correlation-based approaches have been standard practice in synchrony studies [@Buonaccorsi2001], but these methods assume in-phase relationships. In contrast, spatial wavelet coherence 
 allows for any kind of phase relationship and 
 provides as part of its output the average phase that occurred between two variables. 
 Therefore, when two variables had significant 
@@ -423,7 +422,7 @@ timescale. We tested for relationships between
 statewide deer abundance time series and climate 
 indices, statewide averages for winter weather, 
 statewide hunter abundance time series, and 
-statewide total DVCs. Functions in the `wsyn` package were used, and can compute ordinary wavelet coherence as well as spatial wavelet coherence.
+statewide total DVCs. The same functions in the `wsyn` package listed above for spatial wavelet coherence were used, as they can compute both ordinary wavelet coherence and spatial wavelet coherence.
 
 ## Wavelet Moran theorem, fractions of synchrony explained, and predicted synchrony
 
@@ -512,11 +511,11 @@ that was attributable to synchrony (Fig. \ref{MT-Fig4_StateWideFluctuations}).
 
 ## Approximate monetary impact of DVCs
 
-<!--***DAN: Tom, you had attached a bunch of marginal comments to the version of this para in the Word doc, and I tried to act on those as best I could. Please revise the result-->
+<!--***DAN: Tom, you had attached a bunch of marginal comments to the version of this para in the Word doc, and I tried to act on those as best I could. Please revise the result--><!--TOM: I only made one minor change in here, otherwise I think it looks good-->
 We estimated the approximate monetary impact of 
 synchrony in DVCs based on several reported 
-assumptions about DVCs. Using an average difference 
-between peak and trough DVC years 
+assumptions about DVCs. Using an average difference in DVCs
+between peak and trough years 
 (Fig. \ref{MT-Fig4_StateWideFluctuations}) of `r avgdvcfluc`, and if we assume 
 that each reported DVC results in an average of 
 US\$2024 of damage [@Conover2011_bookchp], the 
@@ -564,7 +563,7 @@ USDA district data, and patterns of synchrony in deer abundance predicted by tha
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
 data (Table \ref{TabS4_SummaryDistrict}). Cross terms for snow depth and deer abundance over $3-4$-year timescales were too large at the county level to make a reliable statement of synchrony explained at that level, but cross terms were not too large for the district-level analysis, and snow depth explained $`r round(usda_abunsnwd_syncexp34,0)`\%$ of synchrony at $3-4$-year timescales. This makes sense in light of possible effects of dispersal at smaller spatial scales, as explained in the section "Wavelet Moran theorem..." above; effects of dispersal would have been reduced at district level because fewer deer disperse between spatial units for larger spatial units.
-The result that snow depth appeared to influence deer on $3-4$-year timescales, while $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly spatially coherent and explained synchrony at $4-7$-year timescales pertained for district-level data as it did for county-level data.
+The result that snow depth appeared to influence deer on $3-4$-year timescales, while $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly spatially coherent and explained synchrony at $4-7$-year timescales pertained to district-level data as it did for county-level data.
 
 As in the county-level analyses, hunter abundance time series were not spatially coherent with deer abundance time series on $3-7$-year timescales (Table \ref{TabS4_SummaryDistrict}), so any synchrony there may have been in hunter abundances at those timescales could not have explained synchrony in deer. Again similar to the county-level analyses, hunter abundance time series were significantly coherent with deer abundance on $2-2.5$-year timescales (Table \ref{TabS4_SummaryDistrict}), but there was little deer abundance synchrony on those timescales to explain (Fig. \ref{FigS8_WMFAndPredictionsDistricts}A,C).
 
@@ -576,7 +575,7 @@ Whereas cross terms were high enough at county-level to render meaningless state
 effects on the statistics of dispersal of 
 deer between counties or movements of cars between 
 counties, but such effects would be
-reduced at the larger district level because reduced fractions of deer and cars dispersal from one spatial unit to another for these larger spatial units. 
+reduced at the larger district level because reduced fractions of deer and cars disperse from one spatial unit to another for these larger spatial units. 
 Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS8_WMFAndPredictionsDistricts}F). 
 
 ## Statewide results
