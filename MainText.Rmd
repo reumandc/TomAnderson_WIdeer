@@ -6,13 +6,13 @@ author:
  - \textsuperscript{1}Department of Biology, Southeast Missouri State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas; \textsuperscript{3}Department of Environmental Sciences, University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources; \textsuperscript{5}Laboratory of Populations, Rockefeller University
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
-  html_document:
-    df_print: paged
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     includes:
       in_header: head_maintext.sty
+  html_document:
+    df_print: paged
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes

@@ -209,7 +209,7 @@ than 18 inches and Tmin was simultaneously less than $0^\circ$F.
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
-El Ni$\tilde{n}$o<!--TOM: I can't get the tilde to be produced correctly over the n. This is the closest I got but it makes it italic.-->/Southern Oscillation Index (MEI), and the Pacific 
+El Nino<!--TOM: I can't get the tilde to be produced correctly over the n. This is the closest I got but it makes it italic.-->/Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO). All of these have been shown to 
 influence large ungulate population dynamics in the north central 
 USA [@Post1998_popgrowth;@Post2004_greenland]. 
