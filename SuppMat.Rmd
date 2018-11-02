@@ -250,7 +250,7 @@ of counties (Fig. \ref{FigS2_map}).
 Statewide analysis used state total or average time series for each 
 variable. In general, results remained unchanged in their main substance using data 
 aggregated to larger spatial scales (Table \ref{TabS4_SummaryDistrict}, \ref{TabS5_SpatCohPWWAndClimInds_District}, 
-Fig. \ref{FigS6_WMFAndPredictionsDistricts}), suggesting results for counties were not 
+Fig. \ref{FigS8_WMFAndPredictionsDistricts}), suggesting results for counties were not 
 meaningfully influenced by possible inaccuracies in SAK abundance estimation 
 procedures at the county level.
 
@@ -304,7 +304,7 @@ deemed significant and important
 [@Sheppard_wavmodel]. Wavelet mean field and 
 wavelet phasor mean field magnitude plots for 
 winter weather variables are in 
-Fig. \ref{FigS7_WMFsAndWPMFsAncillary}. Wavelet mean fields were computed using the
+Fig. \ref{FigS9_WMFsAndWPMFsAncillary}. Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed using the function `wpmf`. Both of these functions are in the `wsyn` package for the R programming language.
 
 All plots based on wavelet transforms are "scalloped", i.e., values corresponding to longer timescales and times closer to the start or end of available data are not plotted. This is because the wavelet transform is based on convolutions of wavelet functions with the timeseries being transformed; convolutions for which a sunstantial portion of the wavelet function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is standard practice.
@@ -545,7 +545,7 @@ The suite of analyses leading to this paper can be re-run and the paper re-compi
 Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
-(Fig. \ref{FigS6_WMFAndPredictionsDistricts}A,C).
+(Fig. \ref{FigS8_WMFAndPredictionsDistricts}A,C).
 
 Deer abundance was significantly related to $\text{MEI}_{\text{w}}$ and $\text{MEI}_{\text{s}}$, 
 and was marginally significantly related to $\text{PDO}_{\text{w}}$ on $3-7$-year timescales
@@ -559,25 +559,25 @@ deer abundance were nearly in anti-phase; and climate
 indices and deer abundance showed approximately 
 quarter-cycle phase shifts (Table \ref{TabS4_SummaryDistrict}). Combined, snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ explained $`r round(usda.abunmodelSyncExp,0)`\%$ of the 
 synchrony in deer abundance using 
-USDA district data, and patterns of synchrony in deer abundance predicted by that model closely resembled actual patterns of deer abundance synchrony (Fig. \ref{FigS6_WMFAndPredictionsDistricts}E). Cross terms for this model were of small magnitude, $`r round(usda.abunmodelXterms,0)`\%$.
+USDA district data, and patterns of synchrony in deer abundance predicted by that model closely resembled actual patterns of deer abundance synchrony (Fig. \ref{FigS8_WMFAndPredictionsDistricts}E). Cross terms for this model were of small magnitude, $`r round(usda.abunmodelXterms,0)`\%$.
 
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
 data (Table \ref{TabS4_SummaryDistrict}). Cross terms for snow depth and deer abundance over $3-4$-year timescales were too large at the county level to make a reliable statement of synchrony explained at that level, but cross terms were not too large for the district-level analysis, and snow depth explained $`r round(usda_abunsnwd_syncexp34,0)`\%$ of synchrony at $3-4$-year timescales. This makes sense in light of possible effects of dispersal at smaller spatial scales, as explained in the section "Wavelet Moran theorem..." above; effects of dispersal would have been reduced at district level because fewer deer disperse between spatial units for larger spatial units.
 The result that snow depth appeared to influence deer on $3-4$-year timescales, while $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly spatially coherent and explained synchrony at $4-7$-year timescales pertained for district-level data as it did for county-level data.
 
-As in the county-level analyses, hunter abundance time series were not spatially coherent with deer abundance time series on $3-7$-year timescales (Table \ref{TabS4_SummaryDistrict}), so any synchrony there may have been in hunter abundances at those timescales could not have explained synchrony in deer. Again similar to the county-level analyses, hunter abundance time series were significantly coherent with deer abundance on $2-2.5$-year timescales (Table \ref{TabS4_SummaryDistrict}), but there was little deer abundance synchrony on those timescales to explain (Fig. \ref{FigS6_WMFAndPredictionsDistricts}A,C).
+As in the county-level analyses, hunter abundance time series were not spatially coherent with deer abundance time series on $3-7$-year timescales (Table \ref{TabS4_SummaryDistrict}), so any synchrony there may have been in hunter abundances at those timescales could not have explained synchrony in deer. Again similar to the county-level analyses, hunter abundance time series were significantly coherent with deer abundance on $2-2.5$-year timescales (Table \ref{TabS4_SummaryDistrict}), but there was little deer abundance synchrony on those timescales to explain (Fig. \ref{FigS8_WMFAndPredictionsDistricts}A,C).
 
 DVC data aggregated to USDA districts had a similar 
 synchrony feature to deer abundance over $3-7$ year 
-timescales (Fig. \ref{FigS6_WMFAndPredictionsDistricts}B,D). As 
+timescales (Fig. \ref{FigS8_WMFAndPredictionsDistricts}B,D). As 
 at county level, deer abundance time series were significantly spatially coherent with DVC time series on $3-7$-year timescales (Table \ref{TabS4_SummaryDistrict}).
 Whereas cross terms were high enough at county-level to render meaningless statements about fractions of DVC synchrony explained by deer synchrony, this was not the case at district level: cross terms were low (Table \ref{TabS4_SummaryDistrict}), and fractions of DVC synchrony explained by deer synchrony were $`r round(usda_dvcabunSyncExp,0)`\%$ for raw DVC data and $`r round(usda_adjdvcabunSyncExp,0)`\%$ for traffic-adjusted DVCs. The difference in cross terms between county- and district-level analyses again makes sense in light of dispersal, as explained above. Large cross terms may reflect the 
 effects on the statistics of dispersal of 
 deer between counties or movements of cars between 
 counties, but such effects would be
 reduced at the larger district level because reduced fractions of deer and cars dispersal from one spatial unit to another for these larger spatial units. 
-Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS6_WMFAndPredictionsDistricts}F). 
+Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS8_WMFAndPredictionsDistricts}F). 
 
 ## Statewide results
 
@@ -672,7 +672,7 @@ straightforwardly significance tested as described in Sheppard \emph{et al.} (In
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{Results/FigS3.png}
+\includegraphics[width=\textwidth]{Results/FigS4.png}
 \caption{Phase differences between variables as a function of timescale for the main significant relationships of 
 Table \ref{TabS1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
 and deer abundance, B) summer MEI and 
@@ -681,7 +681,7 @@ D) snow depth and deer abundance, E) deer abundance and
 deer-vehicle collisions, F) deer abundance and deer-vehicle collisions adjusted for traffic volume, and 
 G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$
 radians) for the shaded timescale bands. Horizontal axes differ in extent among panels due to different
-time ranges of available data for different variables. \label{FigS3_PhaseDiffs}}
+time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 \end{figure}
 
 <!--***DAN: Tom, can you please remove the blue cross-hatching on panel G, as there is no corresponding mean phase given for that range (and there should not be a mean phase given since the coherence was not significant over that range).--><!--TOM: Removed it, but my code leaves vertical dashed lines at 3-7. If you think those need to go as well- the alternative would be to just add text saying we tested that but wasn't significant.-->
@@ -733,14 +733,14 @@ Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate lo
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of Table \ref{TabS1_CountyCoherenceSummary}, using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS4_RanksInSurrogs}}
+\includegraphics[width=\textwidth]{Results/FigS6.png}
+\caption{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of Table \ref{TabS1_CountyCoherenceSummary}, using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS6_RanksInSurrogs}}
 \end{figure}
 
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=.6\textwidth]{Results/FigS5.png}
+\includegraphics[width=.6\textwidth]{Results/FigS7.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance 
 time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunter 
 abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
@@ -749,7 +749,7 @@ synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundan
 actual wavelet mean field magnitude of deer abundance, similar to the one shown in Fig. \ref{MT-Fig2_DeerSync}A). Slight differences exist here vs \ref{MT-Fig2_DeerSync}A) because of different spatiotemporal extents of the data used in hunter analyses. In any case, agreement is poor, 
 giving a 
 visual indication of the statistical result that hunter abundance does not explain deer abundance or synchrony 
-well on $3-7$-year timescales.\label{FigS5_WMFHunter}}
+well on $3-7$-year timescales.\label{FigS7_WMFHunter}}
 \end{figure}
 
 <!--***DAN: Tom, the contours on C are supposed to look *exactly* the same as the countours on Fig. 2C, right?
@@ -758,15 +758,15 @@ They do not (they are not even particularly close!). What's going on?--><!--TOM:
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[height=.8\textheight]{Results/FigS6.png}
-\caption{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS6_WMFAndPredictionsDistricts}}
+\includegraphics[height=.8\textheight]{Results/FigS8.png}
+\caption{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison; agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS8_WMFAndPredictionsDistricts}}
 \end{figure}
 
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[height=.9\textheight]{Results/FigS7.png}
-\caption{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in Fig \ref{MT-Fig2_DeerSync}A,B. \label{FigS7_WMFsAndWPMFsAncillary}}
+\includegraphics[height=.9\textheight]{Results/FigS9.png}
+\caption{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in Fig \ref{MT-Fig2_DeerSync}A,B. \label{FigS9_WMFsAndWPMFsAncillary}}
 \end{figure}
 
 \newpage
