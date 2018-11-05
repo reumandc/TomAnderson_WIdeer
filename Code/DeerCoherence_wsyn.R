@@ -507,7 +507,7 @@ ann.snwd.wpdo_pval<-ann.snwd.wpdoP$p_val
 ann.dvc.dt<-cleandat(colSums(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))]),clev=4,times=1987:2016)$cdat
 ann.abun.dt1<-cleandat(colSums(cty.list$Abun[,!is.na(colSums(cty.list$Crashes))]),clev=4,times=1987:2016)$cdat
 ann.dvc.abun<-coh(dat1=ann.dvc.dt,dat2=ann.abun.dt1,times=1987:maxyear,norm="powall",
-                  sigmethod="fast",nrand=100000,f0=1)
+                  sigmethod="fast",nrand=nsurrogs,f0=1)
 ann.dvc.abun<-bandtest(ann.dvc.abun,c(3,7))
 ann.dvc.abun<-bandtest(ann.dvc.abun,c(3,5))
 ann.dvc.abunP<-get_bandp(ann.dvc.abun)

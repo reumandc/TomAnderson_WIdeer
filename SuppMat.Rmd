@@ -209,7 +209,7 @@ than 18 inches and Tmin was simultaneously less than $0^\circ$F.
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
-El Nino<!--TOM: I can't get the tilde to be produced correctly over the n. This is the closest I got but it makes it italic.-->/Southern Oscillation Index (MEI), and the Pacific 
+El Niño/Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO). All of these have been shown to 
 influence large ungulate population dynamics in the north central 
 USA [@Post1998_popgrowth;@Post2004_greenland]. 
@@ -326,7 +326,7 @@ spatial wavelet coherences of appropriately randomized,
 surrogate data sets ($N=$ `r nsurrogs` surrogates 
 were used for all tests) 
 <!--***DAN: Tom, there is an nsurrogs variable defined near the top of this document that is currently 10000. Do you plan to rerun with 100000 later? Either way, unless I am mistaken about the purpose of that variable, please turn the above N=100000 into a dynamic link so it updates automatically and displays the correct number of surrogates that were actually used on the latest run. I made the change but I am flagging it here to make sure you see it so that in case it causes problems somehow that I'm not aware of you can do something about it. Delete this comment if the change makese sense to you.
-Also, and importantly, when you rerun with 100000 (if indeed we do - not clear to me it's strictly necessary) we will have to re-check that all statements are consistent with the new results, because all the results will change. They should not change much, but they will change. Will have to review for this.--><!--TOM: Yeah, making it dynamic makes sense, jsut something I hadn't caught yet since I hadn't edited the text in a while. I dropped down the surrogate number just to decrease run time when I was working out all the kinks of knitting- we can raise it back up. -->
+Also, and importantly, when you rerun with 100000 (if indeed we do - not clear to me it's strictly necessary) we will have to re-check that all statements are consistent with the new results, because all the results will change. They should not change much, but they will change. Will have to review for this.--><!--TOM: Yeah, making it dynamic makes sense, jsut something I hadn't updated yet since I hadn't edited the text in a while. I had dropped down the surrogate number just to decrease run time when I was working out all the kinks of knitting- I raised it back up. -->
 that retain the same 
 temporal and spatial autocorrelation properties as 
 the original time series but are otherwise 
@@ -630,7 +630,7 @@ study.\label{FigS1_Timeseries}}
 
 <!--***DAN: To get the references in the below caption to work,
 I had to do them manually. Right now I am using author-date, but it needs to be changed to
-numeric callouts right at the very end. If you could figure out a way to automate those, it would be great, but I don't think its possible because the below is latex code.-->
+numeric callouts right at the very end. If you could figure out a way to automate those, it would be great, but I don't think its possible because the below is latex code.--><!--TOM: I tried looking, but haven't found a solution yet-->
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
@@ -689,7 +689,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 
 <!--***DAN: To get the references in the below caption to work,
 I had to do them manually. Right now I am using author-date, but it needs to be changed to
-numeric callouts right at the very end.-->
+numeric callouts right at the very end.--><!--TOM: same comment as above, still haven't found a solution-->
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/PedagogFig_SpatCoh.png}
@@ -780,11 +780,11 @@ knitr::kable(TableS1,
              format='pandoc',
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns (which give percentages) are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of syncrony in the response explainable as due to the synchrony in the predictor. They were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (main text and Table \\ref{TabS4_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS1_CountyCoherenceSummary}",
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns (which give percentages) are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (main text and Table \\ref{TabS4_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS1_CountyCoherenceSummary}",
              booktabs=T)
 ```
 
-<!--***DAN: Tom, please review this caption carefully, as I have edited it heavily. I looked through the code to tryto make sure I was not introducing any errors in descriptions of what was done, but please be sure yourself, too, to be on the safe side. I emailed you about this and I have also taken your response into account, but another check from you would be useful.-->
+<!--***DAN: Tom, please review this caption carefully, as I have edited it heavily. I looked through the code to tryto make sure I was not introducing any errors in descriptions of what was done, but please be sure yourself, too, to be on the safe side. I emailed you about this and I have also taken your response into account, but another check from you would be useful.--><!--TOM:Found one typo but looks good to me-->
 
 \newpage
 
@@ -798,7 +798,7 @@ knitr::kable(TableS2,
              booktabs=T)
 ```
 
-<!--***DAN: Tom, in the first two columns you get labels like "WinterNAO" instead of "Winter NAO" (with a space). Can you please fix that? Not just for Winter NAO but for all entries in the first two columns. Like wise please fix the same problem as it occurs in Tables S3 and S5.-->
+<!--***DAN: Tom, in the first two columns you get labels like "WinterNAO" instead of "Winter NAO" (with a space). Can you please fix that? Not just for Winter NAO but for all entries in the first two columns. Like wise please fix the same problem as it occurs in Tables S3 and S5.--><!--TOM:Fixed-->
 
 \newpage
 
@@ -820,11 +820,11 @@ knitr::kable(TableS4,
              format='pandoc',
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (*Methods*). $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns (which give percentages) are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of syncrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS4_SummaryDistrict}",
+             caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (*Methods*). $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns (which give percentages) are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS4_SummaryDistrict}",
              booktabs=T)
 ```
 
-<!--***DAN: Tom, please review this caption carefully, as I have edited it heavily. I looked through the code to tryto make sure I was not introducing any errors in descriptions of what was done, but please be sure yourself, too, to be on the safe side. I emailed you about this and I have also taken your response into account, but another check from you would be useful.-->
+<!--***DAN: Tom, please review this caption carefully, as I have edited it heavily. I looked through the code to tryto make sure I was not introducing any errors in descriptions of what was done, but please be sure yourself, too, to be on the safe side. I emailed you about this and I have also taken your response into account, but another check from you would be useful.--><!--Tom: fixed a typo but otherwise looks good-->
 
 \newpage
 

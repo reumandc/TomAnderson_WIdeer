@@ -236,5 +236,5 @@ and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (
 \label{Fig4_StateWideFluctuations}}
 \end{figure}
 <!--***DAN: Tom, note the font sizes are not consistent across panels. Nor are they consistent across 
-figures. I think we are probably going to have to make them consistent across all figs in main text.--><!--TOM: SHould be fixed now-->
+figures. I think we are probably going to have to make them consistent across all figs in main text.--><!--TOM: SHould be fixed now, along with your other suggested edits-->
 
