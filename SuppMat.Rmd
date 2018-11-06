@@ -52,7 +52,7 @@ minyear<-1981
 maxyear<-2016
 
 #set number of surrogates to use for spatial wavelet coherence
-nsurrogs<-100000
+nsurrogs<-10000
 
 #a function needed for caching
 source("Code/mtime.R") 
@@ -209,7 +209,7 @@ than 18 inches and Tmin was simultaneously less than $0^\circ$F.
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
-El Niño/Southern Oscillation Index (MEI), and the Pacific 
+El Nino/Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO). All of these have been shown to 
 influence large ungulate population dynamics in the north central 
 USA [@Post1998_popgrowth;@Post2004_greenland]. 
