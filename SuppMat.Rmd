@@ -544,9 +544,7 @@ The suite of analyses leading to this paper can be re-run and the paper re-compi
 Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
-(Fig. \ref{FigS8_WMFAndPredictionsDistricts}A,C).
-
-Deer abundance was significantly related to $\text{MEI}_{\text{w}}$ and $\text{MEI}_{\text{s}}$, 
+(Fig. \ref{FigS8_WMFAndPredictionsDistricts}A,C). Deer abundance was significantly related to $\text{MEI}_{\text{w}}$ and $\text{MEI}_{\text{s}}$, 
 and was marginally significantly related to $\text{PDO}_{\text{w}}$ on $3-7$-year timescales
 (Table \ref{TabS4_SummaryDistrict}). Deer abundance was significantly related to snow depth on $3-4$-year timescales. These variables were the same ones identified as 
 significantly coherent with deer abundance using 
