@@ -14,7 +14,7 @@ This repository can be used to reproduce the complete analyses behind the paper 
 
 Knit the makefile.Rmd using R markdown. If all dependencies are in place (see next section) this should re-compute all analyses from data to paper, resulting in three pdfs: MainText.pdf (the main text of the paper), SuppMat.pdf (the supporting information file for the paper), and makefile.pdf (notes on the compilation process - can be useful for error mitigation in the event of failure). 
 
-The knit may take a few hours, depending on your computer speed and other factors. Subsequent knits, if any, can be faster because packages will be installed (see below) and because intermediate results are cached.
+The knit may take a several hours or a few days, depending on your computer speed, the value of `numsurrog` in SuppMat.Rmd, and other factors. Subsequent knits, if any, can be faster because packages will be installed (see below) and because intermediate results are cached.
 
 If you try to knit MainText.Rmd or SuppMat.Rmd directly, you may have some success, but cross-document references and other features may fail so this is not intended.
 
@@ -48,7 +48,7 @@ The makefile makes a system call to `pdflatex`, so software supporting that need
 
 ### Additional dependencies?
 
-If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 and by Anderson on Windows 7. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines.
+If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 and by Anderson on Windows 7. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines. This repository records a workflow that we implemented on our computer setups, and has not been tested and is not guaranteed to work on all other setups.
 
 ## Intermediate files:
 
