@@ -13,6 +13,7 @@ for(j in names(climindex.dt)){
   mod<-wlm(list(abun.dt,climindex.dt[[j]]),times=minyear:maxyear,resp=1,pred=2,norm="powall")
   wlm_climabun[[spatcoh.names]]<-syncexpl(mod)
 }
+clim.coher<-lapply(clim.res,get_coher)
 
 #Calculate abundance p-values and synchrony explained by climate indices
 climabun_se<-list()
@@ -31,7 +32,7 @@ for(j in names(clim.res)){
   }
   climabun_se[[j]]<-se_mat
 }
-
+clim.ranks<-lapply(clim.res,get_ranks)
 clim.resP<-lapply(clim.res,get_bandp)
 climabun_se<-lapply(climabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp.se)[2]];x})
 climabun_se<-lapply(climabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
@@ -50,6 +51,9 @@ for(j in names(winter.clim)){
   wlm_weathabun[[spatcoh.names]]<-syncexpl(mod)
 }
 
+#store snow-deer coherence
+snow.coher<-get_coher(weath.res$Snwd.Abun)
+
 #Calculate abundance synchrony explained by weather
 weathabun_se<-list()
 for(j in names(weath.res)){
@@ -67,6 +71,9 @@ for(j in names(weath.res)){
   }
   weathabun_se[[j]]<-se_mat
 }
+
+#save surrogate ranks for snow depth
+snow.ranks<-get_ranks(weath.res$Snwd.Abun)
 
 weath.resP<-lapply(weath.res,get_bandp)
 weathabun_se<-lapply(weathabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(tmp.se)[2]];x})
@@ -178,6 +185,7 @@ row.names(hunter_se)<-paste(hunter.bands[,1],hunter.bands[,2],sep="-")
 cty.list.dt<-lapply(cty.list[c('Abun','Crashes')],function(x){x<-cleandat(x[,!is.na(colSums(cty.list$Crashes))],clev = 5,times=1987:2016)$cdat;x})
 dvc.res<-coh(dat1=cty.list.dt$Crashes,dat2=cty.list.dt$Abun,times=1987:maxyear,norm="powall",
              sigmethod="fast",nrand=nsurrogs,f0=1)
+dvc.coher<-get_coher(dvc.res)
 dvc.res<-bandtest(dvc.res,c(3,7))
 dvc.resP<-get_bandp(dvc.res)
 wlm_dvc<-wlm(list(cty.list.dt$Crashes,cty.list.dt$Abun),times=1987:maxyear,resp=1,pred=2,norm="powall",f0=1)
@@ -190,21 +198,15 @@ saveRDS(wlm_dvc,file="Results/wlm_dvc.rds")
 cty.list.dt<-lapply(cty.list[c('Abun','AdjDVC')],function(x){x<-cleandat(x[,!is.na(colSums(cty.list$AdjDVC))],clev = 5,times=1988:2016)$cdat;x})
 adjdvc.res<-coh(dat1=cty.list.dt$AdjDVC,dat2=cty.list.dt$Abun,times=1988:maxyear,norm="powall",
                 sigmethod="fast",nrand=nsurrogs,f0=1)
+adjdvc.coher<-get_coher(adjdvc.res) #for ranks plot
+adjdvc.ts<-get_timescales(adjdvc.res)# for ranks plot
+
 adjdvc.res<-bandtest(adjdvc.res,c(3,7))
 adjdvc.resP<-get_bandp(adjdvc.res)
 wlm_adjdvc<-wlm(list(cty.list.dt$AdjDVC,cty.list.dt$Abun),times=1988:maxyear,resp=1,pred=2,norm="powall")
 adjdvc_se<-syncexpl(wlm_adjdvc)
 adjdvcabun_se<-adjdvc_se[adjdvc_se$timescales>=3 & adjdvc_se$timescales<=7,]
 adjdvcabun_se37<-round(100*colMeans(adjdvcabun_se[,c(3:dim(adjdvcabun_se)[2])])/mean(adjdvcabun_se$sync),4)
-
-#Run coherence of traffic and DVCs
-cty.list.dt<-lapply(cty.list[c('Crashes','Traffic')],function(x){x<-cleandat(x[,!is.na(colSums(cty.list$Traffic))],clev = 5,times=1988:2016)$cdat;x})
-traffic.dvc.res<-coh(dat1=cty.list.dt$Traffic,dat2=cty.list.dt$Crashes,times=1988:maxyear,norm="powall",
-                sigmethod="fast",nrand=nsurrogs,f0=1)
-traffic.dvc.res<-bandtest(traffic.dvc.res,c(3,7))
-traffic.dvc.res<-bandtest(traffic.dvc.res,c(7,18))
-traffic.dvc.resP<-get_bandp(traffic.dvc.res)
-traffic.dvc.resP
 
 #Build Table S1
 tmp.list<-list()
@@ -240,6 +242,7 @@ TableS1$SynchronyExplained<-as.numeric(as.character(ifelse(TableS1$Pvalue>0.06,"
 TableS1$CrossTerms<-as.numeric(as.character(ifelse(TableS1$Pvalue>0.06,"",TableS1$CrossTerms)))
 saveRDS(TableS1,file="Results/TableS1.rds")
 
+rm(clim.res,weath.climind.res,weath.res) #remove all large lists of results
 # USDA Analysis -----------------------------------------------------------
   
 #Run coherence of climate indices and deer abundance
@@ -337,7 +340,7 @@ for(j in 1:length(names(climindex.usda))){
 for(j in names(usda.weath.climind.res)){
   usda.weath.climind.res[[j]]<-bandtest(usda.weath.climind.res[[j]],bands[1,])
 }
-TabS5<-do.call(rbind,lapply(weath.climind.res,get_bandp))
+TabS5<-do.call(rbind,lapply(usda.weath.climind.res,get_bandp))
 TabS5<-cbind(matrix(unlist(strsplit(row.names(TabS5),'.',fixed=TRUE)),ncol=2,byrow=T),TabS5)
 TabS5$mn_phs<-as.numeric(as.character(ifelse(TabS5$p_val>0.06,"",TabS5$mn_phs)))
 TableS5<-data.frame(TabS5[,1:2],paste(TabS5$ts_low_bd,TabS5$ts_hi_bd,sep="-"),TabS5[,c("p_val","mn_phs")])
@@ -439,6 +442,8 @@ TableS4$MeanPhase<-as.numeric(as.character(ifelse(TableS4$Pvalue>0.06,"",TableS4
 TableS4$SynchronyExplained<-as.numeric(as.character(ifelse(TableS4$Pvalue>0.06,"",TableS4$SynchronyExplained)))
 TableS4$CrossTerms<-as.numeric(as.character(ifelse(TableS4$Pvalue>0.06,"",TableS4$CrossTerms)))
 saveRDS(TableS4,file="Results/TableS4.rds")
+
+rm(usda.clim.res,usda.weath.climind.res,usda.weath.res,usda.dvc.res,usda.adjdvc.res) #remove all large results objects
 
 # Do Statewide Analysis ---------------------------------------------------
 #annualize and clean data
