@@ -52,7 +52,7 @@ minyear<-1981
 maxyear<-2016
 
 #set number of surrogates to use for spatial wavelet coherence
-nsurrogs<-22000
+nsurrogs<-50000
 
 #a function needed for caching
 source("Code/mtime.R") 
