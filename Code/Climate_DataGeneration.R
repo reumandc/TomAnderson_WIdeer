@@ -243,6 +243,8 @@ winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-t(x);x})
 names(winter.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
 saveRDS(winter.clim.usda,"Results/winter.clim.usda.rds")
 
+rm(cty.month,usda.month)
+
 #load large climate indice data
 climate_indices <- read.csv("Data/climate_indices.csv")
 mei<-read.csv("Data/mei.csv")

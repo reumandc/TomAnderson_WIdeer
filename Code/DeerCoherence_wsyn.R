@@ -242,7 +242,7 @@ TableS1$SynchronyExplained<-as.numeric(as.character(ifelse(TableS1$Pvalue>0.06,"
 TableS1$CrossTerms<-as.numeric(as.character(ifelse(TableS1$Pvalue>0.06,"",TableS1$CrossTerms)))
 saveRDS(TableS1,file="Results/TableS1.rds")
 
-rm(clim.res,weath.climind.res,weath.res) #remove all large lists of results
+rm(clim.res,weath.climind.res,weath.res,indices.res) #remove all large lists of results
 # USDA Analysis -----------------------------------------------------------
   
 #Run coherence of climate indices and deer abundance
