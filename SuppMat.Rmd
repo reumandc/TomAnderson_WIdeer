@@ -52,7 +52,7 @@ minyear<-1981
 maxyear<-2016
 
 #set number of surrogates to use for spatial wavelet coherence
-nsurrogs<-50000
+nsurrogs<-100000
 
 #a function needed for caching
 source("Code/mtime.R") 
@@ -140,7 +140,7 @@ Arc GIS 10.3 (ESRI, Redlands, CA). We then calculated deer abundance
 for each intersection area by multiplying the amount of deer habitat in 
 each intersection area by the WIDNR density estimate of deer for the DMU 
 that the intersection fell within. Deer habitat was considered to comprise 
-areas of permanent cover (e.g., forests) that were $>4$ ha in size. DMU deer 
+areas of permanent cover (e.g., forests) that were $>4$ ha in size, plus agriculture and grass fields within 100 m of permanent cover. DMU deer 
 densities were calculated by dividing the DMU abundances originally provided to us
 by the amount of deer habitat within the DMU [@widnr2001]. This procedure 
 assumes approximately spatially uniform densities of deer within deer 
@@ -205,7 +205,7 @@ in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[
 counties; Tmax, $N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`; precipitation, $N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`; snow depth, $N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`. 
 We also calculated a Winter Severity Index (WSI, $N=$ `r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
 a metric known to impact deer populations [@widnr2001]. WSI is the sum of the total number of days for which snow depth was greater 
-than 18 inches and Tmin was simultaneously less than $0^\circ$F. 
+than 18 inches or Tmin was less than $0^\circ$F. 
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
@@ -266,7 +266,7 @@ all spatiotemporal variables using two
 statistical tools: the wavelet mean field and 
 the wavelet phasor mean field [@Sheppard2013;@Sheppard2016_aphids]. 
 Both of these are standard tools in 
-some biological fields, well established and widely applied; they are described in 
+some biological fields and well established; they are described in 
 detail elsewhere [@Sheppard2013;@Sheppard2016_aphids] and 
 operationally here. Both techniques take as 
 input time series measured at the same times 
@@ -314,7 +314,7 @@ All plots based on wavelet transforms are "scalloped", i.e., values correspondin
 For both county- and district-level data, we 
 assessed pairwise relationships between 
 spatiotemporal variables using the spatial wavelet coherence 
-technique. This technique is a standard tool in some biological fields, well established and widely applied; it is described in detail 
+technique. This technique is also a well-established and standard tool in some biological fields; it is described in detail 
 elsewhere [@Sheppard2013;@Sheppard2016_aphids;@Sheppard2017_surrogates] and  operationally
 here. Spatial wavelet coherence tests whether two 
 spatiotemporal variables exhibit consistent phase 
@@ -521,7 +521,7 @@ that each reported DVC results in an average of
 US\$2024 of damage [@Conover2011_bookchp], the 
 difference in damages statewide between peak and 
 trough years is more than US\$5M. Given that DVCs 
-are only reported about 50% of the time 
+may be only reported about 50% of the time 
 [@Marcoux2010_dvc], this number is actually likely 
 greater than US\$10M. Using different assumptions 
 of the cost of DVCs [@Huijser2008_dvc], the 

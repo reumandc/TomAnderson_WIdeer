@@ -112,6 +112,11 @@ usda.clim<-merge(cty.clim,usda,by.x="COUNTY_NAM",by.y="County",all=T)
 #Merge monthly climate data by county with usda district data
 usda.month<-merge(cty.month,usda,by.x="COUNTY_NAM",by.y="County",all=T)
 
+#remove large unneeded files
+rm(temp1,temp2,temp3,temp4,temp5,temp6,temp7,wi.temp)
+rm(pcp04_09,pcp10_15a,pcp10_15b,pcp16_17,pcp81_85,pcp86_91,pcp92_97,pcp98_03,wi.pcp)
+rm(wi.clim,cty.min,cty.max,cty.snwd)
+
 # County Climate Data -----------------------------------------------------
 #Winter weather conditions
 winter.tmp<-matrix(NA, ncol=length(unique(cty.month$COUNTY_NAM)),nrow=length(minyear:maxyear))
@@ -238,6 +243,8 @@ winter.clim.usda<-lapply(winter.clim.usda,function(x){x<-t(x);x})
 names(winter.clim.usda)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
 saveRDS(winter.clim.usda,"Results/winter.clim.usda.rds")
 
+rm(cty.month,usda.month)
+
 #load large climate indice data
 climate_indices <- read.csv("Data/climate_indices.csv")
 mei<-read.csv("Data/mei.csv")
@@ -335,4 +342,4 @@ climindex<-lapply(climindex,function(x){row.names(x)<-unique(cty.clim$COUNTY_NAM
 names(climindex)<-c("WinterNAO","WinterPDO","WinterMEI","SummerNAO","SummerPDO","SummerMEI")
 saveRDS(climindex,"Results/climindex.rds")
 
-
+rm(cty.clim,usda.clim)

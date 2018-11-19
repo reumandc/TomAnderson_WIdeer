@@ -144,6 +144,8 @@ dat<-merge(dat,usda,by.x=c("COUNTY_NAM"),by.y=c("County"),all=T)
 #Drop Menominee county because it has very little data for anything (its an Indian reservation)
 dat<-dat[!(dat$COUNTY_NAM=="Menominee"),]
 
+rm(dmu.files,cty.abun.est,cty.abun.estL,cty.hunter.estL,hunter.abun.est,dmu.cty.estL,dmu.cty.hunter.estL)
+
 #aggregate data by usda districts
 usda.abun <- by(dat$Abun, INDICES=list(dat$Year, dat$Zone), FUN=sum)
 usda.abun<-cbind(expand.grid(attributes(usda.abun)$dimnames), as.vector(usda.abun))
