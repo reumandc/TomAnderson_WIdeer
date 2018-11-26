@@ -134,7 +134,7 @@ mtext("B)",font=2,adj=-0.1)
 dev.off()
 
 #Make wavelet mean field, wavelet phasor meanfield and predicted synchrony plot for hunters (Fig S7)
-png("Results/FigS7.png",res=600,height=4800,width=3000)
+png("Results/FigS7.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
 abun.tmp<-cty.list$Abun[row.names(cty.list$Abun)%in%row.names(hunters.tmp),12:36]
@@ -145,15 +145,16 @@ hunters.wpmf<-wsyn::wpmf(hunters.dt,times=1992:2016,sigmethod = "quick")
 hunters.wmf<-wsyn::wmf(hunters.dt,times=1992:2016)
 abun.wmf.short<-wsyn::wmf(abun.dt,times=1992:2016)
 
-par(mfrow=c(3,1),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
-deer_wmfplot(hunters.wmf,colorbar=T,ylab="",xlab="",las=1)
-#abline(h=c(log2(3),log2(7)))
-mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
-deer_wpmfplot(hunters.wpmf,colorbar=T,zlims = c(0,1),xlab="",sigthresh=0.999,ylab="Timescale (yrs)",las=1)
-mtext("B)",adj=0.05,line=-1.2,side=3,font=2)
+par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
+deer_wmfplot(hunters.wmf,colorbar=T,ylab="",xlab="",las=1,cex.lab=3,cex.axis=2.25)
+abline(h=c(log2(3),log2(7)),lty=2)
+mtext("A)",adj=0.05,line=-1.2,side=3,font=2,cex=2)
+deer_wpmfplot(hunters.wpmf,colorbar=T,zlims = c(0,1),xlab="",sigthresh=0.999,ylab="Timescale (yrs)",las=1,cex.lab=3,cex.axis=2.25)
+mtext("B)",adj=0.05,line=-1.2,side=3,font=2,cex=2)
+abline(h=c(log2(3),log2(7)),lty=2)
 syncexpplot(resp.wmf=abun.wmf.short$values,exp.sync = predsync(wlm_hunters)[[3]],times=1992:2016,
-            wlm_hunters$timescales,ylab = "",xlab="Year")
-mtext("C)",adj=0.05,line=-1.2,side=3,font=2)
+            wlm_hunters$timescales,ylab = "",xlab="Year",cex.lab=3,cex.axis=2.25)
+mtext("C)",adj=0.05,line=-1.2,side=3,font=2,cex=2)
 dev.off()
 
 #Make winter weather wavelet mean field and wavelet phasor mean field plots
