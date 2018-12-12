@@ -72,7 +72,7 @@ source("Code/mtime.R")
 #***QC_Tests/tests_datagen_deer.R and QC_Tests/tests_datagen_climate.R are testing scripts to verify different data aggregatoin steps provide identical lists of raw data
 system.time(source("Code/Deer_DataGeneration.R"))
 
-#Clean winter weather and climate data: end results are four lists of matrices called "winter.clim", climindex, winter.clim.usda, and climindex.usda. "winter.clim"" includes matrices, counties (rows) by year (columns) that are the averages of NOAA weather station data from Dec[t-1] to Mar[t], with named elements of Tmin (minimum temperature), Tmax (maximum temperature), Prcp (precipitation), and Snwd(snow depth). Not all counties had weather data in all years and are filled with NAs where missing. "winter.clim.usda"" are matrices, districts (rows) by year (columns) and includes the same variables and variable names as "winter.clim"" but averaged over USDA districts (~ 7 counties per district). All objects are saved as .rds files in the Results folder."climindex" and "climindex.usda" are matrices of climate indices averaged over winter (Dec[t-1]-Mar[t]) and summer (Apr[t]-Nov[t]). Values in each matrices are repeated across rows because the climate indices are not a spatial variable. The dimensions of each match the spatial dimensions of other county (climindex) or district (cliindex.usda) data sets. 
+#Clean winter weather and climate data: end results are four lists of matrices called "winter.clim", climindex, winter.clim.usda, and climindex.usda. "winter.clim"" includes matrices, counties (rows) by year (columns) that are the averages of NOAA weather station data from Dec[t-1] to Mar[t], with named elements of Tmin (minimum temperature), Tmax (maximum temperature), Prcp (precipitation), and Snwd(snow depth). Not all counties had weather data in all years and are filled with NAs where missing. "winter.clim.usda"" are matrices, districts (rows) by year (columns) and includes the same variables and variable names as "winter.clim"" but averaged over USDA districts (~ 7 counties per district). All objects are saved as .rds files in the Results folder."climindex" and "climindex.usda" are matrices of climate indices averaged over winter (Dec[t-1]-Mar[t]) and summer (Apr[t]-Nov[t]). Values in each matrices are repeated across rows because the climate indices are not a spatial variable. The dimensions of each match the spatial dimensions of other county (climindex) or district (climindex.usda) data sets. 
 system.time(source("Code/Climate_DataGeneration.R"))
 
 ```
@@ -220,7 +220,7 @@ approximate growing season (Apr-Nov), and the winter
 climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. All were annual 
-time series at the county level. <!--TOM: Is this technically correct for teh climate indices, since its one value for all-->
+time series at the county level. <!--TOM: I'm not sure this technically correct for teh climate indices, since its one value for all counties? Maybe delete this?-->
 
 ## Data pre-processing
 
@@ -681,7 +681,7 @@ radians) for the shaded timescale bands. Horizontal axes differ in extent among 
 time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 \end{figure}
 
-<!--***DAN: Tom, can you please remove the blue cross-hatching on panel G, as there is no corresponding mean phase given for that range (and there should not be a mean phase given since the coherence was not significant over that range).--><!--TOM: Removed it, but my code leaves vertical dashed lines at 3-7. If you think those need to go as well- the alternative would be to just add text saying we tested that but wasn't significant.-->
+<!--***DAN: Tom, can you please remove the blue cross-hatching on panel G, as there is no corresponding mean phase given for that range (and there should not be a mean phase given since the coherence was not significant over that range).--><!--TOM: Removed it, but my code leaves vertical dashed lines at 3-7. If you think those need to go as well, let me know- the alternative would be to just add text saying we tested that range but wasn't significant.-->
 
 \newpage
 
@@ -750,7 +750,7 @@ well on $3-7$-year timescales.\label{FigS7_WMFHunter}}
 \end{figure}
 
 <!--***DAN: Tom, the contours on C are supposed to look *exactly* the same as the countours on Fig. 2C, right?
-They do not (they are not even particularly close!). What's going on?--><!--TOM: Two things: first, I was plotting HUNTER abundance as the contours, not deer abundance- so that's why they looked so bad was because it was the wrong thing to be plotted. Second, it won't look identical to 2A because of the differences in spatial extent (only 53 counties could be used for the hunter analysis. It also is 10 years shorter so truncates things as a bit in the temporal dimension as well. I tried to specify that above. I did make a wmf plot of the deer abundance truncated to the hunter data set dimensions and they do now visually match- this way seems more appropriate so that everything lines up, but let me know if you disagree.)-->
+They do not (they are not even particularly close!). What's going on?--><!--TOM: Two things: first, I was plotting HUNTER abundance as the contours, not deer abundance- so that's why they looked so bad, because it was the wrong thing to be plotted. Second, it won't look identical to 2A because of the differences in spatial extent (only 53 counties could be used for the hunter analysis. It also is 10 years shorter so truncates things as a bit in the temporal dimension as well. I tried to specify that above. I did make a wmf plot of the deer abundance truncated to the hunter data set dimensions and they do now visually match- this way seems more appropriate so that everything lines up, but let me know if you disagree.)-->
 
 \newpage
 
