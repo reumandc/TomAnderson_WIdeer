@@ -248,7 +248,7 @@ average of county-level variables, as districts were always conglomerates
 of counties (Fig. \ref{FigS2_map}). 
 Statewide analysis used state total or average time series for each 
 variable. In general, results remained unchanged in their main substance using data 
-aggregated to larger spatial scales (Table \ref{TabS4_SummaryDistrict}, \ref{TabS5_SpatCohPWWAndClimInds_District}, 
+aggregated to larger spatial scales (Table \ref{TabS4_SummaryDistrict}, 
 Fig. \ref{FigS8_WMFAndPredictionsDistricts}), suggesting results for counties were not 
 meaningfully influenced by possible inaccuracies in SAK abundance estimation 
 procedures at the county level.
@@ -781,19 +781,6 @@ knitr::kable(TableS2,
              booktabs=T)
 ```
 
-<!--\newpage
-
-```{r TableS3,echo=F,results='markup'}
-rownames(TableS3)<-NULL
-knitr::kable(TableS3,
-             format='pandoc',
-             digits=4,
-             col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
-             caption = "$P$-values of spatial wavelet coherence tests, and associated mean phase differences  for significant and marginally significant tests, between climate indices and average winter weather conditions using county-level data over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS3_SpatCohPWWAndClimInds}",
-             booktabs=T)
-```
--->
-
 \newpage
 
 ```{r TableS4,echo=F,results='markup'}
@@ -806,13 +793,4 @@ knitr::kable(TableS4,
              booktabs=T)
 ```
 
-\newpage
 
-```{r TableS5,echo=F,results='markup'}
-rownames(TableS5)<-NULL
-knitr::kable(TableS5,
-             format='pandoc',
-             digits=4,
-             caption = "$P$-values of spatial wavelet coherence tests, and associated mean phase differences for significant and marginally significant tests, between climate indices and average winter weather conditions using USDA district-level data over 3-7 year timescales. All values were rounded to display four digits. \\label{TabS5_SpatCohPWWAndClimInds_District}",
-             booktabs=T)
-```

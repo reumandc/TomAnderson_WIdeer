@@ -8,3 +8,12 @@ knitr::kable(TableS3,
              caption = "$P$-values of spatial wavelet coherence tests, and associated mean phase differences  for significant and marginally significant tests, between climate indices and average winter weather conditions using county-level data over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS3_SpatCohPWWAndClimInds}",
              booktabs=T)
 ```
+
+```{r TableS5,echo=F,results='markup'}
+rownames(TableS5)<-NULL
+knitr::kable(TableS5,
+             format='pandoc',
+             digits=4,
+             caption = "$P$-values of spatial wavelet coherence tests, and associated mean phase differences for significant and marginally significant tests, between climate indices and average winter weather conditions using USDA district-level data over 3-7 year timescales. All values were rounded to display four digits. \\label{TabS5_SpatCohPWWAndClimInds_District}",
+             booktabs=T)
+```
