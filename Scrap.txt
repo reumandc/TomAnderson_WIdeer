@@ -1,0 +1,10 @@
+
+```{r TableS3,echo=F,results='markup'}
+rownames(TableS3)<-NULL
+knitr::kable(TableS3,
+             format='pandoc',
+             digits=4,
+             col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
+             caption = "$P$-values of spatial wavelet coherence tests, and associated mean phase differences  for significant and marginally significant tests, between climate indices and average winter weather conditions using county-level data over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS3_SpatCohPWWAndClimInds}",
+             booktabs=T)
+```

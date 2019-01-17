@@ -16,7 +16,7 @@ Knit the makefile.Rmd using R markdown. If all dependencies are in place (see ne
 
 The knit may take a several hours or a few days, depending on your computer speed, the value of `numsurrog` in SuppMat.Rmd, and other factors. Subsequent knits, if any, can be faster because packages will be installed (see below) and because intermediate results are cached.
 
-If you try to knit MainText.Rmd or SuppMat.Rmd directly, you may have some success, but cross-document references and other features may fail so this is not intended.
+If you try to knit MainText.Rmd or SuppMat.Rmd directly, you may have some success, but cross-document references and other features may fail so this is not recommended.
 
 To compile the documents from the command line, use the following: Rscript -e "library(knitr); knit('makefile.Rmd')".
 
@@ -48,7 +48,7 @@ The makefile makes a system call to `pdflatex`, so software supporting that need
 
 ### Additional dependencies?
 
-If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 using R version 3.4.4 and R studio version 1.1.423; and by Anderson on Windows 7 using R ersion 3.3.3 and R studio version 1.0.136. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines. This repository records a workflow, and has not been tested and is not guaranteed to work on the first try on all other setups.
+If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 using R version 3.4.4 and R studio version 1.1.423; and by Anderson on Windows 7 using R ersion 3.3.3 and R studio version 1.0.136. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines. This repository is intended to record a workflow, and is not designed or tested for distribution and wide use on multiple machine. It is not guaranteed to work on the first try without and hand-holding on arbitrary computing setups.
 
 ## Intermediate files:
 
@@ -60,5 +60,5 @@ D. Lyden, J. Steinglein and the WIDNR for data access; and D. Storm, T. Van Deel
 Millspaugh for initial consultation on deer populations in Wisconsin. This material is based upon 
 work supported by the National Science Foundation under Grant Numbers 17114195 and 1442595. Any 
 opinions, findings, and conclusions or recommendations expressed in this material are those of 
-the author(s) and donot necessarily reflect the views of the National Science Foundation. The work was also supported by the James S McDonnell Foundation, the United States Department of Agriculture award 2016-67012-24694, and The Nature Conservancy. 
+the author(s) and do not necessarily reflect the views of the National Science Foundation. The work was also supported by the James S McDonnell Foundation, the United States Department of Agriculture award 2016-67012-24694, and The Nature Conservancy. 
 
