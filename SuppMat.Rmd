@@ -737,7 +737,7 @@ Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate lo
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=.6\textwidth]{Results/FigS7.png}
+\includegraphics[width=.4\textwidth]{Results/FigS7.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance 
 time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunter 
 abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
