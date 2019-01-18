@@ -26,7 +26,7 @@ urlcolor: blue
 > Supplementary Text  
 > Figs S1 to S8  
 > Table S1 to S5  
-> Full Reference list[@Leibhold2004_sync; @Allstad2015_gypsysync; @Moran1953; @Ranta1997_moran; @Kendall2000_moran; @Abbott2007_moran;@Defriez2016_plankton;@Sheppard2016_aphids;@Defriez2017_terrestrial; @Sheppard2017_surrogates; @Walter2017_geogsync; @Cote2004_deerimpacts; @Conover2011_bookchp; @Winkler2013_hunters; @usfws2011_survey; @Sheppard_wavmodel;  @Mysterud2008_deerclimate; @Hegel2012_caribou; @Rodionov2003_elnino; @Post1998_popgrowth; @Post2004_greenland; @Grotan2005_roedeer; @Huijser2008_dvc; @Marcoux2010_dvc; @Koenig2016_birdsync; @Shestakova2016_forestsync; @Cai2014_elnino;@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
+> Full Reference list[@Leibhold2004_sync; @Allstad2015_gypsysync; @Moran1953; @Ranta1997_moran; @Kendall2000_moran; @Abbott2007_moran;@Sheppard2016_aphids;@Sheppard2017_surrogates; @Walter2017_geogsync; @Cote2004_deerimpacts; @Conover2011_bookchp; @usfws2011_survey; @Sheppard_wavmodel;  @Mysterud2008_deerclimate; @Hegel2012_caribou; @Rodionov2003_elnino; @Post1998_popgrowth; @Post2004_greenland; @Grotan2005_roedeer; @Huijser2008_dvc; @Marcoux2010_dvc; @Koenig2016_birdsync; @Shestakova2016_forestsync; @Cai2014_elnino;@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
 <!--Libraries-->
 ```{r libraries, echo=F, message=FALSE}
@@ -208,7 +208,7 @@ than 18 inches or Tmin was less than $0^\circ$F.
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
-El Ni\~no/Southern Oscillation Index (MEI), and the Pacific 
+El Ni$\~{n}$o Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO). All of these have been shown to 
 influence large ungulate population dynamics in the north central 
 USA [@Post1998_popgrowth;@Post2004_greenland]. 
@@ -218,8 +218,7 @@ approximate growing season (Apr-Nov), and the winter
 (Fig. \ref{FigS1_Timeseries}). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
-growing-season NAO, MEI and PDO; and the WSI. All were annual 
-time series at the county level. <!--TOM: I'm not sure this technically correct for teh climate indices, since its one value for all counties? Maybe delete this?-->
+growing-season NAO, MEI and PDO; and the WSI. 
 
 ## Data pre-processing
 
@@ -583,11 +582,9 @@ coherent with deer abundance over the $3-7$-year
 timescale band ($\text{MEI}_{\text{w}}$, $P = `r round(ann.abun.wmei_pval,4)`$; $\text{MEI}_{\text{s}}$, 
 $P = `r round(ann.abun.smei_pval,4)`$; $\text{PDO}_{\text{w}}$, 
 $P = `r round(ann.abun.wpdo_pval,4)`$). Snow depth was not significant over $3-7$-year timescales ($P = `r round(ann.abun.snow_pval37,4)`$), but was significant at $3-4$-year timescales ($P = `r round(ann.abun.snow_pval34,4)`$), consistent with the results at other spatial resolutions. 
-<!--***DAN: Tom: please add a test for snow depth on 3-4-year timescales--><!--TOM: Done; was significant-->
 Hunter abundance and deer 
 abundance were not significantly coherent at the 
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
-<!--***DAN: Tom, pls add a test for 2-2.5-year timescales--><!--TOM: Done, not significant-->
 
 \newpage
 
