@@ -92,7 +92,7 @@ population synchrony, called a Moran effect [@Leibhold2004_sync; @Moran1953;
 in natural populations to specific environmental drivers versus other potential 
 causes of synchrony such as dispersal [@Kendall2000_moran;@Abbott2007_moran]. Partly 
 for this reason, the real, as opposed to theoretical, importance of Moran effects for 
-exploited species, their associated industries, and for  
+exploited species, their associated industries, and for 
 cycling of populations has rarely been explored. 
 
 Recent analytical advances facilitate more precise identification of Moran drivers 
