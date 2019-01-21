@@ -152,12 +152,7 @@ We obtained from the WIDNR estimated hunter abundance data for each DMU for the 
 (Fig. \ref{FigS1_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season [@widnr2001], assuming this was a good proxy 
-for hunter numbers across the season. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI each year over the years of this study.
-<!--***DAN: I think we should add 1-2 sentences arguing why this is a  reasonable assumption, perhaps by giving data, if available, on how many gun v other types of hunters there are, and how many people go the opening 2 days versus later in the week. Let's discuss, Tom.-->
-<!--***Tom::I doubt whether there is any data on your last statement, how many go early versus late. I'm not sure I follow the gun v other types of hunters argument- do you mean that the majority of deer get killed by gun hunters and thus that would be the best estimate of hunters for regulating deer?-->
-<!--***DAN: Yes, that is what I mean. We are using numbers of gun hunters during the first two days of the gun season as an index for total hunters of all kinds during all of the hunting seasons for weapons of different types. So, if possible, it would be good to give some supporting evidence that numbers of gun hunters in the whole 9-day gun season are correlated with numbers in the first weekend, and that numbers of total hunters are well-represented by numbers of gun hunter (which could be either because there is a correlation between total hunters and gun hunter, or because the large majority of hunters are gun hunters).--><!--***TOM::--See if my statement helps. --><!--***DAN: yes, this is better. Please delete all these comments once you have read this, Tom, I think the issue is resolved now.-->
-We estimated hunter abundances 
-for counties using the same method as for deer abundance. We 
+for hunter numbers across the season. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI each year over the years of this study. We estimated hunter abundances for counties using the same method as for deer abundance. We 
 dropped 18 counties due to incomplete survey 
 efforts of hunters or missing data, leaving 53
 counties for analysis that used the hunter density data. 

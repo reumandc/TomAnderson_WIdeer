@@ -95,8 +95,7 @@ for this reason, the real, as opposed to theoretical, importance of Moran effect
 exploited species, their associated industries, and for  
 cycling of populations has rarely been explored. 
 
-Recent analytical advances facilitate more precise identification of Moran drivers <!---Tom: while we want to promote our own stuff, this might be a place to cut down on a citatoin or two, since we probably don't need 7 citations here--->
-<!--***DAN: Agreed, subject to actually needing to cut citations. If we do need to cut citations, I think you could throw out these: @Defriez2016_plankton, @Allstad2015_gypsysync, starting with the first of these three and throwing out as many of them as needed-->
+Recent analytical advances facilitate more precise identification of Moran drivers 
 [@Allstad2015_gypsysync;@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync]. The effectiveness of these tools is due in part to their capacity to decompose synchrony according to the distinct timescales on which it can occur (Fig. \ref{Fig1_example}G-I). We here investigate the importance of timescale-specific Moran effects for white-tailed deer (*Odocoileus virginianus*) and deer-vehicle collisions (DVCs) in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across the USA, US\$$34$Bn were spent on hunting big game, including deer, in 2011 [@usfws2011_survey]. 
 In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it is an important applied question whether environmental synchrony and Moran effects drive some or all of the year-to-year variability in statewide deer abundance and DVC totals, as well as being a case study of a potentially widespread phenomenon. We consider possible Moran effects originating from both environmental drivers and the direct effects of hunting on deer synchrony (i.e., synchrony of hunting activity itself may, *a priori*, induce observed synchrony in deer populations). We use data from 1981-2016 (Fig.  \ref{SM-FigS1_Timeseries}) aggregated at three spatial resolutions (*Methods*), counties ($n=71$), United States Department of Agricultural (USDA) districts ($n=9$), and statewide (Fig. \ref{SM-FigS2_map}). 
 
@@ -193,7 +192,7 @@ Conservancy.
 # References {-}
 
 <div id="refs"></div>
-<!--The part above moves the references before the figures- not sure what its exactly doing as I found it on StackOverflow, but it appears to work-->
+
 \newpage
 
 \begin{figure}[!h]  
