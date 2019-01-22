@@ -107,8 +107,8 @@ demonstrated the strong statistical significance of this phenomenon (Fig. \ref{F
 therefore focused our analysis on the $3-7$-year timescale band. Most past analyses of synchrony have
 used correlation methods that conflate timescales. But recent results show this can hinder detection of
 synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]; and Moran
-effects have to occur only on certain timescales to produce cycle dynamics of
-total populations on those timescales (Figs \ref{Fig1_example}).  
+effects have to occur only on certain timescales to produce cyclic dynamics of
+total populations on those timescales (Fig. \ref{Fig1_example}).  
 
 Spatial wavelet coherence (see Fig. \ref{SM-PedagogFigSpatCoh} for an example), wavelet regression techniques, and a wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard2017_surrogates;@Sheppard_wavmodel]; *Methods*) demonstrated that <!--***DAN: Is there a way to get the parens to not appear around the above citations? No big deal if not, the typesetters can take care of it, but it might create a better impression in the reviewers if we fix it now--><!--***TOM: I've tried using both StackOverflow and Twitter to find an answer and no response so we may just have to go with it. Given we might have to do some post hoc editing to get it in Science format anyways, we could just manually change it.--><!--***DAN: OK, that's fine, leaving these comments here to remind us the issue still exists, though we may never do anything about it.-->
 deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. Synchrony in deer abundance was related to winter snow depth 
