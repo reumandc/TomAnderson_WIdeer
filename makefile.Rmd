@@ -25,7 +25,7 @@ checkpoint("2018-08-31",checkpointLocation = "./")
 library(devtools)
 library(withr)
 withr::with_libpaths(new=.libPaths()[1],
-                     devtools::install_github(repo="reumandc/wsyn",ref="master",force=TRUE))
+                     devtools::install_github(repo="reumandc/wsyn",ref="CRANv1p0p0",force=TRUE))
 library(wsyn)
 ```
 
