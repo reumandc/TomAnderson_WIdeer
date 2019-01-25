@@ -34,7 +34,6 @@ deer.clean_snowsubset<-deer.clean[!is.na(rowMeans(winter.clim[['Snwd']])),]
 #load in wavelet linear model of deer abundance (predictors snow depth, PDO and MEI)
 wlm_abun<-readRDS("Results/wlm_abun.rds")
 
+#run coherence of snow and deer
 snow_deer_coherence<-coh(dat1=deer.clean_snowsubset,dat2=snow.clean,times=1981:2016,norm="powall",
                                 sigmethod="fast",nrand=100000,f0=1)
-coh_4to7<-snow_deer_coherence$coher[snow_deer_coherence$timescales>4 & snow_deer_coherence$timescales<7]
-
