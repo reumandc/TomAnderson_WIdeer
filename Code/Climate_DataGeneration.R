@@ -183,7 +183,7 @@ winter.clim[[5]]<-wsi.mat1
 winter.clim<-lapply(winter.clim,t)
 winter.clim<-lapply(winter.clim,function(x){rownames(x)<-colnames(wsi.mat);x})
 names(winter.clim)<-c("Tmin","Tmax","Prcp","Snwd","WSI")
-saveRDS(winter.clim,"Results/winter.clim.usda.rds")
+saveRDS(winter.clim,"Results/winter.clim.rds")
 
 #Winter conditions for USDA districts
 winter.tmp<-matrix(NA, ncol=length(unique(usda.month$Zone)),nrow=length(minyear:maxyear))
