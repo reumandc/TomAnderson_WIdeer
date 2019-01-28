@@ -1,6 +1,6 @@
 #set working directory
-#setwd("C:/Users/Tom/Documents/GitRepos/TomAnderson_WIdeer")
-setwd("/mnt/hgfs/C/Reuman/gitrepos/TomAnderson_WIdeer")
+setwd("C:/Users/Tom/Documents/GitRepos/TomAnderson_WIdeer")
+#setwd("/mnt/hgfs/C/Reuman/gitrepos/TomAnderson_WIdeer")
 
 #load wsyn
 library(wsyn)
@@ -11,6 +11,17 @@ cty.list<-readRDS("Results/cty.list.rds")
 #***DAN: Tom, pls add some lines that load in lat and lon for counties. Please use
 #the same ordering as the rows of cty.list above - I need to be able to correspond
 #the lats/lons to the counties themselves, which correspond to the rows of cty.list
+#***TOM: see below- it reads in the coordinate and sorts them. I then add a test
+#to make sure the counties are in the same order for the gps and deer files.
+
+#read in GPS coordinates
+gps <- read.csv("Data/WI_Cty_CentroidDD.csv")
+
+#sort alphabetically by county name
+gps<-gps[gps$COUNTY_NAM!="Menominee",] # drop menominee county because there's no data
+levels(gps$COUNTY_NAM)[levels(gps$COUNTY_NAM)=="Saint Croix"] <- "St. Croix" #change name to match deer.clean
+levels(gps$COUNTY_NAM)[levels(gps$COUNTY_NAM)=="Fond du Lac"] <- "Fond Du Lac" #change name to match deer.clean
+gps<-gps[order(gps$COUNTY_NAM),]
 
 #clean deer abundance data
 deer.clean<-cleandat(cty.list$Abun,clev=5,times=1981:2016)$cdat
@@ -20,6 +31,10 @@ deer.clean
 rownames(deer.clean)
 colnames(deer.clean)
 colnames(deer.clean)<-1981:2016
+
+#check to make sure that row.names in in same order between deer and gps
+cbind(as.character(gps$COUNTY_NAM),rownames(deer.clean))
+rownames(deer.clean)==gps$COUNTY_NAM
 
 #load in raw PDO/MEI data
 climindex<-readRDS("Results/climindex.rds")
