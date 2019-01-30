@@ -1,3 +1,5 @@
+rm(list=ls())
+
 #set working directory
 setwd("C:/Users/Tom/Documents/GitRepos/TomAnderson_WIdeer")
 #setwd("/mnt/hgfs/C/Reuman/gitrepos/TomAnderson_WIdeer")
@@ -23,6 +25,9 @@ levels(gps$COUNTY_NAM)[levels(gps$COUNTY_NAM)=="Saint Croix"] <- "St. Croix" #ch
 levels(gps$COUNTY_NAM)[levels(gps$COUNTY_NAM)=="Fond du Lac"] <- "Fond Du Lac" #change name to match deer.clean
 gps<-gps[order(gps$COUNTY_NAM),]
 
+#fix one foible
+gps2<-rbind(gps[1:54,],gps[56:59,],gps[55,],gps[60:dim(gps)[1],])
+
 #clean deer abundance data
 deer.clean<-cleandat(cty.list$Abun,clev=5,times=1981:2016)$cdat
 class(deer.clean)
@@ -32,9 +37,9 @@ rownames(deer.clean)
 colnames(deer.clean)
 colnames(deer.clean)<-1981:2016
 
-#check to make sure that row.names in in same order between deer and gps
-cbind(as.character(gps$COUNTY_NAM),rownames(deer.clean))
-rownames(deer.clean)==gps$COUNTY_NAM
+#check for alignment of counties between gps and deer.clean
+sum(as.character(gps2$COUNTY_NAM)==rownames(deer.clean))
+dim(gps2)
 
 #load in raw PDO/MEI data
 climindex<-readRDS("Results/climindex.rds")
@@ -91,6 +96,7 @@ snow.clean<-cleandat(snow.tmp,clev=5,times=1981:2016)$cdat
 if (alt==1)
 {
   deer.clean_snowsubset<-deer.clean[!is.na(rowMeans(winter.clim[['Snwd']])),]
+  gps2_snowsubset<-gps2[!is.na(rowMeans(winter.clim[['Snwd']])),]
 }
 if (alt==2)
 {
@@ -327,14 +333,87 @@ cor.test(cohreslws,wavpow37) #p=0.0036, cor=0.36986
 #Get two signifcant values (see above). Then do Lawrence's approach, which is also
 #significant (see above)
 
-#dealing with possible spatial autocorr
-#package spdep
-#lm.morantest tests residuals of a linear models for spatial autocorr - could write my
-#correlations as ordinary linear models and then use this just to see if this is a 
-#problem
-#
+#dealing with possible spatial autocorr, corrlation 3
 x<-cohreslws
 y<-wavpow37
 
+#check again for county alignment
+sum(rownames(deer.clean_snowsubset)==as.character(gps2_snowsubset$COUNTY_NAM))
+dim(deer.clean_snowsubset)[1]
+lat<-gps2_snowsubset$Latitude
+lon<-gps2_snowsubset$Longitude
+
 library(nlme)
-mod1<-gls(y~x,correlation=)
+modNul<-gls(y~x)
+AIC(modNul)
+summary(modNul)
+
+modExp<-gls(y~x,correlation=corExp(form=~lon+lat))
+AIC(modExp)
+summary(modExp)
+
+modGau<-gls(y~x,correlation=corGaus(form=~lon+lat))
+AIC(modGau)
+summary(modGau)
+
+#dealing with possible spatial autocorr, correlation 2
+y<-wavpow37
+x<-cohrespdo47
+
+modNul<-gls(y~x)
+AIC(modNul)
+summary(modNul)
+
+modExp<-gls(y~x,correlation=corExp(form=~lon+lat))
+AIC(modExp)
+summary(modExp)
+
+modGau<-gls(y~x,correlation=corGaus(form=~lon+lat))
+AIC(modGau)
+summary(modGau)
+
+#dealing with possible spatial autocorr, correlation 1
+x<-cohresmei47
+y<-wavpow37
+
+modNul<-gls(y~x)
+AIC(modNul)
+summary(modNul)
+
+modExp<-gls(y~x,correlation=corExp(form=~lon+lat))
+AIC(modExp)
+summary(modExp)
+
+modGau<-gls(y~x,correlation=corGaus(form=~lon+lat))
+AIC(modGau)
+summary(modGau)
+
+#make some plots to visualize the spatial autocorr
+x<-cohreslws
+y<-wavpow37
+
+pvar<-x
+plot(lon,lat,type='n')
+jetcolors <- c("#00007F", "blue", "#007FFF", "cyan", 
+               "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
+colorfill<-grDevices::colorRampPalette(jetcolors)
+h<-colorfill(100)
+for (counter in 1:length(lat))
+{
+  val<-pvar[counter]
+  val<-99*(val-min(pvar))/(diff(range(pvar)))+1
+  points(lon[counter],lat[counter],type='p',col=h[round(val)],pch=20,cex=2)
+}
+
+pvar<-y
+plot(lon,lat,type='n')
+jetcolors <- c("#00007F", "blue", "#007FFF", "cyan", 
+               "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
+colorfill<-grDevices::colorRampPalette(jetcolors)
+h<-colorfill(100)
+for (counter in 1:length(lat))
+{
+  val<-pvar[counter]
+  val<-99*(val-min(pvar))/(diff(range(pvar)))+1
+  points(lon[counter],lat[counter],type='p',col=h[round(val)],pch=20,cex=2)
+}
