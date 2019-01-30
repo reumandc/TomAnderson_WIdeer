@@ -312,3 +312,14 @@ cor.test(cohreslws,wavpow37) #p=0.0036, cor=0.36986
 #Get two signifcant values (see above). Then do Lawrence's approach, which is also
 #significant (see above)
 
+#dealing with possible spatial autocorr
+#package spdep
+#lm.morantest tests residuals of a linear models for spatial autocorr - could write my
+#correlations as ordinary linear models and then use this just to see if this is a 
+#problem
+#
+x<-cohreslws
+y<-wavpow37
+
+library(nlme)
+mod1<-gls(y~x,correlation=)
