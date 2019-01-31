@@ -264,8 +264,7 @@ operationally here. Both techniques take as
 input time series measured at the same times 
 in several locations, and return as output 
 complex-number-valued functions of time 
-and timescale. When the complex magnitudes of 
-these functions are plotted against time 
+and timescale. When the magnitudes of these complex functions are plotted against time 
 and timescale, the plots characterize the degree 
 of synchrony among the input time series and how 
 it may have changed over time or differed by 
