@@ -1,6 +1,6 @@
 ---
-title: Supplementary Materials for "Synchrony Causes Major Cycles in Deer Populations
-  and Deer-Vehicle Collisions Across Wisconsin"
+title: Supplementary Materials for "Synchronous Effects Produce Major Cycles in Deer Populations
+  and Deer-Vehicle Collisions"
 author: Thomas L. Anderson, Lawrence W. Sheppard, Jonathan A. Walter, Robert E. Rolley,
   Daniel C. Reuman
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
@@ -519,9 +519,9 @@ of the cost of DVCs [@Huijser2008_dvc], the
 difference between peak and trough years in DVC 
 costs may exceed US\$22M.    
 
-## Open science
+## Open and reproducible science
 
-We have adopted an open science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
+We have adopted an open and reproducible science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
 The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `ww.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
 The suite of analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button via the codes in that repository - see the `Readme.md` file in the repository for instructions.
 
@@ -580,6 +580,26 @@ $P = `r round(ann.abun.wpdo_pval,4)`$). Snow depth was not significant over $3-7
 Hunter abundance and deer 
 abundance were not significantly coherent at the 
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
+
+## Notes on details of the cycling mechanism
+
+There are two alternative elaborations of the mechanisms presented in the main text by which
+synchronous effects of environmental drivers produce state-wide population cycles in deer.
+Synchronous fluctuations in environmental drivers associated with winter climate may have produced
+small oscillations on 3-7-year timescales in county-level deer population time series, and 
+also brought these oscillations into spatial synchrony, thereby causing them to sum, across
+counties, to the major phenomenon described in the main text (variation A). Alternatively, the small
+county-level oscillations on 3-7-year timescales may have been due partly to the intrinsic 
+dynamics of deer, resulting from density-dependent effects, maternal effects, or 
+other mechanisms of nonlinear populations dynamics; and synchronous environmental drivers 
+then brought the intrinsically oscillating local dynamics into synchrony (variation B). The
+difference between these alternatives is whether small county-level population
+oscillations were produced and synchronized, or merely synchronized but 
+not produced, by synchronous environmental drivers. These alternatives would be difficult to 
+distinguish. However, under either alternative, a Moran effect caused the observed strong, 
+state-wide oscillations in the sense that it synchronized week local oscillations, 
+causing them to sum to a major phenomenon; and eliminating synchrony via randomizations also
+eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}).
 
 \newpage
 

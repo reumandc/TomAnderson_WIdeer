@@ -1,6 +1,6 @@
 ---
-title: Synchrony Causes Major Cycles in Deer Populations
-  and Deer-Vehicle Collisions Across Wisconsin
+title: Synchronous Effects Produce Major Cycles in Deer Populations
+  and Deer-Vehicle Collisions
 author:
  - Thomas L. Anderson\textsuperscript{1,2}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{2,3}, Robert E. Rolley\textsuperscript{4},  Daniel C. Reuman\textsuperscript{2,5}  
  - \textsuperscript{1}Department of Biology, Appalachian State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas; \textsuperscript{3}Department of Environmental Sciences, University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources; \textsuperscript{5}Laboratory of Populations, Rockefeller University
@@ -23,6 +23,8 @@ urlcolor: blue
 nocite: | 
   @widnr2001, @Ciuti2015, @Millspaugh2009, @Buonaccorsi2001, @Sheppard2013, @Theiler1992, @Schreiber2000
 ---
+
+<!--Title length limit 96 characters, inc spaces-->
 
 ```{r echo=F, results="hide"}
 #load in results
@@ -56,11 +58,11 @@ avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
 ```
 
 ##Short title
-Synchrony causes population cycles
-<!--Limit 40 characters-->
+Synchrony and population cycles
+<!--Limit 40 characters, inc spaces-->
 
 ##One Sentence Summary#
-Spatial synchrony produces oscillatory dynamics on large spatial scales in deer and deer-vehicle collisions in Wisconsin, and is a new mechanism for population cycles.
+Spatial synchrony of environmental drivers produces oscillatory dynamics on large spatial scales in deer and deer-vehicle collisions in Wisconsin, and is a new mechanism for population cycles.
 
 #Abstract:
 We investigated causes and consequences of spatial synchrony in the dynamics of populations of white-tailed deer, a
@@ -84,7 +86,7 @@ Thus, industries exploiting synchronous taxa should be subject to
 temporal variability in yield. Likewise, synchrony of pests may increase the magnitude of fluctuations in regional total damage 
 caused by the pests [@Allstad2015_gypsysync]. If synchrony occurs on specific 
 timescales, it can, theoretically, produce population cycling (Fig. \ref{Fig1_example}A-F). 
-Population cylces and their causes have attracted widespread 
+Population cycles and their causes have attracted widespread 
 interest for decades. 
 It is well known that a spatially synchronous environmental driver can induce 
 population synchrony, called a Moran effect [@Leibhold2004_sync; @Moran1953; 
@@ -180,9 +182,10 @@ fluctuations in traffic volume (Tables \ref{SM-TabS1_CountyCoherenceSummary}, \r
 
 As mentioned above, timescale-specific synchrony is theoretically important for our understanding of important population phenomena because it may lead to cyclic dynamics in spatial-total or spatial-average time series, which can mean alternating relative abundance and scarcity of important species over large areas [@Allstad2015_gypsysync]. Our data show the reality of this effect and its strength. Statewide oscillations due to synchrony correspond to a typical difference of $~ `r round(avgdeerfluc,-4)`$ deer and $~ `r round(avgdvcfluc,-2)`$ DVCs between peak and trough years 
 (Fig. \ref{Fig4_StateWideFluctuations}). Importantly, these high amplitude statewide oscillations in deer and DVCs disappear (Fig. \ref{Fig4_StateWideFluctuations}) when synchrony between counties on $3-7$-year timescales is removed via a randomization procedure 
-(*Methods*); spatial synchrony causes local dynamics to sum to a substantial semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on assumptions made about costs and reporting rates of DVCs [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp], statewide DVC damages vary by US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ between peak and trough years (*Methods*). Similarly, fluctuations of a quarter million deer likely have considerable consequences for agricultural crop damage and hunting success, both of which can have socioeconomic impacts.
+(*Methods*); spatial synchrony causes local dynamics to sum to a substantial semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on assumptions made about costs and reporting rates of DVCs [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp], statewide DVC damages vary by US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ between peak and trough years (*Methods*). Similarly, fluctuations of a quarter million deer likely have considerable consequences for agricultural crop damage and hunting success, both of which can have socioeconomic impacts. See supplementary text for notes on details of the cycling mechanism.
+<!--***DAN: Tom, is this the right way Science wants us to cite the supplementary text? Please fix if not.-->
 
-Overall, we have demonstrated that timescale-specific Moran effects, by synchronizing local dynamics, can cause major cylcic dynamics on large spatial scales in an exploited species, thereby affecting the exploiting industry (hunting) and other industries impacted by the species (e.g., emergency-medical and repair industries concerned with DVC recovery). To our knowledge, this is a first demonstration of a new mechanism for population cycles, which have historically been of great interest. We also present the first demonstration that synchrony can be transmitted in a Moran-like effect from ecological to human systems (deer to DVCs). An important aspect of all of the phenomena we observed is their specificity to certain timescales. For economically important taxa, identifying the timescale structure of Moran effects may help predict when periods of relative abundance (outbreaks) [@Allstad2015_gypsysync;@Sheppard2016_aphids] or scarcity (shortages) will occur. Recent research on several taxa [@Allstad2015_gypsysync;@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync] shows that synchrony of some environmental drivers may be changing, possibly as part of global climate change. These changes may alter population synchrony, and our results show the potential for and mechanisms by which such changes could influence ecological phenomena of widespread interest and associated human concerns. In particular, the predicted increase in the frequency of strong El Ni$\~{n}$o events [@Cai2014_elnino] could lead to greater variability and altered dominant periodicity in fluctuations of deer and DVCs across WI, though our mechanisms are general so we would not expect effects to be limited to the system we have studied.
+Overall, we have demonstrated that timescale-specific Moran effects, by synchronizing local dynamics, can cause major cyclic dynamics on large spatial scales in an exploited species, thereby affecting the exploiting industry (hunting) and other industries impacted by the species (e.g., emergency-medical and repair industries concerned with DVC recovery). To our knowledge, this is a first demonstration of a new mechanism for population cycles, which have historically been of great interest. We also present the first demonstration that synchrony can be transmitted in a Moran-like effect from ecological to human systems (deer to DVCs). An important aspect of all of the phenomena we observed is their specificity to certain timescales. For economically important taxa, identifying the timescale structure of Moran effects may help predict when periods of relative abundance (outbreaks) [@Allstad2015_gypsysync;@Sheppard2016_aphids] or scarcity (shortages) will occur. Recent research on several taxa [@Allstad2015_gypsysync;@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync] shows that synchrony of some environmental drivers may be changing, possibly as part of global climate change. These changes may alter population synchrony, and our results show the potential for and mechanisms by which such changes could influence ecological phenomena of widespread interest and associated human concerns. In particular, the predicted increase in the frequency of strong El Ni$\~{n}$o events [@Cai2014_elnino] could lead to greater variability and altered dominant periodicity in fluctuations of deer and DVCs across WI, though our mechanisms are general so we would not expect effects to be limited to the system we have studied.
 
 #Acknowledgements: 
 D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, and J. Fox for consultation. Funding was from the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195,
