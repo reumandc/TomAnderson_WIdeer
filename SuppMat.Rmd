@@ -597,7 +597,7 @@ difference between these alternatives is whether small county-level population
 oscillations were produced and synchronized, or merely synchronized but 
 not produced, by synchronous environmental drivers. These alternatives would be difficult to 
 distinguish. However, under either alternative, a Moran effect caused the observed strong, 
-state-wide oscillations in the sense that it synchronized week local oscillations, 
+state-wide oscillations in the sense that it synchronized weak local oscillations, 
 causing them to sum to a major phenomenon; and eliminating synchrony via randomizations also
 eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}).
 
