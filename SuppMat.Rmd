@@ -629,15 +629,11 @@ study.\label{FigS1_Timeseries}}
 
 \newpage
 
-<!--***DAN: To get the references in the below caption to work,
-I had to do them manually. Right now I am using author-date, but it needs to be changed to
-numeric callouts right at the very end. If you could figure out a way to automate those, it would be great, but I don't think its possible because the below is latex code.--><!--TOM: I tried looking, but haven't found a solution yet-->
-
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
 \caption[Demonstration of the wavelet mean field]{Detecting time- and timescale-specific
 synchrony with the wavelet mean field. This figure was taken without change from
-Sheppard \emph{et al.} (2016), where additional details are also available. Panels a-d show the principle of how synchrony
+[7], where additional details are also available. Panels a-d show the principle of how synchrony
 can differ for different timescales of dynamics. Time series y1 and y2 (a)
 are exactly anti-correlated (out of phase), as are y3 and y4 (b). Combining
 y1 with y3 and y1 with y4
@@ -666,20 +662,16 @@ synchrony as a function of timescale
 of dynamics and time, here with red indicating synchrony and blue asynchrony.
 Wavelet phasor mean fields provide plots similar to (k) but with values
 between 0 and 1 that indicate the strength of phase synchrony and that can be
-straightforwardly significance tested as described in Sheppard \emph{et al.} (In Review). \label{PedagogFigWMF}}
+straightforwardly significance tested as described in [13]. \label{PedagogFigWMF}}
 \end{figure}
-
+<!--- TOM: Citations in caption above are not dynamic links, need to change manualy--->
 \newpage
-
-<!--***DAN: To get the references in the below caption to work,
-I had to do them manually. Right now I am using author-date, but it needs to be changed to
-numeric callouts right at the very end.--><!--TOM: same comment as above, still haven't found a solution-->
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/PedagogFig_SpatCoh.png}
 \caption[Demonstration of spatial wavelet coherence]{Measuring relationships between variables using spatial wavelet coherence.
 This figure was adapted with only minor changes
-from supplementary figure 5 of Sheppard \emph{et al.} (2016).
+from supplementary figure 5 of [7].
 The time series of panel e were used as drivers in producing the time series of
 panel f and the figure shows
 how this relationship can be detected with the spatial wavelet coherence technique.
@@ -707,12 +699,12 @@ defined as $>4$ years) but no relationship
 (right $P$-value) for short timescales ($<4$ years). The red line on g is the
 spatial wavelet coherence and black lines are
 $50$th, $95$th, and $99$th percentiles of spatial wavelet coherences
-of synchrony-preserving surrogate data sets Sheppard \emph{et al.} (2016)
+of synchrony-preserving surrogate data sets [7]
 appropriately representing the
 null hypothesis of no relationship between the $x$ and $y$.
-Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
+Also see [7] for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
 \end{figure}
-
+<!--- TOM: Citations in caption above are not dynamic links, need to change manualy--->
 \newpage
 
 \begin{figure}[!h]

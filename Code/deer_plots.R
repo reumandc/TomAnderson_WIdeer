@@ -34,10 +34,10 @@ dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 #Make Figure 2
 png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
-deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
-deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 par(new=T)
 q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
 contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
@@ -46,17 +46,17 @@ abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 syncexpplot(resp.wmf=abun.wmf$values,exp.sync = predsync(wlm_abun)[[3]],1981:2016,
             wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
-            cex.lab=3,cex.axis=2.25)
+            cex.lab=3,cex.axis=2)
 mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 dev.off()
 
 #Make Figure 3
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
-deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 abline(h=c(log2(3),log2(7)),lty=2)
-deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 par(new=T)
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
@@ -65,7 +65,7 @@ abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 syncexpplot(resp.wmf=dvc.wmf$values,exp.sync = predsync(wlm_dvc)[[3]],1987:2016,
             wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
-            cex.lab=3,cex.axis=2.25)
+            cex.lab=3,cex.axis=2)
 mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 dev.off()
 

@@ -33,8 +33,8 @@ deer_wpmfplot<-function(object,zlims=NULL,neat=TRUE,xlab,ylab,colorfill=NULL,sig
                    "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
     colorfill<-grDevices::colorRampPalette(jetcolors)
   }
-  ylocs<-pretty(timescales,n=8)
-  xlocs<-pretty(times,n=8)
+  ylocs<-pretty(timescales,n=5)
+  xlocs<-pretty(times,n=5)
   
   if (!is.na(filename))
   {
@@ -107,8 +107,8 @@ deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=FALSE,xl
                    "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
     colorfill<-grDevices::colorRampPalette(jetcolors)
   }
-  ylocs<-pretty(timescales,n=8)
-  xlocs<-pretty(times,n=8)
+  ylocs<-pretty(timescales,n=5)
+  xlocs<-pretty(times,n=5)
   
   if (!is.na(filename))
   {
@@ -142,8 +142,8 @@ deer_wmfplot<-function(object,zlims=NULL,neat=TRUE,colorfill=NULL,power=FALSE,xl
 #timescales = timescale vector
 
 syncexpplot<-function(resp.wmf,exp.sync,times,timescales,xlab,ylab,smallplot=NULL,...){
-  ylocs <- pretty(timescales, n = 8)
-  xlocs <- pretty(times, n = 8)
+  ylocs <- pretty(timescales, n = 5)
+  xlocs <- pretty(times, n = 5)
   jetcolors <- c("#00007F", "blue", "#007FFF", "cyan", 
                  "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
   colorfill <- colorRampPalette(jetcolors)
