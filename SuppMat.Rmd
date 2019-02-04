@@ -599,7 +599,9 @@ not produced, by synchronous environmental drivers. These alternatives would be 
 distinguish. However, under either alternative, a Moran effect caused the observed strong, 
 state-wide oscillations in the sense that it synchronized week local oscillations, 
 causing them to sum to a major phenomenon; and eliminating synchrony via randomizations also
-eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}).
+eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}). Variation A
+may be more likely given previous work documenting the influence of snow depth and large-scale
+climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
 
 \newpage
 
