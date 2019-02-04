@@ -34,10 +34,10 @@ dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 #Make Figure 2
 png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
-deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
-deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 par(new=T)
 q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
 contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
@@ -46,17 +46,17 @@ abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 syncexpplot(resp.wmf=abun.wmf$values,exp.sync = predsync(wlm_abun)[[3]],1981:2016,
             wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
-            cex.lab=3,cex.axis=2.25)
+            cex.lab=3,cex.axis=2)
 mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 dev.off()
 
 #Make Figure 3
 png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
-deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 abline(h=c(log2(3),log2(7)),lty=2)
-deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2.25,las=1)
+deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 par(new=T)
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
@@ -65,7 +65,7 @@ abline(h=c(log2(3),log2(7)),lty=2)
 mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 syncexpplot(resp.wmf=dvc.wmf$values,exp.sync = predsync(wlm_dvc)[[3]],1987:2016,
             wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
-            cex.lab=3,cex.axis=2.25)
+            cex.lab=3,cex.axis=2)
 mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 dev.off()
 
@@ -292,10 +292,10 @@ for(i in 1:nrow(abunsurr)){
   lines(1981:2016,abunsurr[i,],col=colors[i])
 }
 lines(1981:2016,apply(cty.list$Abun,2,sum),lwd=2)
-axis(2,labels= format(seq(600000,1300000,200000),scientific=T),at = seq(600000,1300000,200000),las=1,tck=-.05,cex.axis=0.75)
+axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1,tck=-.05,cex.axis=0.75)
 axis(1,labels=c(rep("",8)),at = seq(1980,2016,5),tck=-0.05,cex.axis=0.75)
-mtext("Deer",side=2,line=3.5,cex=0.75)
-mtext("A)",font=2,side=3,line=0,adj=0.05)
+mtext("Deer (millions)",side=2,line=2,cex=0.75)
+mtext("A)",font=2,side=3,line=-1,adj=0.05)
 box()
 #Deer- big panel
 par(fig=c(ywd/tot.wd,
@@ -303,16 +303,18 @@ par(fig=c(ywd/tot.wd,
           (2*xht+pan.ht.big+gap+pan.ht.small)/tot.ht,
           (2*xht+2*pan.ht.big+gap+pan.ht.small)/tot.ht),
     mai=c(0,0,0,0),mgp=c(3,0.5,0),new=T)
-plot(1981:2016,rep(NA,36),ylab="",xlab="",ylim=c(-180000,200000),las=1)
+plot(1981:2016,rep(NA,36),ylab="",xlab="",ylim=c(-180000,200000),las=1,yaxt="n")
 for(i in 1:nrow(dvcsurr)){
   lines(1981:2016,abunsurr[i,]-apply(abunsurr,2,mean),col=colors[i])
 }
 lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=3,type="b",pch=19)
 Arrows(x0 = 1999,y0 = 0,y1=140000,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-150000,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=2001,y=160000,labels="159054 deer",font=2,cex=0.75,adj=0.05,col="red")
-text(x=1999,y=-174000,labels="174339 deer",font=2,cex=0.75,adj=0.05,col="red")
-mtext("Departure from Surrogate Mean",side=2,line=3.5,cex=0.9)
+text(x=2001,y=160000,labels="+159054 deer",font=2,cex=0.75,adj=0.05,col="red")
+text(x=1999,y=-174000,labels="-174339 deer",font=2,cex=0.75,adj=0.05,col="red")
+mtext(expression(Delta~"from Surrogate Mean (thousands)"),side=2,line=2,cex=0.9)
+axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,tck=-.05,cex.axis=0.75)
+mtext("B)",font=2,side=3,line=-1,adj=0.05)
 
 #DVC little panel
 par(fig=c(ywd/tot.wd,
@@ -326,9 +328,9 @@ for(i in 1:nrow(dvcsurr)){
 }
 lines(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],lwd=2)
 axis(1,labels=c(rep("",7)),at = seq(1985,2016,5),tck=-0.05,cex.axis=0.75)
-axis(2,labels= format(seq(16000,24000,2000),scientific=T),at = seq(16000,24000,2000),las=1,tck=-.05,cex.axis=0.75)
-mtext("DVCs",side=2,line=3.5,cex=0.75)
-mtext("B)",font=2,side=3,line=0,adj=0.05)
+axis(2,labels= format(seq(16,24,2),scientific=F),at = seq(16000,24000,2000),las=1,tck=-.05,cex.axis=0.75)
+mtext("DVCs (thousands)",side=2,line=2,cex=0.75)
+mtext("C)",font=2,side=3,line=-1,adj=0.05)
 box()
 #DVC big panel
 par(fig=c(ywd/tot.wd,
@@ -336,15 +338,18 @@ par(fig=c(ywd/tot.wd,
           xht/tot.ht,
           (pan.ht.big+xht)/tot.ht),
     mai=c(0,0,0,0),mgp=c(1,0.5,0),new=T)
-plot(1987:2016,rep(NA,30),type="b",xlab="Year",ylab="",ylim=c(-2000,2000),las=1)
+plot(1987:2016,rep(NA,30),type="b",xlab="Year",ylab="",ylim=c(-2000,2000),las=1,yaxt="n")
 for(i in 1:nrow(dvcsurr)){
   lines(1987:2016,dvcsurr[i,]-apply(dvcsurr,2,mean),col=colors[i])
 }
 lines(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="b",pch=19,lwd=3)
 Arrows(x0 = 1999,y0 = 0,y1=1500,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-1300,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=1999.5,y=1800,labels="1597 DVCs",font=2,cex=0.75,adj=0.05,col="red")
-text(x=1997.5,y=-1800,labels="1421 DVCs",font=2,cex=0.75,adj=0.05,col="red")
-mtext("Departure from Surrogate Mean",side=2,line=3.5,cex=0.9)
+text(x=1999.5,y=1800,labels="+1597 DVCs",font=2,cex=0.75,adj=0.05,col="red")
+text(x=1997.5,y=-1800,labels="-1421 DVCs",font=2,cex=0.75,adj=0.05,col="red")
+mtext(expression(Delta~"from Surrogate Mean"),side=2,line=2,cex=0.9)
 mtext("Year",side=1,line=1.5)
+mtext("D)",font=2,side=3,line=-1,adj=0.05)
+axis(2,labels= format(seq(-2000,2000,500),scientific=F),at = seq(-2000,2000,500),las=1,tck=-.05,cex.axis=0.75)
+
 dev.off()

@@ -72,7 +72,7 @@ variation explained almost 90% of deer synchrony through a process called the Mo
 DVCs were in turn synchronized by deer populations.
 Timescale-specific synchrony caused large semi-periodic fluctuations in statewide total deer populations and DVCs that
 would not have occurred without synchrony. Thus synchrony caused local dynamics to sum to a major cyclic
-phenomenon on statewide spatial scales. Results are principally important as a demonstration of a new and potentially widespread mechanism for population cycles, a phenomenon of long-standing interest.
+phenomenon on statewide spatial scales. Results are principally important as a demonstration of a new and potentially widespread mechanism for overall population cycles, a phenomenon of long-standing interest.
 
 #Main Text:
 Spatial population synchrony, i.e., the tendency for populations of a species in 
@@ -81,7 +81,7 @@ phenomenon, documented in hundreds of taxa
 [@Leibhold2004_sync]. In theory, synchrony should be important for industries such as 
 hunting and agriculture that exploit multiple populations across space because 
 synchrony can influence the strength of temporal variability in the sum of 
-the populations (Fig. \ref{Fig1_example}A-F). 
+the local populations (Fig. \ref{Fig1_example}A-F). 
 Thus, industries exploiting synchronous taxa should be subject to 
 temporal variability in yield. Likewise, synchrony of pests may increase the magnitude of fluctuations in regional total damage 
 caused by the pests [@Allstad2015_gypsysync]. If synchrony occurs on specific 
@@ -154,7 +154,7 @@ Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS4_PhaseDiffs}G,
 regulate deer populations over short timescales but do not do so on longer timescales. The lack of
 longer-timescale spatial wavelet coherence between hunters and deer abundance is likely also related to the facts that
 hunters prefer to shoot bucks, the removal of which has limited population effects, and the state
-regulates antlerless harvest in an attempt to maintain populations at a desirable size.  
+regulates antlerless harvest differently in an attempt to maintain populations at a desirable size.  
 
 Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic Moran 
 effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year timescales: Moran 
@@ -209,7 +209,7 @@ correspond to A-C, respectively). Synchrony on a given timescale produces variab
 total. If time series in A-C were deer populations in 15 locales so that D-F were the total population across the
 region, differences among D-F could impact the hunting industry even though local differences across scenarios are
 not so noticeable. Differences between D and E are due solely to differences in synchrony. The population at
-location $i$ ($i=1,…,15$) and time $t$ was  
+location $i$ ($i=1,...,15$) and time $t$ was  
 $p_i(t) = \sin \left( \frac{2\pi t}{w}+2 \pi u_i \right) + \epsilon_i(t)$, where $w=3$ (A,B) or $10$ (C), 
 $u_i = 0$ for all $i$ (B,C) or the $u_i$ are independent draws from a uniform distribution on $(0,1)$ (A), and the $\epsilon_i(t)$ are independent standard normally distributed. 
 Wavelet mean field magnitude plots (\textit{Methods}) computed from A-C (G-I, respectively) 
@@ -251,7 +251,7 @@ visual indication of the statistical result that deer synchrony explains DVC syn
 \begin{figure}[!h]
 \includegraphics[width=.6\textwidth]{Results/Fig4.png}
 \caption{Magnitude of the effects of synchrony on state-total deer abundance
-and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (B) time series (black lines) and surrogate totals obtained via a randomization procedure (\textit{Methods}) that eliminates synchrony among counties at $3-7$-year timescales (grey lines, 1000 surrogates plotted). Increased variation and semi-periodic oscillations due to synchrony are particularly notable when trends and long-timescale (longer than 7 years) variability are filtered out by subtracting the mean of the grey lines (large panels). Red arrows highlight examples of the strong cycling that is attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due to synchrony amounts to an estimated difference between peak and trough years of US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ in damages statewide (\textit{Methods}). 
+and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (C) time series (black lines) and surrogate totals obtained via a randomization procedure (\textit{Methods}) that eliminates synchrony among counties at $3-7$-year timescales (grey lines, 1000 surrogates plotted). Increased variation and semi-periodic oscillations due to synchrony are particularly notable when trends and long-timescale (longer than 7 years) variability are filtered out by subtracting the mean of the grey lines (B = deer; D = DVCs). $\Delta$ represents the difference in values from the surrogate mean. Red arrows highlight examples of the strong cycling that is attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due to synchrony amounts to an estimated difference between peak and trough years of US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ in damages statewide (\textit{Methods}). 
 \label{Fig4_StateWideFluctuations}}
 \end{figure}
 
