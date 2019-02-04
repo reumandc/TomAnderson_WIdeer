@@ -598,7 +598,8 @@ not produced, by synchronous environmental drivers. These alternatives would be 
 distinguish. However, under either alternative, a Moran effect caused the observed strong, 
 state-wide oscillations in the sense that it synchronized weak local oscillations, 
 causing them to sum to a major phenomenon; and eliminating synchrony via randomizations also
-eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}). Variation A
+eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}), even though the
+randomizations preserved the structure of the local fluctuations. Variation A
 may be more likely given previous work documenting the influence of snow depth and large-scale
 climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
 
@@ -666,7 +667,7 @@ Wavelet phasor mean fields provide plots similar to (k) but with values
 between 0 and 1 that indicate the strength of phase synchrony and that can be
 straightforwardly significance tested as described in [13]. \label{PedagogFigWMF}}
 \end{figure}
-<!--- TOM: Citations in caption above are not dynamic links, need to change manualy--->
+<!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 \newpage
 
 \begin{figure}[!h]
