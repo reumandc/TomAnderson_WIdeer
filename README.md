@@ -1,6 +1,6 @@
 # Synchrony Causes Major Cycles in Deer Populations and Deer-Vehicle Collisions Across Wisconsin: Introduction to the Repository of All Analyses Supporting the Paper
 
-Thomas L. Anderson, Southeast Missouri State University  
+Thomas L. Anderson, Appalachian State University  
 Lawrence W. Sheppard, University of Kansas  
 Jonathan A. Walter, University of Virginia  
 Robert E. Rolley, Wisconsin Department of Natural Resources  
@@ -8,13 +8,14 @@ Daniel C. Reuman, University of Kansas
 
 ## Introduction
 
-This repository can be used to reproduce the complete analyses behind the paper "Synchrony Causes Major Cycles in Deer Populations and Deer-Vehicle Collisions Across Wisconsin" and to recompile the paper itself. Data are also included in the repository. 
+This repository can be used to reproduce the complete analyses behind the paper "Synchronous Effects Produce Major
+Cycles in Deer Populations and Deer-Vehicle Collisions" and to recompile the paper itself. Data are also included in the repository. 
 
 ## How to compile
 
 Knit the makefile.Rmd using R markdown. If all dependencies are in place (see next section) this should re-compute all analyses from data to paper, resulting in three pdfs: MainText.pdf (the main text of the paper), SuppMat.pdf (the supporting information file for the paper), and makefile.pdf (notes on the compilation process - can be useful for error mitigation in the event of failure). 
 
-The knit may take a several hours or a few days, depending on your computer speed, the value of `numsurrog` in SuppMat.Rmd, and other factors. Subsequent knits, if any, can be faster because packages will be installed (see below) and because intermediate results are cached.
+The knit may take a several hours or a few days, depending on your computer speed, the value of `nsurrogs` in SuppMat.Rmd, and other factors. Subsequent knits, if any, can be faster because packages will be installed (see below) and because intermediate results are cached.
 
 If you try to knit MainText.Rmd or SuppMat.Rmd directly, you may have some success, but cross-document references and other features may fail so this is not recommended.
 
@@ -48,7 +49,7 @@ The makefile makes a system call to `pdflatex`, so software supporting that need
 
 ### Additional dependencies?
 
-If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 using R version 3.4.4 and R studio version 1.1.423; and by Anderson on Windows 7 using R ersion 3.3.3 and R studio version 1.0.136. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines. This repository is intended to record a workflow, and is not designed or tested for distribution and wide use on multiple machine. It is not guaranteed to work on the first try without and hand-holding on arbitrary computing setups.
+If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 using R version 3.4.4 and R studio version 1.1.423; and by Anderson on Windows 10 using R version 3.5.1 and R studio version 1.1.383. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines. This repository is intended to record a workflow, and is not designed or tested for distribution and wide use on multiple machines. It is not guaranteed to work on the first try without and hand-holding on arbitrary computing setups.
 
 ## Intermediate files:
 
