@@ -615,7 +615,7 @@ climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @H
 \includegraphics[width=\textwidth]{Results/FigS1.png}
 \caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions, 
 (C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
-(D) winter climate indices (Multivariate El Niño Southern Oscillation Index, 
+(D) winter climate indices (Multivariate El Ni$\~{n}$o Southern Oscillation Index, 
 MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
 Each line in A-C, E represents a county. Other variables were 
 used in analyses (see text) but are not shown here due to lack of significant 
