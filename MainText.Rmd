@@ -190,7 +190,7 @@ Overall, we have demonstrated that timescale-specific Moran effects, by synchron
 
 #Acknowledgements: 
 D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, and J. Fox for consultation. **Funding:** James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
-Conservancy. **Author contributions:** TLA and DCR conceived the project; RER provided assistance with data management; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the manuscript. **Competing interests:** We have no competing interests. **Data and materials availability:** All data and code to do analyses are available at https://github.com/reumandc/TomAnderson_WIdeer
+Conservancy. **Author contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the manuscript. **Competing interests:** We have no competing interests. **Data and materials availability:** All data and code to do analyses are available at https://github.com/reumandc/TomAnderson_WIdeer
 
 #Supplementary Materials:
 Materials and Methods  
