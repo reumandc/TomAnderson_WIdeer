@@ -193,7 +193,7 @@ Conservancy. **Author contributions:** TLA and DCR conceived the project; RER pr
 
 #Supplementary Materials:
 Materials and Methods  
-Table \ref{SM-TabS1_CountyCoherenceSummary})-\ref{SM-TabS4_SummaryDistrict})  
+Table \ref{SM-TabS1_CountyCoherenceSummary}-\ref{SM-TabS4_SummaryDistrict}  
 Fig. \ref{SM-FigS1_Timeseries}-\ref{SM-FigS9_WMFsAndWPMFsAncillary}  
 References [@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
