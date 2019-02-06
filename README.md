@@ -49,7 +49,7 @@ The makefile makes a system call to `pdflatex`, so software supporting that need
 
 ### Additional dependencies?
 
-If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 using R version 3.4.4 and R studio version 1.1.423; and by Anderson on Windows 10 using R version 3.5.1 and R studio version 1.1.383. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines. This repository is intended to record a workflow, and is not designed or tested for distribution and wide use on multiple machines. It is not guaranteed to work on the first try without and hand-holding on arbitrary computing setups.
+If you find additional dependencies were needed on your system, please let us know: reuman@ku.edu. The compilation process was tested by Reuman on Ubuntu 16.04 using R version 3.4.4 and R studio version 1.1.423; and by Anderson on Windows 10 using R version 3.5.1 and R studio version 1.1.383. It has not been tested on Mac. We have endeavored to list all dependencies we can think of above, but we have only compiled on our own machines, so we cannot guarantee that additional dependencies will not also be needed on other machines. This repository is intended to record a workflow, and is not designed or tested for distribution and wide use on multiple machines. It is not guaranteed to work on the first try without any hand-holding on arbitrary computing setups.
 
 ## Intermediate files:
 
