@@ -20,8 +20,7 @@ csl: science.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
-nocite: | 
-  @widnr2001, @Ciuti2015, @Millspaugh2009, @Buonaccorsi2001, @Sheppard2013, @Theiler1992, @Schreiber2000
+
 ---
 
 <!--Title length limit 96 characters, inc spaces-->
@@ -196,7 +195,7 @@ Conservancy. **Author contributions:** TLA and DCR conceived the project; RER pr
 Materials and Methods  
 Table \ref{SM-TabS1_CountyCoherenceSummary})-\ref{SM-TabS4_SummaryDistrict})  
 Fig. \ref{SM-FigS1_Timeseries}-\ref{SM-FigS9_WMFsAndWPMFsAncillary}  
-References (25 – 31)
+References [@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
 # References {-}
 
@@ -206,7 +205,7 @@ References (25 – 31)
 
 \begin{figure}[!h]  
 \includegraphics[width=.6\textwidth]{Results/Fig1.png}
-\caption{In theory, synchrony between populations influences the dynamics of the total population. Panels A-C show
+\caption{Theoretical simulation showing synchrony between populations influences the dynamics of the total population. Panels A-C show
 three alternative scenarios for time series measured at 15 locations across a region, and differ in that
 populations are unsynchronized (A), or are partially synchronized on short (B, 3-year period) or long (C, 10-year
 period) timescales, though synchrony cannot readily be detected visually. Differences in synchrony produce
