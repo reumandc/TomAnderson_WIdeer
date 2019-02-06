@@ -24,8 +24,8 @@ urlcolor: blue
 \textbf{This PDF file includes:}  
 > Materials and Methods  
 > Supplementary Text  
-> Figs S1 to S8  
-> Table S1 to S5  
+> Figs S1 to S9 
+> Table S1 to S3  
 > Full Reference list[@Leibhold2004_sync; @Allstad2015_gypsysync; @Moran1953; @Ranta1997_moran; @Kendall2000_moran; @Abbott2007_moran;@Sheppard2016_aphids;@Sheppard2017_surrogates; @Walter2017_geogsync; @Cote2004_deerimpacts; @Conover2011_bookchp; @usfws2011_survey; @Sheppard_wavmodel;  @Mysterud2008_deerclimate; @Hegel2012_caribou; @Rodionov2003_elnino; @Post1998_popgrowth; @Post2004_greenland; @Grotan2005_roedeer; @Huijser2008_dvc; @Marcoux2010_dvc; @Koenig2016_birdsync; @Shestakova2016_forestsync; @Cai2014_elnino;@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
 <!--Libraries-->

@@ -189,7 +189,7 @@ Overall, we have demonstrated that timescale-specific Moran effects, by synchron
 
 #Acknowledgements: 
 D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, and J. Fox for consultation. **Funding:** James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
-Conservancy. **Author contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the manuscript. **Competing interests:** We have no competing interests. **Data and materials availability:** All data and code to do analyses are available at https://github.com/reumandc/TomAnderson_WIdeer
+Conservancy. **Author contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. **Competing interests:** We have no competing interests. **Data and materials availability:** All data and code to do analyses are available at https://github.com/reumandc/TomAnderson_WIdeer.
 
 #Supplementary Materials:
 Materials and Methods  
@@ -205,7 +205,7 @@ References [@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard
 
 \begin{figure}[!h]  
 \includegraphics[width=.6\textwidth]{Results/Fig1.png}
-\caption{Theoretical simulation showing synchrony between populations influences the dynamics of the total population. Panels A-C show
+\caption{Theoretical simulation showing that synchrony between populations influences the dynamics of the total population. Panels A-C show
 three alternative scenarios for time series measured at 15 locations across a region, and differ in that
 populations are unsynchronized (A), or are partially synchronized on short (B, 3-year period) or long (C, 10-year
 period) timescales, though synchrony cannot readily be detected visually. Differences in synchrony produce
