@@ -521,7 +521,7 @@ costs may exceed US\$22M.
 ## Open and reproducible science
 
 We have adopted an open and reproducible science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
-The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `ww.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
+The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `www.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
 The suite of analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button via the codes in that repository - see the `Readme.md` file in the repository for instructions.
 
 # Supplementary text
