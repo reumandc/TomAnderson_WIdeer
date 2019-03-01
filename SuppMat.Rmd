@@ -445,7 +445,7 @@ synchronizing effects are responsible for
 fluctuations in statewide total deer and DVC time 
 series (Fig. \ref{MT-Fig4_StateWideFluctuations} and associated text), 
 we adapted the standard Fourier surrogate procedure 
-of Theiler@Theiler1992. We constructed artificial 
+of Theiler[@Theiler1992]. We constructed artificial 
 deer abundance and DVC time series for each 
 location, having the same variance and spectral 
 characteristics as the original data but no spatial 
