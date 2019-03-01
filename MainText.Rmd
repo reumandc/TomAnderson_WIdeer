@@ -56,21 +56,8 @@ avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
 avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
 ```
 
+**Correlated fluctuations in abundances of distant populations through time, or spatial synchrony, is a widespread and important phenomenon in population ecology [@Leibhold2004_sync]. Synchrony of exploited or economically important taxa should, theoretically, have substantial impacts for humans, as synchrony can produce high-amplitude oscillations through time in the total populations of large spatial regions. However, synchrony has seldom been investigated empirically for exploited species, and its anthropogenic importance is not often considered. Additionally, it has historically been difficult to distinguish drivers of synchrony in natural populations of any taxa[@Kendall2000_moran;@Abbott2007_moran], though improved analytical methods that decompose synchrony by timescale have furthered these efforts[@Allstad2015_gypsysync;@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync]. Here we identify the causes of spatial synchrony in the dynamics of populations of white-tailed deer, a widely exploited species, and its consequences on deer-vehicle collisions (DVCs) across Wisconsin, USA. Deer synchrony occurred principally at $3-7$-year timescales of fluctuation, and synchronous winter environmental variation explained almost 90% of deer synchrony through a process called the Moran effect[@Moran1953;@Ranta1997_moran]. DVCs were in turn synchronized by deer populations. Timescale-specific synchrony caused large semi-periodic fluctuations in statewide total deer populations and DVCs that would not have occurred without synchrony. Thus synchrony caused local dynamics to sum to a major cyclic phenomenon on statewide spatial scales. Our results are principally important as a demonstration of a new and potentially widespread mechanism for population cycles on large spatial scales, a phenomenon of long-standing interest.**
 
-##One Sentence Summary#
-Spatial synchrony of environmental drivers produces oscillatory dynamics on large spatial scales in deer and deer-vehicle collisions in Wisconsin, and is a new mechanism for population cycles.
-
-#Abstract:
-We investigated causes and consequences of spatial synchrony in the dynamics of populations of white-tailed deer, a
-widely exploited species, and in deer-vehicle collisions (DVCs) across Wisconsin. Deer synchrony occurred
-principally at $3-7$-year timescales of fluctuation, and synchronous winter environmental
-variation explained almost 90% of deer synchrony through a process called the Moran effect.
-DVCs were in turn synchronized by deer populations.
-Timescale-specific synchrony caused large semi-periodic fluctuations in statewide total deer populations and DVCs that
-would not have occurred without synchrony. Thus synchrony caused local dynamics to sum to a major cyclic
-phenomenon on statewide spatial scales. Results are principally important as a demonstration of a new and potentially widespread mechanism for population cycles on large spatial scales, a phenomenon of long-standing interest.
-
-#Main Text:
 Spatial population synchrony, i.e., the tendency for populations of a species in 
 different locations to exhibit correlated fluctuations through time, is a ubiquitous 
 phenomenon, documented in hundreds of taxa
