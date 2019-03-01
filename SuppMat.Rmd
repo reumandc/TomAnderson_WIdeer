@@ -1,9 +1,4 @@
 ---
-title: Supplementary Materials for "Synchronous Effects Produce Major Cycles in Deer Populations
-  and Deer-Vehicle Collisions"
-author: Thomas L. Anderson, Lawrence W. Sheppard, Jonathan A. Walter, Robert E. Rolley,
-  Daniel C. Reuman
-date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
   pdf_document:
     fig_caption: yes
@@ -15,18 +10,11 @@ output:
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
-csl: science.csl
+csl: nature.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 ---
-
-\textbf{This PDF file includes:}  
-> Materials and Methods  
-> Supplementary Text  
-> Figs S1 to S9  
-> Table S1 to S3  
-> Full Reference list[@Leibhold2004_sync; @Allstad2015_gypsysync; @Moran1953; @Ranta1997_moran; @Kendall2000_moran; @Abbott2007_moran;@Sheppard2016_aphids;@Sheppard2017_surrogates; @Walter2017_geogsync; @Cote2004_deerimpacts; @Conover2011_bookchp; @usfws2011_survey; @Sheppard_wavmodel;  @Mysterud2008_deerclimate; @Hegel2012_caribou; @Rodionov2003_elnino; @Post1998_popgrowth; @Post2004_greenland; @Grotan2005_roedeer; @Huijser2008_dvc; @Marcoux2010_dvc; @Koenig2016_birdsync; @Shestakova2016_forestsync; @Cai2014_elnino;@widnr2001; @Ciuti2015; @Millspaugh2009; @Buonaccorsi2001; @Sheppard2013; @Theiler1992; @Schreiber2000]  
 
 <!--Libraries-->
 ```{r libraries, echo=F, message=FALSE}
@@ -119,7 +107,7 @@ usda.abunmodelSyncExp<-readRDS(file="Results/usda.abunmodelSyncExp.rds")
 usda.abunmodelXterms<-readRDS(file="Results/usda.abunmodelXterms.rds")
 gunhunter_percent<-round(100*mean(state.totals$GunHunters[state.totals$Year>1980]/(state.totals$GunHunters[state.totals$Year>1980]+state.totals$BowHunters[state.totals$Year>1980])),0)
 ```
-# Materials and methods
+# MATERIALS AND METHODS
 
 ## Deer and hunter abundance data
 
@@ -518,13 +506,21 @@ of the cost of DVCs [@Huijser2008_dvc], the
 difference between peak and trough years in DVC 
 costs may exceed US\$22M.    
 
-## Open and reproducible science
+## Data Availability
 
 We have adopted an open and reproducible science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
 The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `www.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
 The suite of analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button via the codes in that repository - see the `Readme.md` file in the repository for instructions.
 
-# Supplementary text
+\newpage
+
+# References {-}
+
+<div id="refs"></div>
+
+\newpage
+
+# SUPPLEMENTARY INFORMATION
 
 ## USDA district results
 
@@ -602,12 +598,6 @@ eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}
 randomizations preserved the structure of the local fluctuations. Variation A
 may be more likely given previous work documenting the influence of snow depth and large-scale
 climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
-
-\newpage
-
-# References {-}
-
-<div id="refs"></div>
 
 \newpage
 # Supplementary figures
