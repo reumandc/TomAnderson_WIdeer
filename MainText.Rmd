@@ -56,6 +56,51 @@ avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
 avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
 ```
 
+<!--***DAN: notes and outlining leading to a new first para
+-1-2 sentences, basic intro for all scientists
+1) importance of pop cycles and interest for long time
+*Population cycles are a great mystery of nature (Myers et al 2018), and their causes have been investigated for 100 years (REF to some early paper, or not necessary?).
+
+-2-3 sentences, more detailed background for scientists in related disciplines
+2) early attepts at an explanation focussed on cyclic environmental drivers such as sun spot cycles, but these hypotheses were not supported, and the field has overwhelmingly focused since then on explanations involving density dependence and delayed density dependence, often through interactions with resources or consumers
+*Some early hypothesized explanations of population cycles, such as those observed in the iconic lynx-snowshoe hare system, posited that cyclic environmental phenomena such as sun spots drive population cycles (REFS).
+*But these hypotheses were not supported (REF for hare, also Myers and Cory, 2013, Ann Rev Ecol Evol Syst). 
+*For several decades research has focussed instead on explanations involving nonlinear or delayed density dependence, often involving trophic or parasitic interactions.
+
+-1 sentence clearly stating general problem
+1a) Maybe omit? There is no general problem that existed a priori, we discovered a new mechanism and we are reporting it. But is there an alternative way to handle this?
+1b) Basically say
+*
+
+-Here we show senetence
+*Here we show that timescale-specific environmental effects, by synchronizing local population dynamics on specific timescales only, can cause major population cycles on large spatial scales in white-tailed deer and deer-vehicle collisions (DVCs). 
+
+-2-3 sentences showing what the main result reveals compared to what was thought to be the case or was previously known
+1) First demo of new mechanism whereby population cycles can be generated without delayed density dependence (or somethng like that - edit). Also differs from prior environmental hypotheses because...?
+*We thereby demonstrate a new mechanism of population cycles that centers on environmental influences rather than density dependence, but that differs fundamentally from earlier hypothesis that relied on a cyclic environmental driver.
+2) An important aspect of the pehnomena we describe is their specificity to certain timescales,
+which is what allows the mechanisms we describe to produce population cycles. 
+*An important aspect of the mechanism we describe is the specificity of environmental synchronizing effects to certain timescales, which causes local dynamics to sum to a substantial cyclic phenomenon on those timescales. 
+
+-1-2 sentences to put result in general context
+1) something about impacts on industries (DVCs, hunting) and ecosystem functioning (a main herbivore); cycles are also known to be important for biodiversity (REF)
+*Population cycles can have large impacts on ecosystem functioning and services (REF), and can play a role in biodiversity maintenance (Chesson, 2000); we demonstrate the mechanism of cycles in deer and DVCs that can have substantial effects on agriculture, hunting, and accident recovery industries. 
+2) something about cascading Moran effects
+*Our results also demonstrate cascading, synchronizing environmental effects that cascase from deer to DVCs, producing cycles in both.
+alt*maybe omit this
+
+-possibly 2-3 senteces to provide a broader perspective, comprehensible to any scientist
+1) Recent research on several taxa (2 , 7 , 22 , 23 ) shows that synchrony of some environmental
+drivers may be changing, possibly as part of global climate change. 
+*Recent research on several taxa (2 , 7 , 22 , 23 ) shows that synchrony of some environmental
+drivers may be changing, possibly as part of global climate change.
+2) These changes may alter population synchrony, and our results show the potential for and mechanisms by which such changes could influence ecological phenomena of widespread interest and associated human concerns.
+*These changes may alter population cycles produced through the mechanism we describe
+-->
+
+**Population cycles are a great mystery of nature[@Myers2018_cycles], the causes of which have been investigated for 100 years. An early hypothesized explanation of cycles, for the iconic lynx-hare as well as for other systems, posited that cyclic environmental phenomena such as sun spots drive population cycles[@Sinclair1992_sunspots;@Selas2004_sunspots]. But that hypothesis was refuted[@Nilssen2007_nosunspots;@@Myers2013_nosunspots], and for several decades research focussed instead on explanations involving nonlinear or delayed density dependence, often via trophic or parasitic interactions[@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. Here we show that timescale-specific environmental effects, by synchronizing local population dynamics on specific timescales only, cause major population cycles over large areas in white-tailed deer and deer-vehicle collisions. We thereby demonstrate a new mechanism of cycles that centers once again on environmental influences. The mechanism differs fundamentally, however, from earlier hypotheses that relied on a strongly cyclic driver such as sun spots. An important aspect of the new mechanism is specificity of environmental synchronizing effects to certain timescales, which causes local dynamics to sum to a substantial cyclic phenomenon on those timescales. Population cycles can influence biodiversity maintenance[@Chesson2000], and can have large impacts on ecosystem functioning and services. The cycles we explain can have substantial effects on agriculture, hunting, and accident recovery industries. Research shows that synchrony of some environmental drivers may be changing, possibly as part of climate change[@Allstad2015_gypsysync;@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync]. Such changes may alter population cycles that arise via the mechanism decribed here.**
+
+<!--***DAN: Old first para
 **Correlated fluctuations through time in abundances of distant populations, called spatial synchrony, is 
 a widespread and important phenomenon in population ecology [@Leibhold2004_sync]. Synchrony of exploited 
 or economically important taxa should, theoretically, have substantial impacts for humans, because
@@ -76,6 +121,7 @@ populations and DVCs that would not have occurred without synchrony. Thus synchr
 dynamics to sum to a major cyclic phenomenon on statewide spatial scales. Our results are 
 principally important as a demonstration of a new and potentially widespread mechanism for 
 population cycles on large spatial scales, a phenomenon of long-standing interest.**
+-->
 
 Spatial population synchrony, i.e., the tendency for populations of a species in 
 different locations to exhibit correlated fluctuations through time, is a ubiquitous 
