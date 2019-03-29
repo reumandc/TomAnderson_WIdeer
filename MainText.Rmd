@@ -148,8 +148,8 @@ the most prominent synchrony in county-level deer abundances occurred at $3-7$-y
 (Fig. \ref{Fig2_DeerSync}A). A related technique, the wavelet phasor mean field (*Methods*, Supplementary Information Fig. \ref{SM-PedagogFigWMF}), 
 demonstrated the strong statistical significance of this phenomenon (Fig. \ref{Fig2_DeerSync}B). We
 therefore focused our analysis on the $3-7$-year timescale band. Most past analyses of synchrony have
-used correlation methods that conflate timescales. But recent results show this can hinder detection of
-synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]; and synchrony must be specific to certain timescales to produce cyclic dynamics of
+used correlation methods that conflate timescales, but recent results show this can hinder detection of
+synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of
 total populations on those timescales (Fig. \ref{Fig1_example}).  
 
 <!--***DAN: maybe we dont even need the following para-->
@@ -169,14 +169,14 @@ synchrony according to the distinct timescales on which it can occur (Fig.
 Spatial wavelet coherence[@Sheppard2016_aphids;@Sheppard2017_surrogates] (see Supplementary Information Fig. \ref{SM-PedagogFigSpatCoh} for an example), wavelet regression techniques[@Sheppard_wavmodel], and a wavelet Moran theorem[@Sheppard2016_aphids;@Sheppard_wavmodel] (*Methods*) demonstrated that <!--***DAN: Is there a way to get the parens to not appear around the above citations? No big deal if not, the typesetters can take care of it, but it might create a better impression in the reviewers if we fix it now--><!--***TOM: I've tried using both StackOverflow and Twitter to find an answer and no response so we may just have to go with it. Given we might have to do some post hoc editing to get it in Science format anyways, we could just manually change it.--><!--***DAN: OK, that's fine, leaving these comments here to remind us the issue still exists, though we may never do anything about it.-->
 deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. Synchrony in deer abundance was related to winter snow depth 
 (spatial wavelet coherence, $P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Snow Depth" &TabS1_results$Timescale=="3-7"],2)`, Supplementary Information
-Table \ref{SM-TabS1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase difference between abundance and snow depth across $3-7$-year timescales, in units of ${\pi}$ radians, was $\bar{\theta} =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth"&TabS1_results$Timescale=="3-7"],2)`; Supplementary Information Fig. \ref{SM-FigS4_PhaseDiffs}D): deer abundances tended to peak in years of below-average snow. This effect probably occurred because deeper snow limits access to winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility to starvation or predators and reduced parturition rates [@Delguidice2008_deersurvival;@Mysterud2008_deerclimate;@Hegel2012_caribou]. Deer abundance was also related, with
+Table \ref{SM-TabS1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase difference between abundance and snow depth across $3-7$-year timescales, in units of ${\pi}$ radians, was $\bar{\theta} =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth"&TabS1_results$Timescale=="3-7"],2)`; Supplementary Information Fig. \ref{SM-FigS4_PhaseDiffs}D): deer abundances tended to peak in years of below-average snow. This effect probably occurred because deeper snow limits access to winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility to starvation or predators and reduced parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. Deer abundance was also related, with
 approximately quarter-cycle phase shifts, 
 to the multivariate El Ni$\~{n}$o Southern Oscillation index
 ($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)`) and to the Pacific Decadal Oscillation 
 ($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"],2)`, Supplementary Information Table \ref{SM-TabS1_CountyCoherenceSummary}, Fig. \ref{SM-FigS4_PhaseDiffs}A,C), both averaged over the winter months
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations $\text{MEI}_{\text{w}}$ and
 $\text{PDO}_{\text{w}}$). High values of these indices generally correspond to mild winter weather over
-WI [@Anderson1996_elnino;@Rodionov2003_elnino]. The two indices were strongly coherent and in-phase with
+WI [@Rodionov2003_elnino]. The two indices were strongly coherent and in-phase with
 each other on $3-7$-year timescales over the period 1981-2016 (wavelet coherence, $P =$ `r round(TabS2_results$Pvalue[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO" ],4)`, $\bar{\theta}  =$ `r round(TabS2_results$MeanPhase[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO" ],2)`, Supplementary Information Table \ref{SM-TabS2_PairwiseClimVarSpatCoh}). 
 At $5$-yr periodicity, the quarter-cycle phase lags correspond to deer populations
 peaking about `r round(-5*TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"]/2,1)` or 
@@ -250,7 +250,7 @@ timescales is removed via a randomization procedure
 semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on 
 assumptions made about costs and reporting rates of DVCs 
 [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp], statewide DVC damages 
-vary by US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ 
+vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years (*Methods*). Similarly, fluctuations of a quarter 
 million deer likely have considerable consequences for agricultural crop damage 
 and hunting success, both of which can have socioeconomic impacts. See 
