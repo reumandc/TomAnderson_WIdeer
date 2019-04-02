@@ -626,7 +626,7 @@ study.\label{FigS1_Timeseries}}
 \includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
 \caption[Demonstration of the wavelet mean field]{Detecting time- and timescale-specific
 synchrony with the wavelet mean field. This figure was taken without change from
-[7], where additional details are also available. Panels a-d show the principle of how synchrony
+[6], where additional details are also available. Panels a-d show the principle of how synchrony
 can differ for different timescales of dynamics. Time series y1 and y2 (a)
 are exactly anti-correlated (out of phase), as are y3 and y4 (b). Combining
 y1 with y3 and y1 with y4
@@ -655,7 +655,7 @@ synchrony as a function of timescale
 of dynamics and time, here with red indicating synchrony and blue asynchrony.
 Wavelet phasor mean fields provide plots similar to (k) but with values
 between 0 and 1 that indicate the strength of phase synchrony and that can be
-straightforwardly significance tested as described in [13]. \label{PedagogFigWMF}}
+straightforwardly significance tested as described in [9]. \label{PedagogFigWMF}}
 \end{figure}
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 \newpage
@@ -664,7 +664,7 @@ straightforwardly significance tested as described in [13]. \label{PedagogFigWMF
 \includegraphics[width=\textwidth]{Results/PedagogFig_SpatCoh.png}
 \caption[Demonstration of spatial wavelet coherence]{Measuring relationships between variables using spatial wavelet coherence.
 This figure was adapted with only minor changes
-from supplementary figure 5 of [7].
+from supplementary figure 5 of [6].
 The time series of panel e were used as drivers in producing the time series of
 panel f and the figure shows
 how this relationship can be detected with the spatial wavelet coherence technique.
@@ -683,7 +683,7 @@ not the period-$2$ component because averaging covers a whole
 period for that component. Correlations (f,
 green numbers) between $x_n(t)$ and $y_n(t)$ did not indicate
 any particular relationship. Correlations cannot
-detect the relationship between the $x$ and $y$ because the technique confounds
+detect the relationship between the $x$ and $y$ because the correlation technique confounds
 phenomena occurring on different
 timescales. Spatial wavelet coherence revealed a highly significant relationship
 at periods around $12$ years (g) and on
@@ -692,12 +692,12 @@ defined as $>4$ years) but no relationship
 (right $P$-value) for short timescales ($<4$ years). The red line on g is the
 spatial wavelet coherence and black lines are
 $50$th, $95$th, and $99$th percentiles of spatial wavelet coherences
-of synchrony-preserving surrogate data sets [7]
+of synchrony-preserving surrogate (randomized) data sets [6]
 appropriately representing the
 null hypothesis of no relationship between the $x$ and $y$.
-Also see [7] for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
+Also see [6] for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
 \end{figure}
-<!--- TOM: Citations in caption above are not dynamic links, need to change manualy--->
+<!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 \newpage
 
 \begin{figure}[!h]
@@ -761,7 +761,7 @@ knitr::kable(TableS1,
              format='pandoc',
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns, which give percentages, are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (main text and Table \\ref{TabS4_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS1_CountyCoherenceSummary}",
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns, which give percentages, are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (main text and Table \\ref{TabS4_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS1_CountyCoherenceSummary}",
              booktabs=T)
 ```
 

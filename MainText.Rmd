@@ -123,8 +123,8 @@ principally important as a demonstration of a new and potentially widespread mec
 population cycles on large spatial scales, a phenomenon of long-standing interest.**
 -->
 
-We investigate the cycling and related timescale-specific synchrony of white-tailed deer (*Odocoileus virginianus*) and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across the USA, US\$$34$Bn were spent on hunting big game, including deer, in 2011 [@usfws2011_survey]. 
-In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC totals. We consider potential drivers of deer populations including both environmental factors and the direct effects of hunting. We use data from 1981-2016 (Supplementary Information Fig.  \ref{SM-FigS1_Timeseries}) aggregated at three spatial resolutions (*Methods*), counties ($n=71$), United States Department of Agricultural (USDA) districts ($n=9$), and statewide (Supplementary Information Fig. \ref{SM-FigS2_map}). 
+We investigate the cycling and related timescale-specific synchrony of white-tailed deer (*Odocoileus virginianus*) and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
+In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC totals. We consider potential drivers of deer populations including both environmental factors and the direct effects of hunting. We use data from 1981-2016 (Supplementary Information Fig.  \ref{SM-FigS1_Timeseries}) aggregated at three spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts ($n=9$), and statewide (Supplementary Information Fig. \ref{SM-FigS2_map}). 
 
 Spatial population synchrony, i.e., the tendency for populations of a species in 
 different locations to exhibit correlated or otherwise related fluctuations through time, is a ubiquitous phenomenon[@Leibhold2004_sync], and is at the root of the mechanism
@@ -152,7 +152,6 @@ used correlation methods that conflate timescales, but recent results show this 
 synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of
 total populations on those timescales (Fig. \ref{Fig1_example}).  
 
-<!--***DAN: maybe we dont even need the following para-->
 It is well known that a spatially synchronous environmental driver can induce 
 population synchrony, called a Moran effect [@Leibhold2004_sync; @Moran1953; 
 @Ranta1997_moran]. However, it has historically been 
@@ -182,7 +181,7 @@ At $5$-yr periodicity, the quarter-cycle phase lags correspond to deer populatio
 peaking about `r round(-5*TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"]/2,1)` or 
 `r round(-5*TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"]/2,1)` years after mild winters, similar to other reported lag times of climatic effects on deer 
 populations [@Post1998_popgrowth]. Winter weather and climatic oscillations have been identified previously as mechanisms influencing synchrony in other ungulates across multiple 
-regions [@Post2004_greenland;@Grotan2005_roedeer;@Hegel2012_caribou]. Applying the wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard_wavmodel]; *Methods*), 
+regions [@Post2004_greenland;@Grotan2005_roedeer;@Hegel2012_caribou]. Applying the wavelet Moran theorem[@Sheppard2016_aphids;@Sheppard_wavmodel] (*Methods*), 
 <!--***DAN: I would also like the parens in the citation above to not appear here-->
 snow depth, 
 $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
@@ -238,7 +237,7 @@ As mentioned above, timescale-specific synchrony is theoretically important for
 our understanding of important population phenomena because it may lead to cyclic 
 dynamics in spatial-total or spatial-average time series, which can mean 
 alternating relative abundance and scarcity of important species over large areas 
-[@Allstad2015_gypsysync]. Our data show the reality of this effect and its 
+[@Allstad2015_gypsysync]. Our data show the empirical reality of this effect and its 
 strength. Statewide oscillations due to synchrony correspond to a typical 
 difference of $~ `r round(avgdeerfluc,-4)`$ deer and $~ `r round(avgdvcfluc,-2)`$ 
 DVCs between peak and trough years 
@@ -276,7 +275,7 @@ to certain timescales. Recent work on several taxa
 [@Allstad2015_gypsysync;@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync] shows that synchrony of some environmental drivers may be changing, 
 possibly due to climate change. These changes may alter population synchrony, 
 and therefore also population cycles that arise by our new mechanism. 
-In particular,the predicted increase 
+In particular, the predicted increase 
 in the frequency of strong El Ni$\~{n}$o events 
 [@Cai2014_elnino] may lead to altered cycling period in deer 
 and DVCs, though our mechanisms are general so we would not 
@@ -359,8 +358,9 @@ grey lines (B = deer; D = DVCs). $\Delta$ represents the difference in values fr
 the surrogate mean. Red arrows highlight examples of the strong cycling that is 
 attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due 
 to synchrony amounts to an estimated difference between peak and trough years of 
-US\$$`r round(2*avgdvccostsLow,-6)`-`r round(2*avgdvccostsHigh,-6)`$ in damages 
+US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn in damages 
 statewide (\textit{Methods}). 
 \label{Fig4_StateWideFluctuations}}
 \end{figure}
+
 
