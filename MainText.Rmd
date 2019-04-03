@@ -234,7 +234,7 @@ abundance remained similar after adjusting DVCs to account for
 fluctuations in traffic volume (Supplementary Information Tables \ref{SM-TabS1_CountyCoherenceSummary}, \ref{SM-TabS4_SummaryDistrict}, Fig. \ref{SM-FigS4_PhaseDiffs}F).
 
 As mentioned above, timescale-specific synchrony is theoretically important for 
-our understanding of important population phenomena because it may lead to cyclic 
+our understanding of population phenomena because it may lead to cyclic 
 dynamics in spatial-total or spatial-average time series, which can mean 
 alternating relative abundance and scarcity of important species over large areas 
 [@Allstad2015_gypsysync]. Our data show the empirical reality of this effect and its 
