@@ -3,7 +3,7 @@ title: Synchronous Effects Produce Major Cycles in Deer Populations
   and Deer-Vehicle Collisions
 author:
  - Thomas L. Anderson\textsuperscript{1,2}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{2,3}, Robert E. Rolley\textsuperscript{4},  Daniel C. Reuman\textsuperscript{2,5}  
- - \textsuperscript{1}Department of Biology, Appalachian State University; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas; \textsuperscript{3}Department of Environmental Sciences, University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources; \textsuperscript{5}Laboratory of Populations, Rockefeller University
+ - \textsuperscript{1}Department of Biology, 572 Appalachian State University, 572 Rivers St., Boone, NC 28608$; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas; 2101 Constant Ave, Lawrence, KS 66049 \textsuperscript{3}Department of Environmental Sciences, University of Virginia; \textsuperscript{4}Wisconsin Department of Natural Resources; \textsuperscript{5}Laboratory of Populations, Rockefeller University
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
   pdf_document:
@@ -16,7 +16,7 @@ output:
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
-csl: nature.csl
+csl: pnas.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
@@ -289,15 +289,12 @@ expect effects to be limited to the system we have studied.
 
 \newpage
 
-**Supplementary Information** is available in the online version of the paper at  www.nature.com/nature.
 
 **Acknowledgements:** D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, and J. Fox for consultation. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
 **Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. All data and code to do analyses are available at https://github.com/reumandc/TomAnderson_WIdeer. 
 
-**Author Information:** Reprints and permissions information is available at www.nature.com/reprints. Correspondence and requests for materials should be addressed to TLA $(anderstl@gmail.com)$ or DCR $(reuman@ku.edu)$. We declare no competing interests.
-\newpage
 
 \begin{figure}[!h]  
 \includegraphics[width=.6\textwidth]{Results/Fig1.png}
