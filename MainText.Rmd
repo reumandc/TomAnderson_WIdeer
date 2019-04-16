@@ -22,7 +22,7 @@ bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 
 ---
-
+\newpage
 <!--Title length limit 96 characters, inc spaces-->
 
 ```{r echo=F, results="hide"}
@@ -123,6 +123,8 @@ principally important as a demonstration of a new and potentially widespread mec
 population cycles on large spatial scales, a phenomenon of long-standing interest.**
 -->
 
+**Signifcance Statement:** 
+<!--Authors must submit a 120-word-maximum statement about the significance of their research paper written at a level understandable to an undergraduate-educated scientist outside their field of specialty. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. Significance statements are not required for Brief Reports.-->
 Spatial population synchrony, i.e., the tendency for populations of a species in 
 different locations to exhibit correlated or otherwise related fluctuations through time, is a ubiquitous phenomenon[@Leibhold2004_sync]. In theory, if synchrony of local populations
 occurs on specific timescales, it can produce cycling 
@@ -138,7 +140,7 @@ the exploited populations. Likewise, synchrony of pests may increase the
 magnitude of fluctuations in regional total damage 
 caused by the pests [@Allstad2015_gypsysync]. 
 
-The causes of population cycles have been investigated for over 100 years[@Myers2018_cycles]. Early explanations, for the iconic lynx-hare as well as for other systems, indicated that cyclic environmental phenomena such as sun spots drive population cycles[@Sinclair1992_sunspots;@Selas2004_sunspots]. This hypothesis was refuted[@Nilssen2007_nosunspots;@@Myers2013_nosunspots], and research foci has shifted to explaining cycles as the result of nonlinear or delayed density dependence, often via species interactions [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. However, if spatial synchrony operates as hypothesized above, and is produced via the Moran effect [@Moran1953], then environmental effects may produce population cycles but through a different process than originally proposed. An important aspect of this new mechanism is specificity of environmental synchronizing effects to certain timescales, which causes local dynamics to sum across space to a substantial cyclic phenomenon on those timescales. 
+The causes of population cycles have been investigated for over 100 years[@Myers2018_cycles]. Early explanations, for the iconic lynx-hare as well as for other systems, indicated that cyclic environmental phenomena such as sun spots drive population cycles[@Sinclair1992_sunspots;@Selas2004_sunspots]. This hypothesis was refuted[@Nilssen2007_nosunspots;@@Myers2013_nosunspots], and research foci have shifted to explaining cycles as the result of nonlinear or delayed density dependence, often via species interactions [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. However, if spatial synchrony operates as hypothesized above, and is produced via synchronized environmental variation (Moran effect [@Moran1953]), then environmental effects may produce population cycles but through a different process than originally proposed. An important aspect of this new mechanism is specificity of environmental synchronizing effects to certain timescales, which causes local dynamics to sum across space to a substantial cyclic phenomenon on those timescales. 
 
 We investigate the cycling and related timescale-specific synchrony of white-tailed deer (*Odocoileus virginianus*) and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
 In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC totals. We consider potential drivers of deer populations including both environmental factors and the direct effects of hunting. We use data from 1981-2016 (Supplementary Information Fig.  \ref{SM-FigS1_Timeseries}) aggregated at three spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts ($n=9$), and statewide (Supplementary Information Fig. \ref{SM-FigS2_map}). 
