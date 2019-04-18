@@ -32,7 +32,8 @@ dvc.wpmf<-wsyn::wpmf(dvc.dt,times = 1987:maxyear,sigmethod = "quick")
 dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 
 #Make Figure 2
-png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+tiff("Results/Fig2.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+#png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
 deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 abline(h=c(log2(3),log2(7)),lty=2)
@@ -51,7 +52,8 @@ mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
 dev.off()
 
 #Make Figure 3
-png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+tiff("Results/Fig3.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+#png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
 par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
 deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
 mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
@@ -278,7 +280,8 @@ pan.wd.small<-pan.wd.big #small panel width param
 pan.ht.small<-0.33*pan.ht.big #small panel height param
 tot.ht<-2*pan.ht.big+2*pan.ht.small+2*xht+4*gap
 
-png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
+#png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
+tiff("Results/Fig4.tif",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
 
 #Deer- little panel
 par(fig=c(ywd/tot.wd,

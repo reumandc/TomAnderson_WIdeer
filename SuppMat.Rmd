@@ -235,7 +235,7 @@ Fig. \ref{FigS8_WMFAndPredictionsDistricts}), suggesting results for counties we
 meaningfully influenced by possible inaccuracies in SAK abundance estimation 
 procedures at the county level.
 
-We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial wavelet coherence and wavelet linear regression procedured described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
+We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial wavelet coherence and wavelet linear regression procedure described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the `wsyn` package for the R programming language, available at `www.github.com/reumandc/wsyn/CRANv1p0p0` and on the Comprehensive R Archive Network (CRAN).
 
 ## The wavelet mean field and wavelet phasor mean field
