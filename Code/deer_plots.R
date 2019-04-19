@@ -17,14 +17,13 @@ wlm_dvc<-readRDS(file="Results/wlm_dvc.rds")
 wlm_hunters<-readRDS(file="Results/wlm_hunters.rds")
 
 # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
-resize<-0.5
-tot.wd<-3.5*resize
+pan.wd<-1.25
 xht<-0.5   #height of x axis label region
 ywd<-0.5    #width of y axis label region
 zwd<-0.05   #width of z-axes label region
-gap<-.2   #small gap 
-pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
-pan.ht<-0.75*pan.wd+zwd #big ones are square
+gap<-.2   #small gap
+tot.wd<-ywd+pan.wd+gap
+pan.ht<-0.75*pan.wd #big ones are square
 tot.ht<-3*pan.ht+xht+3*gap
 
 abun.wpmf<-wsyn::wpmf(abun.dt,times = minyear:maxyear,sigmethod = "quick")
@@ -345,14 +344,15 @@ dvcsurr<-read.csv("Data/dvcsurrsum.csv")
 
 #Make plots showing statewide magnitude of deer and DVC fluctuatoins (Fig 4)
 #***Set up plotting dimensions, units are inches
-tot.wd<-3.5*resize
-xht<-.5*resize   #height of x axis label region
-ywd<-1*resize    #width of y axis label region
-gap<-.1*resize   #small gap 
-pan.wd.big<-(tot.wd-ywd-gap) #large panel width parameter
+
+xht<-.5   #height of x axis label region
+ywd<-0.5   #width of y axis label region
+gap<-.1 #small gap 
+pan.wd.big<-1.25 #large panel width parameter
 pan.ht.big<-pan.wd.big #big ones are square
 pan.wd.small<-pan.wd.big #small panel width param
 pan.ht.small<-0.33*pan.ht.big #small panel height param
+tot.wd<-ywd+2*pan.wd.big+2*gap
 tot.ht<-2*pan.ht.big+2*pan.ht.small+2*xht+4*gap
 
 #png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
@@ -370,9 +370,9 @@ for(i in 1:nrow(abunsurr)){
   lines(1981:2016,abunsurr[i,],col=colors[i])
 }
 lines(1981:2016,apply(cty.list$Abun,2,sum),lwd=2)
-axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1,tck=-.05,cex.axis=0.75)
-axis(1,labels=c(rep("",8)),at = seq(1980,2016,5),tck=-0.05,cex.axis=0.75)
-mtext("Deer (millions)",side=2,line=2,cex=0.75)
+axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1,tck=-.05)
+axis(1,labels=c(rep("",8)),at = seq(1980,2016,5),tck=-0.05)
+mtext("Deer (M)",side=2,line=1.5)
 mtext("A)",font=2,side=3,line=-1,adj=0.05)
 box()
 #Deer- big panel
@@ -385,13 +385,13 @@ plot(1981:2016,rep(NA,36),ylab="",xlab="",ylim=c(-180000,200000),las=1,yaxt="n")
 for(i in 1:nrow(dvcsurr)){
   lines(1981:2016,abunsurr[i,]-apply(abunsurr,2,mean),col=colors[i])
 }
-lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=3,type="b",pch=19)
+lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=2,type="b",pch=19)
 Arrows(x0 = 1999,y0 = 0,y1=140000,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-150000,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=2001,y=160000,labels="+159054 deer",font=2,cex=0.75,adj=0.05,col="red")
-text(x=1999,y=-174000,labels="-174339 deer",font=2,cex=0.75,adj=0.05,col="red")
-mtext(expression(Delta~"from Surrogate Mean (thousands)"),side=2,line=2,cex=0.9)
-axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,tck=-.05,cex.axis=0.75)
+text(x=2001,y=160000,labels="+159054 deer",font=2,cex=0.5,adj=0.05,col="red")
+text(x=1999,y=-174000,labels="-174339 deer",font=2,cex=0.5,adj=0.05,col="red")
+mtext(expression(Delta~"from Surrogate Mean (K)"),side=2,line=1.5)
+axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,tck=-.05)
 mtext("B)",font=2,side=3,line=-1,adj=0.05)
 
 #DVC little panel
@@ -405,9 +405,9 @@ for(i in 1:nrow(dvcsurr)){
   lines(1987:2016,dvcsurr[i,],col=colors[i])
 }
 lines(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],lwd=2)
-axis(1,labels=c(rep("",7)),at = seq(1985,2016,5),tck=-0.05,cex.axis=0.75)
-axis(2,labels= format(seq(16,24,2),scientific=F),at = seq(16000,24000,2000),las=1,tck=-.05,cex.axis=0.75)
-mtext("DVCs (thousands)",side=2,line=2,cex=0.75)
+axis(1,labels=c(rep("",7)),at = seq(1985,2016,5),tck=-0.05)
+axis(2,labels= format(seq(16000,24000,2000),scientific=F),at = seq(16000,24000,2000),las=1,tck=-.05)
+mtext("DVCs",side=2,line=1.5,cex=0.75)
 mtext("C)",font=2,side=3,line=-1,adj=0.05)
 box()
 #DVC big panel
@@ -420,14 +420,14 @@ plot(1987:2016,rep(NA,30),type="b",xlab="Year",ylab="",ylim=c(-2000,2000),las=1,
 for(i in 1:nrow(dvcsurr)){
   lines(1987:2016,dvcsurr[i,]-apply(dvcsurr,2,mean),col=colors[i])
 }
-lines(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="b",pch=19,lwd=3)
+lines(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="b",pch=19,lwd=2)
 Arrows(x0 = 1999,y0 = 0,y1=1500,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-1300,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=1999.5,y=1800,labels="+1597 DVCs",font=2,cex=0.75,adj=0.05,col="red")
-text(x=1997.5,y=-1800,labels="-1421 DVCs",font=2,cex=0.75,adj=0.05,col="red")
-mtext(expression(Delta~"from Surrogate Mean"),side=2,line=2,cex=0.9)
+text(x=1999.5,y=1800,labels="+1597 DVCs",font=2,cex=0.5,adj=0.05,col="red")
+text(x=1997.5,y=-1800,labels="-1421 DVCs",font=2,cex=0.5,adj=0.05,col="red")
+mtext(expression(Delta~"from Surrogate Mean"),side=2,line=1.5)
 mtext("Year",side=1,line=1.5)
 mtext("D)",font=2,side=3,line=-1,adj=0.05)
-axis(2,labels= format(seq(-2000,2000,500),scientific=F),at = seq(-2000,2000,500),las=1,tck=-.05,cex.axis=0.75)
+axis(2,labels= format(seq(-2000,2000,500),scientific=F),at = seq(-2000,2000,500),las=1,tck=-.05)
 
 dev.off()
