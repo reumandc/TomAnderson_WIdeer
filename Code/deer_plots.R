@@ -17,12 +17,12 @@ wlm_dvc<-readRDS(file="Results/wlm_dvc.rds")
 wlm_hunters<-readRDS(file="Results/wlm_hunters.rds")
 
 # Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
-resize<-0.75
+resize<-0.5
 tot.wd<-3.5*resize
-xht<-1.25*resize   #height of x axis label region
-ywd<-0.25*resize    #width of y axis label region
-zwd<-0.2*resize    #width of z-axes label region
-gap<-.2*resize   #small gap 
+xht<-0.5   #height of x axis label region
+ywd<-0.5    #width of y axis label region
+zwd<-0.05   #width of z-axes label region
+gap<-.2   #small gap 
 pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
 pan.ht<-0.75*pan.wd+zwd #big ones are square
 tot.ht<-3*pan.ht+xht+3*gap
@@ -43,24 +43,24 @@ par(fig=c(ywd/tot.wd,
           (xht+pan.ht+pan.ht+2*gap)/tot.ht,
           (xht+pan.ht+2*gap+2*pan.ht)/tot.ht),
     mai=c(0,0,0,0),mgp=c(1,0.5,1.25))
-deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=2,cex.axis=1.5,las=1)
+deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",las=1)
 par(fig=c(ywd/tot.wd,
           (ywd+pan.wd)/tot.wd,
           (xht+pan.ht+pan.ht+2*gap)/tot.ht,
           (xht+pan.ht+2*gap+2*pan.ht)/tot.ht))
 axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line = 0,cex.axis=1)
-axis(side=2,at = log2(fig2.ylocs),labels = fig2.ylocs,line = 0,cex.axis=1)
+axis(side=2,at = log2(fig2.ylocs),labels = fig2.ylocs,line = 0)
 par(fig=c(ywd/tot.wd,
           (ywd+pan.wd)/tot.wd,
           (xht+pan.ht+pan.ht+2*gap)/tot.ht,
           (xht+pan.ht+2*gap+2*pan.ht)/tot.ht))
 abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "A)",font=2,side = 3,adj =0,line=-1,cex=1.5)
+mtext(text = "A)",font=2,side = 3,adj =0,line=-1)
 par(new=T,fig=c(ywd/tot.wd,
           (ywd+pan.wd)/tot.wd,
           (xht+pan.ht+gap)/tot.ht,
           (xht+pan.ht+gap+pan.ht)/tot.ht))
-deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=2,cex.axis=1.5,las=1)
+deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",las=1)
 par(new=T,fig=c(ywd/tot.wd,
                 (ywd+pan.wd)/tot.wd,
                 (xht+pan.ht+gap)/tot.ht,
@@ -71,8 +71,8 @@ contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),l
 axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line = 0,cex.axis=1)
 axis(side=2,at = log2(fig2.ylocs),labels = fig2.ylocs,line = 0,cex.axis=1)
 abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "B)",font=2,side = 3,adj =0,line=-1,cex=1.5)
-mtext(text="Timescale (Yrs)",side=2,line=1.5,cex=1.5)
+mtext(text = "B)",font=2,side = 3,adj =0,line=-1)
+mtext(text="Timescale (yrs)",side=2,line=1.5)
 par(new=T,fig=c(ywd/tot.wd,
           (ywd+pan.wd)/tot.wd,
           (xht)/tot.ht,
@@ -84,10 +84,10 @@ par(new=T,fig=c(ywd/tot.wd,
                 (ywd+pan.wd)/tot.wd,
                 (xht)/tot.ht,
                 (xht+pan.ht)/tot.ht))
-axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line = 0,cex.axis=1)
-axis(side=2,at = log2(fig2.ylocs),labels = fig2.ylocs,line = 0,cex.axis=1)
-mtext(text = "C)",font=2,side = 3,adj =0,line=-1,cex=1.5)
-mtext(text="Year",side=1,line=1.5,cex=1.5)
+axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line =0)
+axis(side=2,at = log2(fig2.ylocs),labels = fig2.ylocs,line = 0)
+mtext(text = "C)",font=2,side = 3,adj =0,line=-1)
+mtext(text="Year",side=1,line=1.5)
 dev.off()
 
 #Make Figure 3
@@ -101,36 +101,36 @@ par(fig=c(ywd/tot.wd,
           (xht+pan.ht+pan.ht+2*gap)/tot.ht,
           (xht+pan.ht+2*gap+2*pan.ht)/tot.ht),
     mai=c(0,0,0,0),mgp=c(1,0.5,1.25))
-deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=2,cex.axis=1.5,las=1)
+deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",las=1,colorbar = F,line=0)
 par(fig=c(ywd/tot.wd,
           (ywd+pan.wd)/tot.wd,
           (xht+pan.ht+pan.ht+2*gap)/tot.ht,
           (xht+pan.ht+2*gap+2*pan.ht)/tot.ht))
-axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line = 0,cex.axis=1)
-axis(side=2,at = log2(fig3.ylocs),labels = c(2,4,6,8,10,12),line = 0,cex.axis=1)
+#axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line = 0,cex.axis=1)
+#axis(side=2,at = log2(fig3.ylocs),labels = c(2,4,6,8,10,12),line = 0)
 par(fig=c(ywd/tot.wd,
           (ywd+pan.wd)/tot.wd,
           (xht+pan.ht+pan.ht+2*gap)/tot.ht,
           (xht+pan.ht+2*gap+2*pan.ht)/tot.ht))
 abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "A)",font=2,side = 3,adj =0,line=-1,cex=1.5)
+mtext(text = "A)",font=2,side = 3,adj =0,line=-1)
 par(new=T,fig=c(ywd/tot.wd,
                 (ywd+pan.wd)/tot.wd,
                 (xht+pan.ht+gap)/tot.ht,
                 (xht+pan.ht+gap+pan.ht)/tot.ht))
-deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=2,cex.axis=1.5,las=1)
+deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",las=1,colorbar = F)
 par(new=T,fig=c(ywd/tot.wd,
                 (ywd+pan.wd)/tot.wd,
                 (xht+pan.ht+gap)/tot.ht,
                 (xht+pan.ht+gap+pan.ht)/tot.ht))
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
-        xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
-axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line = 0,cex.axis=1)
-axis(side=2,at = log2(fig3.ylocs),labels = c(2,4,6,8,10,12),line = 0,cex.axis=1)
+        xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F,line=0)
+#axis(side=1,at=c(1980,1985,1990,1995,2000,2005,2010,2015),labels=c(rep("",8)),line = 0)
+#axis(side=2,at = log2(fig3.ylocs),labels = c(2,4,6,8,10,12),line = 0)
 abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "B)",font=2,side = 3,adj =0,line=-1,cex=1.5)
-mtext(text="Timescale (Yrs)",side=2,line=1.5,cex=1.5)
+mtext(text = "B)",font=2,side = 3,adj =0,line=-1)
+mtext(text="Timescale (Yrs)",side=2,line=1.5)
 par(new=T,fig=c(ywd/tot.wd,
                 (ywd+pan.wd)/tot.wd,
                 (xht)/tot.ht,
@@ -142,8 +142,8 @@ par(new=T,fig=c(ywd/tot.wd,
                 (ywd+pan.wd)/tot.wd,
                 (xht)/tot.ht,
                 (xht+pan.ht)/tot.ht))
-mtext(text = "C)",font=2,side = 3,adj =0,line=-1,cex=1.5)
-mtext(text="Year",side=1,line=1.5,cex=1.5)
+mtext(text = "C)",font=2,side = 3,adj =0,line=-1)
+mtext(text="Year",side=1,line=1.5)
 dev.off()
 
 #make plots of phase by timescale for all significant pairs of variables (Fig S4)
