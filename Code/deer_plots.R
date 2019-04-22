@@ -1,9 +1,7 @@
 #Make figures for the manuscript
-source("Functions/Fn_syncexpplot.R")
-source("Functions/deer_plotting_functions.R")
 source("Functions/Fn_phaseplot.R")
 source("Functions/Fn_rankplot.R")
-
+source("Functions/deer_plotting_functions.R")
 #Make Fig. 1
 source("Code/PedagogFig.R")
 
@@ -15,16 +13,6 @@ dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,tim
 wlm_abun<-readRDS(file="Results/wlm_abun.rds")
 wlm_dvc<-readRDS(file="Results/wlm_dvc.rds")
 wlm_hunters<-readRDS(file="Results/wlm_hunters.rds")
-
-# Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
-pan.wd<-1.5
-xht<-0.5   #height of x axis label region
-ywd<-0.5    #width of y axis label region
-zwd<-0.05   #width of z-axes label region
-gap<-.2   #small gap
-tot.wd<-ywd+pan.wd+gap
-pan.ht<-0.75*pan.wd #big ones are square
-tot.ht<-3*pan.ht+xht+3*gap
 
 abun.wpmf<-wsyn::wpmf(abun.dt,times = minyear:maxyear,sigmethod = "quick")
 abun.wmf<-wsyn::wmf(abun.dt,times = minyear:maxyear)
