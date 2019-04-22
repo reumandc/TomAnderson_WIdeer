@@ -30,8 +30,8 @@ tot.ht<-pan.ht+xht+gap
 
 #Make Figure 2
 #pdf("Results/Fig2.pdf",height=tot.ht,width=tot.wd)
-#png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-tiff("Results/Fig2.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+#tiff("Results/Fig2.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
 
 #panel A: wavelet mean field
 par(fig=c((ywd)/tot.wd,
@@ -151,9 +151,9 @@ axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1),
 dev.off()
 
 #Make Figure 3
-tiff("Results/Fig3.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+#tiff("Results/Fig3.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
 #pdf("Results/Fig3.pdf",height=tot.ht,width=tot.wd)
-#png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")#panel A: wavelet mean field
+png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")#panel A: wavelet mean field
 
 #Panel A: wavelet mean field
 par(fig=c((ywd)/tot.wd,
@@ -337,7 +337,7 @@ mtext("B)",font=2,adj=-0.1)
 dev.off()
 
 #Make wavelet mean field, wavelet phasor meanfield and predicted synchrony plot for hunters (Fig S7)
-png("Results/FigS7.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+png("Results/FigS7.png",res=600,height=9.75,width=3.75,unit="in")
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
 abun.tmp<-cty.list$Abun[row.names(cty.list$Abun)%in%row.names(hunters.tmp),12:36]
@@ -482,8 +482,8 @@ pan.ht.small<-0.33*pan.ht.big #small panel height param
 tot.wd<-ywd+pan.wd.big+gap
 tot.ht<-2*pan.ht.big+2*pan.ht.small+2*xht+4*gap
 
-#png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
-tiff("Results/Fig4.tif",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
+png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
+#tiff("Results/Fig4.tif",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
 
 #Deer- little panel
 par(fig=c(ywd/tot.wd,
