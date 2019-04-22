@@ -353,13 +353,13 @@ visual indication of the statistical result that deer synchrony explains DVC syn
 \begin{figure}[!h]
 \includegraphics[width=.6\textwidth]{Results/Fig4.png}
 \caption{Magnitude of the effects of synchrony on state-total deer abundance
-and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (C) time 
+and DVC fluctuations. Small panels show state-total deer abundance (A, in millions) and DVC (C, in thousands) time 
 series (black lines) and surrogate totals obtained via a randomization procedure 
 (\textit{Methods}) that eliminates synchrony among counties at $3-7$-year timescales 
 (grey lines, 1000 surrogates plotted). Increased variation and semi-periodic 
 oscillations due to synchrony are particularly notable when trends and long-timescale 
 (longer than 7 years) variability are filtered out by subtracting the mean of the 
-grey lines (B = deer; D = DVCs). $\Delta$ represents the difference in values from 
+grey lines (B = deer, in thousands; D = DVCs). $\Delta$ represents the difference in values from 
 the surrogate mean. Red arrows highlight examples of the strong cycling that is 
 attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due 
 to synchrony amounts to an estimated difference between peak and trough years of 
