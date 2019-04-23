@@ -65,7 +65,7 @@ cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
 z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
 image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
-axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1), 
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 
 #Panel B: wavelet phasor mean field
@@ -107,7 +107,7 @@ cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
 z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
 image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
-axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1), 
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 
 #Panel C: predicted synchrony
@@ -146,7 +146,7 @@ cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
 z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
 image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
-axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1), 
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 dev.off()
 
@@ -187,7 +187,7 @@ cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
 z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
 image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
-axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1), 
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 
 #Panel B: wavelet phasor mean field
@@ -229,7 +229,7 @@ cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
 z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
 image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
-axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1), 
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 
 #Panel C: predicted synchrony
@@ -268,7 +268,7 @@ cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
 z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
 image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
-axis(2, at=round(seq(min(zlimits),max(zlimits),length=6),digits=1), 
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 dev.off()
 
@@ -490,14 +490,14 @@ par(fig=c(ywd/tot.wd,
           (ywd+pan.wd.small)/tot.wd,
           (2*pan.ht.big+pan.ht.small+2*xht+2*gap)/tot.ht,
           (2*pan.ht.big+2*pan.ht.small+2*xht+2*gap)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(3,0.5,0))
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
 colors<-gray.colors(25)[sample(1:25, 999, replace=TRUE)]
 plot(1981:2016,rep(NA,36),ylim=c(min(abunsurr),max(abunsurr)),ylab="",xlab="",las=1,axes=F,cex.axis=0.75)
 for(i in 1:nrow(abunsurr)){
   lines(1981:2016,abunsurr[i,],col=colors[i])
 }
 lines(1981:2016,apply(cty.list$Abun,2,sum),lwd=2)
-axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1,tck=-.05,cex.axis=0.75)
+axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1,cex.axis=0.75)
 axis(1,labels=c(rep("",8)),at = seq(1980,2016,5),tck=-0.05,cex=0.75)
 mtext("Deer (M)",side=2,line=2.25,cex=0.75)
 mtext("A)",font=2,side=3,line=-1,adj=0.05)
@@ -507,7 +507,7 @@ par(fig=c(ywd/tot.wd,
           (ywd+pan.wd.big)/tot.wd,
           (2*xht+pan.ht.big+gap+pan.ht.small)/tot.ht,
           (2*xht+2*pan.ht.big+gap+pan.ht.small)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(3,0.5,0),new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.75,0),new=T)
 plot(1981:2016,rep(NA,36),ylab="",xlab="",ylim=c(-180000,200000),las=1,yaxt="n",cex.axis=0.75)
 for(i in 1:nrow(dvcsurr)){
   lines(1981:2016,abunsurr[i,]-apply(abunsurr,2,mean),col=colors[i])
@@ -518,7 +518,7 @@ Arrows(x0 = 1997,y0 = 0,y1=-150000,x1=1997,arr.type = "triangle",arr.adj=1,arr.l
 text(x=2001,y=160000,labels="+159054 deer",font=2,cex=0.5,adj=0.05,col="red")
 text(x=1999,y=-174000,labels="-174339 deer",font=2,cex=0.5,adj=0.05,col="red")
 mtext(expression(Delta~"from Surrogate Mean (K)"),side=2,line=2.25,cex=0.75)
-axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,tck=-.05,cex.axis=0.75)
+axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,cex.axis=0.75)
 mtext("B)",font=2,side=3,line=-1,adj=0.05)
 
 #DVC little panel
@@ -533,7 +533,7 @@ for(i in 1:nrow(dvcsurr)){
 }
 lines(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],lwd=2)
 axis(1,labels=c(rep("",7)),at = seq(1985,2016,5),tck=-0.05)
-axis(2,labels= format(seq(16,24,2),scientific=F),at = seq(16000,24000,2000),las=1,tck=-.05,cex.axis=0.75)
+axis(2,labels= format(seq(16,24,2),scientific=F),at = seq(16000,24000,2000),las=1,cex.axis=0.75)
 mtext("DVCs (K)",side=2,line=2.25,cex=0.75)
 mtext("C)",font=2,side=3,line=-1,adj=0.05)
 box()
@@ -542,7 +542,7 @@ par(fig=c(ywd/tot.wd,
           (ywd+pan.wd.big)/tot.wd,
           xht/tot.ht,
           (pan.ht.big+xht)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(1,0.5,0),new=T)
+    mai=c(0,0,0,0),mgp=c(1,0.75,0),new=T)
 plot(1987:2016,rep(NA,30),type="b",xlab="",ylab="",ylim=c(-2000,2000),las=1,yaxt="n",cex.axis=0.75)
 for(i in 1:nrow(dvcsurr)){
   lines(1987:2016,dvcsurr[i,]-apply(dvcsurr,2,mean),col=colors[i])
@@ -555,6 +555,6 @@ text(x=1997.5,y=-1800,labels="-1421 DVCs",font=2,cex=0.5,adj=0.05,col="red")
 mtext(expression(Delta~"from Surrogate Mean"),side=2,line=2.25,cex=0.75)
 mtext("Year",side=1,line=1.5,cex=0.75)
 mtext("D)",font=2,side=3,line=-1,adj=0.05)
-axis(2,labels= format(seq(-2000,2000,500),scientific=F),at = seq(-2000,2000,500),las=1,tck=-.05,cex.axis=0.75)
+axis(2,labels= format(seq(-2000,2000,500),scientific=F),at = seq(-2000,2000,500),las=1,cex.axis=0.75)
 
 dev.off()
