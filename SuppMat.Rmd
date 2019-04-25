@@ -107,11 +107,9 @@ usda.abunmodelSyncExp<-readRDS(file="Results/usda.abunmodelSyncExp.rds")
 usda.abunmodelXterms<-readRDS(file="Results/usda.abunmodelXterms.rds")
 gunhunter_percent<-round(100*mean(state.totals$GunHunters[state.totals$Year>1980]/(state.totals$GunHunters[state.totals$Year>1980]+state.totals$BowHunters[state.totals$Year>1980])),0)
 ```
-# MATERIALS AND METHODS
+# METHODS
 
-## Deer and hunter abundance data
-
-We obtained deer abundance estimates from the Wisconsin Department of 
+\textbf{Deer and hunter abundance data.} We obtained deer abundance estimates from the Wisconsin Department of 
 Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear`; (Fig. \ref{FigS1_Timeseries}). 
 From 1981-2013, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
@@ -145,9 +143,7 @@ dropped 18 counties due to incomplete survey
 efforts of hunters or missing data, leaving 53
 counties for analysis that used the hunter density data. 
 
-## DVC data
-
-We obtained estimates of DVCs for each county, spanning the 
+\textbf{DVC data.} We obtained estimates of DVCs for each county, spanning the 
 years 1987-`r maxyear`, from the WI Department 
 of Transportation (WIDOT; Fig. \ref{FigS1_Timeseries}). These data reflect 
 the number of police-investigated DVCs; they are an 
@@ -171,9 +167,7 @@ We also obtained traffic volume estimates (millions of miles
 driven) for each county spanning the years 1988-`r maxyear` from the 
 WIDOT, to control for traffic in our analysis of DVCs.
 
-## Weather and climate data
-
-We obtained daily weather data (minimum and maximum air temperature 
+\textbf{Weather and climate data.} We obtained daily weather data (minimum and maximum air temperature 
 [here called Tmin and Tmax], snow depth, and precipitation) from 
 all available weather stations in each county from the 
 National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.noaa.gov/)). We 
@@ -203,9 +197,7 @@ climate variables in subsequent analyses: winter Tmin, Tmax,
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. 
 
-## Data pre-processing
-
-We performed all analyses described below and in the main text 
+\textbf{Data pre-processing.} We performed all analyses described below and in the main text 
 at three spatial scales: counties (N = 44-`r dim(cty.list$Abun)[1]` depending on 
 the variables involved; mean county 
 area $\pm$ SD = `r round(mean(gps$Area_km2),0)` $\pm$ `r round(sd(gps$Area_km2),0)` $\text{km}^2$), 
@@ -238,9 +230,7 @@ procedures at the county level.
 We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial wavelet coherence and wavelet linear regression procedure described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the `wsyn` package for the R programming language, available at `www.github.com/reumandc/wsyn/CRANv1p0p0` and on the Comprehensive R Archive Network (CRAN).
 
-## The wavelet mean field and wavelet phasor mean field
-
-We assessed the strength of synchrony 
+\textbf{The wavelet mean field and wavelet phasor mean field.} We assessed the strength of synchrony 
 and its dependence on time and timescale for 
 all spatiotemporal variables using two 
 statistical tools: the wavelet mean field and 
@@ -288,9 +278,7 @@ function `wmf` and wavelet phasor mean fields were computed using the function `
 
 All plots based on wavelet transforms are "scalloped", i.e., values corresponding to longer timescales and times closer to the start or end of available data are not plotted. This is because the wavelet transform is based on convolutions of wavelet functions with the timeseries being transformed. Convolutions for which a substantial portion of the wavelet function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is standard practice.
 
-## Spatial wavelet coherence and wavelet coherence
-
-For both county- and district-level data, we 
+\textbf{Spatial wavelet coherence and wavelet coherence.} For both county- and district-level data, we 
 assessed pairwise relationships between 
 spatiotemporal variables using the spatial wavelet coherence 
 technique. This technique is also a well-established and standard tool in some biological fields; it is described in detail 
@@ -402,9 +390,7 @@ indices, statewide averages for winter weather,
 statewide hunter abundance time series, and 
 statewide total DVCs. The same functions in the `wsyn` package listed above for spatial wavelet coherence were used, as they can compute both ordinary wavelet coherence and spatial wavelet coherence.
 
-## Wavelet Moran theorem, fractions of synchrony explained, and predicted synchrony
-
-We calculated the amount of deer abundance 
+\textbf{Wavelet Moran theorem, fractions of synchrony explained, and predicted synchrony.} We calculated the amount of deer abundance 
 synchrony explained by individual weather and 
 climate variables, as well as the amount of DVC 
 synchrony explained by deer abundance, following 
@@ -438,9 +424,7 @@ Proper partitioning of spatial synchrony, into a component explained by the sync
 Large cross terms correspond to a general association between the model (drivers, or predictor variables) at one location and the residuals of the model at other locations [@Sheppard2016_aphids; @Sheppard_wavmodel].  Such associations may occur as a result of the population at the first location dispersing to the second location and being included in the count there. Considering a coarser spatial scale limits the potential for dispersal to have such an influence on our statistics, so one expects that if cross terms are large at the county spatial scale, the problem may be mitigated at the district scale, as happened in some
 of our analyses (see section "USDA district results" in Supplementary text). 
 
-## Randomization procedure for removing synchrony at $3-7$-year timescales
-
-In order to quantify the degree to which 
+\textbf{Randomization procedure for removing synchrony at $3-7$-year timescales.} In order to quantify the degree to which 
 synchronizing effects are responsible for 
 fluctuations in statewide total deer and DVC time 
 series (Fig. \ref{MT-Fig4_StateWideFluctuations} and associated text), 
@@ -488,9 +472,7 @@ time series were compared to the actual time series
 additional variance in the state-total time series 
 that was attributable to synchrony (Fig. \ref{MT-Fig4_StateWideFluctuations}).
 
-## Approximate monetary impact of DVCs
-
-We estimated the approximate monetary impact of 
+\textbf{Approximate monetary impact of DVCs.} We estimated the approximate monetary impact of 
 synchrony in DVCs based on several reported 
 assumptions about DVCs. Using an average difference in DVCs
 between peak and trough years 
@@ -506,9 +488,7 @@ of the cost of DVCs [@Huijser2008_dvc], the
 difference between peak and trough years in DVC 
 costs may exceed US\$22M.    
 
-## Data Availability
-
-We have adopted an open and reproducible science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
+\textbf{Data Availability.} We have adopted an open and reproducible science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
 The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `www.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
 The suite of analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button via the codes in that repository - see the `Readme.md` file in the repository for instructions.
 
@@ -520,11 +500,13 @@ The suite of analyses leading to this paper can be re-run and the paper re-compi
 
 \newpage
 
-# SUPPLEMENTARY INFORMATION
+# Synchronous effects produce major cycles in deer populations and deer-vehicle collisions: Supplementary information appendix
 
-## USDA district results
+\begin{center}
+Anderson, Sheppard, Walter, Rolley, Reuman
+\end{center}
 
-Using district-level data, deer abundance 
+\textbf{USDA district results.} Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
 (Fig. \ref{FigS8_WMFAndPredictionsDistricts}A,C). Deer abundance was significantly related to $\text{MEI}_{\text{w}}$, 
@@ -559,9 +541,7 @@ counties, but such effects would be
 reduced at the larger district level because reduced fractions of deer and cars disperse from one spatial unit to another for these larger spatial units. 
 Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS8_WMFAndPredictionsDistricts}F). 
 
-## Statewide results
-
-In general, results of statewide analyses 
+\textbf{Statewide results.} In general, results of statewide analyses 
 mostly agreed with the smaller-spatial-unit 
 analyses, when they could be compared. Results on synchrony were not available at state level because at that level each variable is only represented by a single time series, but we compared wavelet coherence results between variables at the statewide spatial scale to spatial wavelet coherence results between variables using smaller spatial units. Statewide deer abundance and DVC time series were marginally 
 significantly coherent over $3-7$-year timescales 
@@ -576,9 +556,7 @@ Hunter abundance and deer
 abundance were not significantly coherent at the 
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
 
-## Notes on details of the cycling mechanism
-
-There are two alternative elaborations of the mechanisms presented in the main text by which
+\textbf{Notes on details of the cycling mechanism.} There are two alternative elaborations of the mechanisms presented in the main text by which
 synchronous effects of environmental drivers produce state-wide population cycles in deer.
 Synchronous fluctuations in environmental drivers associated with winter climate may have produced
 small oscillations on 3-7-year timescales in county-level deer population time series, and 
@@ -600,7 +578,9 @@ may be more likely given previous work documenting the influence of snow depth a
 climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
 
 \newpage
+
 # Supplementary figures
+
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{Results/FigS1.png}
 \caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions, 
