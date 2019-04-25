@@ -547,7 +547,7 @@ that the same index time series pertained to all
 locations for which the spatiotemporal variable was 
 measured. 
 
-For statewide analyses, for which all variables 
+For statewide analyses (SI Appendix), for which all variables 
 were represented only by single, state-average or 
 total time series rather than spatiotemporal data, timescale-specific relationships 
 between variables were tested using ordinary 
@@ -566,7 +566,7 @@ statewide total DVCs. The same functions in the `wsyn` package listed above for 
 synchrony explained by individual weather and 
 climate variables, as well as the amount of DVC 
 synchrony explained by deer abundance, following 
-the wavelet Moran theorem of Sheppard *et al.*[@Sheppard2016_aphids]. 
+the wavelet Moran theorem of Sheppard *et al.* [@Sheppard2016_aphids]. 
 As part of this procedure, we also calculated the 
 average "cross terms" of Sheppard *et al.*[@Sheppard2016_aphids] over 
 the timescale band of interest (see supplementary 
