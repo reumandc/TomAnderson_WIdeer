@@ -123,9 +123,9 @@ principally important as a demonstration of a new and potentially widespread mec
 population cycles on large spatial scales, a phenomenon of long-standing interest.**
 -->
 
-**Signifcance Statement:** 
+<!--Authors must submit a 120-word-maximum statement about the significance of their research paper written at a level understandable to an undergraduate-educated scientist outside their field of specialty. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. Significance statements are not required for Brief Reports. TOM: My first attempt below is currently 140 words-->
+**Significance Statement:** Understanding the mechanisms that produce cyclical patterns in population abundances has long been a goal in ecology. Here, we demonstrate a new mechanism by which population cycles can arise in white-tailed deer, as well as the consequences of cycles for humans. Fluctuations in white-tailed deer abundances in different counties of Wisconsin, USA, were highly correlated across space (i.e. exhibited spatial synchrony) due to correlated fluctuations in winter climate. Importantly, these synchronized dynamics occurred only at specific frequencies (3-7 year periodicity). Deer synchrony in turn produced synchronized deer-vehicle collisions across Wisconsin, also occurring at 3-7 year oscillations. When aggregated across Wisconsin, fluctuations in each variable for individual counties reinforced each other, producing state-wide fluctuations occurring at the same oscillation frequency. Our results likely have great importance for hunting and insurance industries, as well as the ecologial communities in which deer exist.   
 
-<!--Authors must submit a 120-word-maximum statement about the significance of their research paper written at a level understandable to an undergraduate-educated scientist outside their field of specialty. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. Significance statements are not required for Brief Reports.-->
 Spatial population synchrony, i.e., the tendency for populations of a species in 
 different locations to exhibit correlated or otherwise related fluctuations through time, is a ubiquitous phenomenon[@Leibhold2004_sync]. In theory, if synchrony of local populations
 occurs on specific timescales, it can produce cycling 
@@ -353,13 +353,13 @@ visual indication of the statistical result that deer synchrony explains DVC syn
 \begin{figure}[!h]
 \includegraphics[width=.6\textwidth]{Results/Fig4.png}
 \caption{Magnitude of the effects of synchrony on state-total deer abundance
-and DVC fluctuations. Small panels show state-total deer abundance (A) and DVC (C) time 
+and DVC fluctuations. Small panels show state-total deer abundance (A, in millions) and DVC (C, in thousands) time 
 series (black lines) and surrogate totals obtained via a randomization procedure 
 (\textit{Methods}) that eliminates synchrony among counties at $3-7$-year timescales 
 (grey lines, 1000 surrogates plotted). Increased variation and semi-periodic 
 oscillations due to synchrony are particularly notable when trends and long-timescale 
 (longer than 7 years) variability are filtered out by subtracting the mean of the 
-grey lines (B = deer; D = DVCs). $\Delta$ represents the difference in values from 
+grey lines (B = deer, in thousands; D = DVCs). $\Delta$ represents the difference in values from 
 the surrogate mean. Red arrows highlight examples of the strong cycling that is 
 attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due 
 to synchrony amounts to an estimated difference between peak and trough years of 

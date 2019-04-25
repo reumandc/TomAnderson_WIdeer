@@ -23,9 +23,9 @@ totwd<-ywd+3*panwd.b+3*gap
 totht<-xht+2*panht.b+2*gap+panht.s+gap
 colmap<-rep(c("black","red"),times=numts)#rainbow(numts)
 adjmt<-0.5
-#pdf(file=paste("Fig1.pdf"),width=totwd,height=totht)
-#tiff(file=paste("Fig1.tiff"),width=totwd,height=totht,compression=c("lzw"),units="in",res=600)
-png(file="Results/Fig1.png",width=totwd,height=totht,units="in",res=600)
+#pdf(file=paste("Results/Fig1.pdf"),width=totwd,height=totht)
+tiff(file=paste("Results/Fig1.tif"),width=totwd,height=totht,compression=c("lzw"),units="in",res=600)
+#png(file="Results/Fig1.png",width=totwd,height=totht,units="in",res=600)
 
 #Example 1 - time series with no synchrony
 tm<-0:(tslen-1)

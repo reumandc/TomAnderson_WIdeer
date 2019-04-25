@@ -1,9 +1,7 @@
 #Make figures for the manuscript
-source("Functions/Fn_syncexpplot.R")
-source("Functions/deer_plotting_functions.R")
 source("Functions/Fn_phaseplot.R")
 source("Functions/Fn_rankplot.R")
-
+source("Functions/deer_plotting_functions.R")
 #Make Fig. 1
 source("Code/PedagogFig.R")
 
@@ -16,57 +14,262 @@ wlm_abun<-readRDS(file="Results/wlm_abun.rds")
 wlm_dvc<-readRDS(file="Results/wlm_dvc.rds")
 wlm_hunters<-readRDS(file="Results/wlm_hunters.rds")
 
-# Set up dimensions of wavelet mean field and phasor mean fields for Figs 2 and 3
-tot.wd<-4.75
-xht<-0.75   #height of x axis label region
-ywd<-0.5    #width of y axis label region
-zwd<-0.5    #width of z-axes label region
-gap<-.2   #small gap 
-pan.wd<-(tot.wd-ywd-gap-zwd) #large panel width parameter
-pan.ht<-0.75*pan.wd+zwd #big ones are square
-tot.ht<-3*pan.ht+xht+3*gap
-
 abun.wpmf<-wsyn::wpmf(abun.dt,times = minyear:maxyear,sigmethod = "quick")
 abun.wmf<-wsyn::wmf(abun.dt,times = minyear:maxyear)
 dvc.wpmf<-wsyn::wpmf(dvc.dt,times = 1987:maxyear,sigmethod = "quick")
 dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 
+#set dimensions for Figures 2 and 3
+pan.wd<-1.25
+xht<-0.5   #height of x axis label region
+ywd<-0.5    #width of y axis label region
+gap<-.1   #small gap
+tot.wd<-ywd+3*pan.wd+3*gap
+pan.ht<-pan.wd 
+tot.ht<-pan.ht+xht+gap
+
 #Make Figure 2
+#pdf("Results/Fig2.pdf",height=tot.ht,width=tot.wd)
 png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
-deer_wmfplot(abun.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
-abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
-deer_wpmfplot(abun.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
-par(new=T)
+#tiff("Results/Fig2.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+
+#panel A: wavelet mean field
+par(fig=c((ywd)/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
+#define x, y and z limits
+zlimits<-range(Mod(abun.wmf$values),na.rm=T)
+xlimits<-range(1981:2016)
+l2ts<-log2(abun.wmf$timescales)
+
+#plot wmf
+image(x=abun.wmf$times,y=l2ts,z=Mod(abun.wmf$values),xlim=xlimits,
+      zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',xaxt="n",yaxs='r',ylab="",xlab="")
+ylocs <- pretty(abun.wmf$timescales, n = 8)
+xlocs <- pretty(abun.wmf$times, n = 8)
+axis(1, at = xlocs, labels = xlocs)
+axis(2, at = log2(ylocs), labels = ylocs)
+#mtext("Year",side=1,line=1.2)
+mtext("Timescale (yrs)",side=2,line=1.2)
+text(xlimits[1],max(l2ts),'A)',adj=c(0,1),font=2)
+
+#add color bar
+par(new=T,fig=c((ywd+.93*pan.wd)/tot.wd,
+                (ywd+.98*pan.wd)/tot.wd,
+                (xht+6*gap)/tot.ht,
+                (xht+pan.ht-0.2*gap)/tot.ht),
+    mai=c(0,0,0,0))
+cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
+z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
+image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
+      col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
+     mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
+
+#Panel B: wavelet phasor mean field
+par(fig=c((ywd+pan.wd+gap)/tot.wd,
+          (ywd+2*pan.wd+gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+
+#define x, y and z limits
+zlimits<-range(Mod(abun.wpmf$values),na.rm=T)
+xlimits<-range(1981:2016)
+l2ts<-log2(abun.wpmf$timescales)
+
+#plot wpmf
+image(x=abun.wpmf$times,y=l2ts,z=Mod(abun.wpmf$values),xlim=xlimits,
+      zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r',ylab="",xlab="")
+ylocs <- pretty(abun.wpmf$timescales, n = 8)
+axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+xlocs <- pretty(abun.wmf$times, n = 8)
+axis(1, at = xlocs, labels = xlocs)
+mtext("Year",side=1,line=1.2)
+text(xlimits[1],max(l2ts),'B)',adj=c(0,1),font=2)
+par(fig=c((ywd+pan.wd+gap)/tot.wd,
+          (ywd+2*pan.wd+gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
 contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
-abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
-syncexpplot(resp.wmf=abun.wmf$values,exp.sync = predsync(wlm_abun)[[3]],1981:2016,
-            wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
-            cex.lab=3,cex.axis=2)
-mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
+#add color bar
+par(new=T,fig=c((ywd+.93*pan.wd+pan.wd+gap)/tot.wd,
+                (ywd+.98*pan.wd+pan.wd+gap)/tot.wd,
+                (xht+6*gap)/tot.ht,
+                (xht+pan.ht-0.2*gap)/tot.ht),
+    mai=c(0,0,0,0))
+cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
+z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
+image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
+      col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
+     mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
+
+#Panel C: predicted synchrony
+par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
+          (ywd+3*pan.wd+2*gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+
+#define x, y and z limits
+zlimits<-range(Mod(predsync(wlm_abun)[[3]]),na.rm=T)
+xlimits<-range(1981:2016)
+l2ts<-log2(abun.wmf$timescales)
+
+#plot predicted synchrony
+image(x = abun.wmf$times, y = log2(abun.wmf$timescales), z = Mod(predsync(wlm_abun)[[3]]),xlim=xlimits,
+      zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r',ylab="",xlab="")
+par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
+          (ywd+3*pan.wd+2*gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+contour(x = abun.wmf$times, y = log2(abun.wmf$timescales),z=Mod(abun.wmf$values),add=T,frame=F,las=1,lwd=1)
+ylocs <- pretty(abun.wmf$timescales, n = 8)
+axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+mtext("",side=1,line=1.2)
+text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)
+
+#add color bar
+par(new=T,fig=c((ywd+.93*pan.wd+2*pan.wd+2*gap)/tot.wd,
+                (ywd+.98*pan.wd+2*pan.wd+2*gap)/tot.wd,
+                (xht+6*gap)/tot.ht,
+                (xht+pan.ht-0.2*gap)/tot.ht),
+    mai=c(0,0,0,0))
+cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
+z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
+image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
+      col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
+     mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 dev.off()
 
 #Make Figure 3
-png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-par(mfrow=c(3,1),mgp=c(3.5,1.25,0),mai=c(1,0.75,0.2,0))
-deer_wmfplot(dvc.wmf,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
-mtext(text = "A)",font=2,side = 3,adj =0.05,line=-1,cex=2)
-abline(h=c(log2(3),log2(7)),lty=2)
-deer_wpmfplot(dvc.wpmf,sigthresh = 0.001,xlab="",ylab="Timescale (yrs)",cex.lab=3,cex.axis=2,las=1)
-par(new=T)
+#tiff("Results/Fig3.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+#pdf("Results/Fig3.pdf",height=tot.ht,width=tot.wd)
+png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")#panel A: wavelet mean field
+
+#Panel A: wavelet mean field
+par(fig=c((ywd)/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
+#define x, y and z limits
+zlimits<-range(Mod(dvc.wmf$values),na.rm=T)
+xlimits<-range(1987:2016)
+l2ts<-log2(dvc.wmf$timescales)
+
+#plot wmf
+image(x=dvc.wmf$times,y=l2ts,z=Mod(dvc.wmf$values),xlim=xlimits,
+      zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',xaxt="n",yaxs='r',ylab="",xlab="")
+ylocs <- pretty(dvc.wmf$timescales, n = 8)
+xlocs <- pretty(dvc.wmf$times, n = 8)
+axis(1, at = xlocs, labels = xlocs)
+axis(2, at = log2(ylocs), labels = ylocs)
+#mtext("Year",side=1,line=1.2)
+mtext("Timescale (yrs)",side=2,line=1.2)
+text(xlimits[1],max(l2ts),'A)',adj=c(0,1),font=2)
+
+#add color bar
+par(new=T,fig=c((ywd+.93*pan.wd)/tot.wd,
+                (ywd+.98*pan.wd)/tot.wd,
+                (xht+6*gap)/tot.ht,
+                (xht+pan.ht-0.2*gap)/tot.ht),
+    mai=c(0,0,0,0))
+cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
+z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
+image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
+      col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
+     mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
+
+#Panel B: wavelet phasor mean field
+par(fig=c((ywd+pan.wd+gap)/tot.wd,
+          (ywd+2*pan.wd+gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+
+#define x, y and z limits
+zlimits<-range(Mod(dvc.wpmf$values),na.rm=T)
+xlimits<-range(1987:2016)
+l2ts<-log2(dvc.wpmf$timescales)
+
+#plot wpmf
+image(x=dvc.wpmf$times,y=l2ts,z=Mod(dvc.wpmf$values),xlim=xlimits,
+      zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r',ylab="",xlab="")
+ylocs <- pretty(dvc.wpmf$timescales, n = 8)
+axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+xlocs <- pretty(dvc.wmf$times, n = 8)
+axis(1, at = xlocs, labels = xlocs)
+mtext("Year",side=1,line=1.2)
+text(xlimits[1],max(l2ts),'B)',adj=c(0,1),font=2)
+par(fig=c((ywd+pan.wd+gap)/tot.wd,
+          (ywd+2*pan.wd+gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
-abline(h=c(log2(3),log2(7)),lty=2)
-mtext(text = "B)",font=2,side = 3,adj =0.05,line=-1,cex=2)
-syncexpplot(resp.wmf=dvc.wmf$values,exp.sync = predsync(wlm_dvc)[[3]],1987:2016,
-            wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescale (yrs)",
-            cex.lab=3,cex.axis=2)
-mtext(text = "C)",font=2,side = 3,adj =0.05,line=-1,cex=2)
+#add color bar
+par(new=T,fig=c((ywd+.93*pan.wd+pan.wd+gap)/tot.wd,
+                (ywd+.98*pan.wd+pan.wd+gap)/tot.wd,
+                (xht+6*gap)/tot.ht,
+                (xht+pan.ht-0.2*gap)/tot.ht),
+    mai=c(0,0,0,0))
+cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
+z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
+image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
+      col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
+     mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
+
+#Panel C: predicted synchrony
+par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
+          (ywd+3*pan.wd+2*gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+
+#define x, y and z limits
+zlimits<-range(Mod(predsync(wlm_dvc)[[3]]),na.rm=T)
+xlimits<-range(1987:2016)
+l2ts<-log2(dvc.wmf$timescales)
+
+#plot predicted synchrony
+image(x = dvc.wmf$times, y = log2(dvc.wmf$timescales), z = Mod(predsync(wlm_dvc)[[3]]),xlim=xlimits,
+      zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r',ylab="",xlab="")
+par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
+          (ywd+3*pan.wd+2*gap)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+contour(x = dvc.wmf$times, y = log2(dvc.wmf$timescales),z=Mod(dvc.wmf$values),add=T,frame=F,las=1,lwd=1)
+ylocs <- pretty(dvc.wmf$timescales, n = 8)
+axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+#mtext("Year",side=1,line=1.2)
+text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)
+
+#add color bar
+par(new=T,fig=c((ywd+.93*pan.wd+2*pan.wd+2*gap)/tot.wd,
+                (ywd+.98*pan.wd+2*pan.wd+2*gap)/tot.wd,
+                (xht+6*gap)/tot.ht,
+                (xht+pan.ht-0.2*gap)/tot.ht),
+    mai=c(0,0,0,0))
+cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
+z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
+image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
+      col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
+     mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 dev.off()
 
 #make plots of phase by timescale for all significant pairs of variables (Fig S4)
@@ -134,7 +337,7 @@ mtext("B)",font=2,adj=-0.1)
 dev.off()
 
 #Make wavelet mean field, wavelet phasor meanfield and predicted synchrony plot for hunters (Fig S7)
-png("Results/FigS7.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+png("Results/FigS7.png",res=600,height=9.75,width=3.75,unit="in")
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
 abun.tmp<-cty.list$Abun[row.names(cty.list$Abun)%in%row.names(hunters.tmp),12:36]
@@ -268,33 +471,35 @@ dvcsurr<-read.csv("Data/dvcsurrsum.csv")
 
 #Make plots showing statewide magnitude of deer and DVC fluctuatoins (Fig 4)
 #***Set up plotting dimensions, units are inches
-tot.wd<-3.5
+
 xht<-.5   #height of x axis label region
-ywd<-1    #width of y axis label region
-gap<-.1   #small gap 
-pan.wd.big<-(tot.wd-ywd-gap) #large panel width parameter
+ywd<-0.75   #width of y axis label region
+gap<-.1 #small gap 
+pan.wd.big<-1.75 #large panel width parameter
 pan.ht.big<-pan.wd.big #big ones are square
 pan.wd.small<-pan.wd.big #small panel width param
 pan.ht.small<-0.33*pan.ht.big #small panel height param
+tot.wd<-ywd+pan.wd.big+gap
 tot.ht<-2*pan.ht.big+2*pan.ht.small+2*xht+4*gap
 
 png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
+#tiff("Results/Fig4.tif",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
 
 #Deer- little panel
 par(fig=c(ywd/tot.wd,
           (ywd+pan.wd.small)/tot.wd,
           (2*pan.ht.big+pan.ht.small+2*xht+2*gap)/tot.ht,
           (2*pan.ht.big+2*pan.ht.small+2*xht+2*gap)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(3,0.5,0))
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
 colors<-gray.colors(25)[sample(1:25, 999, replace=TRUE)]
-plot(1981:2016,rep(NA,36),ylim=c(min(abunsurr),max(abunsurr)),ylab="",xlab="",las=1,axes=F)
+plot(1981:2016,rep(NA,36),ylim=c(min(abunsurr),max(abunsurr)),ylab="",xlab="",las=1,axes=F,cex.axis=0.75)
 for(i in 1:nrow(abunsurr)){
   lines(1981:2016,abunsurr[i,],col=colors[i])
 }
 lines(1981:2016,apply(cty.list$Abun,2,sum),lwd=2)
-axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1,tck=-.05,cex.axis=0.75)
-axis(1,labels=c(rep("",8)),at = seq(1980,2016,5),tck=-0.05,cex.axis=0.75)
-mtext("Deer (millions)",side=2,line=2,cex=0.75)
+axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1,cex.axis=0.75)
+axis(1,labels=c(rep("",8)),at = seq(1980,2016,5),tck=-0.05,cex=0.75)
+mtext("Deer (M)",side=2,line=2.25,cex=0.75)
 mtext("A)",font=2,side=3,line=-1,adj=0.05)
 box()
 #Deer- big panel
@@ -302,18 +507,18 @@ par(fig=c(ywd/tot.wd,
           (ywd+pan.wd.big)/tot.wd,
           (2*xht+pan.ht.big+gap+pan.ht.small)/tot.ht,
           (2*xht+2*pan.ht.big+gap+pan.ht.small)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(3,0.5,0),new=T)
-plot(1981:2016,rep(NA,36),ylab="",xlab="",ylim=c(-180000,200000),las=1,yaxt="n")
+    mai=c(0,0,0,0),mgp=c(3,0.75,0),new=T)
+plot(1981:2016,rep(NA,36),ylab="",xlab="",ylim=c(-180000,200000),las=1,yaxt="n",cex.axis=0.75)
 for(i in 1:nrow(dvcsurr)){
   lines(1981:2016,abunsurr[i,]-apply(abunsurr,2,mean),col=colors[i])
 }
-lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=3,type="b",pch=19)
+lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=2,type="b",pch=19)
 Arrows(x0 = 1999,y0 = 0,y1=140000,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-150000,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=2001,y=160000,labels="+159054 deer",font=2,cex=0.75,adj=0.05,col="red")
-text(x=1999,y=-174000,labels="-174339 deer",font=2,cex=0.75,adj=0.05,col="red")
-mtext(expression(Delta~"from Surrogate Mean (thousands)"),side=2,line=2,cex=0.9)
-axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,tck=-.05,cex.axis=0.75)
+text(x=2001,y=160000,labels="+159054 deer",font=2,cex=0.5,adj=0.05,col="red")
+text(x=1999,y=-174000,labels="-174339 deer",font=2,cex=0.5,adj=0.05,col="red")
+mtext(expression(Delta~"from Surrogate Mean (K)"),side=2,line=2.25,cex=0.75)
+axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,cex.axis=0.75)
 mtext("B)",font=2,side=3,line=-1,adj=0.05)
 
 #DVC little panel
@@ -322,14 +527,14 @@ par(fig=c(ywd/tot.wd,
           (pan.ht.big+xht+gap)/tot.ht,
           (pan.ht.big+pan.ht.small+xht+gap)/tot.ht),
     mai=c(0,0,0,0),new=T)
-plot(1987:2016,rep(NA,30),ylim=c(min(dvcsurr),max(dvcsurr)),ylab="DVCs",xlab="",las=1,axes=F,cex.axis=0.75)
+plot(1987:2016,rep(NA,30),ylim=c(min(dvcsurr),max(dvcsurr)),ylab="",xlab="",las=1,axes=F,cex.axis=0.75)
 for(i in 1:nrow(dvcsurr)){
   lines(1987:2016,dvcsurr[i,],col=colors[i])
 }
 lines(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],lwd=2)
-axis(1,labels=c(rep("",7)),at = seq(1985,2016,5),tck=-0.05,cex.axis=0.75)
-axis(2,labels= format(seq(16,24,2),scientific=F),at = seq(16000,24000,2000),las=1,tck=-.05,cex.axis=0.75)
-mtext("DVCs (thousands)",side=2,line=2,cex=0.75)
+axis(1,labels=c(rep("",7)),at = seq(1985,2016,5),tck=-0.05)
+axis(2,labels= format(seq(16,24,2),scientific=F),at = seq(16000,24000,2000),las=1,cex.axis=0.75)
+mtext("DVCs (K)",side=2,line=2.25,cex=0.75)
 mtext("C)",font=2,side=3,line=-1,adj=0.05)
 box()
 #DVC big panel
@@ -337,19 +542,19 @@ par(fig=c(ywd/tot.wd,
           (ywd+pan.wd.big)/tot.wd,
           xht/tot.ht,
           (pan.ht.big+xht)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(1,0.5,0),new=T)
-plot(1987:2016,rep(NA,30),type="b",xlab="Year",ylab="",ylim=c(-2000,2000),las=1,yaxt="n")
+    mai=c(0,0,0,0),mgp=c(1,0.75,0),new=T)
+plot(1987:2016,rep(NA,30),type="b",xlab="",ylab="",ylim=c(-2000,2000),las=1,yaxt="n",cex.axis=0.75)
 for(i in 1:nrow(dvcsurr)){
   lines(1987:2016,dvcsurr[i,]-apply(dvcsurr,2,mean),col=colors[i])
 }
-lines(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="b",pch=19,lwd=3)
+lines(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="b",pch=19,lwd=2)
 Arrows(x0 = 1999,y0 = 0,y1=1500,x1=1999,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
 Arrows(x0 = 1997,y0 = 0,y1=-1300,x1=1997,arr.type = "triangle",arr.adj=1,arr.length=0.2,lwd=2,col="red")
-text(x=1999.5,y=1800,labels="+1597 DVCs",font=2,cex=0.75,adj=0.05,col="red")
-text(x=1997.5,y=-1800,labels="-1421 DVCs",font=2,cex=0.75,adj=0.05,col="red")
-mtext(expression(Delta~"from Surrogate Mean"),side=2,line=2,cex=0.9)
-mtext("Year",side=1,line=1.5)
+text(x=1999.5,y=1800,labels="+1597 DVCs",font=2,cex=0.5,adj=0.05,col="red")
+text(x=1997.5,y=-1800,labels="-1421 DVCs",font=2,cex=0.5,adj=0.05,col="red")
+mtext(expression(Delta~"from Surrogate Mean"),side=2,line=2.25,cex=0.75)
+mtext("Year",side=1,line=1.5,cex=0.75)
 mtext("D)",font=2,side=3,line=-1,adj=0.05)
-axis(2,labels= format(seq(-2000,2000,500),scientific=F),at = seq(-2000,2000,500),las=1,tck=-.05,cex.axis=0.75)
+axis(2,labels= format(seq(-2000,2000,500),scientific=F),at = seq(-2000,2000,500),las=1,cex.axis=0.75)
 
 dev.off()
