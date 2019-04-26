@@ -256,6 +256,7 @@ between 0 and 1 that indicate the strength of phase synchrony and that can be
 straightforwardly significance tested as described in [9]. \label{PedagogFigWMF}}
 \end{figure}
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
+
 \newpage
 
 \begin{figure}[!h]
@@ -386,6 +387,8 @@ knitr::kable(TableS4,
              caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (*Methods*). $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns (which give percentages) are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS4_SummaryDistrict}",
              booktabs=T)
 ```
+
+\newpage
 
 # References {-}
 
