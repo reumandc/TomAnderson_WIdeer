@@ -10,10 +10,11 @@ output:
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
-csl: nature.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
+nocite: |
+  @Sheppard2016_aphids, @Sheppard_wavmodel
 ---
 
 <!--Libraries-->
@@ -224,7 +225,7 @@ study.\label{FigS1_Timeseries}}
 \includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
 \caption[Demonstration of the wavelet mean field]{Detecting time- and timescale-specific
 synchrony with the wavelet mean field. This figure was taken without change from
-[6], where additional details are also available. Panels a-d show the principle of how synchrony
+Sheppard \emph{et al.} (2016), where additional details are also available. Panels a-d show the principle of how synchrony
 can differ for different timescales of dynamics. Time series y1 and y2 (a)
 are exactly anti-correlated (out of phase), as are y3 and y4 (b). Combining
 y1 with y3 and y1 with y4
@@ -253,7 +254,7 @@ synchrony as a function of timescale
 of dynamics and time, here with red indicating synchrony and blue asynchrony.
 Wavelet phasor mean fields provide plots similar to (k) but with values
 between 0 and 1 that indicate the strength of phase synchrony and that can be
-straightforwardly significance tested as described in [9]. \label{PedagogFigWMF}}
+straightforwardly significance tested as described by Sheppard \emph{et al.} (2019). \label{PedagogFigWMF}}
 \end{figure}
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 
@@ -263,7 +264,7 @@ straightforwardly significance tested as described in [9]. \label{PedagogFigWMF}
 \includegraphics[width=\textwidth]{Results/PedagogFig_SpatCoh.png}
 \caption[Demonstration of spatial wavelet coherence]{Measuring relationships between variables using spatial wavelet coherence.
 This figure was adapted with only minor changes
-from supplementary figure 5 of [6].
+from supplementary figure 5 of Sheppard \emph{et al.} (2016).
 The time series of panel e were used as drivers in producing the time series of
 panel f and the figure shows
 how this relationship can be detected with the spatial wavelet coherence technique.
@@ -291,10 +292,10 @@ defined as $>4$ years) but no relationship
 (right $P$-value) for short timescales ($<4$ years). The red line on g is the
 spatial wavelet coherence and black lines are
 $50$th, $95$th, and $99$th percentiles of spatial wavelet coherences
-of synchrony-preserving surrogate (randomized) data sets [6]
+of synchrony-preserving surrogate (randomized) data sets (Sheppard \emph{et al.} 2016)
 appropriately representing the
 null hypothesis of no relationship between the $x$ and $y$.
-Also see [6] for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
+Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
 \end{figure}
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 \newpage
