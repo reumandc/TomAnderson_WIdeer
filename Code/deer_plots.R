@@ -54,7 +54,7 @@ axis(2, at = log2(ylocs), labels = ylocs)
 #mtext("Year",side=1,line=1.2)
 mtext("Timescale (yrs)",side=2,line=1.2)
 text(xlimits[1],max(l2ts),'A)',adj=c(0,1),font=2)
-
+abline(h=c(log2(3),log2(7)),lty=2)
 #add color bar
 par(new=T,fig=c((ywd+.93*pan.wd)/tot.wd,
                 (ywd+.98*pan.wd)/tot.wd,
@@ -97,6 +97,7 @@ par(fig=c((ywd+pan.wd+gap)/tot.wd,
 q<-stats::quantile(abun.wpmf$signif[[2]],0.999)
 contour(x=abun.wpmf$times,y=log2(abun.wpmf$timescales),z=Mod(abun.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
+abline(h=c(log2(3),log2(7)),lty=2)
 #add color bar
 par(new=T,fig=c((ywd+.93*pan.wd+pan.wd+gap)/tot.wd,
                 (ywd+.98*pan.wd+pan.wd+gap)/tot.wd,
@@ -135,6 +136,7 @@ ylocs <- pretty(abun.wmf$timescales, n = 8)
 axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
 mtext("",side=1,line=1.2)
 text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)
+abline(h=c(log2(3),log2(7)),lty=2)
 
 #add color bar
 par(new=T,fig=c((ywd+.93*pan.wd+2*pan.wd+2*gap)/tot.wd,
@@ -176,6 +178,7 @@ axis(2, at = log2(ylocs), labels = ylocs)
 #mtext("Year",side=1,line=1.2)
 mtext("Timescale (yrs)",side=2,line=1.2)
 text(xlimits[1],max(l2ts),'A)',adj=c(0,1),font=2)
+abline(h=c(log2(3),log2(7)),lty=2)
 
 #add color bar
 par(new=T,fig=c((ywd+.93*pan.wd)/tot.wd,
@@ -219,6 +222,8 @@ par(fig=c((ywd+pan.wd+gap)/tot.wd,
 q<-stats::quantile(dvc.wpmf$signif[[2]],0.999)
 contour(x=dvc.wpmf$times,y=log2(dvc.wpmf$timescales),z=Mod(dvc.wpmf$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
+abline(h=c(log2(3),log2(7)),lty=2)
+
 #add color bar
 par(new=T,fig=c((ywd+.93*pan.wd+pan.wd+gap)/tot.wd,
                 (ywd+.98*pan.wd+pan.wd+gap)/tot.wd,
@@ -257,6 +262,7 @@ ylocs <- pretty(dvc.wmf$timescales, n = 8)
 axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
 #mtext("Year",side=1,line=1.2)
 text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)
+abline(h=c(log2(3),log2(7)),lty=2)
 
 #add color bar
 par(new=T,fig=c((ywd+.93*pan.wd+2*pan.wd+2*gap)/tot.wd,
