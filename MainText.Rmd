@@ -97,7 +97,7 @@ dependence, often operating through species
 interactions [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
 
 Although the decades-long research focus on density-dependent mechanisms for population
-cycles has produce numerous deep insights, theory suggests another mechanism
+cycles has produce numerous deep insights, theoretical reasoning (Fig. \ref{Fig1_example}) suggests another mechanism
 for cycles, fundamentally different from prior mechanisms and once again focused on environmental
 causes, involving timescale-specific 
 spatial population synchrony. Synchrony is the tendency for populations of a species in 
