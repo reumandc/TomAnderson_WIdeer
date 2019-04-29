@@ -10,7 +10,7 @@ output:
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
-csl: pnas.csl
+csl: ecology.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
