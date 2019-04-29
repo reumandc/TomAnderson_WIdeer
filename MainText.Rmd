@@ -111,7 +111,9 @@ variation, a process called the Moran effect [@Moran1953].
 Thus timescale-specific synchrony 
 is an unexplored but potentially important mechanism of population cycles
 that may help renew interest in environmental contributors to population cycles.
-Timescale-specific synchrony would also be important for industries such as 
+This mechanism is fundamentally different from earlier mechanisms based on 
+strongly cycle drivers (sun spots). Timescale-specific synchrony would 
+also be important for industries such as 
 hunting and agriculture that exploit multiple populations across space if it 
 causes cycling in the sum of the exploited populations, and synchrony 
 of pests may likewise produce cycles in regional total damage 
