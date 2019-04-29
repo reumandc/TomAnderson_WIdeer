@@ -97,22 +97,20 @@ dependence, often operating through species
 interactions [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
 However, spatial population synchrony, i.e., the tendency for populations of a species in 
 different locations to exhibit correlated fluctuations through time, is a 
-ubiquitous phenomenon [@Leibhold2004_sync]; and recent work shows that timescale structure 
-in synchrony is also common, i.e., synchrony can occur on some timescales of population
-dynamics, but be absent on others [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Anderson2019_LO]. 
-Furthermore, if synchrony of local populations
-occurs on specific timescales, then, in theory, it can produce cycling 
+ubiquitous phenomenon [@Leibhold2004_sync]; and, if synchrony of local populations
+occurs predominantly on specific timescales, then, in theory, it can produce cycling 
 of total populations across large spatial scales (Fig. \ref{Fig1_example}A-F).
 Essentially, the synchronous frequency 
 components of local time series reinforce each 
 other in the total time series, whereas asynchronous components on other 
-timescales cancel out when summed. Synchrony is commonly caused by synchronized environmental 
+timescales cancel out when summed. Recent work shows that timescale structure 
+in synchrony is common - synchrony can occur on some timescales of population
+dynamics, but be absent on others [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Anderson2019_LO]. Synchrony is commonly caused by synchronized environmental 
 variation, a process called the Moran effect [@Moran1953]. 
 Thus timescale-specific synchrony 
 is an unexplored but potentially important mechanism of population cycles
 that may help renew interest in environmental contributors to population cycles.
-This mechanism is fundamentally different from earlier mechanisms based on 
-strongly cycle drivers (sun spots). Timescale-specific synchrony would 
+Timescale-specific synchrony could 
 also be important for industries such as 
 hunting and agriculture that exploit multiple populations across space if it 
 causes cycling in the sum of the exploited populations, and synchrony 
