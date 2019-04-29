@@ -91,25 +91,31 @@ years [@Myers2018_cycles]. Although early hypotheses, for the
 iconic lynx-hare as well as for other 
 systems, proposed that cyclic environmental phenomena such as sun spots drive population 
 cycles [@Sinclair1992_sunspots;@Selas2004_sunspots], these hypotheses were robustly
-refuted [@Nilssen2007_nosunspots;@Myers2013_nosunspots], and research has since shifted to 
+refuted [@Nilssen2007_nosunspots;@Myers2013_nosunspots]. Research has since shifted to 
 explaining cycles via non-environmental mechanisms based on nonlinear or delayed density 
 dependence, often operating through species 
 interactions [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
-However, spatial population synchrony, i.e., the tendency for populations of a species in 
-different locations to exhibit correlated fluctuations through time, is a 
-ubiquitous phenomenon [@Leibhold2004_sync]; and, if synchrony of local populations
+
+Although the decades-long research focus on density-dependent mechanisms for population
+cycles has produce numerous deep insights, theory suggests another mechanism
+for cycles, fundamentally different from prior mechanisms and once again focused on environmental
+causes, involving timescale-specific 
+spatial population synchrony. Synchrony is the tendency for populations of a species in 
+different locations to exhibit correlated fluctuations through time; it is a 
+ubiquitous phenomenon [@Leibhold2004_sync]. If synchrony of local populations
 occurs predominantly on specific timescales, then, in theory, it can produce cycling 
 of total populations across large spatial scales (Fig. \ref{Fig1_example}A-F).
 Essentially, the synchronous frequency 
 components of local time series reinforce each 
 other in the total time series, whereas asynchronous components on other 
 timescales cancel out when summed. Recent work shows that timescale structure 
-in synchrony is common - synchrony can occur on some timescales of population
-dynamics, but be absent on others [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Anderson2019_LO]. Synchrony is commonly caused by synchronized environmental 
+in synchrony is common - synchrony often occurs on some timescales of population
+dynamics and is absent on others [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Anderson2019_LO]. 
+Synchrony is commonly caused by synchronized environmental 
 variation, a process called the Moran effect [@Moran1953]. 
 Thus timescale-specific synchrony 
 is an unexplored but potentially important mechanism of population cycles
-that may help renew interest in environmental contributors to population cycles.
+that may help renew interest in environmental contributors to cycles.
 Timescale-specific synchrony could 
 also be important for industries such as 
 hunting and agriculture that exploit multiple populations across space if it 
@@ -117,8 +123,17 @@ causes cycling in the sum of the exploited populations, and synchrony
 of pests may likewise produce cycles in regional total damage 
 caused by the pests [@Allstad2015_gypsysync]. 
 
-We investigate timescale-specific synchrony and related cycling of white-tailed deer (*Odocoileus virginianus*) and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
-In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC totals. We consider potential drivers of deer populations including both environmental factors and the direct effects of hunting. We use data from 1981-2016 (SI Appendix Fig.  \ref{SM-FigS1_Timeseries}) aggregated at three spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts ($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS2_map}). 
+We here investigate timescale-specific synchrony and related cycling of white-tailed deer (*Odocoileus virginianus*) 
+and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major 
+economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across 
+the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
+In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 
+50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it 
+is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC 
+totals. We consider potential drivers of deer populations including both environmental factors and the direct 
+effects of hunting. We use data from 1981-2016 (SI Appendix Fig.  \ref{SM-FigS1_Timeseries}) aggregated at three 
+spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
+($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS2_map}). 
 
 #Results and Discussion
 
