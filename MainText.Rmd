@@ -266,7 +266,7 @@ differs fundamentally from prior, now refuted hypotheses that population cycles 
 snowshoe hare [@Sinclair1992_sunspots] and moth pests [@Selas2004_sunspots] are due 
 to highly regular environmental fluctuations such as 
 sun spots because the new mechanism does not require a highly regular environmental
-oscillator. Rather it is sufficient simply for irregular environmental drivers 
+oscillator. Rather it is sufficiently simply for irregular environmental drivers 
 such as winter climatic factors to be coherent with populations in a timescale 
 band, thereby inducing synchrony
 in that band and leading to total-population cycles on the same timescales. 
