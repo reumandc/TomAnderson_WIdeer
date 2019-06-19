@@ -23,6 +23,7 @@ urlcolor: blue
 
 ---
 \newpage
+<!--Need to move this to title page-->**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. 
 <!--Title length limit 96 characters, inc spaces-->
 
 ```{r echo=F, results="hide"}
@@ -134,165 +135,6 @@ totals. We consider potential drivers of deer populations including both environ
 effects of hunting. We use data from 1981-2016 (SI Appendix Fig.  \ref{SM-FigS1_Timeseries}) aggregated at three 
 spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
 ($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS2_map}). 
-
-#Results and Discussion
-
-The wavelet mean field [@Sheppard2016_aphids], a technique for visualizing the strength of synchrony as a
-function of time and timescale (*Methods*, Fig \ref{Fig1_example}G-I and SI Appendix Fig. \ref{SM-PedagogFigWMF} provide examples), revealed that 
-the most prominent synchrony in county-level deer abundances occurred at $3-7$-year timescales 
-(Fig. \ref{Fig2_DeerSync}A). A related technique, the wavelet phasor mean field (*Methods*, SI Appendix Fig. \ref{SM-PedagogFigWMF}), 
-demonstrated the strong statistical significance of this phenomenon (Fig. \ref{Fig2_DeerSync}B). We
-therefore focused our analysis on the $3-7$-year timescale band. Most past analyses of synchrony have
-used correlation methods that conflate timescales, but recent results show this can hinder detection of
-synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of
-total populations on those timescales (Fig. \ref{Fig1_example}).  
-
-Spatial wavelet coherence ([@Sheppard2016_aphids;@Sheppard2017_surrogates], SI Appendix Fig. \ref{SM-PedagogFigSpatCoh} provides an example), wavelet regression techniques [@Sheppard_wavmodel], and a wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard_wavmodel, *Methods*) demonstrated that <!--***DAN: Is there a way to get the parens to not appear around the above citations? No big deal if not, the typesetters can take care of it, but it might create a better impression in the reviewers if we fix it now--><!--***TOM: I've tried using both StackOverflow and Twitter to find an answer and no response so we may just have to go with it. Given we might have to do some post hoc editing to get it in Science format anyways, we could just manually change it.--><!--***DAN: OK, that's fine, leaving these comments here to remind us the issue still exists, though we may never do anything about it.-->
-deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. 
-Although it is known that a spatially synchronous environmental driver can induce 
-population synchrony via Moran effects [@Leibhold2004_sync; @Moran1953; 
-@Ranta1997_moran], historically it has been 
-difficult to attribute synchrony 
-in natural populations to specific environmental drivers versus other potential 
-causes of synchrony such as dispersal [@Kendall2000_moran;@Abbott2007_moran]. 
-The analytical advances listed above can facilitate more precise 
-identification of Moran drivers 
-[@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel]. 
-Their effectiveness is due in part to their capacity to decompose 
-synchrony according to the distinct timescales on which it can occur (Fig. 
-\ref{Fig1_example}G-I).
-Synchrony in deer abundance was related to winter snow depth 
-(spatial wavelet coherence, $P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Snow Depth" &TabS1_results$Timescale=="3-7"],2)`, SI Appendix
-Table \ref{SM-TabS1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase 
-difference between abundance and snow depth across $3-7$-year timescales, in units of ${\pi}$ 
-radians, was $\bar{\theta} =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth"&TabS1_results$Timescale=="3-7"],2)`; SI Appendix Fig. \ref{SM-FigS4_PhaseDiffs}D): deer 
-abundances tended to peak in years of below-average snow. This effect probably occurred because 
-deeper snow limits access to winter food resources in ungulates, which subsequently affects body 
-condition, leading to greater susceptibility to starvation or predators and reduced parturition 
-rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. Deer abundance was also related, with
-approximately quarter-cycle phase shifts, 
-to the multivariate El Ni$\~{n}$o Southern Oscillation index
-($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)`) and to the Pacific Decadal Oscillation 
-($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"],2)`, SI Appendix 
-Table \ref{SM-TabS1_CountyCoherenceSummary}, Fig. \ref{SM-FigS4_PhaseDiffs}A,C), both averaged over the winter months
-($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations $\text{MEI}_{\text{w}}$ and
-$\text{PDO}_{\text{w}}$). High values of these indices generally correspond to mild 
-winter weather over
-WI [@Rodionov2003_elnino]. The two indices were strongly coherent and in-phase with
-each other on $3-7$-year timescales over the period 1981-2016 (wavelet coherence, $P =$ `r round(TabS2_results$Pvalue[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO" ],4)`, $\bar{\theta}  =$ `r round(TabS2_results$MeanPhase[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO" ],2)`, SI Appendix Table \ref{SM-TabS2_PairwiseClimVarSpatCoh}). 
-At $5$-yr periodicity, the quarter-cycle phase lags correspond to deer populations
-peaking about `r round(-5*TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"]/2,1)` or 
-`r round(-5*TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"]/2,1)` years after mild winters, similar to other reported lag times of climatic effects on deer 
-populations [@Post1998_popgrowth]. Winter weather and climatic oscillations have been identified previously as mechanisms influencing synchrony in other ungulates across multiple 
-regions [@Post2004_greenland;@Grotan2005_roedeer;@Hegel2012_caribou]. Applying the wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard_wavmodel], *Methods*), 
-<!--***DAN: I would also like the parens in the citation above to not appear here-->
-snow depth, 
-$\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
-$`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales. 
-See Fig. \ref{Fig2_DeerSync}C for a visual manifestation of this statistical result. 
-
-Snow depth and climate index results seemed to indicate distinct or partly distinct phenomena 
-synchronizing deer on different timescales within the $3-7$-year range. Again applying the wavelet 
-Moran theorem, 
-snow depth explained $`r round(usda.snowabunSyncExp3_4,0)`\%$ 
-of synchrony in deer abundance
-at $3-4$-year timescales when data were aggregated to USDA districts (*Methods*, SI Appendix text and Table \ref{SM-TabS4_SummaryDistrict}). Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
-to deer synchrony over $4-7$-year timescales (SI Appendix Tables \ref{SM-TabS1_CountyCoherenceSummary} and \ref{SM-TabS4_SummaryDistrict}, Fig. \ref{SM-FigS6_RanksInSurrogs}A). 
-$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively (SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}). Snow depth did not explain $4-7$-year synchrony: spatial wavelet coherence between snow depth and deer abundance on those timescales was non-significant (SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}, \ref{SM-TabS4_SummaryDistrict}).
-
-Deer abundance synchrony was not caused by hunting on $3-7$-year timescales. County-level hunter and deer
-abundances were not significantly spatially coherent 
-($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
-(SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS6_RanksInSurrogs}B, \ref{SM-FigS7_WMFHunter}). 
-However, hunter abundance was significantly related to deer abundance on shorter timescales, around 
-$2-2.5$-years ($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="2-2.5"],3)`), and were in approximate anti-phase with deer abundance 
-on those timescales ($\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="2-2.5"],2)`; 
-SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS4_PhaseDiffs}G,
-\ref{SM-FigS6_RanksInSurrogs}B). These patterns are consistent with the hypothesis that hunters can
-regulate deer populations over short timescales but do not do so on longer timescales. The lack of
-longer-timescale spatial wavelet coherence between hunters and deer abundance is likely also related to the facts that
-hunters prefer to shoot bucks, the removal of which has limited population effects; and the state
-regulates antlerless harvest in an attempt to maintain populations at a desirable size.  
-
-Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic Moran 
-effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year timescales: Moran 
-effects pass from climate to deer to DVCs in a cascading manner, and in this way are ultimately
-responsible for synchrony of DVCs. The wavelet mean field and phasor mean field of DVCs revealed time-
-and timescale-specific synchrony, and visual patterns were remarkably similar to those shown by deer 
-(compare Figs \ref{Fig2_DeerSync}A,B and \ref{Fig3_DvcSync}A,B). Spatial wavelet 
-coherence ([@Sheppard2016_aphids;@Sheppard2017_surrogates, *Methods*) 
-<!--***DAN: Would be nice if we could fix the parens in the above citations-->
-showed that deer abundance and DVCs were significantly related 
-($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"],3)`, 
-SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}) on $3-7$-year timescales, and had a nearly in-phase 
-relationship ($\bar{\theta} =$ `r round(TabS1_results$MeanPhase[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"],2)`, SI Appendix Fig. \ref{SM-FigS4_PhaseDiffs}E). 
-Greater deer abundance almost certainly caused greater DVCs rather 
-than DVCs driving deer fluctuations because DVCs were too infrequent to meaningfully impact deer 
-abundance (SI Appendix Fig. \ref{SM-FigS1_Timeseries}), and if they did an anti-phase relationship would have 
-been expected. Deer abundance explained $`r round(usda_dvcabunSyncExp,0)`\%$ of the synchrony in 
-DVCs when data were aggregated to USDA districts (*Methods*, SI Appendix text and Table \ref{SM-TabS4_SummaryDistrict}). 
-As a visual manifestation of this statistical result, patterns of synchrony in DVCs predicted by a
-wavelet regression model with sole predictor deer abundance match the patterns actually present in DVC
-synchrony (Fig. \ref{Fig3_DvcSync}C). 
-Statistical significance, phase relationships, and the amount of DVC synchrony explained by deer
-abundance remained similar after adjusting DVCs to account for
-fluctuations in traffic volume (SI Appendix text and Tables \ref{SM-TabS1_CountyCoherenceSummary}, \ref{SM-TabS4_SummaryDistrict}, Fig. \ref{SM-FigS4_PhaseDiffs}F).
-
-As mentioned above, timescale-specific synchrony may lead, theoretically, to cyclic 
-dynamics in spatial-total or spatial-average time series, which can mean 
-alternating relative abundance and scarcity of important species over large areas 
-[@Allstad2015_gypsysync]. Our data show the empirical reality of this effect and its 
-strength for deer and DVCs. Statewide oscillations due to synchrony correspond to a typical 
-difference of $~ `r round(avgdeerfluc,-4)`$ deer and $~ `r round(avgdvcfluc,-2)`$ 
-DVCs between peak and trough years 
-(Fig. \ref{Fig4_StateWideFluctuations}). Importantly, these high amplitude 
-statewide oscillations in deer and DVCs disappear (Fig. 
-\ref{Fig4_StateWideFluctuations}) when synchrony between counties on $3-7$-year 
-timescales is removed via a randomization procedure 
-(*Methods*); spatial synchrony causes local dynamics to sum to a substantial 
-semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on 
-assumptions made about costs and reporting rates of DVCs 
-[@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp], statewide DVC damages 
-vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
-between peak and trough years (*Methods*). Similarly, fluctuations of a quarter 
-million deer likely have considerable consequences for agricultural crop damage 
-and hunting success, both of which can have socioeconomic impacts. See 
-SI Appendix for further details on the cycling mechanism.
-
-Overall, we have demonstrated that timescale-specific Moran effects, by 
-synchronizing local dynamics, can cause major cycles in the 
-regional total population. This new mechanism
-differs fundamentally from prior, now refuted hypotheses that population cycles in 
-snowshoe hare [@Sinclair1992_sunspots] and moth pests [@Selas2004_sunspots] are due 
-to highly regular environmental fluctuations such as 
-sun spots because the new mechanism does not require a highly regular environmental
-oscillator. Rather it is sufficient simply for irregular environmental drivers 
-such as winter climatic factors to be coherent with populations in a timescale 
-band, thereby inducing synchrony
-in that band and leading to total-population cycles on the same timescales. 
-Timescale specificity in synchrony is 
-common [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel]. 
-Resulting cycles affect the exploiting 
-industry (hunting) and related industries 
-(emergency medicine and accident recovery). We have also 
-presented the first demonstration that synchrony can be transmitted in a 
-Moran-like effect from ecological to human systems (deer to DVCs). An 
-important aspect of all of the phenomena we described is their specificity 
-to certain timescales. Recent work on several taxa 
-[@Allstad2015_gypsysync;@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync] shows 
-that synchrony of some environmental drivers may be changing, 
-possibly due to climate change. These changes may alter population synchrony, 
-and therefore also population cycles that arise by our new mechanism. 
-In particular, the predicted increase 
-in the frequency of strong El Ni$\~{n}$o events 
-[@Cai2014_elnino] may lead to altered cycling period in deer 
-and DVCs, though our mechanisms are general so we would not 
-expect effects to be limited to the system we have studied.
-
-<!--Load sup mat workspace for the methods, which used to be in the sup mat-->
-```{r echo=F, results="hide"}
-load(file="WholeWorkspace.RData")
-```
 
 # METHODS
 
@@ -679,10 +521,171 @@ costs may exceed US\$22M.
 The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `www.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
 The suite of analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button via the codes in that repository - see the `Readme.md` file in the repository for instructions.
 
+#Results
+
+The wavelet mean field [@Sheppard2016_aphids], a technique for visualizing the strength of synchrony as a
+function of time and timescale (*Methods*, Fig \ref{Fig1_example}G-I and SI Appendix Fig. \ref{SM-PedagogFigWMF} provide examples), revealed that 
+the most prominent synchrony in county-level deer abundances occurred at $3-7$-year timescales 
+(Fig. \ref{Fig2_DeerSync}A). A related technique, the wavelet phasor mean field (*Methods*, SI Appendix Fig. \ref{SM-PedagogFigWMF}), 
+demonstrated the strong statistical significance of this phenomenon (Fig. \ref{Fig2_DeerSync}B). We
+therefore focused our analysis on the $3-7$-year timescale band. Most past analyses of synchrony have
+used correlation methods that conflate timescales, but recent results show this can hinder detection of
+synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of
+total populations on those timescales (Fig. \ref{Fig1_example}).  
+
+Spatial wavelet coherence ([@Sheppard2016_aphids;@Sheppard2017_surrogates], SI Appendix Fig. \ref{SM-PedagogFigSpatCoh} provides an example), wavelet regression techniques [@Sheppard_wavmodel], and a wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard_wavmodel, *Methods*) demonstrated that <!--***DAN: Is there a way to get the parens to not appear around the above citations? No big deal if not, the typesetters can take care of it, but it might create a better impression in the reviewers if we fix it now--><!--***TOM: I've tried using both StackOverflow and Twitter to find an answer and no response so we may just have to go with it. Given we might have to do some post hoc editing to get it in Science format anyways, we could just manually change it.--><!--***DAN: OK, that's fine, leaving these comments here to remind us the issue still exists, though we may never do anything about it.-->
+deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. 
+Although it is known that a spatially synchronous environmental driver can induce 
+population synchrony via Moran effects [@Leibhold2004_sync; @Moran1953; 
+@Ranta1997_moran], historically it has been 
+difficult to attribute synchrony 
+in natural populations to specific environmental drivers versus other potential 
+causes of synchrony such as dispersal [@Kendall2000_moran;@Abbott2007_moran]. 
+The analytical advances listed above can facilitate more precise 
+identification of Moran drivers 
+[@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel]. 
+Their effectiveness is due in part to their capacity to decompose 
+synchrony according to the distinct timescales on which it can occur (Fig. 
+\ref{Fig1_example}G-I).
+Synchrony in deer abundance was related to winter snow depth 
+(spatial wavelet coherence, $P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Snow Depth" &TabS1_results$Timescale=="3-7"],2)`, SI Appendix
+Table \ref{SM-TabS1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase 
+difference between abundance and snow depth across $3-7$-year timescales, in units of ${\pi}$ 
+radians, was $\bar{\theta} =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth"&TabS1_results$Timescale=="3-7"],2)`; SI Appendix Fig. \ref{SM-FigS4_PhaseDiffs}D): deer 
+abundances tended to peak in years of below-average snow. This effect probably occurred because 
+deeper snow limits access to winter food resources in ungulates, which subsequently affects body 
+condition, leading to greater susceptibility to starvation or predators and reduced parturition 
+rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. Deer abundance was also related, with
+approximately quarter-cycle phase shifts, 
+to the multivariate El Ni$\~{n}$o Southern Oscillation index
+($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)`) and to the Pacific Decadal Oscillation 
+($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"],2)`, SI Appendix 
+Table \ref{SM-TabS1_CountyCoherenceSummary}, Fig. \ref{SM-FigS4_PhaseDiffs}A,C), both averaged over the winter months
+($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations $\text{MEI}_{\text{w}}$ and
+$\text{PDO}_{\text{w}}$). High values of these indices generally correspond to mild 
+winter weather over
+WI [@Rodionov2003_elnino]. The two indices were strongly coherent and in-phase with
+each other on $3-7$-year timescales over the period 1981-2016 (wavelet coherence, $P =$ `r round(TabS2_results$Pvalue[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO" ],4)`, $\bar{\theta}  =$ `r round(TabS2_results$MeanPhase[TabS2_results$Predictor=="Winter MEI" & TabS2_results$Response=="Winter PDO" ],2)`, SI Appendix Table \ref{SM-TabS2_PairwiseClimVarSpatCoh}). 
+At $5$-yr periodicity, the quarter-cycle phase lags correspond to deer populations
+peaking about `r round(-5*TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO"&TabS1_results$Timescale=="3-7"]/2,1)` or 
+`r round(-5*TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"]/2,1)` years after mild winters, similar to other reported lag times of climatic effects on deer 
+populations [@Post1998_popgrowth]. Winter weather and climatic oscillations have been identified previously as mechanisms influencing synchrony in other ungulates across multiple 
+regions [@Post2004_greenland;@Grotan2005_roedeer;@Hegel2012_caribou]. Applying the wavelet Moran theorem ([@Sheppard2016_aphids;@Sheppard_wavmodel], *Methods*), 
+<!--***DAN: I would also like the parens in the citation above to not appear here-->
+snow depth, 
+$\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
+$`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales. 
+See Fig. \ref{Fig2_DeerSync}C for a visual manifestation of this statistical result. 
+
+Snow depth and climate index results seemed to indicate distinct or partly distinct phenomena 
+synchronizing deer on different timescales within the $3-7$-year range. Again applying the wavelet 
+Moran theorem, 
+snow depth explained $`r round(usda.snowabunSyncExp3_4,0)`\%$ 
+of synchrony in deer abundance
+at $3-4$-year timescales when data were aggregated to USDA districts (*Methods*, SI Appendix text and Table \ref{SM-TabS4_SummaryDistrict}). Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
+to deer synchrony over $4-7$-year timescales (SI Appendix Tables \ref{SM-TabS1_CountyCoherenceSummary} and \ref{SM-TabS4_SummaryDistrict}, Fig. \ref{SM-FigS6_RanksInSurrogs}A). 
+$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively (SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}). Snow depth did not explain $4-7$-year synchrony: spatial wavelet coherence between snow depth and deer abundance on those timescales was non-significant (SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}, \ref{SM-TabS4_SummaryDistrict}).
+
+Deer abundance synchrony was not caused by hunting on $3-7$-year timescales. County-level hunter and deer
+abundances were not significantly spatially coherent 
+($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
+(SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS6_RanksInSurrogs}B, \ref{SM-FigS7_WMFHunter}). 
+However, hunter abundance was significantly related to deer abundance on shorter timescales, around 
+$2-2.5$-years ($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="2-2.5"],3)`), and were in approximate anti-phase with deer abundance 
+on those timescales ($\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="2-2.5"],2)`; 
+SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}, Figs \ref{SM-FigS4_PhaseDiffs}G,
+\ref{SM-FigS6_RanksInSurrogs}B). These patterns are consistent with the hypothesis that hunters can
+regulate deer populations over short timescales but do not do so on longer timescales. The lack of
+longer-timescale spatial wavelet coherence between hunters and deer abundance is likely also related to the facts that
+hunters prefer to shoot bucks, the removal of which has limited population effects; and the state
+regulates antlerless harvest in an attempt to maintain populations at a desirable size.  
+
+Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic Moran 
+effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year timescales: Moran 
+effects pass from climate to deer to DVCs in a cascading manner, and in this way are ultimately
+responsible for synchrony of DVCs. The wavelet mean field and phasor mean field of DVCs revealed time-
+and timescale-specific synchrony, and visual patterns were remarkably similar to those shown by deer 
+(compare Figs \ref{Fig2_DeerSync}A,B and \ref{Fig3_DvcSync}A,B). Spatial wavelet 
+coherence ([@Sheppard2016_aphids;@Sheppard2017_surrogates, *Methods*) 
+<!--***DAN: Would be nice if we could fix the parens in the above citations-->
+showed that deer abundance and DVCs were significantly related 
+($P =$ `r round(TabS1_results$Pvalue[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"],3)`, 
+SI Appendix Table \ref{SM-TabS1_CountyCoherenceSummary}) on $3-7$-year timescales, and had a nearly in-phase 
+relationship ($\bar{\theta} =$ `r round(TabS1_results$MeanPhase[TabS1_results$Response=="DVCs" & TabS1_results$Predictor=="Abundance"],2)`, SI Appendix Fig. \ref{SM-FigS4_PhaseDiffs}E). 
+Greater deer abundance almost certainly caused greater DVCs rather 
+than DVCs driving deer fluctuations because DVCs were too infrequent to meaningfully impact deer 
+abundance (SI Appendix Fig. \ref{SM-FigS1_Timeseries}), and if they did an anti-phase relationship would have 
+been expected. Deer abundance explained $`r round(usda_dvcabunSyncExp,0)`\%$ of the synchrony in 
+DVCs when data were aggregated to USDA districts (*Methods*, SI Appendix text and Table \ref{SM-TabS4_SummaryDistrict}). 
+As a visual manifestation of this statistical result, patterns of synchrony in DVCs predicted by a
+wavelet regression model with sole predictor deer abundance match the patterns actually present in DVC
+synchrony (Fig. \ref{Fig3_DvcSync}C). 
+Statistical significance, phase relationships, and the amount of DVC synchrony explained by deer
+abundance remained similar after adjusting DVCs to account for
+fluctuations in traffic volume (SI Appendix text and Tables \ref{SM-TabS1_CountyCoherenceSummary}, \ref{SM-TabS4_SummaryDistrict}, Fig. \ref{SM-FigS4_PhaseDiffs}F).
+
+As mentioned above, timescale-specific synchrony may lead, theoretically, to cyclic 
+dynamics in spatial-total or spatial-average time series, which can mean 
+alternating relative abundance and scarcity of important species over large areas 
+[@Allstad2015_gypsysync]. Our data show the empirical reality of this effect and its 
+strength for deer and DVCs. Statewide oscillations due to synchrony correspond to a typical 
+difference of $~ `r round(avgdeerfluc,-4)`$ deer and $~ `r round(avgdvcfluc,-2)`$ 
+DVCs between peak and trough years 
+(Fig. \ref{Fig4_StateWideFluctuations}). Importantly, these high amplitude 
+statewide oscillations in deer and DVCs disappear (Fig. 
+\ref{Fig4_StateWideFluctuations}) when synchrony between counties on $3-7$-year 
+timescales is removed via a randomization procedure 
+(*Methods*); spatial synchrony causes local dynamics to sum to a substantial 
+semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on 
+assumptions made about costs and reporting rates of DVCs 
+[@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp], statewide DVC damages 
+vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
+between peak and trough years (*Methods*). Similarly, fluctuations of a quarter 
+million deer likely have considerable consequences for agricultural crop damage 
+and hunting success, both of which can have socioeconomic impacts. See 
+SI Appendix for further details on the cycling mechanism.
+
+#Discussion
+
+Overall, we have demonstrated that timescale-specific Moran effects, by 
+synchronizing local dynamics, can cause major cycles in the 
+regional total population. This new mechanism
+differs fundamentally from prior, now refuted hypotheses that population cycles in 
+snowshoe hare [@Sinclair1992_sunspots] and moth pests [@Selas2004_sunspots] are due 
+to highly regular environmental fluctuations such as 
+sun spots because the new mechanism does not require a highly regular environmental
+oscillator. Rather it is sufficient simply for irregular environmental drivers 
+such as winter climatic factors to be coherent with populations in a timescale 
+band, thereby inducing synchrony
+in that band and leading to total-population cycles on the same timescales. 
+Timescale specificity in synchrony is 
+common [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel]. 
+Resulting cycles affect the exploiting 
+industry (hunting) and related industries 
+(emergency medicine and accident recovery). We have also 
+presented the first demonstration that synchrony can be transmitted in a 
+Moran-like effect from ecological to human systems (deer to DVCs). An 
+important aspect of all of the phenomena we described is their specificity 
+to certain timescales. Recent work on several taxa 
+[@Allstad2015_gypsysync;@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync] shows 
+that synchrony of some environmental drivers may be changing, 
+possibly due to climate change. These changes may alter population synchrony, 
+and therefore also population cycles that arise by our new mechanism. 
+In particular, the predicted increase 
+in the frequency of strong El Ni$\~{n}$o events 
+[@Cai2014_elnino] may lead to altered cycling period in deer 
+and DVCs, though our mechanisms are general so we would not 
+expect effects to be limited to the system we have studied.
+
+<!--Load sup mat workspace for the methods, which used to be in the sup mat-->
+```{r echo=F, results="hide"}
+load(file="WholeWorkspace.RData")
+```
+
+
 **Acknowledgements:** D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, and J. Fox for consultation. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
-**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. 
 
 # References {-}
 
