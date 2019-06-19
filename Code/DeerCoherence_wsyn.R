@@ -81,7 +81,7 @@ weathabun_se<-lapply(weathabun_se,function(x){row.names(x)<-paste(bands[,1],band
 
 #Run coherence of climate indices and winter weather
 weath.climind.res<-list()
-TableS3<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
+#TableS2<-matrix(NA,nrow=length(names(winter.clim)),ncol=length(names(climindex)))
 for(j in 1:length(names(climindex))){
   for(i in 1:length(names(winter.clim))){
     name1<-names(climindex)[j]
@@ -99,15 +99,15 @@ for(j in 1:length(names(climindex))){
 for(j in names(weath.climind.res)){
   weath.climind.res[[j]]<-bandtest(weath.climind.res[[j]],bands[1,])
 }
-TabS2<-do.call(rbind,lapply(weath.climind.res,get_bandp))
-TabS2<-cbind(matrix(unlist(strsplit(row.names(TabS2),'.',fixed=TRUE)),ncol=2,byrow=T),TabS2)
-TabS2$mn_phs<-as.numeric(as.character(ifelse(TabS2$p_val>0.06,"",TabS2$mn_phs)))
-TableS2<-data.frame(TabS2[,1:2],paste(TabS2$ts_low_bd,TabS2$ts_hi_bd,sep="-"),TabS2[,c("p_val","mn_phs")])
-colnames(TableS2)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
-levels(TableS2$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
-                                "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO")
-levels(TableS2$Response)<-list("Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI")
-saveRDS(TableS2,file="Results/TabS2_results.rds")
+# TabS2<-do.call(rbind,lapply(weath.climind.res,get_bandp))
+# TabS2<-cbind(matrix(unlist(strsplit(row.names(TabS2),'.',fixed=TRUE)),ncol=2,byrow=T),TabS2)
+# TabS2$mn_phs<-as.numeric(as.character(ifelse(TabS2$p_val>0.06,"",TabS2$mn_phs)))
+# TableS2<-data.frame(TabS2[,1:2],paste(TabS2$ts_low_bd,TabS2$ts_hi_bd,sep="-"),TabS2[,c("p_val","mn_phs")])
+# colnames(TableS2)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
+# levels(TableS2$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
+#                                 "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO")
+# levels(TableS2$Response)<-list("Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI")
+# saveRDS(TableS2,file="Results/TabS2_results.rds")
 
 #Run wavelet coherence among climate indices
 indices.res<-list()
@@ -340,15 +340,15 @@ for(j in 1:length(names(climindex.usda))){
 for(j in names(usda.weath.climind.res)){
   usda.weath.climind.res[[j]]<-bandtest(usda.weath.climind.res[[j]],bands[1,])
 }
-TabS4<-do.call(rbind,lapply(usda.weath.climind.res,get_bandp))
-TabS4<-cbind(matrix(unlist(strsplit(row.names(TabS4),'.',fixed=TRUE)),ncol=2,byrow=T),TabS4)
-TabS4$mn_phs<-as.numeric(as.character(ifelse(TabS4$p_val>0.06,"",TabS4$mn_phs)))
-TableS4<-data.frame(TabS4[,1:2],paste(TabS4$ts_low_bd,TabS4$ts_hi_bd,sep="-"),TabS4[,c("p_val","mn_phs")])
-colnames(TableS4)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
-levels(TableS4$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
-                                "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO")
-levels(TableS4$Response)<-list("Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI")
-saveRDS(TableS4,file="Results/TabS4_results.rds")
+# TabS4<-do.call(rbind,lapply(usda.weath.climind.res,get_bandp))
+# TabS4<-cbind(matrix(unlist(strsplit(row.names(TabS4),'.',fixed=TRUE)),ncol=2,byrow=T),TabS4)
+# TabS4$mn_phs<-as.numeric(as.character(ifelse(TabS4$p_val>0.06,"",TabS4$mn_phs)))
+# TableS4<-data.frame(TabS4[,1:2],paste(TabS4$ts_low_bd,TabS4$ts_hi_bd,sep="-"),TabS4[,c("p_val","mn_phs")])
+# colnames(TableS4)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
+# levels(TableS4$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
+#                                 "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO")
+# levels(TableS4$Response)<-list("Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI")
+# saveRDS(TableS4,file="Results/TabS4_results.rds")
 
 #store data in list
 all.usda.dat<-list(Abun=usda.list$Abun,Snwd=winter.clim.usda$Snwd,WinterMEI=climindex.usda$WinterMEI,WinterPDO=climindex.usda$WinterPDO)
@@ -409,7 +409,7 @@ usda.adjdvc_se<-syncexpl(usda.wlm_adjdvc)
 usda.adjdvcabun_se<-usda.adjdvc_se[usda.adjdvc_se$timescales>=3 & usda.adjdvc_se$timescales<=7,]
 usda.adjdvcabun_se37<-round(100*colMeans(usda.adjdvcabun_se[,c(3:dim(usda.adjdvcabun_se)[2])])/mean(usda.adjdvcabun_se$sync),4)
 
-#Build Table S3
+#Build Table S2
 tmp.list<-list()
 for(i in names(usda.clim.resP)){
   tmp.list[[i]]<-cbind(usda.clim.resP[[i]],usda.climabun_se[[i]])
@@ -420,28 +420,28 @@ for(i in names(usda.weath.resP)){
 }
 
 ##Need to add hunters to the table
-TabS3<-rbind(do.call(rbind,tmp.list))
-TabS3<-rbind(TabS3,cbind(do.call(cbind,usda.hunter.resP),usda.hunter_se))
-row.names(TabS3)[(dim(TabS3)[1]-1):dim(TabS3)[1]]<-c("Hunter.Abun.1","Hunter.Abun.2")
-TabS3<-rbind(TabS3,rbind(c(usda.dvc.resP,usda.dvcabun_se37),c(usda.adjdvc.resP,usda.adjdvcabun_se37)))
-row.names(TabS3)[(dim(TabS3)[1]-1):dim(TabS3)[1]]<-c("Abun.DVC.1","Abun.AdjDVC.1")
-TabS3.mat<-matrix(unlist(TabS3), ncol = length(TabS3), byrow = F)
-TabS3.mat<-data.frame(matrix(unlist(strsplit(row.names(TabS3),'.',fixed=TRUE)),ncol=3,byrow=T)[,1:2],TabS3.mat)
-colnames(TabS3.mat)<-c("Predictor","Response",colnames(TabS3))
-TabS3.mat<-data.frame(TabS3.mat[,1:2],paste(TabS3.mat$ts_low_bd,TabS3.mat$ts_hi_bd,sep="-"),TabS3.mat[,c("p_val","mn_phs",'syncexpl',"crossterms","resids","pred1")])
-colnames(TabS3.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","SynchronyExplained","CrossTerms","Residuals","Pred1")
-TabS3.mat<-TabS3.mat[,!colnames(TabS3.mat)%in%c("Residuals","Pred1")]
-TabS3.mat$MeanPhase<-TabS3.mat$MeanPhase/pi
-TableS3<-TabS3.mat[complete.cases(TabS3.mat),]
-levels(TableS3$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
+TabS2<-rbind(do.call(rbind,tmp.list))
+TabS2<-rbind(TabS2,cbind(do.call(cbind,usda.hunter.resP),usda.hunter_se))
+row.names(TabS2)[(dim(TabS2)[1]-1):dim(TabS2)[1]]<-c("Hunter.Abun.1","Hunter.Abun.2")
+TabS2<-rbind(TabS2,rbind(c(usda.dvc.resP,usda.dvcabun_se37),c(usda.adjdvc.resP,usda.adjdvcabun_se37)))
+row.names(TabS2)[(dim(TabS2)[1]-1):dim(TabS2)[1]]<-c("Abun.DVC.1","Abun.AdjDVC.1")
+TabS2.mat<-matrix(unlist(TabS2), ncol = length(TabS2), byrow = F)
+TabS2.mat<-data.frame(matrix(unlist(strsplit(row.names(TabS2),'.',fixed=TRUE)),ncol=3,byrow=T)[,1:2],TabS2.mat)
+colnames(TabS2.mat)<-c("Predictor","Response",colnames(TabS2))
+TabS2.mat<-data.frame(TabS2.mat[,1:2],paste(TabS2.mat$ts_low_bd,TabS2.mat$ts_hi_bd,sep="-"),TabS2.mat[,c("p_val","mn_phs",'syncexpl',"crossterms","resids","pred1")])
+colnames(TabS2.mat)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase","SynchronyExplained","CrossTerms","Residuals","Pred1")
+TabS2.mat<-TabS2.mat[,!colnames(TabS2.mat)%in%c("Residuals","Pred1")]
+TabS2.mat$MeanPhase<-TabS2.mat$MeanPhase/pi
+TableS2<-TabS2.mat[complete.cases(TabS2.mat),]
+levels(TableS2$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
                                 "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO",
                                 "Tmin"="Tmin","Tmax"="Tmax","Precipitation"="Prcp","Snow Depth"="Snwd","WSI"="WSI",
                                 "Abundance"="Abun","Hunters"="Hunter")
-levels(TableS3$Response)<-list("Abundance"="Abun","DVCs"="DVC","Traffic-adj. DVCs"="AdjDVC")
-TableS3$MeanPhase<-as.numeric(as.character(ifelse(TableS3$Pvalue>0.06,"",TableS3$MeanPhase)))
-TableS3$SynchronyExplained<-as.numeric(as.character(ifelse(TableS3$Pvalue>0.06,"",TableS3$SynchronyExplained)))
-TableS3$CrossTerms<-as.numeric(as.character(ifelse(TableS3$Pvalue>0.06,"",TableS3$CrossTerms)))
-saveRDS(TableS3,file="Results/TableS3.rds")
+levels(TableS2$Response)<-list("Abundance"="Abun","DVCs"="DVC","Traffic-adj. DVCs"="AdjDVC")
+TableS2$MeanPhase<-as.numeric(as.character(ifelse(TableS2$Pvalue>0.06,"",TableS2$MeanPhase)))
+TableS2$SynchronyExplained<-as.numeric(as.character(ifelse(TableS2$Pvalue>0.06,"",TableS2$SynchronyExplained)))
+TableS2$CrossTerms<-as.numeric(as.character(ifelse(TableS2$Pvalue>0.06,"",TableS2$CrossTerms)))
+saveRDS(TableS2,file="Results/TableS2.rds")
 
 rm(usda.clim.res,usda.weath.climind.res,usda.weath.res,usda.dvc.res,usda.adjdvc.res) #remove all large results objects
 
