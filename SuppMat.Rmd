@@ -201,18 +201,6 @@ climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @H
 
 # Supplementary figures
 
-\begin{figure}[h!]
-\includegraphics[width=\textwidth]{Results/FigS1.png}
-\caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions, 
-(C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
-(D) winter climate indices (Multivariate El Ni$\~{n}$o Southern Oscillation Index, 
-MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
-Each line in A-C, E represents a county. Other variables were 
-used in analyses (see text) but are not shown here due to lack of significant 
-assocations with the deer and DVC variables that were the focus of the 
-study.\label{FigS1_Timeseries}}
-\end{figure}
-
 \newpage
 
 \begin{figure}[!h]
@@ -354,17 +342,6 @@ well on $3-7$-year timescales.\label{FigS7_WMFHunter}}
 \clearpage
 
 # Supplementary tables
-
-```{r TableS1,echo=F,results='markup'}
-options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
-rownames(TableS1)<-NULL
-knitr::kable(TableS1,
-             format='pandoc',
-             digits=4,
-             col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns, which give percentages, are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (main text and Table \\ref{TabS4_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS1_CountyCoherenceSummary}",
-             booktabs=T)
-```
 
 \newpage
 

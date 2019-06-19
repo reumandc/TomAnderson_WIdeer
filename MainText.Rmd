@@ -29,13 +29,13 @@ urlcolor: blue
 ```{r echo=F, results="hide"}
 #load in results
 options(scipen=6)
-TabS1_results<-readRDS(file = "Results/TableS1.rds")
-TabS1_results<-cbind(TabS1_results[,1:3],apply(TabS1_results[,4:7],2,function(x){round(x,4)}))
-abunwmeiSyncExp37<-round(TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="3-7"],2)
-abunwpdoSyncExp37<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Winter PDO" &  TabS1_results$Timescale=="3-7"]
-abunwmeiSyncExp47<-round(TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Winter MEI"&TabS1_results$Timescale=="4-7"],2)
-abunwpdoSyncExp47<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Winter PDO" &  TabS1_results$Timescale=="4-7"]
-snowabunSyncExp3_4<-TabS1_results$SynchronyExplained[TabS1_results$Predictor=="Snow Depth" & TabS1_results$Timescale=="3-4"]
+Tab1_results<-readRDS(file = "Results/TableS.rds")
+Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){round(x,4)}))
+abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
+abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
+abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)
+abunwpdoSyncExp47<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="4-7"]
+snowabunSyncExp3_4<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Snow Depth" & Tab1_results$Timescale=="3-4"]
 abunmodelSyncExp<-readRDS(file="Results/abunmodelSyncExp.rds")
 
 #load Table S2 results
@@ -693,6 +693,20 @@ Conservancy.
 
 \newpage
 
+
+```{r Table1,echo=F,results='markup'}
+options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
+rownames(Table1)<-NULL
+knitr::kable(Table1,
+             format='pandoc',
+             digits=4,
+             col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns, which give percentages, are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (main text and Table \\ref{TabS4_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS1_CountyCoherenceSummary}",
+             booktabs=T)
+```
+
+\newpage
+
 \begin{figure}[!h]  
 \includegraphics[width=.6\textwidth]{Results/Fig1.png}
 \caption{Theoretical simulation showing that timescale-specific synchrony between populations may cause cycling in the total population. Panels A-C show
@@ -715,8 +729,22 @@ structure of synchrony. Higher values mean greater synchrony at the given time o
 
 \newpage
 
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{Results/Fig2.png}
+\caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions, 
+(C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
+(D) winter climate indices (Multivariate El Ni$\~{n}$o Southern Oscillation Index, 
+MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
+Each line in A-C, E represents a county. Other variables were 
+used in analyses (see text) but are not shown here due to lack of significant 
+assocations with the deer and DVC variables that were the focus of the 
+study.\label{Fig2_Timeseries}}
+\end{figure}
+
+\newpage
+
 \begin{figure}[!h]
-\includegraphics[height=.7\textheight]{Results/Fig2.png}
+\includegraphics[height=.7\textheight]{Results/Fig3.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) 
 of deer abundance (\textit{Methods}). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) 
 at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at 
@@ -731,20 +759,20 @@ visual indication of the statistical result that climatic Moran effects explain 
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[height=.7\textheight]{Results/Fig3.png}
+\includegraphics[height=.7\textheight]{Results/Fig4.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) 
 of DVCs. Colors, contours, and horizontal lines in A and B indicate the same as in 
 Fig. \ref{Fig2_DeerSync}A,B, but for DVC data. Colors in (C) 
 show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours in (C) 
 show the actual wavelet mean field magnitude of DVCs from (A), for comparison. Agreement is good, giving a 
 visual indication of the statistical result that deer synchrony explains DVC synchrony.
-\label{Fig3_DvcSync}}
+\label{Fig4_DvcSync}}
 \end{figure}
 
 \newpage
 
 \begin{figure}[!h]
-\includegraphics[width=.6\textwidth]{Results/Fig4.png}
+\includegraphics[width=.6\textwidth]{Results/Fig5.png}
 \caption{Magnitude of the effects of synchrony on state-total deer abundance
 and DVC fluctuations. Small panels show state-total deer abundance (A, in millions) and DVC (C, in thousands) time 
 series (black lines) and surrogate totals obtained via a randomization procedure 
@@ -758,7 +786,7 @@ attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs 
 to synchrony amounts to an estimated difference between peak and trough years of 
 US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn in damages 
 statewide (\textit{Methods}). 
-\label{Fig4_StateWideFluctuations}}
+\label{Fig5_StateWideFluctuations}}
 \end{figure}
 
 
