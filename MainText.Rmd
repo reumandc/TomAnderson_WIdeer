@@ -753,7 +753,7 @@ analysis, $3-7$-years. Colors on (C) show synchrony in deer abundance predicted 
 snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors (\textit{Methods}), while contours in (C) show the 
 actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a 
 visual indication of the statistical result that climatic Moran effects explain deer synchrony.
-\label{Fig2_DeerSync}}
+\label{Fig3_DeerSync}}
 \end{figure}
 
 \newpage
@@ -762,7 +762,7 @@ visual indication of the statistical result that climatic Moran effects explain 
 \includegraphics[height=.7\textheight]{Results/Fig4.png}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) 
 of DVCs. Colors, contours, and horizontal lines in A and B indicate the same as in 
-Fig. \ref{Fig2_DeerSync}A,B, but for DVC data. Colors in (C) 
+Fig. \ref{Fig3_DeerSync}A,B, but for DVC data. Colors in (C) 
 show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours in (C) 
 show the actual wavelet mean field magnitude of DVCs from (A), for comparison. Agreement is good, giving a 
 visual indication of the statistical result that deer synchrony explains DVC synchrony.
