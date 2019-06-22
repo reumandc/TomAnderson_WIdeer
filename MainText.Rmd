@@ -29,7 +29,7 @@ urlcolor: blue
 ```{r echo=F, results="hide"}
 #load in results
 options(scipen=6)
-Tab1_results<-readRDS(file = "Results/TableS.rds")
+Tab1_results<-readRDS(file = "Results/Table1.rds")
 Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){round(x,4)}))
 abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
 abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
@@ -447,7 +447,7 @@ model describing the relationship between a
 response variable and multiple predictor variables; 
 but in contrast to standard regression, response 
 and predictor variables are 
-wavelet transforms of spatiotemporal variables. The approach gives several outputs which we use. First, the approach gives the fraction of synchrony (in our case, $`r round(abunmodelSyncExp,0)`\%$ for $3-7$-year timescales) in the response variable (county-level deer abundance) that can be explained by the synchrony of the predictors (snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$). The validity of this result is again subject to whether cross terms were small (less than $10\%$ of the fraction of synchrony explained). They were small, $`r round(abunmodelXterms,0)`\%$, for our model. The approach also gives a "predicted synchrony" plot (colors in Fig. \ref{Fig2_DeerSync}C), which is a function of time and timescale. The plot shows what the pattern of synchrony in the response variable (deer abundance) would look like if the only drivers of synchrony were the predictor variables. Predicted synchrony plots can be compared directly to the wavelet mean field magnitude plot of the response variable, similarity of the two plots giving a visual indication of whether the predictors in the model adequately explain synchrony in the response variable. The function `wlm` and related functions from `wsyn` implement these tools.
+wavelet transforms of spatiotemporal variables. The approach gives several outputs which we use. First, the approach gives the fraction of synchrony (in our case, $`r round(abunmodelSyncExp,0)`\%$ for $3-7$-year timescales) in the response variable (county-level deer abundance) that can be explained by the synchrony of the predictors (snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$). The validity of this result is again subject to whether cross terms were small (less than $10\%$ of the fraction of synchrony explained). They were small, $`r round(abunmodelXterms,0)`\%$, for our model. The approach also gives a "predicted synchrony" plot (colors in Fig. \ref{Fig3_DeerSync}C), which is a function of time and timescale. The plot shows what the pattern of synchrony in the response variable (deer abundance) would look like if the only drivers of synchrony were the predictor variables. Predicted synchrony plots can be compared directly to the wavelet mean field magnitude plot of the response variable, similarity of the two plots giving a visual indication of whether the predictors in the model adequately explain synchrony in the response variable. The function `wlm` and related functions from `wsyn` implement these tools.
 
 Proper partitioning of spatial synchrony, into a component explained by the synchronous drivers in a wavelet linear model and a component corresponding to factors independent of those drivers (residuals in the model), is only possible if cross terms, which also appear in the model, are small compared to the other components [@Sheppard2016_aphids; @Sheppard_wavmodel].
 Large cross terms correspond to a general association between the model (drivers, or predictor variables) at one location and the residuals of the model at other locations [@Sheppard2016_aphids; @Sheppard_wavmodel].  Such associations may occur as a result of the population at the first location dispersing to the second location and being included in the count there. Considering a coarser spatial scale limits the potential for dispersal to have such an influence on our statistics, so one expects that if cross terms are large at the county spatial scale, the problem may be mitigated at the district scale, as happened in some
@@ -456,7 +456,7 @@ of our analyses (see section "USDA district results" in SI Appendix).
 \textbf{Randomization procedure for removing synchrony at $3-7$-year timescales.} In order to quantify the degree to which 
 synchronizing effects are responsible for 
 fluctuations in statewide total deer and DVC time 
-series (Fig. \ref{Fig4_StateWideFluctuations} and associated text), 
+series (Fig. \ref{Fig5_StateWideFluctuations} and associated text), 
 we adapted the standard Fourier surrogate procedure 
 of Theiler [@Theiler1992]. We constructed artificial 
 deer abundance and DVC time series for each 
