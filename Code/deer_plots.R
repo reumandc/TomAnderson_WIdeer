@@ -28,10 +28,10 @@ tot.wd<-ywd+3*pan.wd+3*gap
 pan.ht<-pan.wd 
 tot.ht<-pan.ht+xht+gap
 
-#Make Figure 2
-#pdf("Results/Fig2.pdf",height=tot.ht,width=tot.wd)
-png("Results/Fig2.png",res=600,height=tot.ht,width=tot.wd,unit="in")
-#tiff("Results/Fig2.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+#Make Figure 3
+#pdf("Results/Fig3.pdf",height=tot.ht,width=tot.wd)
+png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")
+#tiff("Results/Fig3.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
 
 #panel A: wavelet mean field
 par(fig=c((ywd)/tot.wd,
@@ -152,10 +152,10 @@ axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1),
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 dev.off()
 
-#Make Figure 3
-#tiff("Results/Fig3.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
-#pdf("Results/Fig3.pdf",height=tot.ht,width=tot.wd)
-png("Results/Fig3.png",res=600,height=tot.ht,width=tot.wd,unit="in")#panel A: wavelet mean field
+#Make Figure 4
+#tiff("Results/Fig4.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
+#pdf("Results/Fig4.pdf",height=tot.ht,width=tot.wd)
+png("Results/Fig4.png",res=600,height=tot.ht,width=tot.wd,unit="in")#panel A: wavelet mean field
 
 #Panel A: wavelet mean field
 par(fig=c((ywd)/tot.wd,
@@ -280,15 +280,15 @@ dev.off()
 
 #make plots of phase by timescale for all significant pairs of variables (Fig S4)
 png("Results/FigS4.png",res=600,height=4800,width=3200)
-TabS1_results<-readRDS(file = "Results/TableS1.rds")
-TabS1_results<-cbind(TabS1_results[,1:3],apply(TabS1_results[,4:7],2,function(x){round(x,4)}))
-wmeiabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI" &  TabS1_results$Timescale=="4-7"]
-wmeiabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI" &  TabS1_results$Timescale=="3-7"]
-wpdoabun_phase47<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO" &  TabS1_results$Timescale=="4-7"]
-wpdoabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter PDO" &  TabS1_results$Timescale=="3-7"]
-snowabun_phase34<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth" & TabS1_results$Timescale=="3-4"]
-snowabun_phase37<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Snow Depth" & TabS1_results$Timescale=="3-7"]
-hunterphase2_2.5<-TabS1_results$MeanPhase[TabS1_results$Predictor=="Hunters" & TabS1_results$Timescale=="2-2.5"]
+Tab1_results<-readRDS(file = "Results/Table1.rds")
+Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){round(x,4)}))
+wmeiabun_phase47<-Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI" &  Tab1_results$Timescale=="4-7"]
+wmeiabun_phase37<-Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI" &  Tab1_results$Timescale=="3-7"]
+wpdoabun_phase47<-Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="4-7"]
+wpdoabun_phase37<-Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
+snowabun_phase34<-Tab1_results$MeanPhase[Tab1_results$Predictor=="Snow Depth" & Tab1_results$Timescale=="3-4"]
+snowabun_phase37<-Tab1_results$MeanPhase[Tab1_results$Predictor=="Snow Depth" & Tab1_results$Timescale=="3-7"]
+hunterphase2_2.5<-Tab1_results$MeanPhase[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"]
 
 par(mfrow=c(4,2),mar=c(2.5,4,2.5,0.5),mgp=c(1.5,0.5,0),cex.lab=1.5,las=1)
 phaseplot(clim.coher$WinterMEI.Abun,abun.wmf$timescales,showphase = F,type="pi",tsrange=c(3,7),xlab="",ylab="Phase")
@@ -318,8 +318,8 @@ rect(xleft=2,ybottom = -pi,xright = 2.5,ytop = pi,col=rgb(1,0,0,0.5),density=25,
 mtext(line=0,adj=1,cex=0.75,bquote(paste("2-2.5, ",bar(theta)==.(round(hunterphase2_2.5,3)))))
 dev.off()
 
-#Make plot of ranks by timescale for all significant pairs of variables (Fig S6)
-png("Results/FigS6.png",res=600,height=3000,width=4800)
+#Make plot of ranks by timescale for all significant pairs of variables (Fig S5)
+png("Results/FigS5.png",res=600,height=3000,width=4800)
 par(mfrow=c(1,2),mar=c(3.5,4,1.5,0),mgp=c(2.5,0.5,0))
 plot(abun.wmf$timescales,clim.ranks$WinterMEI.Abun$coher,xaxt="n",las=1,type="l",lwd=2,ylab="Rank",xlab="Timescale (yrs)")
 axis(1,at = seq(2,12,1),labels=c(2,"","4","",6,"",8,"",10,"",12))
@@ -342,8 +342,8 @@ legend("topright",c("Abun-DVCs","Abun-Adj. DVCs","Hunters-Abun"),lty=c(1,1,1),
 mtext("B)",font=2,adj=-0.1)
 dev.off()
 
-#Make wavelet mean field, wavelet phasor meanfield and predicted synchrony plot for hunters (Fig S7)
-png("Results/FigS7.png",res=600,height=9.75,width=3.75,unit="in")
+#Make wavelet mean field, wavelet phasor meanfield and predicted synchrony plot for hunters (Fig S6)
+png("Results/FigS6.png",res=600,height=9.75,width=3.75,unit="in")
 hunters.tmp<-cty.list$Hunters[,12:dim(cty.list$Hunters)[2]]
 hunters.tmp<-hunters.tmp[(!row.names(hunters.tmp)%in%cwd) & !is.na(rowMeans(hunters.tmp)),]
 abun.tmp<-cty.list$Abun[row.names(cty.list$Abun)%in%row.names(hunters.tmp),12:36]
@@ -367,7 +367,7 @@ mtext("C)",adj=0.05,line=-1.2,side=3,font=2,cex=2)
 dev.off()
 
 #Make winter weather wavelet mean field and wavelet phasor mean field plots
-png("Results/FigS9.png",res=600,height=9,width=7,unit="in")
+png("Results/FigS8.png",res=600,height=9,width=7,unit="in")
 winter.clim.dt<-lapply(winter.clim,function(x){x<-cleandat(x[!(is.na(rowMeans(x))),],clev=5,times=minyear:maxyear)$cdat;x})
 par(mfrow=c(4,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 tmin.wmf<-wsyn::wmf(winter.clim.dt$Tmin,times=1981:2016)
@@ -396,7 +396,7 @@ deer_wpmfplot(prcp.wpmf,colorbar=T,ylab="Timescale (yrs)",xlab="Year",sigthresh 
 mtext("H)",adj=0.05,font=2,line=-1.2,side=3)
 dev.off()
 
-#Make Figure S8: plots of wavelet mean field, wavelet phasor mean field, and predicted synchrony of 
+#Make Figure S7: plots of wavelet mean field, wavelet phasor mean field, and predicted synchrony of 
 #deer abundance and DVCs using USDA district data
 usda.abun.dt<-cleandat(usda.list$Abun,clev=5,times=minyear:maxyear)$cdat
 usda.dvc.dt<-cleandat(usda.list$Crashes[,!is.na(colSums(usda.list$Crashes))],clev=5,times=1987:maxyear)$cdat
@@ -408,7 +408,7 @@ dvc.wpmf.usda<-wsyn::wpmf(usda.dvc.dt,times = 1987:maxyear,sigmethod = "quick")
 dvc.wmf.usda<-wsyn::wmf(usda.dvc.dt,times = 1987:maxyear)
 
 #make figure
-png("Results/FigS8.png",res=600,height=9,width=7,unit="in")
+png("Results/FigS7.png",res=600,height=9,width=7,unit="in")
 par(mfrow=c(3,2),mar=c(2.5,3,0,4),mgp=c(1.5,0.5,0))
 deer_wmfplot(abun.wmf.usda,xlab="",ylab="Timescale (yrs)",las=1)
 mtext("A)",adj=0.05,line=-1.2,side=3,font=2)
@@ -434,8 +434,8 @@ syncexpplot(resp.wmf=dvc.wmf.usda$values,exp.sync = predsync(usda.wlm_dvc)[[3]],
 mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
 dev.off()
 
-#Make raw data plots (Fig S1)
-png("Results/FigS1.png",res=600,height=3600,width=3600)
+#Make raw data plots (Fig 2)
+png("Results/Fig2.png",res=600,height=3600,width=3600)
 par(mfrow=c(3,2),mar=c(2.5,5,1.2,0),mgp=c(3,0.5,0))
 plot(1981:2016,rep(NA,36),las=1,ylim=c(min(cty.list$Abun),max(cty.list$Abun)),xlab="",ylab="Abundance")
 for(i in 1:nrow(cty.list$Abun)){
@@ -488,8 +488,8 @@ pan.ht.small<-0.33*pan.ht.big #small panel height param
 tot.wd<-ywd+pan.wd.big+gap
 tot.ht<-2*pan.ht.big+2*pan.ht.small+2*xht+4*gap
 
-png("Results/Fig4.png",res=600,units="in",width = tot.wd,height = tot.ht)
-#tiff("Results/Fig4.tif",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
+png("Results/Fig5.png",res=600,units="in",width = tot.wd,height = tot.ht)
+#tiff("Results/Fig5.tif",res=600,units="in",width = tot.wd,height = tot.ht,compression=c("lzw"))
 
 #Deer- little panel
 par(fig=c(ywd/tot.wd,
