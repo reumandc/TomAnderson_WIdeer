@@ -33,7 +33,8 @@ The model setup is similar to the models used in the supplementary information f
 \cite{Desharnais2018}, but in
 contrast to their models, our model
 considers more than two habitat patches and does not consider dispersal.
-Some of our below sentences are copied with very little or no change from that reference.
+Some of our below sentences are copied with very little or no change in wording
+from that reference.
 Suppose population dynamics are given by
 \begin{equation}
 w_{i} = c_1 w_i(t-1)+ \cdots + c_n w_i(t-n)+q_0 \epsilon_{i}(t)+\cdots+q_{m}\epsilon_{i}(t-m),\label{eq:mainmodel}
@@ -56,30 +57,6 @@ denote the cross spectrum of the processes $\epsilon_{i}$ and $\epsilon_{j}$
 $S_{w_i w_j}$ and $C_{w_i w_j}=\Rp(S_{w_i w_j})$ be the spectrum, cross spectrum
 and cospectrum of the population processes $w_i$ and $w_j$.
 
-For simplicity, we make a number of assumptions of spatial symmetry. We assume 
-the processes $\epsilon_i$ are identically distributed  for all
-$i$, so the power spectra $S_{\epsilon_{i}\epsilon_{i}}$ are all equal.
-We assume 
-the power spectra $S_{\epsilon_{i}\epsilon_{i}}$ are nowhere zero, a reasonable
-assumption because actual environmental noise typically has this broadband
-characteristic. We assume
-$C_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{k}\epsilon_{l}}$ for all
-$i \neq j$ and $k \neq l$; and $S_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{i}\epsilon_{j}}$.
-This last assumption amounts to assuming that the environmental noise
-cross spectra are real, i.e., $\Ip(S_{\epsilon_{i}\epsilon_{j}})=0$.
-This is reasonable, first, because it is consistent with spatial symmetry: 
-it represents an assumption
-that all relationships between $\epsilon_{i}$ and $\epsilon_{j}$
-are in phase, and therefore oscillations in neither variable lead to oscillations in the
-other variable, at any frequency (no traveling-wave-like behavior 
-in the environmental noise).
-The assumption $S_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{i}\epsilon_{j}}$ 
-is also reasonable because if we take $\epsilon_{g}$
-to be an environmental process affecting all habitat patches, and we take
-$\epsilon_{i}=\epsilon_{g}+\epsilon_{l_i}$, where the $\epsilon_{l_i}$
-are independent local processes, then $S_{\epsilon_{i}\epsilon_{j}}$
-equals the power spectrum of $\epsilon_{g}$, which is real.
-
 \section{Derivation of the main result}
 
 Suppose we are interested in the variance (through time) of the
@@ -88,12 +65,20 @@ and the extent to which this variance may be dominated by particular timescales.
 We write $\var_t(\sum_i w_i(t))=\sum_{i,j} \cov_t(w_i(t),w_j(t))$,
 and using spectral tools to decompose by timescale,
 $S_{\text{tot}} = \sum_{i,j} C_{w_i w_j}$, where $S_{\text{tot}}$
-is the power spectrum of $x_{\text{tot}} = \sum_i x_i(t)$. 
+is the power spectrum of $x_{\text{tot}} = \sum_i x_i(t)$. Note that
+the power spectrum of $x_{\text{tot}}$ is equal to that of 
+$w_{\text{tot}}=\sum_i w_i(t)$. 
 
 \begin{proposition}
-For all $i \neq j$, $S_{w_i w_i} = \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon_{i}\epsilon_{i}}$ and $C_{w_i w_i} = \left| \frac{\gamma}{1-\lambda} \right|^2 C_{\epsilon_{i}\epsilon_{i}}$, where $\gamma=q_{ 0}+q_{ 1}\mu+\cdots+q_{m}\mu^{m}$,
+For all $i \neq j$, define the two-dimensional processes 
+$w_{ij}=(w_i,w_j)$ and $\epsilon_{ij} = (\epsilon_{i},\epsilon_{j})$ and 
+let $S_{w_{ij} w_{ij}}$ and $S_{\epsilon_{ij}\epsilon_{ij}}$ be the spectral
+matrices of those processes. Then
+$S_{w_{ij} w_{ij}} = \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon_{ij}\epsilon_{ij}}$, where $\gamma=q_{ 0}+q_{ 1}\mu+\cdots+q_{m}\mu^{m}$,
 $\lambda=c_{ 1 }\mu+c_{ 2}\mu^{2}+\cdots+c_{n}\mu^{n}$ and $\mu=\exp(-2\pi i f)$
-for $f$ representing frequency, in cycles per time step.
+for $f$ representing frequency, in cycles per time step. In particular,
+$S_{w_i w_i} = \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon_{i}\epsilon_{i}}$ 
+and $C_{w_i w_j} = \left| \frac{\gamma}{1-\lambda} \right|^2 C_{\epsilon_{i}\epsilon_{j}}$.
 \end{proposition}
 
 \begin{proof}
@@ -103,34 +88,35 @@ w_{k}(t) =c_{ 1}w_{k}(t- 1)+\cdots+c_{n}w_{k}(t-n)+q_{  0}\epsilon_{k}(t)  +\cdo
 \end{equation}
 for $k=i,j$. We rewrite this as
 \begin{equation}
-\mathcal{C} w = \mathcal{Q} \epsilon \label{eq:linfiltmod}
+\mathcal{C} w_{ij} = \mathcal{Q} \epsilon_{ij} \label{eq:linfiltmod}
 \end{equation}
 for the linear filters
 \begin{align}
 \mathcal{C} &= I-c_1 IB - c_2 IB^2 - \cdots - c_n IB^n \\
-\mathcal{Q} &= q_0 I + q_1 IB + \cdots + q_m IB^m
+\mathcal{Q} &= q_0 I + q_1 IB + \cdots + q_m IB^m,
 \end{align}
-and the two-dimensional processes $w=(w_i,w_j)$ and $\epsilon = (\epsilon_{i},\epsilon_{j})$. Here $B$ is the backshift operator,
-$B^{j}\delta(t)=\delta(t-j)$, for a stochastic process $\delta(t)$.
+where $I$ is the $2 \times 2$ identity matrix. 
+Here $B$ is the backshift operator,
+$B^{l}\delta(t)=\delta(t-l)$, for a stochastic process $\delta(t)$.
 See \cite{Brillinger2011}, \cite{Reinsel1997} and \cite{Shumway2000}
 for background on linear filters. Computing the spectral matrices of both
 sides of \ref{eq:linfiltmod} gives
 \begin{equation}
-T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\epsilon}
+T(\mathcal{C}) S_{w_{ij}w_{ij}} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon_{ij}\epsilon_{ij}}
 \overline{T(\mathcal{Q})}
 \end{equation}
-where $S_{ww}$ is the spectral matrix of $w$, $S_{\epsilon\epsilon}$
-is that of $\epsilon$, and $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
+where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
 are the transfer function matrices of the linear filters
 $\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
 section 1.1.3 of \citealp{Reinsel1997}). But 
 $T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
 (section 1.1.3 of \citealp{Reinsel1997}), so
 \begin{align}
-S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
-&= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon\epsilon}.
+S_{w_{ij}w_{ij}} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon_{ij}\epsilon_{ij}} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
+&= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon_{ij}\epsilon_{ij}}.
 \end{align}
-$S_{ww}$ and $S_{\epsilon\epsilon}$ are $2 \times 2$ matrices, and considering the components gives the two equations which were to be proved.
+$S_{w_{ij}w_{ij}}$ and $S_{\epsilon_{ij}\epsilon_{ij}}$ are $2 \times 2$ matrices, and considering the components and their real parts gives the last two statements of
+the proposition.
 \end{proof}
 
 Now applying this proposition,
@@ -139,48 +125,79 @@ S_{\text{tot}} &= \sum_{i,j} C_{w_i w_j} \\
 &= \sum_{i,j} \left| \frac{\gamma}{1-\lambda} \right|^{ 2} C_{\epsilon_{i}\epsilon_{j}} \\
 &= \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right].
 \end{align}
-Making use of the spatial symmetry assumptions, this is
-\begin{equation}
-S_{\text{tot}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ N S_{\epsilon_{ 1}\epsilon_{ 1}} + (N^2-N) C_{\epsilon_{ 1}\epsilon_{ 2}} \right].\label{eq:finalres}
-\end{equation}
 Thus the power spectrum of the total  population is influenced by three terms.
 First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects
-dynamics intrinsic to the population ($\gamma$ and $\lambda$ contain 
-the coefficients $c_1,\ldots,c_n$ and $q_0,\ldots,q_m$). Second, 
-$N S_{\epsilon_{ 1}\epsilon_{ 1}}$, the  power
-spectrum of the noise, which reflects the extent to which the noise
-itself may be periodic. And third, $(N^2-N) C_{\epsilon_{ 1}\epsilon_{ 2}}$, 
-the cospectrum of the noise, which reflects the extent to which noise
+dynamics intrinsic to the population ($\gamma$ and $\lambda$ contain
+the coefficients $c_1,\ldots,c_n$ and $q_0,\ldots,q_m$). Second,
+$\sum_i S_{\epsilon_{i}\epsilon_{i}}$, the  sum of the power
+spectra of the noise time series, which reflects the extent to which the noise
+itself may be periodic. And third, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$,
+the sum of the cospectra of the noise, which reflects the extent to which noise
 synchrony across locations may be specific to certain timescales.
-These three terms can be independently manipulated (see next section). 
-The only constraint should be that $C_{\epsilon_{ 1}\epsilon_{ 2}}$ has to be
-less than $S_{\epsilon_{ 1}\epsilon_{ 1}}$ for all timescales. Note that for
-large $N$, the prefactors $N$ and $N^2-N$ suggest that timescale specificity of
-synchrony of noise across locations will tend to be more important than 
+These three terms can be independently manipulated in the model, with some
+constraints. Note that because the first sum is of $N$ quantities and the 
+second is of $N^2 - N$ quantities, results 
+suggest that, when $N$ is large, timescale specificity of
+synchrony of noise across locations will tend to be more important than
 the nature of the periodicity of the noise.
 
 \section{Examples}
 
-First example will use white Gaussian noise, covariance matrix with 1s along 
+
+
+\section{Storage}
+
+For simplicity, we make a number of assumptions of spatial symmetry. We assume
+the processes $\epsilon_i$ are identically distributed  for all
+$i$, so the power spectra $S_{\epsilon_{i}\epsilon_{i}}$ are all equal.
+We assume
+the power spectra $S_{\epsilon_{i}\epsilon_{i}}$ are nowhere zero, a reasonable
+assumption because actual environmental noise typically has this broadband
+characteristic. We assume
+$C_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{k}\epsilon_{l}}$ for all
+$i \neq j$ and $k \neq l$; and $S_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{i}\epsilon_{j}}$.
+This last assumption amounts to assuming that the environmental noise
+cross spectra are real, i.e., $\Ip(S_{\epsilon_{i}\epsilon_{j}})=0$.
+This is reasonable, first, because it is consistent with spatial symmetry:
+it represents an assumption
+that all relationships between $\epsilon_{i}$ and $\epsilon_{j}$
+are in phase, and therefore oscillations in neither variable lead to oscillations in the
+other variable, at any frequency (no traveling-wave-like behavior
+in the environmental noise).
+The assumption $S_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{i}\epsilon_{j}}$
+is also reasonable because if we take $\epsilon_{g}$
+to be an environmental process affecting all habitat patches, and we take
+$\epsilon_{i}=\epsilon_{g}+\epsilon_{l_i}$, where the $\epsilon_{l_i}$
+are independent local processes, then $S_{\epsilon_{i}\epsilon_{j}}$
+equals the power spectrum of $\epsilon_{g}$, which is real.
+
+
+Making use of the spatial symmetry assumptions, this is
+\begin{equation}
+S_{\text{tot}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ N S_{\epsilon_{ 1}\epsilon_{ 1}} + (N^2-N) C_{\epsilon_{ 1}\epsilon_{ 2}} \right].\label{eq:finalres}
+\end{equation}
+
+
+First example will use white Gaussian noise, covariance matrix with 1s along
 the diagonal and off-diagonal entries $\rho$. It will use AR(2) dynamics in each
-location (stable, so without noise this has an equilibrium and it is not an 
+location (stable, so without noise this has an equilibrium and it is not an
 intrinsically oscillating population). Should show periodicity in the total
 population.
 
 Second example will use an AR(1) model in each location, and noise which comes
 from an AR(2) model in each location where the innovations driving those models
 will be standard normal, independent through time, and correlated across space.
-This should end up with a peak in both the noise spectra and cospectra. 
+This should end up with a peak in both the noise spectra and cospectra.
 
 Would also like an example with peaks in the noise spectra but not in their cospectra,
 but this is not strictly necessary.
 
-Third example will use an AR(1) model in each location, and noise is white in each location, but cospectra across locations are high in a certain timescale band and low elsewhere. Not sure right now how to arrange that. 
+Third example will use an AR(1) model in each location, and noise is white in each location, but cospectra across locations are high in a certain timescale band and low elsewhere. Not sure right now how to arrange that.
 
 Would also like an example where noise has a peak in the spectrum, but is actually
 uncorrelated across locations at that timescale band, and instead is correlated across
-locations at another timescale band. Using AR(1) dynamics in each location. Should 
-give a counter-intuitive peak in the total-pop spectrum. 
+locations at another timescale band. Using AR(1) dynamics in each location. Should
+give a counter-intuitive peak in the total-pop spectrum.
 
 I may have to learn how to work with VARMA models to generate multi-location
 noise with desired spectral structure. This seems likely to be the best way to
