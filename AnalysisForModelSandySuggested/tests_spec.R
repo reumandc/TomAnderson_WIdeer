@@ -59,3 +59,25 @@ max(Mod(ycut-pg$pgram[,1,2]))
 cov(x[,1],x[,2])
 sum(y)/(lents-1)
 cov(x[,1],x[,2])-Re(sum(y)/(lents-1))
+
+#now look at the cospectrum across a bunch of runs
+numts<-50
+x<-rmvnorm(lents*numts,mean=c(0,0),sigma=Sig)
+dim(x)<-c(lents,numts,2)
+x<-aperm(x,c(1,3,2))
+cs1<-my.spec.pgram(x[,,1],detrend=FALSE,plot=FALSE,taper=0,spans=c(91,71))
+allcosp<-matrix(NA,dim(cs1$pgram)[1],numts)
+allcosp[,1]<-Re(cs1$pgram[,1,2])
+for (counter in 2:numts)
+{
+  cs1<-my.spec.pgram(x[,,counter],detrend=FALSE,plot=FALSE,taper=0,spans=c(91,71))
+  allcosp[,counter]<-Re(cs1$pgram[,1,2])
+}
+plot(cs1$freq,allcosp[,1],type='l',col=rgb(0,0,0,alpha=.3),ylim=c(-1,1))
+for (counter in 2:numts)
+{
+  lines(cs1$freq,allcosp[,counter],type='l',col=rgb(0,0,0,alpha=.3))
+}
+lines(cs1$freq,rep(rho,length(cs1$freq)),col='red')
+meds<-apply(FUN=median,X=allcosp,MARGIN=1)
+lines(cs1$freq,meds,col='red',lty='dashed')

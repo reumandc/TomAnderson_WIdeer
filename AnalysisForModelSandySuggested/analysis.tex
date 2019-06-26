@@ -79,6 +79,7 @@ $\lambda=c_{ 1 }\mu+c_{ 2}\mu^{2}+\cdots+c_{n}\mu^{n}$ and $\mu=\exp(-2\pi i f)$
 for $f$ representing frequency, in cycles per time step. In particular,
 $S_{w_i w_i} = \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon_{i}\epsilon_{i}}$ 
 and $C_{w_i w_j} = \left| \frac{\gamma}{1-\lambda} \right|^2 C_{\epsilon_{i}\epsilon_{j}}$.
+\label{prop:mainprop}
 \end{proposition}
 
 \begin{proof}
@@ -119,12 +120,21 @@ $S_{w_{ij}w_{ij}}$ and $S_{\epsilon_{ij}\epsilon_{ij}}$ are $2 \times 2$ matrice
 the proposition.
 \end{proof}
 
-Now applying this proposition,
+Now by applying proposition \ref{prop:mainprop}, we have
+\begin{proposition}
+Using the same notation as above,
+$S_{\text{tot}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
+\label{prop:mainprop2}
+\end{proposition}
+\begin{proof}
 \begin{align}
 S_{\text{tot}} &= \sum_{i,j} C_{w_i w_j} \\
 &= \sum_{i,j} \left| \frac{\gamma}{1-\lambda} \right|^{ 2} C_{\epsilon_{i}\epsilon_{j}} \\
-&= \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right].
+&= \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right].\label{eq:splitup}
 \end{align}
+The second equality follows from proposition \ref{prop:mainprop}.
+\end{proof}
+
 Thus the power spectrum of the total  population is influenced by three terms.
 First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects
 dynamics intrinsic to the population ($\gamma$ and $\lambda$ contain
@@ -135,73 +145,128 @@ itself may be periodic. And third, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}
 the sum of the cospectra of the noise, which reflects the extent to which noise
 synchrony across locations may be specific to certain timescales.
 These three terms can be independently manipulated in the model, with some
-constraints. Note that because the first sum is of $N$ quantities and the 
+constraints. Note that because the first sum in the expression 
+\ref{eq:finalres} is of $N$ quantities and the
 second is of $N^2 - N$ quantities, results 
 suggest that, when $N$ is large, timescale specificity of
 synchrony of noise across locations will tend to be more important than
 the nature of the periodicity of the noise.
 
-\section{Examples}
+\section{Example 1}\label{sect:example1}
+
+For this model setup there were 10 sampling locations, and environmental noise $\epsilon_i(t)$
+($i=1,\ldots,10$) was generated
+(see section \ref{sec:noise1}) so that the power spectrum of noise at each location was 
+$S_{\epsilon_i \epsilon_i} = \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$ and
+the cross spectrum between any two locations was 
+$S_{\epsilon_i \epsilon_j}=\rho \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$, for $c_1=0$ and $c_2=-1/9$. The noise synchrony parameter, $\rho$, was taken to be 
+$0.8$ in one set of simulations and $0$ in another. For $\rho=0.8$, 
+noise spectra, cospectra, and quadspectra are in figure \ref{fig:example1_noise_spectra_rho0p8}. 
+For $\rho=0$ they are in figure \ref{fig:example1_noise_spectra_rho0}.
+The semiperiodic nature of the noise
+is revealed by the peak in the spectrum.
+The only difference between the two simulations is the synchrony of the 
+environmental noise which operates, as reflected in the noise cospectra.
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp1_NoiseSpectra.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_NoiseCospectra.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_NoiseQuadspectra.pdf}
+\caption{(A) Spectrum of the environmental noise at location 1 (same as the spectrum at any other of the 10 locations) for example 1, $\rho=0.8$. The solid red line is the analytically calculated spectrum listed in the text, and the grey lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red line is the median of the simulation spectra, and agrees closely with the analytic value. Similar setup for
+ the other panels except cospectra (B) and quadspectra (C) of sites 1 and 2 are shown. }\label{fig:example1_noise_spectra_rho0p8}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp1_NoiseSpectra_rho0.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_NoiseCospectra_rho0.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_NoiseQuadspectra_rho0.pdf}
+\caption{Similar to figure \ref{fig:example1_noise_spectra_rho0p8}, but using $\rho=0$.}\label{fig:example1_noise_spectra_rho0}
+\end{figure}
+
+The noise was used to drive the AR(1) model $w_i(t)=\rho_p w_i(t-1)+\epsilon_i(t)$
+for $i=1,\ldots,10$. Here $\rho_p$ is a lag-1 autocorrelation parameter for the model;
+the value $\rho_p=0.15$ was used. Proposition \ref{prop:mainprop} implies
+that the spectrum of the population at each sampling location is
+$S_{w_i w_i} = \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2
+\left| \frac{1}{1-\rho_p \mu} \right|^2$ and the cross spectrum of the populations
+at any two distinct sampling locations is 
+$S_{w_i w_j} = \rho \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 
+\left| \frac{1}{1-\rho_p \mu} \right|^2$.
+For $\rho=0.8$,
+population spectra, cospectra, and quadspectra are in figure \ref{fig:example1_pops_spectra_rho0p8}.
+For $\rho=0$ they are in figure \ref{fig:example1_pops_spectra_rho0}.
+Again the only difference is that synchrony, revealed in the cospectrum,
+is present and depends on timescale for $\rho=0.8$, but is absent for 
+$\rho=0$.
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp1_PopsSpectra.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_PopsCospectra.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_PopsQuadspectra.pdf}
+\caption{(A) Spectrum of the population at location 1 (same as the spectrum at any other of the 10 locations) for example 1, $\rho=0.8$. The solid red line is the analytically calculated spectrum listed in the text, and the grey lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red line is the median of the simulation spectra, and agrees closely with the analytic value. Similar setup for
+ the other panels except cospectra (B) and quadspectra (C) of sites 1 and 2 are shown. }\label{fig:example1_pops_spectra_rho0p8}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp1_PopsSpectra_rho0.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_PopsCospectra_rho0.pdf}
+\includegraphics[width=.31\textwidth]{Examp1_PopsQuadspectra_rho0.pdf}
+\caption{Similar to figure \ref{fig:example1_pops_spectra_rho0p8}, but using $\rho=0$.}\label{fig:example1_pops_spectra_rho0}
+\end{figure}
+
+Using proposition \ref{prop:mainprop2}, $S_{\text{tot}} = 
+\left[N + (N^2-N)\rho \right] \left| \frac{1}{1-c_1 \mu - c_2 \mu^2} \right|^2  
+\left| \frac{1}{1-\rho_p \mu} \right|^2$. This is plotted on figure
+\ref{fig:Stotexample1}. The striking difference between the values of 
+$S_{\text{tot}}$ for $\rho=0.8$ and $\rho=0$ is solely due to 
+differences in synchrony. Periodicity (revealed here through the spectral peak for
+$\rho=0.8$) is made much more noticeable via the synchrony. Example
+stretches of the total population time series for the $\rho=0.8$ and 
+$\rho=0$ cases (figure \ref{fig:totpopstretches}) show much
+more noticeable semiperiodic fluctuations for $\rho=0.8$ than for 
+$\rho=0$. A bit of measurement error would probably obscure the smaller fluctuations,
+but not the larger ones.
+
+\begin{figure}
+\includegraphics[width=.8\textwidth]{Examp12_TotpopsSpectra.pdf}
+\caption{The spectrum of the total population for example 1, $\rho=0.8$ (upper lines) and $\rho=0.15$ (lower lines). The solid red lines are the analytically calculated spectrum listed in the text, and the grey lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red lines are medians, and 
+agree closely with the analytic values. The difference between the upper and lines is solely due to synchrony.}\label{fig:Stotexample1}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=.45\textwidth]{Examp1_Totpops.pdf}
+\includegraphics[width=.45\textwidth]{Examp1_TotpopsMinusMA.pdf}
+\caption{(A) Total population time series for the $\rho=0.8$ (black) and
+$\rho=0$ (green) cases. (B) After removal of a $7$-year moving average,
+to remove the red shift of populations, isolating the semiperiodic dynamics.
+The semiperiodic dynamics are much more noticable for $\rho=0.8$, and would
+be much less likely to be obscured by measurement error or other purely local
+factors.}
+\label{fig:totpopstretches}
+\end{figure}
+
+This example is informative, but it is not entirely satisfactory for our goals.
+The basic problem is that the spectrum of the total population has the same shape
+for $\rho=0.8$ and for $\rho=0$; it has just been multiplied by a large constant 
+for the $\rho=0.8$ case. There is nothing wrong with that, it is what it is, but it
+is possible to do better, I think (see the next example).
+ 
+\section{Example 2}
 
 
+\section{Generation of noise for example 1}\label{sec:noise1}
 
-\section{Storage}
+Noise for example 1 was generated via an AR(2) process. Let 
+$\delta(t) = (\delta_1(t),\ldots,\delta_N(t))$ be drawn, independently for 
+each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon_i(t)=c_1 \epsilon_i(t-1) + c_2 \epsilon_i(t-2)+\delta_i(t)$. Proposition \ref{prop:mainprop} provides the spectra
+and cross spectra of the noise process $\epsilon$ which are stated in section
+\ref{sect:example1}.
 
-For simplicity, we make a number of assumptions of spatial symmetry. We assume
-the processes $\epsilon_i$ are identically distributed  for all
-$i$, so the power spectra $S_{\epsilon_{i}\epsilon_{i}}$ are all equal.
-We assume
-the power spectra $S_{\epsilon_{i}\epsilon_{i}}$ are nowhere zero, a reasonable
-assumption because actual environmental noise typically has this broadband
-characteristic. We assume
-$C_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{k}\epsilon_{l}}$ for all
-$i \neq j$ and $k \neq l$; and $S_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{i}\epsilon_{j}}$.
-This last assumption amounts to assuming that the environmental noise
-cross spectra are real, i.e., $\Ip(S_{\epsilon_{i}\epsilon_{j}})=0$.
-This is reasonable, first, because it is consistent with spatial symmetry:
-it represents an assumption
-that all relationships between $\epsilon_{i}$ and $\epsilon_{j}$
-are in phase, and therefore oscillations in neither variable lead to oscillations in the
-other variable, at any frequency (no traveling-wave-like behavior
-in the environmental noise).
-The assumption $S_{\epsilon_{i}\epsilon_{j}}=C_{\epsilon_{i}\epsilon_{j}}$
-is also reasonable because if we take $\epsilon_{g}$
-to be an environmental process affecting all habitat patches, and we take
-$\epsilon_{i}=\epsilon_{g}+\epsilon_{l_i}$, where the $\epsilon_{l_i}$
-are independent local processes, then $S_{\epsilon_{i}\epsilon_{j}}$
-equals the power spectrum of $\epsilon_{g}$, which is real.
+\section{Generation of noise for example 2}
 
 
-Making use of the spatial symmetry assumptions, this is
-\begin{equation}
-S_{\text{tot}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ N S_{\epsilon_{ 1}\epsilon_{ 1}} + (N^2-N) C_{\epsilon_{ 1}\epsilon_{ 2}} \right].\label{eq:finalres}
-\end{equation}
-
-
-First example will use white Gaussian noise, covariance matrix with 1s along
-the diagonal and off-diagonal entries $\rho$. It will use AR(2) dynamics in each
-location (stable, so without noise this has an equilibrium and it is not an
-intrinsically oscillating population). Should show periodicity in the total
-population.
-
-Second example will use an AR(1) model in each location, and noise which comes
-from an AR(2) model in each location where the innovations driving those models
-will be standard normal, independent through time, and correlated across space.
-This should end up with a peak in both the noise spectra and cospectra.
-
-Would also like an example with peaks in the noise spectra but not in their cospectra,
-but this is not strictly necessary.
-
-Third example will use an AR(1) model in each location, and noise is white in each location, but cospectra across locations are high in a certain timescale band and low elsewhere. Not sure right now how to arrange that.
-
-Would also like an example where noise has a peak in the spectrum, but is actually
-uncorrelated across locations at that timescale band, and instead is correlated across
-locations at another timescale band. Using AR(1) dynamics in each location. Should
-give a counter-intuitive peak in the total-pop spectrum.
-
-I may have to learn how to work with VARMA models to generate multi-location
-noise with desired spectral structure. This seems likely to be the best way to
-generate my noise the way I need it.
 
 \bibliographystyle{plainnat}
 \bibliography{biblio.bib}
