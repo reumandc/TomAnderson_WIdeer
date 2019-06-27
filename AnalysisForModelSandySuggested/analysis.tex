@@ -146,7 +146,7 @@ the sum of the cospectra of the noise, which reflects the extent to which noise
 synchrony across locations may be specific to certain timescales.
 These three terms can be independently manipulated in the model, with some
 constraints. Note that because the first sum in the expression 
-\ref{eq:finalres} is of $N$ quantities and the
+\ref{eq:splitup} is of $N$ quantities and the
 second is of $N^2 - N$ quantities, results 
 suggest that, when $N$ is large, timescale specificity of
 synchrony of noise across locations will tend to be more important than
@@ -161,7 +161,7 @@ $S_{\epsilon_i \epsilon_i} = \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$ an
 the cross spectrum between any two locations was 
 $S_{\epsilon_i \epsilon_j}=\rho \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$, for $c_1=0$ and $c_2=-1/9$. The noise synchrony parameter, $\rho$, was taken to be 
 $0.8$ in one set of simulations and $0$ in another. For $\rho=0.8$, 
-noise spectra, cospectra, and quadspectra are in figure \ref{fig:example1_noise_spectra_rho0p8}. 
+noise spectra, cospectra, and quadrature spectra are in figure \ref{fig:example1_noise_spectra_rho0p8}. 
 For $\rho=0$ they are in figure \ref{fig:example1_noise_spectra_rho0}.
 The semiperiodic nature of the noise
 is revealed by the peak in the spectrum.
@@ -173,7 +173,7 @@ environmental noise which operates, as reflected in the noise cospectra.
 \includegraphics[width=.31\textwidth]{Examp1_NoiseCospectra.pdf}
 \includegraphics[width=.31\textwidth]{Examp1_NoiseQuadspectra.pdf}
 \caption{(A) Spectrum of the environmental noise at location 1 (same as the spectrum at any other of the 10 locations) for example 1, $\rho=0.8$. The solid red line is the analytically calculated spectrum listed in the text, and the grey lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red line is the median of the simulation spectra, and agrees closely with the analytic value. Similar setup for
- the other panels except cospectra (B) and quadspectra (C) of sites 1 and 2 are shown. }\label{fig:example1_noise_spectra_rho0p8}
+ the other panels except cospectra (B) and quadrature spectra (C) of sites 1 and 2 are shown. }\label{fig:example1_noise_spectra_rho0p8}
 \end{figure}
 
 \begin{figure}
@@ -193,7 +193,7 @@ at any two distinct sampling locations is
 $S_{w_i w_j} = \rho \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 
 \left| \frac{1}{1-\rho_p \mu} \right|^2$.
 For $\rho=0.8$,
-population spectra, cospectra, and quadspectra are in figure \ref{fig:example1_pops_spectra_rho0p8}.
+population spectra, cospectra, and quadrature spectra are in figure \ref{fig:example1_pops_spectra_rho0p8}.
 For $\rho=0$ they are in figure \ref{fig:example1_pops_spectra_rho0}.
 Again the only difference is that synchrony, revealed in the cospectrum,
 is present and depends on timescale for $\rho=0.8$, but is absent for 
@@ -204,7 +204,7 @@ $\rho=0$.
 \includegraphics[width=.31\textwidth]{Examp1_PopsCospectra.pdf}
 \includegraphics[width=.31\textwidth]{Examp1_PopsQuadspectra.pdf}
 \caption{(A) Spectrum of the population at location 1 (same as the spectrum at any other of the 10 locations) for example 1, $\rho=0.8$. The solid red line is the analytically calculated spectrum listed in the text, and the grey lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red line is the median of the simulation spectra, and agrees closely with the analytic value. Similar setup for
- the other panels except cospectra (B) and quadspectra (C) of sites 1 and 2 are shown. }\label{fig:example1_pops_spectra_rho0p8}
+ the other panels except cospectra (B) and quadrature spectra (C) of sites 1 and 2 are shown. }\label{fig:example1_pops_spectra_rho0p8}
 \end{figure}
 
 \begin{figure}
@@ -230,7 +230,7 @@ but not the larger ones.
 \begin{figure}
 \includegraphics[width=.8\textwidth]{Examp12_TotpopsSpectra.pdf}
 \caption{The spectrum of the total population for example 1, $\rho=0.8$ (upper lines) and $\rho=0.15$ (lower lines). The solid red lines are the analytically calculated spectrum listed in the text, and the grey lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red lines are medians, and 
-agree closely with the analytic values. The difference between the upper and lines is solely due to synchrony.}\label{fig:Stotexample1}
+agree closely with the analytic values. The difference between the upper and lower lines is solely due to synchrony.}\label{fig:Stotexample1}
 \end{figure}
 
 \begin{figure}
@@ -253,6 +253,90 @@ is possible to do better, I think (see the next example).
  
 \section{Example 2}
 
+For this model setup there were again $10$ sampling locations, and environmental noise
+$\epsilon_{i}(t)$ ($i=1,\ldots, 10$) was generated (see section \ref{sec:noise2})
+so that the power spectrum of noise at each location was 
+$S_{\epsilon_{i}\epsilon_{i}} = \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^{ 2}+1$
+and the cross spectrum between any two locations was
+$S_{\epsilon_{i}\epsilon_{j}}= \rho_{1}\left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^{ 2}+\rho_2$, again using $c_1=0$ and $c_2=-4/9$. In our first set of simulations,
+the noise synchrony parameters $\rho_1$ and $\rho_2$ were set to be,
+respectively, $0$ and $0.8$. Thus synchrony was  not timescale specific
+in this first simulation (cospectra were flat, equal to $\rho_2=0.8$). 
+Note that $\rho_1$ and $\rho_2$
+do not influence  the spectrum of the environmental noise  at each location,
+they are synchrony parameters,  only controlling synchrony 
+of environmental noise between locations. In our second set of simulations,
+$\rho_2=0$, and $\rho_1$ was chosen so that covariances between locations
+were the same, in expectation, as what they were in the first set of simulations.
+Because the expected covariance between environmental noise time series at
+locations $i$ and $j$ can be obtained from the cospectrum $S_{\epsilon_{i}\epsilon_{j}}$
+via integration, $\int_{-1/2}^{1/2} S_{\epsilon_{i}\epsilon_{j}}(f) df$, 
+where $f$ is frequency, this was accomplished by choosing $\rho_1$
+so that $\int_{-1/2}^{1/2} \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df
+= \int_{-1/2}^{1/2} 0.8 df = 0.8$. Thus, for the second set of simulations,
+$\rho_1 = \frac{0.8}{\int_{-1/2}^{1/2} \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df}$. This was calculated numerically, and equals approximately $0.79$.
+Thus synchrony was timescale specific in the second set of simulations.
+Noise spectra, cospectra and quadrature spectra for the two simulation cases
+are shown in figures \ref{fig:example2_noise_spectra_cs1} and \ref{fig:example2_noise_spectra_cs2}.
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp2_NoiseSpectra_cs1.pdf}
+\includegraphics[width=.31\textwidth]{Examp2_NoiseCospectra_cs1.pdf}
+\includegraphics[width=.31\textwidth]{Examp2_NoiseQuadspectra_cs1.pdf}
+\caption{(A) Spectrum of environmental noise at location 1 (same as the spectrum at any other of the 10 locations) for example 2, simulation case 1 described in the text. The solid red line is the analytically calculated spectrum listed in the text, and the gray lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red line is the median of the simulation spectra, and agrees closely with the analytic value. Similar set up for the other panels except cospectra (B) and quadrature spectra (C) of sites 1 and 2 are shown.}\label{fig:example2_noise_spectra_cs1}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp2_NoiseSpectra_cs2.pdf}
+\includegraphics[width=.31\textwidth]{Examp2_NoiseCospectra_cs2.pdf}
+\includegraphics[width=.31\textwidth]{Examp2_NoiseQuadspectra_cs2.pdf}
+\caption{Similar to figure \ref{fig:example2_noise_spectra_cs1}, but using simulation case 2 of example 2, described in the text.}\label{fig:example2_noise_spectra_cs2}
+\end{figure}
+
+The noise was used to drive the same AR(1) model as was used in example 1,
+again using the parameter value $\rho_p=0.15$. Proposition \ref{prop:mainprop2}
+implies that 
+\begin{equation}
+S_{\text{tot}}=\left| \frac{1}{1-\rho_p \mu} \right|^2
+\left[ (N^2-N) \left[ \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+\rho_2 \right] + N\left[ \left| \frac{1}{1-c_1 \mu-c_2 \mu^2} \right|^2+1 \right] \right].
+\label{eq:example2Stotcs1}
+\end{equation}
+In simulation case 1, this is
+$$S_{\text{tot}}^{(\text{case 1})}=\left| \frac{1}{1-\rho_p \mu} \right|^2
+\left[ [(N^2-N)\rho_2 +N] + \left[ N \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 \right] \right].$$
+The first summand in the brackets is flat, and the second is peaked, as functions of 
+frequency. The first
+should dominate, because
+$N^2 \gg N$ for large enough $N$. Thus the total population spectrum should be unpeaked for simulation case 1 (i.e., no semiperiodicity in the total population).
+In simulation case 2, equation \ref{eq:example2Stotcs1} becomes
+$$S_{\text{tot}}^{(\text{case 2})}=\left| \frac{1}{1-\rho_p \mu} \right|^2
+\left[ \left[ ((N^2-N)\rho_1+N)\left| \frac{1}{1-c_1\mu-c_2\mu^2} \right|^2 \right]  +N \right].$$ The first summand in the brackets is peaked, and the second is flat,
+as functions of frequency. The first should dominate because $N^2 \gg N$ for large N.
+Thus the total population spectrum should be peaked for simulation case 2 
+(semiperiodicity in the total population). Total-population spectra are shown in 
+figure \ref{fig:example2_totpopspec} for the two simulation cases and time series
+are in figure \ref{fig:example2_popts}; the statements made above are borne out by the figures. Essentially, it is not whether environmental noise time series are
+semiperiodic that determines whether total population time series are semiperiodic.
+Instead, when total populations are computed by summing a large number of local
+populations (10 was enough in these examples), what matters much more is whether
+the periodic components of noise are synchronous across sampling locations.
+
+\begin{figure}
+\includegraphics[width=.5\textwidth]{Examp2_TotpopsSpectra_cs1.pdf}
+\includegraphics[width=.5\textwidth]{Examp2_TotpopsSpectra_cs2.pdf}
+\caption{The spectrum of the total population for example 2, simulation case 1 (A) and simulation case 2 (B). The solid red lines are the analytically calculated spectrua listed in the text, and the gray lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red lines are medians, and agree closely with the analytic values. The difference between (A) and (B) is solely due to whether the periodic or non-periodic component of the environmental noise is the synchronous component.}\label{fig:example2_totpopspec}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=.45\textwidth]{Examp2_Totpops.pdf}
+\includegraphics[width=.45\textwidth]{Examp2_TotpopsMinusMA.pdf}
+\caption{(A) Total population time series for simulation case 1 (black) and simulation case 2 (green lines). (B) After removal of a 7-year moving average, to remove the red
+shift of the populations, isolating the semiperiodic dynamics. The semiperiodic dynamics
+are more noticable for case 2 (green lines). }\label{fig:example2_popts}
+\end{figure}
+
+\section{Example 3}\label{sec:example3}
+
 
 \section{Generation of noise for example 1}\label{sec:noise1}
 
@@ -264,9 +348,10 @@ in the diagonal. Let $\epsilon_i(t)=c_1 \epsilon_i(t-1) + c_2 \epsilon_i(t-2)+\d
 and cross spectra of the noise process $\epsilon$ which are stated in section
 \ref{sect:example1}.
 
-\section{Generation of noise for example 2}
+\section{Generation of noise for example 2}\label{sec:noise2}
 
 
+\section{Generation of noise for example 3}\label{sec:noise3}
 
 \bibliographystyle{plainnat}
 \bibliography{biblio.bib}

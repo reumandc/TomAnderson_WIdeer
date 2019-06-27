@@ -1,3 +1,7 @@
+#work on a first example with AR(1) dynamics, noise with weak periodicity 
+#and possibly some synchrony (which is therefore timescale-specific synchrony,
+#if there is synchrony)
+
 #***libraries and other pre work
 
 rm(list=ls())
@@ -10,9 +14,7 @@ N<-10 #number of sampling locations
 lensim<-1024 #length of simulations
 lensimshort<-128
 
-#***work on a first example with AR(1) dynamics, noise with weak periodicity 
-#and possibly some synchrony (which is therefore timescale-specific synchrony,
-#if there is synchrony)
+#***the model
 
 #Simulates the model
 #
@@ -77,6 +79,8 @@ simmodel1<-function(N,rho,r,theta,rhopop,lensim,numsims)
               epsilon=epsilon,
               pops=pops))
 }
+
+#***do the sims, show spectra, cospectra, etc.
 
 #do the sims
 rho<-0.8
