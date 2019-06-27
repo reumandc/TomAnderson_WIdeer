@@ -274,7 +274,7 @@ via integration, $\int_{-1/2}^{1/2} S_{\epsilon_{i}\epsilon_{j}}(f) df$,
 where $f$ is frequency, this was accomplished by choosing $\rho_1$
 so that $\int_{-1/2}^{1/2} \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df
 = \int_{-1/2}^{1/2} 0.8 df = 0.8$. Thus, for the second set of simulations,
-$\rho_1 = \frac{0.8}{\int_{-1/2}^{1/2} \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df}$. This was calculated numerically, and equals approximately $0.79$.
+$\rho_1 = \frac{0.8}{\int_{-1/2}^{1/2} \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df}$. This was calculated numerically, and equals approximately $0.64$.
 Thus synchrony was timescale specific in the second set of simulations.
 Noise spectra, cospectra and quadrature spectra for the two simulation cases
 are shown in figures \ref{fig:example2_noise_spectra_cs1} and \ref{fig:example2_noise_spectra_cs2}.
@@ -324,7 +324,7 @@ the periodic components of noise are synchronous across sampling locations.
 \begin{figure}
 \includegraphics[width=.5\textwidth]{Examp2_TotpopsSpectra_cs1.pdf}
 \includegraphics[width=.5\textwidth]{Examp2_TotpopsSpectra_cs2.pdf}
-\caption{The spectrum of the total population for example 2, simulation case 1 (A) and simulation case 2 (B). The solid red lines are the analytically calculated spectrua listed in the text, and the gray lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red lines are medians, and agree closely with the analytic values. The difference between (A) and (B) is solely due to whether the periodic or non-periodic component of the environmental noise is the synchronous component.}\label{fig:example2_totpopspec}
+\caption{The spectrum of the total population for example 2, simulation case 1 (A) and simulation case 2 (B). The solid red lines are the analytically calculated spectra listed in the text, and the gray lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red lines are medians, and agree closely with the analytic values. The difference between (A) and (B) is solely due to whether the periodic or non-periodic component of the environmental noise is the synchronous component.}\label{fig:example2_totpopspec}
 \end{figure}
 
 \begin{figure}
@@ -337,6 +337,72 @@ are more noticable for case 2 (green lines). }\label{fig:example2_popts}
 
 \section{Example 3}\label{sec:example3}
 
+For this model setup there were again $10$ sampling locations, and environmental
+noise $\epsilon_i(t)$ ($i=1,\ldots,N$) was generated (see section \ref{sec:noise3})
+so that the power spectrum of noise at each location was 
+$S_{\epsilon_i \epsilon_i} = \left| \frac{1}{1-c_1^{(1)} \mu -c_2^{(1)} \mu^2} \right|^2+
+\left| \frac{1}{1-c_1^{(2)} \mu -c_2^{(2)} \mu^2} \right|^2$ and the cross spectrum between any two locations was $S_{\epsilon_i \epsilon_j} = \rho^{(1)} \left| \frac{1}{1-c_1^{(1)} \mu -c_2^{(1)} \mu^2} \right|^2+
+\rho^{(2)} \left| \frac{1}{1-c_1^{(2)} \mu -c_2^{(2)} \mu^2} \right|^2$.
+We used $c_1^{(1)}=2/3$, $c_2^{(1)}=-4/9$, $c_1^{(2)}=-2/3$, $c_2^{(2)}=-4/9$.
+These values make the functions of frequency $\left| \frac{1}{1-c_1^{(1)} \mu -c_2^{(1)} \mu^2} \right|^2$ and $\left| \frac{1}{1-c_1^{(2)} \mu -c_2^{(2)} \mu^2} \right|^2$
+have peaks at, respectively, $f=1/6$ and $2/6$ cycles per sampling interval.
+In our first set of simulations, we used $\rho^{(1)}=0.8$ and $\rho^{(2)}=0$,
+and in our second set of simulations we used $\rho^{(1)}=0$ and $\rho^{(2)}=0.8$.
+Essentially, noise was a sum of two semiperiodic processes in all locations, with 
+periods 6 and 3 years. In simulation case 1, the period-6 process was 
+synchronous across sampling locations and the period-3 process was asynchronous; 
+simulation case 2 was set up in the reverse way. Note that the parameters
+$\rho^{(1)}$ and $\rho^{(2)}$ do not influence the noise spectra; they are synchrony
+parameters, influencing only cospectra between noises in different sampling 
+locations. It is straightforward to show by computing integrals of 
+cospectra that expected covariance between noise time series in different locations
+was the same for cases 1 and 2. Noise spectra, cospectra and quadrature spectra
+for the two simulation cases are in figures \ref{fig:example3_noise_spectra_cs1} and
+\ref{fig:example3_noise_spectra_cs2}.
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp3_NoiseSpectra_cs1.pdf}
+\includegraphics[width=.31\textwidth]{Examp3_NoiseCospectra_cs1.pdf}
+\includegraphics[width=.31\textwidth]{Examp3_NoiseQuadspectra_cs1.pdf}
+\caption{(A) Spectrum of environmental noise at location 1 (same as the spectrum at any other of the 10 locations) for example 3, simulation case 1 described in the text. The solid red line is the analytically calculated spectrum listed in the text, and the gray lines are estimated spectra for simulations of length 1024 (100 simulations performed and showed). The dashed red line is the median of the simulation spectra, and agrees closely with the analytic value, except for deviations at the peaks and troughs of the spectra which are due to biases in the spectrum estimator used. Similar set up for the other panels except cospectra (B) and quadrature spectra (C) of sites 1 and 2 are shown.}\label{fig:example3_noise_spectra_cs1}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=.31\textwidth]{Examp3_NoiseSpectra_cs2.pdf}
+\includegraphics[width=.31\textwidth]{Examp3_NoiseCospectra_cs2.pdf}
+\includegraphics[width=.31\textwidth]{Examp3_NoiseQuadspectra_cs2.pdf}
+\caption{Similar to figure \ref{fig:example3_noise_spectra_cs1}, But using simulation case 2 of example 3, described in the text.}\label{fig:example3_noise_spectra_cs2}
+\end{figure}
+
+The noise was used to drive the same AR(1) model as was used in prior examples,
+again using the parameter value $\rho_p=0.15$. Proposition \ref{prop:mainprop2}
+implies that
+\begin{align}
+S_{\text{tot}} &= \left| \frac{1}{1-\rho_p \mu} \right|^2
+N\left[ \left| \frac{1}{1-c_1^{(1)}\mu-c_2^{(1)}\mu^2} \right|^2 
++ \left| \frac{1}{1-c_1^{(2)}\mu-c_2^{(2)}\mu^2} \right|^2\right] \\
+&+ \left| \frac{1}{1-\rho_p \mu} \right|^2
+(N^2-N)\left[ \rho^{(1)} \left| \frac{1}{1-c_1^{(1)}\mu-c_2^{(1)}\mu^2} \right|^2+ \rho^{(2)}\left| \frac{1}{1-c_1^{(2)}\mu-c_2^{(2)}\mu^2} \right|^2 \right].
+\end{align}
+The first summand is spectral power of the total population which is due to spectral power of the  environmental noise. The second summand is spectral power of the total population which is due to  synchrony of the environmental noise. The second summand will tend to be much more important  for large $N$ because then $N^2 \gg N$. The relative values 
+of $\rho^{(1)}$ and $\rho^{(2)}$ determine the peakedness of this dominant
+term in the total population power spectrum expression. Thus in simulation case 1 
+one expects a peak in the total population power spectrum at period 6,
+and in simulation case 2, one expects a peak in the total population power spectrum 
+at period 3. Total-population spectra are shown in figure \ref{fig:example3_totpopspec} for the two simulation cases and time series are in figure \ref{fig:example3_popts}. Again, it is not whether environmental noise time series are semiperiodic that determines whether and how total population time series are semiperiodic. Instead, what matters is  whether a given periodic component of noise is synchronous across sampling locations.
+
+\begin{figure}
+\includegraphics[width=.5\textwidth]{Examp3_TotpopsSpectra_cs1.pdf}
+\includegraphics[width=.5\textwidth]{Examp3_TotpopsSpectra_cs2.pdf}
+\caption{The spectrum of the total population for example 3, simulation case 1 (A) and simulation case 2 (B). The solid red lines are the analytically calculated spectra listed in the text, and the gray lines are estimated spectra for simulations of length 1024 (100 simulations performed and shown). The dashed red lines are medians, and agree closely with the analytic values (except for deviations due to biases in estimation procedures, as explained previously). The difference between (A) and (B) is solely due to which periodic component of the environmental noise is the synchronous component.}\label{fig:example3_totpopspec}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=.45\textwidth]{Examp3_Totpops.pdf}
+\includegraphics[width=.45\textwidth]{Examp3_TotpopsMinusMA.pdf}
+\caption{(A) Total population time series for simulation case 1 (black) and simulation case 2 (green lines). (B) After removal of a 7-year moving average, to remove the red
+shift of the populations, isolating the semiperiodic dynamics. Dynamics clearly have different periods in the two cases. }\label{fig:example3_popts}
+\end{figure}
 
 \section{Generation of noise for example 1}\label{sec:noise1}
 
@@ -350,8 +416,26 @@ and cross spectra of the noise process $\epsilon$ which are stated in section
 
 \section{Generation of noise for example 2}\label{sec:noise2}
 
+Noise for example 2 was the sum of two processes. The first process was an 
+AR(2) process. Let $\delta^{(1)}(t) = (\delta^{(1)}_1(t),\ldots,\delta^{(1)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho_1$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon^{(1)}_i(t)=c_1 \epsilon^{(1)}_i(t-1) + c_2 \epsilon^{(1)}_i(t-2)+\delta^{(1)}_i(t)$. The second process was simple white noise.
+Let $\epsilon^{(2)}(t) = (\epsilon^{(2)}_1(t),\ldots,\epsilon^{(2)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho_2$ in the off diagonal and $1$
+in the diagonal. The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
 \section{Generation of noise for example 3}\label{sec:noise3}
+
+Noise for example 3 was again the sum of two processes. 
+The first process was an
+AR(2) process. Let $\delta^{(1)}(t) = (\delta^{(1)}_1(t),\ldots,\delta^{(1)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho^{(1)}$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon^{(1)}_i(t)=c_1^{(1)} \epsilon^{(1)}_i(t-1) + c_2^{(1)} \epsilon^{(1)}_i(t-2)+\delta^{(1)}_i(t)$. The second process was
+another AR(2) process with different parameters. 
+Let $\delta^{(2)}(t) = (\delta^{(2)}_1(t),\ldots,\delta^{(2)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho^{(2)}$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon^{(2)}_i(t)=c_1^{(2)} \epsilon^{(2)}_i(t-1) + c_2^{(2)} \epsilon^{(2)}_i(t-2)+\delta^{(2)}_i(t)$.
+The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
 \bibliographystyle{plainnat}
 \bibliography{biblio.bib}

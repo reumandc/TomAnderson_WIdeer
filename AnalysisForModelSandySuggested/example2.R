@@ -123,10 +123,12 @@ sims_case2<-simmodel2(N=N,rho1=rho1_cs2,rho2=rho2_cs2,c1=c1,c2=c2,rhopop=rhopop,
 
 allcovs_case1<-NA*numeric(numsims)
 allcovs_case2<-NA*numeric(numsims)
+epsilon_cs1<-sims_case1$epsilon1+sims_case1$epsilon2
+epsilon_cs2<-sims_case2$epsilon1+sims_case2$epsilon2
 for (counter in 1:numsims)
 {
-  allcovs_case1[counter]<-cov(sims_case1$pops[,1,counter],sims_case1$pops[,2,counter])
-  allcovs_case2[counter]<-cov(sims_case2$pops[,1,counter],sims_case2$pops[,2,counter])
+  allcovs_case1[counter]<-cov(epsilon_cs1[,1,counter],epsilon_cs1[,2,counter])
+  allcovs_case2[counter]<-cov(epsilon_cs2[,1,counter],epsilon_cs2[,2,counter])
 }
 pdf(file="Example2_case1_HistCovs.pdf")
 hist(allcovs_case1)
