@@ -404,6 +404,24 @@ at period 3. Total-population spectra are shown in figure \ref{fig:example3_totp
 shift of the populations, isolating the semiperiodic dynamics. Dynamics clearly have different periods in the two cases. }\label{fig:example3_popts}
 \end{figure}
 
+\section{Example 4}
+
+Dan, do one more example where the noise is the sum of two processes. The
+first process is a sine wave in all locations, random phase. In cases 1 and 2 these have
+the same phases in all locations (but different periods in the two cases, the same
+period, of course, across locations). In case 3, random phases across locations and
+the same period (and the same period as one of cases 1 and 2. This should be, 
+formally, a stationary stochastic process for all cases. The second process 
+is white noise with covariance matrix 1s on the diag and rho in the off diag.
+This is much like the current fig. in the paper. But you should be able to
+1) pipe this noise through an AR(1) process in the same way as the above examples, and
+2) apply your theory to it, formally. 
+
+\section{Thoughts on what goes in the paper}
+
+After working out example 4, we could adapt the current fig 1 to fit that example (it's close already, just make it fit exactly), perhaps adding a new column showing the environmental noise. You explain the pop model, and you explain in the text what the noise model is, using words, but no formulas for it. You maybe have a short theory section. At the end of the theory section you explain this idea is actually quite general, and say there are theorems and several additional examples in the sup mat. And then you put all that stuff there in the sup mat. Maybe give a few sentences of explanation in the main
+text boiling down the generality of the theory, or what it says, in plainer language than is in the sup mat. Probably don't have any math formulas in the main text, because we don't really even want to explain spectra in the main text. The main text is for wavelets, the sup mat has the spectral stuff because we can do the math for it.
+
 \section{Generation of noise for example 1}\label{sec:noise1}
 
 Noise for example 1 was generated via an AR(2) process. Let 
