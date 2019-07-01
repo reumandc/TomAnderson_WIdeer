@@ -125,7 +125,58 @@ save.image(file="WholeWorkspace.RData")
 \begin{center}
 Anderson, Sheppard, Walter, Rolley, Reuman
 \end{center}
+\textbf{Deer and DVC data}
+From 1981-2013, deer abundance was estimated for deer management units 
+(DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
+abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
+accounting models used for a smaller number of years and DMUs [@widnr2001]. 
+In $2014$, DMU boundaries were changed to match counties ($N=72$). Because of this, and because other spatial variables (e.g., DVCs, climate) were gathered at the county level,
+we transformed the 1981-2013 abundance estimates for DMUs 
+into county-level estimates. To do so, we first calculated the areas 
+of intersection between DMU and county boundaries for each year (as 
+DMU boundaries changed frequently), using the 'intersect' function in 
+Arc GIS 10.3 (ESRI, Redlands, CA). We then calculated deer abundance 
+for each intersection area by multiplying the amount of deer habitat in 
+each intersection area by the WIDNR density estimate of deer for the DMU 
+that the intersection fell within. Deer habitat was considered to comprise 
+areas of permanent cover (e.g., forests) that were $>4$ ha in size, plus agriculture and grass fields within 100 m of permanent cover. DMU deer 
+densities were calculated by dividing the DMU abundances originally provided to us
+by the amount of deer habitat within the DMU [@widnr2001]. This procedure 
+assumes approximately spatially uniform densities of deer within deer 
+habitat across each DMU. The abundance for a county was the sum of 
+the estimated abundances of the county's intersections with DMUs. 
+We dropped one county (Menominee) due to incomplete data for most 
+variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
 
+\textbf{DVC data}
+The DVC data reflect 
+the number of police-investigated DVCs; they are an 
+index of DVCs, as opposed to an absolute number of incidents, 
+since not all DVCs are reported. In Michigan, nearly half of 
+DVCs went unreported to the police or insurance companies 
+over a five-year period [@Marcoux2010_dvc]. Additionally, 
+DVC information was collected with reporting effort that 
+may have varied for different counties 
+(Daniel Storm, WIDNR, Personal Communication), and the 
+threshold of damage for the police to respond to and report on 
+an incident increased statewide in 1996 from US\$500 to US\$1000. 
+However, features of the data such as these could only have obscured 
+and could not have artefactually generated the strongly 
+significant spatial wavelet coherence relationships we report between 
+DVCs and deer abundance. Shortcomings of the DVC data added 
+noise to the DVC data and likely obscured the relationship 
+with deer abundance, so that if better DVC data were available 
+this relationship may have been even stronger than reported. 
+We also obtained traffic volume estimates (millions of miles 
+driven) for each county spanning the years 1988-`r maxyear` from the 
+WIDOT, to control for traffic in our analysis of DVCs.
+\textbf{Theory Section.}
+
+
+\newpage
+\textbf{Additional Methods.}
+
+\newpage
 \textbf{USDA district results.} Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
