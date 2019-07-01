@@ -133,11 +133,10 @@ spatial resolutions (*Methods*): counties ($n=71$), United States Department of 
 
 # METHODS
 
-\textbf{Data.} We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. We also obtained estimated hunter abundance data from WINDR for each county for the years 1992-`r maxyear`
+\textbf{Data.} We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. We also calculated estimated hunter abundance also from data from WINDR for each county for the years 1992-`r maxyear`
 (Fig. \ref{Fig2_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
-hunting season [@widnr2001], assuming this was a good proxy 
-for hunter numbers across the season. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI each year over the years of this study. We estimated hunter abundances for counties using the same method as for deer abundance. We dropped 18 counties due to incomplete survey efforts of hunters or missing data, leaving 53 counties for analysis that used the hunter density data. 
+hunting season [@widnr2001].
 
 We obtained estimates of DVCs for each county, spanning the 
 years 1987-`r maxyear`, from the WI Department 
@@ -147,20 +146,12 @@ index of DVCs, as opposed to an absolute number of incidents,
 since not all DVCs are reported [@Marcoux2010_dvc]. We also obtained traffic volume estimates (millions of miles driven) for each county spanning the years 1988-`r maxyear` from the WIDOT, to control for traffic in our analysis of DVCs.
 
 \textbf{Weather and climate data.} We obtained daily weather data (snow depth, 
-precipitation, and minimum and maximum air temperature - here called Tmin and Tmax) from 
-all available weather stations in each county from the 
+precipitation, and minimum and maximum air temperature - here called Tmin and Tmax) from all available weather stations in each county from the 
 National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.noaa.gov/)). We 
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
-all subsequent analyses (Fig. \ref{Fig2_Timeseries}). The number of 
-weather stations per county and data collected at each station 
-varied, resulting in different spatial extents for each variable 
-in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
-counties; Tmax, $N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`; precipitation, $N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`; snow depth, $N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`. 
-We also calculated a Winter Severity Index (WSI, $N=$ `r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
-a metric known to impact deer populations [@widnr2001]. WSI is the sum of the total number of days for which snow depth was greater 
-than 18 inches or Tmin was less than $0^\circ$F. 
+all subsequent analyses (Fig. \ref{Fig2_Timeseries}). 
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
@@ -451,21 +442,9 @@ time series were compared to the actual time series
 additional variance in the state-total time series 
 that was attributable to synchrony (Fig. \ref{Fig5_StateWideFluctuations}).
 
-\textbf{Approximate monetary impact of DVCs.} We estimated the approximate monetary impact of 
-synchrony in DVCs based on several reported 
-assumptions about DVCs. Using an average difference in DVCs
-between peak and trough years 
-(Fig. \ref{Fig5_StateWideFluctuations}) of `r avgdvcfluc`, and if we assume 
-that each reported DVC results in an average of 
-US\$2024 of damage [@Conover2011_bookchp], the 
-difference in damages statewide between peak and 
-trough years is more than US\$5M. Given that DVCs 
-may be only reported about 50% of the time 
-[@Marcoux2010_dvc], this number is actually likely 
-greater than US\$10M. Using different assumptions 
-of the cost of DVCs [@Huijser2008_dvc], the 
-difference between peak and trough years in DVC 
-costs may exceed US\$22M.    
+\textbf{Approximate monetary impact of DVCs.} We estimated the approximate monetary impact of synchrony in DVCs based on several reported 
+assumptions about rates of DVCs and the costs associated with each accident [@Conover2011_bookchp; @Huijser2008_dvc; @Marcoux2010_dvc]. Using an average difference in DVCs between peak and trough years 
+(Fig. \ref{Fig5_StateWideFluctuations}) of `r avgdvcfluc`, we generated the potential range of monetary impacts.
 
 \textbf{Data Availability.} We have adopted an open and reproducible science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
 The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `www.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
