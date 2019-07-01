@@ -16,14 +16,16 @@ output:
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
-csl: pnas.csl
+csl: ecologyletters.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 
 ---
+
+**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. 
+
 \newpage
-<!--Need to move this to title page-->**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. 
 <!--Title length limit 96 characters, inc spaces-->
 
 ```{r echo=F, results="hide"}
@@ -87,44 +89,37 @@ population cycles on large spatial scales, a phenomenon of long-standing interes
 
 #Introductory text
 
-The causes of population cycles have interested and mystified ecologists for over 100 
-years [@Myers2018_cycles]. Although early hypotheses, for the 
-iconic lynx-hare as well as for other 
-systems, proposed that cyclic environmental phenomena such as sun spots drive population 
-cycles [@Sinclair1992_sunspots;@Selas2004_sunspots], these hypotheses were robustly
-refuted [@Nilssen2007_nosunspots;@Myers2013_nosunspots]. Research has since shifted to 
-explaining cycles via non-environmental mechanisms based on nonlinear or delayed density 
-dependence, often operating through species 
-interactions [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
+The causes of population cycles have interested and mystified ecologists for over 100 years [@Myers2018_cycles]. An early hypothesis for the cause of cycles, for the iconic lynx-hare as well as for other systems, posited that cyclic environmental phenomena such as sun spots drive population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. However, that hypothesis lacked empirical support [@Nilssen2007_nosunspots;@Myers2013_nosunspots], and for several decades research as focused instead on explanations involving nonlinear or delayed density dependence, often via predator-prey interactions, parasitism, and disease [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
 
-Although the decades-long research focus on density-dependent mechanisms for population
-cycles has produce numerous deep insights, theoretical reasoning (Fig. \ref{Fig1_example}) suggests another mechanism
-for cycles, fundamentally different from prior mechanisms and once again focused on environmental
-causes, involving timescale-specific 
-spatial population synchrony. Synchrony is the tendency for populations of a species in 
-different locations to exhibit correlated fluctuations through time; it is a 
-ubiquitous phenomenon [@Leibhold2004_sync]. If synchrony of local populations
-occurs predominantly on specific timescales, then, in theory, it can produce cycling 
-of total populations across large spatial scales (Fig. \ref{Fig1_example}A-F).
-Essentially, the synchronous frequency 
-components of local time series reinforce each 
-other in the total time series, whereas asynchronous components on other 
-timescales cancel out when summed. Recent work shows that timescale structure 
-in synchrony is common - synchrony often occurs on some timescales of population
-dynamics and is absent on others [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Anderson2019_LO]. 
-Synchrony is commonly caused by synchronized environmental 
-variation, a process called the Moran effect [@Moran1953]. 
-Thus timescale-specific synchrony 
-is an unexplored but potentially important mechanism of population cycles
-that may help renew interest in environmental contributors to cycles.
-Timescale-specific synchrony could 
-also be important for industries such as 
-hunting and agriculture that exploit multiple populations across space if it 
-causes cycling in the sum of the exploited populations, and synchrony 
-of pests may likewise produce cycles in regional total damage 
-caused by the pests [@Allstad2015_gypsysync]. 
+Population cycles and spatial synchrony, the tendency for geographically separate populations to exhibit correlated temporal fluctuations, are fundamentally linked. 
+Theory predicts that individual cyclic populations can easily be brought into synchrony via weak coupling from dispersal or shared exogenous forcing, such as weather (Moran effects), in a process known as nonlinear phase locking [@Bjornstad2000. Empirical evidence from laboratory experiments [@VasseurFox_2009;@HopsonFox_2019] and analysis of observational data [@Haynes_etal2019] support these predictions. Indeed, the iconic example of the Canadian lynx-snowshoe hare system features predator-prey cycles thought to be synchronized across Canada by Moran effects (refs). As a consequence, the prevailing paradigm is that cycles and synchrony are linked because populations whose dynamics are intrinsically cyclic are easy to synchronize; that is, population cycles give rise to spatial synchrony.
 
-We here investigate timescale-specific synchrony and related cycling of white-tailed deer (*Odocoileus virginianus*) 
+We herein propose and provide evidence for a mechanism by which the direction of causality can be reversed and, instead, spatial synchrony can give rise to population cycles: a periodic exogenous driver synchronizes non-cyclic local populations  on a particular timescale (frequency), producing region-wide cycles at that timescale. Many environmental drivers of biological dynamics, such as climate, fluctuate on characteristic timescales. For example, from ca. 1965-1995, fluctuations in the North Atlantic Oscillation (NAO) centered on 10-year timescales, and this was shown to synchronize aphid phenology in the United Kingdom at these particular timescales, via the effect of NAO on winter temperatures [@Sheppard2016_aphids]. Growing evidence suggests that timescale-specific spatial synchrony may be common [@Sheppard2017_surrogates;@Walter2017_geogsync;@Anderson2019_LO;@Sheppard_wavmodel;@Haynes_etal2019]. Combining timescale-specific synchrony with the hypothesis that synchrony amplifies shared fluctuations in local time series, one sees that when a set of local populations are synchronized at a particular timescale, those synchronous fluctuations will become amplified in the regional aggregate, while non-synchronous fluctuations at other timescales will tend to cancel each other out. Therefore  cycles appear in the regional aggregate, with period length equal to the timescale of synchrony (Fig. \ref{Fig1_example}).
+
+One major applied concern of synchrony is that it if shared
+fluctuations in local time series do become amplified in a
+timescale-specific manner as above, outbreaks of pests or disease
+could follow (Rohani et al. 1999). In other words, for example,
+synchrony of individual populations of pests may produce cycles in the
+regional total damage caused by the pests. Timescale-specific
+synchrony could also be important for industries, such as hunting,
+that exploit multiple populations across space if it causes cycling in
+the sum of the exploited populations. However, cascading effects of
+synchrony and/or population cycles from populations that have economic
+value to human concerns are rarely considered. 
+
+Here we demonstrate, in white-tailed deer, how timescale-specific
+spatial synchrony can produce regional population cycles, and the
+consequences of such cycles for humans through numbers of deer-vehicle
+collisions and their economic cost. Fluctuations in deer abundances in
+different counties in Wisconsin, USA, were highly synchronous due to
+fluctuations in winter climate. Importantly, these synchronized
+dynamics occurred only on 3-7 year timescales. Deer synchrony in turn
+produced synchronized oscillations in deer-vehicle collisions across
+Wisconsin, again with 3-7 year periodicity. When aggregated spatially,
+fluctuations for individual counties reinforced each other on 3-7 year
+timescales, producing state-wide cycles.
+<!--We here investigate timescale-specific synchrony and related cycling of white-tailed deer (*Odocoileus virginianus*) 
 and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major 
 economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across 
 the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
@@ -134,7 +129,7 @@ is an important applied question what drives the year-to-year variability in sta
 totals. We consider potential drivers of deer populations including both environmental factors and the direct 
 effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) aggregated at three 
 spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
-($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}). 
+($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}).--> 
 
 # METHODS
 
