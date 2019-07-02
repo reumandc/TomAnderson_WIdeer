@@ -125,6 +125,10 @@ save.image(file="WholeWorkspace.RData")
 \begin{center}
 Anderson, Sheppard, Walter, Rolley, Reuman
 \end{center}
+
+\textbf{Theory Section.}
+
+##Additional Notes on Methods
 \textbf{Notes on deer, DVC, and hunter data}
 From 1981-2013, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
@@ -199,7 +203,6 @@ greater than US\$10M. Using different assumptions
 of the cost of DVCs [@Huijser2008_dvc], the 
 difference between peak and trough years in DVC 
 costs may exceed US\$22M.    
-\textbf{Theory Section.}
 
 
 \newpage
