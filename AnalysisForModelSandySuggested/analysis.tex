@@ -410,12 +410,19 @@ Dan, do one more example where the noise is the sum of two processes. The
 first process is a sine wave in all locations, random phase. In cases 1 and 2 these have
 the same phases in all locations (but different periods in the two cases, the same
 period, of course, across locations). In case 3, random phases across locations and
-the same period (and the same period as one of cases 1 and 2. This should be, 
+the same period (and the same period as one of cases 1 and 2). This should be, 
 formally, a stationary stochastic process for all cases. The second process 
 is white noise with covariance matrix 1s on the diag and rho in the off diag.
+Maybe I should chose different rho in the three cases to rig it so the 
+total synchrony of the noise is the same in all cases.
 This is much like the current fig. in the paper. But you should be able to
 1) pipe this noise through an AR(1) process in the same way as the above examples, and
-2) apply your theory to it, formally. 
+2) apply your theory to it, formally. Probably the case should be presented
+in a different order from currently: the asynchronous and one of the synchronous
+cases (the one with the same period) together, and first, to make the contrast.
+Then change the period to make case 3, to make the additional point that the
+timescale dependence of synchrony influences the periodicity.
+
 
 \section{Thoughts on what goes in the paper}
 
