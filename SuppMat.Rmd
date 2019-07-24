@@ -10,7 +10,7 @@ output:
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
-csl: ecology.csl
+csl: ecologyletters.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
@@ -126,6 +126,89 @@ save.image(file="WholeWorkspace.RData")
 Anderson, Sheppard, Walter, Rolley, Reuman
 \end{center}
 
+\textbf{Theory Section.}
+
+##Additional Notes on Methods
+\textbf{Notes on deer, DVC, and hunter data}
+From 1981-2013, deer abundance was estimated for deer management units 
+(DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
+abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
+accounting models used for a smaller number of years and DMUs [@widnr2001]. 
+In $2014$, DMU boundaries were changed to match counties ($N=72$). Because of this, and because other spatial variables (e.g., DVCs, climate) were gathered at the county level,
+we transformed the 1981-2013 abundance estimates for DMUs 
+into county-level estimates. To do so, we first calculated the areas 
+of intersection between DMU and county boundaries for each year (as 
+DMU boundaries changed frequently), using the 'intersect' function in 
+Arc GIS 10.3 (ESRI, Redlands, CA). We then calculated deer abundance 
+for each intersection area by multiplying the amount of deer habitat in 
+each intersection area by the WIDNR density estimate of deer for the DMU 
+that the intersection fell within. Deer habitat was considered to comprise 
+areas of permanent cover (e.g., forests) that were $>4$ ha in size, plus agriculture and grass fields within 100 m of permanent cover. DMU deer 
+densities were calculated by dividing the DMU abundances originally provided to us
+by the amount of deer habitat within the DMU [@widnr2001]. This procedure 
+assumes approximately spatially uniform densities of deer within deer 
+habitat across each DMU. The abundance for a county was the sum of 
+the estimated abundances of the county's intersections with DMUs. 
+We dropped one county (Menominee) due to incomplete data for most 
+variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
+
+Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI
+each year over the years of this study. We estimated hunter abundances for counties
+using the same method as for deer abundance. We dropped 18 counties due to incomplete
+survey efforts of hunters or missing data, leaving 53 counties for analysis that used
+the hunter density data. 
+
+The DVC data reflect the number of police-investigated DVCs; they are an 
+index of DVCs, as opposed to an absolute number of incidents, 
+since not all DVCs are reported. In Michigan, nearly half of 
+DVCs went unreported to the police or insurance companies 
+over a five-year period [@Marcoux2010_dvc]. Additionally, 
+DVC information was collected with reporting effort that 
+may have varied for different counties 
+(Daniel Storm, WIDNR, Personal Communication), and the 
+threshold of damage for the police to respond to and report on 
+an incident increased statewide in 1996 from US\$500 to US\$1000. 
+However, features of the data such as these could only have obscured 
+and could not have artefactually generated the strongly 
+significant spatial wavelet coherence relationships we report between 
+DVCs and deer abundance. Shortcomings of the DVC data added 
+noise to the DVC data and likely obscured the relationship 
+with deer abundance, so that if better DVC data were available 
+this relationship may have been even stronger than reported. 
+We also obtained traffic volume estimates (millions of miles 
+driven) for each county spanning the years 1988-`r maxyear` from the 
+WIDOT, to control for traffic in our analysis of DVCs.
+
+\textbf{Climate data notes}
+The number of weather stations per county and data collected at each station 
+varied, resulting in different spatial extents for each variable 
+in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
+counties; Tmax, $N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`; precipitation, $N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`; snow depth, $N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`. 
+We also calculated a Winter Severity Index (WSI, $N=$ `r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
+a metric known to impact deer populations [@widnr2001]. WSI is the sum of the total number of days for which snow depth was greater 
+than 18 inches or Tmin was less than $0^\circ$F. 
+
+\textbf{Details on estimating approximate monetary impact of DVCs.} We estimated the approximate monetary impact of 
+synchrony in DVCs based on several reported 
+assumptions about DVCs. Using an average difference in DVCs
+between peak and trough years 
+(Fig. \ref{Fig5_StateWideFluctuations}) of `r avgdvcfluc`, and if we assume 
+that each reported DVC results in an average of 
+US\$2024 of damage [@Conover2011_bookchp], the 
+difference in damages statewide between peak and 
+trough years is more than US\$5M. Given that DVCs 
+may be only reported about 50% of the time 
+[@Marcoux2010_dvc], this number is actually likely 
+greater than US\$10M. Using different assumptions 
+of the cost of DVCs [@Huijser2008_dvc], the 
+difference between peak and trough years in DVC 
+costs may exceed US\$22M.    
+
+
+\newpage
+\textbf{Additional Methods.}
+
+\newpage
 \textbf{USDA district results.} Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 

@@ -16,14 +16,16 @@ output:
   word_document: default
 geometry: left=1cm,right=1cm,top=2.5cm,bottom=2.8cm
 link-citations: yes
-csl: pnas.csl
+csl: ecologyletters.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 
 ---
+
+**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. 
+
 \newpage
-<!--Need to move this to title page-->**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript. 
 <!--Title length limit 96 characters, inc spaces-->
 
 ```{r echo=F, results="hide"}
@@ -87,44 +89,37 @@ population cycles on large spatial scales, a phenomenon of long-standing interes
 
 #Introductory text
 
-The causes of population cycles have interested and mystified ecologists for over 100 
-years [@Myers2018_cycles]. Although early hypotheses, for the 
-iconic lynx-hare as well as for other 
-systems, proposed that cyclic environmental phenomena such as sun spots drive population 
-cycles [@Sinclair1992_sunspots;@Selas2004_sunspots], these hypotheses were robustly
-refuted [@Nilssen2007_nosunspots;@Myers2013_nosunspots]. Research has since shifted to 
-explaining cycles via non-environmental mechanisms based on nonlinear or delayed density 
-dependence, often operating through species 
-interactions [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
+The causes of population cycles have interested and mystified ecologists for over 100 years [@Myers2018_cycles]. An early hypothesis for the cause of cycles, for the iconic lynx-hare as well as for other systems, posited that cyclic environmental phenomena such as sun spots drive population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. However, that hypothesis lacked empirical support [@Nilssen2007_nosunspots;@Myers2013_nosunspots], and for several decades research as focused instead on explanations involving nonlinear or delayed density dependence, often via predator-prey interactions, parasitism, and disease [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
 
-Although the decades-long research focus on density-dependent mechanisms for population
-cycles has produce numerous deep insights, theoretical reasoning (Fig. \ref{Fig1_example}) suggests another mechanism
-for cycles, fundamentally different from prior mechanisms and once again focused on environmental
-causes, involving timescale-specific 
-spatial population synchrony. Synchrony is the tendency for populations of a species in 
-different locations to exhibit correlated fluctuations through time; it is a 
-ubiquitous phenomenon [@Leibhold2004_sync]. If synchrony of local populations
-occurs predominantly on specific timescales, then, in theory, it can produce cycling 
-of total populations across large spatial scales (Fig. \ref{Fig1_example}A-F).
-Essentially, the synchronous frequency 
-components of local time series reinforce each 
-other in the total time series, whereas asynchronous components on other 
-timescales cancel out when summed. Recent work shows that timescale structure 
-in synchrony is common - synchrony often occurs on some timescales of population
-dynamics and is absent on others [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Anderson2019_LO]. 
-Synchrony is commonly caused by synchronized environmental 
-variation, a process called the Moran effect [@Moran1953]. 
-Thus timescale-specific synchrony 
-is an unexplored but potentially important mechanism of population cycles
-that may help renew interest in environmental contributors to cycles.
-Timescale-specific synchrony could 
-also be important for industries such as 
-hunting and agriculture that exploit multiple populations across space if it 
-causes cycling in the sum of the exploited populations, and synchrony 
-of pests may likewise produce cycles in regional total damage 
-caused by the pests [@Allstad2015_gypsysync]. 
+Population cycles and spatial synchrony, the tendency for geographically separate populations to exhibit correlated temporal fluctuations, are fundamentally linked. 
+Theory predicts that individual cyclic populations can easily be brought into synchrony via weak coupling from dispersal or shared exogenous forcing, such as weather (Moran effects), in a process known as nonlinear phase locking [@Bjornstad2000. Empirical evidence from laboratory experiments [@VassuerFox_2009;@HopsonFox_2019] and analysis of observational data [@Haynes_etal2019] support these predictions. Indeed, the iconic example of the Canadian lynx-snowshoe hare system features predator-prey cycles thought to be synchronized across Canada by Moran effects (refs). As a consequence, the prevailing paradigm is that cycles and synchrony are linked because populations whose dynamics are intrinsically cyclic are easy to synchronize; that is, population cycles give rise to spatial synchrony.
 
-We here investigate timescale-specific synchrony and related cycling of white-tailed deer (*Odocoileus virginianus*) 
+We herein propose and provide evidence for a mechanism by which the direction of causality can be reversed and, instead, spatial synchrony can give rise to population cycles: a periodic exogenous driver synchronizes non-cyclic local populations  on a particular timescale (frequency), producing region-wide cycles at that timescale. Many environmental drivers of biological dynamics, such as climate, fluctuate on characteristic timescales. For example, from ca. 1965-1995, fluctuations in the North Atlantic Oscillation (NAO) centered on 10-year timescales, and this was shown to synchronize aphid phenology in the United Kingdom at these particular timescales, via the effect of NAO on winter temperatures [@Sheppard2016_aphids]. Growing evidence suggests that timescale-specific spatial synchrony may be common [@Sheppard2017_surrogates;@Walter2017_geogsync;@Anderson2019_LO;@Sheppard_wavmodel;@Haynes_etal2019]. <!--TLA::I think the theory section should go somewhere around here but sure where exactly-->Combining timescale-specific synchrony with the hypothesis that synchrony amplifies shared fluctuations in local time series, one sees that when a set of local populations are synchronized at a particular timescale, those synchronous fluctuations will become amplified in the regional aggregate, while non-synchronous fluctuations at other timescales will tend to cancel each other out. Therefore  cycles appear in the regional aggregate, with period length equal to the timescale of synchrony (Fig. \ref{Fig1_example}).
+
+One major applied concern of synchrony is that it if shared
+fluctuations in local time series do become amplified in a
+timescale-specific manner as above, outbreaks of pests or disease
+could follow [@Rohani_etal1999]. In other words, for example,
+synchrony of individual populations of pests may produce cycles in the
+regional total damage caused by the pests. Timescale-specific
+synchrony could also be important for industries, such as hunting,
+that exploit multiple populations across space if it causes cycling in
+the sum of the exploited populations. However, cascading effects of
+synchrony and/or population cycles in species that have economic
+value to human concerns are rarely considered. 
+
+Here we demonstrate, in white-tailed deer, how timescale-specific
+spatial synchrony can produce regional population cycles, and the
+consequences of such cycles for humans through numbers of deer-vehicle
+collisions (DVCs) and their economic cost. Fluctuations in deer abundances in
+different counties in Wisconsin, USA, were highly synchronous due to
+fluctuations in winter climate. Importantly, these synchronized
+dynamics occurred only on 3-7 year timescales. Deer synchrony in turn
+produced synchronized oscillations in deer-vehicle collisions across
+Wisconsin, again with 3-7 year periodicity. When aggregated spatially,
+fluctuations for individual counties reinforced each other on 3-7 year
+timescales, producing state-wide cycles.
+<!--We here investigate timescale-specific synchrony and related cycling of white-tailed deer (*Odocoileus virginianus*) 
 and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major 
 economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across 
 the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
@@ -134,83 +129,29 @@ is an important applied question what drives the year-to-year variability in sta
 totals. We consider potential drivers of deer populations including both environmental factors and the direct 
 effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) aggregated at three 
 spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
-($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}). 
+($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}).--> 
 
 # METHODS
 
-\textbf{Deer and hunter abundance data.} We obtained deer abundance estimates from the Wisconsin Department of 
-Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}). 
-From 1981-2013, deer abundance was estimated for deer management units 
-(DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
-abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
-accounting models used for a smaller number of years and DMUs [@widnr2001]. 
-In $2014$, DMU boundaries were changed to match counties ($N=72$). Because of this, and because other 
-spatial variables (e.g., DVCs, climate) were gathered at the county level, 
-we transformed the 1981-2013 abundance estimates for DMUs 
-into county-level estimates. To do so, we first calculated the areas 
-of intersection between DMU and county boundaries for each year (as 
-DMU boundaries changed frequently), using the 'intersect' function in 
-Arc GIS 10.3 (ESRI, Redlands, CA). We then calculated deer abundance 
-for each intersection area by multiplying the amount of deer habitat in 
-each intersection area by the WIDNR density estimate of deer for the DMU 
-that the intersection fell within. Deer habitat was considered to comprise 
-areas of permanent cover (e.g., forests) that were $>4$ ha in size, plus agriculture and grass fields within 100 m of permanent cover. DMU deer 
-densities were calculated by dividing the DMU abundances originally provided to us
-by the amount of deer habitat within the DMU [@widnr2001]. This procedure 
-assumes approximately spatially uniform densities of deer within deer 
-habitat across each DMU. The abundance for a county was the sum of 
-the estimated abundances of the county's intersections with DMUs. 
-We dropped one county (Menominee) due to incomplete data for most 
-variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
-
-We obtained from the WIDNR estimated hunter abundance data for each DMU for the years 1992-`r maxyear`
+\textbf{Data.} We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. We also calculated estimated hunter abundance also from data from WINDR for each county for the years 1992-`r maxyear`
 (Fig. \ref{Fig2_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
-hunting season [@widnr2001], assuming this was a good proxy 
-for hunter numbers across the season. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI each year over the years of this study. We estimated hunter abundances for counties using the same method as for deer abundance. We 
-dropped 18 counties due to incomplete survey 
-efforts of hunters or missing data, leaving 53
-counties for analysis that used the hunter density data. 
+hunting season [@widnr2001].
 
-\textbf{DVC data.} We obtained estimates of DVCs for each county, spanning the 
+We obtained estimates of DVCs for each county, spanning the 
 years 1987-`r maxyear`, from the WI Department 
 of Transportation (WIDOT; Fig. \ref{Fig2_Timeseries}). These data reflect 
-the number of police-investigated DVCs; they are an 
+the number of police-investigated DVCs and are only an 
 index of DVCs, as opposed to an absolute number of incidents, 
-since not all DVCs are reported. In Michigan, nearly half of 
-DVCs went unreported to the police or insurance companies 
-over a five-year period [@Marcoux2010_dvc]. Additionally, 
-DVC information was collected with reporting effort that 
-may have varied for different counties 
-(Daniel Storm, WIDNR, Personal Communication), and the 
-threshold of damage for the police to respond to and report on 
-an incident increased statewide in 1996 from US\$500 to US\$1000. 
-However, features of the data such as these could only have obscured 
-and could not have artefactually generated the strongly 
-significant spatial wavelet coherence relationships we report between 
-DVCs and deer abundance. Shortcomings of the DVC data added 
-noise to the DVC data and likely obscured the relationship 
-with deer abundance, so that if better DVC data were available 
-this relationship may have been even stronger than reported. 
-We also obtained traffic volume estimates (millions of miles 
-driven) for each county spanning the years 1988-`r maxyear` from the 
-WIDOT, to control for traffic in our analysis of DVCs.
+since not all DVCs are reported [@Marcoux2010_dvc]. We also obtained traffic volume estimates (millions of miles driven) for each county spanning the years 1988-`r maxyear` from the WIDOT, to control for traffic in our analysis of DVCs.
 
 \textbf{Weather and climate data.} We obtained daily weather data (snow depth, 
-precipitation, and minimum and maximum air temperature - here called Tmin and Tmax) from 
-all available weather stations in each county from the 
+precipitation, and minimum and maximum air temperature - here called Tmin and Tmax) from all available weather stations in each county from the 
 National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.noaa.gov/)). We 
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
-all subsequent analyses (Fig. \ref{Fig2_Timeseries}). The number of 
-weather stations per county and data collected at each station 
-varied, resulting in different spatial extents for each variable 
-in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
-counties; Tmax, $N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`; precipitation, $N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`; snow depth, $N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`. 
-We also calculated a Winter Severity Index (WSI, $N=$ `r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
-a metric known to impact deer populations [@widnr2001]. WSI is the sum of the total number of days for which snow depth was greater 
-than 18 inches or Tmin was less than $0^\circ$F. 
+all subsequent analyses (Fig. \ref{Fig2_Timeseries}). 
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
@@ -501,21 +442,9 @@ time series were compared to the actual time series
 additional variance in the state-total time series 
 that was attributable to synchrony (Fig. \ref{Fig5_StateWideFluctuations}).
 
-\textbf{Approximate monetary impact of DVCs.} We estimated the approximate monetary impact of 
-synchrony in DVCs based on several reported 
-assumptions about DVCs. Using an average difference in DVCs
-between peak and trough years 
-(Fig. \ref{Fig5_StateWideFluctuations}) of `r avgdvcfluc`, and if we assume 
-that each reported DVC results in an average of 
-US\$2024 of damage [@Conover2011_bookchp], the 
-difference in damages statewide between peak and 
-trough years is more than US\$5M. Given that DVCs 
-may be only reported about 50% of the time 
-[@Marcoux2010_dvc], this number is actually likely 
-greater than US\$10M. Using different assumptions 
-of the cost of DVCs [@Huijser2008_dvc], the 
-difference between peak and trough years in DVC 
-costs may exceed US\$22M.    
+\textbf{Approximate monetary impact of DVCs.} We estimated the approximate monetary impact of synchrony in DVCs based on several reported 
+assumptions about rates of DVCs and the costs associated with each accident [@Conover2011_bookchp; @Huijser2008_dvc; @Marcoux2010_dvc]. Using an average difference in DVCs between peak and trough years 
+(Fig. \ref{Fig5_StateWideFluctuations}) of `r avgdvcfluc`, we generated the potential range of monetary impacts.
 
 \textbf{Data Availability.} We have adopted an open and reproducible science approach throughout the project. As indicated in the sections above on individual methods, all computations were done using functions from the `wsyn` package for the R programming language, the source code of which is available from `www.github.com/reumandc/wsyn/CRANv1p0p0`. The package can be installed into R from CRAN or via `devtools::install_github(repo="reumandc/wsyn/CRANv1p0p0")`.
 The `wsyn` package includes a vignette documenting how to use the functions implemented there, and giving examples; the vignette provides additional description of the methods of this paper. All data and code producing this paper are archived at `www.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
