@@ -23,6 +23,7 @@ nocite: |
 library(reshape2,quietly=T)
 library(tools,quietly=T)
 library(fields,quietly=T)
+library(mvtnorm)
 library(rmarkdown)
 library(shape)
 library(tinytex)
