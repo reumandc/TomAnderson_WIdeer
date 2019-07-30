@@ -592,7 +592,7 @@ Statistical significance, phase relationships, and the amount of DVC synchrony e
 abundance remained similar after adjusting DVCs to account for
 fluctuations in traffic volume (Table \ref{Tab1_CountyCoherenceSummary}, SI Appendix text and Table \ref{SM-TabS2_SummaryDistrict}, Fig. \ref{SM-FigS4_PhaseDiffs}F).
 
-<!-- As mentioned above, timescale-specific synchrony may lead, theoretically, to cyclic  
+<!-- Tom: Moved to discussion. As mentioned above, timescale-specific synchrony may lead, theoretically, to cyclic  
 dynamics in spatial-total or spatial-average time series, which can mean  
 alternating relative abundance and scarcity of important species over large areas  
 [@Allstad2015_gypsysync]. Our data show the empirical reality of this effect and its  
@@ -608,7 +608,7 @@ semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on
 assumptions made about costs and reporting rates of DVCs 
 [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp], statewide DVC damages 
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
-between peak and trough years. <!--Similarly, fluctuations of a quarter 
+between peak and trough years. <!--Tom: Moved to discussion. Similarly, fluctuations of a quarter 
 million deer likely have considerable consequences for agricultural crop damage 
 and hunting success, both of which can have socioeconomic impacts. See 
 SI Appendix for further details on the cycling mechanism.-->
@@ -644,8 +644,8 @@ In particular, the predicted increase in the frequency of strong El Ni$\~{n}$o e
 [@Cai2014_elnino] may lead to altered cycling period in deer and DVCs, though our mechanisms are general so we would not expect effects to be limited to the system we have studied.
 
 Deer population sychrony lagged both climate indices at a temporal scale of about two years, which is similar to other reported lag times of climatic effects on deer 
-populations [@Post1998_popgrowth]. Winter weather and climatic oscillations have been identified previously as mechanisms influencing synchrony in other ungulates across multiple 
-regions [@Post2004_greenland;@Grotan2005_roedeer;@Hegel2012_caribou]. This effect probably occurred because deeper snow limits access to winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility to starvation or predators and reduced parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. 
+populations [@Post1998_popgrowth;@forchhammer1998]. Winter weather and climatic oscillations have been identified previously as mechanisms influencing synchrony in other ungulates across multiple 
+regions [@Post2004_greenland;@Grotan2005_roedeer;@Hegel2012_caribou]. This effect probably occurred because deeper snow limits access to winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility to starvation or predators and reduced parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. <!--add in somethign here about climate change affecting deer populations-->
 
 Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic
 Moran effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year
@@ -661,8 +661,7 @@ human industries that rely on wildlife and plant poulations seem likely. Changes
 have aleady been reported as having a strong implications for forestry practices in Wisconsin; other industries that exploit wildlife and plant populatoins would be equally affected, and in some cases, like white-tailed with semi-periodic regularity. 
 
 Hunters were not the principle driver of deer synchrony. These results are consistent with the
-hypothesis that hunters can regulate deer populations over short timescales but do not do so on
-longer timescales or over large spatial extents [@brown2000,@simard2013]. The lack of longer-timescale spatial wavelet coherence between hunters and deer
+hypothesis that hunters can regulate deer populations over short timescales and small spatial areas [@fryxell1991, @denicola2008] but have more limited effects over longer timescales and at large spatial extents [@brown2000,@simard2013]. The lack of longer-timescale spatial wavelet coherence between hunters and deer
 abundance is likely also related to the facts that hunters prefer to shoot bucks, the removal of
 which has limited population effects; and the state regulates antlerless harvest in an attempt to
 maintain populations at a desirable size.
