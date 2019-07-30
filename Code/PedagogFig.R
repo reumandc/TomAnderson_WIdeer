@@ -3,8 +3,10 @@
 #***
 
 #parameters for the example itself
+tslensim<-
+numtsim<- #length and number of time series simulated
 tslen<-35
-numts<-15
+numts<-15 #length and number of time series actuall displayed
 ts1<-3
 ts2<-10
 nsstr<-1
