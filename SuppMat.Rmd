@@ -245,7 +245,21 @@ counties, but such effects would be
 reduced at the larger district level because reduced fractions of deer and cars disperse from one spatial unit to another for these larger spatial units. 
 Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS7_WMFAndPredictionsDistricts}F). 
 
-\textbf{Statewide results.} In general, results of statewide analyses 
+\textbf{Statewide Analysis and Results.} For statewide analyses, for which all variables were represented only by single, state-average or 
+total time series rather than spatiotemporal data, timescale-specific relationships 
+between variables were tested using ordinary 
+wavelet coherence. Wavelet coherence is a 
+non-spatial version of the spatial wavelet coherence, and 
+tests whether two time series exhibit consistent 
+phase differences and correlated magnitudes of 
+oscillation through time, as a function of 
+timescale. We tested for relationships between 
+statewide deer abundance time series and climate 
+indices, statewide averages for winter weather, 
+statewide hunter abundance time series, and 
+statewide total DVCs. The same functions in the `wsyn` package listed above for spatial wavelet coherence were used, as they can compute both ordinary wavelet coherence and spatial wavelet coherence.
+
+In general, results of statewide analyses 
 mostly agreed with the smaller-spatial-unit 
 analyses, when they could be compared. Results on synchrony were not available at state level because at that level each variable is only represented by a single time series, but we compared wavelet coherence results between variables at the statewide spatial scale to spatial wavelet coherence results between variables using smaller spatial units. Statewide deer abundance and DVC time series were marginally 
 significantly coherent over $3-7$-year timescales 
