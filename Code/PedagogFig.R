@@ -9,7 +9,10 @@
 #Args
 #N        The number of sampling locations
 #w        The period of the oscillations
-#rho      Written as rho_a in my notes on p. 14 and before that
+#rho      Written as rho_a in my notes on p. 14 and before that. This
+#         is the pairwise correlation between locations of the white
+#         part of the noise
+#eta      This is the variance of the white part of the noise
 #rhopop   Lag-1 autocorrelation coefficient for population dynamics
 #lensim   Length of simulations to do
 #numsims  Number of simulations to do
@@ -18,7 +21,7 @@
 #epsilon1 - a lensim by N by numsims array, the first environmental noise (the periodic one)
 #epsilon2 - a lensim by N by numsims array, the second environmental noise (the nonperiodic one)
 #pops - a lensim by N by numsims array
-simmodel4a<-function(N,w,rho,rhopop,lensim,numsims)
+simmodel4a<-function(N,w,rho,eta,rhopop,lensim,numsims)
 {
   #**generate the first environmental noise (the periodic one)
   tims<-seq(from=0,to=2*lensim-1,by=1)
@@ -26,8 +29,8 @@ simmodel4a<-function(N,w,rho,rhopop,lensim,numsims)
                   array(2*pi*rep(runif(N*numsims),each=2*lensim),dim=c(2*lensim,N,numsims)))
   
   #generate the second environmental noise (the non-periodic one)
-  Sig<-matrix(rho,N,N)
-  diag(Sig)<-1
+  Sig<-matrix(eta*rho,N,N)
+  diag(Sig)<-eta
   epsilon2<-rmvnorm(2*lensim*numsims,sigma=Sig)
   dim(epsilon2)<-c(2*lensim,numsims,N)
   epsilon2<-aperm(epsilon2,c(1,3,2))
@@ -56,7 +59,10 @@ simmodel4a<-function(N,w,rho,rhopop,lensim,numsims)
 #Args
 #N        The number of sampling locations
 #w        The period of the oscillations
-#rho      Written as rho_bc in my notes on p. 14 and before that
+#rho      Written as rho_bc in my notes on p. 14 and before that. This
+#         is the pairwise correlation between locations of the white
+#         part of the noise
+#eta      This is the variance of the white part of the noise
 #rhopop   Lag-1 autocorrelation coefficient for population dynamics
 #lensim   Length of simulations to do
 #numsims  Number of simulations to do
@@ -65,7 +71,7 @@ simmodel4a<-function(N,w,rho,rhopop,lensim,numsims)
 #epsilon1 - a lensim by N by numsims array, the first environmental noise (the periodic one)
 #epsilon2 - a lensim by N by numsims array, the second environmental noise (the nonperiodic one)
 #pops - a lensim by N by numsims array
-simmodel4bc<-function(N,w,rho,rhopop,lensim,numsims)
+simmodel4bc<-function(N,w,rho,eta,rhopop,lensim,numsims)
 {
   #**generate the first environmental noise (the periodic one)
   tims<-seq(from=0,to=2*lensim-1,by=1)
@@ -73,8 +79,8 @@ simmodel4bc<-function(N,w,rho,rhopop,lensim,numsims)
                   array(rep(2*pi*runif(numsims),each=2*lensim*N),dim=c(2*lensim,N,numsims)))
   
   #generate the second environmental noise (the non-periodic one)
-  Sig<-matrix(rho,N,N)
-  diag(Sig)<-1
+  Sig<-matrix(eta*rho,N,N)
+  diag(Sig)<-eta
   epsilon2<-rmvnorm(2*lensim*numsims,sigma=Sig)
   dim(epsilon2)<-c(2*lensim,numsims,N)
   epsilon2<-aperm(epsilon2,c(1,3,2))
@@ -110,25 +116,27 @@ rhoa<-0 #use rhoa=0.75 and rhobc (below) equal to 0.25 for an example with equal
 #covariances (in expectation) between locations, just use rhoa=rhobc if you just
 #want to turn on and off the periodic component of synchrony while leaving all else
 #the same
-rhopop<-0.15
+eta<-3
+rhopop<-0.4
 numsims<-3
 set.seed(101)
-sims_casea<-simmodel4a(N,wa,rhoa,rhopop,lensim,numsims)
+sims_casea<-simmodel4a(N,wa,rhoa,eta,rhopop,lensim,numsims)
 
 #do the sims case b
 wb<-3
 rhobc<-0
-rhopop<-0.15
+eta<-3
+rhopop<-0.4
 numsims<-3
 set.seed(101)
-sims_caseb<-simmodel4bc(N,wb,rhobc,rhopop,lensim,numsims)
+sims_caseb<-simmodel4bc(N,wb,rhobc,eta,rhopop,lensim,numsims)
 
 #do the sims case c
 wc<-10
-rhopop<-0.15
+rhopop<-0.4
 numsims<-3
 set.seed(101)
-sims_casec<-simmodel4bc(N,wc,rhobc,rhopop,lensim,numsims)
+sims_casec<-simmodel4bc(N,wc,rhobc,eta,rhopop,lensim,numsims)
 
 #***make the figure for the main text, which only show the time
 #series and some wavelet results
@@ -146,7 +154,7 @@ xht<-0.5
 ywd<-0.5
 gap<-0.1
 totwd<-ywd+3*panwd.b+3*gap
-totht<-xht+2*panht.b+panht.s+4*gap
+totht<-xht+3*panht.b+panht.s+5*gap
 colmap<-rep(c("black","red"),times=numts)#rainbow(numts)
 adjmt<-0.5
 
@@ -159,8 +167,8 @@ d1mm<-matrix(NA,N,length(tm))
 for (counter in 1:N)
 {
   d1ns[counter,]<-sims_casea$epsilon1[1:tslen,counter,simnumtouse]+
-    sims_casea$epsilon2[1:tslen,counter,simnumtouse]+3*counter-1
-  d1[counter,]<-sims_casea$pops[1:tslen,counter,simnumtouse]+3*counter-1
+    sims_casea$epsilon2[1:tslen,counter,simnumtouse]+7*counter-1
+  d1[counter,]<-sims_casea$pops[1:tslen,counter,simnumtouse]+7*counter-1
   d1mm[counter,]<-d1[counter,]-mean(d1[counter,])
 }
 d1mn<-apply(FUN=mean,X=d1,MARGIN=2)
@@ -183,8 +191,8 @@ d2mm<-matrix(NA,N,length(tm))
 for (counter in 1:N)
 {
   d2ns[counter,]<-sims_caseb$epsilon1[1:tslen,counter,simnumtouse]+
-    sims_caseb$epsilon2[1:tslen,counter,simnumtouse]+3*counter-1
-  d2[counter,]<-sims_caseb$pops[1:tslen,counter,simnumtouse]+3*counter-1
+    sims_caseb$epsilon2[1:tslen,counter,simnumtouse]+7*counter-1
+  d2[counter,]<-sims_caseb$pops[1:tslen,counter,simnumtouse]+7*counter-1
   d2mm[counter,]<-d2[counter,]-mean(d2[counter,])
 }
 d2mn<-apply(FUN=mean,X=d2,MARGIN=2)
@@ -207,8 +215,8 @@ d3mm<-matrix(NA,N,length(tm))
 for (counter in 1:N)
 {
   d3ns[counter,]<-sims_casec$epsilon1[1:tslen,counter,simnumtouse]+
-    sims_casec$epsilon2[1:tslen,counter,simnumtouse]+3*counter-1
-  d3[counter,]<-sims_casec$pops[1:tslen,counter,simnumtouse]+3*counter-1
+    sims_casec$epsilon2[1:tslen,counter,simnumtouse]+7*counter-1
+  d3[counter,]<-sims_casec$pops[1:tslen,counter,simnumtouse]+7*counter-1
   d3mm[counter,]<-d3[counter,]-mean(d3[counter,])
 }
 d3mn<-apply(FUN=mean,X=d3,MARGIN=2)
@@ -228,6 +236,25 @@ for (i in 1:(numts-1))
 #tiff(file=paste("Results/Fig1.tif"),width=totwd,height=totht,compression=c("lzw"),units="in",res=600)
 png(file="Results/Fig1.png",width=totwd,height=totht,units="in",res=600)
 
+#plot example a=1 - noise time series
+xlimits<-range(tm)
+ylimits.bns<-range(d1ns[1:numts,],d2ns[1:numts,],d3ns[1:numts,])
+ylimits.bns[2]<-ylimits.bns[2]+.1*diff(ylimits.bns)
+par(fig=c((ywd)/totwd,
+          (ywd+panwd.b)/totwd,
+          (xht+2*panht.b+panht.s+3*gap)/totht,
+          (xht+3*panht.b+panht.s+3*gap)/totht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
+plot(tm,d1ns[1,],type='l',xlim=xlimits,ylim=ylimits.bns,col=colmap[1],
+     xaxt='n')
+mtext("Env. noise",side=2,line=1.2)
+for (counter in 2:numts)
+{
+  lines(tm,d1ns[counter,],type='l',col=colmap[counter])
+}
+text(xlimits[1],ylimits.bns[2],'A)',adj=c(0,1),font=2)
+mtext("Scenario 1",side=3)
+
 #Plot example a=1 - population time series
 xlimits<-range(tm)
 ylimits.b<-range(d1[1:numts,],d2[1:numts,],d3[1:numts,])
@@ -236,7 +263,7 @@ par(fig=c((ywd)/totwd,
           (ywd+panwd.b)/totwd,
           (xht+1*panht.b+panht.s+2*gap)/totht,
           (xht+2*panht.b+panht.s+2*gap)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
 plot(tm,d1[1,],type='l',xlim=xlimits,ylim=ylimits.b,col=colmap[1],
      xaxt='n')
 mtext("Populations",side=2,line=1.2)
@@ -244,8 +271,7 @@ for (counter in 2:numts)
 {
   lines(tm,d1[counter,],type='l',col=colmap[counter])
 }
-text(xlimits[1],ylimits.b[2],'A)',adj=c(0,1),font=2)
-mtext("Scenario 1",side=3)
+text(xlimits[1],ylimits.b[2],'D)',adj=c(0,1),font=2)
 
 #plot example 1, mean or sum time series
 par(fig=c(ywd/totwd,
@@ -258,7 +284,7 @@ ylimits.s[2]<-ylimits.s[2]+.25*diff(ylimits.s)
 plot(tm,d1sm,type='l',xlim=xlimits,ylim=ylimits.s,
      yaxt='n')
 axis(side=2,at=c(300,400),labels=c("300","400"),cex.axis=1)
-text(xlimits[1],ylimits.s[2],'G)',adj=c(0,1),font=2)
+text(xlimits[1],ylimits.s[2],'J)',adj=c(0,1),font=2)
 mtext("Tot. pop.",side=2,line=1.2)
 
 #plot example 1 - wavelet mean fields
@@ -277,7 +303,22 @@ image(x=tm,y=l2ts,z=Mod(wmf1$values),xlim=xlimits,
 ylocs <- pretty(wmf1$timescales, n = 8)
 axis(2, at = log2(ylocs), labels = ylocs)
 mtext("Timescale (yrs)",side=2,line=1.2)
-text(xlimits[1],max(l2ts),'D)',adj=c(0,1),font=2)
+text(xlimits[1],max(l2ts),'G)',adj=c(0,1),font=2)
+
+#Plot example 2 - noise time series
+par(fig=c((ywd+panwd.b+gap)/totwd,
+          (ywd+2*panwd.b+gap)/totwd,
+          (xht+panht.s+3*gap+2*panht.b)/totht,
+          (xht+panht.s+3*gap+3*panht.b)/totht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+plot(tm,d2ns[1,],type='l',xlim=xlimits,ylim=ylimits.bns,col=colmap[1],
+     yaxt='n',xaxt='n')
+for (counter in 2:numts)
+{
+  lines(tm,d2ns[counter,],type='l',col=colmap[counter])
+}
+text(xlimits[1],ylimits.bns[2],'B)',adj=c(0,1),font=2)
+mtext("Scenario 2",side=3)
 
 #Plot example 2 - population time series
 par(fig=c((ywd+panwd.b+gap)/totwd,
@@ -291,8 +332,7 @@ for (counter in 2:numts)
 {
   lines(tm,d2[counter,],type='l',col=colmap[counter])
 }
-text(xlimits[1],ylimits.b[2],'B)',adj=c(0,1),font=2)
-mtext("Scenario 2",side=3)
+text(xlimits[1],ylimits.b[2],'E)',adj=c(0,1),font=2)
 
 #plot example 2 - mean or sum time series
 par(fig=c((ywd+panwd.b+gap)/totwd,
@@ -302,7 +342,7 @@ par(fig=c((ywd+panwd.b+gap)/totwd,
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 plot(tm,d2sm,type='l',xlim=xlimits,ylim=ylimits.s,
      yaxt='n')
-text(xlimits[1],ylimits.s[2],'H)',adj=c(0,1),font=2)
+text(xlimits[1],ylimits.s[2],'K)',adj=c(0,1),font=2)
 mtext("Time step (yrs)",side=1,line=1.2)
 
 #plot example 2 - wavelet mean fields
@@ -313,9 +353,24 @@ par(fig=c((ywd+panwd.b+gap)/totwd,
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 image(x=tm,y=l2ts,z=Mod(wmf2$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r')
-text(xlimits[1],max(l2ts),'E)',adj=c(0,1),font=2)
+text(xlimits[1],max(l2ts),'H)',adj=c(0,1),font=2)
 
-#Plot example 3 - time series
+#Plot example 3 - noise time series
+par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
+          (ywd+3*panwd.b+2*gap)/totwd,
+          (xht+panht.s+3*gap+2*panht.b)/totht,
+          (xht+panht.s+3*gap+3*panht.b)/totht),
+    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+plot(tm,d3ns[1,],type='l',xlim=xlimits,ylim=ylimits.bns,col=colmap[1],
+     xaxt='n',yaxt='n')
+for (counter in 2:numts)
+{
+  lines(tm,d3ns[counter,],type='l',col=colmap[counter])
+}
+text(xlimits[1],ylimits.bns[2],'C)',adj=c(0,1),font=2)
+mtext("Scenario 3",side=3)
+
+#Plot example 3 - population time series
 par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
           (ywd+3*panwd.b+2*gap)/totwd,
           (xht+panht.s+2*gap+panht.b)/totht,
@@ -327,8 +382,7 @@ for (counter in 2:numts)
 {
   lines(tm,d3[counter,],type='l',col=colmap[counter])
 }
-text(xlimits[1],ylimits.b[2],'C)',adj=c(0,1),font=2)
-mtext("Scenario 3",side=3)
+text(xlimits[1],ylimits.b[2],'F)',adj=c(0,1),font=2)
 
 #plot example 3 - mean or total time series
 par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
@@ -338,7 +392,7 @@ par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 plot(tm,d3sm,type='l',xlim=xlimits,ylim=ylimits.s,
      yaxt='n')
-text(xlimits[1],ylimits.s[2],'I)',adj=c(0,1),font=2)
+text(xlimits[1],ylimits.s[2],'L)',adj=c(0,1),font=2)
 
 #plot example 3 - wavelet mean fields
 par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
@@ -348,7 +402,7 @@ par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 image(x=tm,y=l2ts,z=Mod(wmf3$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r')
-text(xlimits[1],max(l2ts),'F)',adj=c(0,1),font=2)
+text(xlimits[1],max(l2ts),'I)',adj=c(0,1),font=2)
 
 #tom's color bar
 par(new=T,fig=c((ywd+2.93*panwd.b+2*gap)/totwd,
