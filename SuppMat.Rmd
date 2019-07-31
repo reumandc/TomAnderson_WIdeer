@@ -153,30 +153,68 @@ for stability of the equilibrium of the general model of which \ref{eq:mainmodel
 is a linearization [\citealp{Desharnais2018}, their supplementary information section 1.2] 
 and also for the existence of a stationary
 stochastic process that is a solution of \ref{eq:mainmodel} \citep{Desharnais2018,Brillinger2011}. 
+We denote by $x_{\text{tot}}(t)$ the total population $\sum_{i=1}^N x_i(t)$,
+which has the same variance as $w_{\text{tot}}(t)=\sum_{i=1}^N w_i(t)$.
 
 To develop our theory, we need the language and fundamental mathematical results of
 stochastic processes and their spectra and cross spectra. 
 Spectral statistics are extremely well-developed, widely known, and widely applied in numerous fields;
-background information can be found from many sources, including the books of
+background on spectral statistics can be found from many sources, including the books of
 @Reinsel1997, @Shumway, and @Brillinger2001. We here define notation. 
-Let $S_{\epsilon_{i}\epsilon_{i}}$
-denote the power spectrum of the process $\epsilon_{i}$ and let $S_{\epsilon_{i}\epsilon_{j}}$
+Let $S_{\epsilon_{i}\epsilon_{i}}(f)$
+denote the power spectrum of the process $\epsilon_{i}$ and let $S_{\epsilon_{i}\epsilon_{j}}(f)$
 denote the cross spectrum of the processes $\epsilon_{i}$ and $\epsilon_{j}$.
-So the cospectrum, denoted $C_{\epsilon_{i}\epsilon_{j}}$, is $\Rp(S_{\epsilon_{i}\epsilon_{j}})$, 
-the real part. Analogously, let $S_{w_i w_i}$,
-$S_{w_i w_j}$ and $C_{w_i w_j}=\Rp(S_{w_i w_j})$ be the spectrum, cross spectrum
+Here $f$ is the frequency of a periodic oscillation, the reciprocal of its period 
+(i.e., its timescale). Throughout, we use for units of $f$ cycles per interval between 
+population sampling events, and we consider $f$ between $0$ and $0.5$ (the Nyquist frequency), 
+the range of frequencies
+about which sampled data provide any information. 
+So the cospectrum, denoted $C_{\epsilon_{i}\epsilon_{j}}(f)$, is $\Rp(S_{\epsilon_{i}\epsilon_{j}}(f))$, 
+the real part. Analogously, let $S_{w_i w_i}(f)$,
+$S_{w_i w_j}(f)$ and $C_{w_i w_j}(f)=\Rp(S_{w_i w_j}(f))$ be the spectrum, cross spectrum
 and cospectrum of the population processes $w_i$ and $w_j$.
-Give a multivariate process such as $\epsilon=(\epsilon_1,\ldots,\epsilon_N)$ or
+Given a multivariate process such as $\epsilon=(\epsilon_1,\ldots,\epsilon_N)$ or
 $w=(w_1,\ldots,w_N)$, the spectral matrix of the process is denoted
-$S_{\epsilon \epsilon}$ or $S_{ww}$. The spectral matrix, an $N \times N$ matrix, 
-has the spectra
-$S_{\epsilon_i \epsilon_i}$ on the diagonal and the cross spectra $S_{\epsilon_i \epsilon_j}$ 
-in the off-diagonal. We will later use the
+$S_{\epsilon \epsilon}(f)$ or $S_{ww}(f)$. The spectral matrix, an $N \times N$ matrix-valued function
+of frequency, has the spectra
+$S_{\epsilon_i \epsilon_i}(f)$ on the diagonal and the cross spectra $S_{\epsilon_i \epsilon_j}(f)$ 
+in the off-diagonal. The special notation $S_{\text{tot}}(f)$ is used for 
+the spectrum of $w_{\text{tot}}$ (which is the same as that of $x_{\text{tot}}$).
+
+<!--***DAN: I think I dont need this anymore, keeping it just in case:
+We will later use the
 notation $\epsilon_{ij}$ for the bivariate process $(\epsilon_i,\epsilon_j)$ and
 $w_{ij}$ for the bivariate process $(w_i,w_j)$.
 The spectral matrices of $\epsilon_{ij}$ and $w_{ij}$ are therefore denoted,
-respectively, $S_{\epsilon_{ij},\epsilon_{ij}}$ and $S_{w_{ij}w_{ij}}$.
+respectively, $S_{\epsilon_{ij},\epsilon_{ij}}(f)$ and $S_{w_{ij}w_{ij}}(f)$.-->
 
+The main theoretical result is as follows.
+\begin{proposition}
+Let $\mu=\exp(-2\pi i f)$, and define $\gamma=q_{ 0}+q_{ 1}\mu+\cdots+q_{m}\mu^{m}$ and
+$\lambda=c_{ 1 }\mu+c_{ 2}\mu^{2}+\cdots+c_{n}\mu^{n}$ in terms of $\mu$ and the 
+coefficients of the population model. Then
+$S_{\text{tot}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
+\label{prop:mainprop}
+\end{proposition}
+The proof is in (REF to right sup mat section).
+<!--***DAN: don't forget to put the right reference in-->
+Thus the power spectrum of the total population, which tells us whether and how the 
+total population time series cycles, is influenced by three terms.
+First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects
+dynamics intrinsic to the population ($\gamma$ and $\lambda$ are determined by
+the model coefficients $c_1,\ldots,c_n$ and $q_0,\ldots,q_m$). Second,
+$\sum_i S_{\epsilon_{i}\epsilon_{i}}$, the  sum of the power
+spectra of the noise time series, which reflects the extent to which the noise
+itself may be periodic. And third, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$,
+the sum of the cospectra of the noise, which reflects the extent to which noise
+synchrony across locations may be specific to certain timescales.
+
+Crucially for our purposes, the first sum, $\sum_i S_{\epsilon_{i}\epsilon_{i}}$, 
+is of $N$ quantities and the
+second sum, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$, is of $N^2 - N$ quantities, 
+suggesting that, when $N$ is large enough, timescale specificity of
+synchrony of noise across locations will tend to be more important for $S_{\text{tot}}$ than
+the nature of the periodicity of the noise.
 
 
 
