@@ -126,7 +126,7 @@ fluctuate, either episodically or consistently, with emphasis on particular time
 For example, from ca.
 1965-1995, fluctuations in the North Atlantic Oscillation (NAO) contained a substantial 
 10-year oscillatory component 
-[@Sheppard2016_aphids], and the El Nino Southern Oscillation (ENSO) also has 
+[@Sheppard2016_aphids], and the El Ni$\~{n}$no Southern Oscillation (ENSO) also has 
 periodic content. Thus local weather variables influenced by 
 climatic oscillations can contain periodic components which are synchronous across
 large areas. These components may be weak and therefore hardly noticable, 
@@ -206,7 +206,12 @@ effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) agg
 spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
 ($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}).--> 
 
-# METHODS
+# Summary of theory
+
+
+
+# Methods
+
 \textbf{Study System.} White-tailed deer is a species of considerable interest due to its major 
 economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across 
 the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
