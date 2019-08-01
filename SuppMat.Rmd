@@ -127,11 +127,11 @@ save.image(file="WholeWorkspace.RData")
 Anderson, Sheppard, Walter, Rolley, Reuman
 \end{center}
 
-##Theory
+## Theory
 
 We start by specifying the model we consider. 
 The model is similar to those used in the supplementary information of 
-\cite{Desharnais2018}, but in
+@Desharnais2018, but in
 contrast to their models, our model
 considers more than two habitat patches and does not consider dispersal.
 Due to the similarity in models, some of our below sentences describing our model 
@@ -150,9 +150,10 @@ for all $i$. Without loss of generality, $c_n \neq 0$ and $q_m \neq 0$. We also 
 the complex roots of the polynomial $1-c_1 z - c_2 - \cdots - c_n z^n=0$
 have modulus greater than one. This assumption is a necessary and sufficient condition 
 for stability of the equilibrium of the general model of which \ref{eq:mainmodel}
-is a linearization [\citealp{Desharnais2018}, their supplementary information section 1.2] 
+is a linearization (@Desharnais2018, their supplementary information section 1.2] 
 and also for the existence of a stationary
-stochastic process that is a solution of \ref{eq:mainmodel} \citep{Desharnais2018,Brillinger2011}. 
+stochastic process that is a solution of \ref{eq:mainmodel} 
+[@Desharnais2018; @Brillinger2001]. 
 We denote by $x_{\text{tot}}(t)$ the total population $\sum_{i=1}^N x_i(t)$,
 which has the same variance as $w_{\text{tot}}(t)=\sum_{i=1}^N w_i(t)$.
 
@@ -189,36 +190,40 @@ The spectral matrices of $\epsilon_{ij}$ and $w_{ij}$ are therefore denoted,
 respectively, $S_{\epsilon_{ij},\epsilon_{ij}}(f)$ and $S_{w_{ij}w_{ij}}(f)$.-->
 
 The main theoretical result is as follows.
-\begin{proposition}
+\begin{thm}
 Let $\mu=\exp(-2\pi i f)$, and define $\gamma=q_{ 0}+q_{ 1}\mu+\cdots+q_{m}\mu^{m}$ and
 $\lambda=c_{ 1 }\mu+c_{ 2}\mu^{2}+\cdots+c_{n}\mu^{n}$ in terms of $\mu$ and the 
 coefficients of the population model. Then
-$S_{\text{tot}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
-\label{prop:mainprop}
-\end{proposition}
-The proof is in (REF to right sup mat section).
-<!--***DAN: don't forget to put the right reference in-->
+$S_{\text{\emph{tot}}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
+\label{prop:mainthm}
+\end{thm}
+The proof is in section \ref{sect:mainproof}.
+<!--***DAN: currently this section ref does not work, fix-->
 Thus the power spectrum of the total population, which tells us whether and how the 
 total population time series cycles, is influenced by three terms.
-First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects
+First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects the nature of
 dynamics intrinsic to the population ($\gamma$ and $\lambda$ are determined by
 the model coefficients $c_1,\ldots,c_n$ and $q_0,\ldots,q_m$). Second,
 $\sum_i S_{\epsilon_{i}\epsilon_{i}}$, the  sum of the power
-spectra of the noise time series, which reflects the extent to which the noise
+spectra of the environmental noise time series, which reflects the extent to which the noise
 itself may be periodic. And third, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$,
 the sum of the cospectra of the noise, which reflects the extent to which noise
 synchrony across locations may be specific to certain timescales.
 
-Crucially for our purposes, the first sum, $\sum_i S_{\epsilon_{i}\epsilon_{i}}$, 
+Crucially, the first sum, $\sum_i S_{\epsilon_{i}\epsilon_{i}}$, 
 is of $N$ quantities and the
-second sum, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$, is of $N^2 - N$ quantities, 
-suggesting that, when $N$ is large enough, timescale specificity of
-synchrony of noise across locations will tend to be more important for $S_{\text{tot}}$ than
-the nature of the periodicity of the noise.
+second sum, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$, is of $N^2 - N$ quantities. 
+This suggests that, when $N$ is large enough, timescale specificity of
+synchrony of noise across locations ($N^2-N$ terms) will tend to be more important 
+for $S_{\text{tot}}$ than the nature of the periodicity of the noise ($N$ terms).
+Of course, whether this intuition is actually true depends on the specific values of 
+the terms in each sum, but the following several examples show the intuition
+typically is valid.
 
 
 
-##Additional Notes on Methods
+
+## Additional Notes on Methods
 \textbf{Notes on deer, DVC, and hunter data}
 From 1981-2013, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
@@ -297,6 +302,10 @@ costs may exceed US\$22M.
 
 \newpage
 \textbf{Additional Methods.}
+<!--***DAN: Tom, you need to be consistent with how you do your section headers. Sometimes
+you use the ## approach and sometimes you use the \textbf approach. I suggest we always 
+use the #, ##, ### approach because I know how to label those and refer to them with
+hyperlinks-->
 
 \newpage
 \textbf{USDA district results.} Using district-level data, deer abundance 
@@ -383,6 +392,8 @@ eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}
 randomizations preserved the structure of the local fluctuations. Variation A
 may be more likely given previous work documenting the influence of snow depth and large-scale
 climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
+
+## Proof of the main theoretical result \label{sect:mainproof}
 
 \newpage
 

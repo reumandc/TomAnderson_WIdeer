@@ -2,8 +2,13 @@
 source("Functions/Fn_phaseplot.R")
 source("Functions/Fn_rankplot.R")
 source("Functions/deer_plotting_functions.R")
+
 #Make Fig. 1
 source("Code/PedagogFig.R")
+
+#Make theoretical example figures
+source("Code/TheoryExample1.R")
+
 
 #clean data for Figs 2 and 3
 abun.dt<-cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
