@@ -76,7 +76,7 @@ source("Code/DeerCoherence_wsyn.R")
 ```
 
 <!---generate plots--->
-```{r plots, echo=F, cache=T, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,wlm_abun,wlm_dvc,mtime("Code/deer_plots.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"),mtime("Code/PedagogFig.R"),mtime("Functions/deer_plotting_functions.R"))}
+```{r plots, echo=F, cache=T, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,wlm_abun,wlm_dvc,mtime("Code/deer_plots.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"),mtime("Code/PedagogFig.R"),mtime("Code/TheoryExample1.R"),mtime("Code/TheoryExample2.R"),mtime("Code/TheoryExample3.R"),mtime("Functions/deer_plotting_functions.R"))}
 #generate plots
 set.seed(201)
 source("Code/deer_plots.R")
@@ -161,7 +161,7 @@ To develop our theory, we need the language and fundamental mathematical results
 stochastic processes and their spectra and cross spectra. 
 Spectral statistics are extremely well-developed, widely known, and widely applied in numerous fields;
 background on spectral statistics can be found from many sources, including the books of
-@Reinsel1997, @Shumway, and @Brillinger2001. We here define notation. 
+@Reinsel1997, @Shumway2000, and @Brillinger2001. We here define notation. 
 Let $S_{\epsilon_{i}\epsilon_{i}}(f)$
 denote the power spectrum of the process $\epsilon_{i}$ and let $S_{\epsilon_{i}\epsilon_{j}}(f)$
 denote the cross spectrum of the processes $\epsilon_{i}$ and $\epsilon_{j}$.

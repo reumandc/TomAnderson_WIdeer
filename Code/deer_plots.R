@@ -9,7 +9,7 @@ source("Code/PedagogFig.R")
 #Make theoretical example figures
 source("Code/TheoryExample1.R")
 source("Code/TheoryExample2.R")
-
+source("Code/TheoryExample3.R")
 
 #clean data for Figs 2 and 3
 abun.dt<-cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
