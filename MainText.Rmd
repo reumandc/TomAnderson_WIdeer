@@ -208,6 +208,7 @@ spatial resolutions (*Methods*): counties ($n=71$), United States Department of 
 
 # Summary of theory
 
+Holder for references: See Fig. \ref{SM-TheoryExample1} for an example.
 
 
 # Methods
