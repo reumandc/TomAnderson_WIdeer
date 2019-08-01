@@ -8,6 +8,7 @@ source("Code/PedagogFig.R")
 
 #Make theoretical example figures
 source("Code/TheoryExample1.R")
+source("Code/TheoryExample2.R")
 
 
 #clean data for Figs 2 and 3

@@ -407,6 +407,12 @@ climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @H
 \end{figure}
 <!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
 
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/TheoryExample1.png}
+\caption{Results for theoretical example 2. See X.}\label{TheoryExample2}
+\end{figure}
+<!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
+
 <!--***DAN: add here one fig for each additional theoretical example-->
 
 \begin{figure}[!h]

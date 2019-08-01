@@ -1,6 +1,11 @@
 #Work on a first theoretical example with AR(1) population dynamics, noise with 
 #weak periodicity and possibly some synchrony (which is therefore timescale-specific 
-#synchrony, if there is synchrony) depending on whether you are in case 1 or 2
+#synchrony, if there is synchrony) depending on whether you are in case 1 or 2. The 
+#noise by passing iid-through-time innovations which through an AR(2) model. The 
+#innovations are either correlated across space or not, in the two cases considered.
+#
+#Also,this file contains the plotting function which is used in the subsequent
+#theoretical examples.
 
 #***setup
 
@@ -99,6 +104,7 @@ spec_noise_C1<-my.spec.pgram(simsC1$epsilon[,1,],detrend=FALSE,taper=0,spans=c(9
 spec_noise_C2<-my.spec.pgram(simsC2$epsilon[,1,],detrend=FALSE,taper=0,spans=c(91,71),plot=FALSE)
 
 #theory for spectra
+x<-spec_noise_C1$freq
 mu<-exp(-2*pi*complex(real=0,imaginary=1)*x)
 c1<-(1/r)*2*cos(theta)
 c2<-(-1/r^2) 
@@ -136,203 +142,218 @@ spec_totpops_C2<-my.spec.pgram(totpopsC2,detrend=FALSE,taper=0,spans=c(91,71),pl
 ytp_C1_th<-(N+(N^2-N)*rhoC1)*(Mod(1/(1-c1*mu-c2*mu^2)))^2*(Mod(1/(1-rhopop*mu)))^2
 ytp_C2_th<-(N+(N^2-N)*rhoC2)*(Mod(1/(1-c1*mu-c2*mu^2)))^2*(Mod(1/(1-rhopop*mu)))^2
 
-#***make the figure
+#***make the figure - create a function first, so you can also use it on subsequent examples
 
-#setup
-xht<-0.5
-ywd<-0.5
-gap<-0.4
-panwd<-1.25
-panht<-panwd
-totwd<-4*ywd+4*panwd+gap
-totht<-xht+2*panht+2*gap
-
-#get the graphics device ready
-png(file="Results/TheoryExample1.png",width=totwd,height=totht,units="in",res=600)
-#pdf(file="Results/TheoryExample1.pdf",width=totwd,height=totht)
-
-#spectra of noise in loc 1 for the different sims, C1
-xpos<-0
-ypos<-1
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
-x<-spec_noise_C1$freq
-y<-spec_noise_C1$spec[,1]
-xlimits<-c(0,.5)
-ylimits<-range(spec_noise_C1$spec,spec_noise_C2$spec)
-ylimits[2]<-ylimits[2]+.2*diff(ylimits)
-plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
-     ylim=ylimits,xlim=xlimits) 
-for (simc in 2:numsims)
+makefigtheory<-function(spec_noise_C1,spec_noise_C2,ys_C1_th,ys_C2_th, #noise spec args
+                        xcs_C1,xcs_C2,ycs_C1,ycs_C2,ycs_C1_th,ycs_C2_th, #noise cospec args
+                        spec_totpops_C1,spec_totpops_C2,ytp_C1_th,ytp_C2_th, #spec totpop args
+                        totpopsC1,totpopsC2,xtotpops, #totpops time series args
+                        filename)
 {
-  y<-spec_noise_C1$spec[,simc]
-  lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
+  
+  #setup
+  xht<-0.5
+  ywd<-0.5
+  gap<-0.4
+  panwd<-1.25
+  panht<-panwd
+  totwd<-4*ywd+4*panwd+gap
+  totht<-xht+2*panht+2*gap
+  
+  #get the graphics device ready
+  png(file=filename,width=totwd,height=totht,units="in",res=600)
+
+  #spectra of noise in loc 1 for the different sims, C1
+  xpos<-0
+  ypos<-1
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
+  x<-spec_noise_C1$freq
+  y<-spec_noise_C1$spec[,1]
+  xlimits<-c(0,.5)
+  ylimits<-range(spec_noise_C1$spec,spec_noise_C2$spec)
+  ylimits[2]<-ylimits[2]+.2*diff(ylimits)
+  plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
+       ylim=ylimits,xlim=xlimits) 
+  for (simc in 2:numsims)
+  {
+    y<-spec_noise_C1$spec[,simc]
+    lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
+  }
+  #axis(side=1,at=seq(from=0,to=.5,by=.1),labels=FALSE)
+  mtext(text="Noise spectra, loc 1",side=2,line=1.2,adj=3.75)
+  text(xlimits[1],ylimits[2],'A)',adj=c(0,1),font=2)
+  
+  #add theory
+  lines(x,ys_C1_th,col="red") 
+  
+  #spectra of noise in loc 1 for the different sims, C2
+  xpos<-0
+  ypos<-0
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
+  x<-spec_noise_C2$freq
+  y<-spec_noise_C2$spec[,1]
+  ylimits<-range(spec_noise_C1$spec,spec_noise_C2$spec)
+  ylimits[2]<-ylimits[2]+.2*diff(ylimits)
+  plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
+       ylim=ylimits,xlim=xlimits) 
+  for (simc in 2:numsims)
+  {
+    y<-spec_noise_C2$spec[,simc]
+    lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
+  }
+  text(xlimits[1],ylimits[2],'B)',adj=c(0,1),font=2)
+  mtext(text="Frequency",side=1,line=1.2)
+  
+  #add theory
+  lines(x,ys_C2_th,col="red") 
+  
+  #cospectra of noise between locs 1 and 2 for the different sims, C1
+  xpos<-1
+  ypos<-1
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
+  x<-xcs_C1
+  y<-ycs_C1[,1]
+  xlimits<-c(0,.5)
+  ylimits<-range(ycs_C1,ycs_C2)
+  ylimits[2]<-ylimits[2]+.2*diff(ylimits)
+  plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
+       ylim=ylimits,xlim=xlimits)
+  for (simc in 2:numsims)
+  {
+    y<-ycs_C1[,simc]
+    lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
+  }
+  text(xlimits[1],ylimits[2],'C)',adj=c(0,1),font=2)
+  mtext(text="Noise cospectra, locs 1, 2",side=2,line=1.2,adj=1.75)
+  
+  #add theory
+  lines(x,ycs_C1_th,col="red") 
+  
+  #cospectra of noise between locs 1 and 2 for the different sims, C2
+  xpos<-1
+  ypos<-0
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
+  x<-xcs_C2
+  y<-ycs_C2[,1]
+  xlimits<-c(0,.5)
+  ylimits<-range(ycs_C1,ycs_C2)
+  ylimits[2]<-ylimits[2]+.2*diff(ylimits)
+  plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
+       ylim=ylimits,xlim=xlimits)
+  for (simc in 2:numsims)
+  {
+    y<-ycs_C2[,simc]
+    lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
+  }
+  text(xlimits[1],ylimits[2],'D)',adj=c(0,1),font=2)
+  mtext(text="Frequency",side=1,line=1.2)
+  
+  #add theory
+  lines(x,ycs_C2_th,col="red") 
+  
+  #spectra of tot pop for the different sims, C1
+  xpos<-2
+  ypos<-1
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
+  x<-spec_totpops_C1$freq
+  y<-spec_totpops_C1$spec[,1]
+  ylimits<-range(spec_totpops_C1$spec,spec_totpops_C2$spec)
+  ylimits[2]<-ylimits[2]+.2*diff(ylimits)
+  plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
+       ylim=ylimits) 
+  for (simc in 2:numsims)
+  {
+    y<-spec_totpops_C1$spec[,simc]
+    lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
+  }
+  mtext(text="Tot. pop. spectra",side=2,line=1.2,adj=-70)
+  text(xlimits[1],ylimits[2],'E)',adj=c(0,1),font=2)
+  
+  #add theory for spectra of totpops for C1
+  lines(x,ytp_C1_th,col="red") 
+  
+  #spectra of tot pop for the different sims, C2
+  xpos<-2
+  ypos<-0
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
+  x<-spec_totpops_C2$freq
+  y<-spec_totpops_C2$spec[,1]
+  plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
+       ylim=ylimits)
+  for (simc in 2:numsims)
+  {
+    y<-spec_totpops_C2$spec[,simc]
+    lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
+  }
+  mtext(text="Frequency",side=1,line=1.2)
+  text(xlimits[1],ylimits[2],'F)',adj=c(0,1),font=2)
+  
+  #add theory for spectra of totpops for C2
+  lines(x,ytp_C2_th,col="red") #the analytic expectation
+  
+  #total pop time series, sim 1, C1
+  xpos<-3
+  ypos<-1
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
+  x<-xtotpops
+  xp<-x-min(x)+1
+  yC1<-totpopsC1[x]
+  yC2<-totpopsC2[x]
+  ylimits<-range(yC1,yC2)
+  ylimits[2]<-ylimits[2]+.2*diff(ylimits)
+  plot(xp,yC1,type='l',ylim=ylimits)
+  points(xp,yC1,type='p',pch=20,cex=.5)
+  mtext(text="Tot. pop., w_tot",side=2,line=1.2,adj=-5.5)
+  text(xlimits[1],ylimits[2],'G)',adj=c(0,1),font=2)
+  
+  #total pop time series, sim 1, C2
+  xpos<-3
+  ypos<-0
+  par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
+            (ywd+xpos*(panwd+ywd)+panwd)/totwd,
+            (xht+ypos*(panht+gap))/totht,
+            (xht+ypos*(panht+gap)+panht)/totht),
+      mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
+  plot(xp,yC2,type='l',ylim=ylimits)
+  points(xp,yC2,type='p',pch=20,cex=.5)
+  mtext(text="Time step",side=1,line=1.2)
+  text(xlimits[1],ylimits[2],'H)',adj=c(0,1),font=2)
+  
+  dev.off()
 }
-#axis(side=1,at=seq(from=0,to=.5,by=.1),labels=FALSE)
-mtext(text="Noise spectra, loc 1",side=2,line=1.2,adj=3.75)
-text(xlimits[1],ylimits[2],'A)',adj=c(0,1),font=2)
 
-#add theory
-lines(x,ys_C1_th,col="red") 
+#***make the figure - now just call the function
 
-#spectra of noise in loc 1 for the different sims, C2
-xpos<-0
-ypos<-0
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
-x<-spec_noise_C2$freq
-y<-spec_noise_C2$spec[,1]
-ylimits<-range(spec_noise_C1$spec,spec_noise_C2$spec)
-ylimits[2]<-ylimits[2]+.2*diff(ylimits)
-plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
-     ylim=ylimits,xlim=xlimits) 
-for (simc in 2:numsims)
-{
-  y<-spec_noise_C2$spec[,simc]
-  lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
-}
-text(xlimits[1],ylimits[2],'B)',adj=c(0,1),font=2)
-mtext(text="Frequency",side=1,line=1.2)
-
-#add theory
-lines(x,ys_C2_th,col="red") 
-
-#cospectra of noise between locs 1 and 2 for the different sims, C1
-xpos<-1
-ypos<-1
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
-x<-xcs_C1
-y<-ycs_C1[,1]
-xlimits<-c(0,.5)
-ylimits<-range(ycs_C1,ycs_C2)
-ylimits[2]<-ylimits[2]+.2*diff(ylimits)
-plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
-     ylim=ylimits,xlim=xlimits)
-for (simc in 2:numsims)
-{
-  y<-ycs_C1[,simc]
-  lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
-}
-text(xlimits[1],ylimits[2],'C)',adj=c(0,1),font=2)
-mtext(text="Noise cospectra, locs 1, 2",side=2,line=1.2,adj=1.75)
-
-#add theory
-lines(x,ycs_C1_th,col="red") 
-
-#cospectra of noise between locs 1 and 2 for the different sims, C2
-xpos<-1
-ypos<-0
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
-x<-xcs_C2
-y<-ycs_C2[,1]
-xlimits<-c(0,.5)
-ylimits<-range(ycs_C1,ycs_C2)
-ylimits[2]<-ylimits[2]+.2*diff(ylimits)
-plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
-     ylim=ylimits,xlim=xlimits)
-for (simc in 2:numsims)
-{
-  y<-ycs_C2[,simc]
-  lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
-}
-text(xlimits[1],ylimits[2],'D)',adj=c(0,1),font=2)
-mtext(text="Frequency",side=1,line=1.2)
-
-#add theory
-lines(x,ycs_C2_th,col="red") 
-
-#spectra of tot pop for the different sims, C1
-xpos<-2
-ypos<-1
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
-x<-spec_totpops_C1$freq
-y<-spec_totpops_C1$spec[,1]
-ylimits<-range(spec_totpops_C1$spec,spec_totpops_C2$spec)
-ylimits[2]<-ylimits[2]+.2*diff(ylimits)
-plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
-     ylim=ylimits) 
-for (simc in 2:numsims)
-{
-  y<-spec_totpops_C1$spec[,simc]
-  lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
-}
-mtext(text="Tot. pop. spectra",side=2,line=1.2,adj=-70)
-text(xlimits[1],ylimits[2],'E)',adj=c(0,1),font=2)
-
-#add theory for spectra of totpops for C1
-lines(x,ytp_C1_th,col="red") 
-
-#spectra of tot pop for the different sims, C2
-xpos<-2
-ypos<-0
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
-x<-spec_totpops_C2$freq
-y<-spec_totpops_C2$spec[,1]
-plot(x,y,type="l",col=rgb(0,0,0,alpha=.1),
-     ylim=ylimits)
-for (simc in 2:numsims)
-{
-  y<-spec_totpops_C2$spec[,simc]
-  lines(x,y,type="l",col=rgb(0,0,0,alpha=.1))
-}
-mtext(text="Frequency",side=1,line=1.2)
-text(xlimits[1],ylimits[2],'F)',adj=c(0,1),font=2)
-
-#add theory for spectra of totpops for C2
-lines(x,ytp_C2_th,col="red") #the analytic expectation
-
-#total pop time series, sim 1, C1
-xpos<-3
-ypos<-1
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
-x<-51:100
-xp<-x-min(x)+1
-yC1<-totpopsC1[x]
-yC2<-totpopsC2[x]
-ylimits<-range(yC1,yC2)
-ylimits[2]<-ylimits[2]+.2*diff(ylimits)
-plot(xp,yC1,type='l',ylim=ylimits)
-points(xp,yC1,type='p',pch=20,cex=.5)
-mtext(text="Tot. pop., w_tot",side=2,line=1.2,adj=-5.5)
-text(xlimits[1],ylimits[2],'G)',adj=c(0,1),font=2)
-
-#total pop time series, sim 1, C2
-xpos<-3
-ypos<-0
-par(fig=c((ywd+xpos*(panwd+ywd))/totwd,
-          (ywd+xpos*(panwd+ywd)+panwd)/totwd,
-          (xht+ypos*(panht+gap))/totht,
-          (xht+ypos*(panht+gap)+panht)/totht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
-plot(xp,yC2,type='l',ylim=ylimits)
-points(xp,yC2,type='p',pch=20,cex=.5)
-mtext(text="Time step",side=1,line=1.2)
-text(xlimits[1],ylimits[2],'H)',adj=c(0,1),font=2)
-
-dev.off()
+makefigtheory(spec_noise_C1,spec_noise_C2,ys_C1_th,ys_C2_th, #noise spec args
+                        xcs_C1,xcs_C2,ycs_C1,ycs_C2,ycs_C1_th,ycs_C2_th, #noise cospec args
+                        spec_totpops_C1,spec_totpops_C2,ytp_C1_th,ytp_C2_th, #spec totpop args
+                        totpopsC1,totpopsC2,51:100, #totpops time series args
+                        "Results/TheoryExample1.png")
