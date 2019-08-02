@@ -183,13 +183,6 @@ $S_{\epsilon_i \epsilon_i}(f)$ on the diagonal and the cross spectra $S_{\epsilo
 in the off-diagonal. The special notation $S_{\text{tot}}(f)$ is used for 
 the spectrum of $w_{\text{tot}}$ (which is the same as the spectrum of $x_{\text{tot}}$).
 
-<!--***DAN: I think I dont need this anymore, keeping it just in case:
-We will later use the
-notation $\epsilon_{ij}$ for the bivariate process $(\epsilon_i,\epsilon_j)$ and
-$w_{ij}$ for the bivariate process $(w_i,w_j)$.
-The spectral matrices of $\epsilon_{ij}$ and $w_{ij}$ are therefore denoted,
-respectively, $S_{\epsilon_{ij},\epsilon_{ij}}(f)$ and $S_{w_{ij}w_{ij}}(f)$.-->
-
 The main theoretical result is as follows.
 \begin{thm}
 Let $\mu=\exp(-2\pi i f)$, and define $\gamma=q_{ 0}+q_{ 1}\mu+\cdots+q_{m}\mu^{m}$ and

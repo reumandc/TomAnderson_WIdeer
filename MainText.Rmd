@@ -60,7 +60,7 @@ avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
 ```
 
 <!--***DAN: Dan has not edited this yet for Ecol Lett-->
-**Abstract:** Population cycles are a profound enigma of the natural world, the causes of which have been investigated for over 100 years. An early hypothesized explanation of cycles, for the iconic lynx-hare and for other systems, posited that cyclic environmental phenomena such as sun spots drive population cycles. But that hypothesis was refuted, and for several decades research focused instead on explanations involving nonlinear or delayed density dependence, often via species interactions. Here we show that timescale-specific environmental effects, by synchronizing local population dynamics on certain timescales only, cause major population cycles over large areas in white-tailed deer and deer-vehicle collisions (DVCs). We thereby demonstrate a new mechanism of cycles that centers once again on environmental influences. The mechanism differs fundamentally from earlier hypotheses that relied on a strongly cyclic driver such as sun spots. An important aspect of the new mechanism is specificity of synchronizing effects to certain timescales, which causes local dynamics to sum across space to a substantial cycle on those timescales. We also demonstrate for the first time that synchrony can be transmitted, in a cascading effect, from environmental drivers, to populations (deer), to human systems (DVCs). The cycles we explain can have substantial effects on agriculture, hunting, and accident recovery industries. Research shows that synchrony of some environmental drivers may be changing, possibly as part of climate change. Such changes may alter population cycles that arise via the mechanism described here.
+\noindent **Abstract:** Population cycles are a profound enigma of the natural world, the causes of which have been investigated for over 100 years. An early hypothesized explanation of cycles, for the iconic lynx-hare and for other systems, posited that cyclic environmental phenomena such as sun spots drive population cycles. But that hypothesis was refuted, and for several decades research focused instead on explanations involving nonlinear or delayed density dependence, often via species interactions. Here we show that timescale-specific environmental effects, by synchronizing local population dynamics on certain timescales only, cause major population cycles over large areas in white-tailed deer and deer-vehicle collisions (DVCs). We thereby demonstrate a new mechanism of cycles that centers once again on environmental influences. The mechanism differs fundamentally from earlier hypotheses that relied on a strongly cyclic driver such as sun spots. An important aspect of the new mechanism is specificity of synchronizing effects to certain timescales, which causes local dynamics to sum across space to a substantial cycle on those timescales. We also demonstrate for the first time that synchrony can be transmitted, in a cascading effect, from environmental drivers, to populations (deer), to human systems (DVCs). The cycles we explain can have substantial effects on agriculture, hunting, and accident recovery industries. Research shows that synchrony of some environmental drivers may be changing, possibly as part of climate change. Such changes may alter population cycles that arise via the mechanism described here.
 
 <!--***DAN: Old first para
 **Correlated fluctuations through time in abundances of distant populations, called spatial synchrony, is 
@@ -109,24 +109,20 @@ process known as nonlinear phase locking [@Bjornstad2000]. Empirical evidence fr
 experiments [@VassuerFox_2009;@HopsonFox_2019] and analysis of observational data 
 [@Haynes_etal2019] support these predictions. Indeed, the 
 lynx-hare system features predator-prey cycles thought to be synchronized regionally 
-by phase locking through Moran effects[@stenseth1999;@stenseth2004]. 
-<!--***DAN: Someone needs to fill in this missing reference! I changed it to synchronized
-regionally, instead of across Canada, because I remember a paper that described a travelling
-wave across Canada. Some might quibble that a travelling wave is not the same as (in-phase)
-synchrony across Canada.-->
+by phase locking through Moran effects [@stenseth1999;@stenseth2004]. 
 As a consequence, the prevailing paradigm is that cycles and synchrony are linked because 
 populations whose dynamics are intrinsically cyclic are easy to synchronize; that is, population 
 cycles help give rise to spatial synchrony.
 
 We here propose and provide evidence for a mechanism by which the direction of causality can be 
-reversed: instead, spatial synchrony can give rise to population cycles. Conceptually, the
-mechanism is as follows. First, an exogenous driver synchronizes non-cyclic local
+reversed: instead, spatial synchrony can give rise to population cycles. The
+mechanism comprises the following two conceptual steps. First, an exogenous driver synchronizes non-cyclic local
 population fluctuations *on a particular timescale*. Many large climate phenomena
 fluctuate, either episodically or consistently, with emphasis on particular timescales. 
 For example, from ca.
 1965-1995, fluctuations in the North Atlantic Oscillation (NAO) contained a substantial 
 10-year oscillatory component 
-[@Sheppard2016_aphids], and the El Ni$\~{n}$no Southern Oscillation (ENSO) also has 
+[@Sheppard2016_aphids], and the El Ni$\~{n}$o Southern Oscillation (ENSO) also has 
 periodic content. Thus local weather variables influenced by 
 climatic oscillations can contain periodic components which are synchronous across
 large areas. These components may be weak and therefore hardly noticable, 
@@ -144,7 +140,7 @@ components on other timescales cancel in the spatial total. Thus periodicities
 in dynamics which may be unnoticable at the local spatial scale become
 dominant at the regional scale. This effect can be strong, as we will see.
 The key here is that synchrony occurs *on a particular timescale*.
-Dynamics of the total population are then dominated by a cycle on that timescale. 
+Dynamics of the total, regional population are then dominated by a cycle on that timescale. 
 Fig. \ref{Fig1_example} provides an initial example of this phenomenon using a
 simple model. A theoretical approach to the mechanism is summarized below and elaborated in
 (REF to Sup mat section). 
@@ -162,7 +158,7 @@ synchrony could also be important for industries, such as hunting,
 that exploit multiple populations across space if it causes cycling in
 the regional total population. 
 For instance, if time series of Fig. \ref{Fig1_example}D-F were deer populations 
-in Wisconsin counties so that 
+in counties within state so that 
 Fig. \ref{Fig1_example}J-L are state-total populations, differences between the 
 three scenarios of Fig. \ref{Fig1_example} could substantially
 impact the hunting industry.
@@ -171,11 +167,26 @@ on human economic and social systems. Cascading effects of synchrony
 on human concerns, though potentially important, are seldom 
 discussed in the literature. 
 
-Here we demonstrate, using data on white-tailed deer (*Odocoileus virginianus*) in 
-Wisconsin, USA, how timescale-specific
+The ecological system for which we explore the importance of these ideas 
+centers on white-tailed deer (*Odocoileus virginianus*) populations across
+the state of Wisconsin (WI), USA, and on rates of deer-vehicle collisions (DVCs).
+White-tailed deer is a species of considerable interest due to its major 
+economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across 
+the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
+In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 
+50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it 
+is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC 
+totals. We consider potential drivers of deer populations including both environmental factors and the direct 
+effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) aggregated at three 
+spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
+($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}). 
+<!--***DAN: need to review how Sup mat is organized, and how it is cited, and
+whether these are consistent with Ecol Lett requirements-->
+
+Here we demonstrate, using deer data, how timescale-specific
 spatial synchrony can produce regional population cycles. We also show that
 timescale-specific deer population synchrony begets timescale-specific synchrony
-in deer-vehicle collisions (DVCs) across the state, producing cycles in 
+in DVCs across the state, producing cycles in 
 state-total DVC time series as well. These cycles have economic and public-health
 consequences. Fluctuations in deer population abundances in
 the 71 counties of Wisconsin were synchronous due to
@@ -186,31 +197,65 @@ Timescale-specific synchrony caused large fluctuations on 3-7-year
 timescales in state-total time series for both deer and DVCs. 
 Our results provide a theoretical description and strong empirical support for 
 the importance of a new mechanism of population cycles, and for its
-potential importance for human concerns; in contrast to well-understood
+potential importance for human concerns. In contrast to well-understood
 mechanism by which cycles can beget sycnhrony, our new mechanism shows 
-that synchrony, when it is specific to certain timescales, can also beget
+that synchrony, when it is specific to certain timescales, can also produce
 cycles.
-
-<!--***DAN: Dan thinks this commented material should be incorporated into Methods. Or possibly
-the Intro, though at the moment I think Methods might be better because I cannot find
-a good place to fit this info into the Intro, which currently quite focussed and I like.-->
-<!--We here investigate timescale-specific synchrony and related cycling of white-tailed deer (*Odocoileus virginianus*) 
-and DVCs in Wisconsin (WI), USA. White-tailed deer is a species of considerable interest due to its major 
-economic and cultural benefits and impacts on ecosystems [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across 
-the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
-In WI, hunting-related economic activity accounts for ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 
-50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it 
-is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC 
-totals. We consider potential drivers of deer populations including both environmental factors and the direct 
-effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) aggregated at three 
-spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
-($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}).--> 
 
 # Summary of theory
 
-Holder for references: See Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
-\ref{SM-TheoryExample3} for examples.
+The statement of our main theoretical result requires a conceptual understanding 
+of the *power spectrum* (or, simply, *spectrum*) of a population or other 
+time series, and of the *cospectrum* of two time series. The spectrum $S_{w_iw_i}(f)$ 
+of a time series or stochastic process measured in location $i$, $w_i(t)$,
+is a function of frequency, $f$. The frequency of a periodic oscillation is one over
+its timescale, i.e., one over its period. The value of the spectrum $S_{w_iw_i}(f)$ is larger for 
+frequencies (or timescales) on which $w_i(t)$ oscillates with greater strength. So, 
+for instance, a population that exhibits a strong (rspectively, weak) 10-year-timescale 
+oscillations will have a spectrum with a large (respectively, small) peak at 
+the frequency $1/10$. The spectrum decomposes the variance, $\var(w_i(t))$, according 
+to the timescales on which it occurs, in the sense that an integral of 
+$S_{w_iw_i}(f)$ across all frequencies equals $\var(w_i(t))$. The cospectrum
+of two time series, $w_i(t)$ and $w_j(t)$, decomposes their covariance, $\cov(w_i(t),w_j(t))$,
+in a similar way: the cospectrum, $C_{w_iw_j}(f)$, is a function of frequency
+with peaks occurring at frequencies for which oscillations in $w_i(t)$ and
+$w_j(t)$ are strong and coincident in their phases, i.e., synchronous.
 
+The spectrum is useful for studying population cycling because peaks in the 
+spectrum of a population indicate cyclic behavior. 
+Our main theoretical result expresses the the spectrum, $S_{\text{tot}}$ of a total
+population across a region composed of $i=1,\ldots,N$ local areas in the form
+$$S_{\text{\emph{tot}}}(f) = F_{\text{popdyn}}(f) \left[ \sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f) +
+\sum_{\substack{i,j=1 \\ i \neq j}}^N C_{\epsilon_{i}\epsilon_{j}}(f)\right],\label{mainresmt}$$ 
+\noindent where $F_{\text{popdyn}}(f)$ reflects 
+the nature of population dynamics within the local areas, and the $S_{\epsilon_i\epsilon_i}$
+are spectra and the $C_{\epsilon_i\epsilon_j}$ are cospectra of environmental noise time 
+series in the local areas. If dynamics are not intrinsically cycling, 
+then $F_{\text{popdyn}}(f)$ has no peaks and does not contribute to whether $S_{\text{tot}}$
+is peaked. The first term in brackets in \ref{mainresmt},
+$\sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f)$, encapsulates the effects of 
+periodicities in local environmental noise time series on whether the total 
+population exhibits cycling. The second term in the brackets,
+$\sum_{i \neq j}^N C_{\epsilon_{i}\epsilon_{j}}(f)\right]$, encapsulates
+the effects of timescale-specific synchrony on whether the total population
+exhibits cycling. The key observation here is that, when $N$ is large so that the
+region being considered is combination of a large number of local areas, the first term
+is likely to make a much smaller contribution to $S_{\text{tot}}$ than is the second
+term; the first term is a sum of only $N$ quantities and the second is a sum over
+$N^2-N$, which is much greater than $N$ for large enough $N$. Thus theory predicts
+that timescale-specific patterns of synchrony are very important for whether
+spatial-total populations exhibit synchrony. Of course which of the two terms
+in brackets in \ref{mainresmt} is larger depends on the specific values of the summands
+contributing to each term as well as on the number of summands. But we explore 
+reasonable scenarios in the supporting information
+<!--***DAN: make this citation to the sup mat use the language Ecol Lett expects-->
+and find that the initial intuition is correct, for the quite-general model setup that we
+study, that typically timescale-specific synchrony is a very important determinant of
+whether a regional population cycles. See SI Appendix X
+<!--***DAN: get the language right and automate the citation-->
+for the the general theoretical development and 
+Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
+\ref{SM-TheoryExample3} for specific examples.
 
 # Methods
 
@@ -743,7 +788,8 @@ time on the given timescale. Total populations (J-L) show clear cycling in scena
 of periods $3$ and $10$, respectively, consistent with the proposed mechanism (Introduction): 
 synchrony on a given timescale 
 produces cycling on that timescale in the total population.
-We used $71$ locations because Wisconsin has 71 counties for which deer 
+We used $71$ locations the empirical analyses of this study focus on white-tailed
+deer populations in Wisconsin, and Wisconsin has 71 counties for which deer 
 data were available. Time series on A-F were
 shifted vertically for readability.
 \label{Fig1_example}}
@@ -753,7 +799,7 @@ shifted vertically for readability.
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{Results/Fig2.png}
-\caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions, 
+\caption{Raw time series of (A) deer abundance, (B) deer-vehicle collisions (DVCs), 
 (C) average winter ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) snow depth, and 
 (D) winter climate indices (Multivariate El Ni$\~{n}$o Southern Oscillation Index, 
 MEI; Pacific Decadal Oscillation, PDO), and hunter abundances (E). 
