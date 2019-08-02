@@ -129,7 +129,7 @@ Anderson, Sheppard, Walter, Rolley, Reuman
 
 ## Theory
 
-We start by specifying the model we consider. 
+We start by specifying the general model we consider. 
 The model is similar to those used in the supplementary information of 
 @Desharnais2018, but in
 contrast to their models, our model
@@ -142,7 +142,7 @@ Suppose population dynamics are given by
 \begin{equation}
 w_{i} = c_1 w_i(t-1)+ \cdots + c_n w_i(t-n)+q_0 \epsilon_{i}(t)+\cdots+q_{m}\epsilon_{i}(t-m),\label{eq:mainmodel}
 \end{equation}
-where $w_{i}(t)$ is the deviation of a population index $x_{i}(t)$ in
+\noindent where $w_{i}(t)$ is the deviation of a population index $x_{i}(t)$ in
 habitat patch $i$ ($i=1,\ldots,N$) at time $t$ from an equilibrium value $x_{i}^{*}$. 
 The environmental noise process $\epsilon=(\epsilon_{1},\ldots,\epsilon_{N})$
 is assumed to be a second-order stationary stochastic process with $\E(\epsilon_{i})=0$
@@ -150,12 +150,13 @@ for all $i$. Without loss of generality, $c_n \neq 0$ and $q_m \neq 0$. We also 
 the complex roots of the polynomial $1-c_1 z - c_2 - \cdots - c_n z^n=0$
 have modulus greater than one. This assumption is a necessary and sufficient condition 
 for stability of the equilibrium of the general model of which \ref{eq:mainmodel}
-is a linearization (@Desharnais2018, their supplementary information section 1.2] 
+is a linearization (@Desharnais2018, their supplementary information section 1.2) 
 and also for the existence of a stationary
 stochastic process that is a solution of \ref{eq:mainmodel} 
 [@Desharnais2018; @Brillinger2001]. 
 We denote by $x_{\text{tot}}(t)$ the total population $\sum_{i=1}^N x_i(t)$,
-which has the same variance as $w_{\text{tot}}(t)=\sum_{i=1}^N w_i(t)$.
+which has the same characteristics of variability through time 
+as $w_{\text{tot}}(t)=\sum_{i=1}^N w_i(t)$.
 
 To develop our theory, we need the language and fundamental mathematical results of
 stochastic processes and their spectra and cross spectra. 
@@ -166,11 +167,11 @@ Let $S_{\epsilon_{i}\epsilon_{i}}(f)$
 denote the power spectrum of the process $\epsilon_{i}$ and let $S_{\epsilon_{i}\epsilon_{j}}(f)$
 denote the cross spectrum of the processes $\epsilon_{i}$ and $\epsilon_{j}$.
 Here $f$ is the frequency of a periodic oscillation, the reciprocal of its period 
-(i.e., its timescale). Throughout, we use for units of $f$ cycles per interval between 
-population sampling events, and we consider $f$ between $0$ and $0.5$ (the Nyquist frequency), 
-the range of frequencies
+(i.e., its timescale). Throughout, we use, for units of $f$, cycles per time interval between 
+population sampling events, and we consider $f$ between $0$ and $0.5$ (the Nyquist frequency). 
+This is the range of frequencies
 about which sampled data provide any information. 
-So the cospectrum, denoted $C_{\epsilon_{i}\epsilon_{j}}(f)$, is $\Rp(S_{\epsilon_{i}\epsilon_{j}}(f))$, 
+The cospectrum, denoted $C_{\epsilon_{i}\epsilon_{j}}(f)$, is $\Rp(S_{\epsilon_{i}\epsilon_{j}}(f))$, 
 the real part. Analogously, let $S_{w_i w_i}(f)$,
 $S_{w_i w_j}(f)$ and $C_{w_i w_j}(f)=\Rp(S_{w_i w_j}(f))$ be the spectrum, cross spectrum
 and cospectrum of the population processes $w_i$ and $w_j$.
@@ -180,7 +181,7 @@ $S_{\epsilon \epsilon}(f)$ or $S_{ww}(f)$. The spectral matrix, an $N \times N$ 
 of frequency, has the spectra
 $S_{\epsilon_i \epsilon_i}(f)$ on the diagonal and the cross spectra $S_{\epsilon_i \epsilon_j}(f)$ 
 in the off-diagonal. The special notation $S_{\text{tot}}(f)$ is used for 
-the spectrum of $w_{\text{tot}}$ (which is the same as that of $x_{\text{tot}}$).
+the spectrum of $w_{\text{tot}}$ (which is the same as the spectrum of $x_{\text{tot}}$).
 
 <!--***DAN: I think I dont need this anymore, keeping it just in case:
 We will later use the
@@ -197,7 +198,7 @@ coefficients of the population model. Then
 $S_{\text{\emph{tot}}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
 \label{prop:mainthm}
 \end{thm}
-The proof is in section \ref{sect:mainproof}.
+\noindent The proof is in section \ref{sect:mainproof}.
 <!--***DAN: currently this section ref does not work, fix-->
 Thus the power spectrum of the total population, which tells us whether and how the 
 total population time series cycles, is influenced by three terms.
@@ -217,11 +218,208 @@ This suggests that, when $N$ is large enough, timescale specificity of
 synchrony of noise across locations ($N^2-N$ terms) will tend to be more important 
 for $S_{\text{tot}}$ than the nature of the periodicity of the noise ($N$ terms).
 Of course, whether this intuition is actually true depends on the specific values of 
-the terms in each sum, but the following several examples show the intuition
-typically is valid.
+the terms in each sum. But if N is, say, $70$ (there are $70$ counties in Wisconsin
+for which deer data were available), then $4830=N^2-N \gg N=70$, so $N^2-N$ is larger
+than $N$ by around 2 orders of magnitude. Thus the term
+$\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$ will make a much bigger contribution
+to $S_{\text{tot}}$ than will the term $\sum_i S_{\epsilon_{i}\epsilon_{i}}$ unless
+cospectra are correspondingly smaller than spectra, on average, by around 2 orders
+of magnitude. The following three theoretical examples make clear the overwhelming importance 
+of synchrony for cycling of the spatial-total population.
 
+For theoretical example 1, we considered $N=70$ sampling locations (likewise
+for subsequent examples).
+The environmental noise processes, $\epsilon_i(t)$ were constructed so that the power spectrum
+of noise at each location was 
+$S_{\epsilon_i \epsilon_i} = \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$ and
+the cross spectrum between any two locations was 
+$S_{\epsilon_i \epsilon_j}=\rho \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$, for $c_1=0$ and $c_2=-1/9$.
+The function of frequency $\left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$
+has a single peak at a frequency of $0.25$ cycles per sampling interval (corresponding to
+a period of 4 sampling intervals) for the values of $c_1$ and $c_2$ used, 
+so the spectra $S_{\epsilon_i \epsilon_i}$
+indicate environmental noise that tends to oscillate with a period of $4$ years.
+See below for the precise means by which environmental noise was constructed.
 
+We considered two cases within theoretical example 1. For case 1, we used
+$\rho=0.8$ and for case 2 we used $\rho=0$. Thus for case 1, noise was 
+synchronous between locations (cospectra between locations were not zero), 
+and this synchrony was dominated by a timescale of 4 years (cospectra
+had a peak at a frequency corresponding to that period). For case 2,
+noise time series in different sampling locations were unrelated (cospectra
+were 0), though spectra were the same as case 1. Analytically calculated 
+noise spectra and estimates based on simulations are in Fig. 
+\ref{TheoryExample1}A-B; likewise, for cospectra, see Fig. \ref{TheoryExample1}C-D.
 
+For cases 1 and 2 of theoretical example 1 and for all cases of all
+subsequent theoretical examples, population dynamics was governed
+in all sampling locations by an AR(1) process, i.e., $n=1$ and $m=0$ in 
+equation \ref{eq:mainmodel}. In all examples and cases we used $c_1=0.15$.
+An AR(1) population model ensures that populations are not intrinsically 
+cyclic in any sense, so any periodicity that arises comes ultimately
+from the environmental noise and its synchrony.
+
+Applying the theorem, 
+\begin{equation}
+S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+\left|\frac{1}{1-c_1 \mu - c_2 \mu^2} \right|^2
+\left[N + (N^2-N)\rho \right].
+\end{equation}
+\noindent The first factor here, $\left| \frac{1}{1-\rho_p \mu} \right|^2$,
+captures the influence of population dynamics on $S_{\text{tot}}$.
+The second term is the factor common to the sums $\sum_i S_{\epsilon_{i}\epsilon_{i}}$
+and $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$ in the expression of 
+theorem \ref{prop:mainthm}. The third term shows the relative contributions
+of periodicity in noise time series ($N$) and 
+synchrony between noise time series in different locations 
+($(N^2-N)\rho$). Unless $\rho$ is very small, the contribution of
+synchrony will be much larger. In case 1, for which we used 
+$\rho=0.8$, the contribution of synchrony to $S_{\text{tot}}$
+dwarfs the contribution due directly to periodicity of the noise.
+In case 2, for which we used $\rho=0$, there is no synchrony, and as
+a result the total power of $w_{\text{tot}}$ (equal to the integral under
+$S_{\text{tot}}$) is very small. $S_{\text{tot}}$ is plotted for
+cases 1 and 2, respectively, in Fig. \ref{TheoryExample1}E-F. The much greater
+power and periodicity in $w_{\text{tot}}$ can be seen in example time 
+series, as well (Fig. \ref{TheoryExample1}G-H).
+
+Noise for example 1 was generated via an AR(2) process. Let 
+$\delta(t) = (\delta_1(t),\ldots,\delta_N(t))$ be drawn, independently for 
+each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon_i(t)=c_1 \epsilon_i(t-1) + c_2 \epsilon_i(t-2)+\delta_i(t)$.
+Theorem \ref{thm:lem} in section X provides the spectra
+<!--***DAN: fix this section reference-->
+and cross spectra of the noise process $\epsilon$ which are stated above.
+
+For theoretical example 2, the environmental noise processes 
+$\epsilon_i(t)$ were constructed so that the power spectrum
+of noise at each location was 
+$S_{\epsilon_i \epsilon_i} = \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1$ and
+the cross spectrum between any two locations was 
+$S_{\epsilon_i \epsilon_j}=\rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+\rho_2$ 
+for $c_1=0$ and $c_2=-4/9$. For these values of $c_1$ and $c_2$, 
+the function of frequency $\left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2$
+again has a single peak at frenqency $0.25$ cycles per sampling interval
+(corresponding to an oscillatory period of 4 sampling intervals). 
+See below for the precise means by which environmental noise was constructed.
+
+We again considered two cases. For case 1, $\rho_1=0$ and $\rho_2=0.8$,
+so cospectra were flat and synchrony was nonzero but was also not 
+timescale-specific. For case 2, $\rho_2$ was set to $0$ and $\rho_1$ was chosen 
+so that covariances between locations were the same, in expectation, as 
+they were in case 1. Because the expected covariance between environmental 
+noise time series at locations $i$ and $j$ can be obtained from the 
+cospectrum $C_{\epsilon_{i}\epsilon_{j}}=S_{\epsilon_{i}\epsilon_{j}}$ via integration, 
+$\int_{-1/2}^{1/2} S_{\epsilon_{i}\epsilon_{j}}(f) df$, this was accomplished 
+by choosing $\rho_1$ so that 
+$\int_{-1/2}^{1/2} \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df
+= \int_{-1/2}^{1/2} 0.8 df = 0.8$. Thus, for case 2,
+$\rho_1 = \frac{0.8}{\int_{-1/2}^{1/2} \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df}$. 
+This was calculated numerically, and equals approximately $0.64$.
+Thus synchrony has the same overall strength (location-to-location covariances
+were the same) in the two cases, but synchrony was specific to timescales around 4 sampling
+intervals for case 2 and was equal across all timescales for case 1.
+Analytically calculated 
+noise spectra and estimates based on simulations are in Fig. 
+\ref{TheoryExample2}A-B; likewise, for cospectra, see Fig. \ref{TheoryExample2}C-D.
+
+Applying the theorem, 
+\begin{equation}
+S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+\left[(N^2-N)\left( \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+\rho_2 \right)+N\left( \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1 \right)\right].\label{eq:stotexamp2}
+\end{equation}
+\noindent In case 1, this is
+\begin{equation}
+S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+\left[(N^2-N)\rho_2+N\left( \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1 \right)\right].
+\end{equation}
+\noindent Because $N^2-N \gg N$, the dominant term inside the hard brackets is the first term,
+which is not peaked as a fnction of frequency. So $S_{\text{tot}}$ will not be peaked, i.e., in case 1
+the total population is non-periodic. Recall that case 1 is the case 
+in which synchrony was not timescale specific. In case 2, equation \ref{eq:stotexamp2}
+becomes 
+\begin{equation}
+S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+\left[(N^2-N)\left( \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 \right)+N\left( \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1 \right)\right].
+\end{equation}
+\noindent The dominant term inside the hard brackets is now peaked as a function of 
+frequency, so $S_{\text{tot}}$ will 
+be peaked, i.e., the total population is periodic. Recall that case 2
+is the case in which synchrony was timescale specific. 
+So it is the peakedness (or not) or synchrony that influences whether 
+$S_{\text{tot}}$ is peaked (or not) and therefore whether the total population shows 
+cyclic tendencies.
+$S_{\text{tot}}$ is plotted for
+cases 1 and 2, respectively, in Fig. \ref{TheoryExample2}E-F. The greater
+periodicity is also apparent from example $w_{\text{tot}}$ time series
+(Fig. \ref{TheoryExample2}G-H).
+
+Noise for theoretical example 2 was the sum of two processes. The first process was an 
+AR(2) process. Let $\delta^{(1)}(t) = (\delta^{(1)}_1(t),\ldots,\delta^{(1)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho_1$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon^{(1)}_i(t)=c_1 \epsilon^{(1)}_i(t-1) + c_2 \epsilon^{(1)}_i(t-2)+\delta^{(1)}_i(t)$. The second process was simple white noise.
+Let $\epsilon^{(2)}(t) = (\epsilon^{(2)}_1(t),\ldots,\epsilon^{(2)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho_2$ in the off diagonal and $1$
+in the diagonal. The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
+
+For theoretical example 3, the environmental noise processes 
+$\epsilon_i(t)$ were constructed so that 
+the power spectrum
+of noise at each location was 
+$S_{\epsilon_i \epsilon_i} = \left| \frac{1}{1-c_1^{(1)} \mu -c_2^{(1)} \mu^2} \right|^2+
+\left| \frac{1}{1-c_1^{(2)} \mu -c_2^{(2)} \mu^2} \right|^2$ and
+the cross spectrum between any two locations was 
+$S_{\epsilon_i \epsilon_j}=\rho^{(1)} \left| \frac{1}{1-c_1^{(1)} \mu -c_2^{(1)} \mu^2} \right|^2+
+\rho^{(2)}\left| \frac{1}{1-c_1^{(2)} \mu -c_2^{(2)} \mu^2} \right|^2$, for 
+$c_1^{(1)}=2/3$, $c_2^{(1)}=-4/9$, $c_1^{(2)}=-2/3$, $c_2^{(2)}=-4/9$.
+The function of frequency $\left| \frac{1}{1-c_1^{(1)} \mu -c_2^{(1)} \mu^2} \right|^2$
+has a single peak at a frequency of $1/6$ cycles per sampling interval and the 
+function $\left| \frac{1}{1-c_1^{(2)} \mu -c_2^{(2)} \mu^2} \right|^2$ has a single
+peak at frequency $1/3$ cycles per sampling interval, so noise spectra reveal
+that the noise cycles at two periodicities simultaneously. 
+
+We considered two cases within theoretical example 3. In case 1, we used
+$\rho^{(1)}=0.8$ and $\rho^{(2)}=0$, whereas in case 2 we used 
+$\rho^{(1)}=0$ and $\rho^{(2)}=0.8$. Thus, of the two peridocities present
+in the environmental noise, only one was synchronous in case 1, and
+only the other was synchronous in case 2.
+Analytically calculated 
+noise spectra and estimates based on simulations are in Fig. 
+\ref{TheoryExample3}A-B; likewise, for cospectra, see Fig. \ref{TheoryExample3}C-D.
+
+Applying the theorem, 
+\begin{align}
+S_{\text{tot}} &= \left| \frac{1}{1-\rho_p \mu} \right|^2
+N\left[ \left| \frac{1}{1-c_1^{(1)}\mu-c_2^{(1)}\mu^2} \right|^2 
++ \left| \frac{1}{1-c_1^{(2)}\mu-c_2^{(2)}\mu^2} \right|^2\right] \\
+&+ \left| \frac{1}{1-\rho_p \mu} \right|^2
+(N^2-N)\left[ \rho^{(1)} \left| \frac{1}{1-c_1^{(1)}\mu-c_2^{(1)}\mu^2} \right|^2+ \rho^{(2)}\left| \frac{1}{1-c_1^{(2)}\mu-c_2^{(2)}\mu^2} \right|^2 \right].
+\end{align}
+\noindent The first term here is dominated by the second in both cases. The periodicity 
+in $w_{\text{tot}}$ represented by the second term depends on the values of $\rho^{(1)}$ and
+$\rho^{(2)}$ in a straightforward way. The peak that manifests in
+$S_{\text{tot}}$ is the peak of the synchronous one of the two components
+of noise; the non-synchronous noise components has very little influence
+on $S_{\text{tot}}$. $S_{\text{tot}}$ is plotted for
+cases 1 and 2, respectively, in Fig. \ref{TheoryExample3}E-F. The differing
+periodicities of the total population in the two cases can also be seen 
+in example time series (Fig. \ref{TheoryExample3}G-H). Thus in all cases
+we have examined (and quite generally, as long as $N^2-N \gg N$) 
+it is the nature of synchrony that determines whether the spatial-total
+population is cycling, much more so than whether noise is itself periodic.
+
+<!--***DAN: explain noise for example 3-->
+Noise for example 3 was again the sum of two processes. 
+The first process was an
+AR(2) process. Let $\delta^{(1)}(t) = (\delta^{(1)}_1(t),\ldots,\delta^{(1)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho^{(1)}$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon^{(1)}_i(t)=c_1^{(1)} \epsilon^{(1)}_i(t-1) + c_2^{(1)} \epsilon^{(1)}_i(t-2)+\delta^{(1)}_i(t)$. The second process was
+another AR(2) process with different parameters. 
+Let $\delta^{(2)}(t) = (\delta^{(2)}_1(t),\ldots,\delta^{(2)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
+and covariance matrix consisting of entries $\rho^{(2)}$ in the off diagonal and $1$
+in the diagonal. Let $\epsilon^{(2)}_i(t)=c_1^{(2)} \epsilon^{(2)}_i(t-1) + c_2^{(2)} \epsilon^{(2)}_i(t-2)+\delta^{(2)}_i(t)$.
+The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
 ## Additional Notes on Methods
 \textbf{Notes on deer, DVC, and hunter data}
@@ -393,7 +591,57 @@ randomizations preserved the structure of the local fluctuations. Variation A
 may be more likely given previous work documenting the influence of snow depth and large-scale
 climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
 
-## Proof of the main theoretical result \label{sect:mainproof}
+## Proof of the main theorem \label{sect:mainproof}
+
+To prove theorem \ref{prop:mainthm}, we first state and prove, and then apply,
+a result that follows from basic properties of filters and stochastic processes.
+
+\begin{thm}
+Using notation defined previously, $S_{ww}=\left| \frac{\gamma}{1-\lambda} \right|^2
+S_{\epsilon \epsilon}$.
+\label{thm:lem}
+\end{thm}
+\begin{proof}
+The model \ref{eq:mainmodel} for $i=1,\ldots,N$ can be rewritten as 
+\begin{equation}
+\mathcal{C} w_{ij} = \mathcal{Q} \epsilon_{ij} \label{eq:linfiltmod}
+\end{equation}
+for the linear filters
+\begin{align}
+\mathcal{C} &= I-c_1 IB - c_2 IB^2 - \cdots - c_n IB^n \\
+\mathcal{Q} &= q_0 I + q_1 IB + \cdots + q_m IB^m,
+\end{align}
+where $I$ is the $N \times N$ identity matrix. 
+Here $B$ is the backshift operator,
+$B^{l}\delta(t)=\delta(t-l)$, for a stochastic process $\delta(t)$.
+See @Reinsel1997, @Shumway2000, and @Brillinger2001
+for background on linear filters. Computing the spectral matrices of both
+sides of \ref{eq:linfiltmod} gives
+\begin{equation}
+T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\epsilon}
+\overline{T(\mathcal{Q})}
+\end{equation}
+where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
+are the transfer function matrices of the linear filters
+$\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
+section 1.1.3 of @Reinsel1997). But 
+$T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
+(section 1.1.3 of @Reinsel1997), so
+\begin{align}
+S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
+&= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon\epsilon},
+\end{align}
+as was to be demonstrated.
+\end{proof}
+
+Now applying this result, we have
+\begin{align}
+S_{\text{tot}} &= \sum_{i,j} C_{w_i w_j} \\
+&= \sum_{i,j} \left| \frac{\gamma}{1-\lambda} \right|^{ 2} C_{\epsilon_{i}\epsilon_{j}} \\
+&= \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right],\label{eq:splitup}
+\end{align}
+\noindent which proves the main theorem. The second equality above follows from
+theorem \ref{thm:lem}.
 
 \newpage
 
@@ -403,17 +651,29 @@ climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @H
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/TheoryExample1.png}
-\caption{Results for theoretical example 1. See X.}\label{TheoryExample1}
+\caption{Results for theoretical example 1. See X for a full description of the
+model setup for the example. Top panels are for case 1 and bottom panels for case 2.
+Red lines (A-F) are expected noise spectra (A-B), cospectra (C-D), and spectra
+of total populations (E-F). Grey lines are estimates of these same quantities
+based on simulations of length 1024 (100 simulations plotted; a periodigram 
+estimator with a modified Daniell smoother was used, implemented in the spec.pgram 
+function in the R programming language). Panels G-H show example spatial-total populations for one of the simulations.}\label{TheoryExample1}
 \end{figure}
 <!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{Results/TheoryExample1.png}
-\caption{Results for theoretical example 2. See X.}\label{TheoryExample2}
+\includegraphics[width=\textwidth]{Results/TheoryExample2.png}
+\caption{Results for theoretical example 2. See X for a full description of the
+model setup for the example. Plot format is like that of Fig. \ref{TheoryExample1}.}\label{TheoryExample2}
 \end{figure}
 <!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
 
-<!--***DAN: add here one fig for each additional theoretical example-->
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/TheoryExample3.png}
+\caption{Results for theoretical example 3. See X for a full description of the
+model setup for the example. Plot format is like that of Fig. \ref{TheoryExample1}.}\label{TheoryExample3}
+\end{figure}
+<!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
 
 \begin{figure}[!h]
 \includegraphics[height=0.8\textheight]{Results/FigS1.png}

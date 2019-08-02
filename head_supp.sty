@@ -1,9 +1,11 @@
 %***
 %header commands embedded in the latex document produced from SuppMat.Rmd
 %***
+
 %For lines numbers
 \usepackage{lineno}
 \linenumbers[186]
+
 %for labeling figures, tables and sections starting with an S (e.g., Fig. S1) 
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
@@ -15,6 +17,9 @@
 %for citations of the main text from the supp mat
 \usepackage{xr}
 \externaldocument[MT-]{MainText}
+
+%other stuff
+\usepackage{amsthm}
 
 %double spacing
 %\usepackage{setspace}
@@ -29,4 +34,8 @@
 \newcommand{\Rp}{{\operatorname{Re}}}
 \newcommand{\Ip}{{\operatorname{Im}}}
 
+%set up the theorem environment
 \newtheorem{thm}{Theorem}
+
+%indentation at the start of each pararaph
+\setlength\parindent{24pt}
