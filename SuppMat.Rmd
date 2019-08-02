@@ -1,6 +1,9 @@
 ---
+title: "Synchronous effects produce major cycles in deer populations and deer-vehicle collisions: Supporting information"
+author: "Anderson, Sheppard, Walter, Rolley, Reuman"
 output:
   pdf_document:
+    number_sections: yes
     fig_caption: yes
     keep_tex: yes
     includes:
@@ -17,6 +20,10 @@ urlcolor: blue
 nocite: |
   @Sheppard2016_aphids, @Sheppard_wavmodel
 ---
+
+\tableofcontents
+\listoffigures
+\listoftables
 
 <!--Libraries-->
 ```{r libraries, echo=F, message=FALSE}
@@ -121,13 +128,7 @@ here and then load it there.-->
 save.image(file="WholeWorkspace.RData")
 ```
 
-# Synchronous effects produce major cycles in deer populations and deer-vehicle collisions: Supplementary information appendix
-
-\begin{center}
-Anderson, Sheppard, Walter, Rolley, Reuman
-\end{center}
-
-## Theory
+# Theory \label{SI:theory}
 
 We start by specifying the general model we consider. 
 The model is similar to those used in the supplementary information of 
@@ -191,8 +192,7 @@ coefficients of the population model. Then
 $S_{\text{\emph{tot}}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
 \label{prop:mainthm}
 \end{thm}
-\noindent The proof is in section \ref{sect:mainproof}.
-<!--***DAN: currently this section ref does not work, fix-->
+\noindent The proof is in SI section \ref{sect:mainproof}.
 Thus the power spectrum of the total population, which tells us whether and how the 
 total population time series cycles, is influenced by three terms.
 First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects the nature of
@@ -281,8 +281,7 @@ $\delta(t) = (\delta_1(t),\ldots,\delta_N(t))$ be drawn, independently for
 each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
 and covariance matrix consisting of entries $\rho$ in the off diagonal and $1$
 in the diagonal. Let $\epsilon_i(t)=c_1 \epsilon_i(t-1) + c_2 \epsilon_i(t-2)+\delta_i(t)$.
-Theorem \ref{thm:lem} in section X provides the spectra
-<!--***DAN: fix this section reference-->
+Theorem \ref{thm:lem} in SI section \ref{sect:mainproof} provides the spectra
 and cross spectra of the noise process $\epsilon$ which are stated above.
 
 For theoretical example 2, the environmental noise processes 
@@ -402,7 +401,6 @@ we have examined (and quite generally, as long as $N^2-N \gg N$)
 it is the nature of synchrony that determines whether the spatial-total
 population is cycling, much more so than whether noise is itself periodic.
 
-<!--***DAN: explain noise for example 3-->
 Noise for example 3 was again the sum of two processes. 
 The first process was an
 AR(2) process. Let $\delta^{(1)}(t) = (\delta^{(1)}_1(t),\ldots,\delta^{(1)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
@@ -414,8 +412,9 @@ and covariance matrix consisting of entries $\rho^{(2)}$ in the off diagonal and
 in the diagonal. Let $\epsilon^{(2)}_i(t)=c_1^{(2)} \epsilon^{(2)}_i(t-1) + c_2^{(2)} \epsilon^{(2)}_i(t-2)+\delta^{(2)}_i(t)$.
 The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
-## Additional Notes on Methods
-\textbf{Notes on deer, DVC, and hunter data}
+# Supplementary methods \label{SI:methods}
+
+\textbf{Notes on deer, DVC, and hunter data.}
 From 1981-2013, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
@@ -465,7 +464,7 @@ We also obtained traffic volume estimates (millions of miles
 driven) for each county spanning the years 1988-`r maxyear` from the 
 WIDOT, to control for traffic in our analysis of DVCs.
 
-\textbf{Climate data notes}
+\textbf{Climate data notes.}
 The number of weather stations per county and data collected at each station 
 varied, resulting in different spatial extents for each variable 
 in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
@@ -490,15 +489,8 @@ of the cost of DVCs [@Huijser2008_dvc], the
 difference between peak and trough years in DVC 
 costs may exceed US\$22M.    
 
+# Supplementary results \label{SI:results}
 
-\newpage
-\textbf{Additional Methods.}
-<!--***DAN: Tom, you need to be consistent with how you do your section headers. Sometimes
-you use the ## approach and sometimes you use the \textbf approach. I suggest we always 
-use the #, ##, ### approach because I know how to label those and refer to them with
-hyperlinks-->
-
-\newpage
 \textbf{USDA district results.} Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
@@ -584,7 +576,7 @@ randomizations preserved the structure of the local fluctuations. Variation A
 may be more likely given previous work documenting the influence of snow depth and large-scale
 climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
 
-## Proof of the main theorem \label{sect:mainproof}
+# Proof of the main theorem \label{sect:mainproof}
 
 To prove theorem \ref{prop:mainthm}, we first state and prove, and then apply,
 a result that follows from basic properties of filters and stochastic processes.
@@ -640,11 +632,10 @@ theorem \ref{thm:lem}.
 
 # Supplementary figures
 
-\newpage
-
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/TheoryExample1.png}
-\caption{Results for theoretical example 1. See X for a full description of the
+\caption[Results for theoretical example 1]{Results for theoretical example 1. 
+See SI section \ref{SI:theory} for a full description of the
 model setup for the example. Top panels are for case 1 and bottom panels for case 2.
 Red lines (A-F) are expected noise spectra (A-B), cospectra (C-D), and spectra
 of total populations (E-F). Grey lines are estimates of these same quantities
@@ -652,28 +643,37 @@ based on simulations of length 1024 (100 simulations plotted; a periodigram
 estimator with a modified Daniell smoother was used, implemented in the spec.pgram 
 function in the R programming language). Panels G-H show example spatial-total populations for one of the simulations.}\label{TheoryExample1}
 \end{figure}
-<!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
+
+\newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/TheoryExample2.png}
-\caption{Results for theoretical example 2. See X for a full description of the
+\caption[Results for theoretical example 2]{Results for theoretical example 2. See
+SI section \ref{SI:theory} for a full description of the
 model setup for the example. Plot format is like that of Fig. \ref{TheoryExample1}.}\label{TheoryExample2}
-\end{figure}
-<!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
-
-\begin{figure}[!h]
-\includegraphics[width=\textwidth]{Results/TheoryExample3.png}
-\caption{Results for theoretical example 3. See X for a full description of the
-model setup for the example. Plot format is like that of Fig. \ref{TheoryExample1}.}\label{TheoryExample3}
-\end{figure}
-<!--***DAN: Replace X with a reference to the correct section once sections are organized properly-->
-
-\begin{figure}[!h]
-\includegraphics[height=0.8\textheight]{Results/FigS1.png}
-\caption{Map of Wisconsin, USA. Black lines and yellow dots delineate county boundaries and centroids. Color shading and black dots delineate USDA district boundaries and centroids.\label{FigS1_map}}
 \end{figure}
 
 \newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/TheoryExample3.png}
+\caption[Results for theoretical example 3]{Results for theoretical example 3. See 
+SI section \ref{SI:theory} for a full description of the
+model setup for the example. Plot format is like that of Fig. \ref{TheoryExample1}.}\label{TheoryExample3}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[height=0.8\textheight]{Results/FigS1.png}
+\caption[Map of counties and districts]{Map of Wisconsin, USA. Black lines and yellow dots delineate county boundaries and centroids. Color shading and black dots delineate USDA district boundaries and centroids.\label{FigS1_map}}
+\end{figure}
+
+\newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
@@ -713,6 +713,7 @@ straightforwardly significance tested as described by Sheppard \emph{et al.} (20
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 
 \newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/PedagogFig_SpatCoh.png}
@@ -752,11 +753,13 @@ null hypothesis of no relationship between the $x$ and $y$.
 Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
 \end{figure}
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
+
 \newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption{Phase differences between variables as a function of timescale for the main significant relationships of 
+\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of 
 Table \ref{MT-Tab1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
 and deer abundance, B) summer MEI and 
 deer abundance, C) winter PDO ($\text{PDO}_{\text{w}}$) and deer abundance, 
@@ -768,17 +771,19 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 \end{figure}
 
 \newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS5.png}
-\caption{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of Table \ref{TabS1_CountyCoherenceSummary}, using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
+\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of Table \ref{TabS1_CountyCoherenceSummary}, using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
 \end{figure}
 
 \newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=.4\textwidth]{Results/FigS6.png}
-\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance 
+\caption[Hunter mean fields and predictions of deer synchrony based on hunters]{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance 
 time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunter 
 abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
 time series at the indicated times and timescales. Contours on (B) indicate statistical significance of phase 
@@ -790,17 +795,19 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 \end{figure}
 
 \newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[height=.8\textheight]{Results/FigS7.png}
-\caption{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS7_WMFAndPredictionsDistricts}}
+\caption[Mean fields and predicted synchrony for deer and DVCs, USDA district data]{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS7_WMFAndPredictionsDistricts}}
 \end{figure}
 
 \newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[height=.9\textheight]{Results/FigS8.png}
-\caption{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in Fig \ref{MT-Fig2_DeerSync}A,B. \label{FigS8_WMFsAndWPMFsAncillary}}
+\caption[Mean fields for environmental variables]{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in Fig \ref{MT-Fig3_DeerSync}A,B. \label{FigS8_WMFsAndWPMFsAncillary}}
 \end{figure}
 
 \newpage
@@ -808,19 +815,19 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 
 # Supplementary tables
 
-\newpage
-
 ```{r TableS1,echo=F,results='markup'}
 rownames(TableS1)<-NULL
 knitr::kable(TableS1,
              col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
              format='pandoc',
              digits=4,
+             caption.short="Wavelet coherence test results between environmental varaiables",
              caption = "$P$-values of wavelet coherence tests, and associated mean phase differences for significant and marginally significant tests, between climate indices. Values are over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS1_PairwiseClimVarSpatCoh}",
              booktabs=T)
 ```
 
 \newpage
+\clearpage
 
 ```{r TableS2,echo=F,results='markup'}
 rownames(TableS2)<-NULL
@@ -828,11 +835,13 @@ knitr::kable(TableS2,
              format='pandoc',
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             caption.short="Summary of USDA district-level coherence test results",
              caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (*Methods*). $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns (which give percentages) are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS2_SummaryDistrict}",
              booktabs=T)
 ```
 
 \newpage
+\clearpage
 
 # References {-}
 

@@ -143,9 +143,10 @@ The key here is that synchrony occurs *on a particular timescale*.
 Dynamics of the total, regional population are then dominated by a cycle on that timescale. 
 Fig. \ref{Fig1_example} provides an initial example of this phenomenon using a
 simple model. A theoretical approach to the mechanism is summarized below and elaborated in
-(REF to Sup mat section). 
-<!--***DAN: fill in this ref-->
-The bulk of the paper is spent examining empirical evidence for the mechanism.
+SI section \ref{SM-SI:theory}. The bulk of the paper is spent examining empirical evidence for the mechanism.
+<!--***DAN: Tom, all references to the sup mat need to be made consistent with this: see SI section X,
+or see SI Fig. X, or see SI table X, where the X is an automated link. I have been doing this when I see 
+these things, but some searches need to be done to make it comprehensive.-->
 
 One major applied concern is that if
 fluctuations in local time series do become amplified in a
@@ -179,9 +180,7 @@ is an important applied question what drives the year-to-year variability in sta
 totals. We consider potential drivers of deer populations including both environmental factors and the direct 
 effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) aggregated at three 
 spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
-($n=9$), and statewide (SI Appendix Fig. \ref{SM-FigS1_map}). 
-<!--***DAN: need to review how Sup mat is organized, and how it is cited, and
-whether these are consistent with Ecol Lett requirements-->
+($n=9$), and statewide (SI Fig. \ref{SM-FigS1_map}). 
 
 Here we demonstrate, using deer data, how timescale-specific
 spatial synchrony can produce regional population cycles. We also show that
@@ -236,7 +235,7 @@ is peaked. The first term in brackets in \ref{mainresmt},
 $\sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f)$, encapsulates the effects of 
 periodicities in local environmental noise time series on whether the total 
 population exhibits cycling. The second term in the brackets,
-$\sum_{i \neq j}^N C_{\epsilon_{i}\epsilon_{j}}(f)\right]$, encapsulates
+$\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}(f)$, encapsulates
 the effects of timescale-specific synchrony on whether the total population
 exhibits cycling. The key observation here is that, when $N$ is large so that the
 region being considered is combination of a large number of local areas, the first term
@@ -247,14 +246,12 @@ that timescale-specific patterns of synchrony are very important for whether
 spatial-total populations exhibit synchrony. Of course which of the two terms
 in brackets in \ref{mainresmt} is larger depends on the specific values of the summands
 contributing to each term as well as on the number of summands. But we explore 
-reasonable scenarios in the supporting information
-<!--***DAN: make this citation to the sup mat use the language Ecol Lett expects-->
+reasonable scenarios in the Supporting Information
 and find that the initial intuition is correct, for the quite-general model setup that we
 study, that typically timescale-specific synchrony is a very important determinant of
-whether a regional population cycles. See SI Appendix X
-<!--***DAN: get the language right and automate the citation-->
+whether a regional population cycles. See SI section \ref{SM-SI:theory}
 for the the general theoretical development and 
-Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
+SI Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
 \ref{SM-TheoryExample3} for specific examples.
 
 # Methods
@@ -823,6 +820,11 @@ actual wavelet mean field magnitude of deer abundance from (A), for comparison. 
 visual indication of the statistical result that climatic Moran effects explain deer synchrony.
 \label{Fig3_DeerSync}}
 \end{figure}
+<!--***DAN: Tom, the label for this used to be Fig2_DeerSync but now it has been changed to
+Fig3_DeerSync. However, I found at least one citation to the old label that now does not
+work (I fixed it). This is why we do not include numbers in figure labels. It defeats the
+purpose of having labels and automatic numbering! Henceforth please use labels without 
+numbers that reflect the content of the figure/table/whatever.-->
 
 \newpage
 
