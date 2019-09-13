@@ -579,7 +579,7 @@ abundances tended to peak in years of below-average snow. Deer abundance was als
 approximately quarter-cycle phase shifts, 
 to the multivariate El Ni$\~{n}$o Southern Oscillation index
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)`) and to the Pacific Decadal Oscillation 
-($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"],2)`,  
+($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"],2)`, 
 Table \ref{Tab1_CountyCoherenceSummary}, Fig. \ref{SM-FigS4_PhaseDiffs}A,C), both averaged over the winter months
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations $\text{MEI}_{\text{w}}$ and
 $\text{PDO}_{\text{w}}$). The two indices were strongly coherent and in-phase with
@@ -626,8 +626,7 @@ fluctuations in traffic volume (Table \ref{Tab1_CountyCoherenceSummary}, SI Appe
 dynamics in spatial-total or spatial-average time series, which can mean  
 alternating relative abundance and scarcity of important species over large areas  
 [@Allstad2015_gypsysync]. Our data show the empirical reality of this effect and its  
-strength for deer and DVCs. -->Statewide oscillations due to synchrony correspond to a typical  
-difference of $~ `r round(avgdeerfluc,-4)`$ deer and $~ `r round(avgdvcfluc,-2)`$ 
+strength for deer and DVCs. -->Statewide oscillations due to synchrony correspond to a typical difference of $~ `r round(avgdeerfluc,-4)`$ deer and $~ `r round(avgdvcfluc,-2)`$ 
 DVCs between peak and trough years 
 (Fig. \ref{Fig5_StateWideFluctuations}). Importantly, these high amplitude 
 statewide oscillations in deer and DVCs disappear (Fig. 
