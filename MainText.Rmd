@@ -515,8 +515,8 @@ to certain timescales. Timescale specificity in synchrony is common [@Sheppard20
 Although it is known that a spatially synchronous environmental driver can induce population synchrony via Moran effects [@Leibhold2004_sync; @Moran1953;  
 @Ranta1997_moran], historically it has been difficult to attribute synchrony in natural populations to specific environmental drivers versus other potential  
 causes of synchrony such as dispersal [@Kendall2000_moran;@Abbott2007_moran]. The analytical methods used here [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel] facilitated more precise 
-identification of Moran drivers, with their effectiveness occuring in part due to their capacity to decompose  
-synchrony according to the distinct timescales on which it can occur (Fig.  
+identification of Moran drivers, with their effectiveness occuring in part due to their capacity to decompose 
+synchrony according to the distinct timescales on which it can occur (Fig.
 \ref{Fig1_example}G-I). Recent work on several taxa 
 [@Allstad2015_gypsysync;@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync] shows that synchrony of some environmental drivers may be changing, 
 possibly due to climate change. These changes may alter population synchrony, 
