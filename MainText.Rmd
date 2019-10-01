@@ -210,9 +210,9 @@ mechanism by which cycles can beget sycnhrony, our new mechanism shows
 that synchrony, when it is specific to certain timescales, can also produce
 cycles.
 
-# Summary of theory
+# Methods
 
-The statement of our main theoretical result requires a conceptual understanding 
+\textbf{Summary of theory.} The statement of our main theoretical result requires a conceptual understanding 
 of the *power spectrum* (or, simply, *spectrum*) of a population or other 
 time series, and of the *cospectrum* of two time series. The spectrum $S_{w_iw_i}(f)$ 
 of a time series or stochastic process measured in location $i$, $w_i(t)$,
@@ -263,9 +263,7 @@ for the the general theoretical development and
 SI Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
 \ref{SM-TheoryExample3} for specific examples.
 
-# Methods
-
-\textbf{Data.} We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. We also calculated estimated hunter abundance also from data from WINDR for each county for the years 1992-`r maxyear`
+\textbf{Empirical Data.} We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. We also calculated estimated hunter abundance also from data from WINDR for each county for the years 1992-`r maxyear`
 (Fig. \ref{Fig2_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season [@widnr2001].
@@ -385,7 +383,7 @@ variables. This approach also can produce a time- and timescale-specific plot of
 what the pattern of synchrony in the response variable (deer abundance) would look
 like if the drivers of synchrony were the predictors. This predicted synchrony
 plot can then be visually compared to the actual wavelet mean field magnitude
-plot, giving a visual indication of the degree of model adequacy.
+plot, giving a visual indication of the degree of model adequacy. As part of these proceduress, we evaluted model "cross terms", which are the component of  synchrony that is due to variability explained by the drivers at a given location being synchronous with residuals at other locations [@Sheppard2016_aphids;@Sheppard_wavmodel;@shep]. Cross terms must be small (< 10%) in order to inferences about syncrhony to be valid.  
 
 To quantify the degree to which synchronizing effects are responsible for
 fluctuations in statewide total deer and DVC time series, we adapted the standard
