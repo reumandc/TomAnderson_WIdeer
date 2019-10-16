@@ -412,6 +412,58 @@ and covariance matrix consisting of entries $\rho^{(2)}$ in the off diagonal and
 in the diagonal. Let $\epsilon^{(2)}_i(t)=c_1^{(2)} \epsilon^{(2)}_i(t-1) + c_2^{(2)} \epsilon^{(2)}_i(t-2)+\delta^{(2)}_i(t)$.
 The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
+# Proof of the main theorem \label{sect:mainproof}
+
+To prove theorem \ref{prop:mainthm}, we first state and prove, and then apply,
+a result that follows from basic properties of filters and stochastic processes.
+
+\begin{thm}
+Using notation defined previously, $S_{ww}=\left| \frac{\gamma}{1-\lambda} \right|^2
+S_{\epsilon \epsilon}$.
+\label{thm:lem}
+\end{thm}
+\begin{proof}
+The model \ref{eq:mainmodel} for $i=1,\ldots,N$ can be rewritten as 
+\begin{equation}
+\mathcal{C} w_{ij} = \mathcal{Q} \epsilon_{ij} \label{eq:linfiltmod}
+\end{equation}
+for the linear filters
+\begin{align}
+\mathcal{C} &= I-c_1 IB - c_2 IB^2 - \cdots - c_n IB^n \\
+\mathcal{Q} &= q_0 I + q_1 IB + \cdots + q_m IB^m,
+\end{align}
+where $I$ is the $N \times N$ identity matrix. 
+Here $B$ is the backshift operator,
+$B^{l}\delta(t)=\delta(t-l)$, for a stochastic process $\delta(t)$.
+See @Reinsel1997, @Shumway2000, and @Brillinger2001
+for background on linear filters. Computing the spectral matrices of both
+sides of \ref{eq:linfiltmod} gives
+\begin{equation}
+T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\epsilon}
+\overline{T(\mathcal{Q})}
+\end{equation}
+where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
+are the transfer function matrices of the linear filters
+$\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
+section 1.1.3 of @Reinsel1997). But 
+$T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
+(section 1.1.3 of @Reinsel1997), so
+\begin{align}
+S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
+&= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon\epsilon},
+\end{align}
+as was to be demonstrated.
+\end{proof}
+
+Now applying this result, we have
+\begin{align}
+S_{\text{tot}} &= \sum_{i,j} C_{w_i w_j} \\
+&= \sum_{i,j} \left| \frac{\gamma}{1-\lambda} \right|^{ 2} C_{\epsilon_{i}\epsilon_{j}} \\
+&= \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right],\label{eq:splitup}
+\end{align}
+\noindent which proves the main theorem. The second equality above follows from
+theorem \ref{thm:lem}.
+
 # Supplementary methods \label{SI:methods}
 
 \textbf{Deer, DVC, and hunter data.}
@@ -838,78 +890,6 @@ Hunter abundance and deer
 abundance were not significantly coherent at the 
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
 
-\textbf{Notes on details of the cycling mechanism.} There are two alternative elaborations of the mechanisms presented in the main text by which
-synchronous effects of environmental drivers produce state-wide population cycles in deer.
-Synchronous fluctuations in environmental drivers associated with winter climate may have produced
-small oscillations on 3-7-year timescales in county-level deer population time series, and 
-also brought these oscillations into spatial synchrony, thereby causing them to sum, across
-counties, to the major phenomenon described in the main text (variation A). Alternatively, the small
-county-level oscillations on 3-7-year timescales may have been due partly to the intrinsic 
-dynamics of deer, resulting from density-dependent effects, maternal effects, or 
-other mechanisms of nonlinear populations dynamics; and synchronous environmental drivers 
-then brought the intrinsically oscillating local dynamics into synchrony (variation B). The
-difference between these alternatives is whether small county-level population
-oscillations were produced and synchronized, or merely synchronized but 
-not produced, by synchronous environmental drivers. These alternatives would be difficult to 
-distinguish. However, under either alternative, a Moran effect caused the observed strong, 
-state-wide oscillations in the sense that it synchronized weak local oscillations, 
-causing them to sum to a major phenomenon; and eliminating synchrony via randomizations also
-eliminated the state-wide oscillations (Fig. \ref{MT-Fig4_StateWideFluctuations}), even though the
-randomizations preserved the structure of the local fluctuations. Variation A
-may be more likely given previous work documenting the influence of snow depth and large-scale
-climatic oscillations on deer and other ungulates [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer]. 
-
-# Proof of the main theorem \label{sect:mainproof}
-
-To prove theorem \ref{prop:mainthm}, we first state and prove, and then apply,
-a result that follows from basic properties of filters and stochastic processes.
-
-\begin{thm}
-Using notation defined previously, $S_{ww}=\left| \frac{\gamma}{1-\lambda} \right|^2
-S_{\epsilon \epsilon}$.
-\label{thm:lem}
-\end{thm}
-\begin{proof}
-The model \ref{eq:mainmodel} for $i=1,\ldots,N$ can be rewritten as 
-\begin{equation}
-\mathcal{C} w_{ij} = \mathcal{Q} \epsilon_{ij} \label{eq:linfiltmod}
-\end{equation}
-for the linear filters
-\begin{align}
-\mathcal{C} &= I-c_1 IB - c_2 IB^2 - \cdots - c_n IB^n \\
-\mathcal{Q} &= q_0 I + q_1 IB + \cdots + q_m IB^m,
-\end{align}
-where $I$ is the $N \times N$ identity matrix. 
-Here $B$ is the backshift operator,
-$B^{l}\delta(t)=\delta(t-l)$, for a stochastic process $\delta(t)$.
-See @Reinsel1997, @Shumway2000, and @Brillinger2001
-for background on linear filters. Computing the spectral matrices of both
-sides of \ref{eq:linfiltmod} gives
-\begin{equation}
-T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\epsilon}
-\overline{T(\mathcal{Q})}
-\end{equation}
-where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
-are the transfer function matrices of the linear filters
-$\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
-section 1.1.3 of @Reinsel1997). But 
-$T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
-(section 1.1.3 of @Reinsel1997), so
-\begin{align}
-S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
-&= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon\epsilon},
-\end{align}
-as was to be demonstrated.
-\end{proof}
-
-Now applying this result, we have
-\begin{align}
-S_{\text{tot}} &= \sum_{i,j} C_{w_i w_j} \\
-&= \sum_{i,j} \left| \frac{\gamma}{1-\lambda} \right|^{ 2} C_{\epsilon_{i}\epsilon_{j}} \\
-&= \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right],\label{eq:splitup}
-\end{align}
-\noindent which proves the main theorem. The second equality above follows from
-theorem \ref{thm:lem}.
 
 \newpage
 
