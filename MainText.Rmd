@@ -501,14 +501,16 @@ SI Appendix for further details on the cycling mechanism.-->
 
 Overall, we have demonstrated that timescale-specific Moran effects, by 
 synchronizing local dynamics, can cause major cycles in the 
-regional total population. This new mechanism differs fundamentally from prior, now refuted hypotheses that population cycles in
-snowshoe hare [@Sinclair1992_sunspots] and moth pests [@Selas2004_sunspots] are due to highly regular environmental fluctuations
-such as sun spots because the new mechanism does not require a highly regular environmental 
+regional total population. This new mechanism differs fundamentally from prior,
+now refuted hypotheses that population cycles in are due to highly regular
+environmental fluctuations such as sun spots [*e.g.*,
+@Sinclair1992_sunspots;@Selas2004_sunspots]because the new mechanism does not
+require a highly regular environmental 
 oscillator. Rather, it is sufficient simply for irregular environmental drivers 
 such as winter climatic factors to be coherent with populations in a timescale 
 band, thereby inducing synchrony in that band and leading to total-population cycles on the same timescales.  
 We have also presented the first demonstration that synchrony can be transmitted in a 
-Moran-like effect from ecological to human systems (deer to DVCs). The applied ramificatons of synchrony are primarily known from theory in the context of metapopulation collapse when all populations are low simultaneously, but our demostration provides a quantitive projection of monetary impacts of spatial synchrony. 
+Moran-like effect from ecological to human systems (deer to DVCs). The applied ramificatons of synchrony are primarily known from theory in the context of metapopulation collapse when all populations are low simultaneously [@Earn2000] or in human disease dyanmics [@Rohani1999], but our demostration provides a quantitive projection of monetary impacts resulting from synchronized animal populations.
 
 There are two alternative elaborations of the mechanisms we present by which
 synchronous effects of environmental drivers produce state-wide population cycles in deer.
@@ -517,7 +519,7 @@ small oscillations on $3-7$-year timescales in county-level deer population time
 also brought these oscillations into spatial synchrony, thereby causing them to sum, across
 counties, to produce statewide fluctuations. Second, the local population oscillations on $3-7$-year timescales may have been due partly to the intrinsic dynamics of deer, resulting from density-dependent effects, maternal effects, or 
 other mechanisms of nonlinear populations dynamics. Synchronous environmental drivers 
-then brought the intrinsically oscillating local dynamics into synchrony. This second hypothesis is the pattern typically described from theoretical and experimental studies, where exogenous drivers or dispersal couple intrinsically cyclic populations via nonlinear phase-locking [@Bjornstad2000;@VassuerFox_2009;@HopsonFox_2019]. However, recent evidence from observational studies on gypsy moths also support the hypothesis of cyclic-dynamics-leading-to-synchrony [@Haynes2019]. The
+then brought the intrinsically oscillating local dynamics into synchrony. This second hypothesis is the pattern typically described from theoretical and experimental studies, where exogenous drivers or dispersal couple intrinsically cyclic populations via nonlinear phase-locking [@Bjornstad2000;@VassuerFox_2009;@HopsonFox_2019]. However, recent evidence from observational studies on gypsy moths also support the hypothesis of cyclic-dynamics-leading-to-synchrony [@Haynes_etal2019]. The
 difference between these two alternatives is whether local population
 oscillations were produced and synchronized, or merely synchronized but 
 not produced, by synchronous environmental drivers. These alternative hypothesis would be difficult to 
