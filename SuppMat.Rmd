@@ -659,7 +659,7 @@ quantity calculated for `r 0.95*nsurrogs` of `r nsurrogs`
 surrogate data sets representing the null hypothesis of no relationship between variables. Ranks of actual spatial wavelet
 coherences in surrogate spatial wavelet coherences were 
 also plotted as a function of timescale 
-(Fig. \ref{FigS4_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package. The fast algorithm of Sheppard *et al.* -@Sheppard2017_surrogates for assessing the statistical significance of spatial wavelet coherence was used.
+(Fig. \ref{FigS4_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package. The fast algorithm of  @Sheppard2017_surrogates for assessing the statistical significance of spatial wavelet coherence was used.
 
 Correlation-based approaches have been standard practice in synchrony studies [@Buonaccorsi2001], but these methods assume in-phase relationships. Correlation-based approaches also conflate timescales, and recent results show this can hinder detection of synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of total populations on those timescales (Fig. \ref{MT-Fig1_example}).  
 In contrast, spatial wavelet coherence 
