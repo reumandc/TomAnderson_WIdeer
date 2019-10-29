@@ -659,7 +659,7 @@ quantity calculated for `r 0.95*nsurrogs` of `r nsurrogs`
 surrogate data sets representing the null hypothesis of no relationship between variables. Ranks of actual spatial wavelet
 coherences in surrogate spatial wavelet coherences were 
 also plotted as a function of timescale 
-(Fig. \ref{FigS4_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package. The fast algorithm of Sheppard *et al.* [@Sheppard2017_surrogates] for assessing the statistical significance of spatial wavelet coherence was used.
+(Fig. \ref{FigS4_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package. The fast algorithm of Sheppard *et al.* -@Sheppard2017_surrogates for assessing the statistical significance of spatial wavelet coherence was used.
 
 Correlation-based approaches have been standard practice in synchrony studies [@Buonaccorsi2001], but these methods assume in-phase relationships. Correlation-based approaches also conflate timescales, and recent results show this can hinder detection of synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of total populations on those timescales (Fig. \ref{MT-Fig1_example}).  
 In contrast, spatial wavelet coherence 
@@ -729,16 +729,14 @@ measured.
 synchrony explained by individual weather and 
 climate variables, as well as the amount of DVC 
 synchrony explained by deer abundance, following 
-the wavelet Moran theorem of Sheppard *et al.* [@Sheppard2016_aphids]. 
+the wavelet Moran theorem of @Sheppard2016_aphids. 
 As part of this procedure, we also calculated the 
-average "cross terms" of Sheppard *et al.* [@Sheppard2016_aphids] over 
+average "cross terms" of @Sheppard2016_aphids over 
 the timescale band of interest (see supplementary 
 files of ref @Sheppard2016_aphids, equation 22), again following the 
 procedures described in that reference. The precise 
-mathematical meaning of cross terms is explained by Sheppard *et al.* 
-[@Sheppard2016_aphids]; for operational purposes, they 
-provide a test of whether modelling assumptions of Sheppard *et al.*
-[@Sheppard2016_aphids] are sufficiently met to use the 
+mathematical meaning of cross terms is explained by @Sheppard2016_aphids; for operational purposes, they 
+provide a test of whether modelling assumptions of @Sheppard2016_aphids are sufficiently met to use the 
 wavelet Moran theorem to estimate fractions of 
 synchrony explained. Cross terms less than $10\%$ 
 of estimated fractions of synchrony explained were 
@@ -747,7 +745,7 @@ considered necessary to make statements about fractions of synchrony explained. 
 We calculated the amount of deer abundance 
 synchrony jointly explained by snow depth, 
 $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ using a wavelet multiple regression 
-approach [@Sheppard_wavmodel]. This method, the detailed mathematics of which are described by Sheppard *et al.* [@Sheppard_wavmodel] along with an application, 
+approach [@Sheppard_wavmodel]. This method, the detailed mathematics of which are described by @Sheppard_wavmodel along with an application, 
 is analogous to multiple linear regression, with a 
 model describing the relationship between a 
 response variable and multiple predictor variables; 
