@@ -162,8 +162,7 @@ as $w_{\text{tot}}(t)=\sum_{i=1}^N w_i(t)$.
 To develop our theory, we need the language and fundamental mathematical results of
 stochastic processes and their spectra and cross spectra. 
 Spectral statistics are extremely well-developed, widely known, and widely applied in numerous fields;
-background on spectral statistics can be found from many sources, including the books of
-@Reinsel1997, @Shumway2000, and @Brillinger2001. We here define notation. 
+background on spectral statistics can be found from many sources [@Reinsel1997, @Shumway2000, and @Brillinger2001]. We here define notation. 
 Let $S_{\epsilon_{i}\epsilon_{i}}(f)$
 denote the power spectrum of the process $\epsilon_{i}$ and let $S_{\epsilon_{i}\epsilon_{j}}(f)$
 denote the cross spectrum of the processes $\epsilon_{i}$ and $\epsilon_{j}$.
@@ -435,7 +434,7 @@ for the linear filters
 where $I$ is the $N \times N$ identity matrix. 
 Here $B$ is the backshift operator,
 $B^{l}\delta(t)=\delta(t-l)$, for a stochastic process $\delta(t)$.
-See @Reinsel1997, @Shumway2000, and @Brillinger2001
+See Reinsel [-@Reinsel1997], Shumway [-@Shumway2000], and Brillinger [-@Brillinger2001]
 for background on linear filters. Computing the spectral matrices of both
 sides of \ref{eq:linfiltmod} gives
 \begin{equation}
@@ -445,9 +444,9 @@ T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\eps
 where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
 are the transfer function matrices of the linear filters
 $\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
-section 1.1.3 of @Reinsel1997). But 
+section 1.1.3 of Reinsel [-@Reinsel1997]). But 
 $T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
-(section 1.1.3 of @Reinsel1997), so
+(section 1.1.3 of Reinsel [-@Reinsel1997]), so
 \begin{align}
 S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
 &= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon\epsilon},
@@ -467,7 +466,7 @@ theorem \ref{thm:lem}.
 # Supplementary methods \label{SI:methods}
 
 \textbf{Deer, DVC, and hunter data.}
-We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. From 1981-2013, deer abundance was estimated for deer management units 
+We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{MT-Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. From 1981-2013, deer abundance was estimated for deer management units 
 (DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
 accounting models used for a smaller number of years and DMUs [@widnr2001]. 
@@ -490,7 +489,7 @@ We dropped one county (Menominee) due to incomplete data for most
 variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
 
 We also calculated estimated hunter abundance also from data from WINDR for each county for the years 1992-`r maxyear`
-(Fig. \ref{Fig2_Timeseries}); these data constituted an index of the estimated 
+(Fig. \ref{MT-Fig2_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season [@widnr2001]. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI
 each year over the years of this study. We estimated hunter abundances for counties
@@ -500,7 +499,7 @@ the hunter density data.
 
 We obtained estimates of DVCs for each county, spanning the 
 years 1987-`r maxyear`, from the WI Department 
-of Transportation (WIDOT; Fig. \ref{Fig2_Timeseries}). These data reflect the number of police-investigated DVCs; they are an 
+of Transportation (WIDOT; Fig. \ref{MT-Fig2_Timeseries}). These data reflect the number of police-investigated DVCs; they are an 
 index of DVCs, as opposed to an absolute number of incidents, 
 since not all DVCs are reported. In Michigan, nearly half of 
 DVCs went unreported to the police or insurance companies 
@@ -528,7 +527,7 @@ National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.n
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
-all subsequent analyses (Fig. \ref{Fig2_Timeseries}). he number of weather stations per county and data collected at each station 
+all subsequent analyses (Fig. \ref{MT-Fig2_Timeseries}). he number of weather stations per county and data collected at each station 
 varied, resulting in different spatial extents for each variable 
 in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
 counties; Tmax, $N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`; precipitation, $N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`; snow depth, $N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`. 
@@ -545,7 +544,7 @@ USA [@Post1998_popgrowth;@Post2004_greenland].
 We averaged monthly values across the 
 approximate growing season (Apr-Nov), and the winter 
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
-(Fig. \ref{Fig2_Timeseries}). We used a total of 11 weather and 
+(Fig. \ref{MT-Fig2_Timeseries}). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. 
@@ -556,7 +555,7 @@ the variables involved; mean county
 area $\pm$ SD = `r round(mean(gps$Area_km2),0)` $\pm$ `r round(sd(gps$Area_km2),0)` $\text{km}^2$), 
 United States Department of Agriculture (USDA) districts ($N = 9$; mean 
 district area $\pm$ SD = `r round(mean(usda.centroid$Area_km2),0)` $\pm$ `r round(sd(usda.centroid$Area_km2),0)` $\text{km}^2$), 
-and statewide (Fig. \ref{SM-FigS1_map}). Analyses at three spatial scales 
+and statewide (Fig. \ref{FigS1_map}). Analyses at three spatial scales 
 were performed because the SAK model used by the WIDNR to estimate deer 
 abundance for each management unit has been criticized as less accurate 
 at smaller spatial scales [@Millspaugh2009]. The bias in abundance 
