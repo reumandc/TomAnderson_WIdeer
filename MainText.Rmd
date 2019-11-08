@@ -132,7 +132,7 @@ For example, from ca.
 1965-1995, fluctuations in the North Atlantic Oscillation (NAO) contained a substantial 
 10-year oscillatory component 
 [@Sheppard2016_aphids], and the El Ni$\~{n}$o Southern Oscillation (ENSO) also has 
-periodic content. Thus local weather variables influenced by 
+periodic content [@tudhope2001]. Thus local weather variables influenced by 
 climatic oscillations can contain periodic components which are synchronous across
 large areas. These components may be weak and therefore hardly noticable, 
 in comparison with asynchronous,
@@ -219,7 +219,7 @@ of a time series or stochastic process measured in location $i$, $w_i(t)$,
 is a function of frequency, $f$. The frequency of a periodic oscillation is one over
 its timescale, i.e., one over its period. The value of the spectrum $S_{w_iw_i}(f)$ is larger for 
 frequencies (or timescales) on which $w_i(t)$ oscillates with greater strength. So, 
-for instance, a population that exhibits a strong (rspectively, weak) 10-year-timescale 
+for instance, a population that exhibits a strong (respectively, weak) 10-year-timescale 
 oscillations will have a spectrum with a large (respectively, small) peak at 
 the frequency $1/10$. The spectrum decomposes the variance, $\var(w_i(t))$, according 
 to the timescales on which it occurs, in the sense that an integral of 
@@ -252,7 +252,7 @@ is likely to make a much smaller contribution to $S_{\text{tot}}$ than is the se
 term; the first term is a sum of only $N$ quantities and the second is a sum over
 $N^2-N$, which is much greater than $N$ for large enough $N$. Thus theory predicts
 that timescale-specific patterns of synchrony are very important for whether
-spatial-total populations exhibit synchrony. Of course which of the two terms
+spatial-total populations exhibit cycling. Of course which of the two terms
 in brackets in \ref{mainresmt} is larger depends on the specific values of the summands
 contributing to each term as well as on the number of summands. But we explore 
 reasonable scenarios in the Supporting Information
@@ -296,7 +296,7 @@ approximate growing season (Apr-Nov), and the winter
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. 
 
-\textbf{Data pre-processing.} We performed all analyses described below  
+\textbf{Data pre-processing.} We performed all analyses described below 
 at three spatial scales: counties (N = 44-`r dim(cty.list$Abun)[1]` depending on 
 the variables involved; mean county 
 area $\pm$ SD = `r round(mean(gps$Area_km2),0)` $\pm$ `r round(sd(gps$Area_km2),0)` $\text{km}^2$), 
@@ -310,7 +310,7 @@ Fig. \ref{SM-FigS7_WMFAndPredictionsDistricts}), suggesting results for counties
 
 We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for
 the Fourier-surrogate-based spatial wavelet coherence and wavelet linear
-regression procedure described below. This process also included linear detrending
+regression testing procedure described below. This process also included linear detrending
 (and subtracting the mean) to remove any long-term trends that might otherwise
 obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. 
@@ -327,12 +327,11 @@ package for the R programming language [@Rstats2018].
 
 We characterized the spatial synchrony of spatiotemporal variables (deer
 abundance, DVCs and weather) using wavelet mean field magnitudes and wavelet
-phasor mean field (SI Appendix Fig.
+phasor mean field magnitudes (SI Appendix Fig.
 \ref{SM-PedagogFigWMF}) [@Sheppard2013;@Sheppard2016_aphids]. Both methods take as input
 standardized (see above) timeseries data from multiple locations and provide as
 output complex-valued matrices indexed by time and timescale. When plotted, these
-values characterize the degree of synchrony among locations in phase and amplitude
-(mean field magnitude) and phase (phasor mean field) (Figs \ref{Fig1_example}, SI Appendix Fig. \ref{SM-PedagogFigWMF}). They also show where in the time series the synchrony
+values characterize the degree of synchrony among locations in phase and amplitude (wavelet mean field) and phase only (phasor mean field) (Figs \ref{Fig1_example}, SI Appendix Fig. \ref{SM-PedagogFigWMF}). They also show where in the time series the synchrony
 occurs, and at which timescales synchrony is more prevalent. The statistical
 significance of phasor mean fields can be compared to simulated data sets
 containing random phase distributions [@Sheppard_wavmodel]. In this study we
@@ -350,9 +349,7 @@ real data with spatial wavelet coherences made from appropriately randomized,
 Fourier surrogate data sets ($N=$ `r nsurrogs`) that retain the same temporal and
 spatial autocorrelation properties as the original time series but are otherwise
 unrelated to each other [@Theiler1992;@Schreiber2000;@Sheppard2013;@Sheppard2016_aphids]. We calculated how often observed spatial wavelet coherence between pairs of variables was ranked higher than coherences of surrogate data sets, aggregating across the timescale band of interest using an
-average-rank-based method described in detail elsewhere [@Sheppard2016_aphids]. A
-$p$-value of $0.05$ means that the empirical spatial wavelet coherence was higher
-than the same quantity calculated for 95% of the surrogate data sets,
+average-rank-based method described in detail elsewhere [@Sheppard2016_aphids]. A p-value of $0.05$ means that the average empirical spatial wavelet coherence rank was higher than the same quantity calculated for 95% of the surrogate data sets,
 representing the null hypothesis of no relationship between variables. Ranks of
 actual spatial wavelet coherences in surrogate spatial wavelet coherences were
 also plotted as a function of timescale (Fig. \ref{SM-FigS4_PhaseDiffs}). Finally,
@@ -383,7 +380,7 @@ variables. This approach also can produce a time- and timescale-specific plot of
 what the pattern of synchrony in the response variable (deer abundance) would look
 like if the drivers of synchrony were the predictors. This predicted synchrony
 plot can then be visually compared to the actual wavelet mean field magnitude
-plot, giving a visual indication of the degree of model adequacy. As part of these procedures, we evaluted model "cross terms", which are the component of  synchrony that is due to variability explained by the drivers at a given location being synchronous with residuals at other locations [@Sheppard2016_aphids;@Sheppard_wavmodel]. Cross terms must be small (< 10%) in order to inferences about synchrony to be valid.  
+plot, giving a visual indication of how well synchrony can be accounted for. As part of these procedures, we evaluted model "cross terms", which are the component of  synchrony that is due to variability explained by the drivers at a given location being synchronous with residuals at other locations [@Sheppard2016_aphids;@Sheppard_wavmodel]. Cross terms must be small (< 10%) in order to inferences about synchrony to be valid.  
 
 To quantify the degree to which synchronizing effects are responsible for
 fluctuations in statewide total deer and DVC time series, we adapted the standard
@@ -517,7 +514,7 @@ small oscillations on $3-7$-year timescales in county-level deer population time
 also brought these oscillations into spatial synchrony, thereby causing them to sum, across
 counties, to produce statewide fluctuations. Second, the local population oscillations on $3-7$-year timescales may have been due partly to the intrinsic dynamics of deer, resulting from density-dependent effects, maternal effects, or 
 other mechanisms of nonlinear populations dynamics. Synchronous environmental drivers 
-then brought the intrinsically oscillating local dynamics into synchrony. This second hypothesis is the pattern typically described from theoretical and experimental studies, where exogenous drivers or dispersal couple intrinsically cyclic populations via nonlinear phase-locking [@Bjornstad2000;@VassuerFox_2009;@HopsonFox_2019]. However, recent evidence from observational studies on gypsy moths also support the hypothesis of cyclic-dynamics-leading-to-synchrony [@Haynes_etal2019]. The
+then brought the intrinsically oscillating local dynamics into synchrony. This second hypothesis is the pattern typically described from theoretical and experimental studies, where exogenous drivers or dispersal couple intrinsically cyclic populations via nonlinear phase-locking [@Bjornstad2000;@VassuerFox_2009;@HopsonFox_2019]. Recent evidence from observational studies on gypsy moths also support the hypothesis of cyclic-dynamics-leading-to-synchrony [@Haynes_etal2019]. The
 difference between these two alternatives is whether local population
 oscillations were produced and synchronized, or merely synchronized but 
 not produced, by synchronous environmental drivers. These alternative hypotheses would be difficult to 
@@ -526,10 +523,6 @@ state-wide oscillations in the sense that it synchronized weak local oscillation
 causing them to sum to a major phenomenon. Eliminating synchrony via randomizations also
 eliminated the state-wide oscillations (Fig. \ref{Fig5_StateWideFluctuations}), even though the
 randomizations preserved the structure of the local fluctuations. 
-
-An important aspect in all of the phenomena we describe is the specificity of fluctuations in both population and environmental data to certain timescales. Population cycles would not have manifested in deer had their synchrony not been specific to certain timescale ($3-7$-years). Timescale specificity in synchrony is common [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Haynes_etal2019;@Anderson2019_LO], making our mechanism of population cycles likely to be highly generalizable and the effects to not be limited to the system we have studied. 
-The analytical methods used here [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel] facilitated more precise 
-identification of synchrony drivers, with their effectiveness occuring in part due to their capacity to decompose synchrony according to the distinct timescales on which it can occur (Fig. \ref{Fig1_example}G-I). Historically it has been difficult to distinguish environmental drivers versus other potential causes of synchrony such as dispersal [@Kendall2000_moran;@Abbott2007_moran], but the timescale-specific methods applied here effectively demonstrate how such causality can be inferred. 
 
 Large-scale climatic patterns and local weather conditions are well known to influence spatial synchrony via Moran effects [@Leibhold2004_sync]. Both processes have specfically been attributed to synchrony of large ungulates across multiple regions, including reindeer, caribou [@post2002;@aanes2003;@Post2004_greenland;@Hegel2012_caribou], roe deer [@Grotan2005_roedeer], and musk oxen [@post2002]. Here, winter snow depth,  $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ cycles were the primary predictors of deer synchrony. Furthermore, deer synchrony lagged both climate indices at a temporal scale of about two years, which is similar to other reported lag times of climatic effects on deer 
 population dynamics [@Post1998_popgrowth;@forchhammer1998]. Winter weather and climate were likely important because deeper snow limits access to winter food resources in ungulates, which subsequently affects body condition, leading to greater susceptibility to starvation or predators and reduced parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. In WI, this situation likely played out to a greater extent in northern areas, where snow depth is greater and access to high quality food resources (i.e., agricultral crops) is available. Determining whether such landscape or habitat differences across regions may further decompose how climatic Moran efects influence the spatial patterning synchrony in deer [@Walter2017_geogsync]. Recent work on several taxa 
@@ -557,6 +550,10 @@ have aleady been implicated as important for forestry practices in WI [@Rittenho
 million deer statewide likely will have considerable consequences for agricultural crop damage or forest regeneration [@Cote2004_deerimpacts]
 and hunting success, both of which can have socioeconomic impacts. 
 
+An important aspect in all of the phenomena we describe is the specificity of fluctuations in both population and environmental data to certain timescales. Population cycles would not have manifested in deer had their synchrony not been specific to certain timescale ($3-7$-years). Timescale specificity in synchrony is common [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Haynes_etal2019;@Anderson2019_LO], making our mechanism of population cycles likely to be highly generalizable and the effects to not be limited to the system we have studied. 
+The analytical methods used here [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel] facilitated more precise 
+identification of synchrony drivers, with their effectiveness occuring in part due to their capacity to decompose synchrony according to the distinct timescales on which it can occur (Fig. \ref{Fig1_example}G-I). Historically it has been difficult to distinguish environmental drivers versus other potential causes of synchrony such as dispersal [@Kendall2000_moran;@Abbott2007_moran], but the timescale-specific methods applied here effectively demonstrate how such causality can be inferred. 
+
 \textbf{Conclusion.} Our study demonstrates a novel mechanism of population cycles through the cumulative dynamics of synchronized local populations of an exploited species, with important consequences for humans. Further investigation of systems and drivers of synchrony that could lead to similar region-wide dynamics will help unravel the generality of this phenomena. Investigating synchrony and regional fluctuations of species that have impacts on humans (e.g., crop pests) would be particularly vaulable, especially to complement work in the traditional paradigm  of cycles leading to synchrony [@Haynes_etal2019]. 
 
 <!--Load sup mat workspace for the methods, which used to be in the sup mat-->
@@ -583,7 +580,7 @@ knitr::kable(Table1,
              format='pandoc',
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns, which give percentages, are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (main text and Table \\ref{TabS2_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{Tab1_CountyCoherenceSummary}",
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns, which give percentages, are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (Table \\ref{SM-TabS2_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{Tab1_CountyCoherenceSummary}",
              booktabs=T)
 ```
 

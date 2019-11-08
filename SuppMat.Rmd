@@ -434,7 +434,7 @@ for the linear filters
 where $I$ is the $N \times N$ identity matrix. 
 Here $B$ is the backshift operator,
 $B^{l}\delta(t)=\delta(t-l)$, for a stochastic process $\delta(t)$.
-See @Reinsel1997, @Shumway2000, and @Brillinger2001
+See Reinsell [-@Reinsel1997], Shumway [-@Shumway2000], and Brillinger and Stoffer [-@Brillinger2001]
 for background on linear filters. Computing the spectral matrices of both
 sides of \ref{eq:linfiltmod} gives
 \begin{equation}
@@ -444,9 +444,9 @@ T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\eps
 where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
 are the transfer function matrices of the linear filters
 $\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
-section 1.1.3 of @Reinsel1997. But 
+section 1.1.3 of Reinsel [-@Reinsel1997]. But 
 $T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
-(section 1.1.3 of @Reinsel1997), so
+(section 1.1.3 of Reinsel [-@Reinsel1997]), so
 \begin{align}
 S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
 &= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon\epsilon},
@@ -527,7 +527,7 @@ National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.n
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
-all subsequent analyses (Fig. \ref{MT-Fig2_Timeseries}). he number of weather stations per county and data collected at each station 
+all subsequent analyses (Fig. \ref{MT-Fig2_Timeseries}). The number of weather stations per county and data collected at each station 
 varied, resulting in different spatial extents for each variable 
 in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
 counties; Tmax, $N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`; precipitation, $N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`; snow depth, $N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`. 
@@ -579,7 +579,7 @@ Fig. \ref{FigS7_WMFAndPredictionsDistricts}), suggesting results for counties we
 meaningfully influenced by possible inaccuracies in SAK abundance estimation 
 procedures at the county level.
 
-We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial wavelet coherence and wavelet linear regression procedure described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
+We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial wavelet coherence and wavelet linear regression testing procedure described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the `wsyn` package for the R programming language [@Rstats2018].
 
 \textbf{Analysis Overview.} We use wavelet transforms in most analyses described below, which are ideal for detecting periodic components in time series data [@addison2002]. The methods we use are recently developed extensions to analytical methods that are standard tools in some biological fields and well established. The mathematical details are 
@@ -661,10 +661,10 @@ coherences in surrogate spatial wavelet coherences were
 also plotted as a function of timescale 
 (Fig. \ref{FigS4_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package. The fast algorithm of  @Sheppard2017_surrogates for assessing the statistical significance of spatial wavelet coherence was used.
 
-Correlation-based approaches have been standard practice in synchrony studies [@Buonaccorsi2001], but these methods assume in-phase relationships. Correlation-based approaches also conflate timescales, and recent results show this can hinder detection of synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of total populations on those timescales (Fig. \ref{MT-Fig1_example}).  
+Correlation-based approaches have been standard practice in synchrony studies [@Buonaccorsi2001], but these methods assume in-phase relationships. Correlation-based approaches also conflate timescales, and recent results show this can hinder detection of synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of total populations on those timescales (Fig. \ref{MT-Fig1_example}). 
 In contrast, spatial wavelet coherence 
 allows for any kind of phase relationship and 
-provides as part of its output the average phase that occurred between two variables. It is also  timescale-specific. Therefore, when two variables had significant 
+provides as part of its output the average phase difference that occurred between two variables. It is also  timescale-specific. Therefore, when two variables had significant 
 spatial wavelet coherence over a timescale band, we 
 calculated the mean phase difference between the 
 variables over the band, $\bar{\theta}$, in units of $\pi$ 
@@ -1035,7 +1035,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS5.png}
-\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of Table \ref{MT-Tab1_CountyCoherenceSummary}, using county-level data. The red horizontal dashed line corresponds to a nominal confidence level of $95\%$. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
+\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of Table \ref{MT-Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
 \end{figure}
 
 \newpage
