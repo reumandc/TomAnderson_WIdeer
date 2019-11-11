@@ -22,8 +22,8 @@ bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 
 ---
-**Short title:** Spatial synchrony leads to populations cycles  
-**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; LWS, RER and JAW provided extensive editing and feedback on the analysis and manuscript.  
+\noindent **Short title:** Spatial synchrony leads to populations cycles  
+**Author Contributions:** TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; all authors provided extensive editing and feedback on the analysis and manuscript.  
 **Type of Article:** Letter 
 **Key Words:** population cycle, synchrony, Moran effect, population dynamics,  
 **Number of words in abstract:**  
@@ -65,10 +65,17 @@ avgdvccostsLow<-readRDS(file="Results/totaldvccostsLow.rds")
 avgdvccostsHigh<-readRDS(file="Results/totaldvccostsHigh.rds")
 ```
 
-<!--***DAN: Dan has not edited this yet for Ecol Lett; TOM: I started editing- there is a 150 word limit-->
 #Abstract
-Population cycles are fundamentally linked with spatial synchrony, with the
-prevailing paradigm being that populations whose dynamics are intrinsically cyclic are easy to synchronize. That is, population cycles help give rise to spatial synchrony. Here we demonstrate this process can work in reverse, with synchrony causing population cycles. We show that timescale-specific environmental effects, by synchronizing local population dynamics on certain timescales only, cause major population cycles over large areas in white-tailed deer. An important aspect of the new mechanism is specificity of synchronizing effects to certain timescales, which causes local dynamics to sum across space to a substantial cycle on those timescales. We also demonstrate for the first time that synchrony can be transmitted from environmental drivers to populations (deer) and human systems (DVCs). Because synchrony of some environmental drivers may be changing, possibly as part of climate change, subsequent changes to population cycles may arise via the mechanism described here.
+Population cycles are fundamentally linked with spatial synchrony, the
+prevailing paradigm being that populations with intrinsically cyclic dynamics are easy to synchronize. 
+That is, population cycles help give rise to spatial synchrony. Here we demonstrate this process can work in reverse, 
+with synchrony causing population cycles. We show that timescale-specific environmental effects, by synchronizing local 
+population dynamics on certain timescales only, cause major population cycles over large areas in white-tailed deer. An 
+important aspect of the new mechanism is specificity of synchronizing effects to certain timescales, which causes local 
+dynamics to sum across space to a substantial cycle on those timescales. We also demonstrate, to our knowlege for the 
+first time, that synchrony can be transmitted from environmental drivers to populations (deer) and from there to human 
+systems (deer-vehicle collisions). Because synchrony of drivers may be altered by climate change, 
+changes to population cycles may arise via the new mechanism.
 <!--OLD ABSTRACT: Population cycles are a profound enigma of the natural world, the causes of which have been investigated for over 100 years. An early hypothesized explanation of cycles, for the iconic lynx-hare and for other systems, posited that cyclic environmental phenomena such as sun spots drive population cycles. But that hypothesis was refuted, and for several decades research focused instead on explanations involving nonlinear or delayed density dependence, often via species interactions. Here we show that timescale-specific environmental effects, by synchronizing local population dynamics on certain timescales only, cause major population cycles over large areas in white-tailed deer and deer-vehicle collisions (DVCs). We thereby demonstrate a new mechanism of cycles that centers once again on environmental influences. The mechanism differs fundamentally from earlier hypotheses that relied on a strongly cyclic driver such as sun spots. An important aspect of the new mechanism is specificity of synchronizing effects to certain timescales, which causes local dynamics to sum across space to a substantial cycle on those timescales. We also demonstrate for the first time that synchrony can be transmitted, in a cascading effect, from environmental drivers, to populations (deer), to human systems (DVCs). The cycles we explain can have substantial effects on agriculture, hunting, and accident recovery industries. Research shows that synchrony of some environmental drivers may be changing, possibly as part of climate change. Such changes may alter population cycles that arise via the mechanism described here.-->
 
 <!--***DAN: Old first para
@@ -190,6 +197,14 @@ totals. We consider potential drivers of deer populations including both environ
 effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) aggregated at three 
 spatial resolutions (*Methods*): counties ($n=71$), United States Department of Agricultural (USDA) districts 
 ($n=9$), and statewide (SI Fig. \ref{SM-FigS1_map}). 
+<!--***DAN: Tom, I think this is the first sup mat fig cited, but it is S4. I needs to be S1, which means
+simply putting it ahead of S1-3 in the sup mat. Can you please check that all figs, tables, sup mat figs and 
+tables, and sup mat sections are a) cited from the main text, and b) appear in the sup mat in the same 
+order they are cited from the main text. In the end, citations within each category should occur in
+numeric order through the ms. It should not be onerous to create this outcome, through a combination of 
+reordering figures and clever over-citation (e.g., if a sup mat fig is only now cited from the sup mat
+section that it supports, then, when you cite the sup mat section from the main text, also cite the sup mat
+figure). If you are finding this onerous to implement, let me know, I may be able to help.-->
 
 Here we demonstrate, using deer data, how timescale-specific
 spatial synchrony can produce regional population cycles. We also show that
@@ -210,60 +225,71 @@ mechanism by which cycles can beget synchrony, our new mechanism shows
 that synchrony, when it is specific to certain timescales, can also produce
 cycles.
 
-# Methods
+# Summary of theory
+<!--***DAN: After reading and thinking, I think this is better as a separate section.
+Let me know if you really disagree and we can discuss. My reasons are not overwhelming, 
+I just think it is a bit better this way. For one thing, theory is not really the same 
+as methods.-->
 
-\textbf{Summary of theory.} The statement of our main theoretical result requires a conceptual understanding 
+The statement of our main theoretical result requires a conceptual understanding 
 of the *power spectrum* (or, simply, *spectrum*) of a population or other 
-time series, and of the *cospectrum* of two time series. The spectrum $S_{w_iw_i}(f)$ 
-of a time series or stochastic process measured in location $i$, $w_i(t)$,
+time series, and of the *cospectrum* of two time series. 
+The spectrum is useful for studying population cycling because peaks in the 
+spectrum of a population indicate cyclic behavior. Given a time series
+or stochastic process, $w_i(t)$, measured in location $i$, the spectrum $S_{w_iw_i}(f)$ 
 is a function of frequency, $f$. The frequency of a periodic oscillation is one over
 its timescale, i.e., one over its period. The value of the spectrum $S_{w_iw_i}(f)$ is larger for 
 frequencies (or timescales) on which $w_i(t)$ oscillates with greater strength. So, 
-for instance, a population that exhibits a strong (respectively, weak) 10-year-timescale 
+for instance, a population that exhibits strong (respectively, weak) 10-year-timescale 
 oscillations will have a spectrum with a large (respectively, small) peak at 
 the frequency $1/10$. The spectrum decomposes the variance, $\var(w_i(t))$, according 
-to the timescales on which it occurs, in the sense that an integral of 
+to the timescales on which it occurs, in the sense that an appropriate integral of 
 $S_{w_iw_i}(f)$ across all frequencies equals $\var(w_i(t))$. The cospectrum
 of two time series, $w_i(t)$ and $w_j(t)$, decomposes their covariance, $\cov(w_i(t),w_j(t))$,
 in a similar way: the cospectrum, $C_{w_iw_j}(f)$, is a function of frequency
 with peaks occurring at frequencies for which oscillations in $w_i(t)$ and
 $w_j(t)$ are strong and coincident in their phases, i.e., synchronous.
 
-The spectrum is useful for studying population cycling because peaks in the 
-spectrum of a population indicate cyclic behavior. 
 Our main theoretical result expresses the the spectrum, $S_{\text{tot}}$ of a total
 population across a region composed of $i=1,\ldots,N$ local areas in the form
-$$S_{\text{\emph{tot}}}(f) = F_{\text{popdyn}}(f) \left[ \sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f) +
-\sum_{\substack{i,j=1 \\ i \neq j}}^N C_{\epsilon_{i}\epsilon_{j}}(f)\right],\label{mainresmt}$$ 
+\begin{equation}
+S_{\text{\emph{tot}}}(f) = F_{\text{popdyn}}(f) \left[ \sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f) +
+\sum_{\substack{i,j=1 \\ i \neq j}}^N C_{\epsilon_{i}\epsilon_{j}}(f)\right],\label{mainresmt}
+\end{equation}
 \noindent where $F_{\text{popdyn}}(f)$ reflects 
 the nature of population dynamics within the local areas, and the $S_{\epsilon_i\epsilon_i}$
 are spectra and the $C_{\epsilon_i\epsilon_j}$ are cospectra of environmental noise time 
 series in the local areas. If dynamics are not intrinsically cycling, 
 then $F_{\text{popdyn}}(f)$ has no peaks in the power and does not contribute to whether $S_{\text{tot}}$
-is peaked. The first term in brackets in \ref{mainresmt},
+is peaked. The first term in brackets in (\ref{mainresmt}),
 $\sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f)$, encapsulates the effects of 
 periodicities in local environmental noise time series on whether the total 
 population exhibits cycling. The second term in the brackets,
 $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}(f)$, encapsulates
 the effects of timescale-specific synchrony on whether the total population
 exhibits cycling. The key observation here is that, when $N$ is large so that the
-region being considered is combination of a large number of local areas, the first term
+region being considered is a combination of a large number of local areas, the first term
 is likely to make a much smaller contribution to $S_{\text{tot}}$ than is the second
 term; the first term is a sum of only $N$ quantities and the second is a sum over
-$N^2-N$, which is much greater than $N$ for large enough $N$. Thus theory predicts
+$N^2-N$, which is much greater than $N$ for large $N$. Thus theory predicts
 that timescale-specific patterns of synchrony are very important for whether
-spatial-total populations exhibit cycling. Of course which of the two terms
-in brackets in \ref{mainresmt} is larger depends on the specific values of the summands
-contributing to each term as well as on the number of summands. But we explore 
-reasonable scenarios in the Supporting Information
-and find that the initial intuition is correct, for the quite-general model setup that we
-study, that typically timescale-specific synchrony is a very important determinant of
-whether a regional population cycles. See SI section \ref{SM-SI:theory}
-for the the general theoretical development and 
+spatial-total populations exhibit cycling. Of course, which of the two terms
+in brackets in (\ref{mainresmt}) is larger depends not only on the number of summands
+in each term, but also on the specific values of the summands. But we explore 
+reasonable scenarios in the SI
+and find that the initial intuition is correct, for a general model setup, 
+that typically timescale-specific synchrony is a very important determinant of
+regional population cycles. See SI section \ref{SM-SI:theory}
+for the the general theory and 
 SI Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
-\ref{SM-TheoryExample3} for specific examples.
+\ref{SM-TheoryExample3} for examples.
 
-\textbf{Empirical Data.} We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. We also calculated estimated hunter abundance also from data from WINDR for each county for the years 1992-`r maxyear`
+# Methods
+
+\textbf{Empirical Data.} We calculated deer abundance estimates based on data from deer management units provided by 
+the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr 
+period `r minyear`-`r maxyear` (Fig. \ref{Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. We also 
+calculated estimated hunter abundance from WINDR data for each county for the years 1992-`r maxyear`
 (Fig. \ref{Fig2_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season [@widnr2001].
@@ -271,17 +297,24 @@ hunting season [@widnr2001].
 We obtained estimates of DVCs for each county, spanning the 
 years 1987-`r maxyear`, from the WI Department 
 of Transportation (WIDOT; Fig. \ref{Fig2_Timeseries}). These data reflect 
-the number of police-investigated DVCs and are only an 
+the numbers of police-investigated DVCs. They are an 
 index of DVCs, as opposed to an absolute number of incidents, 
-since not all DVCs are reported [@Marcoux2010_dvc]. We also obtained traffic volume estimates (millions of miles driven) for each county spanning the years 1988-`r maxyear` from the WIDOT, to control for traffic in our analysis of DVCs.
+since not all DVCs are reported [@Marcoux2010_dvc]. We also obtained traffic volume estimates (millions of miles 
+driven) for each county spanning the years 1988-`r maxyear` from the WIDOT, to control for traffic in our 
+analysis of DVCs.
 
 We obtained daily weather data (snow depth, 
-precipitation, and minimum and maximum air temperature - here called Tmin and Tmax) from all available weather stations in each county from the 
+precipitation, and minimum and maximum air temperature - here called Tmin and Tmax) from all available 
+weather stations in each county from the 
 National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.noaa.gov/)). We 
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
 all subsequent analyses (Fig. \ref{Fig2_Timeseries}). 
+We also calculated a Winter Severity Index (WSI), 
+a metric known to impact deer populations [@widnr2001]: it is the sum of the total number of days for 
+which snow depth was greater 
+than 18 inches or Tmin was less than $0^\circ$F.
 
 We obtained monthly estimates of three global climate indices: 
 the North Atlantic Oscillation (NAO), the multivariate 
@@ -290,8 +323,8 @@ Decadal Oscillation (PDO). All of these have been shown to
 influence large ungulate population dynamics in the north central 
 USA [@Post1998_popgrowth;@Post2004_greenland]. 
 We averaged monthly values across the 
-approximate growing season (Apr-Nov), and the winter 
-($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
+approximate growing season (Apr-Nov), and also across the winter 
+($\text{Dec}_{t-1}$ to $\text{Mar}_t$), for each index 
 (Fig. \ref{Fig2_Timeseries}). High values of these indices generally correspond to mild winter weather over WI [@Rodionov2003_elnino]. We used a total of 11 weather and climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. 
@@ -303,10 +336,23 @@ area $\pm$ SD = `r round(mean(gps$Area_km2),0)` $\pm$ `r round(sd(gps$Area_km2),
 United States Department of Agriculture (USDA) districts ($N = 9$; mean 
 district area $\pm$ SD = `r round(mean(usda.centroid$Area_km2),0)` $\pm$ `r round(sd(usda.centroid$Area_km2),0)` $\text{km}^2$), 
 and statewide (Fig. \ref{SM-FigS1_map}). Analyses at three spatial scales 
-were performed because of concerns on the accuracy of abundance estimation methods at smaller spatial extents [@Millspaugh2009; see SI for further discussion]. USDA district data were produced as the sum or average of county-level variables, as districts were always conglomerates of counties (Fig. \ref{SM-FigS1_map}). 
+were performed because of concerns on the accuracy of abundance estimation methods at smaller spatial 
+extents [@Millspaugh2009; see SI section \ref{SM-SI:methods} for further discussion]. USDA district data were 
+produced as the sum or average of county-level variables, as districts were always conglomerates of 
+counties (Fig. \ref{SM-FigS1_map}). 
 Statewide analysis used state total or average time series for each 
-variable. In general, results remained unchanged in their main substance using data aggregated to larger spatial scales (Table \ref{SM-TabS2_SummaryDistrict}, 
-Fig. \ref{SM-FigS7_WMFAndPredictionsDistricts}), suggesting results for counties were not meaningfully influenced by possible inaccuracies in SAK abundance estimation procedures at the county level.
+variable. In general, results remained unchanged in their main substance using data aggregated to larger 
+spatial scales (see Results),
+<!--Table \ref{SM-TabS2_SummaryDistrict}, 
+Fig. \ref{SM-FigS7_WMFAndPredictionsDistricts})
+***DAN: Tom, we cannot cite these results here in Methods for several reasons. First, the
+reader is not yet prepared to understand the cited fig and table. Second, we cannot cite figures
+and tables out of the order in which they occur (or we have to change that order), and we do not
+want to present this figure and table ahead of the county-level figures and tables. So we have to
+just mention Results at this point and then make sure these results are presented, and the corresponding
+figure and table cited, in the Results.-->
+suggesting results for counties were not meaningfully 
+influenced by possible inaccuracies in SAK abundance estimation procedures at the county level.
 
 We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for
 the Fourier-surrogate-based spatial wavelet coherence and wavelet linear
@@ -318,7 +364,7 @@ variances were also standardized to 1.
 \textbf{Analysis.} We use wavelet transforms in most analyses described below,
 which are ideal for detecting periodic components in time series data
 [@addison2002]. The methods we use are recently developed extensions to analytical
-methods that are standard tools in some biological fields and well established.
+methods that are standard tools in some biological fields and are well established.
 The mathematical details are described elsewhere
 [@Sheppard2013;@Sheppard2016_aphids] and below we provide operational descriptions
 of what each method takes as input, what it provides as output, and how to
@@ -331,7 +377,9 @@ phasor mean field magnitudes (SI Appendix Fig.
 \ref{SM-PedagogFigWMF}) [@Sheppard2013;@Sheppard2016_aphids]. Both methods take as input
 standardized (see above) timeseries data from multiple locations and provide as
 output complex-valued matrices indexed by time and timescale. When plotted, these
-values characterize the degree of synchrony among locations in phase and amplitude (wavelet mean field) and phase only (phasor mean field) (Figs \ref{Fig1_example}, SI Appendix Fig. \ref{SM-PedagogFigWMF}). They also show where in the time series the synchrony
+values characterize the degree of synchrony among locations in phase and amplitude 
+(wavelet mean field) and phase only (phasor mean field) (Figs \ref{Fig1_example}, SI 
+Fig. \ref{SM-PedagogFigWMF}). They also show where in the time series the synchrony
 occurs, and at which timescales synchrony is more prevalent. The statistical
 significance of phasor mean fields can be compared to simulated data sets
 containing random phase distributions [@Sheppard_wavmodel]. In this study we
@@ -392,10 +440,15 @@ surrogate time series spatially to produce surrogate statewide totals for both
 deer and DVCs, representing the hypothetical case of no synchrony over $3-7$-year
 timescales. We then compared these surrogate time series to their respective
 actual time series to show the nature of the additional variance in the
-state-total series that was attributable to synchrony. 
+state-total series that was attributable to synchrony. Further details of all datasets
+and data pre-processing and analysis methods are in SI section \ref{SM-SI:methods}.
 
-\textbf{Data Availability.} All data and code will be deposited into Dryad digital repository. All data and code producing this paper are also archived at `www.github.com/reumandc/TomAnderson_WIdeer`, including the complete revision history of the process that led to the presented analyses.
-The suite of analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button via the codes in that repository - see the `Readme.md` file in the repository for instructions.
+\textbf{Data availability.} All data are available in the Dryad digital repository XYZ. 
+<!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
+is accepted, and Tom also to replace XYZ with the repo number when the time comes-->
+All data and code producing this paper are also archived at `www.github.com/reumandc/TomAnderson_WIdeer`.
+The analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button 
+via the codes in that repository - see the `Readme.md` file in the repository for instructions.
 
 #Results
 
@@ -562,7 +615,7 @@ load(file="WholeWorkspace.RData")
 ```
 
 
-**Acknowledgements:** D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, and J. Fox for consultation. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
+**Acknowledgements:** D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox and A. Liebhold for consultation. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
 
@@ -613,7 +666,7 @@ time on the given timescale. Total populations (J-L) show clear cycling in scena
 of periods $3$ and $10$, respectively, consistent with the proposed mechanism (Introduction): 
 synchrony on a given timescale 
 produces cycling on that timescale in the total population.
-We used $71$ locations the empirical analyses of this study focus on white-tailed
+We used $71$ locations because the empirical analyses of this study focus on white-tailed
 deer populations in Wisconsin, and Wisconsin has 71 counties for which deer 
 data were available. Time series on A-F were
 shifted vertically for readability.

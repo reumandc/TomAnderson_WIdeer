@@ -581,9 +581,7 @@ procedures at the county level.
 
 We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial wavelet coherence and wavelet linear regression testing procedure described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the `wsyn` package for the R programming language [@Rstats2018].
-
-\textbf{Analysis Overview.} We use wavelet transforms in most analyses described below, which are ideal for detecting periodic components in time series data [@addison2002]. The methods we use are recently developed extensions to analytical methods that are standard tools in some biological fields and well established. The mathematical details are 
-described elsewhere [@Sheppard2013;@Sheppard2016_aphids] and below we provide operational descriptions.
+<!--***DAN: Tom, please check and fix how this references comes out, which is wonky - the callout is Team (2018)!-->
 
 \textbf{The wavelet mean field and wavelet phasor mean field.} We assessed the strength of synchrony 
 and its dependence on time and timescale for 
