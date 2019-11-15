@@ -1040,7 +1040,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 \clearpage
 
 \begin{figure}[!h]
-\includegraphics[width=.4\textwidth]{Results/FigS6.png}
+\includegraphics[width=.3\textwidth]{Results/FigS6.png}
 \caption[Hunter mean fields and predictions of deer synchrony based on hunters]{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance 
 time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunter 
 abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
@@ -1077,9 +1077,9 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 rownames(TableS1)<-NULL
 knitr::kable(TableS1,
              col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
-             format='pandoc',
+             format='latex',
              digits=4,
-             caption.short="Wavelet coherence test results between environmental variables",
+             caption.short="Wavelet coherence tests between climate indices",
              caption = "$P$-values of wavelet coherence tests, and associated mean phase differences for significant and marginally significant tests, between climate indices. Values are over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS1_PairwiseClimVarSpatCoh}",
              booktabs=T)
 ```
@@ -1090,11 +1090,11 @@ knitr::kable(TableS1,
 ```{r TableS2,echo=F,results='markup'}
 rownames(TableS2)<-NULL
 knitr::kable(TableS2,
-             format='pandoc',
+             format='latex',
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption.short="Summary of USDA district-level coherence test results",
-             caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (*Methods*). $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns (which give percentages) are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{TabS2_SummaryDistrict}",
+             caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (\\textit{Methods}). $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns (which give percentages) are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (\\textit{Methods}). All values were rounded to display four digits. \\label{TabS2_SummaryDistrict}",
              booktabs=T)
 ```
 

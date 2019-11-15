@@ -326,7 +326,7 @@ the variables involved, see SI section \ref{SM-SI:methods}; mean county
 area $\pm$ SD = `r round(mean(gps$Area_km2),0)` $\pm$ `r round(sd(gps$Area_km2),0)` $\text{km}^2$), 
 United States Department of Agriculture (USDA) districts ($N = 9$; mean 
 district area $\pm$ SD = `r round(mean(usda.centroid$Area_km2),0)` $\pm$ `r round(sd(usda.centroid$Area_km2),0)` $\text{km}^2$), 
-and statewide (Fig. \ref{SM-FigS1_map}). Analyses at three spatial scales 
+and statewide (SI Fig. \ref{SM-FigS1_map}). Analyses at three spatial scales 
 were performed because of concerns about the accuracy, on small spatial scales, of deer abundance estimation methods
 used by the WIDNR and underlying our data; they used a standard "Sex-Age-Kill" (SAK) approach.
 Although this is a standard approach used by management agencies for abundance assessments,
@@ -335,9 +335,9 @@ its accuracy at the smallest spatial scales has once been questioned
 [@Millspaugh2009; see SI section \ref{SM-SI:methods} for further discussion].
 USDA district data were 
 the sum or average of county-level variables, as districts were always conglomerates of 
-counties (Fig. \ref{SM-FigS1_map}); likewise for statewide data. 
+counties (SI Fig. \ref{SM-FigS1_map}); likewise for statewide data. 
 In general, results remained unchanged in their main substance using larger 
-spatial scales (see Results),
+spatial scales (see *Results*),
 <!--Table \ref{SM-TabS2_SummaryDistrict}, 
 Fig. \ref{SM-FigS7_WMFAndPredictionsDistricts})
 ***DAN: Tom, we cannot cite these results here in Methods for several reasons. First, the
@@ -413,8 +413,9 @@ the same quantity calculated for at least 95% of the surrogate data sets
 which represent the null hypothesis of no relationship. Ranks of
 actual spatial wavelet coherences in surrogate spatial wavelet coherences were
 also plotted against timescale. 
-<!--***DAN: We cannot cite the results in the methods as an example of the methods!
-That puts the cart before th horse. (Fig. \ref{SM-FigS4_PhaseDiffs}).-->
+<!--***DAN: We cannot cite the results as an example of the methods!
+That puts the cart before the horse - the reader is not ready to process the 
+results until later in the paper. (Fig. \ref{SM-FigS4_PhaseDiffs}).-->
 Finally, when two variables had significant spatial wavelet coherence over a timescale
 band, we calculated the mean phase difference between the variables over the band,
 $\bar{\theta}$, in units of $\pi$ radians, to determine if oscillations had
@@ -425,58 +426,72 @@ five weather variables (average winter
 Tmin, Tmax, snow depth, precipitation, and WSI), six climate variables (winter and
 growing season PDO, MEI and NAO) and hunter abundance, 
 over the $3-7$-year timescale band, where the
-majority of deer synchrony was present (see Results).
+majority of deer synchrony was present (see *Results*).
 We also used spatial wavelet
 coherence to test for relationships between deer abundance and DVCs, and between deer
 abundance and DVCs adjusted for traffic volume.
 
-<!--***DAN: made it here-->
-
 We calculated the amount of deer synchrony explained by individual weather and
 climate variables, as well the amount of DVC synchrony explained by deer
-synchrony, following the wavelet Moran theorem of Sheppard *et al.* [@Sheppard2016_aphids].
+synchrony, following the wavelet Moran theorem of @Sheppard2016_aphids.
 We also examined the amount of deer synchrony jointly explained by snow depth, winter MEI, 
-and winter PDO (the three primary drivers of deer synchrony; see *Results*) using
+and winter PDO (the three primary drivers of deer synchrony, see *Results*) using
 wavelet multiple regression [@Sheppard_wavmodel]. This method is analogous to
 multiple linear regression, with a model describing the relationship between a
 response variable and multiple predictor variables [@Sheppard_wavmodel]. However,
-all predictor and response inputs are wavelet transforms of spatiotemporal
+all predictor and response variables are wavelet transforms of spatiotemporal
 variables. This approach also can produce a time- and timescale-specific plot of
 what the pattern of synchrony in the response variable (deer abundance) would look
 like if the drivers of synchrony were the predictors. This predicted synchrony
 plot can then be visually compared to the actual wavelet mean field magnitude
-plot, giving a visual indication of how well synchrony can be accounted for. As part of these procedures, we evaluted model "cross terms", which are the component of  synchrony that is due to variability explained by the drivers at a given location being synchronous with residuals at other locations [@Sheppard2016_aphids;@Sheppard_wavmodel]. Cross terms must be small (< 10%) in order to inferences about synchrony to be valid.  
+plot, giving a visual indication of how well synchrony can be accounted for
+by the predictors included in the model. As part of these procedures, we evaluted 
+model "cross terms", which are the component of  synchrony that is due to variability 
+explained by the drivers at a given location being synchronous with residuals at other 
+locations [@Sheppard2016_aphids;@Sheppard_wavmodel]. Cross terms must be small (< 10%) 
+in order for inferences about synchrony to be valid.  
 
 To quantify the degree to which synchronizing effects are responsible for
-fluctuations in statewide total deer and DVC time series, we adapted the standard
+fluctuations (cycling) in statewide total deer and DVC time series, we adapted the standard
 Fourier surrogate procedure of Theiler [@Theiler1992]. We constructed artificial
 time series data for both variables for each location that had the same spectral
-characteristics are the original data, except that they were not synchronized over
-$3-7$-year timescale band of interest. We accomplished this by randomizing the phases of the Fourier transforms in the surrogate data sets. We summed each set of
-surrogate time series spatially to produce surrogate statewide totals for both
+characteristics as the original data, except that they were not spatially synchronized over
+the $3-7$-year timescale band of interest. We accomplished this by randomizing
+phases of the Fourier transforms of the data sets (SI section \ref{SM-SI:methods}). We summed each set of
+surrogate time series spatially to produce surrogate statewide total time series for both
 deer and DVCs, representing the hypothetical case of no synchrony over $3-7$-year
-timescales. We then compared these surrogate time series to their respective
-actual time series to show the nature of the additional variance in the
-state-total series that was attributable to synchrony. Further details of all datasets
-and data pre-processing and analysis methods are in SI section \ref{SM-SI:methods}.
+timescales. We then compared these surrogate time series to the 
+actual state-total deer abundance and DVC time series to determine to what extent 
+additional variance and cycling intensity in the
+empirical state-total series were attributable to synchrony. Further details of all datasets,
+data pre-processing, and analytic methods are in SI section \ref{SM-SI:methods}.
 
 \textbf{Data availability.} All data are available in the Dryad digital repository XYZ. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
-is accepted, and Tom also to replace XYZ with the repo number when the time comes-->
+is accepted, and Tom also to replace XYZ with the repo number when the time comes, please.-->
 All data and code producing this paper are also archived at `www.github.com/reumandc/TomAnderson_WIdeer`.
-Analyses leading to this paper can be re-run and the paper re-compiled at the touch of a button 
-via the codes in that repository - see the repository `Readme.md` file for instructions.
+Analyses leading to the paper can be re-run and the paper re-compiled at the touch of a button 
+via the codes there - see `Readme.md` for instructions.
 
-#Results
+# Results
 
-The wavelet mean field of county-level deer abundances revealed that the most prominent synchrony feature occurred at $3-7$-year timescales (Fig. \ref{Fig3_DeerSync}A). A
-related technique, the wavelet phasor mean field, demonstrated the strong statistical significance of this phenomenon (Fig.
-\ref{Fig3_DeerSync}B). We therefore focused our analysis on the $3-7$-year timescale band.
+The wavelet mean field of county deer abundance time series revealed that the most prominent 
+synchrony feature occurred at $3-7$-year timescales (Fig. \ref{Fig3_DeerSync}A). The wavelet 
+phasor mean field showed the strong statistical significance of this phenomenon (Fig.
+\ref{Fig3_DeerSync}B). We therefore focused subsequent analysis on the $3-7$-year timescale band.
 <!-- TOM: Moved this bit to methods. Most past analyses of synchrony have used correlation methods that conflate timescales, but recent results show this can hinder detection of -->
 <!-- synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of -->
 <!-- total populations on those timescales (Fig. \ref{Fig1_example}).   -->
+<!--***DAN: Tom says he moved that text to Methods, but I think he must have meant Discussion? Check
+when you get there. It is valuable text, and probably the Discussion is the best place for it.-->
+Wavelet mean field and 
+wavelet phasor mean field magnitude plots for all
+winter weather variables are in 
+Fig. \ref{SM-FigS8_WMFsAndWPMFsAncillary}.
+<!--***DAN: will have to reorder sup mat figures so they are cited in order in light of this
+change in the location of the above text-->
 
-Spatial wavelet coherence, wavelet regression techniques, and a wavelet Moran theorem demonstrated that 
+Spatial wavelet coherence, wavelet regression techniques, and a wavelet Moran theorem (*Methods*) demonstrated that 
 deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. 
 <!-- Tom: moved to Discussion para on timescale specifity. Although it is known that a spatially synchronous environmental driver can induce 
 population synchrony via Moran effects [@Leibhold2004_sync; @Moran1953;  
@@ -490,15 +505,18 @@ identification of Moran drivers
 Their effectiveness is due in part to their capacity to decompose  
 synchrony according to the distinct timescales on which it can occur (Fig.  
 \ref{Fig1_example}G-I). -->
+<!--***DAN: check how this looks in Discussion when you get there-->
 Synchrony in deer abundance was related to winter snow depth 
 (spatial wavelet coherence, $P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Snow Depth" &Tab1_results$Timescale=="3-7"],2)`, 
 Table \ref{Tab1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase 
 difference between abundance and snow depth across $3-7$-year timescales, in units of ${\pi}$ 
-radians, was $\bar{\theta} =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Snow Depth"&Tab1_results$Timescale=="3-7"],2)`; SI Fig. \ref{SM-FigS4_PhaseDiffs}D): deer 
-abundances tended to peak in years of below-average snow. No other weather variables were statistically significantly related with deer abundance (Table \ref{Tab1_CountyCoherenceSummary}). Wavelet mean field and 
+radians, was $\bar{\theta} =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Snow Depth"&Tab1_results$Timescale=="3-7"],2)`; SI Fig. \ref{SM-FigS4_PhaseDiffs}D). Thus deer 
+abundances tended to peak in years of below-average snow. No other local weather variables were statistically significantly related with deer abundance (Table \ref{Tab1_CountyCoherenceSummary}). 
+<!--***DAN: Tom, moving this text because it is distracting here:
+Wavelet mean field and 
 wavelet phasor mean field magnitude plots for all
 winter weather variables are in 
-Fig. \ref{SM-FigS8_WMFsAndWPMFsAncillary}. Deer abundance was also related, with
+Fig. \ref{SM-FigS8_WMFsAndWPMFsAncillary}.--> Deer abundance was also related, with
 approximately quarter-cycle phase shifts, 
 to the multivariate El Ni$\~{n}$o Southern Oscillation index
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)`, $\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)`) and to the Pacific Decadal Oscillation 
@@ -507,29 +525,54 @@ Table \ref{Tab1_CountyCoherenceSummary}, Fig. \ref{SM-FigS4_PhaseDiffs}A,C), bot
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations $\text{MEI}_{\text{w}}$ and
 $\text{PDO}_{\text{w}}$). The two indices were strongly coherent and in-phase with
 each other on $3-7$-year timescales over the period 1981-2016 (wavelet coherence, $P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter MEI" & TabS1_results$Response=="Winter PDO" ],4)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI" & TabS1_results$Response=="Winter PDO" ],2)`, SI Table \ref{SM-TabS1_PairwiseClimVarSpatCoh}). 
-At $5$-yr periodicity, the quarter-cycle phase lags correspond to deer populations
+At $5$-yr periodicity, the quarter-cycle phase lags between deer abundance and $\text{MEI}_{\text{w}}$/$\text{PDO}_{\text{w}}$
+correspond to deer populations
 peaking about `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"]/2,1)` or 
-`r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"]/2,1)` years after mild winters. Applying the wavelet Moran theorem, snow depth, 
+`r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"]/2,1)` years after mild winters. 
+<!--***DAN: Tom, I would like to add something like "...years after mild winters, a delay consistent with
+the generation time of deer" or something like that, but maybe more specific if possible. Can you draft 
+something, please? I cannot remember, 
+is it adult deer that are counted? If so I guess you may expect such a delay based on the time it takes 
+juveniles to mature and be counted? But maybe what is going on is more complex, and one has to take into 
+account the timing of winter and the count and the fact that the winter between t-1 and t gets counted as
+the winter for t. Basically I want to see
+a phrase added justifying this phase delay biologically, if it makes sense to add one based on our understanding. 
+Can you consider adding one, please? Let's discuss more if it would help.-->
+Applying the wavelet Moran theorem (*Methods*), snow depth, 
 $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
 $`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales. 
-See Fig. \ref{Fig3_DeerSync}C for a visual manifestation of this statistical result. None of the other climate indices were related to deer abundance (Table \ref{Tab1_CountyCoherenceSummary}). 
+See Fig. \ref{Fig3_DeerSync}C for a visual manifestation of this statistical result. NAO was not 
+related to deer abundance (Table \ref{Tab1_CountyCoherenceSummary}).
+<!--***DAN: Tom, I changed it from "none of the other" to "NAO" because actually summer MEI was related
+(probably just because it was related to winter MEI).-->
 
 Snow depth and climate index results seemed to indicate distinct or partly distinct phenomena 
-synchronizing deer on different timescales within the $3-7$-year range. Again applying the wavelet
+synchronizing deer on different timescales within the $3-7$-year range. 
+Again applying the wavelet Moran theorem, snow depth explained $40\%$ of synchrony in deer
+abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see also
+USDA district level results, SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict},
+which were similar but had smaller cross terms).
+<!--***DAN: Tom, I replaced the below text with the above text. It seemed confusing and not entirely necessary
+to switch to the USDA-level results and back, given we set a 10% threshold for cross terms and the county-level
+result has cross terms just under that. Keeping the text for now in case we realize a problem
+and want to revert back to the old text.
+Again applying the wavelet
 Moran theorem, snow depth explained $`r round(usda.snowabunSyncExp3_4,0)`\%$ of synchrony in deer
-abundance at $3-4$-year timescales when data were aggregated to USDA districts (SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}). Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
+abundance at $3-4$-year timescales when data were aggregated to USDA districts (SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}). 
+-->
+Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
 to deer synchrony over $4-7$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}, SI Table \ref{SM-TabS2_SummaryDistrict}, Fig. \ref{SM-FigS5_RanksInSurrogs}A). 
-$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively (SI Table \ref{Tab1_CountyCoherenceSummary}). Snow depth did not explain $4-7$-year synchrony: spatial wavelet coherence between snow depth and deer abundance on those timescales was non-significant (Table \ref{Tab1_CountyCoherenceSummary}, \ref{SM-TabS2_SummaryDistrict}).
+$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively (Table \ref{Tab1_CountyCoherenceSummary}). Snow depth did not explain $4-7$-year synchrony: spatial wavelet coherence between snow depth and deer abundance on those timescales was non-significant (Table \ref{Tab1_CountyCoherenceSummary}, \ref{SM-TabS2_SummaryDistrict}).
 
 Deer abundance synchrony was not caused by hunting on $3-7$-year timescales. County-level hunter and deer abundances were not significantly spatially coherent 
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
 (Table \ref{Tab1_CountyCoherenceSummary}, Figs \ref{SM-FigS5_RanksInSurrogs}B, \ref{SM-FigS6_WMFHunter}). However, hunter abundance was significantly related to deer abundance on shorter timescales, around 
-$2-2.5$-years ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],3)`), and were in approximate anti-phase with deer abundance 
+$2-2.5$-years ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],3)`), and was in approximate anti-phase with deer abundance 
 on those timescales ($\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],2)`; 
 Table \ref{Tab1_CountyCoherenceSummary}, Figs \ref{SM-FigS4_PhaseDiffs}G,
 \ref{SM-FigS5_RanksInSurrogs}B). 
 
-<!-- Tom: Moved to discussion: Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic Moran effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year timescales: Moran effects pass from climate to deer to DVCs in a cascading manner, and in this way are ultimately responsible for synchrony of DVCs. -->The wavelet mean field and phasor mean field of DVCs revealed time-and timescale-specific synchrony, and visual patterns were remarkably similar to those shown by deer (compare Figs \ref{Fig3_DeerSync}A,B and \ref{Fig4_DvcSync}A,B). Spatial wavelet coherence showed that deer abundance and DVCs were significantly related 
+<!-- Tom: Moved to discussion: Having attributed the bulk of the synchrony in deer abundance at $3-7$-year timescales to climatic Moran effects, we also found strong coherence between deer abundance and DVCs on $3-7$-year timescales: Moran effects pass from climate to deer to DVCs in a cascading manner, and in this way are ultimately responsible for synchrony of DVCs. -->The wavelet mean field and wavelet phasor mean field magnitude plots for DVCs revealed time-and timescale-specific synchrony, and visual patterns were remarkably similar to those shown by deer (compare Figs \ref{Fig3_DeerSync}A,B and \ref{Fig4_DvcSync}A,B). Spatial wavelet coherence showed that deer abundance and DVCs were significantly related 
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Response=="DVCs" & Tab1_results$Predictor=="Abundance"],3)`, 
 Table \ref{Tab1_CountyCoherenceSummary}) on $3-7$-year timescales, and had a nearly in-phase 
 relationship ($\bar{\theta} =$ `r round(Tab1_results$MeanPhase[Tab1_results$Response=="DVCs" & Tab1_results$Predictor=="Abundance"],2)`, SI Fig. \ref{SM-FigS4_PhaseDiffs}E). 
@@ -565,7 +608,7 @@ million deer likely have considerable consequences for agricultural crop damage
 and hunting success, both of which can have socioeconomic impacts. See 
 SI Appendix for further details on the cycling mechanism.-->
 
-#Discussion
+# Discussion
 
 Overall, we have demonstrated that timescale-specific Moran effects, by 
 synchronizing local dynamics, can cause major cycles in the 
@@ -648,13 +691,22 @@ Conservancy.
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 rownames(Table1)<-NULL
 knitr::kable(Table1,
+             format="latex", align="l",escape=F,
+             digits=4,
+             col.names=c("Predictor","Response","Timescales", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (Table \\ref{SM-TabS2_SummaryDistrict}). Cross-terms are zero for tests involving climate indices because for those tests the same values were used for all locations (\\textit{Methods}). All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
+             booktabs=T)
+```
+<!--***DAN: I am going to monkey with the formatting of this table, so storing an old version in
+case of mishap:
+knitr::kable(Table1,
              format='pandoc',
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (*Methods*) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column *Response* is leading, and a negative mean phase indicates the variable in the column *Predictor* is leading. The *Synchrony explained* and *Average cross terms*  columns, which give percentages, are based on wavelet linear regressions (*Methods*) of the *Response* transforms against the *Predictor* transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (Table \\ref{SM-TabS2_SummaryDistrict}). Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (*Methods*). All values were rounded to display four digits. \\label{Tab1_CountyCoherenceSummary}",
              booktabs=T)
-```
-
+             -->
+             
 \newpage
 
 \begin{figure}[!h]  
@@ -677,7 +729,7 @@ scenarios 2 and 3 had weak and not visually obvious timescale-specific synchrony
 Populations were modelled as $p^{(s)}_{i}(t+1)=\rho p^{(s)}_i (t)+e^{(s)}_i(t)$ using $\rho=0.4$
 for scenarios $s=1,2,3$, and are displayed (D-F) for locations 1-15.
 Although synchrony is again weak and 
-cannot readily be detected visually, wavelet mean field magnitide plots (Methods)
+cannot readily be detected visually, wavelet mean field magnitide plots (*Methods*)
 revealed that synchrony was present, in scenarios 2 and 3, on 3- and 10-year
 timescales (G-I); on such plots, higher values mean greater synchrony at the given 
 time on the given timescale. Total populations (J-L) show clear cycling in scenarios 2 and 3,
@@ -712,18 +764,13 @@ study.\label{Fig2_Timeseries}}
 \caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes, and predicted synchrony (C) 
 of deer abundance (\textit{Methods}). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) 
 at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at 
-$P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were the focus of statistical 
-analysis, $3-7$-years. Colors on (C) show synchrony in deer abundance predicted from a wavelet model using 
-snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors (\textit{Methods}), while contours in (C) show the 
+$P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were the focus of subsequent statistical 
+analysis, $3-7$-years. Colors on (C) show synchrony in deer abundance predicted from a wavelet model (\textit{Methods}) using 
+snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours in (C) show the 
 actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a 
-visual indication of the statistical result that climatic Moran effects explain deer synchrony.
+visual indication of the statistical result (see \emph{Results}) that climatic Moran effects explain deer synchrony.
 \label{Fig3_DeerSync}}
 \end{figure}
-<!--***DAN: Tom, the label for this used to be Fig2_DeerSync but now it has been changed to
-Fig3_DeerSync. However, I found at least one citation to the old label that now does not
-work (I fixed it). This is why we do not include numbers in figure labels. It defeats the
-purpose of having labels and automatic numbering! Henceforth please use labels without 
-numbers that reflect the content of the figure/table/whatever.-->
 
 \newpage
 
