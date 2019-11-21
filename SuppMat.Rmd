@@ -888,7 +888,7 @@ state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$)
 
 \newpage
 
-# Supplementary figures
+# Supplementary figures and tables
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/TheoryExample1.png}
@@ -1071,13 +1071,11 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 \newpage
 \clearpage
 
-# Supplementary tables
-
 ```{r TableS1,echo=F,results='markup'}
 rownames(TableS1)<-NULL
 knitr::kable(TableS1,
              col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
-             format='latex',
+             format='latex',align="l",escape=F,
              digits=4,
              caption.short="Wavelet coherence tests between climate indices",
              caption = "$P$-values of wavelet coherence tests, and associated mean phase differences for significant and marginally significant tests, between climate indices. Values are over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS1_PairwiseClimVarSpatCoh}",
@@ -1090,7 +1088,7 @@ knitr::kable(TableS1,
 ```{r TableS2,echo=F,results='markup'}
 rownames(TableS2)<-NULL
 knitr::kable(TableS2,
-             format='latex',
+             format='latex',align="l",escape=F,
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption.short="Summary of USDA district-level coherence test results",
