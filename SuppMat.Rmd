@@ -116,6 +116,10 @@ abunmodelXterms<-readRDS(file="Results/abunmodelXterms.rds")
 usda.abunmodelSyncExp<-readRDS(file="Results/usda.abunmodelSyncExp.rds")
 usda.abunmodelXterms<-readRDS(file="Results/usda.abunmodelXterms.rds")
 gunhunter_percent<-round(100*mean(state.totals$GunHunters[state.totals$Year>1980]/(state.totals$GunHunters[state.totals$Year>1980]+state.totals$BowHunters[state.totals$Year>1980])),0)
+
+usda.snowabunSyncExp3_4<-TabS2_results$SynchronyExplained[TabS2_results$Response=="Abundance" &  TabS2_results$Predictor=="Snow Depth" & TabS2_results$Timescale=="3-4"]
+abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)
+abunwpdoSyncExp47<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="4-7"]
 ```
 
 <!--Save workspace. This is here because the Methods used to be in the sup mat,
@@ -821,6 +825,30 @@ costs may exceed US\$22M.
 
 # Supplementary results \label{SI:results}
 
+\textbf{Additional county results}. The main text focuses on county-level results,
+whereas this supplementary section focuses on district-level and statewide
+results. Nevertheless a few ancillary county-level results are also reported here, as follows. 
+Using county-level data, snow depth and climate index results seemed to 
+indicate distinct or partly distinct phenomena 
+synchronizing deer on different timescales within the $3-7$-year range. 
+Applying the wavelet Moran theorem, snow depth explained $40\%$ of synchrony in deer
+abundance at $3-4$-year timescales (Table \ref{MT-Tab1_CountyCoherenceSummary}; see also
+USDA district level results, below and Table \ref{TabS2_SummaryDistrict},
+which were similar but had smaller cross terms).
+<!--***DAN: Tom, I replaced the below text with the above text. It seemed confusing and not entirely necessary
+to switch to the USDA-level results and back, given we set a 10% threshold for cross terms and the county-level
+result has cross terms just under that. Keeping the old text for now in case we realize a problem
+and want to revert back to the old text.
+Again applying the wavelet
+Moran theorem, snow depth explained $`r round(usda.snowabunSyncExp3_4,0)`\%$ of synchrony in deer
+abundance at $3-4$-year timescales when data were aggregated to USDA districts (SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}). 
+-->
+Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
+to deer synchrony over $4-7$-year timescales (Table \ref{MT-Tab1_CountyCoherenceSummary}, see also 
+Fig. \ref{FigS5_RanksInSurrogs}A and SI Table \ref{TabS2_SummaryDistrict}). 
+$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively (Table \ref{MT-Tab1_CountyCoherenceSummary}). Snow depth did not explain $4-7$-year synchrony: spatial wavelet coherence between snow depth and deer abundance on those timescales was not significant (Table \ref{MT-Tab1_CountyCoherenceSummary}, \ref{TabS2_SummaryDistrict}). The timescale
+bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{FigS5_RanksInSurrogs}.
+
 \textbf{USDA district results.} Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$ year 
 timescales, similar to the county-level analysis 
@@ -948,7 +976,7 @@ structure of synchrony cannot be detected with correlation coefficients, which a
 In practice, real population and environmental signals are broadband, and exact cancellation
 is unlikely, but asynchrony at some frequencies can strongly conceal important
 synchrony at other frequencies. Panels e-k demonstrate this concealment, using artificial data,
-and also show how the wavelet mean field detects time- and timescale-specific synchrony.
+and also show how the wavelet mean field magnitude detects time- and timescale-specific synchrony.
 Each of 11 artificial time series were constructed as the sum of: 1) a single common
 signal of amplitude 1 that changes its oscillatory period at $t=50$ from 10 years
 to 5 years (e); 2) oscillations
@@ -964,7 +992,7 @@ showed clear color bands at 10-year period for $t<50$ and 5-year period for
 $t>50$. The wavelet mean field magnitude displays strength of
 synchrony as a function of timescale
 of dynamics and time, here with red indicating synchrony and blue asynchrony.
-Wavelet phasor mean fields provide plots similar to (k) but with values
+Wavelet phasor mean fields provide magnitude plots similar to (k) but with values
 between 0 and 1 that indicate the strength of phase synchrony and that can be
 straightforwardly significance tested as described by Sheppard \emph{et al.} (2019). \label{PedagogFigWMF}}
 \end{figure}
