@@ -519,15 +519,6 @@ At $5$-yr periodicity, the quarter-cycle phase lags between deer abundance and $
 correspond to deer populations
 peaking about `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"]/2,1)` or 
 `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"]/2,1)` years after mild winters. 
-<!--***DAN: Tom, I would like to add something like "...years after mild winters, a delay consistent with
-the generation time of deer" or something like that, but maybe more specific if possible. Can you draft 
-something, please? I cannot remember, 
-is it adult deer that are counted? If so I guess you may expect such a delay based on the time it takes 
-juveniles to mature and be counted? But maybe what is going on is more complex, and one has to take into 
-account the timing of winter and the count and the fact that the winter between t-1 and t gets counted as
-the winter for t. Basically I want to see
-a phrase added justifying this phase delay biologically, if it makes sense to add one based on our understanding. 
-Can you consider adding one, please? Let's discuss more if it would help.-->
 Applying the wavelet Moran theorem (*Methods*), snow depth, 
 $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
 $`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales. 
