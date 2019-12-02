@@ -134,7 +134,7 @@ save.image(file="WholeWorkspace.RData")
 
 # Theory \label{SI:theory}
 
-We start by specifying the general model we consider. 
+\textbf{Model and main theorem.} We start by specifying the general model we consider. 
 The model is similar to those used in the supplementary information of 
 @Desharnais2018, but in
 contrast to their models, our model
@@ -154,10 +154,10 @@ is assumed to be a second-order stationary stochastic process with $\E(\epsilon_
 for all $i$. Without loss of generality, $c_n \neq 0$ and $q_m \neq 0$. We also assume
 the complex roots of the polynomial $1-c_1 z - c_2 - \cdots - c_n z^n=0$
 have modulus greater than one. This assumption is a necessary and sufficient condition 
-for stability of the equilibrium of the general model of which \ref{eq:mainmodel}
+for stability of the equilibrium of the general model of which (\ref{eq:mainmodel})
 is a linearization (@Desharnais2018, their supplementary information section 1.2) 
 and also for the existence of a stationary
-stochastic process that is a solution of \ref{eq:mainmodel} 
+stochastic process that is a solution of (\ref{eq:mainmodel}) 
 [@Desharnais2018; @Brillinger2001]. 
 We denote by $x_{\text{tot}}(t)$ the total population $\sum_{i=1}^N x_i(t)$,
 which has the same characteristics of variability through time 
@@ -195,12 +195,13 @@ coefficients of the population model. Then
 $S_{\text{\emph{tot}}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
 \label{prop:mainthm}
 \end{thm}
-\noindent The proof is in SI section \ref{sect:mainproof}.
+\noindent The proof is in section \ref{sect:mainproof}.
 Thus the power spectrum of the total population, which tells us whether and how the 
 total population time series cycles, is influenced by three terms.
 First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects the nature of
 dynamics intrinsic to the population ($\gamma$ and $\lambda$ are determined by
-the model coefficients $c_1,\ldots,c_n$ and $q_0,\ldots,q_m$). Second,
+the model coefficients $c_1,\ldots,c_n$ and $q_0,\ldots,q_m$). This is the quantity 
+denoted $F_{\text{popdyn}}(f)$ in the main text. Second,
 $\sum_i S_{\epsilon_{i}\epsilon_{i}}$, the  sum of the power
 spectra of the environmental noise time series, which reflects the extent to which the noise
 itself may be periodic. And third, $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$,
@@ -214,14 +215,23 @@ This suggests that, when $N$ is large enough, timescale specificity of
 synchrony of noise across locations ($N^2-N$ terms) will tend to be more important 
 for $S_{\text{tot}}$ than the nature of the periodicity of the noise ($N$ terms).
 Of course, whether this intuition is actually true depends on the specific values of 
-the terms in each sum. But if N is, say, $70$ (there are $70$ counties in Wisconsin
-for which deer data were available), then $4830=N^2-N \gg N=70$, so $N^2-N$ is larger
+the terms in each sum. But if N is, say, $71$ (there are $71$ counties in Wisconsin
+for which deer data were available), then $4970=N^2-N \gg N=71$, so $N^2-N$ is larger
 than $N$ by around 2 orders of magnitude. Thus the term
 $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$ will make a much bigger contribution
 to $S_{\text{tot}}$ than will the term $\sum_i S_{\epsilon_{i}\epsilon_{i}}$ unless
 cospectra are correspondingly smaller than spectra, on average, by around 2 orders
 of magnitude. The following three theoretical examples make clear the overwhelming importance 
 of synchrony for cycling of the spatial-total population.
+
+<!--***DAN: Revisit the presentation of these examples to try to make it clearer
+how they instantiate the ideas-->
+\textbf{Example 1.} For theoretical example 1, we constrasted a case for which
+environmental noise was asynchronous with a case for which environmental noise
+had timescale-specific synchrony to show that, in the latter case, cycling
+of the regional-total population was much more noticable. The nature
+of population dynamics and the local statistical characteristics of environmental 
+noise were kept fixed across the two cases.
 
 For theoretical example 1, we considered $N=70$ sampling locations (likewise
 for subsequent examples).
@@ -248,9 +258,9 @@ noise spectra and estimates based on simulations are in Fig.
 \ref{TheoryExample1}A-B; likewise, for cospectra, see Fig. \ref{TheoryExample1}C-D.
 
 For cases 1 and 2 of theoretical example 1 and for all cases of all
-subsequent theoretical examples, population dynamics was governed
+subsequent theoretical examples, population dynamics were governed
 in all sampling locations by an AR(1) process, i.e., $n=1$ and $m=0$ in 
-equation \ref{eq:mainmodel}. In all examples and cases we used $c_1=0.15$.
+equation (\ref{eq:mainmodel}). In all examples and cases we used $c_1=0.15$.
 An AR(1) population model ensures that populations are not intrinsically 
 cyclic in any sense, so any periodicity that arises comes ultimately
 from the environmental noise and its synchrony.
@@ -271,7 +281,8 @@ synchrony between noise time series in different locations
 ($(N^2-N)\rho$). Unless $\rho$ is very small, the contribution of
 synchrony will be much larger. In case 1, for which we used 
 $\rho=0.8$, the contribution of synchrony to $S_{\text{tot}}$
-dwarfs the contribution due directly to periodicity of the noise.
+dwarfs the contribution due directly to periodicity of the noise
+($N=70$ and $(N^2-N)\rho=3864$).
 In case 2, for which we used $\rho=0$, there is no synchrony, and as
 a result the total power of $w_{\text{tot}}$ (equal to the integral under
 $S_{\text{tot}}$) is very small. $S_{\text{tot}}$ is plotted for
@@ -286,6 +297,14 @@ and covariance matrix consisting of entries $\rho$ in the off diagonal and $1$
 in the diagonal. Let $\epsilon_i(t)=c_1 \epsilon_i(t-1) + c_2 \epsilon_i(t-2)+\delta_i(t)$.
 Theorem \ref{thm:lem} in SI section \ref{sect:mainproof} provides the spectra
 and cross spectra of the noise process $\epsilon$ which are stated above.
+
+\textbf{Example 2.} For theoretical example 2, we contrasted a case in which
+the synchrony of environmental noise was not timescale specific, with a case
+for which it was, to show that timescale specificity of environmental synchrony
+is what produces cycling in the regional-total population. The nature
+of population dynamics and the local statistical characteristics of environmental 
+noise were again kept fixed across the two cases, as was the total (across
+all timescales) synchrony of environmental noise.
 
 For theoretical example 2, the environmental noise processes 
 $\epsilon_i(t)$ were constructed so that the power spectrum
@@ -312,7 +331,7 @@ $\int_{-1/2}^{1/2} \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df
 = \int_{-1/2}^{1/2} 0.8 df = 0.8$. Thus, for case 2,
 $\rho_1 = \frac{0.8}{\int_{-1/2}^{1/2} \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 df}$. 
 This was calculated numerically, and equals approximately $0.64$.
-Thus synchrony has the same overall strength (location-to-location covariances
+Thus environmental synchrony has the same overall strength (location-to-location covariances
 were the same) in the two cases, but synchrony was specific to timescales around 4 sampling
 intervals for case 2 and was equal across all timescales for case 1.
 Analytically calculated 
@@ -332,7 +351,7 @@ S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
 \noindent Because $N^2-N \gg N$, the dominant term inside the hard brackets is the first term,
 which is not peaked as a fnction of frequency. So $S_{\text{tot}}$ will not be peaked, i.e., in case 1
 the total population is non-periodic. Recall that case 1 is the case 
-in which synchrony was not timescale specific. In case 2, equation \ref{eq:stotexamp2}
+in which synchrony was not timescale specific. In case 2, equation (\ref{eq:stotexamp2})
 becomes 
 \begin{equation}
 S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
@@ -342,7 +361,7 @@ S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
 frequency, so $S_{\text{tot}}$ will 
 be peaked, i.e., the total population is periodic. Recall that case 2
 is the case in which synchrony was timescale specific. 
-So it is the peakedness (or not) or synchrony that influences whether 
+So it is the peakedness (or not) of synchrony that influences whether 
 $S_{\text{tot}}$ is peaked (or not) and therefore whether the total population shows 
 cyclic tendencies.
 $S_{\text{tot}}$ is plotted for
@@ -357,6 +376,15 @@ in the diagonal. Let $\epsilon^{(1)}_i(t)=c_1 \epsilon^{(1)}_i(t-1) + c_2 \epsil
 Let $\epsilon^{(2)}(t) = (\epsilon^{(2)}_1(t),\ldots,\epsilon^{(2)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
 and covariance matrix consisting of entries $\rho_2$ in the off diagonal and $1$
 in the diagonal. The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
+
+\textbf{Example 3.} For theoretical example 3, we contrasted a case in 
+which the synchrony of environmental noise was specific to one timescale band
+with a case in which the synchrony of environmental noise was specific to
+another timescale band, to show that the cycling of the regional total
+population occurs on the same timescale band as the synchrony. The nature
+of population dynamics and the local statistical characteristics of environmental 
+noise were again kept fixed across the two cases, as was the total (across
+all timescales) synchrony of environmental noise.
 
 For theoretical example 3, the environmental noise processes 
 $\epsilon_i(t)$ were constructed so that 
@@ -395,7 +423,7 @@ N\left[ \left| \frac{1}{1-c_1^{(1)}\mu-c_2^{(1)}\mu^2} \right|^2
 in $w_{\text{tot}}$ represented by the second term depends on the values of $\rho^{(1)}$ and
 $\rho^{(2)}$ in a straightforward way. The peak that manifests in
 $S_{\text{tot}}$ is the peak of the synchronous one of the two components
-of noise; the non-synchronous noise components has very little influence
+of noise; the non-synchronous noise component has very little influence
 on $S_{\text{tot}}$. $S_{\text{tot}}$ is plotted for
 cases 1 and 2, respectively, in Fig. \ref{TheoryExample3}E-F. The differing
 periodicities of the total population in the two cases can also be seen 
@@ -425,38 +453,37 @@ Using notation defined previously, $S_{ww}=\left| \frac{\gamma}{1-\lambda} \righ
 S_{\epsilon \epsilon}$.
 \label{thm:lem}
 \end{thm}
-\begin{proof}
-The model \ref{eq:mainmodel} for $i=1,\ldots,N$ can be rewritten as 
+
+\noindent \emph{Proof.} The model (\ref{eq:mainmodel}) for $i=1,\ldots,N$ can be rewritten as 
 \begin{equation}
-\mathcal{C} w_{ij} = \mathcal{Q} \epsilon_{ij} \label{eq:linfiltmod}
+\mathcal{C} w = \mathcal{Q} \epsilon \label{eq:linfiltmod}
 \end{equation}
-for the linear filters
+\noindent for the linear filters
 \begin{align}
 \mathcal{C} &= I-c_1 IB - c_2 IB^2 - \cdots - c_n IB^n \\
 \mathcal{Q} &= q_0 I + q_1 IB + \cdots + q_m IB^m,
 \end{align}
-where $I$ is the $N \times N$ identity matrix. 
+\noindent where $I$ is the $N \times N$ identity matrix. 
 Here $B$ is the backshift operator,
 $B^{l}\delta(t)=\delta(t-l)$, for a stochastic process $\delta(t)$.
-See Reinsell [-@Reinsel1997], Shumway [-@Shumway2000], and Brillinger and Stoffer [-@Brillinger2001]
+See @Reinsel1997, @Shumway2000, and @Brillinger2001
 for background on linear filters. Computing the spectral matrices of both
-sides of \ref{eq:linfiltmod} gives
+sides of (\ref{eq:linfiltmod}) gives
 \begin{equation}
 T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\epsilon}
 \overline{T(\mathcal{Q})}
 \end{equation}
-where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
+\noindent where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
 are the transfer function matrices of the linear filters
 $\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
-section 1.1.3 of Reinsel [-@Reinsel1997]. But 
+section 1.1.3 of @Reinsel1997). But 
 $T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
-(section 1.1.3 of Reinsel [-@Reinsel1997]), so
+(section 1.1.3 of @Reinsel1997), so
 \begin{align}
 S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
 &= \left| \frac{\gamma}{1-\lambda} \right|^2 S_{\epsilon\epsilon},
 \end{align}
-as was to be demonstrated.
-\end{proof}
+\noindent as was to be demonstrated. $\blacksquare$
 
 Now applying this result, we have
 \begin{align}
@@ -470,8 +497,15 @@ theorem \ref{thm:lem}.
 # Supplementary methods \label{SI:methods}
 
 \textbf{Deer, DVC, and hunter data.}
-We calculated deer abundance estimates based on data from deer management units provided by the Wisconsin Department of Natural Resources (WIDNR) spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (Fig. \ref{MT-Fig2_Timeseries}) for `r length(unique(dat$COUNTY_NAM))` counties. From 1981-2013, deer abundance was estimated for deer management units 
-(DMUs, $N=$ 101-139 depending on the year). For most years and DMUs, 
+For `r length(unique(dat$COUNTY_NAM))` counties, we calculated deer abundance estimates 
+spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (main text Fig. 
+\ref{MT-Fig2_Timeseries}). These time series were based on 
+data from "deer management units," provided by 
+the Wisconsin Department of Natural Resources (WIDNR). Deer management units 
+(DMUs) are regions which partition the state,
+determined by the WIDNR for the purpose of deer population assessment and management
+($N=$ 101-139 depending on the year).
+From 1981-2013, deer abundance was estimated by the WIDNR for DMUs. For most years and DMUs, 
 abundance was estimated using a sex-age-kill (SAK) model, with aerial surveys or 
 accounting models used for a smaller number of years and DMUs [@widnr2001]. 
 In $2014$, DMU boundaries were changed to match counties ($N=72$). Because of this, and because other spatial variables (e.g., DVCs, climate) were gathered at the county level,
@@ -492,8 +526,9 @@ the estimated abundances of the county's intersections with DMUs.
 We dropped one county (Menominee) due to incomplete data for most 
 variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
 
-We also calculated estimated hunter abundance also from data from WINDR for each county for the years 1992-`r maxyear`
-(Fig. \ref{MT-Fig2_Timeseries}); these data constituted an index of the estimated 
+We also calculated estimated hunter abundance, also from data from the WINDR, 
+for each county for the years 1992-`r maxyear`
+(main text Fig. \ref{MT-Fig2_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
 hunting season [@widnr2001]. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI
 each year over the years of this study. We estimated hunter abundances for counties
@@ -503,7 +538,7 @@ the hunter density data.
 
 We obtained estimates of DVCs for each county, spanning the 
 years 1987-`r maxyear`, from the WI Department 
-of Transportation (WIDOT; Fig. \ref{MT-Fig2_Timeseries}). These data reflect the number of police-investigated DVCs; they are an 
+of Transportation (WIDOT; main text Fig. \ref{MT-Fig2_Timeseries}). These data reflect the number of police-investigated DVCs; they are an 
 index of DVCs, as opposed to an absolute number of incidents, 
 since not all DVCs are reported. In Michigan, nearly half of 
 DVCs went unreported to the police or insurance companies 
@@ -517,9 +552,9 @@ However, features of the data such as these could only have obscured
 and could not have artefactually generated the strongly 
 significant spatial wavelet coherence relationships we report between 
 DVCs and deer abundance. Shortcomings of the DVC data added 
-noise to the DVC data and likely obscured the relationship 
+noise and likely obscured the relationship 
 with deer abundance, so that if better DVC data were available 
-this relationship may have been even stronger than reported. 
+this relationship would likely have been even stronger than reported. 
 We also obtained traffic volume estimates (millions of miles 
 driven) for each county spanning the years 1988-`r maxyear` from the 
 WIDOT, to control for traffic in our analysis of DVCs.
@@ -531,8 +566,8 @@ National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.n
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
 to $\text{Mar}_t$) and across stations within a county to produce 
 annual time series of winter weather by county which were used in 
-all subsequent analyses (Fig. \ref{MT-Fig2_Timeseries}). The number of weather stations per county and data collected at each station 
-varied, resulting in different spatial extents for each variable 
+all subsequent analyses (main text Fig. \ref{MT-Fig2_Timeseries}). The number of weather stations per county and data collected at each station 
+varied, resulting in different spatial extents of time series available for for each variable 
 in order to retain the full temporal extent: Tmin, $N=$ `r dim(winter.clim$Tmin[!is.na(rowMeans(winter.clim$Tmin)),])[1]`
 counties; Tmax, $N=$ `r dim(winter.clim$Tmax[!is.na(rowMeans(winter.clim$Tmax)),])[1]`; precipitation, $N=$ `r dim(winter.clim$Prcp[!is.na(rowMeans(winter.clim$Prcp)),])[1]`; snow depth, $N=$ `r dim(winter.clim$Snwd[!is.na(rowMeans(winter.clim$Snwd)),])[1]`. 
 We also calculated a Winter Severity Index (WSI, $N=$ `r dim(winter.clim$WSI[!is.na(rowMeans(winter.clim$WSI)),])[1]`), 
@@ -546,9 +581,9 @@ Decadal Oscillation (PDO). All of these have been shown to
 influence large ungulate population dynamics in the north central 
 USA [@Post1998_popgrowth;@Post2004_greenland]. 
 We averaged monthly values across the 
-approximate growing season (Apr-Nov), and the winter 
+approximate growing season (Apr-Nov), and separately across the winter 
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
-(Fig. \ref{MT-Fig2_Timeseries}). We used a total of 11 weather and 
+(main text Fig. \ref{MT-Fig2_Timeseries}). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
 snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. 
@@ -562,18 +597,21 @@ district area $\pm$ SD = `r round(mean(usda.centroid$Area_km2),0)` $\pm$ `r roun
 and statewide (Fig. \ref{FigS1_map}). Analyses at three spatial scales 
 were performed because the SAK model used by the WIDNR to estimate deer 
 abundance for each management unit has been criticized as less accurate 
-at smaller spatial scales [@Millspaugh2009]. The bias in abundance 
-estimates previously reported [@Millspaugh2009] may have been overestimated, as more recent analyses 
+at smaller spatial scales [@Millspaugh2009]. The prior criticism of the 
+SAK model [@Millspaugh2009] may have been overstated, as more recent analyses 
+within the WIDNR 
+<!--***DAN: Tom, I added "within the WIDNR" because we have no reference for these
+"more recent analyses". Can we get a reference, or something more concrete than
+what we currently have? Even a white paper?-->
 suggest the uncertainty in SAK estimates is substantially less 
-($\pm 20\%$ error rates). 
+($\pm 20\%$ error rates) than what was reported there. 
 In addition, the criticism of the SAK [@Millspaugh2009] was based 
 on a model that did not match perfectly with practices of the WIDNR. 
 Nevertheless, 
 to ensure our results were not biased, we analyzed 
 synchrony on multiple spatial scales including two larger scales 
 (districts and statewide) for which SAK data have not been criticized. 
-USDA district data were 
-produced as the sum or 
+USDA district data were produced as the sum or 
 average of county-level variables, as districts were always conglomerates 
 of counties (Fig. \ref{FigS1_map}). 
 Statewide analysis used state total or average time series for each 
@@ -581,11 +619,28 @@ variable. In general, results remained unchanged in their main substance using d
 aggregated to larger spatial scales (Table \ref{TabS2_SummaryDistrict}, 
 Fig. \ref{FigS7_WMFAndPredictionsDistricts}), suggesting results for counties were not 
 meaningfully influenced by possible inaccuracies in SAK abundance estimation 
-procedures at the county level.
+procedures at the county level. We also emphasize that inaccuracies 
+in the estimation of deer abundances may have obscured the patterns of
+timescale-specific synchrony and the spatial wavelet coherence and 
+wavelet linear models we 
+report, but could not reasonably have artefactually created them.
+<!--***DAN: Tom, please make sure you are OK with the sentence above, 
+which I added. SAK inaccuracies should have added noise to the data,
+but could not really have been what was responsible for timescale-specific
+synchrony, since SAK inaccuracies could not reasonably have been periodic 
+in nature. Similarly, it seems highly unlikely that SAK inaccuracies could
+have arteefactually produced the spatial wavelet coherence and wavelet linear
+model results, for similar reasons.-->
 
-We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial wavelet coherence and wavelet linear regression testing procedure described below. This process also included linear detrending (and subtracting the mean) to remove any long-term trends that might otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
-variances were also standardized to 1. These steps were done via the `cleandat` function in the `wsyn` package for the R programming language [@Rstats2018].
-<!--***DAN: Tom, please check and fix how this references comes out, which is wonky - the callout is Team (2018)! I also think we should be citing the package, here, not R - see my comment in the
+We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal 
+distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial 
+wavelet coherence and wavelet linear regression testing procedures described below. This process also 
+included linear detrending (and subtracting the mean) to remove any long-term trends that might 
+otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
+variances were also standardized to 1. These steps were done via the `cleandat` function in the 
+`wsyn` package for the R programming language [@Rstats2018].
+<!--***DAN: Tom, please check and fix how this references comes out, which is wonky - the callout is 
+Team (2018)! I also think we should be citing the package, here, not R - see my comment in the
 main text-->
 
 \textbf{The wavelet mean field and wavelet phasor mean field.} We assessed the strength of synchrony 
@@ -612,24 +667,32 @@ on phase synchronization but also on the
 tendency of oscillatory components on any 
 given timescale to have magnitudes which are 
 correlated through time across the sampling 
-locations. Both quantities are based on complex Morlet 
+locations (i.e., oscillations on a given timescale
+tend to all be strong, respectively, weak, at the same times). 
+Both the wavelet phasor and wavelet mean fields are based 
+on complex Morlet 
 wavelet transforms of each input time series. 
+Wavelet mean fields were computed using the
+function `wmf` and wavelet phasor mean fields were computed 
+using the function `wpmf` in the `wsyn` package.
+<!--***DAN: Tom, please insert an formal citation to the package-->
+
 Statistical significance of the wavelet phasor mean 
 field, compared to a null hypothesis of no phase 
 synchrony, can be assessed for each combination of 
 time and timescale. For any given time and 
 timescale, significance testing compares the degree 
 of phase consistency between sampling locations for 
-real time series to a null hypothesis of random 
-phases. If real phase consistency was greater than 
+the empirical time series to a null hypothesis of random 
+phases. If empirical phase consistency was greater than 
 that of $99.9\%$ of sets of random phases 
-($P < 0.001$, one-tailed test, see contours on, e.g., Figs \ref{MT-Fig3_DeerSync}B and \ref{MT-Fig4_DvcSync}B), synchrony was 
+($P < 0.001$, one-tailed test, see contours on, e.g., main text 
+Figs \ref{MT-Fig3_DeerSync}B and \ref{MT-Fig4_DvcSync}B), synchrony was 
 deemed significant and important 
 [@Sheppard_wavmodel]. Wavelet mean field and 
 wavelet phasor mean field magnitude plots for 
 winter weather variables are in 
-Fig. \ref{FigS8_WMFsAndWPMFsAncillary}. Wavelet mean fields were computed using the
-function `wmf` and wavelet phasor mean fields were computed using the function `wpmf` in the `wsyn` package.
+Fig. \ref{FigS8_WMFsAndWPMFsAncillary}.
 
 All plots based on wavelet transforms are "scalloped", i.e., values corresponding to longer timescales and times closer to the start or end of available data are not plotted. This is because the wavelet transform is based on convolutions of wavelet functions with the timeseries being transformed. Convolutions for which a substantial portion of the wavelet function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is standard practice.
 
@@ -662,9 +725,18 @@ quantity calculated for `r 0.95*nsurrogs` of `r nsurrogs`
 surrogate data sets representing the null hypothesis of no relationship between variables. Ranks of actual spatial wavelet
 coherences in surrogate spatial wavelet coherences were 
 also plotted as a function of timescale 
-(Fig. \ref{FigS4_PhaseDiffs}). Spatial wavelet coherences were computed and results were processed using the `coh`, `bandtest`, `plotrank`, `plotphase` and related functions in the `wsyn` package. The fast algorithm of  @Sheppard2017_surrogates for assessing the statistical significance of spatial wavelet coherence was used.
+(Fig. \ref{FigS5_RanksInSurrogs}). Spatial wavelet coherences were computed 
+and results were processed using the `coh`, `bandtest`, `plotrank`, 
+`plotphase` and related functions in the `wsyn` package. The fast 
+algorithm of  @Sheppard2017_surrogates for assessing the statistical 
+significance of spatial wavelet coherence was used.
 
-Correlation-based approaches have been standard practice in synchrony studies [@Buonaccorsi2001], but these methods assume in-phase relationships. Correlation-based approaches also conflate timescales, and recent results show this can hinder detection of synchronous phenomena by obscuring important synchrony on some timescales with asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic dynamics of total populations on those timescales (Fig. \ref{MT-Fig1_example}). 
+Correlation-based approaches have been standard practice in synchrony studies [@Buonaccorsi2001], but 
+these methods assume in-phase relationships. Correlation-based approaches also conflate timescales, 
+and recent results show this can hinder detection of synchronous phenomena by obscuring important 
+synchrony on some timescales with asynchronous or noisy dynamics on other timescales 
+[@Sheppard2016_aphids]. Moreover, synchrony must be specific to certain timescales to produce cyclic 
+dynamics of total populations on those timescales (main text Fig. \ref{MT-Fig1_example}). 
 In contrast, spatial wavelet coherence 
 allows for any kind of phase relationship and 
 provides as part of its output the average phase difference that occurred between two variables. It is also  timescale-specific. Therefore, when two variables had significant 
@@ -699,12 +771,15 @@ coherence between deer abundances and DVCs we
 present in the main text is likewise probably 
 indicative of greater deer abundances resulting in 
 more DVCs. DVCs are too uncommon to meaningfully 
-influence deer abundance (Fig. \ref{MT-Fig2_Timeseries}), 
+influence deer abundance (main text Fig. \ref{MT-Fig2_Timeseries}), 
 and the 
 in-phase relationship our analyses revealed  between 
 deer abundances and DVCs on $3-7$-year timescales 
 is more consistent with deer 
-dynamics driving DVC dynamics than the reverse. 
+dynamics driving DVC dynamics than the reverse. The reverse causation, if it occcurred,
+would have produced an anti-phase relationship between these variables, with many DVCs
+in a year corresponding to reduced deer abundance that year; such a 
+relationship was not observed. 
 
 We used spatial wavelet coherence to test 
 five weather variables (average winter Tmin, 
@@ -736,7 +811,7 @@ the wavelet Moran theorem of @Sheppard2016_aphids.
 As part of this procedure, we also calculated the 
 average "cross terms" of @Sheppard2016_aphids over 
 the timescale band of interest (see supplementary 
-files of ref @Sheppard2016_aphids, equation 22), again following the 
+files of @Sheppard2016_aphids, equation 22), again following the 
 procedures described in that reference. The precise 
 mathematical meaning of cross terms is explained by @Sheppard2016_aphids; for operational purposes, they 
 provide a test of whether modelling assumptions of @Sheppard2016_aphids are sufficiently met to use the 
@@ -754,7 +829,19 @@ model describing the relationship between a
 response variable and multiple predictor variables; 
 but in contrast to standard regression, response 
 and predictor variables are 
-wavelet transforms of spatiotemporal variables. The approach gives several outputs which we use. First, the approach gives the fraction of synchrony (in our case, $`r round(abunmodelSyncExp,0)`\%$ for $3-7$-year timescales) in the response variable (county-level deer abundance) that can be explained by the synchrony of the predictors (snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$). The validity of this result is again subject to whether cross terms were small (less than $10\%$ of the fraction of synchrony explained). They were small, $`r round(abunmodelXterms,0)`\%$, for our model. The approach also gives a "predicted synchrony" plot (colors in Fig. \ref{MT-Fig3_DeerSync}C), which is a function of time and timescale. The plot shows what the pattern of synchrony in the response variable (deer abundance) would look like if the only drivers of synchrony were the predictor variables. Predicted synchrony plots can be compared directly to the wavelet mean field magnitude plot of the response variable, similarity of the two plots giving a visual indication of whether the predictors in the model adequately explain synchrony in the response variable. The function `wlm` and related functions from `wsyn` implement these tools.
+wavelet transforms of spatiotemporal variables. The approach gives several outputs which we use. 
+First, the approach gives the fraction of synchrony (in our case, $`r round(abunmodelSyncExp,0)`\%$ 
+for $3-7$-year timescales) in the response variable (county-level deer abundance) that can be 
+explained by the synchrony of the predictors (snow depth, $\text{MEI}_{\text{w}}$, and 
+$\text{PDO}_{\text{w}}$). The validity of this result is again subject to whether cross terms were 
+small (less than $10\%$ of the fraction of synchrony explained). They were small, 
+$`r round(abunmodelXterms,0)`\%$, for our model. The approach also gives a "predicted synchrony" plot 
+(colors in main text Fig. \ref{MT-Fig3_DeerSync}C), which is a function of time and timescale. The 
+plot shows what the pattern of synchrony in the response variable (deer abundance) would look like if 
+the only drivers of synchrony were the predictor variables. Predicted synchrony plots can be compared 
+directly to the wavelet mean field magnitude plot of the response variable, similarity of the two 
+plots giving a visual indication of whether the predictors in the model adequately explain synchrony 
+in the response variable. The function `wlm` and related functions from `wsyn` implement these tools.
 
 Proper partitioning of spatial synchrony, into a component explained by the synchronous drivers in a wavelet linear model and a component corresponding to factors independent of those drivers (residuals in the model), is only possible if cross terms, which also appear in the model, are small compared to the other components [@Sheppard2016_aphids; @Sheppard_wavmodel].
 Large cross terms correspond to a general association between the model (drivers, or predictor variables) at one location and the residuals of the model at other locations [@Sheppard2016_aphids; @Sheppard_wavmodel].  Such associations may occur as a result of the population at the first location dispersing to the second location and being included in the count there. Considering a coarser spatial scale limits the potential for dispersal to have such an influence on our statistics, so one expects that if cross terms are large at the county spatial scale, the problem may be mitigated at the district scale, as happened in some
@@ -763,7 +850,7 @@ of our analyses (see section "USDA district results" in SI Appendix).
 \textbf{Randomization procedure for removing synchrony at $3-7$-year timescales.} In order to quantify the degree to which 
 synchronizing effects are responsible for 
 fluctuations in statewide total deer and DVC time 
-series (Fig. \ref{MT-Fig5_StateWideFluctuations} and associated text), 
+series (main text Fig. \ref{MT-Fig5_StateWideFluctuations} and associated text), 
 we adapted the standard Fourier surrogate procedure 
 of Theiler [@Theiler1992]. We constructed artificial 
 deer abundance and DVC time series for each 
@@ -806,13 +893,13 @@ synchrony was absent. Such surrogate state-total
 time series were compared to the actual time series 
 (deer abundance or DVCs) to show the nature of the 
 additional variance in the state-total time series 
-that was attributable to synchrony (Fig. \ref{MT-Fig5_StateWideFluctuations}).
+that was attributable to synchrony (main text Fig. \ref{MT-Fig5_StateWideFluctuations}).
 
 \textbf{Details on estimating approximate monetary impact of DVCs.} We estimated the approximate monetary impact of 
 synchrony in DVCs based on several reported 
 assumptions about DVCs. Using an average difference in DVCs
 between peak and trough years 
-(Fig. \ref{MT-Fig5_StateWideFluctuations}) of `r avgdvcfluc`, and if we assume 
+(main text Fig. \ref{MT-Fig5_StateWideFluctuations}) of `r avgdvcfluc`, and if we assume 
 that each reported DVC results in an average of 
 US\$2024 of damage [@Conover2011_bookchp], the 
 difference in damages statewide between peak and 
@@ -833,7 +920,7 @@ Using county-level data, snow depth and climate index results seemed to
 indicate distinct or partly distinct phenomena 
 synchronizing deer on different timescales within the $3-7$-year range. 
 Applying the wavelet Moran theorem, snow depth explained $40\%$ of synchrony in deer
-abundance at $3-4$-year timescales (Table \ref{MT-Tab1_CountyCoherenceSummary}; see also
+abundance at $3-4$-year timescales (main text Table \ref{MT-Tab1_CountyCoherenceSummary}; see also
 USDA district level results, below and Table \ref{TabS2_SummaryDistrict},
 which were similar but had smaller cross terms).
 <!--***DAN: Tom, I replaced the below text with the above text. It seemed confusing and not entirely necessary
@@ -845,13 +932,19 @@ Moran theorem, snow depth explained $`r round(usda.snowabunSyncExp3_4,0)`\%$ of 
 abundance at $3-4$-year timescales when data were aggregated to USDA districts (SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}). 
 -->
 Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
-to deer synchrony over $4-7$-year timescales (Table \ref{MT-Tab1_CountyCoherenceSummary}, see also 
-Fig. \ref{FigS5_RanksInSurrogs}A and SI Table \ref{TabS2_SummaryDistrict}). 
-$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively (Table \ref{MT-Tab1_CountyCoherenceSummary}). Snow depth did not explain $4-7$-year synchrony: spatial wavelet coherence between snow depth and deer abundance on those timescales was not significant (Table \ref{MT-Tab1_CountyCoherenceSummary}, \ref{TabS2_SummaryDistrict}). The timescale
+to deer synchrony over $4-7$-year timescales (main text 
+Table \ref{MT-Tab1_CountyCoherenceSummary}, see also 
+Fig. \ref{FigS5_RanksInSurrogs}A and Table \ref{TabS2_SummaryDistrict}). 
+$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ 
+and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively 
+(main text Table \ref{MT-Tab1_CountyCoherenceSummary}). Snow depth did not explain $4-7$-year 
+synchrony: spatial wavelet coherence between snow depth and deer abundance on those timescales was 
+not significant (main text Table \ref{MT-Tab1_CountyCoherenceSummary}, 
+Table \ref{TabS2_SummaryDistrict}). The timescale
 bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{FigS5_RanksInSurrogs}.
 
 \textbf{USDA district results.} Using district-level data, deer abundance 
-again showed a prominent synchrony feature at $3-7$ year 
+again showed a prominent synchrony feature at $3-7$-year 
 timescales, similar to the county-level analysis 
 (Fig. \ref{FigS7_WMFAndPredictionsDistricts}A,C). Deer abundance was significantly related to $\text{MEI}_{\text{w}}$, 
 and was marginally significantly related to $\text{PDO}_{\text{w}}$ on $3-7$-year timescales
@@ -869,8 +962,18 @@ USDA district data, and patterns of synchrony in deer abundance predicted by tha
 
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
-data (Table \ref{TabS2_SummaryDistrict}). Cross terms for snow depth and deer abundance over $3-4$-year timescales were too large at the county level to make a reliable statement of synchrony explained at that level, but cross terms were not too large for the district-level analysis, and snow depth explained $`r round(usda_abunsnwd_syncexp34,0)`\%$ of synchrony at $3-4$-year timescales. This makes sense in light of possible effects of dispersal at smaller spatial scales, as explained in the section "Wavelet Moran theorem..." above; effects of dispersal would have been reduced at district level because a smaller proportion of deer disperse between spatial units for larger spatial units.
-The result that snow depth appeared to influence deer on $3-4$-year timescales, while $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly spatially coherent and explained synchrony at $4-7$-year timescales pertained to district-level data as it did for county-level data.
+data (Table \ref{TabS2_SummaryDistrict}). Cross terms for snow depth and deer abundance over 
+$3-4$-year timescales were nearly too large at the county level to make a reliable statement of 
+synchrony explained at that level, but cross terms were not too large for the district-level 
+analysis, and snow depth explained $`r round(usda_abunsnwd_syncexp34,0)`\%$ of synchrony at 
+$3-4$-year timescales. This makes sense in light of possible effects of dispersal at smaller 
+spatial scales, as explained in the section "Wavelet Moran theorem..." above; effects of dispersal 
+would have been reduced at district level because a smaller proportion of deer disperse between 
+spatial units for larger spatial units.
+The result that snow depth appeared to influence deer on $3-4$-year timescales, while 
+$\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly spatially coherent and 
+explained synchrony at $4-7$-year timescales pertained to district-level data as it did for 
+county-level data.
 
 As in the county-level analyses, hunter abundance time series were not spatially coherent with deer abundance time series on $3-7$-year timescales (Table \ref{TabS2_SummaryDistrict}), so any synchrony there may have been in hunter abundances at those timescales could not have explained synchrony in deer. Again similar to the county-level analyses, hunter abundance time series were significantly coherent with deer abundance on $2-2.5$-year timescales (Table \ref{TabS2_SummaryDistrict}), but there was little deer abundance synchrony on those timescales to explain (Fig. \ref{FigS7_WMFAndPredictionsDistricts}A,C).
 
@@ -885,7 +988,8 @@ counties, but such effects would be
 reduced at the larger district level because reduced fractions of deer and cars disperse from one spatial unit to another for these larger spatial units. 
 Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS7_WMFAndPredictionsDistricts}F). 
 
-\textbf{Statewide Analysis and Results.} For statewide analyses, for which all variables were represented only by single, state-average or 
+\textbf{Statewide Analysis and Results.} For statewide analyses, for which all 
+variables were represented only by single, state-average or 
 total time series rather than spatiotemporal data, timescale-specific relationships 
 between variables were tested using ordinary 
 wavelet coherence. Wavelet coherence is a 
@@ -907,9 +1011,11 @@ significantly coherent over $3-7$-year timescales
 $3-5$-year timescales ($P = `r round(ann.dvc.abun_pval35,4)`$). 
 $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ were significantly 
 coherent with deer abundance over the $3-7$-year 
-timescale band ($\text{MEI}_{\text{w}}$, $P = `r round(ann.abun.wmei_pval,4)`$; $\text{MEI}_{\text{s}}$, 
-$P = `r round(ann.abun.smei_pval,4)`$; $\text{PDO}_{\text{w}}$, 
-$P = `r round(ann.abun.wpdo_pval,4)`$). Snow depth was not significant over $3-7$-year timescales ($P = `r round(ann.abun.snow_pval37,4)`$), but was significant at $3-4$-year timescales ($P = `r round(ann.abun.snow_pval34,4)`$), consistent with the results at other spatial resolutions. 
+timescale band ($\text{MEI}_{\text{w}}$, $P = `r round(ann.abun.wmei_pval,4)`$; 
+$\text{PDO}_{\text{w}}$, $P = `r round(ann.abun.wpdo_pval,4)`$). Snow depth was not 
+significant over $3-7$-year timescales ($P = `r round(ann.abun.snow_pval37,4)`$), but 
+was significant at $3-4$-year timescales ($P = `r round(ann.abun.snow_pval34,4)`$), 
+consistent with the results at other spatial resolutions. 
 Hunter abundance and deer 
 abundance were not significantly coherent at the 
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
@@ -922,7 +1028,7 @@ state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$)
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/TheoryExample1.png}
 \caption[Results for theoretical example 1]{Results for theoretical example 1. 
-See SI section \ref{SI:theory} for a full description of the
+See section \ref{SI:theory} for a full description of the
 model setup for the example. Top panels are for case 1 and bottom panels for case 2.
 Red lines (A-F) are expected noise spectra (A-B), cospectra (C-D), and spectra
 of total populations (E-F). Grey lines are estimates of these same quantities
@@ -937,7 +1043,7 @@ function in the R programming language). Panels G-H show example spatial-total p
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/TheoryExample2.png}
 \caption[Results for theoretical example 2]{Results for theoretical example 2. See
-SI section \ref{SI:theory} for a full description of the
+section \ref{SI:theory} for a full description of the
 model setup for the example. Plot format is like that of Fig. \ref{TheoryExample1}.}\label{TheoryExample2}
 \end{figure}
 
@@ -947,7 +1053,7 @@ model setup for the example. Plot format is like that of Fig. \ref{TheoryExample
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/TheoryExample3.png}
 \caption[Results for theoretical example 3]{Results for theoretical example 3. See 
-SI section \ref{SI:theory} for a full description of the
+section \ref{SI:theory} for a full description of the
 model setup for the example. Plot format is like that of Fig. \ref{TheoryExample1}.}\label{TheoryExample3}
 \end{figure}
 
@@ -1045,8 +1151,16 @@ Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate lo
 \clearpage
 
 \begin{figure}[!h]
+\includegraphics[height=.9\textheight]{Results/FigS8.png}
+\caption[Mean fields for environmental variables]{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in main text Fig \ref{MT-Fig3_DeerSync}A,B. \label{FigS8_WMFsAndWPMFsAncillary}}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of 
+\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text
 Table \ref{MT-Tab1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
 and deer abundance, B) summer MEI and 
 deer abundance, C) winter PDO ($\text{PDO}_{\text{w}}$) and deer abundance, 
@@ -1062,7 +1176,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS5.png}
-\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of Table \ref{MT-Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
+\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
 \end{figure}
 
 \newpage
@@ -1075,7 +1189,7 @@ time series, and predicted synchrony of deer abundance based on a wavelet model 
 abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
 time series at the indicated times and timescales. Contours on (B) indicate statistical significance of phase 
 synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundance, while contours show the 
-actual wavelet mean field magnitude of deer abundance, similar to the contours shown in Fig. \ref{MT-Fig3_DeerSync}C. Slight differences exist here vs Fig. \ref{MT-Fig3_DeerSync}C because of different spatiotemporal extents of the data used in hunter analyses. Agreement is poor between colors and contours 
+actual wavelet mean field magnitude of deer abundance, similar to the contours shown in main text Fig. \ref{MT-Fig3_DeerSync}C. Slight differences exist here vs main text Fig. \ref{MT-Fig3_DeerSync}C because of different spatiotemporal extents of the data used in hunter analyses. Agreement is poor between colors and contours 
 on panel C, giving a 
 visual indication of the statistical result that hunter abundance does not explain deer abundance or synchrony 
 well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
@@ -1087,14 +1201,6 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 \begin{figure}[!h]
 \includegraphics[height=.8\textheight]{Results/FigS7.png}
 \caption[Mean fields and predicted synchrony for deer and DVCs, USDA district data]{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E, F) for deer abundance (A, C, E) and DVCs (B, D, F) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in deer abundance predicted from a wavelet model using snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours show the actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a visual indication of the statistical result that climatic Moran effects explain deer synchrony. Colors in (F) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are from (B) and again show good agreement. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS7_WMFAndPredictionsDistricts}}
-\end{figure}
-
-\newpage
-\clearpage
-
-\begin{figure}[!h]
-\includegraphics[height=.9\textheight]{Results/FigS8.png}
-\caption[Mean fields for environmental variables]{Wavelet mean fields (left column) and wavelet phasor mean fields (right column) of winter Tmin (A, B), Tmax (C, D), snow depth (E, F) and precipitation (G, H) using county-level data. Colors and contours as in Fig \ref{MT-Fig3_DeerSync}A,B. \label{FigS8_WMFsAndWPMFsAncillary}}
 \end{figure}
 
 \newpage
