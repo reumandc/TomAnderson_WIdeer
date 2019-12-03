@@ -29,8 +29,8 @@ urlcolor: blue
 **Number of words in abstract:** 150  
 **Number of words in main text:**  
 **Number of figures and tables:** 5 figures, 1 table  
-**Number of references:**  
-<!--***DAN: don't forget to fill this stuff in-->
+**Number of references:** 58  
+<!--***DAN: don't forget to fill this stuff in--> <!--***Tom: will double check for hte final submission-->
 
 \newpage
 <!--Title length limit 96 characters, inc spaces-->
@@ -155,11 +155,10 @@ of local population dynamics, being synchronous across space, reinforce each oth
 in the total population computed across the region, whereas stronger, asynchronous
 components on other timescales cancel in the spatial total. Thus periodicities
 in dynamics which may be unnoticable at the local spatial scale become
-dominant at the regional scale. This effect can be strong, as we will see.
+dominant at the regional scale. 
 The key here is that synchrony occurs *on a particular timescale*.
-Dynamics of the total, regional population are then dominated by a cycle on that timescale. 
-Fig. \ref{Fig1_example} provides an initial example of this phenomenon using a
-simple model. A theoretical approach to the mechanism is summarized below and elaborated in
+Dynamics of the total, regional population are then dominated by a cycle on that timescale (see  
+Fig. \ref{Fig1_example} for a simulated example). A theoretical approach to the mechanism is summarized below and elaborated in
 Supporting Information (SI) section \ref{SM-SI:theory}. The bulk of the paper is 
 spent examining empirical evidence for the mechanism.
 
@@ -168,7 +167,7 @@ fluctuations in local time series do become amplified in a
 timescale-specific manner as outlined above, outbreaks of pests or disease
 could follow [@Rohani_etal1999]. For example, timescale-specific
 synchrony of local populations of pests may produce major cycles in the
-regional total pest population and therefore in the damage caused by the pests. 
+regional total pest population and therefore in the damage they cause. 
 Timescale-specific
 synchrony could also be important for industries, such as hunting,
 that exploit multiple populations across space if it causes cycling in
@@ -201,8 +200,7 @@ Here we demonstrate, using deer data, how timescale-specific
 spatial synchrony can produce regional population cycles. We also show that
 timescale-specific deer population synchrony begets timescale-specific synchrony
 in DVCs across the state, producing cycles in 
-state-total DVC time series as well. These cycles have economic and public-health
-consequences. Fluctuations in deer population abundances in
+state-total DVC time series as well. Fluctuations in deer population abundances in
 the 71 counties of Wisconsin were synchronous due to
 fluctuations in winter climate, and synchrony 
 occurred only on 3-7 year timescales. Deer synchrony in turn
@@ -222,7 +220,7 @@ Let me know if you really disagree and we can discuss.
 I just think it is a bit better this way. For one thing, theory is not really the same 
 as methods, and methods tend to get minimized, whereas in my opinion theory should
 not be minimized. I think the theory is a major contribution of this version of the 
-paper, even though we did not previously have it in earlier versions.-->
+paper, even though we did not previously have it in earlier versions.--><!--**Tom:Sounds good- the journal will likely have an opinion about where its goes so let them decide-->
 
 The statement of our main theoretical result requires a conceptual understanding 
 of the *power spectrum* (or, simply, *spectrum*) of a population or other 
@@ -334,7 +332,7 @@ and statewide (SI Fig. \ref{SM-FigS1_map}). Analyses at three spatial scales
 were performed because of concerns about the accuracy, on small spatial scales, of deer abundance estimation methods
 used by the WIDNR and underlying our data; they used a standard "Sex-Age-Kill" (SAK) approach.
 Although this is a standard approach used by management agencies for abundance assessments,
-<!--***DAN: Tom, can we please add a reference here of SAK as a standard technique-->
+<!--***DAN: Tom, can we please add a reference here of SAK as a standard technique--><!--***Tom: The millspaugh reference actually says this and is already in the sentence so maybe its good-->
 its accuracy at the smallest spatial scales was once questioned
 [@Millspaugh2009; see SI section \ref{SM-SI:methods} for further discussion].
 USDA district data were 
@@ -625,7 +623,7 @@ mechanisms-->
 Large-scale climatic patterns and local winter weather conditions are known to influence spatial synchrony 
 via Moran effects in other ungulates, including reindeer, 
 caribou [@post2002;@aanes2003;@Post2004_greenland;@Hegel2012_caribou], roe deer [@Grotan2005_roedeer], 
-and musk oxen [@post2002], and thus the cycling mechanism we observed may occur as wel
+and musk oxen [@post2002], and thus the cycling mechanism we observed may occur as well 
 in other ungulates. Here, winter snow depth,  $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ 
 were the primary determinants of deer synchrony. Deer populations lagged $\text{MEI}_{\text{w}}$ and 
 $\text{PDO}_{\text{w}}$ by 1-2 years, a similar delay to other reported lag times of climatic effects on deer 
@@ -645,7 +643,7 @@ and therefore also population cycles that arise by our new mechanism. In our cas
 The influence of winter weather on deer extends outside as well as inside WI,
 so for larger regions including WI, cycling of total regional deer populations and 
 DVCs are likely to be even stronger than what we have documented because
-a larger number of synchronized local population accentuates the effect we described.
+a larger number of synchronized local populations accentuates the effect we described.
 
 <!--It aint hunters. -->
 Hunters were not the principle driver of deer synchrony. These results are consistent with the
@@ -703,11 +701,11 @@ ameliorate this difficulty and reveal new phenomena and unrecognized mechanisms.
 <!--This is not really a conclusion it is more suggestions for future work. Delete, or relabel?
 Or just delete the label - we don't have any other labels in the Discussion. I am currently thinking to 
 delete. Commenting for now. It does not say much that is new and specific, just some general
-stuff about how it would be good to look for this in other systems.-->
+stuff about how it would be good to look for this in other systems.--><!--I'm find deleting, especially since we are up against the limit as it is. It was just my attempt to wrap up/summarize-->
 <!--\textbf{Conclusion.} Our study demonstrates a novel mechanism of population cycles through the cumulative dynamics of synchronized local populations of an exploited species, with important consequences for humans. Further investigation of systems and drivers of synchrony that could lead to similar region-wide dynamics will help unravel the generality of this phenomena. Investigating synchrony and regional fluctuations of species that have impacts on humans (e.g., crop pests) would be particularly vaulable, especially to complement work in the traditional paradigm  of cycles leading to synchrony [@Haynes_etal2019]. -->
 
 # Acknowledgements
-D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox and A. Liebhold for consultation. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
+D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
 <!--Load sup mat workspace for the methods, which used to be in the sup mat-->
