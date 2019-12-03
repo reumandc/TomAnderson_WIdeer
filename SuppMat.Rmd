@@ -602,7 +602,7 @@ SAK model [@Millspaugh2009] may have been overstated, as more recent analyses
 within the WIDNR 
 <!--***DAN: Tom, I added "within the WIDNR" because we have no reference for these
 "more recent analyses". Can we get a reference, or something more concrete than
-what we currently have? Even a white paper?-->
+what we currently have? Even a white paper?--><!--***Tom: I emailed the person who did that analysis to find out-->
 suggest the uncertainty in SAK estimates is substantially less 
 ($\pm 20\%$ error rates) than what was reported there. 
 In addition, the criticism of the SAK [@Millspaugh2009] was based 
@@ -630,7 +630,7 @@ but could not really have been what was responsible for timescale-specific
 synchrony, since SAK inaccuracies could not reasonably have been periodic 
 in nature. Similarly, it seems highly unlikely that SAK inaccuracies could
 have arteefactually produced the spatial wavelet coherence and wavelet linear
-model results, for similar reasons.-->
+model results, for similar reasons.--><!--***Tom: Sounds good-->
 
 We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal 
 distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial 
@@ -638,10 +638,10 @@ wavelet coherence and wavelet linear regression testing procedures described bel
 included linear detrending (and subtracting the mean) to remove any long-term trends that might 
 otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the 
-`wsyn` package for the R programming language [@Rstats2018].
+`wsyn` package for the R programming language [@wsyn].
 <!--***DAN: Tom, please check and fix how this references comes out, which is wonky - the callout is 
 Team (2018)! I also think we should be citing the package, here, not R - see my comment in the
-main text-->
+main text--><!--***Tom: Changed to the package-->
 
 \textbf{The wavelet mean field and wavelet phasor mean field.} We assessed the strength of synchrony 
 and its dependence on time and timescale for 
@@ -674,7 +674,7 @@ on complex Morlet
 wavelet transforms of each input time series. 
 Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed 
-using the function `wpmf` in the `wsyn` package.
+using the function `wpmf` in the `wsyn` package[@wsyn].
 <!--***DAN: Tom, please insert an formal citation to the package-->
 
 Statistical significance of the wavelet phasor mean 
