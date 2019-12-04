@@ -598,14 +598,8 @@ and statewide (Fig. \ref{FigS1_map}). Analyses at three spatial scales
 were performed because the SAK model used by the WIDNR to estimate deer 
 abundance for each management unit has been criticized as less accurate 
 at smaller spatial scales [@Millspaugh2009]. The prior criticism of the 
-SAK model [@Millspaugh2009] may have been overstated, as more recent analyses 
-within the WIDNR 
-<!--***DAN: Tom, I added "within the WIDNR" because we have no reference for these
-"more recent analyses". Can we get a reference, or something more concrete than
-what we currently have? Even a white paper?--><!--***Tom: I emailed the person who did that analysis to find out-->
-suggest the uncertainty in SAK estimates is substantially less 
-($\pm 20\%$ error rates) than what was reported there. 
-In addition, the criticism of the SAK [@Millspaugh2009] was based 
+SAK model may have been overstated, as more recent analyses 
+within the WIDNR suggest the uncertainty in SAK estimates is substantially less than the $121\%$ error rates reported by @Millspaugh2009; analyses for a subset of years indicate credible intervals around population estimates are between $20-40\%$. In addition, the criticism of the SAK [@Millspaugh2009] was based 
 on a model that did not match perfectly with practices of the WIDNR. 
 Nevertheless, 
 to ensure our results were not biased, we analyzed 
