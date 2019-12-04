@@ -40,6 +40,7 @@ urlcolor: blue
 options(scipen=6)
 Tab1_results<-readRDS(file = "Results/Table1.rds")
 Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){round(x,4)}))
+Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
 abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
 abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
 abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)
@@ -451,7 +452,7 @@ what the pattern of synchrony in the response variable (deer abundance) would lo
 like if the only drivers of synchrony were the predictors. This predicted synchrony
 plot can then be visually compared to the actual wavelet mean field magnitude
 plot, giving a visual indication of how well synchrony can be accounted for
-by the predictors included in the model. As part of these procedures, we evaluted 
+by the predictors included in the model. As part of these procedures, we evaluated 
 model "cross terms", which are the component of  synchrony that is due to variability 
 explained by the drivers at a given location being synchronous with residuals at other 
 locations [@Sheppard2016_aphids;@Sheppard_wavmodel]. Cross terms must be small (< 10%) 
@@ -459,7 +460,7 @@ in order for inferences about synchrony to be valid (SI section \ref{SM-SI:metho
 
 To quantify the degree to which synchronizing effects are responsible for
 fluctuations (cycling) in statewide total deer and DVC time series, we adapted the standard
-Fourier surrogate procedure of Theiler [@Theiler1992]. We constructed artificial
+Fourier surrogate procedure of @Theiler1992. We constructed artificial
 time series data for both variables for each location that had the same spectral
 characteristics as the original data, except that they were not spatially synchronized over
 the $3-7$-year timescale band of interest. We accomplished this by randomizing
@@ -473,7 +474,7 @@ additional variance and cycling intensity in the
 empirical state-total series were attributable to synchrony. Further details of all datasets,
 data pre-processing, and analytic methods are in SI section \ref{SM-SI:methods}.
 
-\textbf{Data availability.} All data are available in the Dryad digital repository XYZ. 
+\textbf{Data availability.} All data will be made available in the Dryad digital repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
 is accepted, and Tom also to replace XYZ with the repo number when the time comes, please.-->
 All data and code producing this paper are also archived at `www.github.com/reumandc/TomAnderson_WIdeer`.
@@ -522,7 +523,7 @@ Snow depth and climate index results may have indicated distinct components
 of the phenomenon whereby winter weather synchronizes deer on $3-7$-year 
 timescales (SI section \ref{SM-SI:results}).
 NAO was not 
-related to deer abundance (Table \ref{Tab1_CountyCoherenceSummary}).
+related to deer abundance synchrony (Table \ref{Tab1_CountyCoherenceSummary}).
 <!--***DAN: Tom, I changed it from "none of the other" to "NAO" because actually summer MEI was related
 (probably just because it was related to winter MEI).-->
 
@@ -559,10 +560,10 @@ statewide oscillations in deer and DVCs disappear (Fig.
 timescales is removed via a randomization procedure (*Methods*). Therefore, it is spatial synchrony 
 that causes local dynamics to sum to a substantial 
 semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on 
-assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:methods}), 
+assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:methods}; [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp]), 
 statewide DVC damages 
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
-between peak and trough years [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp]. 
+between peak and trough years. 
 
 # Discussion
 
@@ -572,7 +573,7 @@ synchronizing local population dynamics, can cause major cycles in the
 regional total population. This is a new mechanism by which the environment can 
 produce population cycles. This new mechanism differs fundamentally from prior,
 now refuted hypotheses that population cycles result from highly regular
-environmental fluctuations such as sun spots [e.g.,
+environmental fluctuations [e.g., sun spots;  
 @Sinclair1992_sunspots;@Selas2004_sunspots] because the new mechanism does not
 require a highly regular environmental 
 oscillator. Rather, it is sufficient simply for irregular environmental drivers 
@@ -663,26 +664,25 @@ likely will have considerable consequences for agricultural crop damage, forest 
 [@Cote2004_deerimpacts], and hunting success, all of which can have socioeconomic impacts. 
 We also showed that Moran effects subsequently pass from deer to DVCs in a cascading manner. 
 Greater deer abundance almost certainly caused
-greater DVCs rather than DVCs driving deer fluctuations because DVCs were too infrequent to
-meaningfully impact deer abundance (Fig. \ref{Fig2_Timeseries}), and if they did an anti-phase
+greater DVCs because DVCs were too infrequent to
+meaningfully drive deer abundance fluctuations (Fig. \ref{Fig2_Timeseries}), and if they did an anti-phase
 relationship would have been found (as opposed to the in-phase relationship we observed).
 Thus Moran effects are ultimately responsible for synchrony of DVCs, and synchrony 
 causes fluctuations of more than 2500 annual documented DVCs through time.
 Such fluctuations may influence insurance and accident recovery industries.
-The influence of climate change on synchrony is probably important
+<!--***Tom: It doesn't feel like this sentence is needed, and also was an abrupt transition that didn't flow well to me to I commented it out The influence of climate change on synchrony is probably important
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
 @Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018], but is still, 
-in our opinion, greatly understudied. Our results provide another reason that
+in our opinion, greatly understudied.--> Our results provide another reason that
 additional studies of climate-change influences on synchrony should be undertaken: 
 because such influences may alter the cycling of populations, which can in turn
-influence human activities. Timescale specificity in synchrony is now know to be common 
-[@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Haynes_etal2019;
-@Anderson2019_LO], making it seem likely our mechanism will be more general than the 
-system we studied here.
+influence human activities. 
 
 <!--specificity to timescales, and the strengths of our methods-->
 An important aspect in all of the phenomena we explore is their specificity to 
-certain timescales. Population cycles would not have manifested in deer had deer synchrony 
+certain timescales. Timescale specificity in synchrony is now know to be common 
+[@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Haynes_etal2019;
+@Anderson2019_LO], but in our case population cycles would not have manifested in deer had deer synchrony 
 not been specific to certain timescales ($3-7$-years).
 Additionally, many past analyses of synchrony have 
 used correlation methods [@Leibhold2004_sync] that conflate timescales, but this can hinder 
@@ -723,7 +723,7 @@ load(file="WholeWorkspace.RData")
 ```{r Table1,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 rownames(Table1)<-NULL
-knitr::kable(Table1,
+knitr::kable(Tab1_MT,
              format="latex", align="l",escape=F,
              digits=4,
              col.names=c("Predictor","Response","Timescales", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
