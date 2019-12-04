@@ -529,10 +529,10 @@ related to deer abundance synchrony (Table \ref{Tab1_CountyCoherenceSummary}).
 
 Deer abundance synchrony was not caused by hunting on $3-7$-year timescales. County-level hunter and deer abundances were not significantly spatially coherent 
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
-(Table \ref{Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS5_RanksInSurrogs}B, \ref{SM-FigS6_WMFHunter}). Hunter abundance was significantly related to deer abundance on shorter timescales, around 
+(Table \ref{SM-Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS5_RanksInSurrogs}B, \ref{SM-FigS6_WMFHunter}). Hunter abundance was significantly related to deer abundance on shorter timescales, around 
 $2-2.5$-years ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],3)`), and was in approximate anti-phase with deer abundance 
 on those timescales ($\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],2)`; 
-Table \ref{Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS4_PhaseDiffs}G,
+Table \ref{SM-Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS4_PhaseDiffs}G,
 \ref{SM-FigS5_RanksInSurrogs}B). But these short-timescale results, while interesting
 (*Discussion*), are not 
 particularly relevant for synchrony because deer showed little synchrony on 
