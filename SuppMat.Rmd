@@ -224,8 +224,6 @@ cospectra are correspondingly smaller than spectra, on average, by around 2 orde
 of magnitude. The following three theoretical examples make clear the overwhelming importance 
 of synchrony for cycling of the spatial-total population.
 
-<!--***DAN: Revisit the presentation of these examples to try to make it clearer
-how they instantiate the ideas-->
 \textbf{Example 1.} For theoretical example 1, we constrasted a case for which
 environmental noise was asynchronous with a case for which environmental noise
 had timescale-specific synchrony to show that, in the latter case, cycling
@@ -597,9 +595,13 @@ district area $\pm$ SD = `r round(mean(usda.centroid$Area_km2),0)` $\pm$ `r roun
 and statewide (Fig. \ref{FigS1_map}). Analyses at three spatial scales 
 were performed because the SAK model used by the WIDNR to estimate deer 
 abundance for each management unit has been criticized as less accurate 
-at smaller spatial scales [@Millspaugh2009]. The prior criticism of the 
+at smaller spatial scales [@Millspaugh2009]. This criticism of the 
 SAK model may have been overstated, as more recent analyses 
-within the WIDNR suggest the uncertainty in SAK estimates is substantially less than the $121\%$ error rates reported by @Millspaugh2009; analyses for a subset of years indicate credible intervals around population estimates are between $20-40\%$. In addition, the criticism of the SAK [@Millspaugh2009] was based 
+within the WIDNR suggest that uncertainty in SAK estimates is substantially less 
+than the $121\%$ error rates indicataed by @Millspaugh2009. Analyses of WI deer abundance 
+data for a subset 
+of years produced $95\%$ credible intervals around population estimates that were $\pm20-40\%$. 
+In addition, the criticism of the SAK [@Millspaugh2009] was based 
 on a model that did not match perfectly with practices of the WIDNR. 
 Nevertheless, 
 to ensure our results were not biased, we analyzed 
@@ -616,15 +618,8 @@ meaningfully influenced by possible inaccuracies in SAK abundance estimation
 procedures at the county level. We also emphasize that inaccuracies 
 in the estimation of deer abundances may have obscured the patterns of
 timescale-specific synchrony and the spatial wavelet coherence and 
-wavelet linear models we 
+wavelet linear model results we 
 report, but could not reasonably have artefactually created them.
-<!--***DAN: Tom, please make sure you are OK with the sentence above, 
-which I added. SAK inaccuracies should have added noise to the data,
-but could not really have been what was responsible for timescale-specific
-synchrony, since SAK inaccuracies could not reasonably have been periodic 
-in nature. Similarly, it seems highly unlikely that SAK inaccuracies could
-have arteefactually produced the spatial wavelet coherence and wavelet linear
-model results, for similar reasons.--><!--***Tom: Sounds good-->
 
 We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal 
 distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial 
@@ -633,9 +628,6 @@ included linear detrending (and subtracting the mean) to remove any long-term tr
 otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the 
 `wsyn` package for the R programming language [@wsyn].
-<!--***DAN: Tom, please check and fix how this references comes out, which is wonky - the callout is 
-Team (2018)! I also think we should be citing the package, here, not R - see my comment in the
-main text--><!--***Tom: Changed to the package-->
 
 \textbf{The wavelet mean field and wavelet phasor mean field.} We assessed the strength of synchrony 
 and its dependence on time and timescale for 
@@ -668,8 +660,7 @@ on complex Morlet
 wavelet transforms of each input time series. 
 Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed 
-using the function `wpmf` in the `wsyn` package[@wsyn].
-<!--***DAN: Tom, please insert an formal citation to the package-->
+using the function `wpmf` in the `wsyn` package [@wsyn].
 
 Statistical significance of the wavelet phasor mean 
 field, compared to a null hypothesis of no phase 
@@ -926,8 +917,7 @@ Moran theorem, snow depth explained $`r round(usda.snowabunSyncExp3_4,0)`\%$ of 
 abundance at $3-4$-year timescales when data were aggregated to USDA districts (SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}). 
 -->
 Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
-to deer synchrony over $4-7$-year timescales ( 
-Table \ref{Tab1_CountyCoherenceSummary}, see also 
+to deer synchrony over $4-7$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}, see also 
 Fig. \ref{FigS5_RanksInSurrogs}A and Table \ref{TabS2_SummaryDistrict}). 
 $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ explained $`r round(abunwmeiSyncExp47,)`\%$ 
 and $`r round(abunwpdoSyncExp47,0)`\%$ of deer synchrony on $4-7$-year timescales, respectively 
@@ -1154,7 +1144,7 @@ Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate lo
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text
+\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary} and
 Table \ref{Tab1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
 and deer abundance, B) summer MEI and 
 deer abundance, C) winter PDO ($\text{PDO}_{\text{w}}$) and deer abundance, 
@@ -1170,7 +1160,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS5.png}
-\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of main text Table \ref{Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
+\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary} and Table \ref{Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
 \end{figure}
 
 \newpage
