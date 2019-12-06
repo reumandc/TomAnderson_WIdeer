@@ -221,17 +221,17 @@ than $N$ by around 2 orders of magnitude. Thus the term
 $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$ will make a much bigger contribution
 to $S_{\text{tot}}$ than will the term $\sum_i S_{\epsilon_{i}\epsilon_{i}}$ unless
 cospectra are correspondingly smaller than spectra, on average, by around 2 orders
-of magnitude. The following three theoretical examples make clear the overwhelming importance 
+of magnitude. The following three examples make clear the overwhelming importance 
 of synchrony for cycling of the spatial-total population.
 
-\textbf{Example 1.} For theoretical example 1, we constrasted a case for which
+\textbf{Example 1.} For example 1, we constrasted a case for which
 environmental noise was asynchronous with a case for which environmental noise
 had timescale-specific synchrony to show that, in the latter case, cycling
 of the regional-total population was much more noticable. The nature
 of population dynamics and the local statistical characteristics of environmental 
 noise were kept fixed across the two cases.
 
-For theoretical example 1, we considered $N=70$ sampling locations (likewise
+For example 1, we considered $N=70$ sampling locations (likewise
 for subsequent examples).
 The environmental noise processes, $\epsilon_i(t)$ were constructed so that the power spectrum
 of noise at each location was 
@@ -255,7 +255,7 @@ were 0), though spectra were the same as case 1. Analytically calculated
 noise spectra and estimates based on simulations are in Fig. 
 \ref{TheoryExample1}A-B; likewise, for cospectra, see Fig. \ref{TheoryExample1}C-D.
 
-For cases 1 and 2 of theoretical example 1 and for all cases of all
+For cases 1 and 2 of example 1 and for all cases of all
 subsequent theoretical examples, population dynamics were governed
 in all sampling locations by an AR(1) process, i.e., $n=1$ and $m=0$ in 
 equation (\ref{eq:mainmodel}). In all examples and cases we used $c_1=0.15$.
@@ -296,7 +296,7 @@ in the diagonal. Let $\epsilon_i(t)=c_1 \epsilon_i(t-1) + c_2 \epsilon_i(t-2)+\d
 Theorem \ref{thm:lem} in SI section \ref{sect:mainproof} provides the spectra
 and cross spectra of the noise process $\epsilon$ which are stated above.
 
-\textbf{Example 2.} For theoretical example 2, we contrasted a case in which
+\textbf{Example 2.} For example 2, we contrasted a case in which
 the synchrony of environmental noise was not timescale specific, with a case
 for which it was, to show that timescale specificity of environmental synchrony
 is what produces cycling in the regional-total population. The nature
@@ -304,7 +304,7 @@ of population dynamics and the local statistical characteristics of environmenta
 noise were again kept fixed across the two cases, as was the total (across
 all timescales) synchrony of environmental noise.
 
-For theoretical example 2, the environmental noise processes 
+For example 2, the environmental noise processes 
 $\epsilon_i(t)$ were constructed so that the power spectrum
 of noise at each location was 
 $S_{\epsilon_i \epsilon_i} = \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1$ and
@@ -367,7 +367,7 @@ cases 1 and 2, respectively, in Fig. \ref{TheoryExample2}E-F. The greater
 periodicity is also apparent from example $w_{\text{tot}}$ time series
 (Fig. \ref{TheoryExample2}G-H).
 
-Noise for theoretical example 2 was the sum of two processes. The first process was an 
+Noise for example 2 was the sum of two processes. The first process was an 
 AR(2) process. Let $\delta^{(1)}(t) = (\delta^{(1)}_1(t),\ldots,\delta^{(1)}_N(t))$ be drawn, independently for each time, $t$, from a multivariate normal distribution with mean $(0,\ldots,0)$
 and covariance matrix consisting of entries $\rho_1$ in the off diagonal and $1$
 in the diagonal. Let $\epsilon^{(1)}_i(t)=c_1 \epsilon^{(1)}_i(t-1) + c_2 \epsilon^{(1)}_i(t-2)+\delta^{(1)}_i(t)$. The second process was simple white noise.
@@ -375,7 +375,7 @@ Let $\epsilon^{(2)}(t) = (\epsilon^{(2)}_1(t),\ldots,\epsilon^{(2)}_N(t))$ be dr
 and covariance matrix consisting of entries $\rho_2$ in the off diagonal and $1$
 in the diagonal. The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
-\textbf{Example 3.} For theoretical example 3, we contrasted a case in 
+\textbf{Example 3.} For example 3, we contrasted a case in 
 which the synchrony of environmental noise was specific to one timescale band
 with a case in which the synchrony of environmental noise was specific to
 another timescale band, to show that the cycling of the regional total
@@ -384,7 +384,7 @@ of population dynamics and the local statistical characteristics of environmenta
 noise were again kept fixed across the two cases, as was the total (across
 all timescales) synchrony of environmental noise.
 
-For theoretical example 3, the environmental noise processes 
+For example 3, the environmental noise processes 
 $\epsilon_i(t)$ were constructed so that 
 the power spectrum
 of noise at each location was 
@@ -400,7 +400,7 @@ function $\left| \frac{1}{1-c_1^{(2)} \mu -c_2^{(2)} \mu^2} \right|^2$ has a sin
 peak at frequency $1/3$ cycles per sampling interval, so noise spectra reveal
 that the noise cycles at two periodicities simultaneously. 
 
-We considered two cases within theoretical example 3. In case 1, we used
+We considered two cases within example 3. In case 1, we used
 $\rho^{(1)}=0.8$ and $\rho^{(2)}=0$, whereas in case 2 we used 
 $\rho^{(1)}=0$ and $\rho^{(2)}=0.8$. Thus, of the two peridocities present
 in the environmental noise, only one was synchronous in case 1, and
@@ -807,7 +807,7 @@ considered necessary to make statements about fractions of synchrony explained. 
 
 We calculated the amount of deer abundance 
 synchrony jointly explained by snow depth, 
-$\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ using a wavelet multiple regression 
+$\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ using a wavelet linear regression 
 approach [@Sheppard_wavmodel]. This method, the detailed mathematics of which are described by @Sheppard_wavmodel along with an application, 
 is analogous to multiple linear regression, with a 
 model describing the relationship between a 
@@ -1160,7 +1160,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS5.png}
-\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary} and Table \ref{Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs` is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs` is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun` is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
+\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary} and Table \ref{Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
 \end{figure}
 
 \newpage
