@@ -84,7 +84,7 @@ source("Code/DeerCoherence_wsyn.R")
 
 <!---generate plots--->
 ```{r plots, echo=F, cache=T, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,wlm_abun,wlm_dvc,mtime("Code/deer_plots.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"),mtime("Code/PedagogFig.R"),mtime("Code/TheoryExample1.R"),mtime("Code/TheoryExample2.R"),mtime("Code/TheoryExample3.R"),mtime("Functions/deer_plotting_functions.R"))}
-#generate plots
+#generate plots 
 set.seed(201)
 source("Code/deer_plots.R")
 ```

@@ -20,8 +20,18 @@ csl: ecologyletters.csl
 tables: yes
 bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
-
 ---
+
+<!--Notes from convos with LWS and TLA, i.e., things we need to do:
+1) We need to check that the model with MEI and snow depth is statistically better than the model with just snow depth,
+and also statistically better than the model with just MEI, in the 3-7yr timescale band. Tom will do.
+2) Lawrence then wants us to check that the phases of the coefficients are consistent between the models with one
+predictor and the model with two. This will give us evidence related to whether the two-variable model is overfitted.
+3) Dan needs to insert Fourier results. 
+4) Lawrence is working on analyses which may provide an estimate of how inflated our fraction of synchrony explained
+estimate is.
+-->
+
 \noindent Short title: Spatial synchrony leads to populations cycles  
 Author Contributions: TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; all authors provided extensive editing and feedback on the analysis and manuscript.  
 Type of Article: Letter  
@@ -321,6 +331,12 @@ regression testing procedures described below. This process also included linear
 obscure patterns of synchrony [@Buonaccorsi2001], as well as variance standardization 
 (SI section \ref{SM-SI:methods}).
 
+<!--***DAN: You probably want to add some material explaining why it makes sense
+to use Fourier for the theory and wavelets for the empirical analysis? Here or elsewhere?
+Maybe add a few basic statements in the main text, and then a sup mat section elaborating?
+If that's the way it's done, we could also add to the same section the Fourier results
+we have recently developed? Still thinking about how to integrate the new analyses and 
+so on that we did in response to the referee.-->
 \textbf{Analysis.} We use wavelet transforms in most analyses described below.
 Wavelets are ideal for detecting periodic components in time series data
 [@addison2002]. The methods we use are extensions of methods that are
@@ -540,7 +556,7 @@ synchronous effects produce population cycles.
 First, synchronous fluctuations in environmental drivers may have produced
 small oscillations on $3-7$-year timescales in county-level deer population time series, and 
 also brought these oscillations into spatial synchrony, thereby causing them to sum across
-counties to produce statewide fluctuations. Second, the local population oscillations 
+counties to produce noticable statewide fluctuations. Second, the local population oscillations 
 may have been due partly to the intrinsic dynamics of deer, resulting 
 from density-dependent effects, maternal effects, or 
 other mechanisms of nonlinear population dynamics. Synchronous environmental drivers 
