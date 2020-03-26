@@ -1283,6 +1283,39 @@ deer time series in the 3-7yr band; and
 for the county-level time series.
 <!--***DAN: do you also want to do something with DVCs? Probably should.-->
 
+After discovering (Fig. \ref{MT-Fig3_DeerSync}A) that synchrony in deer is primarily at 3-7yr timescales,
+to test whether the theory presented above is reflected in our deer data, it sufficies to show
+that spectral power in the 3-7yr timescale band was much greater for the total deer time series 
+for WI than it would have been, absent synchrony between county-level deer time series in the 3-7yr 
+band. In other words, if synchrony in the 3-7yr band were a cause of 3-7yr deer population 
+cycling at the state level, then when synchrony is removed but county-level time series are 
+kept otherwise statistically similar, state-level cycling should be significantly and substantially reduced. 
+We calculated spectral power in the 3-7yr band and compared the result to the same statistic calculated for
+the surrogate time series of Fig. \ref{MT-Fig5_StateWideFluctuations}A (grey lines - methods for generating 
+those surrogates are described above). A $p$-value result for the test of the null hypothesis that 
+synchrony did not cause or amplify cycling is the fraction of surrogate values greater than the 
+value for data. We also displayed the power spectra of the data and the surrogates, to make
+possible a visual comparison, and tests of whether, for each timescale/frequency in the 3-7yr band
+the spectrum of data was above the distribution of spectra for surrogates. To calculate spectral power in
+the 3-7yr band summed a raw periodigram across those timescales; to display the spectrum
+we used a consistent estimator of @Brillinger2001 (section 5.6 of that text). The summed
+periodogram provides the exact spectral power in the band, whereas the consistent estimator is
+smoothed and is more appropriate for display of the spectrum [@Brillinger2001].
+
+Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most appropriate for our
+research goals, some past researchers have used autoregressive surrogates for significance testing
+spectral quantities. 
+<!--***DAN: Need to insert some references here-->
+Because autoregressive surrogates are fairly commonly used, we also tested our 
+results using AR(1) surrogates, for completeness. However, we emphasize that we consider 
+autoregressive surrogates less appropriate for our research context because they do not 
+correspond to a null hypothesis that is explicitly about synchrony. We fitted an AR(1)
+model by maximum likelihood to the detrended state-total deer time series, and then
+used the resulting model to generate surrogate timeseries. Spectral power in the 
+3-7yr band (computed by summing a raw periodogram across the band) for data was compared
+to the distribution of values of the same statistic for surrogates, again producing a $p$-value.
+
+
 
 
 
