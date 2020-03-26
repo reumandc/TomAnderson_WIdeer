@@ -331,12 +331,11 @@ regression testing procedures described below. This process also included linear
 obscure patterns of synchrony [@Buonaccorsi2001], as well as variance standardization 
 (SI section \ref{SM-SI:methods}).
 
-<!--***DAN: You probably want to add some material explaining why it makes sense
-to use Fourier for the theory and wavelets for the empirical analysis? Here or elsewhere?
-Maybe add a few basic statements in the main text, and then a sup mat section elaborating?
-If that's the way it's done, we could also add to the same section the Fourier results
-we have recently developed? Still thinking about how to integrate the new analyses and 
-so on that we did in response to the referee.-->
+<!--***DAN: You probably want to add some material in the below para or nearby explaining 
+why it makes sense to use Fourier for the theory and wavelets for the empirical analysis. 
+Maybe add a few basic statements in the main text around here, a few more basic statements 
+at the end of the "Analysis" subsection, maybe one more summary statement somewhere in the 
+Results, and then a sup mat section elaborating.-->
 \textbf{Analysis.} We use wavelet transforms in most analyses described below.
 Wavelets are ideal for detecting periodic components in time series data
 [@addison2002]. The methods we use are extensions of methods that are
@@ -437,6 +436,13 @@ additional variance and cycling intensity in the
 empirical state-total time series were attributable to synchrony. Further details of all datasets,
 data pre-processing, and analytic methods are in SI section \ref{SM-SI:methods}.
 
+<!--***DAN: Add a section here on the fact that we also carried out Fourier analyses.
+We regard the wavelet analyses are more appropriate, or more consistent with how results
+are actually discovered, or something like that, but we also present the Fourier
+analyses as supporting results because some people are more comfortable with those.
+Describe the Fourier results very briefly and refer to Sup Mat Methods for a full
+description-->
+
 \textbf{Data availability.} All data will be made available in the Dryad digital repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
 is accepted, and Tom also to replace XYZ with the repo number when the time comes, please.-->
@@ -521,6 +527,9 @@ assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:
 statewide DVC damages 
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years. 
+
+<!--***DAN: Make a statement here about the Fourier results, and then refer the reader to Sup Mat Results where they are
+presented in full.-->
 
 # Discussion
 
