@@ -1306,18 +1306,22 @@ Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most ap
 research goals, some past researchers have used autoregressive surrogates for significance testing
 spectral quantities. 
 <!--***DAN: Need to insert some references here-->
-Because autoregressive surrogates are fairly commonly used, we also tested our 
-results using AR(1) surrogates, for completeness. However, we emphasize that we consider 
-autoregressive surrogates less appropriate for our research context because they do not 
+Because autoregressive surrogates are fairly common, we also tested our 
+results using AR(1) surrogates, for completeness. But we emphasize that we consider 
+autoregressive surrogates less appropriate for our research goals because they do not 
 correspond to a null hypothesis that is explicitly about synchrony. We fitted an AR(1)
 model by maximum likelihood to the detrended state-total deer time series, and then
-used the resulting model to generate surrogate timeseries. Spectral power in the 
+used the resulting parameterized model to generate surrogate timeseries. Spectral power in the 
 3-7yr band (computed by summing a raw periodogram across the band) for data was compared
 to the distribution of values of the same statistic for surrogates, again producing a $p$-value.
+We also displayed the power spectra (using the estimator of section 5.6 of @Brillinger2001) of 
+the data and the surrogates, again to make possible visual comparison and tests for individual 
+timescales/frequencies. 
 
-
-
-
+Finally, we used maximum likelihood to fit autoregressive models of different orders to 
+detrended state-total deer time series, comparing orders using the Akaike Information
+Criterion (AIC). Spectra were displayed for the fitted models of orders for which the
+AIC indicated the best correspondence with data. 
 
 # Supplementary results \label{SI:results}
 
