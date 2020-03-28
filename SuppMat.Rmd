@@ -84,7 +84,7 @@ source("Code/DeerCoherence_wsyn.R")
 
 <!---generate plots--->
 ```{r plots, echo=F, cache=T, results="hide", fig.show="hide", cache.extra=list(cty.list,usda.list,winter.clim,climindex,winter.clim.usda,climindex.usda,wlm_abun,wlm_dvc,mtime("Code/deer_plots.R"),mtime("Functions/Fn_wmfwt.R"),mtime("Functions/Fn_rankplot.R"),mtime("Code/PedagogFig.R"),mtime("Code/TheoryExample1.R"),mtime("Code/TheoryExample2.R"),mtime("Code/TheoryExample3.R"),mtime("Functions/deer_plotting_functions.R"))}
-#generate plots
+#generate plots 
 set.seed(201)
 source("Code/deer_plots.R")
 ```
@@ -130,6 +130,379 @@ before the new location of Methods in the main text, just save the whole workspa
 here and then load it there.-->
 ```{r echo=F, results="hide"}
 save.image(file="WholeWorkspace.RData")
+```
+
+<!--The new Fourier analyses developed in response to Ecology Letters reviewer, 2020 03-->
+```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("dvcsurrsum.csv"))}
+
+#***
+#Some spectral tools
+#***
+
+#A raw, unsmoothed periodigram. Detrending is done by this function. 
+#
+#Args
+#x      A time series as a vector
+#
+myspecraw<-function(x)
+{
+  tforx<-1:length(x)
+  x<-residuals(lm(x~tforx))
+  h<-fft(x)
+  h<-Re(h*Conj(h))
+  freq<-(0:length(x))/length(x)
+  h<-h[-1]
+  freq<-freq[-1]
+  h<-h[freq<=0.5]
+  freq<-freq[freq<=0.5]
+  return(list(freq=freq,spec=h))
+}
+
+#The power spectrum, Brillinger's consistent estimator (5.6 of Brillinger's 2001 
+#book). The only difference from what is described there is frequency is here in 
+#units of cycles per sampling interval in the output here, and was in radians per 
+#sampling interval in Brillinger. Detrending is done by this function. The function 
+#actually returns the log scale power spectrum.
+#
+#Args
+#x      A time series as a vector
+#
+myspecbrill<-function(x,detrend=TRUE)
+{
+  Tx<-length(x)
+
+  #detrend, if desired
+  if (detrend==TRUE)
+  {
+    tforx<-1:Tx
+    x<-residuals(lm(x~tforx))
+  }
+  
+  #get the raw periodogram
+  fftx<-fft(x)
+  I<-(Mod(fftx))^2/(2*pi*Tx)
+  I[1]<-0 #Set zero frequency to 0. Should be zero anyway, yto within rounding error, because of the detrending
+  freq<-(0:(Tx-1))/Tx
+  freq<-2*pi*freq #to make frequencies be in units of radians per sampling interval
+  
+  #now do the smoothing that makes the estimator
+  BTx<-0.5/sqrt(Tx) #adjust BT to adjust the bias-variance tradeoff
+  TxBTx<-Tx*BTx
+  xforW<-(0:floor(TxBTx))/TxBTx
+  WT<-(15/(16*2*pi))*((xforW-1)^2)*((xforW+1)^2)
+  intWsquare<-(15/(32*pi))^2*4*pi*(1/9-4/7+6/5-4/3+1)
+  spec<-WT[1]*I
+  lenI<-length(I)
+  for (AbsShift in 1:(length(WT)-1))
+  {
+    temp<-WT[AbsShift+1]*I
+    #spec<-spec + temp([(AbsShift+1):end 1:AbsShift],:) + temp([(end-AbsShift+1):end 1:(end-AbsShift)],:);
+    spec<-spec+temp[c((AbsShift+1):lenI,1:AbsShift)]+temp[c((lenI-AbsShift+1):lenI,1:(lenI-AbsShift))]
+  }
+  
+  #remove the 0 frequency, and change the units back to radians per sampling interval,
+  #and cut the redundant part of the spectrum
+  freq<-freq[-1]
+  spec<-spec[-1]
+  freq<-freq/(2*pi)
+  spec<-spec[freq<=0.5]
+  freq<-freq[freq<=0.5]
+  
+  #put in some normalization factors
+  spec<-spec*2*pi/TxBTx
+  
+  #now get confidence intervals
+  p<-0.95 #for 95% confidence intervals
+  conf<-qnorm((1+p)/2,mean=0,sd=1)*0.4343*sqrt(2*pi*intWsquare/(TxBTx));
+  
+  return(list(freq=freq,log10spec=log10(spec),conf=conf))
+}
+
+#***
+#Comparison of Fourier transforms of deer and the surrogates developed for fig. 5
+#***
+
+#pull in the deer data
+d<-readRDS(file="Results/cty.list.rds")
+deer<-d$Abun
+totdeer<-apply(FUN=sum,X=deer,MARGIN=2)
+deeryr<-1981:2016
+
+#pull in the Fourier surrogates developed for Fig 5
+abunsurr<-read.csv("Data/abunsurrsum.csv")
+abunsurr<-as.matrix(abunsurr)
+
+#get raw periodograms of data and surrogates
+deerspecraw<-myspecraw(totdeer)
+freqs<-deerspecraw$freq
+deerspecraw<-deerspecraw$spec
+surrspecsraw<-matrix(NA,dim(abunsurr)[1],length(freqs))
+for (counter in 1:dim(abunsurr)[1])
+{
+  x<-unname(abunsurr[counter,])
+  h<-myspecraw(x)
+  surrspecsraw[counter,]<-h$spec
+}
+
+#sum over 3-7 year timescales, compare data and surrogate sums using a histogram
+realsum<-sum(deerspecraw[freqs>=1/7 & freqs<=1/3])
+surrsums<-apply(FUN=sum,X=surrspecsraw[,freqs>=1/7 & freqs<=1/3],MARGIN=1)
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier1.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+hist(surrsums,50,xlim=range(realsum,surrsums),main="")
+mtext("Power in 3-7 yr band",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+points(realsum,0,col="red",pch=20)
+#sum(surrsums>realsum) 
+dev.off()
+
+#Now detrend in prep for the next step. This is done using the same detrending 
+#line for the real and all the surrogate time series
+y<-c(totdeer,t(abunsurr))
+x<-rep(deeryr,times=1+dim(abunsurr)[1])
+dtmod<-lm(y~x)
+totdeerres<-totdeer-coef(dtmod)[2]*deeryr-coef(dtmod)[1]
+abunsurrres<-abunsurr-coef(dtmod)[2]*matrix(rep(deeryr,each=dim(abunsurr)[1]),dim(abunsurr)[1],length(deeryr))-coef(dtmod)[1]
+
+#Now get Brillinger consistent estimators of the spectra of data and surrogates
+deerlog10specbrill<-myspecbrill(totdeerres,detrend=FALSE)
+freqs<-deerlog10specbrill$freq
+deerlog10specbrill<-deerlog10specbrill$log10spec
+surrlog10specsbrill<-matrix(NA,dim(abunsurr)[1],length(freqs))
+for (counter in 1:dim(abunsurr)[1])
+{
+  x<-unname(abunsurrres[counter,])
+  h<-myspecbrill(x,detrend=FALSE)
+  surrlog10specsbrill[counter,]<-h$log10spec
+}
+
+#Now make a plot
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier2.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+ylimits<-range(10^deerlog10specbrill,10^surrlog10specsbrill)
+plot(freqs,10^deerlog10specbrill,type="l",lwd=2,ylim=ylimits)
+for (counter in 1:(dim(surrlog10specsbrill)[1]))
+{
+  lines(freqs,10^surrlog10specsbrill[counter,],type="l",col="grey",lwd=.5)
+}
+lines(rep(1/3,2),ylimits,lty="dashed")
+lines(rep(1/7,2),ylimits,lty="dashed")
+mtext("Frequency",side=1,line=2,cex=1)
+mtext("Power spectrum",side=2,line=2,cex=1)
+dev.off()
+
+#***
+#Now compare to AR(1) surrogates
+#***
+
+#Fit an AR(1) model to the detrended data
+totdeerres<-residuals(lm(totdeer~deeryr))
+h<-ar.mle(totdeerres,order.max=1)
+#so it gives a model with AR(1) coefficient 0.2516 and variance of the 
+#inovations 9.098E9 
+rho<-h$ar
+sig<-sqrt(h$var.pred)
+
+#get surrogates based on those
+getarsurr<-function(rho,sig,len,burn,numrun)
+{
+  res<-matrix(NA,numrun,len)
+  res[,1]<-0
+  for(counter in 2:len)
+  {
+    res[,counter]<-res[,counter-1]*rho+rnorm(numrun,mean=0,sd=sig)
+  }
+  return(res[,(burn+1):len])
+}
+numrun<-10000
+len<-1000
+burn<-len-length(totdeerres)
+abunsurr<-getarsurr(rho,sig,len,burn,numrun)
+
+#get raw periodograms of data and surrogates
+deerspecraw<-myspecraw(totdeer) #recall this detrends automatically
+freqs<-deerspecraw$freq
+deerspecraw<-deerspecraw$spec
+surrspecsraw<-matrix(NA,dim(abunsurr)[1],length(freqs))
+for (counter in 1:dim(abunsurr)[1])
+{
+  x<-unname(abunsurr[counter,])
+  h<-myspecraw(x)
+  surrspecsraw[counter,]<-h$spec
+}
+
+#sum over 3-7 year timescales, compare data and surrogate sums using a histogram
+realsum<-sum(deerspecraw[freqs>=1/7 & freqs<=1/3])
+surrsums<-apply(FUN=sum,X=surrspecsraw[,freqs>=1/7 & freqs<=1/3],MARGIN=1)
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier3.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+hist(surrsums,50,xlim=range(realsum,surrsums),main="")
+mtext("Power in 3-7 yr band",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+points(realsum,0,col="red",pch=20)
+dev.off()
+Fourier3PvalRes<-sum(surrsums>realsum)/numrun #The p-value of the test of the null
+#hypothesis that power in the 3-7yr band is no greater for the real data than it is
+#for surrogates.
+saveRDS(Fourier3PvalRes,file="Results/Fourier3PvalResult.rds")
+Fourier3NumEquivTests<-length(freqs)/sum(freqs>=1/7 & freqs<=1/3)
+saveRDS(Fourier3NumEquivTests,file="Results/Fourier3NumberEquivalentTests.rds")
+Fourier3BonferThresh<-0.05/ceiling(Fourier3NumEquivTests)
+saveRDS(Fourier3BonferThresh,file="Results/Fourier3BonferroniThreshold.rds")
+
+#Now get Brillinger consistent estimators of the spectra of data and surrogates
+deerlog10specbrill<-myspecbrill(totdeer)
+freqs<-deerlog10specbrill$freq
+deerlog10specbrill<-deerlog10specbrill$log10spec
+surrlog10specsbrill<-matrix(NA,dim(abunsurr)[1],length(freqs))
+for (counter in 1:dim(abunsurr)[1])
+{
+  x<-unname(abunsurr[counter,])
+  h<-myspecbrill(x)
+  surrlog10specsbrill[counter,]<-h$log10spec
+}
+
+#Now make a plot
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier4.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+ylimits<-range(10^deerlog10specbrill,10^surrlog10specsbrill)
+plot(freqs,10^deerlog10specbrill,type="l",lwd=2,ylim=ylimits,xlab="",ylab="")
+for (counter in 1:(dim(surrlog10specsbrill)[1]))
+{
+  lines(freqs,10^surrlog10specsbrill[counter,],type="l",col="grey",lwd=.5)
+}
+lines(freqs,10^deerlog10specbrill,type="l",lwd=2,ylim=ylimits)
+lines(rep(1/3,2),ylimits,lty="dashed")
+lines(rep(1/7,2),ylimits,lty="dashed")
+qsurrspec<-apply(FUN=quantile,X=surrlog10specsbrill,MARGIN=2,prob=c(0.95,1-.05/sum(freqs>=1/7 & freqs<=1/3)))
+lines(freqs,10^qsurrspec[1,],type="l",lty="dashed")
+lines(freqs,10^qsurrspec[2,],type="l",lty="dotted") #Bonferroni corrected threshold
+mtext("Frequency",side=1,line=2,cex=1)
+mtext("Power spectrum",side=2,line=2,cex=1)
+dev.off()
+
+#Now make a plot that includes the stricted multiple-testing correction,
+#which is Bonferroni counting all frequencies as independent tests. 
+#Probably this is just for use in the referee responses.
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier5.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+ylimits<-range(10^deerlog10specbrill,10^surrlog10specsbrill)
+plot(freqs,10^deerlog10specbrill,type="l",lwd=2,ylim=ylimits,xlab="",ylab="")
+for (counter in 1:(dim(surrlog10specsbrill)[1]))
+{
+  lines(freqs,10^surrlog10specsbrill[counter,],type="l",col="grey",lwd=.5)
+}
+lines(freqs,10^deerlog10specbrill,type="l",lwd=2,ylim=ylimits)
+lines(rep(1/3,2),ylimits,lty="dashed")
+lines(rep(1/7,2),ylimits,lty="dashed")
+qsurrspec<-apply(FUN=quantile,X=surrlog10specsbrill,MARGIN=2,prob=c(0.95,1-.05/sum(freqs>=1/7 & freqs<=1/3),1-0.05/length(freqs)))
+lines(freqs,10^qsurrspec[1,],type="l",lty="dashed")
+lines(freqs,10^qsurrspec[2,],type="l",lty="dotted") #Bonferroni corrected threshold, freqs in 3-7yr timescale band
+lines(freqs,10^qsurrspec[3,],type="l",lty="dotted") #Bonferroni corrected threshold, all freqs
+mtext("Frequency",side=1,line=2,cex=1)
+mtext("Power spectrum",side=2,line=2,cex=1)
+dev.off()
+
+#Now do the AR argument with AIC
+h1<-ar.mle(totdeerres)
+saveRDS(h1$aic,file="Results/AR_AICs.rds") #save the AICs of the best-fitted AR model of each order
+#make the spectrum of the best one, which is order 2, and the second-best (because it has a similar 
+#AIC), which is order 3
+AR_AIC_Table<-data.frame(ARorder=0:12,AIC=h1$aic)
+h2o2<-spec.ar(totdeerres,method="mle",aic=FALSE,order.max=2,plot=FALSE) 
+h2o3<-spec.ar(totdeerres,method="mle",aic=FALSE,order.max=3,plot=FALSE) 
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier6.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+plot(h2o2$freq,h2o2$spec,type="l",lty="solid")
+lines(h2o3$freq,h2o3$spec,type="l",lty="dashed",col="red")
+mtext("Frequency",side=1,line=2,cex=1)
+mtext("Power spectrum",side=2,line=2,cex=1)
+dev.off()
+
+#Now finally just show the time series
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier7.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+plot(deeryr,totdeerres,type="l",xlab="",ylab="")
+mtext("Year",side=1,line=2,cex=1)
+mtext("Detrended total WI deer pop.",side=2,line=2,cex=1)
+dev.off()
 ```
 
 # Theory \label{SI:theory}
@@ -896,6 +1269,60 @@ of the cost of DVCs [@Huijser2008_dvc], the
 difference between peak and trough years in DVC 
 costs may exceed US\$22M.    
 
+<!--Fourier methods that were used to generate supporting results-->
+\textbf{Fourier methods, deer.} Although our wavelet methods were most appropriate for discovery
+of our results, some researchers are more comfortable with Fourier methods, and many of our
+results can also be demonstrated, \emph{post hoc}, using Fourier methods once one has 
+realized via the wavelet methods what to look for. So we here describe Fourier methods we
+applied which support our wavelet results for deer. The Fourier results support the conclusions that:
+1) spectral power in the 3-7yr timescale band for the total deer time series for WI was
+significant, much greater than it would have been absent synchrony between county-level
+deer time series in the 3-7yr band; and 
+<!--***DAN: have not done the calculations suporting 2 below, this is just what I hope to accomplish-->
+2) spectral power in the 3-7yr band is much greater for the state-total deer time series than 
+for the county-level time series.
+<!--***DAN: do you also want to do something with DVCs? Probably should.-->
+
+After discovering (Fig. \ref{MT-Fig3_DeerSync}A) that synchrony in deer is primarily at 3-7yr timescales,
+to test whether the theory presented above is reflected in our deer data, it sufficies to show
+that spectral power in the 3-7yr timescale band was much greater for the total deer time series 
+for WI than it would have been, absent synchrony between county-level deer time series in the 3-7yr 
+band. In other words, if synchrony in the 3-7yr band were a cause of 3-7yr deer population 
+cycling at the state level, then when synchrony is removed but county-level time series are 
+kept otherwise statistically similar, state-level cycling should be significantly and substantially reduced. 
+We calculated spectral power in the 3-7yr band and compared the result to the same statistic calculated for
+the surrogate time series of Fig. \ref{MT-Fig5_StateWideFluctuations}A (grey lines - methods for generating 
+those surrogates are described above). A $p$-value result for the test of the null hypothesis that 
+synchrony did not cause or amplify cycling is the fraction of surrogate values greater than the 
+value for data. We also displayed the power spectra of the data and the surrogates, to make
+possible a visual comparison, and tests of whether, for each timescale/frequency in the 3-7yr band
+the spectrum of data was above the distribution of spectra for surrogates. To calculate spectral power in
+the 3-7yr band summed a raw periodigram across those timescales; to display the spectrum
+we used a consistent estimator of @Brillinger2001 (section 5.6 of that text). The summed
+periodogram provides the exact spectral power in the band, whereas the consistent estimator is
+smoothed and is more appropriate for display of the spectrum [@Brillinger2001].
+
+Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most appropriate for our
+research goals, some past researchers have used autoregressive surrogates for significance testing
+spectral quantities. 
+<!--***DAN: Need to insert some references here-->
+Because autoregressive surrogates are fairly common, we also tested our 
+results using AR(1) surrogates, for completeness. But we emphasize that we consider 
+autoregressive surrogates less appropriate for our research goals because they do not 
+correspond to a null hypothesis that is explicitly about synchrony. We fitted an AR(1)
+model by maximum likelihood to the detrended state-total deer time series, and then
+used the resulting parameterized model to generate surrogate timeseries. Spectral power in the 
+3-7yr band (computed by summing a raw periodogram across the band) for data was compared
+to the distribution of values of the same statistic for surrogates, again producing a $p$-value.
+We also displayed the power spectra (using the estimator of section 5.6 of @Brillinger2001) of 
+the data and the surrogates, again to make possible visual comparison and tests for individual 
+timescales/frequencies. 
+
+Finally, we used maximum likelihood to fit autoregressive models of different orders to 
+detrended state-total deer time series, comparing orders using the Akaike Information
+Criterion (AIC). Spectra were displayed for the fitted models of orders for which the
+AIC indicated the best correspondence with data. 
+
 # Supplementary results \label{SI:results}
 
 \textbf{Additional county results}. The main text focuses on county-level results,
@@ -1004,6 +1431,71 @@ Hunter abundance and deer
 abundance were not significantly coherent at the 
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
 
+<!--Fourier results-->
+\textbf{Fourier methods, deer.} Total spectral power in the 3-7yr timescale band for detrended state-total
+deer time series (see SI section \ref{SI:methods} for methods) was much greater than the same quantity
+computed for the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}; this was true for
+all the surrogates used (Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). Since the surrogates represent a case 
+in which synchrony inthe 3-7yr timescale band is absent but county-level deer time series are 
+kept otherwise statistically similar, this result shows that synchrony in the 3-7yr timescale band
+markedly increases state-total population cycling on 3-7yr timescales. The corresponding $p$-value
+(SI section \ref{SI:methods}) would be vanishingly small. The power spectrum of the state-total
+deer time series was above the spectra of all surrogates at nearly all frequencies corresponding
+to timescales in the 3-7yr range (Fig. \ref{FigS_SpectraFig5Surrogs}).
+
+Total spectral power in the 3-7yr timescale band for detrended state-total
+deer time series was also greater than the same quantity computed for a fraction `r round(Fourier3PvalRes,4)` 
+of AR(1) surrrogates (Fig. \ref{FigS_SpectPow3to7ARSurrogs}). Thus `r round(Fourier3PvalRes,4)` is a $p$-value for a test of the 
+null hypothesis corresponding to AR(1) surrogates. However, we emphasize, as explained in SI section \ref{SI:methods},
+that that null hypothesis does not explicitly relate to synchrony, and so is less appropriate for our research purposes
+then the null hypothesis represented by the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}, for which the $p$-value was
+vanishingly small, much lower than `r round(Fourier3PvalRes,4)` (see previous paragraph and 
+Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). 
+
+A conservative analyst may argue that a multiple-testing correction is required because the tests in the two preceding
+paragraphs focused on timescales in the 3-7yr range, but spectra were generated for timescales across a broader 
+range. This is debatable, since our theory and our deer wavelet mean fields, which showed synchrony in the 3-7yr timescale range,
+provided an \emph{a priori} reason to test the 3-7yr timescale range, specifically, rather than scanning across multiple 
+timescales bands for a spectral peak. Nevertheless, we Bonferroni corrected, as
+follows. Power spectra based on 36-year time series, such as those we used, are typically evaluated at 
+18 frequencies, and there are 7 such frequencies corresponding to timescales between 3 and 7 years, the ratio being
+18/7=2.57. Rounding up to 3 tests, a Bonferroni-adjusted $p$-value threshold for a 
+family-wise error rate of $5\%$ may therefore be considered to be 
+$0.05/3=0.0166$, so both tests in the preceding two paragraphs were still significant after such a 
+conservative correction. 
+
+The power spectrum of the state-total deer time series was also compared visually to the spectra of AR(1) surrogates
+(Fig. \ref{FigS_SpectraARSurrogs}). For several timescales within the 3-7yr range the data spectrum was higher than the
+95th quantile of surrogate spectra. A conservative analyst may argue that a multiple-testing correction is required, because
+mutliple timescales are considered. We consider two corrections, both very conservative but one even more so than the other.
+Considering timescales to correspond to independent tests (they do not, for the spectral estimator we used, which 
+involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the 3-7yr band to the number of tests performed, the Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
+was $0.05/7=0.0071$. Instead using all 18 timescales
+for whuch spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. The spectrum of data exceeded
+the former and almost exceeded the latter threshold for at least one timescale in the 3-7yr range (Fig. 
+\ref{FigS_SpectraARSurrogs}). We emphasize that these tests are excessively conservative and sub-optimal for multiple 
+reasons: 1) they use AR(1) surrogates, which are not ideal, as discussed above; 2) they require that the spectrum of data 
+exceed spectra of surrogates for at least one *specific timescale* in the range 3-7yrs, whereas theory and results on 
+synchrony only predict that *total spectral power* in that range will exceed that of appropriate surrogates; 3) they assume 
+independence of timescales, and the latter test sub-optimally counts timescales outside the 3-7yr range as tests performed, 
+even though theory and wavelet mean field results provide an *a prior* reason to examine only timescales within the
+3-7yr range; 4) the Bonferroni correction is well known to be a conservative multiple-testing correction. 
+Although the results at the beginning of this section (Fig. \ref{FigS_SpectPow3to7Fig5Surrogs} and accompanying results 
+on total spectral power in the 3-7yr range) are more appropriate and also indicate substantially higher 
+statistical confidence that our deer provide evidence of our theoretical mechanism, we nevertheless provide these 
+alternative analyses to demonstrate the robustness of our conclusions: for deer in WI, timescale-sepcific synchrony 
+promotes significant population cycling even under extremely conservative statistical testing procedures. 
+
+Fitting AR models of different orders to the detrended state-total deer time series gave AIC values
+as in Table \ref{Table_AR_AIC_Table}. The AR order for which the lowest AIC was obtained was 2.
+Order 3 had a similar AIC, but other orders had meaningfully worse AICs. Recall that lower AICs mean 
+better model-data agreement, and AIC differences of more than 2 or 3 are considered meaningful.
+We plotted the spectrum of the best-fitting AR(2) and AR(3) models (Fig. \ref{FigS_SpectraARFits}). 
+These spectra were indistinguishable and they had a peak at frequency about 0.2 (timescale about 5 years). 
+Non-peaked spectra, corresponding to the alternative hypothesis that the state-total deer time 
+series is not significantly periodic, are represented by the AR(0) and AR(1) models, which have difinitively worse
+AIC values (Table \ref{Table_AR_AIC_Table}). Fig. \ref{FigS_DetrendedStateTotalDeer} shows the detrended state-total
+deer population time series. Periodicity seems visually evident, consistent with the above multi-pronged analysis.
 
 \newpage
 
@@ -1190,6 +1682,73 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 \newpage
 \clearpage
 
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier1.png}
+\caption[Spectral power, 3-7yr band, state-total deer and Fig. \ref{MT-Fig5_StateWideFluctuations} surrogates]{The red dot shows 
+total spectral power, in the 3-7yr timescale range, of the detrended state-total deer population time series for WI, whereas the 
+histogram shows values of the same statistic computed for the surrogates (again detrended) of Fig. 
+\ref{MT-Fig5_StateWideFluctuations} from the main text. The value for data was much greater than the values for all of the 
+surrogates.}\label{FigS_SpectPow3to7Fig5Surrogs}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier2.png}
+\caption[Power spectra, state-total deer and Fig. \ref{MT-Fig5_StateWideFluctuations} surrogates]{Power spectrum of the 
+state-total deer time series (black line) superimposed with spectra of the surrogates of 
+Fig. \ref{MT-Fig5_StateWideFluctuations} (grey lines). Vertical lines 
+are at the frequencies corresponding to timescales of 3 and 7 
+years. At nearly all the frequencies in that range, the spectrum of the data was above the spectra of all the 
+surrogates. Spectra are identical sufficiently far outside the 3-7yr timescale band because Fig. 
+\ref{MT-Fig5_StateWideFluctuations} surrogates only involved randomization of Fourier components outside this range.
+Spectra are non-identical slightly outside the 3-7yr timescale range because the spectral estimator used was based on smoothing across nearby frequencies.}\label{FigS_SpectraFig5Surrogs}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier3.png}
+\caption[Spectral power, 3-7yr band, state-total deer and AR(1) surrogates]{The red dot shows 
+total spectral power, in the 3-7yr timescale range, of the detrended state-total deer population time series for WI, whereas the 
+histogram shows values of the same statistic computed for the AR(1) surrogates (again detrended; see SI 
+section \ref{SI:methods}).}\label{FigS_SpectPow3to7ARSurrogs}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier5.png}
+\caption[Power spectra, state-total deer and AR(1) surrogates]{Power spectrum of the 
+state-total deer time series (solid black line) superimposed with spectra of AR(1) surrogates (SI section \ref{SI:methods}). 
+Vertical lines are at the frequencies corresponding to timescales of 3 and 7 
+years. The dashed line is the 95th quantile of the surrogate spectra. The lower dotted line is a 
+quantile of the surrogates for a Bonferroni-corrected significance threshold assuming
+$n$ independent tests, where $n$ is the number of timescales between 3 and 7 years for which 
+spectra were evaluated. The upper dashed line is for a Bonferroni-corrected threshold
+using $n$ equal to the total number of frequencies for which spectra were evaluated, both within and
+outside the 3-7yr timescale band.}\label{FigS_SpectraARSurrogs}
+\end{figure}
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier6.png}
+\caption[Power spectra of AR(2) and AR(3) models fitted to the state-total deer time series]{Power spectra of AR(2) and 
+AR(3) models fitted to the state-total deer time series. The AR(2) model spectrum is plotted as a solid black line and the 
+AR(3) model spectrum is plotted as a dashed red line; the lines are indistinguishable.}\label{FigS_SpectraARFits}
+\end{figure}
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier7.png}
+\caption[Detrended state-total deer population time series]{Detrended state-total deer population time series.}\label{FigS_DetrendedStateTotalDeer}
+\end{figure}
+
+
+\newpage
+\clearpage
+
 ```{r Table1,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 rownames(Table1)<-NULL
@@ -1227,6 +1786,17 @@ knitr::kable(TableS2,
              caption.short="Summary of USDA district-level coherence test results",
              caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (\\textit{Methods}). $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns (which give percentages) are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. Cross-terms are zero for test involving climate indices because for those tests the same values were used for all locations (\\textit{Methods}). All values were rounded to display four digits. \\label{TabS2_SummaryDistrict}",
              booktabs=T)
+```
+
+```{r AR_AIC_Table,echo=F,results='markup'}
+rownames(AR_AIC_Table)<-NULL
+knitr::kable(AR_AIC_Table,
+             format='latex',align="l",escape=F,
+             digits=4,
+             col.names=c("AR order","AIC"),
+             caption.short="AR fits by order for detrended state-total deer time series",
+             caption="Autoregressive models of each order were fitted by maximum likelihood to the detrended state-total deer population time series, and AIC values are reported. \\label{Table_AR_AIC_Table}",
+             booktabs=TRUE)
 ```
 
 \newpage
