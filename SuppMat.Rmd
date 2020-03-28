@@ -1464,9 +1464,8 @@ conservative correction.
 
 The power spectrum of the state-total deer time series was also compared visually to the spectra of AR(1) surrogates
 (Fig. \ref{FigS_SpectraARSurrogs}). For several timescales within the $3-7$-year range the data spectrum was higher than the
-95th quantile of surrogate spectra. A conservative analyst may argue that a multiple-testing correction is required, because
-multiple timescales are considered. We consider two corrections, both very conservative but one even more so than the other.
-Considering timescales to correspond to independent tests (they do not, for the spectral estimator we used, which 
+95th quantile of surrogate spectra. Here, we consider two multiple-testing corrections, both very conservative but one even more so than the other.
+Considering timescales to correspond to independent tests (though they do not, for the spectral estimator we used, which 
 involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the 3-7yr band to the number of tests performed, the Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
 was $0.05/7=0.0071$. Instead using all 18 timescales
 for whuch spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. The spectrum of data exceeded
