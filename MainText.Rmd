@@ -32,6 +32,13 @@ Number of figures and tables: 5 figures, 1 table
 Number of references: 58  
 <!--***DAN: don't forget to fill this stuff in--> <!--***Tom: will double check for hte final submission-->
 
+\textbf{Data accessibility.} All data will be made available in the Dryad digital repository. 
+<!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
+is accepted, and Tom also to replace XYZ with the repo number when the time comes, please.-->
+All data and code producing this paper are also archived at `www.github.com/reumandc/TomAnderson_WIdeer`.
+Analyses leading to the paper can be re-run and the paper re-compiled 
+via the codes there - see `Readme.md` in the github repository for instructions.
+
 \newpage
 <!--Title length limit 96 characters, inc spaces-->
 
@@ -420,13 +427,6 @@ actual state-total deer abundance and DVC time series to determine to what exten
 additional variance and cycling intensity in the
 empirical state-total time series were attributable to synchrony. Further details of all datasets,
 data pre-processing, and analytic methods are in SI section \ref{SM-SI:methods}.
-
-\textbf{Data availability.} All data will be made available in the Dryad digital repository. 
-<!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
-is accepted, and Tom also to replace XYZ with the repo number when the time comes, please.-->
-All data and code producing this paper are also archived at `www.github.com/reumandc/TomAnderson_WIdeer`.
-Analyses leading to the paper can be re-run and the paper re-compiled 
-via the codes there - see `Readme.md` in the github repository for instructions.
 
 # Results
 
