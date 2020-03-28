@@ -1300,6 +1300,10 @@ we used a consistent estimator of @Brillinger2001 (section 5.6 of that text). Th
 periodogram provides the exact spectral power in the band, whereas the consistent estimator is
 smoothed and is more appropriate for display of the spectrum [@Brillinger2001].
 
+To ensure our results are not Type I error, we applied Bonferroni-corrections to our p-values. Whether this is appropriate is is debatable, since our theory and our deer wavelet mean fields, which showed synchrony in the $3-7$-year timescale range,
+provided an \emph{a priori} reason to test the $3-7$-year timescale range, specifically, rather than scanning across multiple 
+timescales bands for a spectral peak. Nevertheless, we conducted this extra test to be extra conservative. 
+
 Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most appropriate for our
 research goals, autoregressive surrogates are fairly common and have been used for significance testing
 spectral quantities in similar studies. 
@@ -1434,7 +1438,7 @@ state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$)
 deer time series (see SI section \ref{SI:methods} for methods) was much greater than the same quantity
 computed for the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}; this was true for
 all the surrogates used (Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). Since the surrogates represent a case 
-in which synchrony inthe $3-7$-year timescale band is absent but county-level deer time series are 
+in which synchrony in the $3-7$-year timescale band is absent but county-level deer time series are 
 kept otherwise statistically similar, this result shows that synchrony in the $3-7$-year timescale band
 markedly increases state-total population cycling on $3-7$-year timescales. The corresponding $p$-value
 (SI section \ref{SI:methods}) would be vanishingly small. The power spectrum of the state-total
@@ -1443,19 +1447,15 @@ to timescales in the $3-7$-year range (Fig. \ref{FigS_SpectraFig5Surrogs}).
 
 Total spectral power in the $3-7$-year timescale band for detrended state-total
 deer time series was also greater than the same quantity computed for a fraction `r round(Fourier3PvalRes,4)` 
-of AR(1) surrrogates (Fig. \ref{FigS_SpectPow3to7ARSurrogs}). Thus `r round(Fourier3PvalRes,4)` is a $p$-value for a test of the 
+of AR(1) surrogates (Fig. \ref{FigS_SpectPow3to7ARSurrogs}). Thus `r round(Fourier3PvalRes,4)` is a $p$-value for a test of the 
 null hypothesis corresponding to AR(1) surrogates. However, we emphasize, as explained in SI section \ref{SI:methods},
 that that null hypothesis does not explicitly relate to synchrony, and so is less appropriate for our research purposes
 then the null hypothesis represented by the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}, for which the $p$-value was
 vanishingly small, much lower than `r round(Fourier3PvalRes,4)` (see previous paragraph and 
 Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). 
 
-A conservative analyst may argue that a multiple-testing correction is required because the tests in the two preceding
-paragraphs focused on timescales in the $3-7$-year range, but spectra were generated for timescales across a broader 
-range. This is debatable, since our theory and our deer wavelet mean fields, which showed synchrony in the $3-7$-year timescale range,
-provided an \emph{a priori} reason to test the $3-7$-year timescale range, specifically, rather than scanning across multiple 
-timescales bands for a spectral peak. Nevertheless, we Bonferroni corrected, as
-follows. Power spectra based on 36-year time series, such as those we used, are typically evaluated at 
+Because the tests in the two preceding
+paragraphs focused on timescales in the $3-7$-year range, but spectra were generated for timescales across a broader range, we applied Bonferroni-corrections to our results. Power spectra based on 36-year time series, such as those we used, are typically evaluated at 
 18 frequencies, and there are 7 such frequencies corresponding to timescales between 3 and 7 years, the ratio being
 18/7=2.57. Rounding up to 3 tests, a Bonferroni-adjusted $p$-value threshold for a 
 family-wise error rate of $5\%$ may therefore be considered to be 
@@ -1465,7 +1465,7 @@ conservative correction.
 The power spectrum of the state-total deer time series was also compared visually to the spectra of AR(1) surrogates
 (Fig. \ref{FigS_SpectraARSurrogs}). For several timescales within the $3-7$-year range the data spectrum was higher than the
 95th quantile of surrogate spectra. A conservative analyst may argue that a multiple-testing correction is required, because
-mutliple timescales are considered. We consider two corrections, both very conservative but one even more so than the other.
+multiple timescales are considered. We consider two corrections, both very conservative but one even more so than the other.
 Considering timescales to correspond to independent tests (they do not, for the spectral estimator we used, which 
 involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the 3-7yr band to the number of tests performed, the Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
 was $0.05/7=0.0071$. Instead using all 18 timescales
