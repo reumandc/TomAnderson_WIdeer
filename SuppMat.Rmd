@@ -1292,19 +1292,19 @@ We calculated spectral power in the $3-7$-year band and compared the result to t
 for the surrogate time series of Fig. \ref{MT-Fig5_StateWideFluctuations}A (grey lines - methods for 
 generating those surrogates are described above). A $p$-value result for the test of the null hypothesis that
 synchrony did not cause or amplify cycling is the fraction of surrogate values greater than the 
-value for data. We also displayed the power spectra of the data and the surrogates, to make
-possible a visual comparison, and tests of whether, for each timescale/frequency in the $3-7$-year band
-the spectrum of data was above the distribution of spectra for surrogates. To calculate spectral power in
-the $3-7$-year band summed a raw periodigram across those timescales; to display the spectrum
+value for data. We also displayed the power spectra of the data and the surrogates to visually show and test
+of whether the spectrum of data was above the distribution of spectra for surrogates for each 
+timescale/frequency in the $3-7$-year band. To calculate spectral power in the $3-7$-year band we summed a raw 
+periodogram across those timescales; to display the spectrum
 we used a consistent estimator of @Brillinger2001 (section 5.6 of that text). The summed
 periodogram provides the exact spectral power in the band, whereas the consistent estimator is
 smoothed and is more appropriate for display of the spectrum [@Brillinger2001].
 
 Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most appropriate for our
-research goals, some past researchers have used autoregressive surrogates for significance testing
-spectral quantities. 
+research goals, autoregressive surrogates are fairly common and have been used for significance testing
+spectral quantities in similar studies. 
 <!--***DAN: Need to insert some references here-->
-Because autoregressive surrogates are fairly common, we also tested our 
+Therefore, we also tested our 
 results using AR(1) surrogates, for completeness. But we emphasize that we consider 
 autoregressive surrogates less appropriate for our research goals because they do not 
 correspond to a null hypothesis that is explicitly about synchrony. We fitted an AR(1)
@@ -1340,7 +1340,7 @@ and want to revert back to the old text.
 Again applying the wavelet
 Moran theorem, snow depth explained $`r round(usda.snowabunSyncExp3_4,0)`\%$ of synchrony in deer
 abundance at $3-4$-year timescales when data were aggregated to USDA districts (SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}). 
--->
+--><!--TOM::That's fine-->
 Dynamics at $3-4$-year timescales were not well explained by either $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead contributed more
 to deer synchrony over $4-7$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}, see also 
 Fig. \ref{FigS5_RanksInSurrogs}A and Table \ref{TabS2_SummaryDistrict}). 
