@@ -1091,16 +1091,16 @@ paragraphs focused on timescales in the $3-7$-year range, but spectra were gener
 18 frequencies, and there are 7 such frequencies corresponding to timescales between 3 and 7 years, the ratio being
 18/7=2.57. Rounding up to 3 tests, a Bonferroni-adjusted $p$-value threshold for a 
 family-wise error rate of $5\%$ may therefore be considered to be 
-$0.05/3=0.0166$, so both tests in the preceding two paragraphs were still significant after such a 
+$0.05/3=0.0166$, so both tests in the preceding two paragraphs were still significant after a   
 conservative correction. 
 
 The power spectrum of the state-total deer time series was also compared visually to the spectra of AR(1) surrogates
 (Fig. \ref{FigS_SpectraARSurrogs}). For several timescales within the $3-7$-year range the data spectrum was higher than the
 95th quantile of surrogate spectra. Here, we consider two multiple-testing corrections, both very conservative but one even more so than the other.
-Considering timescales to correspond to independent tests (though they do not, for the spectral estimator we used, which 
-involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the 3-7yr band to the number of tests performed, the Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
-was $0.05/7=0.0071$. Instead using all 18 timescales
-for whuch spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. The spectrum of data exceeded
+First, we considered timescales to correspond to independent tests (though they do not, for the spectral estimator we used, which 
+involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the $3-7$-year band to the number of tests performed. This would result in a Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
+to be $0.05/7=0.0071$. Second, using the same approach but for all 18 timescales
+for which spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. The spectrum of data exceeded
 the former and almost exceeded the latter threshold for at least one timescale in the $3-7$-year range (Fig. 
 \ref{FigS_SpectraARSurrogs}). We emphasize that these tests are excessively conservative and sub-optimal for multiple 
 reasons: 1) they use AR(1) surrogates, which are not ideal, as discussed above; 2) they require that the spectrum of data 
@@ -1116,11 +1116,11 @@ alternative analyses to demonstrate the robustness of our conclusions: for deer 
 promotes significant population cycling even under extremely conservative statistical testing procedures. 
 
 Fitting AR models of different orders to the detrended state-total deer time series gave AIC values
-as in Table \ref{Table_AR_AIC_Table}. The AR order for which the lowest AIC was obtained was 2.
+as in Table \ref{Table_AR_AIC_Table}. Second-order (AR(2)) models resulted in the lowest AIC.
 Order 3 had a similar AIC, but other orders had meaningfully worse AICs. Recall that lower AICs mean 
-better model-data agreement, and AIC differences of more than 2 or 3 are considered meaningful.
+better model-data agreement, and AIC differences of more than 2 are considered meaningful.
 We plotted the spectrum of the best-fitting AR(2) and AR(3) models (Fig. \ref{FigS_SpectraARFits}). 
-These spectra were indistinguishable and they had a peak at frequency about 0.2 (timescale about 5 years). 
+These spectra were indistinguishable and they had a peak at frequency about 0.2 (timescale of 5 years). 
 Non-peaked spectra, corresponding to the alternative hypothesis that the state-total deer time 
 series is not significantly periodic, are represented by the AR(0) and AR(1) models, which have difinitively worse
 AIC values (Table \ref{Table_AR_AIC_Table}). Fig. \ref{FigS_DetrendedStateTotalDeer} shows the detrended state-total
