@@ -177,7 +177,7 @@ mtext("Power spectrum",side=2,line=2,cex=1)
 dev.off()
 
 #***
-#Now compare to AR(1) surrogates
+#Now compare to AR(1) surrogates (deer again)
 #***
 
 #Fit an AR(1) model to the detrended data
@@ -288,7 +288,7 @@ mtext("Frequency",side=1,line=2,cex=1)
 mtext("Power spectrum",side=2,line=2,cex=1)
 dev.off()
 
-#Now make a plot that includes the stricted multiple-testing correction,
+#Now make a plot that includes the strictest multiple-testing correction,
 #which is Bonferroni counting all frequencies as independent tests. 
 #Probably this is just for use in the referee responses.
 tot.wd<-4
@@ -321,7 +321,10 @@ mtext("Frequency",side=1,line=2,cex=1)
 mtext("Power spectrum",side=2,line=2,cex=1)
 dev.off()
 
-#Now do the AR argument with AIC
+#***
+#Now do an AR argument with AIC
+#***
+
 h1<-ar.mle(totdeerres)
 saveRDS(h1$aic,file="Results/AR_AICs.rds") #save the AICs of the best-fitted AR model of each order
 #make the spectrum of the best one, which is order 2, and the second-best (because it has a similar 
@@ -348,7 +351,10 @@ mtext("Frequency",side=1,line=2,cex=1)
 mtext("Power spectrum",side=2,line=2,cex=1)
 dev.off()
 
-#Now finally just show the time series
+#***
+#Now just show the time series, which visually look like they have cycling
+#***
+
 tot.wd<-4
 tot.ht<-4
 ywd<-.65
@@ -366,3 +372,167 @@ plot(deeryr,totdeerres,type="l",xlab="",ylab="")
 mtext("Year",side=1,line=2,cex=1)
 mtext("Detrended total WI deer pop.",side=2,line=2,cex=1)
 dev.off()
+
+#***
+#Now compare spectra of deer for individual counties with the spectrum for the whole state deer time series
+#***
+
+#pull in the deer data
+d<-readRDS(file="Results/cty.list.rds")
+deer<-d$Abun
+totdeer<-apply(FUN=sum,X=deer,MARGIN=2)
+deeryr<-1981:2016
+
+#get standardized time series (detrend, demean, standardized variance)
+totdeerSV<-residuals(lm(totdeer~deeryr))
+totdeerSV<-totdeerSV/sd(totdeerSV)
+deerSV<-matrix(NA,dim(deer)[1],dim(deer)[2])
+for (counter in 1:dim(deer)[1])
+{
+  countydeer<-deer[counter,]
+  countydeerSV<-residuals(lm(countydeer~deeryr))
+  countydeerSV<-countydeerSV/sd(countydeerSV)
+  deerSV[counter,]<-countydeerSV
+}
+
+#now compute the spectral power in the 3-7 year band for each time series
+totspecraw<-myspecraw(totdeerSV)
+freqs<-totspecraw$freq
+totspecraw37<-sum(totspecraw$spec[freqs>=1/7 & freqs<=1/3])
+countyspecraw37<-NA*numeric(dim(deerSV)[1])
+for (counter in 1:length(countyspecraw37))
+{
+  h<-myspecraw(deerSV[counter,])
+  countyspecraw37[counter]<-sum(h$spec[freqs>=1/7 & freqs<=1/3])
+}
+#sum(totspecraw37>=countyspecraw37)
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier8.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+hist(countyspecraw37,xlim=range(countyspecraw37,totspecraw37),main="")
+points(totspecraw37,0,col="red",pch=20)
+mtext("Power in 3-7 yr band",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+dev.off()
+#so there is more power in the 3-7yr band for the standardized state-total
+#time series than there is for any of the county-level time series, where
+#the standardization (detrend and demean, standard variance) means that 
+#what we are seeing here is an appropriate comparison of periodicity in
+#that band.
+
+#Now look directly at the spectra. Compute the spectra (Brillinger consistent estimator).
+#Again using the standardized time series.
+totspec<-myspecbrill(totdeerSV,detrend=FALSE)
+countyspec<-list()
+for (counter in 1:dim(deer)[1])
+{
+  countyspec[[counter]]<-myspecbrill(deerSV[counter,],detrend=FALSE)
+}
+
+#now isolate what you want to plot
+freqs<-totspec$freq
+yvals<-matrix(NA,length(countyspec)+1,length(freqs))
+yvals[1,]<-10^totspec$log10spec
+for (counter in 1:length(countyspec))
+{
+  yvals[counter+1,]<-10^countyspec[[counter]]$log10spec
+}
+
+#now plot it
+png("Results/Fourier9.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+ylimits<-range(yvals)
+plot(freqs,yvals[1,],type="l",lwd=2,ylim=ylimits,col="red",xlab="",ylab="")
+for (counter in 2:(dim(yvals)[1]))
+{
+  lines(freqs,yvals[counter,])
+}
+lines(rep(1/3,2),ylimits,lty="dashed")
+lines(rep(1/7,2),ylimits,lty="dashed")
+mtext("Power spectrum",side=1,line=2,cex=1)
+mtext("Frequency",side=2,line=2,cex=1)
+dev.off()
+
+#one of the counties has a peak at a similar location, similar height to the total,
+#let's investigate that county
+ind<-which(yvals[2:dim(yvals)[1],7]==max(yvals[2:dim(yvals)[1],7]))
+plot(freqs,yvals[1,],type="l",col="red",ylim=range(yvals[1,],yvals[ind+1,]))
+lines(freqs,yvals[ind+1,])
+mean(totdeer)/mean(deer[38,]) #So the mean pop in this county is less than 1/28th 
+#of the state total. This is more than an average county, but not enough to
+#be driving things by itself.
+
+#to make sure, however, remove that county and repeat one of the analyses above
+deer<-deer[-38,]
+totdeer<-apply(FUN=sum,X=deer,MARGIN=2)
+
+#get standardized time series (detrend, demean, standardized variance)
+totdeerSV<-residuals(lm(totdeer~deeryr))
+totdeerSV<-totdeerSV/sd(totdeerSV)
+deerSV<-matrix(NA,dim(deer)[1],dim(deer)[2])
+for (counter in 1:dim(deer)[1])
+{
+  countydeer<-deer[counter,]
+  countydeerSV<-residuals(lm(countydeer~deeryr))
+  countydeerSV<-countydeerSV/sd(countydeerSV)
+  deerSV[counter,]<-countydeerSV
+}
+
+#now compute the spectral power in the 3-7 year band for each time series
+totspecraw<-myspecraw(totdeerSV)
+freqs<-totspecraw$freq
+totspecraw37<-sum(totspecraw$spec[freqs>=1/7 & freqs<=1/3])
+countyspecraw37<-NA*numeric(dim(deerSV)[1])
+for (counter in 1:length(countyspecraw37))
+{
+  h<-myspecraw(deerSV[counter,])
+  countyspecraw37[counter]<-sum(h$spec[freqs>=1/7 & freqs<=1/3])
+}
+#sum(totspecraw37>=countyspecraw37)
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier10.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+hist(countyspecraw37,xlim=range(countyspecraw37,totspecraw37),main="")
+points(totspecraw37,0,col="red",pch=20)
+mtext("Power in 3-7 yr band",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+dev.off()
+#so there is STILL more power in the 3-7yr band for the standardized state-total
+#time series than there is for any of the county-level time series
+
+#***
+#Some text in an email, saved here for later use when incorporating the state/county comparisons into the text
+#***
+
+#Hi guys,
+#
+#The referee also asked us to check the spectral peak for the state-total deer time series in the 3-7 year band was bigger than that for county time series.
+#I first detrended and demeaned all county-level deer time series, and standardized their variance, and did the same to the state-total time series. Then I computed total spectral power in the 3-7yr band for all these time series. Fourier8.png, attached, shows the histogram, of county values, with the red dot being the state-total value. The fact that I standardized all these time series means this is a valid comparison – there is more periodicity in the 3-7yr timescale band for the state total than for any of the counties.
+#Fourier9.png, attached, shows the spectra for the counties (black) and for the state total, again using standardized time series for a valid comparison. You can see the red peak in 3-7 is clearly above the black lines, except for one. That one is Marquette county. The mean deer population in Marquette is less than 1/28th the state total mean deer population, so Marquette could not reasonable have been driving things by itself. To be on the safe side, I removed Marquette, recomputed the state total, re-standardized time series, and then recomputed total power in 3-7. The result is Fourier10.png, attached, which shows the same pattern again.
+#So there is definitely more periodicity in the state total than in the counties.
+#I have not added this to any docs, I’ve just added the code that makes these results to the code suite. I imagine the best thing to do is probably just to add the result to the Sup Mat that there is more spectral power in 3-7 for the state total than for any of the counties, using standardized time series. And then add the other details to the response to referees. I’ll take a look at where Tom has got to in his edits and if it seems appropriate I’ll add this new material as indicated, probably later today. Before that, though, I am going to do some analyses of DVC data, similar to what I have already done for deer.
+#Dan
