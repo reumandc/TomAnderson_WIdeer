@@ -906,14 +906,7 @@ costs may exceed US\$22M.
 \textbf{Fourier methods, deer.} Although our wavelet methods were most appropriate for discovery
 of our results, many of our
 results can also be demonstrated, \emph{post hoc}, using Fourier methods, another common approach in spectral analyses. So we here describe Fourier methods we
-applied which support our wavelet results for deer. The Fourier results support the conclusions that:
-1) spectral power in the $3-7$-year timescale band for the total deer time series for WI was
-significant, much greater than it would have been absent synchrony between county-level
-deer time series in the $3-7$-year band; and 
-<!--***DAN: have not done the calculations suporting 2 below, this is just what I hope to accomplish-->
-2) spectral power in the $3-7$-year band is much greater for the state-total deer time series than 
-for the county-level time series.
-<!--***DAN: do you also want to do something with DVCs? Probably should.-->
+applied which support our wavelet results for deer. 
 
 After discovering (Fig. \ref{MT-Fig3_DeerSync}A) that synchrony in deer is primarily at $3-7$-year timescales, to test whether the theory presented above is reflected in our deer data, it suffices to show
 that spectral power in the $3-7$-year timescale band was much greater for the total deer time series 
@@ -935,7 +928,11 @@ smoothed and is more appropriate for display of the spectrum [@Brillinger2001].
 
 To ensure our results are not Type I error, we applied Bonferroni-corrections to our p-values. Whether this is appropriate is is debatable, since our theory and our deer wavelet mean fields, which showed synchrony in the $3-7$-year timescale range,
 provided an \emph{a priori} reason to test the $3-7$-year timescale range, specifically, rather than scanning across multiple 
-timescales bands for a spectral peak. Nevertheless, we conducted this extra test to be extra conservative. 
+timescales bands for a spectral peak. Nevertheless, we conducted this extra test to be extra conservative. Power spectra based on 36-year time series, such as those we used, are typically evaluated at 
+18 frequencies, and there are 7 such frequencies corresponding to timescales between 3 and 7 years, the ratio being
+18/7=2.57. Rounding up to 3 tests, a Bonferroni-adjusted $p$-value threshold for a 
+family-wise error rate of $5\%$ may therefore be considered to be 
+$0.05/3=0.0166$, 
 
 Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most appropriate for our
 research goals, autoregressive surrogates are fairly common and have been used for significance testing
@@ -951,7 +948,11 @@ $3-7$-year band (computed by summing a raw periodogram across the band) for data
 to the distribution of values of the same statistic for surrogates, again producing a $p$-value.
 We also displayed the power spectra (using the estimator of section 5.6 of @Brillinger2001) of 
 the data and the surrogates, again to make possible visual comparison and tests for individual 
-timescales/frequencies. 
+timescales/frequencies. For this analysi, we considered two multiple-testing corrections, both very conservative but one even more so than the other.
+First, we considered timescales to correspond to independent tests (though they do not, for the spectral estimator we used, which 
+involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the $3-7$-year band to the number of tests performed. This would result in a Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
+to be $0.05/7=0.0071$. Second, using the same approach but for all 18 timescales
+for which spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. 
 
 Finally, we used maximum likelihood to fit autoregressive models of different orders to 
 detrended state-total deer time series, comparing orders using the Akaike Information
@@ -1088,22 +1089,18 @@ vanishingly small, much lower than `r round(Fourier3PvalRes,4)` (see previous pa
 Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). 
 
 Because the tests in the two preceding
-paragraphs focused on timescales in the $3-7$-year range, but spectra were generated for timescales across a broader range, we applied Bonferroni-corrections to our results. Power spectra based on 36-year time series, such as those we used, are typically evaluated at 
-18 frequencies, and there are 7 such frequencies corresponding to timescales between 3 and 7 years, the ratio being
-18/7=2.57. Rounding up to 3 tests, a Bonferroni-adjusted $p$-value threshold for a 
-family-wise error rate of $5\%$ may therefore be considered to be 
-$0.05/3=0.0166$, so both tests in the preceding two paragraphs were still significant after a   
+paragraphs focused on timescales in the $3-7$-year range, but spectra were generated for timescales across a broader range, we applied Bonferroni-corrections to our results, with the Bonferroni-adjusted $p$-value threshold for a 
+family-wise error rate of $5\%$ to be 
+$0.05/3=0.0166$. Based on this value, both tests in the preceding two paragraphs were still significant after a   
 conservative correction. 
 
 The power spectrum of the state-total deer time series was also compared visually to the spectra of AR(1) surrogates
 (Fig. \ref{FigS_SpectraARSurrogs}). For several timescales within the $3-7$-year range the data spectrum was higher than the
-95th quantile of surrogate spectra. Here, we consider two multiple-testing corrections, both very conservative but one even more so than the other.
-First, we considered timescales to correspond to independent tests (though they do not, for the spectral estimator we used, which 
-involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the $3-7$-year band to the number of tests performed. This would result in a Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
-to be $0.05/7=0.0071$. Second, using the same approach but for all 18 timescales
-for which spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. The spectrum of data exceeded
+95th quantile of surrogate spectra. Our two Bonferroni-corrected thresholds for a family-wise error rate of $0.05$ 
+to be $0.05/7=0.0071$ for the $3-7$-year band and $0.05/18=0.0027$ for all 18 timescales
+for which spectra were available. The spectrum of data exceeded
 the former and almost exceeded the latter threshold for at least one timescale in the $3-7$-year range (Fig. 
-\ref{FigS_SpectraARSurrogs}). We emphasize that these tests are excessively conservative and sub-optimal for multiple 
+\ref{FigS_SpectraARSurrogs}). <!--TOM: I wonder if this list of points should only go in the response to reviewers-->We emphasize that these tests are excessively conservative and sub-optimal for multiple 
 reasons: 1) they use AR(1) surrogates, which are not ideal, as discussed above; 2) they require that the spectrum of data 
 exceed spectra of surrogates for at least one *specific timescale* in the range $3-7$-year, whereas theory and results on 
 synchrony only predict that *total spectral power* in that range will exceed that of appropriate surrogates; 3) they assume 
@@ -1127,6 +1124,14 @@ series is not significantly periodic, are represented by the AR(0) and AR(1) mod
 AIC values (Table \ref{Table_AR_AIC_Table}). Fig. \ref{FigS_DetrendedStateTotalDeer} shows the detrended state-total
 deer population time series. Periodicity seems visually evident, consistent with the above multi-pronged analysis.
 
+Overall, the fourier results support the conclusions that:
+1) spectral power in the $3-7$-year timescale band for the total deer time series for WI was
+significant, much greater than it would have been absent synchrony between county-level
+deer time series in the $3-7$-year band; and 
+<!--***DAN: have not done the calculations suporting 2 below, this is just what I hope to accomplish-->
+2) spectral power in the $3-7$-year band is much greater for the state-total deer time series than 
+for the county-level time series.
+<!--***DAN: do you also want to do something with DVCs? Probably should.-->
 \newpage
 
 # Supplementary figures and tables
