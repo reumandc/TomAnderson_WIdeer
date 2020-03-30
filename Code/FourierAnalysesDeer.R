@@ -524,10 +524,7 @@ dev.off()
 #so there is STILL more power in the 3-7yr band for the standardized state-total
 #time series than there is for any of the county-level time series
 
-#***
 #Some text in an email, saved here for later use when incorporating the state/county comparisons into the text
-#***
-
 #Hi guys,
 #
 #The referee also asked us to check the spectral peak for the state-total deer time series in the 3-7 year band was bigger than that for county time series.
