@@ -502,7 +502,7 @@ theorem \ref{thm:lem}.
 
 \textbf{Deer, DVC, and hunter data.}
 For `r length(unique(dat$COUNTY_NAM))` counties, we calculated deer abundance estimates 
-spanning the `r dim(cty.list$Abun)[2]`-yr period `r minyear`-`r maxyear` (main text Fig. 
+spanning the `r dim(cty.list$Abun)[2]`-year period `r minyear`-`r maxyear` (main text Fig. 
 \ref{MT-Fig2_Timeseries}). These time series were based on 
 data from "deer management units," provided by 
 the Wisconsin Department of Natural Resources (WIDNR). Deer management units 
@@ -903,14 +903,15 @@ difference between peak and trough years in DVC
 costs may exceed US\$22M.    
 
 <!--Fourier methods that were used to generate supporting results-->
-\textbf{Fourier methods, deer.} Although our wavelet methods were most appropriate for discovery
+\textbf{Fourier methods.} Although our wavelet methods were most appropriate for initial discovery
 of our results, many of our
-results can also be demonstrated, \emph{post hoc}, using Fourier methods, another common approach in spectral analyses. So we here describe Fourier methods we
-applied which support our wavelet results for deer. 
+results can also be demonstrated, \emph{post hoc}, using Fourier methods. So we here describe Fourier methods we
+applied, which support our wavelet results. 
 
-After discovering (Fig. \ref{MT-Fig3_DeerSync}A) that synchrony in deer is primarily at $3-7$-year timescales, to test whether the theory presented above is reflected in our deer data, it suffices to show
+After discovering (Fig. \ref{MT-Fig3_DeerSync}A) that synchrony in deer is primarily at $3-7$-year timescales, to 
+test whether the theory presented above is reflected in our deer data, it suffices to show
 that spectral power in the $3-7$-year timescale band was much greater for the total deer time series 
-for WI than it would have been, absent synchrony between county-level deer time series in the $3-7$-year 
+for WI than it would have been without synchrony between county-level deer time series in the $3-7$-year 
 band. In other words, if synchrony in the $3-7$-year band were a cause of $3-7$-year deer population 
 cycling at the state level, then when synchrony is removed but county-level time series are 
 kept otherwise statistically similar, state-level cycling should be significantly and substantially reduced. 
@@ -918,27 +919,26 @@ We calculated spectral power in the $3-7$-year band and compared the result to t
 for the surrogate time series of Fig. \ref{MT-Fig5_StateWideFluctuations}A (grey lines - methods for 
 generating those surrogates are described above). A $p$-value result for the test of the null hypothesis that
 synchrony did not cause or amplify cycling is the fraction of surrogate values greater than the 
-value for data. We also displayed the power spectra of the data and the surrogates to visually show and test
-of whether the spectrum of data was above the distribution of spectra for surrogates for each 
+value for data. We also displayed the power spectra of the data and the surrogates to visually show 
+whether the spectrum of data was above the distribution of spectra for surrogates for each 
 timescale/frequency in the $3-7$-year band. To calculate spectral power in the $3-7$-year band we summed a raw 
 periodogram across those timescales; to display the spectrum
 we used a consistent estimator of @Brillinger2001 (section 5.6 of that text). The summed
 periodogram provides the exact spectral power in the band, whereas the consistent estimator is
 smoothed and is more appropriate for display of the spectrum [@Brillinger2001].
 
-To ensure our results are not Type I error, we applied Bonferroni-corrections to our p-values. Whether this is appropriate is is debatable, since our theory and our deer wavelet mean fields, which showed synchrony in the $3-7$-year timescale range,
+<!--To ensure our results are not Type I error, we applied Bonferroni-corrections to our p-values. Whether this is appropriate is is debatable, since our theory and our deer wavelet mean fields, which showed synchrony in the $3-7$-year timescale range,
 provided an \emph{a priori} reason to test the $3-7$-year timescale range, specifically, rather than scanning across multiple 
 timescales bands for a spectral peak. Nevertheless, we conducted this extra test to be extra conservative. Power spectra based on 36-year time series, such as those we used, are typically evaluated at 
 18 frequencies, and there are 7 such frequencies corresponding to timescales between 3 and 7 years, the ratio being
 18/7=2.57. Rounding up to 3 tests, a Bonferroni-adjusted $p$-value threshold for a 
 family-wise error rate of $5\%$ may therefore be considered to be 
-$0.05/3=0.0166$, 
+$0.05/3=0.0166$, -->
 
 Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most appropriate for our
 research goals, autoregressive surrogates are fairly common and have been used for significance testing
-spectral quantities in similar studies. 
-<!--***DAN: Need to insert some references here-->
-Therefore, we also tested our 
+spectral quantities. AR(1) models have no spectral peak, so they have been used to test
+for the significance of spectral peaks. Therefore, we also tested our 
 results using AR(1) surrogates, for completeness. But we emphasize that we consider 
 autoregressive surrogates less appropriate for our research goals because they do not 
 correspond to a null hypothesis that is explicitly about synchrony. We fitted an AR(1)
@@ -947,17 +947,49 @@ used the resulting parameterized model to generate surrogate timeseries. Spectra
 $3-7$-year band (computed by summing a raw periodogram across the band) for data was compared
 to the distribution of values of the same statistic for surrogates, again producing a $p$-value.
 We also displayed the power spectra (using the estimator of section 5.6 of @Brillinger2001) of 
-the data and the surrogates, again to make possible visual comparison and tests for individual 
-timescales/frequencies. For this analysi, we considered two multiple-testing corrections, both very conservative but one even more so than the other.
+the data and the surrogates, again to make possible visual comparison for individual 
+timescales/frequencies. 
+<!--For this analysi, we considered two multiple-testing corrections, both very conservative but one even more so than the other.
 First, we considered timescales to correspond to independent tests (though they do not, for the spectral estimator we used, which 
 involves smoothing the raw periodigram across nearby frequencies), and equating the number of timescales within the $3-7$-year band to the number of tests performed. This would result in a Bonferroni-corrected threshold for a family-wise error rate of $0.05$ 
 to be $0.05/7=0.0071$. Second, using the same approach but for all 18 timescales
-for which spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. 
+for which spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. -->
 
 Finally, we used maximum likelihood to fit autoregressive models of different orders to 
 detrended state-total deer time series, comparing orders using the Akaike Information
-Criterion (AIC). Spectra were displayed for the fitted models of orders for which the
-AIC indicated the best correspondence with data. 
+Criterion (AIC). Recall that lower AIC values indicate better model-data correspondence. 
+Spectra were displayed for the fitted models of orders for which the
+AIC indicated the best correspondence with data. If these spectra were peaked, and spectra of
+higher-AIC models were not (AR(0) and AR(1) models have non-peaked spectra), this supports
+peakedness of spectra against a non-peaked alternative. 
+
+If our theory is reflected in deer data, then periodicity at $3-7$-year timescales should be stronger 
+for the state-total deer time series than it is for the county-level deer time series, so we tested this. 
+We first detrended both the state-total and county deer time series and standardized the variance of each of these time series. 
+We then computed total spectral power in the $3-7$-year timescale band for all these time series
+and compared the state- and county-level results. Variance standardization was used prior
+to computing spectral power because we 
+were not interested in whether the state or county level time series had higher spectral power 
+- the state-level time series was expected to have higher power because state-total time series represented 
+more deer, and hence was, *a priori*,
+likely to be more variable in all timescale bands. Instead we were interested in whether a greater
+proportion of time series variance was concentrated in the $3-7$-year band for the state-total time series
+than for the county-level time series (i.e., if the state-level spectrum was more peaked
+within the $3-7$-year band than were the county-level spectra), which is what our post-standardization 
+analysis tests for.  
+
+For DVCs, we tested whether spectral power in the $3-7$-year timescale band was much greater for the total DVC time series 
+for WI than it would have been without synchrony between county-level DVC time series in the $3-7$-year 
+band, using the same methods employed for deer (Fig.  \ref{MT-Fig3_DeerSync}C surrogates). We also visually compared spectra of 
+the state-total DVC time series and the surrogates of Fig.  \ref{MT-Fig3_DeerSync}C. AR(1)
+surrogates were not appropriate for significance testing the contribution of synchrony to $3-7$-year periodicity in
+the state-total DVC time series, because the state-total DVC time series had substantial low-frequency power (Fig.  \ref{MT-Fig3_DeerSync}C),
+and that power would inappropriately influence the fitted AR(1). Although there may be a modified approch, 
+because AR(1) surrogates were considered less appropriate anyway for our research questions, further efforts to 
+use AR(1) surrogates with DVC time series were not undertaken. Comparisons, via AIC, of the fits of AR models of different orders were 
+also considered inappropriate for DVCs for similar reasons. Finally, comparison of variance-standardized 
+state- and county-level time series was not appropriate for DVCs because the variance standardization 
+means that $3-7$-year spectral power is also influenced by the amount of low-frequency power.  
 
 # Supplementary results \label{SI:results}
 
@@ -1068,7 +1100,7 @@ abundance were not significantly coherent at the
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
 
 <!--Fourier results-->
-\textbf{Fourier methods, deer.} Total spectral power in the $3-7$-year timescale band for detrended state-total
+\textbf{Fourier results.} Total spectral power in the $3-7$-year timescale band for detrended state-total
 deer time series (see SI section \ref{SI:methods} for methods) was much greater than the same quantity
 computed for the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}; this was true for
 all the surrogates used (Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). Since the surrogates represent a case 
@@ -1080,27 +1112,27 @@ deer time series was above the spectra of all surrogates at nearly all frequenci
 to timescales in the $3-7$-year range (Fig. \ref{FigS_SpectraFig5Surrogs}).
 
 Total spectral power in the $3-7$-year timescale band for detrended state-total
-deer time series was also greater than the same quantity computed for a fraction `r round(Fourier3PvalRes,4)` 
+deer time series was also greater than the same quantity computed for all but a fraction `r round(Fourier3PvalRes,4)` 
 of AR(1) surrogates (Fig. \ref{FigS_SpectPow3to7ARSurrogs}). Thus `r round(Fourier3PvalRes,4)` is a $p$-value for a test of the 
 null hypothesis corresponding to AR(1) surrogates. However, we emphasize, as explained in SI section \ref{SI:methods},
 that that null hypothesis does not explicitly relate to synchrony, and so is less appropriate for our research purposes
 then the null hypothesis represented by the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}, for which the $p$-value was
 vanishingly small, much lower than `r round(Fourier3PvalRes,4)` (see previous paragraph and 
-Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). 
-
-Because the tests in the two preceding
+Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). We nevertheless provide these 
+alternative analyses to demonstrate the robustness of our conclusions.
+<!--Because the tests in the two preceding
 paragraphs focused on timescales in the $3-7$-year range, but spectra were generated for timescales across a broader range, we applied Bonferroni-corrections to our results, with the Bonferroni-adjusted $p$-value threshold for a 
 family-wise error rate of $5\%$ to be 
 $0.05/3=0.0166$. Based on this value, both tests in the preceding two paragraphs were still significant after a   
-conservative correction. 
-
+conservative correction. -->
 The power spectrum of the state-total deer time series was also compared visually to the spectra of AR(1) surrogates
 (Fig. \ref{FigS_SpectraARSurrogs}). For several timescales within the $3-7$-year range the data spectrum was higher than the
-95th quantile of surrogate spectra. Our two Bonferroni-corrected thresholds for a family-wise error rate of $0.05$ 
+95th quantile of surrogate spectra. 
+<!--Our two Bonferroni-corrected thresholds for a family-wise error rate of $0.05$ 
 to be $0.05/7=0.0071$ for the $3-7$-year band and $0.05/18=0.0027$ for all 18 timescales
 for which spectra were available. The spectrum of data exceeded
 the former and almost exceeded the latter threshold for at least one timescale in the $3-7$-year range (Fig. 
-\ref{FigS_SpectraARSurrogs}). <!--TOM: I wonder if this list of points should only go in the response to reviewers-->We emphasize that these tests are excessively conservative and sub-optimal for multiple 
+\ref{FigS_SpectraARSurrogs}). We emphasize that these tests are excessively conservative and sub-optimal for multiple 
 reasons: 1) they use AR(1) surrogates, which are not ideal, as discussed above; 2) they require that the spectrum of data 
 exceed spectra of surrogates for at least one *specific timescale* in the range $3-7$-year, whereas theory and results on 
 synchrony only predict that *total spectral power* in that range will exceed that of appropriate surrogates; 3) they assume 
@@ -1111,7 +1143,7 @@ Although the results at the beginning of this section (Fig. \ref{FigS_SpectPow3t
 on total spectral power in the $3-7$-year range) are more appropriate and also indicate substantially higher 
 statistical confidence that our deer provide evidence of our theoretical mechanism, we nevertheless provide these 
 alternative analyses to demonstrate the robustness of our conclusions: for deer in WI, timescale-sepcific synchrony 
-promotes significant population cycling even under extremely conservative statistical testing procedures. 
+promotes significant population cycling even under extremely conservative statistical testing procedures.--> 
 
 Fitting AR models of different orders to the detrended state-total deer time series gave AIC values
 as in Table \ref{Table_AR_AIC_Table}. Second-order (AR(2)) models resulted in the lowest AIC.
@@ -1122,16 +1154,46 @@ These spectra were indistinguishable and they had a peak at frequency about 0.2 
 Non-peaked spectra, corresponding to the alternative hypothesis that the state-total deer time 
 series is not significantly periodic, are represented by the AR(0) and AR(1) models, which have difinitively worse
 AIC values (Table \ref{Table_AR_AIC_Table}). Fig. \ref{FigS_DetrendedStateTotalDeer} shows the detrended state-total
-deer population time series. Periodicity seems visually evident, consistent with the above multi-pronged analysis.
+deer population time series. Periodicity seems visually evident, consistent with the several analyses presented above.
+
+After detrending and standardizing variance, we tested whether spectral power in the $3-7$-year band 
+was greater in the state-total deer population time series than in county-level time series
+(see SI section \ref{SI:methods} for methods). This was a test of whether periodicity on these
+timescales was greater at the state level, as predicted by theory, than it was at the county level.
+Spectral power in the $3-7$-year band was greater for the state total than it was for every one of the
+counties (Fig. \ref{FigS_StateVCounty}).
 
 Overall, the fourier results support the conclusions that:
-1) spectral power in the $3-7$-year timescale band for the total deer time series for WI was
-significant, much greater than it would have been absent synchrony between county-level
-deer time series in the $3-7$-year band; and 
-<!--***DAN: have not done the calculations suporting 2 below, this is just what I hope to accomplish-->
-2) spectral power in the $3-7$-year band is much greater for the state-total deer time series than 
+1) there was a meaningful spectral peak in the $3-7$-year timescale band for the state-total deer time 
+series for WI, and it was substantially caused by synchrony; and
+2) spectral power in the $3-7$-year band is substantially greater for the state-total deer time series than 
 for the county-level time series.
-<!--***DAN: do you also want to do something with DVCs? Probably should.-->
+
+<!--For DVCs, we tested whether spectral power in the $3-7$-year timescale band was much greater for the total DVC time series 
+for WI than it would have been without synchrony between county-level DVC time series in the $3-7$-year 
+band, using the same methods employed for deer (Fig.  \ref{MT-Fig3_DeerSync}C surrogates). We also visually compared spectra of 
+the state-total DVC time series and the surrogates of Fig.  \ref{MT-Fig3_DeerSync}C. AR(1)
+surrogates were not considered optimal even for the state-total deer time series (see above text).
+However, they are wholly inappropriate for significance testing the contribution of synchrony to $3-7$-year periodicity in
+the state-total DVC time series, because the state-total DVC time series had substantial low-frequency power (Fig.  \ref{MT-Fig3_DeerSync}C),
+and that power would inappropriately influence the fitted AR(1) model which would have been used for surrogates. Although there may be a cubic
+detrending or other approch that may have helped to address this mismatch, because our above tests for DVCs were anyway already 
+regarded as superior tests of our research hypotheses, further efforts to use AR(1) surrogates in 
+connection with DVC time series were not undertaken. Comparisons, via AIC, of the fits of AR models of different orders were 
+also considered inappropriate for similar reasons. Finally, comparison of variance-standardized 
+state- and county-level time series was not appropriate for DVCs because the variance standardization 
+means that $3-7$-year spectral power is also influenced by the amount of low-frequency power, which is of 
+no interest for our research question. Again, ammendments to the comparisons and tests made for deer
+may have rendered such comparisons appropriate for application to DVCs, such ammendments appear 
+*ad hoc*, and also unnecessary given the analysis described at the start of this paragraph, and its analogue 
+for deer, were considered the appropriate analyses for our goals. -->
+Spectral power in the $3-7$-year band was much greater for the state-total DVC time series than it was
+for all of the surrogate time series of Fig.  \ref{MT-Fig3_DeerSync}C, indicating that synchrony in the $3-7$-year 
+timescale band markedly increases state-total DVC cycling (Fig. \ref{FigS_DVCSpectPow3to7Fig5Surrogs}).
+The power spectrum of the state-total
+DVC time series was above the spectra of all surrogates at all frequencies corresponding
+to timescales in the $3-7$-year range (Fig. \ref{FigS_DVCSpectraFig5Surrogs}).
+
 \newpage
 
 # Supplementary figures and tables
@@ -1319,10 +1381,10 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/Fourier1.png}
-\caption[Spectral power, $3-7$-year band, state-total deer and Fig. \ref{MT-Fig5_StateWideFluctuations} surrogates]{The red dot shows 
+\caption[Spectral power, $3-7$-year band, state-total deer and Fig. \ref{MT-Fig5_StateWideFluctuations}A surrogates]{The red dot shows 
 total spectral power, in the $3-7$-year timescale range, of the detrended state-total deer population time series for WI, whereas the 
 histogram shows values of the same statistic computed for the surrogates (again detrended) of Fig. 
-\ref{MT-Fig5_StateWideFluctuations} from the main text. The value for data was much greater than the values for all of the 
+\ref{MT-Fig5_StateWideFluctuations}A from the main text. The value for data was much greater than the values for all of the 
 surrogates.}\label{FigS_SpectPow3to7Fig5Surrogs}
 \end{figure}
 
@@ -1331,14 +1393,14 @@ surrogates.}\label{FigS_SpectPow3to7Fig5Surrogs}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/Fourier2.png}
-\caption[Power spectra, state-total deer and Fig. \ref{MT-Fig5_StateWideFluctuations} surrogates]{Power spectrum of the 
+\caption[Power spectra, state-total deer and Fig. \ref{MT-Fig5_StateWideFluctuations}A surrogates]{Power spectrum of the 
 state-total deer time series (black line) superimposed with spectra of the surrogates of 
-Fig. \ref{MT-Fig5_StateWideFluctuations} (grey lines). Vertical lines 
+Fig. \ref{MT-Fig5_StateWideFluctuations}A (grey lines). Vertical lines 
 are at the frequencies corresponding to timescales of 3 and 7 
 years. At nearly all the frequencies in that range, the spectrum of the data was above the spectra of all the 
-surrogates. Spectra are identical sufficiently far outside the 3-7yr timescale band because Fig. 
-\ref{MT-Fig5_StateWideFluctuations} surrogates only involved randomization of Fourier components outside this range.
-Spectra are non-identical slightly outside the 3-7yr timescale range because the spectral estimator used was based on smoothing across nearby frequencies.}\label{FigS_SpectraFig5Surrogs}
+surrogates. Spectra are identical sufficiently far outside the $3-7$-year timescale band because Fig. 
+\ref{MT-Fig5_StateWideFluctuations}A surrogates only involved randomization of Fourier components inside this range.
+Spectra are non-identical slightly outside the $3-7$-year timescale range because the spectral estimator used was based on smoothing across nearby frequencies.}\label{FigS_SpectraFig5Surrogs}
 \end{figure}
 
 \newpage
@@ -1346,8 +1408,8 @@ Spectra are non-identical slightly outside the 3-7yr timescale range because the
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/Fourier3.png}
-\caption[Spectral power, 3-7yr band, state-total deer and AR(1) surrogates]{The red dot shows 
-total spectral power, in the 3-7yr timescale range, of the detrended state-total deer population time series for WI, whereas the 
+\caption[Spectral power, $3-7$-year band, state-total deer and AR(1) surrogates]{The red dot shows 
+total spectral power, in the $3-7$-year timescale range, of the detrended state-total deer population time series for WI, whereas the 
 histogram shows values of the same statistic computed for the AR(1) surrogates (again detrended; see SI 
 section \ref{SI:methods}).}\label{FigS_SpectPow3to7ARSurrogs}
 \end{figure}
@@ -1356,28 +1418,69 @@ section \ref{SI:methods}).}\label{FigS_SpectPow3to7ARSurrogs}
 \clearpage
 
 \begin{figure}[!h]
-\includegraphics[width=\textwidth]{Results/Fourier5.png}
+\includegraphics[width=\textwidth]{Results/Fourier3p5.png}
 \caption[Power spectra, state-total deer and AR(1) surrogates]{Power spectrum of the 
 state-total deer time series (solid black line) superimposed with spectra of AR(1) surrogates (SI section \ref{SI:methods}). 
 Vertical lines are at the frequencies corresponding to timescales of 3 and 7 
-years. The dashed line is the 95th quantile of the surrogate spectra. The lower dotted line is a 
-quantile of the surrogates for a Bonferroni-corrected significance threshold assuming
-$n$ independent tests, where $n$ is the number of timescales between 3 and 7 years for which 
-spectra were evaluated. The upper dashed line is for a Bonferroni-corrected threshold
-using $n$ equal to the total number of frequencies for which spectra were evaluated, both within and
-outside the 3-7yr timescale band.}\label{FigS_SpectraARSurrogs}
+years. The dashed line is the 95th quantile of the surrogate spectra.}\label{FigS_SpectraARSurrogs}
 \end{figure}
+
+\newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/Fourier6.png}
 \caption[Power spectra of AR(2) and AR(3) models fitted to the state-total deer time series]{Power spectra of AR(2) and 
 AR(3) models fitted to the state-total deer time series. The AR(2) model spectrum is plotted as a solid black line and the 
-AR(3) model spectrum is plotted as a dashed red line; the lines are indistinguishable.}\label{FigS_SpectraARFits}
+AR(3) model spectrum is plotted as a dashed red line; the lines are indistinguishable, so the result appears as a line
+which is alternately black and red.}\label{FigS_SpectraARFits}
 \end{figure}
+
+\newpage
+\clearpage
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/Fourier7.png}
 \caption[Detrended state-total deer population time series]{Detrended state-total deer population time series.}\label{FigS_DetrendedStateTotalDeer}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier8.png}
+\caption[Greater periodicity in state-total compared to county-level deer time series]{The red dot shows 
+total spectral power, in the $3-7$-year timescale range, of the detrended, variance-standardized state-total deer 
+population time series for WI (see SI section \ref{SI:methods}), whereas the histogram shows values of the same 
+statistic for county-level time series.}\label{FigS_StateVCounty}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier11.png}
+\caption[Spectral power, $3-7$-year band, state-total DVC and Fig. \ref{MT-Fig5_StateWideFluctuations}C surrogates]{The red dot shows 
+total spectral power, in the $3-7$-year timescale range, of the detrended state-total DVC time series for WI, whereas the 
+histogram shows values of the same statistic computed for the surrogates (again detrended) of Fig. 
+\ref{MT-Fig5_StateWideFluctuations}C from the main text. The value for data was much greater than the values for all of the 
+surrogates.}\label{FigS_DVCSpectPow3to7Fig5Surrogs}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/Fourier12.png}
+\caption[Power spectra, state-total DVC and Fig. \ref{MT-Fig5_StateWideFluctuations}C surrogates]{Power spectrum of the 
+state-total DVC time series (black line) superimposed with spectra of the surrogates of 
+Fig. \ref{MT-Fig5_StateWideFluctuations}C (grey lines). Vertical lines 
+are at the frequencies corresponding to timescales of 3 and 7 
+years. At all the frequencies in that range, the spectrum of the data was above the spectra of all the 
+surrogates. Spectra are identical sufficiently far outside the $3-7$-year timescale band because Fig. 
+\ref{MT-Fig5_StateWideFluctuations}C surrogates only involved randomization of Fourier components inside this range.
+Spectra are non-identical slightly outside the $3-7$-year timescale range because the spectral estimator used was based on smoothing across 
+nearby frequencies.}\label{FigS_DVCSpectraFig5Surrogs}
 \end{figure}
 
 
@@ -1430,7 +1533,7 @@ knitr::kable(AR_AIC_Table,
              digits=4,
              col.names=c("AR order","AIC"),
              caption.short="AR fits by order for detrended state-total deer time series",
-             caption="Autoregressive models of each order were fitted by maximum likelihood to the detrended state-total deer population time series, and AIC values are reported. \\label{Table_AR_AIC_Table}",
+             caption="Autoregressive models of each order were fitted by maximum likelihood to the detrended state-total deer population time series, and AIC differences from the lowest-AIC order are reported. \\label{Table_AR_AIC_Table}",
              booktabs=TRUE)
 ```
 

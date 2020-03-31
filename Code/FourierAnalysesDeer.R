@@ -258,7 +258,37 @@ for (counter in 1:dim(abunsurr)[1])
   surrlog10specsbrill[counter,]<-h$log10spec
 }
 
-#Now make a plot
+#Now make a plot with no multiple-testing correction
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+png("Results/Fourier3p5.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+ylimits<-range(10^deerlog10specbrill,10^surrlog10specsbrill)
+plot(freqs,10^deerlog10specbrill,type="l",lwd=2,ylim=ylimits,xlab="",ylab="")
+for (counter in 1:(dim(surrlog10specsbrill)[1]))
+{
+  lines(freqs,10^surrlog10specsbrill[counter,],type="l",col="grey",lwd=.5)
+}
+lines(freqs,10^deerlog10specbrill,type="l",lwd=2,ylim=ylimits)
+lines(rep(1/3,2),ylimits,lty="dashed")
+lines(rep(1/7,2),ylimits,lty="dashed")
+qsurrspec<-apply(FUN=quantile,X=surrlog10specsbrill,MARGIN=2,prob=c(0.95,1-.05/sum(freqs>=1/7 & freqs<=1/3)))
+lines(freqs,10^qsurrspec[1,],type="l",lty="dashed")
+#lines(freqs,10^qsurrspec[2,],type="l",lty="dotted") #Bonferroni corrected threshold
+mtext("Frequency",side=1,line=2,cex=1)
+mtext("Power spectrum",side=2,line=2,cex=1)
+dev.off()
+
+#Now make a plot with one type of multiple-testing correction
 tot.wd<-4
 tot.ht<-4
 ywd<-.65
@@ -524,12 +554,22 @@ dev.off()
 #so there is STILL more power in the 3-7yr band for the standardized state-total
 #time series than there is for any of the county-level time series
 
-#Some text in an email, saved here for later use when incorporating the state/county comparisons into the text
+#Some text in an email, saved here for later in case needed
 #Hi guys,
 #
-#The referee also asked us to check the spectral peak for the state-total deer time series in the 3-7 year band was bigger than that for county time series.
-#I first detrended and demeaned all county-level deer time series, and standardized their variance, and did the same to the state-total time series. Then I computed total spectral power in the 3-7yr band for all these time series. Fourier8.png, attached, shows the histogram, of county values, with the red dot being the state-total value. The fact that I standardized all these time series means this is a valid comparison – there is more periodicity in the 3-7yr timescale band for the state total than for any of the counties.
-#Fourier9.png, attached, shows the spectra for the counties (black) and for the state total, again using standardized time series for a valid comparison. You can see the red peak in 3-7 is clearly above the black lines, except for one. That one is Marquette county. The mean deer population in Marquette is less than 1/28th the state total mean deer population, so Marquette could not reasonable have been driving things by itself. To be on the safe side, I removed Marquette, recomputed the state total, re-standardized time series, and then recomputed total power in 3-7. The result is Fourier10.png, attached, which shows the same pattern again.
+#The referee also asked us to check the spectral peak for the state-total deer time series in the 3-7 year band was 
+#bigger than that for county time series.
+#I first detrended and demeaned all county-level deer time series, and standardized their variance, and did the same 
+#to the state-total time series. Then I computed total spectral power in the 3-7yr band for all these time series. 
+#Fourier8.png, attached, shows the histogram, of county values, with the red dot being the state-total value. The 
+#fact that I standardized all these time series means this is a valid comparison – there is more periodicity in the 
+#3-7yr timescale band for the state total than for any of the counties.
+#Fourier9.png, attached, shows the spectra for the counties (black) and for the state total, again using standardized 
+#time series for a valid comparison. You can see the red peak in 3-7 is clearly above the black lines, except for one. 
+#That one is Marquette county. The mean deer population in Marquette is less than 1/28th the state total mean deer 
+#population, so Marquette could not reasonable have been driving things by itself. To be on the safe side, I removed 
+#Marquette, recomputed the state total, re-standardized time series, and then recomputed total power in 3-7. The result 
+#is Fourier10.png, attached, which shows the same pattern again.
 #So there is definitely more periodicity in the state total than in the counties.
 #I have not added this to any docs, I’ve just added the code that makes these results to the code suite. I imagine the best thing to do is probably just to add the result to the Sup Mat that there is more spectral power in 3-7 for the state total than for any of the counties, using standardized time series. And then add the other details to the response to referees. I’ll take a look at where Tom has got to in his edits and if it seems appropriate I’ll add this new material as indicated, probably later today. Before that, though, I am going to do some analyses of DVC data, similar to what I have already done for deer.
 #Dan

@@ -100,7 +100,7 @@ dev.off()
 #instance, the AR(1) surrogate analysis for deer does not make much sense for DVCs
 #since there is low-frequency content in the state-total DVC time series. This either
 #has to be removed (sacrifices statistical power and it would be ad hoc how to do - 
-#maybe remove a cobic but that's pretty ad hoc), or else when you fit an AR(1) it's
+#maybe remove a cubic but that's pretty ad hoc), or else when you fit an AR(1) it's
 #going to be heavily influenced by the low-frequency content, which means the AR(1)
 #surrogates are going to be bad surrogates. The AIC-based AR argument I did for deer
 #also does not make sense for DVCs for similar reasons. The comparison between state-
@@ -108,7 +108,16 @@ dev.off()
 #for deer, and again not clear how to do that for DVCs so it gets messy. Throw on 
 #top of this the fact that all these analyses were just things we did to answer the 
 #referee, and were predicated on the referee's faulty analysis. So it makes sense
-#to just stick with the above for DVCs
+#to just stick with the above for DVCs.
+#
+#I furthermore hesitate to do the county to state-level comparison because that comparison
+#relies on detrending and standardizing the variance of both the state- and county-level
+#time series. The variance standardization is going to mean we look at the proportion of
+#variance in the 3-7-year timescale band, and this is also influenced by the amount
+#of low-frequency variation (since it is a proportion). In fact since there is a lot of 
+#low-frequency variation, it is probably influenced a lot by it. I think figuring out how 
+#to improve on this analysis eventually leads right back to the analysis where one 
+#compared the state-level spectral power in the 3-7-year band to what it would be if 
+#there were no synchrony.
 #***
-
 
