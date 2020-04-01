@@ -670,7 +670,7 @@ and again here, we showed that using timescale-specific methods can greatly
 ameliorate this difficulty and reveal new phenomena and unrecognized mechanisms.
 
 # Acknowledgements
-D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
+D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and annonymous referees for very useful feedback. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
 <!--Load sup mat workspace for the methods, which used to be in the sup mat-->
