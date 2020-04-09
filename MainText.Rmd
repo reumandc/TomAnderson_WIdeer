@@ -353,6 +353,10 @@ interpret the output. Details of all methods are described elsewhere
 [@Sheppard2013;@Sheppard2016_aphids], and additional descriptions are also in SI 
 section \ref{SM-SI:methods}. All analyses were done via software in the open-source `wsyn`
 package for the R programming language [@wsyn], which is itself well documented.
+<!--***DAN: The perspective we used above was that we explain methods operationally and
+the reader has to look elsewhere. But the referee does not like that, so you can change it
+some here and in substance, i.e., add more description of the techniques in the sup mat, at
+least.-->
 
 We characterized the spatial synchrony of spatiotemporal variables (e.g., deer
 abundance) using wavelet mean field magnitudes and wavelet
@@ -407,6 +411,15 @@ We also used spatial wavelet
 coherence to test for relationships between deer abundance and DVCs, and between deer
 abundance and DVCs adjusted for traffic volume.
 
+<!--***DAN: The following para has to be rewritten so that it:
+1) only states that we can calculate fraction of synchrony explained and predicted synchrony plots
+for one-variable models with a spatiotemporal predictor. OK, Plos Comp Biol used multiple predictors,
+but we had no cause to that here, because we never had two spatiotemporal variables which were both significant,
+and we wanted to keep it simpler (maybe this last point best saved later? - Discussion).
+2) mentions cross terms in a similar way
+3) mentions that use of non-spatial variables is complex, and involves inflation. We don't need it for the
+main research goals, but see sup mat
+-->
 We calculated the percentage of deer synchrony explained by individual weather and
 climate variables, as well the percentage of DVC synchrony explained by deer
 synchrony, following the wavelet Moran theorem of @Sheppard2016_aphids.
@@ -487,6 +500,7 @@ At $5$-yr periodicity, the quarter-cycle phase lags between deer abundance and $
 correspond to deer populations
 peaking about `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"]/2,1)` or 
 `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"]/2,1)` years after mild winters. 
+<!--***DAN: The rest of this paragraph has to be rewritten-->
 Applying the wavelet Moran theorem (*Methods*), snow depth, 
 $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
 $`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales. 
@@ -561,6 +575,7 @@ to human systems. Thus if climate change is altering synchrony, as a growing num
 of papers indicate is likely occurring 
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
 @Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018], 
+<!--***DAN: add the citation to the new Grotan review here-->
 our results show that large-scale cycles
 in both populations and human systems may change as a consequence.
 
@@ -640,6 +655,9 @@ didn't like. If you want to reword again, please just keep in the specific ident
 of the alternative causal pathway that we are arguing did not happen.-->
 Thus Moran effects are ultimately responsible for synchrony of DVCs, and synchrony 
 causes fluctuations of more than 2500 annual documented DVCs through time.
+<!--***DAN: In response to one of the referee comments, you may want to caveat the following 
+sentence with something like "...though we have not examined whether a fluctuation of 2500
+DVCs is sufficient, relative to other fluctuations that occur in accident rates, to be of concern..."-->
 Such fluctuations may influence insurance and accident recovery industries.
 <!--***Tom: It doesn't feel like this sentence is needed, and also was an abrupt transition that didn't flow well to me to I commented it out The influence of climate change on synchrony is probably important
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
@@ -666,8 +684,8 @@ facilitating more precise determination of drivers of synchrony.
 Historically, determination of the causes of synchrony was identified as a
 difficult problem [@Leibhold2004_sync;@Kendall2000_moran;@Abbott2007_moran], but in our previous
 work [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel],
-and again here, we showed that using timescale-specific methods can greatly 
-ameliorate this difficulty and reveal new phenomena and unrecognized mechanisms.
+and again here, we showed that using timescale-specific methods can help 
+ameliorate this difficulty and can reveal new phenomena and previously unrecognized mechanisms.
 
 # Acknowledgements
 D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and annonymous referees for very useful feedback. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
