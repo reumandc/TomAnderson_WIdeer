@@ -57,12 +57,21 @@ via the codes there - see `Readme.md` in the github repository for instructions.
 options(scipen=6)
 Tab1_results<-readRDS(file = "Results/Table1.rds")
 Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){round(x,4)}))
-Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
+#Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
+
+#make synchrony explained and cross terms NA for non-spatial drivers
+for(i in 1:nrow(Tab1_results)){
+  if(grepl("Winter",Tab1_results$Predictor[i])||grepl("Summer",Tab1_results$Predictor[i])){
+    Tab1_results$SynchronyExplained[i]<-NA
+    Tab1_results$CrossTerms[i]<-NA
+  }
+}
 abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
 abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
 abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)
 abunwpdoSyncExp47<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="4-7"]
 snowabunSyncExp3_4<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Snow Depth" & Tab1_results$Timescale=="3-4"]
+snowabunSyncExp3_7<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Snow Depth" & Tab1_results$Timescale=="3-7"]
 abunmodelSyncExp<-readRDS(file="Results/abunmodelSyncExp.rds")
 
 #load Table S1 results
@@ -452,8 +461,8 @@ are spatially as well as temporally
 resolved, e.g., local weather variables as opposed to climate indices such as 
 MEI. Attempts to use these techniques to quantify the fraction of deer synchrony explained by
 MEI were more complex, produced estimates which were probably inflated, and were not needed 
-for our main research goals, so were relegated to the SI (sections \ref{SM-SI:methods} for
-methods and \ref{SM-SI:results} for results).
+for our main research goals, so were relegated to the SI (sections \ref{\ref{SM-SI:methods}} for
+methods and \ref{\ref{SM-SI:results} for results).
 <!--***DAN: don't forget to add this material-->
 
 To quantify the degree to which synchronizing effects are responsible for
@@ -536,9 +545,9 @@ Fig. \ref{FigS5_RanksInSurrogs}A and Table \ref{TabS2_SummaryDistrict}).
 In contrast, spatial wavelet coherence between snow depth and deer was 
 not significant on $4-7$-year timescales, but was significant on $3-4$-year timescales
 (Table \ref{Tab1_CountyCoherenceSummary}). 
-Applying the wavelet Moran theorem, snow depth explained $16\%$ of 
-synchrony in deer abundance at $3-7$-year timescales, but explained $40\%$ of synchrony in deer
-<!--***DAN: Tom, please make the numbers in the above line be autolinks-->
+Applying the wavelet Moran theorem, snow depth explained $`r round(snowabunSyncExp3_7,0)`\%$ of 
+synchrony in deer abundance at $3-7$-year timescales, but explained $`r round(snowabunSyncExp3_4,0)`\%$ of synchrony in deer
+<!--***DAN: Tom, please make the numbers in the above line be autolinks--><!--TOM: Done-->
 abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see also
 USDA district level results for the $3-4$-year band, Table \ref{TabS2_SummaryDistrict},
 which were similar but had smaller cross terms). The timescale
@@ -551,22 +560,22 @@ band, since we already presented results for snow depth, and results showing sig
 wavelet coherence between deer and MEI. Thus such estimates are relegated to the SI (SI section
 \ref{SM-SI:results}), where attempts to quantify the degree of inflation are also described.
 <!--***DAN: Don't forget to add the material described above-->
-<!--***DAN: Tom, can you please make the following changes to Table 1:
-1) add back in the column for timescale band
-2) put all the results for timescale bands other than 3-7 back into the table - these are in table S1 now
-3) remove all the results from the "synchrony explained" and "average cross terms" columns for cases where
+<!--***DAN: Tom, can you please make the following changes to Table 1:-->
+<!--1) add back in the column for timescale band--><!--TOM: Done-->
+<!--2) put all the results for timescale bands other than 3-7 back into the table - these are in table S1 now--><!--TOM: All results are back in if P < 0.05 for 3-7ts-->
+<!--3) remove all the results from the "synchrony explained" and "average cross terms" columns for cases where
 the predictor is not a spatially resolved variable. So those columns will be mostly empty, only having 
-values for the deer v snow depth results, some of the deer v hunters results, and the DVC results
-  So this will make Table 1 look a lot like Table S1. We may well no longer need Table S1 (I think we won't,
+values for the deer v snow depth results, some of the deer v hunters results, and the DVC results--><!--TOM: made sync explained and xterms both NA-->
+  <!--So this will make Table 1 look a lot like Table S1. We may well no longer need Table S1 (I think we won't,
 but you should check by searching for citations to S1 in both the main text and sup mat, verifying that these
 could all be replaced by citations to the newly revised Table 1, and then also replacing all those
-citations, please), in which case get rid of it.
-  Tom, can you also remove panel C from Fig. 3, please. Keep the code, though, in case we need it.
-  Finally, Tom, you will also have to remove the numbers from Table S3 in the "synchrony explained" and 
+citations, please), in which case get rid of it.--><!--TOM:-->
+  <!--Tom, can you also remove panel C from Fig. 3, please. Keep the code, though, in case we need it.--><!--TOM:-->
+ <!-- Finally, Tom, you will also have to remove the numbers from Table S3 in the "synchrony explained" and 
 "average cross terms" columns that correspond to cases where
-the predictor is not a spatially resolved variable.
-  Finally-finally, you will have to remove Fig. S11E, though you can keep S11F. You'll have to relabel 
-the panels. The caption will have to be changed, but you can leave that to me if you want.
+the predictor is not a spatially resolved variable.--><!--TOM:-->
+  <!--Finally-finally, you will have to remove Fig. S11E, though you can keep S11F. You'll have to relabel 
+the panels. The caption will have to be changed, but you can leave that to me if you want.--><!--TOM:-->
 -->
 <!--***DAN: Dan, you probably want to add something to the discussion that coherence with MEI/PDO (together
 with our results for snow depth) is enough to support our argument that deer are environmentally 
@@ -773,7 +782,7 @@ load(file="WholeWorkspace.RData")
 ```{r Table1,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 rownames(Tab1_MT)<-NULL
-knitr::kable(Tab1_MT[,c(1,2,4:7)],
+knitr::kable(Tab1_MT[,c(1:7)],
              format="latex", align="l",escape=F,
              digits=4,
              col.names=c("Predictor","Response", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
