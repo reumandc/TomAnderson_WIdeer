@@ -452,8 +452,8 @@ are spatially as well as temporally
 resolved, e.g., local weather variables as opposed to climate indices such as 
 MEI. Attempts to use these techniques to quantify the fraction of deer synchrony explained by
 MEI were more complex, produced estimates which were probably inflated, and were not needed 
-for our main research goals, so were relegated to the SI (sections \ref{\ref{SM-SI:methods}} for
-methods and \ref{\ref{SM-SI:results} for results).
+for our main research goals, so were relegated to the SI (sections \ref{SM-SI:methods} for
+methods and \ref{SM-SI:results} for results).
 <!--***DAN: don't forget to add this material-->
 
 To quantify the degree to which synchronizing effects are responsible for
