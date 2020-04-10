@@ -50,6 +50,9 @@ par(fig=c((ywd)/tot.wd,
 zlimits<-range(Mod(abun.wmf$values),na.rm=T)
 xlimits<-range(1981:2016)
 l2ts<-log2(abun.wmf$timescales)
+jetcolors <- c("#00007F", "blue", "#007FFF", "cyan", 
+               "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000")
+colorfill<-grDevices::colorRampPalette(jetcolors)
 
 #plot wmf
 image(x=abun.wmf$times,y=l2ts,z=Mod(abun.wmf$values),xlim=xlimits,

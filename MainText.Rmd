@@ -60,12 +60,12 @@ Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){ro
 #Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
 
 #make synchrony explained and cross terms NA for non-spatial drivers
-for(i in 1:nrow(Tab1_results)){
-  if(grepl("Winter",Tab1_results$Predictor[i])||grepl("Summer",Tab1_results$Predictor[i])){
-    Tab1_results$SynchronyExplained[i]<-NA
-    Tab1_results$CrossTerms[i]<-NA
-  }
-}
+# for(i in 1:nrow(Tab1_results)){
+#   if(grepl("Winter",Tab1_results$Predictor[i])||grepl("Summer",Tab1_results$Predictor[i])){
+#     Tab1_results$SynchronyExplained[i]<-NA
+#     Tab1_results$CrossTerms[i]<-NA
+#   }
+# }
 Tab1_MT<-Tab1_results
 abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
 abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
@@ -547,7 +547,7 @@ In contrast, spatial wavelet coherence between snow depth and deer was
 not significant on $4-7$-year timescales, but was significant on $3-4$-year timescales
 (Table \ref{Tab1_CountyCoherenceSummary}). 
 Applying the wavelet Moran theorem, snow depth explained $`r round(snowabunSyncExp3_7,0)`\%$ of 
-synchrony in deer abundance at $3-7$-year timescales, but explained $`r round(snowabunSyncExp3_4,0)`\%$ of synchrony in deer
+synchrony in deer abundance at $3-7$-year timescales, but explained $`r  round(snowabunSyncExp3_4,0)`\%$ of synchrony in deer
 <!--***DAN: Tom, please make the numbers in the above line be autolinks--><!--TOM: Done-->
 abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see also
 USDA district level results for the $3-4$-year band, Table \ref{TabS2_SummaryDistrict},
