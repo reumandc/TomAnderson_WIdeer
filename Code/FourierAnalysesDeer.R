@@ -1,6 +1,6 @@
-#***
+#****
 #Some spectral tools
-#***
+#****
 
 #A raw, unsmoothed periodigram. Detrending is done by this function. 
 #

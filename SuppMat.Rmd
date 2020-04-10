@@ -133,7 +133,7 @@ save.image(file="WholeWorkspace.RData")
 ```
 
 <!--The new Fourier analyses developed in response to Ecology Letters reviewer, 2020 03-->
-```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("dvcsurrsum.csv"))}
+```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("dvcsurrsum.csv"),                                                                                mtime("Code/FourierAnalysesDeer.R"),mtime("Code/FourierAnalysesDVCs.R"))}
 source("Code/FourierAnalysesDeer.R")
 source("Code/FourierAnalysesDVCs.R")
 ```
