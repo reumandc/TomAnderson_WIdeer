@@ -66,6 +66,7 @@ for(i in 1:nrow(Tab1_results)){
     Tab1_results$CrossTerms[i]<-NA
   }
 }
+Tab1_MT<-Tab1_results
 abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
 abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
 abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)

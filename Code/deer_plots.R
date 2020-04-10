@@ -30,7 +30,8 @@ pan.wd<-1.25
 xht<-0.5   #height of x axis label region
 ywd<-0.5    #width of y axis label region
 gap<-.1   #small gap
-tot.wd<-ywd+3*pan.wd+3*gap
+#tot.wd<-ywd+3*pan.wd+3*gap
+tot.wd<-ywd+2*pan.wd+2*gap
 pan.ht<-pan.wd 
 tot.ht<-pan.ht+xht+gap
 
@@ -118,45 +119,54 @@ axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1),
      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 
 #Panel C: predicted synchrony
-par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
-          (ywd+3*pan.wd+2*gap)/tot.wd,
-          (xht)/tot.ht,
-          (xht+pan.ht)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
-
-#define x, y and z limits
-zlimits<-range(Mod(predsync(wlm_abun)[[3]]),na.rm=T)
-xlimits<-range(1981:2016)
-l2ts<-log2(abun.wmf$timescales)
-
-#plot predicted synchrony
-image(x = abun.wmf$times, y = log2(abun.wmf$timescales), z = Mod(predsync(wlm_abun)[[3]]),xlim=xlimits,
-      zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r',ylab="",xlab="")
-par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
-          (ywd+3*pan.wd+2*gap)/tot.wd,
-          (xht)/tot.ht,
-          (xht+pan.ht)/tot.ht),
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
-contour(x = abun.wmf$times, y = log2(abun.wmf$timescales),z=Mod(abun.wmf$values),add=T,frame=F,las=1,lwd=1)
-ylocs <- pretty(abun.wmf$timescales, n = 8)
-axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
-mtext("",side=1,line=1.2)
-text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)
-abline(h=c(log2(3),log2(7)),lty=2)
+# par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
+#           (ywd+3*pan.wd+2*gap)/tot.wd,
+#           (xht)/tot.ht,
+#           (xht+pan.ht)/tot.ht),
+#     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+# 
+# #define x, y and z limits
+# zlimits<-range(Mod(predsync(wlm_abun)[[3]]),na.rm=T)
+# xlimits<-range(1981:2016)
+# l2ts<-log2(abun.wmf$timescales)
+# 
+# #plot predicted synchrony
+# image(x = abun.wmf$times, y = log2(abun.wmf$timescales), z = Mod(predsync(wlm_abun)[[3]]),xlim=xlimits,
+#       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r',ylab="",xlab="")
+# par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
+#           (ywd+3*pan.wd+2*gap)/tot.wd,
+#           (xht)/tot.ht,
+#           (xht+pan.ht)/tot.ht),
+#     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+# contour(x = abun.wmf$times, y = log2(abun.wmf$timescales),z=Mod(abun.wmf$values),add=T,frame=F,las=1,lwd=1)
+# ylocs <- pretty(abun.wmf$timescales, n = 8)
+# axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+# mtext("",side=1,line=1.2)
+# text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)
+# abline(h=c(log2(3),log2(7)),lty=2)
 
 #add color bar
-par(new=T,fig=c((ywd+.93*pan.wd+2*pan.wd+2*gap)/tot.wd,
-                (ywd+.98*pan.wd+2*pan.wd+2*gap)/tot.wd,
-                (xht+6*gap)/tot.ht,
-                (xht+pan.ht-0.2*gap)/tot.ht),
-    mai=c(0,0,0,0))
-cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
-z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
-image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
-      col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
-axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
-     mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
+# par(new=T,fig=c((ywd+.93*pan.wd+2*pan.wd+2*gap)/tot.wd,
+#                 (ywd+.98*pan.wd+2*pan.wd+2*gap)/tot.wd,
+#                 (xht+6*gap)/tot.ht,
+#                 (xht+pan.ht-0.2*gap)/tot.ht),
+#     mai=c(0,0,0,0))
+# cut.pts <- seq(zlimits[1], zlimits[2], length = length(colorfill(100)) + 1)
+# z <- (cut.pts[1:length(colorfill(100))] + cut.pts[2:(length(colorfill(100)) + 1)])/2
+# image(x = 1, y = z, z = matrix(z, ncol = length(colorfill(100)), nrow= 1),
+#       col = colorfill(100), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+# axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1), 
+#      mgp = c(3, 0.2, 0), las = 1, cex.axis = 0.75, tcl = -0.1)
 dev.off()
+
+#set dimensions for Figures 2 and 3
+pan.wd<-1.25
+xht<-0.5   #height of x axis label region
+ywd<-0.5    #width of y axis label region
+gap<-.1   #small gap
+tot.wd<-ywd+3*pan.wd+3*gap
+pan.ht<-pan.wd 
+tot.ht<-pan.ht+xht+gap
 
 #Make Figure 4
 #tiff("Results/Fig4.tif",res=600,height=tot.ht,width=tot.wd,unit="in",compression=c("lzw"))
