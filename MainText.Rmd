@@ -342,21 +342,28 @@ obscure patterns of synchrony [@Buonaccorsi2001], as well as variance standardiz
 why it makes sense to use Fourier for the theory and wavelets for the empirical analysis. 
 Maybe add a few basic statements in the main text around here, a few more basic statements 
 at the end of the "Analysis" subsection, maybe one more summary statement somewhere in the 
-Results, and then a sup mat section elaborating.-->
-\textbf{Analysis.} We use wavelet transforms in most analyses described below.
+Results, and then a sup mat section elaborating. I have done some of this but not all.-->
+\textbf{Analysis.} We use wavelet transforms in most analyses described below,
+complemented by a few classic Fourier approaches.
 Wavelets are ideal for detecting periodic components in time series data
-[@addison2002]. The methods we use are extensions of methods that are
+[@addison2002]. Our methods we use are extensions of methods that are
 well established, standard tools in many biological fields. 
-Therefore, we provide an operational description, only,
+Therefore, we provide in the main text an operational description, only,
 of each method, i.e., what it takes as input, what it provides as output, and how to
-interpret the output. Details of all methods are described elsewhere
-[@Sheppard2013;@Sheppard2016_aphids], and additional descriptions are also in SI 
-section \ref{SM-SI:methods}. All analyses were done via software in the open-source `wsyn`
+interpret the output. Further descriptions and technical details are in SI 
+section \ref{SM-SI:methods}, and complete details of all methods are published elsewhere
+[@Sheppard2013;@Sheppard2016_aphids]. It is explained in SI section \ref{SM-SI:methods}
+why it was an appropriate choice to use Fourier methods for the theoretical
+development (above and in SI sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}), and 
+to use a combination of wavelet and Fourier methods
+for the empirical analyses (below). 
+<!--***DAN: Make sure to do what it says I will do in the above sentence-->
+All wavelet analyses were done via software in the open-source `wsyn`
 package for the R programming language [@wsyn], which is itself well documented.
-<!--***DAN: The perspective we used above was that we explain methods operationally and
-the reader has to look elsewhere. But the referee does not like that, so you can change it
-some here and in substance, i.e., add more description of the techniques in the sup mat, at
-least.-->
+<!--***DAN: The perspective we used to use above was that we explain methods operationally and
+the reader has to look elsewhere. But the referee does not like that, so I changed the wording 
+above, and then you have to go and change substance, i.e., add quite a bit more description of 
+the techniques in the sup mat, at least. -->
 
 We characterized the spatial synchrony of spatiotemporal variables (e.g., deer
 abundance) using wavelet mean field magnitudes and wavelet
@@ -411,34 +418,43 @@ We also used spatial wavelet
 coherence to test for relationships between deer abundance and DVCs, and between deer
 abundance and DVCs adjusted for traffic volume.
 
-<!--***DAN: The following para has to be rewritten so that it:
+<!--***DAN: I rewrote the following para so that it:
 1) only states that we can calculate fraction of synchrony explained and predicted synchrony plots
-for one-variable models with a spatiotemporal predictor. OK, Plos Comp Biol used multiple predictors,
+for one-variable models with a spatiotemporal predictor. (OK, Plos Comp Biol used multiple predictors,
 but we had no cause to that here, because we never had two spatiotemporal variables which were both significant,
-and we wanted to keep it simpler (maybe this last point best saved later? - Discussion).
+and we wanted to keep it simpler - make this last point later, though, not here - Discussion?).
 2) mentions cross terms in a similar way
 3) mentions that use of non-spatial variables is complex, and involves inflation. We don't need it for the
-main research goals, but see sup mat
--->
-We calculated the percentage of deer synchrony explained by individual weather and
-climate variables, as well the percentage of DVC synchrony explained by deer
+main research goals, but see sup mat-->
+We calculated percentages of deer synchrony explained by the synchrony of individual weather 
+variables, as well the percentage of DVC synchrony explained by deer
 synchrony, following the wavelet Moran theorem of @Sheppard2016_aphids.
+<!--***DAN: Commented this follwoing text when we decided to not use multi-predictor models:
 We also examined the percentage of deer synchrony jointly explained by snow depth, winter MEI, 
 and winter PDO (the three primary drivers of deer synchrony, see *Results*) using
 wavelet linear regression [@Sheppard_wavmodel]. This method is analogous to
 multiple linear regression, with a model describing the relationship between a
 response variable and multiple predictor variables [@Sheppard_wavmodel]. However,
 all predictor and response variables are wavelet transforms of spatiotemporal
-variables. This approach also can produce a time- and timescale-specific plot of
-what the pattern of synchrony in the response variable (deer abundance) would look
-like if the only drivers of synchrony were the predictors. This predicted synchrony
+variables. -->
+This approach also produces a time- and timescale-specific plot of
+what the pattern of synchrony in the response variable (deer abundance, or DVCs) would look
+like if the only driver of synchrony were the explanatory variable considered. The predicted synchrony
 plot can then be visually compared to the actual wavelet mean field magnitude
-plot, giving a visual indication of how well synchrony can be accounted for
-by the predictors included in the model. As part of these procedures, we evaluated 
+plot (of deer or DVCs), giving a visual indication of how well synchrony can be accounted for
+by the predictor considered [@Sheppard_wavmodel]. As part of these procedures, we evaluated 
 model "cross terms", which are the component of  synchrony that is due to variability 
-explained by the drivers at a given location being synchronous with residuals at other 
-locations [@Sheppard2016_aphids;@Sheppard_wavmodel]. Cross terms must be small (< 10%) 
+explained by the drivers at a given location being synchronous with model residuals at other 
+locations [@Sheppard2016_aphids]. Cross terms must be small ($<10\%$) 
 in order for inferences about synchrony to be valid (SI section \ref{SM-SI:methods}).  
+The approach described here is most straightforwardly applied to predictors which 
+are spatially as well as temporally
+resolved, e.g., local weather variables as opposed to climate indices such as 
+MEI. Attempts to use these techniques to quantify the fraction of deer synchrony explained by
+MEI were more complex, produced estimates which were probably inflated, and were not needed 
+for our main research goals, so were relegated to the SI (sections \ref{\ref{SM-SI:methods}} for
+methods and \ref{\ref{SM-SI:results} for results).
+<!--***DAN: don't forget to add this material-->
 
 To quantify the degree to which synchronizing effects are responsible for
 fluctuations (cycling) in statewide total deer and DVC time series, we adapted the standard
@@ -456,12 +472,16 @@ additional variance and cycling intensity in the
 empirical state-total time series were attributable to synchrony. Further details of all datasets,
 data pre-processing, and analytic methods are in SI section \ref{SM-SI:methods}.
 
-<!--***DAN: Add a section here on the fact that we also carried out Fourier analyses.
-We regard the wavelet analyses are more appropriate, or more consistent with how results
-are actually discovered, or something like that, but we also present the Fourier
-analyses as supporting results because some people are more comfortable with those.
-Describe the Fourier results very briefly and refer to Sup Mat Methods for a full
-description-->
+<!--***DAN: Added a section here on the fact that we also carried out Fourier analyses.
+Need to correspondingly mention the Fourier results at the end of the Results section-->
+Although wavelet tools were the most appropriate appropriate 
+overall choice for our research goals, some of the main components of our theoretical 
+mechanism can be detected in our data using Fourier analyses which may be more familiar to
+some readers than wavelets. Supplementary Fourier approaches we used are described in 
+SI section \ref{SM-SI:methods}. These approaches
+are used, for instance, to examine whether: 1) the spectral power in the state-total deer time series
+in the $3-7$-year timescale band is greater than it would without synchrony in that band; and
+2) the same spectral peaks in the $3-7$-year band do not occur in county-level deer time series.
 
 \textbf{Data availability.} All data will be made available in the Dryad digital repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
@@ -479,8 +499,8 @@ phasor mean field showed the strong statistical significance of this phenomenon 
 Wavelet mean field and wavelet phasor mean field magnitude plots for all
 winter weather variables are in Fig. \ref{SM-FigS8_WMFsAndWPMFsAncillary}.
 
-Spatial wavelet coherence, wavelet linear regression, and a wavelet Moran theorem (*Methods*) demonstrated that 
-deer abundance synchrony on $3-7$-year timescales was principally caused by climatic Moran effects. 
+Spatial wavelet coherence demonstrated that 
+deer abundance synchrony on $3-7$-year timescales was partly caused by climatic Moran effects. 
 Synchrony in deer abundance was related to winter snow depth 
 (spatial wavelet coherence, $P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Snow Depth" &Tab1_results$Timescale=="3-7"],2)`, 
 Table \ref{Tab1_CountyCoherenceSummary}), in a near anti-phase relationship (mean phase 
@@ -500,25 +520,70 @@ At $5$-yr periodicity, the quarter-cycle phase lags between deer abundance and $
 correspond to deer populations
 peaking about `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"]/2,1)` or 
 `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"]/2,1)` years after mild winters. 
-<!--***DAN: The rest of this paragraph has to be rewritten-->
-Applying the wavelet Moran theorem (*Methods*), snow depth, 
-$\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ together explained 
-$`r round(abunmodelSyncExp,0)`\%$ of deer synchrony on $3-7$-year timescales. 
-See Fig. \ref{Fig3_DeerSync}C for a visual manifestation of this statistical result. 
-Snow depth and climate index results may have indicated distinct components
-of the phenomenon whereby winter weather synchronizes deer on $3-7$-year 
-timescales (SI section \ref{SM-SI:results}).
-NAO was not 
-related to deer abundance synchrony (Table \ref{Tab1_CountyCoherenceSummary}).
+Significant spatial wavelet coherence with an environmental variable which is itself spatially synchronous 
+(e.g., snow depth or some combination of weather variables related to MEI and PDO) is evidence of transmission 
+of synchrony from the environment to deer (SI section \ref{SM-SI:methods}; @Sheppard2016_aphids, @Sheppard_wavmodel). 
+NAO was not related to deer abundance synchrony (Table \ref{Tab1_CountyCoherenceSummary}).
+<!--***DAN: you need to add some text to SI methods arguing the above statement, you can rephrase from the aphid paper-->
+
+Snow depth and climate index results seemed to 
+indicate distinct or partly distinct phenomena 
+synchronizing deer on different timescales within the $3-7$-year range.
+Deer dynamics at $3-4$-year timescales were not significantly spatially coherent with either 
+$\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead were strongly coherent with
+deer on $4-7$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}, see also 
+Fig. \ref{FigS5_RanksInSurrogs}A and Table \ref{TabS2_SummaryDistrict}).
+In contrast, spatial wavelet coherence between snow depth and deer was 
+not significant on $4-7$-year timescales, but was significant on $3-4$-year timescales
+(Table \ref{Tab1_CountyCoherenceSummary}). 
+Applying the wavelet Moran theorem, snow depth explained $16\%$ of 
+synchrony in deer abundance at $3-7$-year timescales, but explained $40\%$ of synchrony in deer
+<!--***DAN: Tom, please make the numbers in the above line be autolinks-->
+abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see also
+USDA district level results for the $3-4$-year band, Table \ref{TabS2_SummaryDistrict},
+which were similar but had smaller cross terms). The timescale
+bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{FigS5_RanksInSurrogs}.
+Estimates of percentages of synchrony in deer explained by $\text{MEI}_{\text{w}}$
+were complicated, and also were artefactually inflated, by the fact that $\text{MEI}_{\text{w}}$ is 
+not a spatially resolved variable (*Methods*). Furthermore, such results are not strictly necessary
+to substantiate our argument that deer are environmentally synchronized in the $3-7$-year
+band, since we already presented results for snow depth, and results showing signficant 
+wavelet coherence between deer and MEI. Thus such estimates are relegated to the SI (SI section
+\ref{SM-SI:results}), where attempts to quantify the degree of inflation are also described.
+<!--***DAN: Don't forget to add the material described above-->
+<!--***DAN: Tom, can you please make the following changes to Table 1:
+1) add back in the column for timescale band
+2) put all the results for timescale bands other than 3-7 back into the table - these are in table S1 now
+3) remove all the results from the "synchrony explained" and "average cross terms" columns for cases where
+the predictor is not a spatially resolved variable. So those columns will be mostly empty, only having 
+values for the deer v snow depth results, some of the deer v hunters results, and the DVC results
+  So this will make Table 1 look a lot like Table S1. We may well no longer need Table S1 (I think we won't,
+but you should check by searching for citations to S1 in both the main text and sup mat, verifying that these
+could all be replaced by citations to the newly revised Table 1, and then also replacing all those
+citations, please), in which case get rid of it.
+  Tom, can you also remove panel C from Fig. 3, please. Keep the code, though, in case we need it.
+  Finally, Tom, you will also have to remove the numbers from Table S3 in the "synchrony explained" and 
+"average cross terms" columns that correspond to cases where
+the predictor is not a spatially resolved variable.
+  Finally-finally, you will have to remove Fig. S11E, though you can keep S11F. You'll have to relabel 
+the panels. The caption will have to be changed, but you can leave that to me if you want.
+-->
+<!--***DAN: Dan, you probably want to add something to the discussion that coherence with MEI/PDO (together
+with our results for snow depth) is enough to support our argument that deer are environmentally 
+synchroinzed in the 3-7-year band, but we still do not know what specific weather variables (other
+than snow depth) are acting here, and for which MEI serves as a surrogate. This could be investigated in
+future work-->
 
 Deer abundance synchrony on $3-7$-year timescales was not caused by hunting. County-level hunter and deer abundances were not significantly spatially coherent 
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
 (Table \ref{Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS5_RanksInSurrogs}B, \ref{SM-FigS6_WMFHunter}). Hunter abundance was significantly related to deer abundance on shorter timescales, around 
 $2-2.5$-years ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],3)`), and was in approximate anti-phase with deer abundance 
 on those timescales ($\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],2)`; 
-Table \ref{SM-Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS4_PhaseDiffs}G,
-\ref{SM-FigS5_RanksInSurrogs}B). But these short-timescale results, while interesting
-(*Discussion*), are not particularly
+Table \ref{Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS4_PhaseDiffs}G,
+\ref{SM-FigS5_RanksInSurrogs}B). 
+<!--***DAN: Tom, I changed what used to be a citation to Table S1, above, into a citation to Table 1, and I am here asking you to move the
+2-2.5-year hunting coherence results into Table 1-->
+But these short-timescale results, while interesting (*Discussion*), are not particularly
 relevant for synchrony because deer showed limited synchrony on 
 those timescales (Fig. \ref{Fig3_DeerSync}).
 
@@ -549,8 +614,12 @@ statewide DVC damages
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years. 
 
-<!--***DAN: Make a statement here about the Fourier results, and then refer the reader to Sup Mat Results where they are
-presented in full.-->
+Supplementary Fourier approaches (*Methods*, SI section \ref{SM-SI:methods}) which may be more familiar to
+some readers than our wavelet tools, demonstrated clearly that: 1) there was a meaningful spectral peak in the
+$3-7$-year timescale band for the state-total deer time series for WI, and it was substantially caused by 
+synchrony because when $3-7$-year synchrony was removed from county-level time series the peak was removed;
+2) the same spectral peaks did not occur in county-level deer time series (SI section \ref{SM-SI:results}).
+Similar results also held for DVCs (SI section \ref{SM-SI:results}). 
 
 # Discussion
 
@@ -579,9 +648,7 @@ of papers indicate is likely occurring
 our results show that large-scale cycles
 in both populations and human systems may change as a consequence.
 
-<!--Variants of the mechanism. This could be moved to sup mat if we wanted to save space
-for something else. It is pretty technical. In any case, it needed to be streamlined, so
-I have tried to do that.-->
+<!--Variants of the mechanism. -->
 There are two alternative elaborations of the mechanism we present by which
 synchronous effects produce population cycles.
 First, synchronous fluctuations in environmental drivers may have produced
