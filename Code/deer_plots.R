@@ -445,12 +445,15 @@ q<-stats::quantile(dvc.wpmf.usda$signif[[2]],0.999)
 contour(x=dvc.wpmf.usda$times,y=log2(dvc.wpmf.usda$timescales),z=Mod(dvc.wpmf.usda$values),levels=q,drawlabels=F,lwd=2,
         xaxs="i",xaxt="n",yaxt="n",xaxp=c(0,1,5),las = 1,frame=F)
 mtext("D)",adj=0.05,line=-1.2,side=3,font=2)
-syncexpplot(resp.wmf=abun.wmf.usda$values,exp.sync = predsync(usda.wlm_abun)[[3]],1981:2016,
-            usda.wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales (yrs)")
-mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
+plot.new()
+# syncexpplot(resp.wmf=abun.wmf.usda$values,exp.sync = predsync(usda.wlm_abun)[[3]],1981:2016,
+#             usda.wlm_abun$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales (yrs)")
+# mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
 syncexpplot(resp.wmf=dvc.wmf.usda$values,exp.sync = predsync(usda.wlm_dvc)[[3]],1987:2016,
             usda.wlm_dvc$timescales,xlab="Year",smallplot=c(0.95,0.99,0.05,0.95),ylab="Timescales (yrs)")
-mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
+#mtext("F)",adj=0.05,line=-1.2,side=3,font=2)
+mtext("E)",adj=0.05,line=-1.2,side=3,font=2)
+
 dev.off()
 
 #Make raw data plots (Fig 2)
