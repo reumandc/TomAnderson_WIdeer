@@ -99,7 +99,12 @@ options(scipen=6)
 #Load tables of results
 TabS2_results<-readRDS(file = "Results/TableS2.rds")
 Tab1_results<-readRDS(file = "Results/Table1.rds")
-
+for(i in 1:nrow(TabS2_results)){
+  if(grepl("Winter",TabS2_results$Predictor[i])||grepl("Summer",TabS2_results$Predictor[i])){
+    TabS2_results$SynchronyExplained[i]<-NA
+    TabS2_results$CrossTerms[i]<-NA
+  }
+}
 usda_abunsnwd_syncexp34<-TabS2_results$SynchronyExplained[TabS2_results$Predictor=="Snow Depth" & TabS2_results$Response=="Abundance" & TabS2_results$Timescale=="3-4"]
 usda_dvcabunSyncExp<-TabS2_results$SynchronyExplained[TabS2_results$Response=="DVCs" &
                                                         TabS2_results$Predictor=="Abundance"]
