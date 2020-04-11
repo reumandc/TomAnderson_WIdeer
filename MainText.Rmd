@@ -576,7 +576,7 @@ citations, please), in which case get rid of it.--><!--TOM:-->
 "average cross terms" columns that correspond to cases where
 the predictor is not a spatially resolved variable.--><!--TOM: Done-->
   <!--Finally-finally, you will have to remove Fig. S11E, though you can keep S11F. You'll have to relabel 
-the panels. The caption will have to be changed, but you can leave that to me if you want.--><!--TOM: Removed the figure, need to update caption yet-->
+the panels. The caption will have to be changed, but you can leave that to me if you want.--><!--TOM: Removed the figure, and updated the caption-->
 -->
 <!--***DAN: Dan, you probably want to add something to the discussion that coherence with MEI/PDO (together
 with our results for snow depth) is enough to support our argument that deer are environmentally 
