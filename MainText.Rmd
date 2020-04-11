@@ -60,13 +60,13 @@ Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){ro
 Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
 
 #make synchrony explained and cross terms NA for non-spatial drivers
-# for(i in 1:nrow(Tab1_results)){
-#   if(grepl("Winter",Tab1_results$Predictor[i])||grepl("Summer",Tab1_results$Predictor[i])){
-#     Tab1_results$SynchronyExplained[i]<-NA
-#     Tab1_results$CrossTerms[i]<-NA
-#   }
-# }
-#Tab1_MT<-Tab1_results
+for(i in 1:nrow(Tab1_results)){
+  if(grepl("Winter",Tab1_results$Predictor[i])||grepl("Summer",Tab1_results$Predictor[i])){
+    Tab1_results$SynchronyExplained[i]<-NA
+    Tab1_results$CrossTerms[i]<-NA
+  }
+}
+Tab1_MT<-Tab1_results
 abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
 abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
 abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)
@@ -783,11 +783,11 @@ load(file="WholeWorkspace.RData")
 ```{r Table1,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 rownames(Tab1_MT)<-NULL
-knitr::kable(Tab1_MT[,c(1:2,4:7)],
+knitr::kable(Tab1_MT[,c(1:7)],
              format="latex", align="l",escape=F,
              digits=4,
-             col.names=c("Predictor","Response", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the $3-7$-year timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). Cross-terms are zero for tests involving climate indices because for those tests the same values were used for all locations (\\textit{Methods}). All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
+             col.names=c("Predictor","Response", "Timescale","P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the $3-7$-year timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). \\textit{Synchrony Explained} is not reported for climate indices because of potential bias in that metric due to them not being spatially-explicit. Cross-terms are zero for tests involving climate indices because for those tests the same values were used for all locations (\\textit{Methods}). All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
              booktabs=T)
 ```
              
