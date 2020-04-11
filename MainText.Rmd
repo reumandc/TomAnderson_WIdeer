@@ -57,7 +57,7 @@ via the codes there - see `Readme.md` in the github repository for instructions.
 options(scipen=6)
 Tab1_results<-readRDS(file = "Results/Table1.rds")
 Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){round(x,4)}))
-#Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
+Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
 
 #make synchrony explained and cross terms NA for non-spatial drivers
 # for(i in 1:nrow(Tab1_results)){
@@ -66,7 +66,7 @@ Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){ro
 #     Tab1_results$CrossTerms[i]<-NA
 #   }
 # }
-Tab1_MT<-Tab1_results
+#Tab1_MT<-Tab1_results
 abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
 abunwpdoSyncExp37<-Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter PDO" &  Tab1_results$Timescale=="3-7"]
 abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)
@@ -462,8 +462,8 @@ are spatially as well as temporally
 resolved, e.g., local weather variables as opposed to climate indices such as 
 MEI. Attempts to use these techniques to quantify the fraction of deer synchrony explained by
 MEI were more complex, produced estimates which were probably inflated, and were not needed 
-for our main research goals, so were relegated to the SI (sections \ref{\ref{SM-SI:methods}} for
-methods and \ref{\ref{SM-SI:results} for results).
+for our main research goals, so were relegated to the SI (sections \ref{SM-SI:methods} for
+methods and \ref{SM-SI:results} for results).
 <!--***DAN: don't forget to add this material-->
 
 To quantify the degree to which synchronizing effects are responsible for
@@ -546,9 +546,9 @@ Fig. \ref{FigS5_RanksInSurrogs}A and Table \ref{TabS2_SummaryDistrict}).
 In contrast, spatial wavelet coherence between snow depth and deer was 
 not significant on $4-7$-year timescales, but was significant on $3-4$-year timescales
 (Table \ref{Tab1_CountyCoherenceSummary}). 
-Applying the wavelet Moran theorem, snow depth explained $`r round(snowabunSyncExp3_7,0)`\%$ of 
-synchrony in deer abundance at $3-7$-year timescales, but explained $`r  round(snowabunSyncExp3_4,0)`\%$ of synchrony in deer
-<!--***DAN: Tom, please make the numbers in the above line be autolinks--><!--TOM: Done-->
+Applying the wavelet Moran theorem, snow depth explained $16\%$ of 
+synchrony in deer abundance at $3-7$-year timescales, but explained $40\%$ of synchrony in deer
+<!--***DAN: Tom, please make the numbers in the above line be autolinks--><!--TOM: -->
 abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see also
 USDA district level results for the $3-4$-year band, Table \ref{TabS2_SummaryDistrict},
 which were similar but had smaller cross terms). The timescale
@@ -783,10 +783,10 @@ load(file="WholeWorkspace.RData")
 ```{r Table1,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 rownames(Tab1_MT)<-NULL
-knitr::kable(Tab1_MT[,c(1:7)],
+knitr::kable(Tab1_MT[,c(1:2,4:7)],
              format="latex", align="l",escape=F,
              digits=4,
-             col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
+             col.names=c("Predictor","Response", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the $3-7$-year timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). Cross-terms are zero for tests involving climate indices because for those tests the same values were used for all locations (\\textit{Methods}). All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
              booktabs=T)
 ```
@@ -849,10 +849,10 @@ study.\label{Fig2_Timeseries}}
 of deer abundance time series (\textit{Methods}). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) 
 at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at 
 $P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were the focus of subsequent statistical 
-analysis, $3-7$-years. <!--Colors on (C) show synchrony in deer abundance predicted from a wavelet linear model (\textit{Methods}) using 
+analysis, $3-7$-years. Colors on (C) show synchrony in deer abundance predicted from a wavelet linear model (\textit{Methods}) using 
 snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours in (C) show the 
 actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a 
-visual indication of the statistical result (see \emph{Results}) that climatic Moran effects explain deer synchrony.-->
+visual indication of the statistical result (see \emph{Results}) that climatic Moran effects explain deer synchrony.
 \label{Fig3_DeerSync}}
 \end{figure}
 
