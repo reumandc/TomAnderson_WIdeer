@@ -542,17 +542,17 @@ synchronizing deer on different timescales within the $3-7$-year range.
 Deer dynamics at $3-4$-year timescales were not significantly spatially coherent with either 
 $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead were strongly coherent with
 deer on $4-7$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}, see also 
-Fig. \ref{FigS5_RanksInSurrogs}A and Table \ref{TabS2_SummaryDistrict}).
+Fig. \ref{SM-FigS5_RanksInSurrogs}A and Table \ref{SM-TabS2_SummaryDistrict}).
 In contrast, spatial wavelet coherence between snow depth and deer was 
 not significant on $4-7$-year timescales, but was significant on $3-4$-year timescales
 (Table \ref{Tab1_CountyCoherenceSummary}). 
-Applying the wavelet Moran theorem, snow depth explained $`r snowabunSyncExp3_7`\%$ of 
-synchrony in deer abundance at $3-7$-year timescales, but explained $`r snowabunSyncExp3_4`\%$ of synchrony in deer
+Applying the wavelet Moran theorem, snow depth explained $`r round(snowabunSyncExp3_7,0)`\%$ of 
+synchrony in deer abundance at $3-7$-year timescales, but explained $`r round(snowabunSyncExp3_4,0)`\%$ of synchrony in deer
 <!--***DAN: Tom, please make the numbers in the above line be autolinks--><!--TOM: DONE-->
 abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see also
-USDA district level results for the $3-4$-year band, Table \ref{TabS2_SummaryDistrict},
+USDA district level results for the $3-4$-year band, Table \ref{SM-TabS2_SummaryDistrict},
 which were similar but had smaller cross terms). The timescale
-bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{FigS5_RanksInSurrogs}.
+bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{SM-FigS5_RanksInSurrogs}.
 Estimates of percentages of synchrony in deer explained by $\text{MEI}_{\text{w}}$
 were complicated, and also were artefactually inflated, by the fact that $\text{MEI}_{\text{w}}$ is 
 not a spatially resolved variable (*Methods*). Furthermore, such results are not strictly necessary
@@ -576,7 +576,7 @@ citations, please), in which case get rid of it.--><!--TOM:-->
 "average cross terms" columns that correspond to cases where
 the predictor is not a spatially resolved variable.--><!--TOM: Done-->
   <!--Finally-finally, you will have to remove Fig. S11E, though you can keep S11F. You'll have to relabel 
-the panels. The caption will have to be changed, but you can leave that to me if you want.--><!--TOM:-->
+the panels. The caption will have to be changed, but you can leave that to me if you want.--><!--TOM: Removed the figure, need to update caption yet-->
 -->
 <!--***DAN: Dan, you probably want to add something to the discussion that coherence with MEI/PDO (together
 with our results for snow depth) is enough to support our argument that deer are environmentally 
@@ -624,7 +624,7 @@ statewide DVC damages
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years. 
 
-Supplementary Fourier approaches (*Methods*, SI section \ref{SM-SI:methods}) which may be more familiar to
+Supplementary results using Fourier approaches (*Methods*, SI section \ref{SM-SI:methods}) which may be more familiar to
 some readers than our wavelet tools, demonstrated clearly that: 1) there was a meaningful spectral peak in the
 $3-7$-year timescale band for the state-total deer time series for WI, and it was substantially caused by 
 synchrony because when $3-7$-year synchrony was removed from county-level time series the peak was removed;
@@ -787,10 +787,10 @@ knitr::kable(Tab1_MT[,c(1:7)],
              format="latex", align="l",escape=F,
              digits=4,
              col.names=c("Predictor","Response", "Timescale","P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the $3-7$-year timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). \\textit{Synchrony Explained} \\textit{Average cross terms} are not reported for climate indices because of potential bias in that metric due to them not being spatially-explicit. <!--Cross-terms are zero for tests involving climate indices because for those tests the same values were used for all locations (\\textit{Methods})-->. All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the $3-7$-year timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). \\textit{Synchrony Explained} \\textit{Average cross terms} are not reported for climate indices because of potential bias in that metric due to them not being spatially-explicit. All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
              booktabs=T)
 ```
-             
+<!--TOM: Took this out of the caption above as it wasn't needed anymore: Cross-terms are zero for tests involving climate indices because for those tests the same values were used for all locations (\\textit{Methods})-->.              
 \newpage
 
 \begin{figure}[!h]  
