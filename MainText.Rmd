@@ -536,7 +536,10 @@ NAO was not related to deer abundance synchrony (Table \ref{Tab1_CountyCoherence
 <!--***DAN: you need to add some text to SI methods arguing the above statement, you can rephrase from the aphid paper--><!--TOM: Does it make sense to do this here? It seems more like discussion material- it seems rare to me to have citations in a results section generally speaking.
 DAN: I think it makes sense to do it here. My experience has been, when you are doing something technical, you have to explain
 what it means, to some extent, right as you do it. If you give no explanation of what it means then people do not remember
-well enough what you told them to be able to understand what it means when you tell them in the Discussion.-->
+well enough what you told them to be able to understand what it means when you tell them in the Discussion. We ask questions
+in the Intro, answer them in the Results, and make additional connections in the Discussion. If the technical results are not 
+going to be understood well enough and therefore not perceived as answering the questions, then the reader needs a little help
+seeing how they answer the questions.-->
 
 Snow depth and climate index results seemed to 
 indicate distinct or partly distinct phenomena 
@@ -592,8 +595,6 @@ $2-2.5$-years ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunte
 on those timescales ($\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="2-2.5"],2)`; 
 Table \ref{Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS4_PhaseDiffs}G,
 \ref{SM-FigS5_RanksInSurrogs}B). 
-<!--***DAN: Tom, I changed what used to be a citation to Table S1, above, into a citation to Table 1, and I am here asking you to move the
-2-2.5-year hunting coherence results into Table 1--><!--TOM: Done-->
 But these short-timescale results, while interesting (*Discussion*), are not particularly
 relevant for synchrony because deer showed limited synchrony on 
 those timescales (Fig. \ref{Fig3_DeerSync}).
@@ -851,10 +852,7 @@ $P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were t
 analysis, $3-7$-years. 
 \label{Fig3_DeerSync}}
 \end{figure}
-<!--TOM: Removed the following from the caption, as its no longer needed: Colors on (C) show synchrony in deer abundance predicted from a wavelet linear model (\textit{Methods}) using 
-snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours in (C) show the 
-actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a 
-visual indication of the statistical result (see \emph{Results}) that climatic Moran effects explain deer synchrony.-->
+
 \newpage
 
 \begin{figure}[!h]
