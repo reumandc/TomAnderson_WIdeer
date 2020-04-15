@@ -115,8 +115,7 @@ The causes of population cycles have mystified ecologists for over 100 years
 [@Myers2018_cycles]. An early hypothesis for the cause of cycles, for the iconic Canadian 
 lynx-snowshoe hare system and 
 for other systems, posited that cyclic environmental phenomena such as sun spots drive 
-population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. However, that hypothesis lacked 
-empirical support [@Nilssen2007_nosunspots;@Myers2013_nosunspots], and for decades 
+population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. However, support for that hypothesis has been equivocal, as some drivers like sunspots have been refuted [@Nilssen2007_nosunspots;@Myers2013_nosunspots] while others like weather patterns likely contributed to cycles [@watson2000]. Therefore, for decades 
 research has focused instead on explanations involving nonlinear or delayed density dependence, 
 often via predator-prey interactions, parasitism, and disease 
 [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
@@ -255,8 +254,8 @@ within a habitat patch, and $F_{\text{popdyn}}(f)$
 is a function that depends only on the ARMA coefficients (SI section \ref{SM-SI:theory}). 
 If dynamics are not intrinsically cycling, 
 then $F_{\text{popdyn}}(f)$ has no peaks and does not contribute to whether $S_{\text{tot}}$
-is peaked. The term $\sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f)$ in (\ref{mainresmt}) 
-encapsulates the effects of 
+is peaked. The term $\sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f)$ in
+(\ref{mainresmt}) encapsulates the effects of 
 periodicities in local environmental noise time series on whether the total 
 population exhibits cycling. The term 
 $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}(f)$ in (\ref{mainresmt}) encapsulates
@@ -534,7 +533,7 @@ Significant spatial wavelet coherence with an environmental variable which is it
 (e.g., snow depth or some combination of weather variables related to MEI and PDO) is evidence of transmission 
 of synchrony from the environment to deer (SI section \ref{SM-SI:methods}; @Sheppard2016_aphids, @Sheppard_wavmodel). 
 NAO was not related to deer abundance synchrony (Table \ref{Tab1_CountyCoherenceSummary}).
-<!--***DAN: you need to add some text to SI methods arguing the above statement, you can rephrase from the aphid paper-->
+<!--***DAN: you need to add some text to SI methods arguing the above statement, you can rephrase from the aphid paper--><!--TOM: Does it make sense to do this here? It seems more like discussion material- it seems rare to me to have citations in a results section generally speaking-->
 
 Snow depth and climate index results seemed to 
 indicate distinct or partly distinct phenomena 
@@ -592,7 +591,7 @@ on those timescales ($\bar{\theta}  =$ `r round(Tab1_results$MeanPhase[Tab1_resu
 Table \ref{Tab1_CountyCoherenceSummary}, SI Figs \ref{SM-FigS4_PhaseDiffs}G,
 \ref{SM-FigS5_RanksInSurrogs}B). 
 <!--***DAN: Tom, I changed what used to be a citation to Table S1, above, into a citation to Table 1, and I am here asking you to move the
-2-2.5-year hunting coherence results into Table 1-->
+2-2.5-year hunting coherence results into Table 1--><!--TOM: Done-->
 But these short-timescale results, while interesting (*Discussion*), are not particularly
 relevant for synchrony because deer showed limited synchrony on 
 those timescales (Fig. \ref{Fig3_DeerSync}).
@@ -845,17 +844,17 @@ study.\label{Fig2_Timeseries}}
 
 \begin{figure}[!h]
 \includegraphics[height=.7\textheight]{Results/Fig3.png}
-\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes<!--, and predicted synchrony (C)--> 
+\caption{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes
 of deer abundance time series (\textit{Methods}). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) 
 at the indicated times and timescales. Contours on (B) indicate statistical significance of phase synchrony at 
 $P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were the focus of subsequent statistical 
-analysis, $3-7$-years. Colors on (C) show synchrony in deer abundance predicted from a wavelet linear model (\textit{Methods}) using 
-snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours in (C) show the 
-actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a 
-visual indication of the statistical result (see \emph{Results}) that climatic Moran effects explain deer synchrony.
+analysis, $3-7$-years. 
 \label{Fig3_DeerSync}}
 \end{figure}
-
+<!--TOM: Removed the following from the caption, as its no longer needed: Colors on (C) show synchrony in deer abundance predicted from a wavelet linear model (\textit{Methods}) using 
+snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ as predictors, while contours in (C) show the 
+actual wavelet mean field magnitude of deer abundance from (A), for comparison. Agreement is good, giving a 
+visual indication of the statistical result (see \emph{Results}) that climatic Moran effects explain deer synchrony.-->
 \newpage
 
 \begin{figure}[!h]
