@@ -115,7 +115,7 @@ The causes of population cycles have mystified ecologists for over 100 years
 [@Myers2018_cycles]. An early hypothesis for the cause of cycles, for the iconic Canadian 
 lynx-snowshoe hare system and 
 for other systems, posited that cyclic environmental phenomena such as sun spots drive 
-population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. However, support for that hypothesis has been equivocal, as some drivers like sunspots have been refuted [@Nilssen2007_nosunspots;@Myers2013_nosunspots] while others like weather patterns likely contributed to cycles [@watson2000]. Therefore, for decades 
+population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. However, support for that hypothesis has been equivocal, as some drivers like sunspots have been refuted [@Nilssen2007_nosunspots;@Myers2013_nosunspots] while others like weather patterns likely contributed at least partially to cycles [@watson2000;@kausrud2008]. Therefore, for decades 
 research has focused instead on explanations involving nonlinear or delayed density dependence, 
 often via predator-prey interactions, parasitism, and disease 
 [@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse]. 
@@ -571,7 +571,7 @@ values for the deer v snow depth results, some of the deer v hunters results, an
   <!--So this will make Table 1 look a lot like Table S1. We may well no longer need Table S1 (I think we won't,
 but you should check by searching for citations to S1 in both the main text and sup mat, verifying that these
 could all be replaced by citations to the newly revised Table 1, and then also replacing all those
-citations, please), in which case get rid of it.--><!--TOM:I've changed all the citations so that they only reference Table 1, and agree we can get rid of Table S1-->
+citations, please), in which case get rid of it.--><!--TOM:I've changed all the citations so that they only reference Table 1, and agree we can get rid of Table S1, though i can't figure out how to just commen it out (as opposed to just deleting it; I thought saving the text might be useful but maybe not-->
   <!--Tom, can you also remove panel C from Fig. 3, please. Keep the code, though, in case we need it.--><!--TOM: Done-->
  <!-- Finally, Tom, you will also have to remove the numbers from Table S3 in the "synchrony explained" and 
 "average cross terms" columns that correspond to cases where
@@ -638,14 +638,12 @@ Similar results also held for DVCs (SI section \ref{SM-SI:results}).
 Overall, we demonstrated that timescale-specific Moran effects, by 
 synchronizing local population dynamics, can cause major cycles in the 
 regional total population. This is a new mechanism by which the environment can 
-produce population cycles. This new mechanism differs fundamentally from prior,
-now refuted hypotheses that population cycles result from highly regular
-environmental fluctuations [e.g., sun spots;
-@Sinclair1992_sunspots;@Selas2004_sunspots] because the new mechanism does not
+produce population cycles. Previous attemps to link environmental factors to population cycles have either fallen short [e.g., sun spots;
+@Sinclair1992_sunspots;@Selas2004_sunspots], or provided only a patial explanation for cycles, as in studies of tetraonids [@watson2000] or small mammals[@kausrud2008]. Our study differs from these previous attempts because the new mechanism does not
 require a highly regular environmental 
 oscillator. Rather, it is sufficient simply for irregular environmental drivers 
 such as winter climatic factors to be coherent with populations over a particular timescale band, thereby inducing 
-synchrony in that band and leading to total-population cycles on the same timescales.
+synchrony in that band and leading to total-population cycles on the same timescales. Our results also provide further evidence that Moran effects cause synchrony [@Leibhold2004_sync;@hansen2020], in part because of recently developed methods, such as the timescale-specific methods used here[@Sheppard2016_aphids;@sheppard_wavmodel], that better help identify putative causal drivers. 
 We have also presented what is, to our knowledge, the first demonstration that synchrony 
 can be transmitted in a 
 Moran-like effect from ecological to human systems (deer to DVCs). Prior work demonstrated the
@@ -654,8 +652,8 @@ but our results show similar mechanisms can also cause synchrony to pass from ec
 to human systems. Thus if climate change is altering synchrony, as a growing number
 of papers indicate is likely occurring 
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
-@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018], 
-<!--***DAN: add the citation to the new Grotan review here-->
+@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018;@hansen2020], 
+<!--***DAN: add the citation to the new Grotan review here--><!--TOM: I assume you meant the Hansen paper that has Grotan as an author; I added it if so-->
 our results show that large-scale cycles
 in both populations and human systems may change as a consequence.
 
@@ -736,7 +734,7 @@ causes fluctuations of more than 2500 annual documented DVCs through time.
 <!--***DAN: In response to one of the referee comments, you may want to caveat the following 
 sentence with something like "...though we have not examined whether a fluctuation of 2500
 DVCs is sufficient, relative to other fluctuations that occur in accident rates, to be of concern..."-->
-Such fluctuations may influence insurance and accident recovery industries.
+Such fluctuations may influence insurance and accident recovery industries, though we have not examined whether a fluctuation of this magnitude is sufficient, relative to other fluctuations that occur in accident rates, to be of substantial concern..
 <!--***Tom: It doesn't feel like this sentence is needed, and also was an abrupt transition that didn't flow well to me to I commented it out The influence of climate change on synchrony is probably important
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
 @Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018], but is still, 
