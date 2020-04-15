@@ -57,7 +57,7 @@ via the codes there - see `Readme.md` in the github repository for instructions.
 options(scipen=6)
 Tab1_results<-readRDS(file = "Results/Table1.rds")
 Tab1_results<-cbind(Tab1_results[,1:3],apply(Tab1_results[,4:7],2,function(x){round(x,4)}))
-Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
+#Tab1_MT<-Tab1_results[Tab1_results$Timescale=="3-7",]
 
 #make synchrony explained and cross terms NA for non-spatial drivers
 for(i in 1:nrow(Tab1_results)){

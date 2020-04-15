@@ -1477,8 +1477,8 @@ knitr::kable(TableS1,
 \clearpage
 
 ```{r TableS2,echo=F,results='markup'}
-rownames(TableS2)<-NULL
-knitr::kable(TableS2,
+rownames(TabS2_results)<-NULL
+knitr::kable(TabS2_results,
              format='latex',align="l",escape=F,
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
