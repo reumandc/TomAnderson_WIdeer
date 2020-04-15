@@ -1463,6 +1463,8 @@ nearby frequencies.}\label{FigS_DVCSpectraFig5Surrogs}
 \clearpage
 
 ```{r TableS1,echo=F,results='markup'}
+options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
+
 rownames(TableS1)<-NULL
 knitr::kable(TableS1,
              col.names=c("Predictor","Response","Timecale","P-value","Mean phase ($\\bar{\\theta}$)"),
@@ -1478,6 +1480,7 @@ knitr::kable(TableS1,
 
 ```{r TableS2,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
+
 rownames(TabS2_results)<-NULL
 knitr::kable(TabS2_results,
              format='latex',align="l",escape=F,
