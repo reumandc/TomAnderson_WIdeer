@@ -1309,8 +1309,7 @@ Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate lo
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary} and
-Table \ref{Tab1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
+\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
 and deer abundance, B) summer MEI and 
 deer abundance, C) winter PDO ($\text{PDO}_{\text{w}}$) and deer abundance, 
 D) snow depth and deer abundance, E) deer abundance and 
@@ -1325,7 +1324,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS5.png}
-\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary} and Table \ref{Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
+\caption[Wavelet coherence rank data]{Rank, by timescale, of spatial wavelet coherence values in surrogate spatial wavelet coherence distributions (\emph{Methods}) for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary}, using county-level data. In A), results are comparisons of the listed variables with deer abundance. In B), `Abun-DVCs' is a comparison of deer abundance and DVCs, `Abun-Adj. DVCs' is a comparison of deer abundance and DVCs adjusted for traffic volume, and `Hunters-Abun' is a comparison of hunter numbers and deer abundance. The red horizontal line would be analogous to a $P$-value of $0.05$ for an individual timescale (\emph{Methods}).\label{FigS5_RanksInSurrogs}}
 \end{figure}
 
 \newpage
@@ -1462,7 +1461,7 @@ nearby frequencies.}\label{FigS_DVCSpectraFig5Surrogs}
 
 \newpage
 \clearpage
-
+<!--
 ```{r Table1,echo=F,results='markup'}
 options(knitr.kable.NA = '') #makes it put blanks instead of "NA" for NAs
 rownames(Table1)<-NULL
@@ -1474,7 +1473,7 @@ knitr::kable(Table1,
              caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on wavelet linear regressions (\\textit{Methods}) of the \\textit{Response} transforms against the \\textit{Predictor} transforms. When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). Cross-terms are zero for tests involving climate indices because for those tests the same values were used for all locations (\\textit{Methods}). All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
              booktabs=T)
 ```
-
+-->
 \newpage
 
 ```{r TableS1,echo=F,results='markup'}
