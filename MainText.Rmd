@@ -640,7 +640,7 @@ Overall, we demonstrated that timescale-specific Moran effects, by
 synchronizing local population dynamics, can cause major cycles in the 
 regional total population. This is a new mechanism by which the environment can 
 produce population cycles. Previous attemps to link environmental factors to population cycles have either fallen short [e.g., sun spots;
-@Sinclair1992_sunspots;@Selas2004_sunspots], or provided only a patial explanation for cycles, as in studies of tetraonids [@watson2000] or small mammals[@kausrud2008]. Our study differs from these previous attempts because the new mechanism does not
+@Sinclair1992_sunspots;@Selas2004_sunspots], or provided only a patial explanation for cycles, as in studies of tetraonids [@watson2000] or small mammals [@kausrud2008]. Our study differs from these previous attempts because the new mechanism does not
 require a highly regular environmental 
 oscillator. Rather, it is sufficient simply for irregular environmental drivers 
 such as winter climatic factors to be coherent with populations over a particular timescale band, thereby inducing 
@@ -654,7 +654,6 @@ to human systems. Thus if climate change is altering synchrony, as a growing num
 of papers indicate is likely occurring 
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
 @Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018;@hansen2020], 
-<!--***DAN: add the citation to the new Grotan review here--><!--TOM: I assume you meant the Hansen paper that has Grotan as an author; I added it if so-->
 our results show that large-scale cycles
 in both populations and human systems may change as a consequence.
 
@@ -723,23 +722,14 @@ Deer synchrony almost certainly caused DVC synchrony rather than the opposite ca
 because DVCs were too infrequent to
 meaningfully drive deer abundance fluctuations (Fig. \ref{Fig2_Timeseries}), and if they did an anti-phase
 relationship would have been found (as opposed to the in-phase relationship we observed).
-<!--***DAN: Tom, I guess you made the change you did because you did not like the phrase "rather
-than DVCs driving deer fluctuations" because of course DVCs do drive deer fluctuations
-because most DVCs directly result in the death of a deer? I think it is important, for
-clarity, to identify that we are contrasting with the opposite causal pathway, so I tried to
-reword to bring that contrast back while avoiding this phrases which I guessed s what you
-didn't like. If you want to reword again, please just keep in the specific identification 
-of the alternative causal pathway that we are arguing did not happen.-->
 Thus Moran effects are ultimately responsible for synchrony of DVCs, and synchrony 
 causes fluctuations of more than 2500 annual documented DVCs through time.
 <!--***DAN: In response to one of the referee comments, you may want to caveat the following 
 sentence with something like "...though we have not examined whether a fluctuation of 2500
 DVCs is sufficient, relative to other fluctuations that occur in accident rates, to be of concern..."-->
-Such fluctuations may influence insurance and accident recovery industries, though we have not examined whether a fluctuation of this magnitude is sufficient, relative to other fluctuations that occur in accident rates, to be of substantial concern..
-<!--***Tom: It doesn't feel like this sentence is needed, and also was an abrupt transition that didn't flow well to me to I commented it out The influence of climate change on synchrony is probably important
-[@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
-@Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018], but is still, 
-in our opinion, greatly understudied.--> Our results provide another reason that
+Such fluctuations may influence insurance and accident recovery industries, though we have not examined 
+whether a fluctuation of this magnitude is sufficient, relative to other fluctuations that occur in accident rates, to be of substantial concern.
+Our results provide another reason that
 additional studies of climate-change influences on synchrony should be undertaken: 
 because such influences may alter the cycling of populations, which can in turn
 influence human activities. 
