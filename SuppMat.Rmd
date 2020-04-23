@@ -1,5 +1,5 @@
 ---
-title: "Synchronous effects produce major cycles in deer populations and deer-vehicle collisions: Supporting information"
+title: "Synchronous effects produce cycles in deer populations and deer-vehicle collisions: Supporting information"
 author: "Anderson, Sheppard, Walter, Rolley, Reuman"
 output:
   pdf_document:

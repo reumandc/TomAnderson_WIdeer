@@ -1,5 +1,5 @@
 ---
-title: Synchronous effects produce major cycles in deer populations
+title: Synchronous effects produce cycles in deer populations
   and deer-vehicle collisions
 author:
  - Thomas L. Anderson\textsuperscript{1,2}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{2,3}, Robert E. Rolley\textsuperscript{4},  Daniel C. Reuman\textsuperscript{2,5}  
