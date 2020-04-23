@@ -22,16 +22,6 @@ bibliography: AndersDeerShortRefs.bib
 urlcolor: blue
 ---
 
-<!--Notes from convos with LWS and TLA, i.e., things we need to do:
-1) We need to check that the model with MEI and snow depth is statistically better than the model with just snow depth,
-and also statistically better than the model with just MEI, in the 3-7yr timescale band. Tom will do.
-2) Lawrence then wants us to check that the phases of the coefficients are consistent between the models with one
-predictor and the model with two. This will give us evidence related to whether the two-variable model is overfitted.
-3) Dan needs to insert Fourier results. 
-4) Lawrence is working on analyses which may provide an estimate of how inflated our fraction of synchrony explained
-estimate is.
--->
-
 \noindent Short title: Spatial synchrony leads to populations cycles  
 Author Contributions: TLA and DCR conceived the project; RER provided assistance with data curation; TLA, DCR and LWS analyzed the data; TLA and DCR wrote manuscript; all authors provided extensive editing and feedback on the analysis and manuscript.  
 Type of Article: Letter  
@@ -511,8 +501,6 @@ All data and code producing this paper are also archived at `www.github.com/reum
 Analyses leading to the paper can be re-run and the paper re-compiled 
 via the codes there - see `Readme.md` in the github repository for instructions.
 
-<!--***DAN: made it to here in re-reading on 2020 04 15-->
-
 # Results
 
 The wavelet mean field of county deer abundance time series revealed that the most prominent 
@@ -545,7 +533,7 @@ peaking about `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter
 `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"]/2,1)` years after mild winters. 
 Significant spatial wavelet coherence with an environmental variable which is itself spatially synchronous 
 (e.g., snow depth or some combination of weather variables related to MEI and PDO) is evidence of transmission 
-of synchrony from the environment to deer (SI section \ref{SM-SI:methods}; @Sheppard2016_aphids, @Sheppard_wavmodel). 
+of synchrony from the environment to deer via Moran effects (SI section \ref{SM-SI:methods}; @Sheppard2016_aphids, @Sheppard_wavmodel). 
 NAO was not related to deer abundance synchrony (Table \ref{Tab1_CountyCoherenceSummary}).
 <!--***DAN: you need to add some text to SI methods arguing the above statement, you can rephrase from the aphid paper--><!--TOM: Does it make sense to do this here? It seems more like discussion material- it seems rare to me to have citations in a results section generally speaking.
 DAN: I think it makes sense to do it here. My experience has been, when you are doing something technical, you have to explain
@@ -553,11 +541,12 @@ what it means, to some extent, right as you do it. If you give no explanation of
 well enough what you told them to be able to understand what it means when you tell them in the Discussion. We ask questions
 in the Intro, answer them in the Results, and make additional connections in the Discussion. If the technical results are not 
 going to be understood well enough and therefore not perceived as answering the questions, then the reader needs a little help
-seeing how they answer the questions.-->
+seeing how they answer the questions, in the Results.-->
 
 Snow depth and climate index results seemed to 
 indicate distinct or partly distinct phenomena 
-synchronizing deer on different timescales within the $3-7$-year range.
+synchronizing deer on different timescales within the $3-7$-year band, and examining these distinct phenomena
+provides additional evidence that Moran effects on deer are occurring.
 Deer dynamics at $3-4$-year timescales were not significantly spatially coherent with either 
 $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead were strongly coherent with
 deer on $4-7$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}, see also 
@@ -571,13 +560,14 @@ abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see
 USDA district level results for the $3-4$-year band, Table \ref{SM-TabS2_SummaryDistrict},
 which were similar but had smaller cross terms). The timescale
 bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{SM-FigS5_RanksInSurrogs}.
-Estimates of percentages of synchrony in deer explained by $\text{MEI}_{\text{w}}$
-were complicated, and also were artefactually inflated, by the fact that $\text{MEI}_{\text{w}}$ is 
-not a spatially resolved variable (*Methods*). Furthermore, such results are not strictly necessary
+The wavelet Moran theorem of @Sheppard2016_aphids could not straightforwardly be
+applied to obtain estimates of percentages of synchrony in deer explained by $\text{MEI}_{\text{w}}$,
+because $\text{MEI}_{\text{w}}$ is not a spatially resolved variable (*Methods*).
+Such estimates were complicated, and artefactually inflated. Furthermore, such estimates were not necessary
 to substantiate our argument that deer are environmentally synchronized in the $3-7$-year
-band, since we already presented results for snow depth, and results showing signficant 
-wavelet coherence between deer and MEI. Thus such estimates are relegated to the SI (SI section
-\ref{SM-SI:results}), where attempts to quantify the degree of inflation are also described.
+band, since this is adequately demonstrated by our wavelet coherence results between deer and MEI,
+and our results for snow depth. Thus such estimates were placed in SI section
+\ref{SM-SI:results}, where attempts to quantify the degree of inflation are also described.
 <!--***DAN: Don't forget to add the material described above-->
 <!--***DAN: Tom, can you please make the following changes to Table 1:-->
 <!--1) add back in the column for timescale band--><!--TOM: Done-->
@@ -595,7 +585,6 @@ citations, please), in which case get rid of it.--><!--TOM:I've changed all the 
 the predictor is not a spatially resolved variable.--><!--TOM: Done-->
   <!--Finally-finally, you will have to remove Fig. S11E, though you can keep S11F. You'll have to relabel 
 the panels. The caption will have to be changed, but you can leave that to me if you want.--><!--TOM: Removed the figure, and updated the caption-->
--->
 <!--***DAN: Dan, you probably want to add something to the discussion that coherence with MEI/PDO (together
 with our results for snow depth) is enough to support our argument that deer are environmentally 
 synchroinzed in the 3-7-year band, but we still do not know what specific weather variables (other
@@ -635,16 +624,16 @@ statewide oscillations in deer and DVCs disappear (Fig.
 timescales is removed via a randomization procedure (*Methods*). Therefore, it is spatial synchrony 
 that causes local dynamics to sum to a substantial 
 semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on 
-assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:methods}; @Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp), 
+assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:methods}; [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp]), 
 statewide DVC damages 
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years. 
 
 Supplementary results using Fourier approaches (*Methods*, SI section \ref{SM-SI:methods}) demonstrated 
-clearly that: 1) there was a meaningful spectral peak in the
+clearly (SI section \ref{SM-SI:results}) that: 1) there was a meaningful spectral peak in the
 $3-7$-year timescale band for the state-total deer time series for WI, and it was substantially caused by 
 synchrony because when $3-7$-year synchrony was removed from county-level time series the peak was also removed;
-2) the same spectral peaks did not occur in county-level deer time series (SI section \ref{SM-SI:results}), i.e, combining 
+2) the same spectral peaks did not occur in county-level deer time series, i.e, combining 
 time series across space produced the peak by combining weak but synchronous fluctuations in the $3-7$-year timescale band.
 Similar results also held for DVCs (SI section \ref{SM-SI:results}). 
 
@@ -654,22 +643,25 @@ Similar results also held for DVCs (SI section \ref{SM-SI:results}).
 Overall, we demonstrated that timescale-specific Moran effects, by 
 synchronizing local population dynamics, can cause major cycles in the 
 regional total population. This is a new mechanism by which the environment can 
-produce population cycles. Previous attemps to link environmental factors to population cycles have either fallen short [e.g., sun spots;
-@Sinclair1992_sunspots;@Selas2004_sunspots], or provided only a patial explanation for cycles, as in studies of tetraonids [@watson2000] or small mammals [@kausrud2008]. Our study differs from these previous attempts because the new mechanism does not
-require a highly regular environmental 
-oscillator. Rather, it is sufficient simply for irregular environmental drivers 
+produce population cycles. Previous attemps to link environmental factors to population cycles have either been unsubstantiated [e.g., sun spots;
+@Sinclair1992_sunspots;@Selas2004_sunspots], or provided a useful but patial explanation for cycles, as in studies of 
+tetraonids [@watson2000] or small mammals [@kausrud2008] which demonstrated that environmental factors tend to modify cycles 
+produced by density dependent factors, rather than producing them outright. Our study differs from some of these 
+previous attempts in part because the new mechanism does not require a highly regular environmental 
+oscillator such as sun spots. Rather, it is sufficient simply for irregular environmental drivers 
 such as winter climatic factors to be coherent with populations over a particular timescale band, thereby inducing 
-synchrony in that band and leading to total-population cycles on the same timescales. Our results also provide further evidence that Moran effects cause synchrony [@Leibhold2004_sync;@hansen2020], in part because of recently developed methods, such as the timescale-specific methods used here[@Sheppard2016_aphids;@sheppard_wavmodel], that better help identify putative causal drivers. 
-We have also presented what is, to our knowledge, the first demonstration that synchrony 
+synchrony in that band and leading to total-population cycles on the same timescales. Our results also provide 
+an additional example of Moran effects causing synchrony [@Leibhold2004_sync;@hansen2020]. 
+Finally, we have presented what is, to our knowledge, the first demonstration that synchrony 
 can be transmitted in a 
 Moran-like effect from ecological to human systems (deer to DVCs). Prior work demonstrated the
 transmission of synchrony through trophic interactions within ecosystems [e.g., @Haynes2009],
 but our results show similar mechanisms can also cause synchrony to pass from ecological
-to human systems. Thus if climate change is altering synchrony, as a growing number
+to human systems. Thus if climate change alters synchrony, as a growing number
 of papers indicate is likely occurring 
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
 @Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018;@hansen2020], 
-our results show that large-scale cycles
+our results show that large-spatial-scale cycles
 in both populations and human systems may change as a consequence.
 
 <!--Variants of the mechanism. -->
@@ -727,7 +719,10 @@ which has limited population effects; and the state regulates antlerless harvest
 maintain populations at a desirable size.
 
 <!--applied reasons to care, link to climate change-->
-Our results provide an important but previously unrecognized applied motivation for studies 
+<!--***DAN: It used to say "an important but previously unrecognized applied motivation", so 
+this change contributes to efforts to tone down the claims of how important this is in the applied world.
+I put this note so I don't forget I made this change when I write responses to referees.-->
+Our results provide a previously unrecognized applied motivation for studies 
 of synchrony in populations.
 Fluctuations of a quarter million deer, statewide, which we showed are caused by synchrony, 
 likely will have considerable consequences for agricultural crop damage, forest regeneration 
@@ -745,7 +740,7 @@ DVCs is sufficient, relative to other fluctuations that occur in accident rates,
 Such fluctuations may influence insurance and accident recovery industries, though we have not examined 
 whether a fluctuation of this magnitude is sufficient, relative to other fluctuations that occur in accident rates, to be of substantial concern.
 Our results provide another reason that
-additional studies of climate-change influences on synchrony should be undertaken: 
+additional studies of climate-change influences on synchrony [@hansen2020] should be undertaken: 
 because such influences may alter the cycling of populations, which can in turn
 influence human activities. 
 
@@ -792,7 +787,7 @@ knitr::kable(Tab1_MT[,c(1:7)],
              format="latex", align="l",escape=F,
              digits=4,
              col.names=c("Predictor","Response", "Timescale","P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
-             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on the wavelet Moran theorem (\\textit{Methods}). When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). \\textit{Synchrony Explained} and \\textit{Average cross terms} are not reported for climate-index predictors because the climate indices are not spatially-explicit (\\textit{Methods}). All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
+             caption = "Summary of spatial wavelet coherence tests and related results using county-level data. $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns, which give percentages, are based on the wavelet Moran theorem (\\textit{Methods}). When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. Cross terms were low enough except for tests involving DVCs, for which USDA district-level results were more reliable (SI Table \\ref{SM-TabS2_SummaryDistrict}). \\textit{Synchrony Explained} and \\textit{Average cross terms} are not reported for climate-index predictors because the climate indices are not spatially resolved (\\textit{Methods}). All values were rounded to display four digits. Abundance = deer abundance. \\label{Tab1_CountyCoherenceSummary}",
              booktabs=T)
 ```
 

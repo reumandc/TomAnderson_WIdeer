@@ -669,9 +669,64 @@ tend to all be strong, respectively, weak, at the same times).
 Both the wavelet phasor and wavelet mean fields are based 
 on complex Morlet 
 wavelet transforms of each input time series. 
+All plots based on wavelet transforms are "scalloped", i.e., values corresponding 
+to longer timescales and times closer to the start or end of available data are not plotted. 
+This is because the wavelet transform is based on convolutions of wavelet functions with 
+the timeseries being transformed. Convolutions for which a substantial portion of the wavelet 
+function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is 
+standard practice.
 Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed 
 using the function `wpmf` in the `wsyn` package [@wsyn].
+
+We now provide technical background on the wavelet mean field, taken from 
+@Sheppard2016_aphids and reproduced here for reader convenience. Letting 
+$x_i(t)$ denote a population index for habitat patch $i$ ($i=1,\ldots,N$) at time $t$
+($t=1,\ldots,T$), and denoting by $W_{i,\sigma}(t)$ the wavelet transform of this
+time series evaluated at timescale $\sigma$ and time $t$, the wavelet mean field is 
+\begin{equation}
+r^{\text{wmf}}_{\sigma}(t)=\frac{1}{N}\sum_{i=1}^N w_{i,\sigma}(t),
+\end{equation}
+\noindent where
+\begin{equation}
+w_{i,\sigma}(t)=\frac{W_{i,\sigma}(t)}{\sqrt{\frac{1}{NT}\sum_{i=1}^N \sum_{t=1}^T W_{i,\sigma}(t) \overline{W_{i,\sigma}(t)}}}.\label{eq:pownormwt}
+\end{equation}
+\noindent The overbar denotes complex conjugation. The $w_{i,\sigma}(t)$ are power-normalized wavelet 
+transforms, i.e., the denominator of the equation above is the square root of the 
+average wavelet power of the time series over habitat patches. That denominator is
+only a positive scalar, so the $w_{i,\sigma}(t)$ comprise basically the same information
+as the $W_{i,\sigma}(t)$. For instance, the phases of the $w_{i,\sigma}(t)$
+are identical to the phases of the $W_{i,\sigma}(t)$, and equal the phase of oscillation
+in $x_i(t)$ at time $t$ and timescale $\sigma$. 
+
+The magnitude of the 
+wavelet mean field is a sensible measure of the time and timescale dependence 
+of synchrony because when the fluctuations at timescale $\sigma$ and time $t$ in
+the time series $x_i(t)$ have similar phase in all or most locations and are
+therefore synchronized, the corresponding phases of the transforms $w_{i,\sigma}(t)$
+will also be similar, so the sum $\sum_{i=1}^N w_{i,\sigma}(t)$ will be a large-magnitude 
+complex number; whereas unrelated phases will typically lead to a small-magnitude sum. 
+@Sheppard2016_aphids also prove that the mean squared magnitude of $r^{\text{wmf}}_{\sigma}(t)$,
+i.e., $\frac{1}{T}\sum_{t=1}^T |r^{\text{wmf}}_{\sigma}(t)|^2$, is between $0$ and $1$ and is equal to
+$1$ if and only if the time series $x_i(t)$ are identical. They also prove that this 
+quantity is the wavelet power of the average time series, divided by the average of the
+powers of all the time series, so that if time series are unsynchronized, power in the 
+average time series will tend to be reduced (unsynchronized fluctuations tend to cancel
+when summed). This reasoning provides another intuitively understandable justification for the 
+wavelet mean field magnitude as a measure of synchrony. Thus, $\frac{1}{T}\sum_{t=1}^T |r^{\text{wmf}}_{\sigma}(t)|^2$
+is a timescale-specific measure of synchrony. Methods that relate to the wavelet mean 
+field have been used previously to study synchrony in ecology [@Keitt2006; @Viboud2006; @Keitt2008].
+
+We also provide technical background on the wavelet phasor mean field, taken from
+@Sheppard_wavmodel and reproduced here for reader convenience. 
+Again denoting the data time series by $x_i(t)$ and their wavelet transforms by
+$W_{i,\sigma}(t)$, the wavelet phasor mean field is 
+\begin{equation}
+r^{\text{wpmf}}_\sigma(t)=\frac{1}{N}\sum_{i=1}^N \frac{W_{i,\sigma}(t)}{|W_{i,\sigma}(t)|}.
+\end{equation}
+\noindent The quantities $\frac{W_{i,\sigma}(t)}{|W_{i,\sigma}(t)|}$ are unit-magnitude complex 
+numbers, also known as phasors. The magnitude of $r^{\text{wpmf}}_\sigma(t)$ is between
+$0$ and $1$, with larger values corresponding to more phase synchrony. 
 
 Statistical significance of the wavelet phasor mean 
 field, compared to a null hypothesis of no phase 
@@ -679,8 +734,10 @@ synchrony, can be assessed for each combination of
 time and timescale. For any given time and 
 timescale, significance testing compares the degree 
 of phase consistency between sampling locations for 
-the empirical time series to a null hypothesis of random 
-phases. If empirical phase consistency was greater than 
+the empirical time series (as measured by $|r_\sigma^{\text{wpmf}}(t)|$) to a null hypothesis of random 
+phases (as measured by $\left| \frac{1}{N}\sum_{i=1}^N \exp(2\pi u_i j)  \right|$, where $j$ is the imaginary unit 
+and the $u_i$ are independent uniformly distributed random variables on the unit interval). 
+If empirical phase consistency was greater than 
 that of $99.9\%$ of sets of random phases 
 ($P < 0.001$, one-tailed test, see contours on, e.g., main text 
 Figs \ref{MT-Fig3_DeerSync}B and \ref{MT-Fig4_DvcSync}B), synchrony was 
@@ -689,8 +746,6 @@ deemed significant and important
 wavelet phasor mean field magnitude plots for 
 winter weather variables are in 
 Fig. \ref{FigS8_WMFsAndWPMFsAncillary}.
-
-All plots based on wavelet transforms are "scalloped", i.e., values corresponding to longer timescales and times closer to the start or end of available data are not plotted. This is because the wavelet transform is based on convolutions of wavelet functions with the timeseries being transformed. Convolutions for which a substantial portion of the wavelet function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is standard practice.
 
 \textbf{Spatial wavelet coherence and wavelet coherence.} For both county- and district-level data, we 
 assessed pairwise relationships between 
@@ -798,6 +853,34 @@ comprised only a single time series), we considered
 that the same index time series pertained to all 
 locations for which the spatiotemporal variable was 
 measured. 
+
+We also provide technical background on the spatial wavelet coherence, taken from
+@Sheppard2016_aphids and @Sheppard_wavmodel (but also available elsewhere) and reproduced 
+here for reader convenience. If $x_i^{(0)}(t)$ and $x_i^{(1)}(t)$ are two quantities measured
+at locations $i=1,\ldots,N$ and times $t=1,\ldots,T$, then the spatial wavelet coherence
+is the magnitude of
+\begin{equation}
+\Pi_\sigma^{(01)}=\frac{1}{NT}\sum_{i=1}^N \sum_{t=1}^T w^{(0)}_{i,\sigma}(t) \overline{w^{(0)}_{i,\sigma}(t)},\label{eq:spatwavcoh}
+\edn{equation}
+\noindent where the $w^{(k)}_{i,\sigma}(t)$ are the power-normalized wavelet transforms of the
+$x_i^{(k)}(t)$ (see (\ref{eq:pownormwt}) above). But the complex number 
+$w^{(0)}_{i,\sigma}(t) \overline{w^{(0)}_{i,\sigma}(t)}$ has phase equal to the phase difference 
+between $w^{(0)}_{i,\sigma}(t)$ and $w^{(0)}_{i,\sigma}(t)$, so the sum over $i$ and $t$ in 
+(\ref{eq:spatwavcoh}) will be large of this phase difference is consistent over space and time,
+and will be small otherwise. The wavelet components $w^{(0)}_{i,\sigma}(t)$ and $w^{(0)}_{i,\sigma}(t)$
+can also have varying magnitudes, and the spatial wavelet coherence will be larger still if 
+there are correlations in how these amplitudes fluctuate through time. When $N=1$, the spatial
+wavelet coherence is the wavelet coherence, a standard method [@Torrence1998; @addison2002].
+The measure also relates to the phase coherence of a single pair of transforms, a measure 
+which has been used previously in ecology [@Grenfell2001; @Viboud2006]. The phase of 
+$\Pi_\sigma^{(01)}$, which we report in our tables, is the average phase difference between 
+$x_i^{(0)}(t)$ and $x_i^{(1)}(t)$, as a function of timescale. Note that the spatial 
+wavelet coherence registers the strength of relationship between 
+$x_i^{(0)}(t)$ and $x_i^{(1)}(t)$ regardless of whether they are in phase, or phase shifted.
+
+<!--***DAN: made it to here, end of 2020 04 23. Continue tomorrow with significance.-->
+
+
 
 \textbf{Wavelet Moran theorem, fractions of synchrony explained, and predicted synchrony.} We calculated the amount of deer abundance 
 synchrony explained by individual weather and 
@@ -1487,7 +1570,7 @@ knitr::kable(TabS2_results,
              digits=4,
              col.names=c("Predictor","Response","Timescale", "P-value","Mean phase ($\\bar{\\theta}$)","Synchrony explained","Average cross terms"),
              caption.short="Summary of USDA district-level coherence test results",
-             caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (\\textit{Methods}). $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns (which give percentages) are based on the wavelet Moran theorem (\\textit{Methods}). When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. \\textit{Synchrony Explained} and \\textit{Average cross terms} are not reported for climate-index predictors because the climate indices are not spatially-explicit (\\textit{Methods}). All values were rounded to display four digits. \\label{TabS2_SummaryDistrict}",
+             caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (\\textit{Methods}). $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns (which give percentages) are based on the wavelet Moran theorem (\\textit{Methods}). When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. \\textit{Synchrony Explained} and \\textit{Average cross terms} are not reported for climate-index predictors because the climate indices are not spatially resolved (\\textit{Methods}). All values were rounded to display four digits. \\label{TabS2_SummaryDistrict}",
              booktabs=T)
 ```
 
