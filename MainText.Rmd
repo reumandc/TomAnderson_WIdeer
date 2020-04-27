@@ -350,8 +350,8 @@ well established, standard tools in many biological fields, or are simple extens
 So we provide in the main text an operational description, only,
 of each method, i.e., what it takes as input, what it provides as output, and how to
 interpret the output. Further descriptions and technical details are in SI 
-section \ref{SM-SI:methods}, and complete details of all methods are published elsewhere
-[@Sheppard2013;@Sheppard2016_aphids]. It is explained in SI section \ref{SM-SI:methods}
+section \ref{SM-SI:methods}; and complete details of all methods are in @Sheppard2013 and
+@Sheppard2016_aphids. It is explained in SI section \ref{SM-SI:methods}
 why it was an appropriate choice to use Fourier methods for the theoretical
 development (above and in SI sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}), and 
 to use a combination of wavelet and Fourier methods
@@ -368,7 +368,7 @@ the techniques in the sup mat, at least. -->
 new as well as the existing stuff-->
 We characterized the spatial synchrony of spatiotemporal variables (e.g., deer
 abundance) using wavelet mean field magnitudes and wavelet
-phasor mean field magnitudes (SI Fig.
+phasor mean field magnitudes (SE section \ref{SM-SI:methods}; SI Fig.
 \ref{SM-PedagogFigWMF}; @Sheppard2013, @Sheppard2016_aphids). Both methods take as input
 standardized (see above) timeseries data from multiple locations and provide as
 output plots which display the degree of synchrony among locations as a function
@@ -387,7 +387,8 @@ We used a significance threshold  of $P < 0.001$.
 new as well as the existing stuff-->
 For both county- and district-level data, we assessed pairwise relationships
 between spatiotemporal variables using the spatial wavelet coherence technique
-(SI Fig. \ref{SM-PedagogFigSpatCoh}; @Sheppard2013, @Sheppard2016_aphids, @Sheppard2017_surrogates). 
+(SI section \ref{SM-SI:methods}; SI 
+Fig. \ref{SM-PedagogFigSpatCoh}; @Sheppard2013, @Sheppard2016_aphids, @Sheppard2017_surrogates). 
 Spatial wavelet coherence tests for timescale-specific relationships between variables. 
 Specifically, the technique tests whether two
 spatiotemporal variables exhibit consistent phase differences and correlated
@@ -400,9 +401,8 @@ unrelated to each other [@Theiler1992;@Schreiber2000;@Sheppard2013;@Sheppard2016
 We calculated how often observed spatial wavelet coherence between pairs of variables was 
 ranked higher than coherences of surrogate data sets, aggregating across the timescale 
 band of interest using an
-average-rank-based method described in detail elsewhere [@Sheppard2016_aphids]. 
-<!--***DAN: to satisfy the referee, also explain this methd in the sup mat, and insert a reference to the sup mat here-->
-A p-value 
+average-rank-based method described in detail in SI section \ref{SM-SI:methods} and 
+by @Sheppard2016_aphids. A p-value 
 of less than $0.05$ means that the average empirical spatial wavelet coherence rank was higher than 
 the same quantity calculated for at least 95% of the surrogate data sets
 which represent the null hypothesis of no relationship. Ranks of
@@ -454,14 +454,18 @@ model "cross terms", which are the component of  synchrony that is due to variab
 explained by the drivers at a given location being synchronous with model residuals at other 
 locations [@Sheppard2016_aphids]. Cross terms must be small ($<10\%$) 
 in order for inferences about synchrony to be valid (SI section \ref{SM-SI:methods}). 
+There are reasons to expect large cross terms to be mitigated at larger spatial scales
+under some circumstance (SI section \ref{SM-SI:methods}), one reason why we performed analyses
+at both county and district scales. 
 The approach described here is most straightforwardly applied to predictors which 
 are spatially as well as temporally
 resolved, e.g., local weather variables as opposed to climate indices such as 
 MEI. Attempts to use these techniques to quantify the fraction of deer synchrony explained by
 MEI were more complex, produced estimates which were probably inflated, and were not needed 
-for our main research goals, so were relegated to the SI (section \ref{SM-SI:methods} for
-methods and \ref{SM-SI:results} for results).
-<!--***DAN: don't forget to add this material-->
+for our research goals, so were relegated to SI section \ref{SM-SI:methods} for
+methods and \ref{SM-SI:results} for results.
+<!--***DAN: don't forget to add this material, and mention there that those results are 
+consistent with our other results.-->
 
 <!--***DAN: Make sure there are sufficient technical details for the below techniques in the 
 sup mat, and then make the references refer to the new as well as the existing stuff-->
