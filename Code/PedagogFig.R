@@ -154,7 +154,7 @@ xht<-0.5
 ywd<-0.5
 gap<-0.1
 totwd<-ywd+3*panwd.b+3*gap
-totht<-xht+3*panht.b+panht.s+5*gap
+totht<-xht+3*panht.b+panht.s+7*gap
 colmap<-rep(c("black","red"),times=numts)#rainbow(numts)
 adjmt<-0.5
 
@@ -253,7 +253,7 @@ for (counter in 2:numts)
   lines(tm,d1ns[counter,],type='l',col=colmap[counter])
 }
 text(xlimits[1],ylimits.bns[2],'A)',adj=c(0,1),font=2)
-mtext("Scenario 1",side=3)
+mtext("Scenario 1:\n env. asynchrony",side=3,cex = 0.75)
 
 #Plot example a=1 - population time series
 xlimits<-range(tm)
@@ -318,7 +318,7 @@ for (counter in 2:numts)
   lines(tm,d2ns[counter,],type='l',col=colmap[counter])
 }
 text(xlimits[1],ylimits.bns[2],'B)',adj=c(0,1),font=2)
-mtext("Scenario 2",side=3)
+mtext("Scenario 2:\n 3-year synchrony",side=3,cex = 0.75)
 
 #Plot example 2 - population time series
 par(fig=c((ywd+panwd.b+gap)/totwd,
@@ -368,7 +368,7 @@ for (counter in 2:numts)
   lines(tm,d3ns[counter,],type='l',col=colmap[counter])
 }
 text(xlimits[1],ylimits.bns[2],'C)',adj=c(0,1),font=2)
-mtext("Scenario 3",side=3)
+mtext("Scenario 3:\n 10-year synchrony",side=3,cex = 0.75)
 
 #Plot example 3 - population time series
 par(fig=c((ywd+2*panwd.b+2*gap)/totwd,
