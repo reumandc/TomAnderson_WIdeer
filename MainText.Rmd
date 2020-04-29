@@ -801,33 +801,33 @@ knitr::kable(Tab1_MT[,c(1:7)],
 \includegraphics[width=.5\textwidth]{Results/Fig1.png}
 \caption{Simulations demonstrating our mechanism whereby
 timescale-specific synchrony can cause population cycling. Three scenarios with different patterns of
-environmental synchrony result in different outcomes: scenario 1, an asynchronous environment scenario, results in no 
+environmental synchrony result in different outcomes: scenario 1, an asynchronous-environment scenario, results in no 
 population synchrony or cycling; scenario 2 has environmental synchrony on a 3-year timescale, resulting in
-3-year population synchrony and cycling; scenario 3 has environmental synchrony on a 10-year timescale, resulting in
-10-year population synchrony and cycling. In scenario 1, the asynchronous environment scenario,
+3-year population synchrony and 3-year regional-scale cycles; scenario 3 has environmental synchrony on a 10-year timescale, resulting in
+10-year population synchrony and 10-year cycles. In scenario 1, the asynchronous-environment scenario,
 environmental noise in location $i$ ($i=1,\dots,71$; first $15$ locations
 shown in A) was modeled as 
 $e^{(1)}_i(t)=\sin(2 \pi t/w^{(1)}+2 \pi u^{(1)}_i)+3\epsilon^{(1)}_i(t)$, where $w^{(1)}=3$, 
 the $u^{(1)}_i$ were independent
 draws from the uniform distribution on $(0,1)$, and the local noises $\epsilon^{(1)}_i(t)$ were
-standard normal and independent across locations and times. In scenario 2, the 3-year synchrony scenario,
+standard normal and independent across locations and times. In scenario 2, the 3-year-synchrony scenario,
 noise ($15$ locations shown in B) 
 was $e^{(2)}_i(t)=\sin(2 \pi t/w^{(2)}+2 \pi u^{(2)})+3\epsilon^{(2)}_i(t)$
 where $w^{(2)}=3$, $u^{(2)}$ was one single standard-normally distributed random number used for all
 locations, and the $\epsilon^{(2)}_i(t)$ were again
 standard normal and independent.
-Noise for scenario 3, the 10-year synchrony scenario (C), 
+Noise for scenario 3, the 10-year-synchrony scenario (C), 
 was like scenario 2 but used $w^{(3)}=10$. Thus the noises in 
 scenarios 2 and 3 had weak and not visually obvious timescale-specific synchrony and those in 1 had no synchrony.
 Populations were modelled as $p^{(s)}_{i}(t+1)=\rho p^{(s)}_i (t)+e^{(s)}_i(t)$ using $\rho=0.4$
 for scenarios $s=1,2,3$, and are displayed (D-F) for locations 1-15.
-Although synchrony is again weak and 
+Although population synchrony was weak and 
 cannot readily be detected visually, wavelet mean field magnitide plots (\emph{Methods})
 revealed that synchrony was present, in scenarios 2 and 3, on 3- and 10-year
 timescales (G-I); on such plots, higher values mean greater synchrony at the given 
 time on the given timescale. Total populations (J-L) show clear cycling in scenarios 2 and 3,
 of periods $3$ and $10$, respectively, consistent with the proposed mechanism 
-(\emph{Introduction}): synchrony on a given timescale 
+from the \emph{Introduction}: synchrony on a given timescale 
 produces cycling on that timescale in the total population.
 We used $71$ locations because the empirical analyses of this study focus on white-tailed
 deer populations in Wisconsin, and Wisconsin has 71 counties for which deer 
