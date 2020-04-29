@@ -680,8 +680,8 @@ Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed 
 using the function `wpmf` in the `wsyn` package [@wsyn].
 
-We now provide technical background on the wavelet mean field, taken from 
-@Sheppard2016_aphids and reproduced here for reader convenience. Letting 
+\textbf{The wavelet mean field and wavelet phasor mean field, technical background.} Technical background on the wavelet mean field was taken from 
+@Sheppard2016_aphids, and is reproduced here for reader convenience. Letting 
 $x_i(t)$ denote a population index for habitat patch $i$ ($i=1,\ldots,N$) at time $t$
 ($t=1,\ldots,T$), and denoting by $W_{i,\sigma}(t)$ the wavelet transform of this
 time series evaluated at timescale $\sigma$ and time $t$, the wavelet mean field is 
@@ -859,8 +859,8 @@ and phase relationships provides strong evidence for the statements made in the 
 that weather/climatic synchrony partly causes deer synchrony and deer synchrony partly causes DVC synchrony
 on the $3-7$-year timescale band.
 
-We provide technical background on the spatial wavelet coherence, taken from
-@Sheppard2016_aphids and @Sheppard_wavmodel (but also available elsewhere, e.g, @Prichard1994) and reproduced 
+\textbf{Spatial wavelet coherence and wavelet coherence, technical background.} Technical background on the spatial wavelet coherence was taken from
+@Sheppard2016_aphids and @Sheppard_wavmodel (but is also available elsewhere, e.g, @Prichard1994), and is reproduced 
 here for reader convenience. If $x_i^{(0)}(t)$ and $x_i^{(1)}(t)$ are two quantities measured
 at locations $i=1,\ldots,N$ and times $t=1,\ldots,T$, then the spatial wavelet coherence
 is the magnitude of
@@ -951,9 +951,9 @@ If the predicted synchrony plot is similar to the actual wavelet mean field magn
 for DVCs then it provides visual support for the hypothesis that deer synchrony causes DVC synchrony.
 The function `wlm` and related functions from `wsyn` implement these tools.
 
-<!--Then explain the technical side of everything in this section.-->
-We now provide technical background on the wavelet Moran theorem and related ideas, taken from
-@Sheppard2016_aphids and @Sheppard_wavmodel and reproduced here for reader convenience.
+\textbf{Wavelet Moran theorem, fractions of synchrony explained, and predicted synchrony, technical background.}
+Technical background on the wavelet Moran theorem and related ideas was taken from
+@Sheppard2016_aphids and @Sheppard_wavmodel, and is reproduced here for reader convenience.
 If $x_i^{(0)}(t)$ and $x_i^{(1)}(t)$ are again two quantities measured
 at locations $i=1,\ldots,N$ and times $t=1,\ldots,T$, and again denoting by $w^{(k)}_{i,\sigma}(t)$ 
 the power-normalized wavelet transforms of the
@@ -971,7 +971,7 @@ may help cause synchrony in $x_i^{(0)}(t)$, through a Moran effect.
 
 The wavelet Moran theorem, as stated by @Sheppard2016_aphids, is as follows.
 \begin{thm}\label{th:MoranTheorem}
-\emph{\textbf{The wavelet Moran theorem.}}
+\emph{The wavelet Moran theorem.}
 We can write $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$, where this equation defines
 $d_{i,\sigma}(t)$.
 Then $w^{(1)}_{i,\sigma}(t) \cdot d_{i,\sigma}(t)=0$, and for each $\sigma$,
