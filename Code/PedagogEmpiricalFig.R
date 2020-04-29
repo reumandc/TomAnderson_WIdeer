@@ -1,8 +1,10 @@
 cty.list<-readRDS("Results/cty.list.rds")
+winter.clim<-readRDS("Results/winter.clim.rds")
+climindex<-readRDS("Results/climindex.rds")
 
 #clean data for middle and right panels
-abun.dt<-cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
-dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,times=1987:maxyear)$cdat
+abun.dt<-wsyn::cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
+dvc.dt<-wsyn::cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,times=1987:maxyear)$cdat
 
 #generate wmfs and wpmfs
 abun.wmf<-wsyn::wmf(abun.dt,times = 1981:maxyear)
