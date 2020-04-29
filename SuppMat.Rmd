@@ -1031,6 +1031,21 @@ our statistics, so one expects that if cross terms are large at the county spati
 scale, the problem may be mitigated at the district scale, as happened for many
 of our analyses (see section "USDA district results" in SI Appendix). 
 
+<!--Information on calculating, using the wavelet Moran theorem, the 
+fraction of synchrony explained. Also the predicted synchrony plots.-->
+Using the wavelet Moran theorem, and assuming cross terms are negligible, 
+the pattern of synchrony in $x_i^{(0)}(t)$ that would be predicted if the only
+synchronizing influence on it were $x_i^{(1)}(t)$ is 
+$|\Pi^{(01)}_{\sigma}||r^{(\text{\emph{wmf}},1)}_{\sigma}(t)|$. This is similar to (\ref{eq:Moranmain1}),
+but without the time averages and taking a square root. The predicted synchrony expression follows
+from the proof of the wavelet Moran theorem [@Sheppard2016_aphids; @Sheppard_wavmodel].
+The fraction of the synchrony in $x_i^{(0)}(t)$ explained by synchrony in $x_i^{(1)}(t)$,
+as a function of timescale [@Sheppard2016_aphids; @Sheppard_wavmodel], is 
+\begin{equation}
+q(\sigma)=\frac{|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{\emph{wmf}},1)}_{\sigma}(t)|^2}{\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{\emph{wmf}},0)}_{\sigma}(t)|^2}.
+\end{equation}
+\noindent This was averaged over a timescale band of interest.  
+
 \textbf{Fraction of deer synchrony explained by winter MEI.}
 <!--***DAN: fill in the stuff Lawrence did, methods-->
 <!--***DAN: once this is all written, go through and make sure the sub sections of the SI Methods and 
@@ -1038,20 +1053,30 @@ SI Results are A) in the same order, and B) in the order in which they are cited
 everything easier to find. The easiest way to do this is probably to just read the main text and follow
 all the links. While you are at it, read and edit all the SI again - I have a feeling it needs one 
 more round of that.-->
-Fractions of deer abundance synchrony explained by snow depth and of DVC synchrony
+Fractions of deer abundance synchrony explained by snow depth and fractions of DVC synchrony
 explain by deer, and related results, were presented in the main text, but we did not there present results
-on fractions of deer abundance synchrony explained by winter MEI. Deer abundance and winter MEI
-exhibited significant spatial wavelet coherence, supporting the 
-hypothesis that a winter-climatic Moran effect related to ENSO was partly responsible for deer
-synchrony. But the wavelet Moran theorem and related techniques are most effective when 
-data are spatially resolved. MEI is a single index, so was not spatially resolved. What follows is a 
+on fractions of deer abundance synchrony explained by winter MEI, even though deer abundance and winter MEI
+were significantly coherent, supporting the 
+hypothesis that a Moran effect related to MEI was partly responsible for deer
+synchrony. As mentioned briefly in the main text, this choice was because the wavelet Moran theorem and 
+related techniques are more complex and less effective when 
+data are not spatially resolved. MEI is a single index, so was not spatially resolved. What follows is a 
 technical description of 1) why applying the wavelet Moran theorem to MEI and deer abundance 
 can produce overfitted models and inflated estimates of fractions of deer synchrony explained
 by MEI; and 2) steps we took to try to quantify the degree of inflation. Results of the
 procedures described here are in SI section \ref{SI:results}.
 
-<!--***DAN: got to here 2020 04 27-->
+<!--Explanation of why we can't just do this naively-->
+<!--Make sure to mention:
+We know, because of the coherence results, that some weather variable related to winter MEI causes synchrony in deer
+We just don't know for sure how much. 
+We can compute it the naive way.
+-->
+Fitted AR(2) model to winter MEI time series data we had (Dan to check and say what fitting methods, what data, etc)
+Used resulting parameters to generate 1 time series of length  
 
+
+<!--Description of procedure for estimating inflation-->
 
 \textbf{Randomization procedure for removing synchrony at $3-7$-year timescales.} In order to quantify the degree to which 
 synchronizing effects are responsible for 
