@@ -1,6 +1,9 @@
+#Load results and data
 cty.list<-readRDS("Results/cty.list.rds")
 winter.clim<-readRDS("Results/winter.clim.rds")
 climindex<-readRDS("Results/climindex.rds")
+abunsurr<-read.csv("Data/abunsurrsum.csv")
+dvcsurr<-read.csv("Data/dvcsurrsum.csv")
 
 #clean data for middle and right panels
 abun.dt<-wsyn::cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
@@ -31,7 +34,7 @@ par(fig=c((ywd)/totwd, #left side
           (ywd+panwd.b)/totwd, #right side
           (xht+3*panht.b+3*gap)/totht, #bottom
           (xht+4*panht.b+3*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
+    mai=c(0,0,0,0),mgp=c(3,.25,0),tcl=-.25)
 
 #Insert fig
 
@@ -40,7 +43,7 @@ par(fig=c((ywd)/totwd, #left side
           (ywd+panwd.b)/totwd, #right side
           (xht+2*panht.b+2*gap)/totht, #bottom
           (xht+3*panht.b+2*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Insert fig
 
@@ -49,7 +52,7 @@ par(fig=c((ywd)/totwd, #left side
           (ywd+panwd.b)/totwd, #right side
           (xht+1*panht.b+1*gap)/totht, #bottom
           (xht+2*panht.b+1*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Insert fig
 
@@ -58,7 +61,7 @@ par(fig=c((ywd)/totwd, #left side
           (ywd+panwd.b)/totwd, #right side
           (xht)/totht, #bottom
           (xht+panht.b)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Insert fig
 
@@ -68,49 +71,49 @@ par(fig=c((2*ywd+panwd.b+gap)/totwd, #left side
           (2*ywd+2*panwd.b+gap)/totwd, #right side
           (xht+3*panht.b+3*gap)/totht, #bottom
           (xht+4*panht.b+3*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #driver (snow) time series
 
 winter.clim.tmp<-lapply(winter.clim,function(x){x[(!is.na(rowMeans(x))),]})
-plot(1981:2016,rep(NA,36),las=1,ylim=c(min(winter.clim.tmp$Snwd),max(winter.clim.tmp$Snwd)),xlab="",ylab="Winter Snow Depth (cm)",axes=F,frame=T)
+plot(1981:2016,rep(NA,36),las=1,ylim=c(0,1000),xlab="",ylab="",axes=F,frame=T)
 for(i in 1:nrow(winter.clim.tmp$Snwd)){
   lines(1981:2016,winter.clim.tmp$Snwd[i,],col=rainbow(nrow(winter.clim.tmp$Snwd))[i])
 }
-mtext(text = "B)",side=3,adj=0.05,font=2,line=-1)
-mtext("Snow Depth (m)",side=2,line=1.2)
-axis(1,labels=rep(NA,6),at = seq(1980,2016,5))
-axis(2,labels=seq(0,1000,200)/100,at = seq(0,1000,200),las=1)
+mtext(text = "B)",side=3,adj=0.15,font=2,line=-1)
+mtext("Snow Depth (m)",side=2,line=1.2,cex=0.75)
+axis(1,labels=rep(NA,6),at = seq(1980,2016,5),cex.axis=0.75)
+axis(2,labels=seq(0,1000,200)/100,at = seq(0,1000,200),las=1,cex.axis=0.75,tcl=-0.15)
 
 par(new=T)
 
 plot(minyear:maxyear,climindex$WinterMEI[1,],las=1,axes=F,type="l",xlab="",ylab="",lwd=2)
-mtext("Winter MEI",side=4,line=1) 
-axis(4, ylim=c(min(climindex$WinterMEI[1,]),max(climindex$WinterMEI[1,])), las=1)
+mtext("Winter MEI",side=4,line=0.35,cex=0.75) 
+axis(4, ylim=c(min(climindex$WinterMEI[1,]),max(climindex$WinterMEI[1,])), las=1,cex=0.75,cex.axis=0.75)
 
 #Panel E
 par(fig=c((2*ywd+panwd.b+gap)/totwd, #left side
           (2*ywd+2*panwd.b+gap)/totwd, #right side
           (xht+2*panht.b+2*gap)/totht, #bottom
           (xht+3*panht.b+2*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Deer raw time series
 plot(1981:2016,rep(NA,36),las=1,ylim=c(min(cty.list$Abun),max(cty.list$Abun)),axes=F,frame=T,xlab="",ylab="")
 for(i in 1:nrow(cty.list$Abun)){
   lines(1981:2016,cty.list$Abun[i,],col=rainbow(71)[i])
 }
-mtext("Deer (K)",side=2,line=1.2)
+mtext("Deer (K)",side=2,line=1.2,cex=0.75)
 mtext(text = "E)",side=3,adj=0.05,font=2,line=-1)
-axis(1,labels=rep(NA,6),at = seq(1980,2016,5))
-axis(2,labels= format(seq(0,48,10),scientific=F),at = seq(0,48000,10000),las=1)
+axis(1,labels=rep(NA,6),at = seq(1980,2016,5),cex.axis=0.75)
+axis(2,labels= format(seq(0,48,10),scientific=F),at = seq(0,48000,10000),las=1,cex.axis=0.75)
 
 #Panel H
 par(fig=c((2*ywd+panwd.b+gap)/totwd, #left side
           (2*ywd+2*panwd.b+gap)/totwd, #right side
           (xht+1*panht.b+1*gap)/totht, #bottom
           (xht+2*panht.b+1*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Deer wavelet mean field 
 zlimits<-range(Mod(abun.wmf$values),na.rm=T)
@@ -126,10 +129,10 @@ image(x=abun.wmf$times,y=l2ts,z=Mod(abun.wmf$values),xlim=xlimits,
 ylocs <- pretty(abun.wmf$timescales, n = 8)
 xlocs <- pretty(abun.wmf$times, n = 8)
 #axis(1, at = xlocs, labels = rep(NA,length=length(xlocs)))
-axis(1,labels=rep(NA,6),at = seq(1980,2016,5))
-axis(2, at = log2(ylocs), labels = ylocs,las=1)
+axis(1,labels=rep(NA,6),at = seq(1980,2016,5),cex.axis=0.75)
+axis(2, at = log2(ylocs), labels = ylocs,las=1,cex.axis=0.75)
 #mtext("Year",side=1,line=1.2)
-mtext("Timescale (yrs)",side=2,line=1.2)
+mtext("Timescale (yrs)",side=2,line=1.2,cex=0.75)
 text(xlimits[1],max(l2ts),'H)',adj=c(0,1),font=2)
 abline(h=c(log2(3),log2(7)),lty=2)
 
@@ -151,13 +154,13 @@ par(fig=c((2*ywd+panwd.b+gap)/totwd, #left side
           (2*ywd+2*panwd.b+gap)/totwd, #right side
           (xht)/totht, #bottom
           (xht+panht.b)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Regional total
-plot(minyear:maxyear,apply(cty.list$Abun,2,sum),lwd=2,xlab="Year",ylab="Total Deer",axes=F,type="l",frame=T)
-axis(2,labels= format(seq(0.6,1.3,0.2),scientific=F),at = seq(600000,1300000,200000),las=1)
-axis(1,labels=seq(1980,2016,5),at = seq(1980,2016,5))
-mtext("Deer (M)",side=2,line=1.2)
+plot(1981:2016,rep(NA,36),ylab="",xlab="Year",ylim=c(-180000,200000),las=1,yaxt="n",cex.axis=0.75,cex=0.75)
+lines(1981:2016,(apply(cty.list$Abun,2,sum)-apply(abunsurr,2,mean)),lwd=1,cex=0.75,type="l")
+axis(2,labels= format(seq(-200,200,50),scientific=F),at = seq(-200000,200000,50000),las=1,cex.axis=0.75)
+mtext(expression(Delta~"from Surrog. Mean (K)"),side=2,line=1.2,cex=0.75)
 mtext("K)",font=2,side=3,line=-1,adj=0.05)
 
 ##Right Column: DVCs
@@ -166,7 +169,7 @@ par(fig=c((3*ywd+2*panwd.b+2*gap)/totwd, #left side
           (3*ywd+3*panwd.b+2*gap)/totwd, #right side
           (xht+3*panht.b+3*gap)/totht, #bottom
           (xht+4*panht.b+3*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 # Driver time series (deer repeated)
 plot(1987:2016,rep(NA,30),las=1,ylim=c(min(cty.list$Abun[,-(1:6)]),max(cty.list$Abun[,-(1:6)])),xlab="",ylab="Abundance",axes=F,frame=T)
@@ -174,25 +177,25 @@ for(i in 1:nrow(cty.list$Abun)){
   lines(1981:2016,cty.list$Abun[i,],col=rainbow(71)[i])
 }
 mtext(text = "C)",side=3,adj=0.05,font=2,line=-1)
-axis(1,labels=rep(NA,6),at = seq(1990,2016,5))
-axis(2,labels= format(seq(0,48,10),scientific=F),at = seq(0,48000,10000),las=1)
-mtext("Deer (K)",side=2,line=1.2)
+axis(1,labels=rep(NA,6),at = seq(1990,2016,5),cex.axis=0.75)
+axis(2,labels= format(seq(0,48,10),scientific=F),at = seq(0,48000,10000),las=1,cex.axis=0.75)
+mtext("Deer (K)",side=2,line=0.85,cex=0.75)
 
 #Panel F
 par(fig=c((3*ywd+2*panwd.b+2*gap)/totwd, #left side
           (3*ywd+3*panwd.b+2*gap)/totwd, #right side
           (xht+2*panht.b+2*gap)/totht, #bottom
           (xht+3*panht.b+2*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #DVC raw time series
 plot(1987:2016,rep(NA,30),las=1,frame=T,ylim=c(min(cty.list$Crashes,na.rm=T),max(cty.list$Crashes,na.rm=T)),xlim=c(1987,2016),axes=F,xlab="Year",ylab="DVCs")
 for(i in 1:nrow(cty.list$Crashes)){
   lines(1987:2016,na.omit(cty.list$Crashes[i,]),col=rainbow(71)[i])
 }
-axis(1,labels=rep(NA,6),at = seq(1990,2016,5))
-axis(2,labels= format(seq(0,1.4,0.2),scientific=F),at = seq(0,1400,200),las=1)
-mtext("DVCs (K)",side=2,line=1.2)
+axis(1,labels=rep(NA,6),at = seq(1990,2016,5),cex.axis=0.75)
+axis(2,labels= format(seq(0,1.4,0.2),scientific=F),at = seq(0,1400,200),las=1,cex.axis=0.75)
+mtext("DVCs (K)",side=2,line=1.2,cex=0.75)
 mtext(text = "F)",side=3,line=-1,adj=0.05,font=2)
 
 #Panel I
@@ -200,7 +203,7 @@ par(fig=c((3*ywd+2*panwd.b+2*gap)/totwd, #left side
           (3*ywd+3*panwd.b+2*gap)/totwd, #right side
           (xht+1*panht.b+1*gap)/totht, #bottom
           (xht+2*panht.b+1*gap)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #DVC wavelet mean field
 zlimits<-range(Mod(dvc.wmf$values),na.rm=T)
@@ -210,12 +213,12 @@ l2ts<-log2(dvc.wmf$timescales)
 #plot wmf
 image(x=dvc.wmf$times,y=l2ts,z=Mod(dvc.wmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',xaxt="n",yaxs='r',ylab="",xlab="")
-ylocs <- pretty(dvc.wmf$timescales, n = 8)
+ylocs <- pretty(dvc.wmf$timescales, n = 6)
 xlocs <- pretty(dvc.wmf$times, n = 8)
-axis(1, at = xlocs, labels = rep(NA,length=length(xlocs)))
-axis(2, at = log2(ylocs), labels = ylocs,las=1)
+axis(1, at = xlocs, labels = rep(NA,length=length(xlocs)),cex.axis=0.75)
+axis(2, at = log2(ylocs), labels = ylocs,las=1,cex.axis=0.75)
 #mtext("Year",side=1,line=1.2)
-mtext("Timescale (yrs)",side=2,line=1.2)
+mtext("Timescale (yrs)",side=2,line=1.2,cex=0.75)
 text(xlimits[1],max(l2ts),'I)',adj=c(0,1),font=2)
 abline(h=c(log2(3),log2(7)),lty=2)
 
@@ -237,12 +240,13 @@ par(fig=c((3*ywd+2*panwd.b+2*gap)/totwd, #left side
           (3*ywd+3*panwd.b+2*gap)/totwd, #right side
           (xht)/totht, #bottom
           (xht+panht.b)/totht), #top
-    mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
+    mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Total DVCs
-plot(1987:2016,apply(cty.list$Crashes,2,sum,na.rm=T)[-c(1:6)],frame=T,type="l",lwd=2,ylab="",xlab="",las=1,axes=F,cex.axis=0.75)
-axis(1,labels=seq(1985,2016,5),at = seq(1985,2016,5))
-axis(2,labels= format(seq(16,24,2),scientific=F),at = seq(16000,24000,2000),las=1)
-mtext("DVCs (K)",side=2,line=1.2)
+plot(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="l",lwd=1,cex=0.75,
+     xlab="",ylab="",ylim=c(-2000,2000),las=1,yaxt="n")
+axis(2,labels= format(seq(-2000,2000,500)/1000,scientific=F),at = seq(-2000,2000,500),las=1,cex.axis=0.75)
+mtext(expression(Delta~"from Surrog. Mean (K)"),side=2,line=1.2,cex=0.75)
+mtext("Year",side=1,line=1.5)
 mtext("L)",font=2,side=3,line=-1,adj=0.05)
 dev.off()
