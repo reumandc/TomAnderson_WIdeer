@@ -1059,7 +1059,6 @@ can produce overfitted models and inflated estimates of fractions of deer synchr
 by MEI; and 2) steps we took to try to quantify the degree of inflation. Results of the
 procedures described here are in SI section \ref{SI:results}.
 
-<!--***DAN: fill in the stuff Lawrence did, methods-->
 <!--***DAN: once this is all written, go through and make sure the sub sections of the SI Methods and 
 SI Results are A) in the same order, and B) in the order in which they are cited in the main text, to make
 everything easier to find. The easiest way to do this is probably to just read the main text and follow
@@ -1124,7 +1123,8 @@ to drive a model of deer abundance, $x_i(t)$, in county $i$ ($i=1,\ldots,N$ for 
 $x_i(t)=\text{MEI}_{\text{w}}(t)+\epsilon_i(t)$, where the $\epsilon(t)=(\epsilon_1(t),\ldots,\epsilon_{N}(t))$
 were independent draws from a multi-variate normal random variable with mean $(0,\ldots,0)$ and 
 covariance matrix having variance terms $v$ along the diagonal and all off-diagonal (covariance)
-terms equal to $c$. We later also consider an AR(1)-type model (see below). For given values of the parameters $\sqrt{v}$ and $c$, we performed wavelet transforms and 
+terms equal to $vc$, so that the correlation of noises in different places was $c$. 
+We later also consider an AR(1)-type model (see below). For given values of the parameters $\sqrt{v}$ and $c$, we performed wavelet transforms and 
 obtained a wavelet model $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$
 expressing the transforms, $w^{(0)}_{i,\sigma}(t)$, of the simulated deer time series in terms of the 
 transforms, $w^{(1)}_{i,\sigma}(t)$, of the MEI, which were the same for all $i$. For each simulated set of deer
@@ -1336,10 +1336,7 @@ BUT, in the table, first row, it says: "sum squared closeness of fit (best 6, $<
 
 
 
-<!--***DAN: Tom, Lawrence gave this table as a latex table. Can you please convert it to the kable format
-you have been using so everything works with the citations and so on? It should also be relocated below so 
-it is with the other tables, and so that the number it gets and is cited as is in line with the order the
-tables are cited.-->
+
 \begin{table}[h!]
 \begin{center}
 \caption{Summary of best results}
