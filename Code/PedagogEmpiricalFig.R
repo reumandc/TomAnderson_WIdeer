@@ -181,14 +181,16 @@ par(fig=c((2*ywd+panwd.b+gap)/totwd, #left side
     mai=c(0,0,0,0),mgp=c(3,0.25,0),tcl=-.25,new=T)
 
 #Deer raw time series
-plot(1981:2016,rep(NA,36),las=1,ylim=c(min(cty.list$Abun),max(cty.list$Abun)),axes=F,frame=T,xlab="",ylab="")
+ylimits<-c(min(cty.list$Abun[,-(1:6)]),max(cty.list$Abun[,-(1:6)]))
+ylimits[2]<-ylimits[2]+.1*diff(ylimits)          
+plot(1981:2016,rep(NA,36),las=1,ylim=ylimits,axes=F,frame=T,xlab="",ylab="")
 for(i in 1:nrow(cty.list$Abun)){
   lines(1981:2016,cty.list$Abun[i,],col=rainbow(71)[i])
 }
 mtext("Deer (K)",side=2,line=1.2,cex=0.75)
 mtext(text = "E)",side=3,adj=0.05,font=2,line=-1)
 axis(1,labels=rep(NA,6),at = seq(1980,2016,5),cex.axis=0.75)
-axis(2,labels= format(seq(0,48,10),scientific=F),at = seq(0,48000,10000),las=1,cex.axis=0.75)
+axis(2,labels= format(seq(0,58,10),scientific=F),at = seq(0,58000,10000),las=1,cex.axis=0.75)
 
 #Panel H
 par(fig=c((2*ywd+panwd.b+gap)/totwd, #left side
@@ -333,7 +335,8 @@ par(fig=c((3*ywd+2*panwd.b+2*gap)/totwd, #left side
 ylimits<-c(-2000,2000)
 ylimits[2]<-ylimits[2]+.15*diff(ylimits)
 plot(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="l",lwd=1,cex=0.75,
-     xlab="",ylab="",ylim=ylimits,las=1,yaxt="n")
+     xlab="",ylab="",ylim=ylimits,las=1,yaxt="n",xaxt="n")
+axis(1,labels=TRUE,cex.axis=0.75)
 axis(2,labels= format(seq(-2000,2500,500)/1000,scientific=F),at = seq(-2000,2500,500),las=1,cex.axis=0.75)
 mtext(expression(Delta~"from Surrog. Mean (K)"),side=2,line=1.2,cex=0.75)
 mtext("Year",side=1,line=1.5)
