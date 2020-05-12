@@ -835,10 +835,6 @@ data were available. Time series on A-F were
 shifted vertically for readability.
 \label{Fig1_example}}
 \end{figure}
-<!--***DAN: Tom, in the above caption, at the referee's request, I introduced names for the three 
-scenarios. To correspond with these names, can you please make the header titles at the top of each column 
-in the figure itself read as follows: "Scenario 1: asynchronous environment", "Scenario 2: 3-year synchrony", "Scenario 3: 10-year synchrony". You may need to reduce the font size of these titles or use two lines to make them fit.
-Also have a look at my revisions to the caption, which are intended for greater clarity at the referee's request.-->
 
 \newpage
 
@@ -865,6 +861,8 @@ $P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were t
 analysis, $3-7$-years. 
 \label{Fig3_DeerSync}}
 \end{figure}
+<!--***DAN: Tom, on 2020 05 12 I looked at the knitted version of the above fig and the y-axis number labels
+were runnign into each other. Please fix.-->
 
 \newpage
 
@@ -878,6 +876,8 @@ show the actual wavelet mean field magnitude of DVCs from (A), for comparison. A
 visual indication of the statistical result that deer synchrony explains DVC synchrony.
 \label{Fig4_DvcSync}}
 \end{figure}
+<!--***DAN: Tom, on 2020 05 12 I looked at the knitted version of the above fig and the y-axis number labels
+were runnign into each other. Please fix.-->
 
 \newpage
 
