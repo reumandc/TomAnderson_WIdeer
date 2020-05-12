@@ -1042,18 +1042,11 @@ from the proof of the wavelet Moran theorem [@Sheppard2016_aphids; @Sheppard_wav
 The fraction of the synchrony in $x_i^{(0)}(t)$ explained by synchrony in $x_i^{(1)}(t)$,
 as a function of timescale [@Sheppard2016_aphids; @Sheppard_wavmodel], is 
 \begin{equation}
-q(\sigma)=\frac{|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{\emph{wmf}},1)}_{\sigma}(t)|^2}{\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{\emph{wmf}},0)}_{\sigma}(t)|^2}.
+q(\sigma)=\frac{|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{\emph{wmf}},1)}_{\sigma}(t)|^2}{\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{\emph{wmf}},0)}_{\sigma}(t)|^2}.\label(eq:syncexpl)
 \end{equation}
 \noindent This was averaged over a timescale band of interest.  
 
-\textbf{Fraction of deer synchrony explained by winter MEI.}
-<!--***DAN: fill in the stuff Lawrence did, methods-->
-<!--***DAN: once this is all written, go through and make sure the sub sections of the SI Methods and 
-SI Results are A) in the same order, and B) in the order in which they are cited in the main text, to make
-everything easier to find. The easiest way to do this is probably to just read the main text and follow
-all the links. While you are at it, read and edit all the SI again - I have a feeling it needs one 
-more round of that.-->
-Fractions of deer abundance synchrony explained by snow depth and fractions of DVC synchrony
+\textbf{Fraction of deer synchrony explained by winter MEI.} Fractions of deer abundance synchrony explained by snow depth and fractions of DVC synchrony
 explain by deer, and related results, were presented in the main text, but we did not there present results
 on fractions of deer abundance synchrony explained by winter MEI, even though deer abundance and winter MEI
 were significantly coherent, supporting the 
@@ -1066,17 +1059,125 @@ can produce overfitted models and inflated estimates of fractions of deer synchr
 by MEI; and 2) steps we took to try to quantify the degree of inflation. Results of the
 procedures described here are in SI section \ref{SI:results}.
 
+<!--***DAN: fill in the stuff Lawrence did, methods-->
+<!--***DAN: once this is all written, go through and make sure the sub sections of the SI Methods and 
+SI Results are A) in the same order, and B) in the order in which they are cited in the main text, to make
+everything easier to find. The easiest way to do this is probably to just read the main text and follow
+all the links. While you are at it, read and edit all the SI again - I have a feeling it needs one 
+more round of that.-->
+
 <!--Explanation of why we can't just do this naively-->
 <!--Make sure to mention:
 We know, because of the coherence results, that some weather variable related to winter MEI causes synchrony in deer
 We just don't know for sure how much. 
 We can compute it the naive way.
 -->
-Fitted AR(2) model to winter MEI time series data we had (Dan to check and say what fitting methods, what data, etc)
-Used resulting parameters to generate 1 time series of length  
 
+<!--***DAN: Lawrence's text, redundant with the above so commented and marked for deletion.
+As presented in results, we find that that the degree of spatial wavelet coherence found 
+between winter MEI and the deer abundance fluctuations is unlikely to arise under a null 
+hypothesis of no association between MEI and deer. Our test yielded p$<$0.05 of producing results as extreme as observed, for Fourier-phase-shuffled surrogate data that preserves the autocorrelation structure of the data.   This indicates that common winter climate conditions across sites, as indexed by the MEI, are a likely driver of the local variations in deer abundance and their spatial synchrony.-->
+
+It is possible to apply the formalism of the wavelet Moran theorem to deer abundance data and 
+winter MEI, even though doing so results in complications, as we will explain. We can thus write 
+$w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$, as in the 
+statement of the wavelet Moran theorem,
+where the $w^{(0)}_{i,\sigma}(t)$ are the power-normalized wavelet transforms of the deer abundance
+time series and the $w^{(1)}_{i,\sigma}(t)$ are the power-normalized wavelet transforms of winter 
+MEI and therefore are the same for all locations, $i$. The theorem then provides a decomposition 
+of synchrony, $\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{wmf},0)}_{\sigma}(t)|^2  = |\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2 + \frac{1}{T} \sum_{t=1}^{T} \left| \frac{1}{N} \sum_{i=1}^{N} d_{i,\sigma}(t) \right|^2$.
+The cross terms of (\ref{eq:T2}) are identically zero in the present case
+because the $w^{(1)}_{i,\sigma}(t)$ are the same for all $i$ [@Sheppard2016_aphids]. For the same reason, 
+it is straightforward to show that 
+$\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2=1$. So therefore
+$\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{wmf},0)}_{\sigma}(t)|^2  = |\Pi^{(01)}_{\sigma}|^2 + \frac{1}{T} \sum_{t=1}^{T} \left| \frac{1}{N} \sum_{i=1}^{N} d_{i,\sigma}(t) \right|^2$, and the synchrony in deer abundance 
+explained by winter MEI is just $|\Pi^{(01)}_{\sigma}|^2$. This is the quantity we statistically tested to 
+determine if it is larger than expected under the null hypothesis, and it was for $3-7$-year timescales
+(Table \ref{MT-Tab1_CountyCoherenceSummary}), 
+supporting the claim that winter MEI explains a significant portion of the synchrony in deer abundance.
+
+However, distributions of surrogate spatial wavelet coherence values, albeit generally smaller than the 
+observed spatial wavelet coherence values, $|\Pi^{(01)}_{\sigma}|$, on $3-7$-year timescales, were 
+not centred on zero.   Spurious 
+associations between time series produce non-zero coherence, and this bias apparent in the surrogate 
+distribution becomes stronger as fewer independent samples of the phase difference between the variables 
+are available.   For long-timescale wavelet components of the transform of an autocorrelated variable, the 
+rate of phase growth changes slowly in time and a spurious initial phase association between variables is likely to persist 
+throughout the data, giving spuriously high coherence.   Where separately measured data are available for each site, 
+this spurious association would be expected to have a different phase at each site and be averaged out in the 
+spatial coherence. But MEI data were not spatial. Whereas we can conclude, due to the significance testing results, 
+that there is probably a real association between winter MEI and deer fluctuations, bias may still manifest in the 
+form of a spurious association between MEI and additional local variability in deer abundance that is actually 
+independent of MEI, exagerating the apparent coherence between deer and MEI.  So the lack of spatial resolution in the 
+winter MEI index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and MEI
+(and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
+deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
+Moran theorem suggests that winter MEI explains $X\%$ of deer abundance synchrony 
+on $3-7$-year timescales and $Y\%$ on $4-7$-year timescales. 
+<!--***DAN: Tom, can you please fill these values in? I forgot what they are, 
+and they have been
+deleted from Table 1. These would be for the model with sole predictor MEI. Please 
+use autolinks instead of typing in the answer.-->
+The goal now is to estimate
+to what extent these values are inflated.
 
 <!--Description of procedure for estimating inflation-->
+To assess the levels of inflation in MEI-deer coherence estimates and therefore in estimates of amount of 
+deer synchrony explained by
+MEI, we performed simulation exercises with artificial data chosen to mimic properties of the real time-series, but 
+with the advantage that we could simulate extremely long time series and thus obtain unbiased estimates of 
+coherence and synchrony explained, for comparison with the estimates based on realistic-length data.
+We first fitted an AR(2) model to the $36$-year winter MEI time series we used for our other analyses, obtaining
+the maximum-likelihood result $\text{MEI}_{\text{w}}(t+1)=a\text{MEI}_{\text{w}}(t)+b\text{MEI}_{\text{w}}(t-1)+\delta(t)$
+where $a=-0.1702$, $b=-0.2877$, and the standard deviation of $\delta$ was $0.9745$. We then used the resulting 
+fitted model to generate artificial MEI time series of any desired length, always after discarding a burn-in of $>100$
+time steps to eliminate possible transient dynamics. We then used the resulting simulated winter MEI stand-in time series
+to drive a model of deer abundance, $x_i(t)$, in county $i$ ($i=1,\ldots,N$ for $N=71$ counties), as follows: 
+$x_i(t)=\text{MEI}_{\text{w}}(t)+\epsilon_i(t)$, where the $\epsilon(t)=(\epsilon_1(t),\ldots,\epsilon_{N}(t))$
+were independent draws from a multi-variate normal random variable with mean $(0,\ldots,0)$ and 
+covariance matrix having variance terms $v$ along the diagonal and all off-diagonal (covariance)
+terms equal to $c$. We later also consider an AR(1)-type model (see below). For given values of the parameters $\sqrt{v}$ and $c$, we performed wavelet transforms and 
+obtained a wavelet model $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$
+expressing the transforms, $w^{(0)}_{i,\sigma}(t)$, of the simulated deer time series in terms of the 
+transforms, $w^{(1)}_{i,\sigma}(t)$, of the MEI, which were the same for all $i$. For each simulated set of deer
+time series we used an independent simulated MEI time series. After some preliminary investigation of the parameter 
+space, we considered $\sqrt{v}$ varying from $1.6\exp(-0.4)$ to $1.6\exp(0.4)$ in multiplicative increments
+of $\exp(0.08)$, and we considered $c$ varying from $0.175$ to $0.625$ in additive increments of $0.025$.
+For each of these combinations of $\sqrt{v}$ and $c$ we computed three quantities, described in the next 
+paragraph, and compared these quantities to values of the same statistics computed for the actual winter 
+MEI and deer abundance time series in order to find the values of $\sqrt{v}$ and $c$ for which agreement was good.
+
+The three quantities were as follows. The first quantity was the spatial synchrony, measured using a 
+time- and band-averaged squared mean field magnitude, of the simulated deer data. In other words: 
+1) $|r_\sigma^{(\text{wmf},0)}(t)|^2$ was computed for the simulated deer time series; 2) for each 
+$\sigma$, the quantity was averaged over all times for which it was defined; and 3) those results
+were averaged over $3-7$-year timescales. The second quantity was the fraction of wavelet power, on average
+over the $3-7$-year band, explained by the model $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$. The denominator of this quantity was computed by:
+1) computing, for each $\sigma$ and $i$, the average of $|w^{(0)}_{i,\sigma}(t)|^2$ over all available times;
+2) then averaging the results of the first step over locations, $i$, and then over timescales
+$\sigma$ in the $3-7$-year band. This is an average wavelet power for deer. The numerator was obtained
+in the same way, but starting from $|\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)|^2$ instead of
+from $|w^{(0)}_{i,\sigma}(t)|^2$. The third quantity was the spatial synchrony, again measured
+in a time- and band-averaged way, predicted by the wavelet model according to the wavelet
+Moran theorem. This was computed by: 1) starting 
+with $|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2$; and then 
+2) averaging over times, and then timescales in the 
+$3-7$-year band. Note, however, that $\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2=1$,
+so this is an average of the squared spatial wavelet coherence. For the real data, these three quantities were,
+respectively, $0.530557437095931$, $0.418327023890617$, and $0.364288221245834$, and we denote these values
+by $A_0$, $B_0$, and $C_0$, respectively. We denote by $A(\sqrt{v},c)$ the median, over $500$ simulations,
+of the first quantity described above for the simulations. Likewise $B(\sqrt{v},c)$ and $C(\sqrt{v},c)$ 
+denote medians over $500$ simulatuions of the second and third quantities above. 
+Agreement between actual and simulation-based quantities was judged with fractional deviations, 
+$|A(\sqrt{v},c)-A_0|/A_0$, $|B(\sqrt{v},c)-B_0|/B_0$ and $|C(\sqrt{v},c)-C_0|/C_0$.
+
+For each parameter set $(\sqrt{v},c)$ for which $A(\sqrt{v},c)$, $B(\sqrt{v},c)$
+and $C(\sqrt{v},c)$ were determined, as above, to match adequately with 
+$A_0$, $B_0$ and $C_0$, respectively, we calculated the median fraction of synchrony 
+apparently explained in the 36 year models, and then simulated a further 10000 years of data 
+and refitted to get a reliable estimate of synchrony explained, thereby 
+giving us an estimate of the factor by which apparent synchrony explained was inflated.
+Synchrony explained was as in (\ref{eq:syncexpl}), averaged over $3-7$-year timescales.
 
 \textbf{Randomization procedure for removing synchrony at $3-7$-year timescales.} In order to quantify the degree to which 
 synchronizing effects are responsible for 
