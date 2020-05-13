@@ -1324,19 +1324,39 @@ means that $3-7$-year spectral power is also influenced by the amount of low-fre
 
 \textbf{Fraction of deer synchrony explained by winter MEI, county data, technical results.} 
 
-<!--Qs for L:
+<!--Qs for L and his answers as of 2020 05 12:
 1) In your notes you sent, and which we saved on google drive, it says: " We considerd the median results to be a good fit if the sum squared fractional deviation of the three median results was found less than 0.05. "
-BUT, in the table, first row, it says: "sum squared closeness of fit (best 6, $<$0.005)" and the values are less than 0.005. So is it 0.05 or 0.005, or did you mean two different things here? Also, it says "best 6" but there are 8 numbers given, can I assume these were the best 8 and that these were the only ones under the cutoff you used (0.005 or 0.05)?
+BUT, in the table, first row, it says: "sum squared closeness of fit (best 6, $<$0.005)" and the values are less than 0.005. So is it 0.05 or 0.005, or did you mean two different things here? 
+The value 0.05 is a typo, 0.005 is correct
+
+Also, it says "best 6" but there are 8 numbers given, can I assume these were the best 8 and that these were the only ones under the cutoff you used (0.005 or 0.05)?
+Relic from an earlier version, there were 8 good fits in this run.
+
 2) In the table it says 1000 sims were done, but in the text it says 500. Which?
+Relic from an earlier version, there were 500 done.
+
 3) In the table, is "strength of local noises" your parameter eps? I.e., the standard deviation, not the variance of the noise.
 4) In the table, is "correlation of local noises" meant to be the value of c, which is not a correlation but rather a covariance? A correlation would be c/eps^2
-5) Do the three lines "Power closeness of fit", "Synchrony predicted closeness of fit", and "Synchrony found closeness of fit" correspond to A, B and C? Are the values here A(eps,c)-A_0/A_0 (rather than the absolute value of that), and that's why some are negative?
-6) In your email sent 5/5, you sent 8 numbers, and I am assuming these should replace the last row of the table. Is that correct? The second and third rows of the table should also be replaced, I think, to make all the results consistent. In order to avoid having anything lost in translation, can you please just send a new, updated version of the table, or replace the one in google drive with a new one? 
+
+I defined a covariance matrix with ones on the diagonal, equal to c everywhere else.   So this is also a correlation matrix.   I generated deer noise with this covariance matrix using chol.m.   I multiplied the noise by strength eps when simulating the AR process.
+***DAN: I fixed this in the Methods
+
+5) Do the three lines "Power closeness of fit", "Synchrony predicted closeness of fit", and "Synchrony found closeness of fit" correspond to A, B and C? 
+
+Yes.
+
+Are the values here A(eps,c)-A_0/A_0 (rather than the absolute value of that), and that's why some are negative?
+
+Yes.
+
+6) In your email sent 5/5, you sent 8 numbers, and I am assuming these should replace the last row of the table. Is that correct? The second and third rows of the table should also be replaced, I think, to make all the results consistent. In order to avoid having anything lost in translation, can you please just send a new, updated version of the table, or replace the one in google drive with a new one?
+
+there are going to be some incosistencies in this table because of the way it is cobbled together from two different runs.   I am starting to think that I should do a clean repeat of the exercise and make a whole new table.
 -->
 
 
 
-
+<!--***DAN: Lawrence is re-running over the weekend and will send a new versions of this-->
 \begin{table}[h!]
 \begin{center}
 \caption{Summary of best results}
