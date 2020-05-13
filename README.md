@@ -8,7 +8,7 @@ Daniel C. Reuman, University of Kansas
 
 ## Introduction
 
-This repository can be used to reproduce the complete analyses behind the paper "Synchronous Effects Produce Major
+This repository can be used to reproduce the complete analyses behind the paper "Synchronous Effects Produce 
 Cycles in Deer Populations and Deer-Vehicle Collisions" and to recompile the paper itself. Data are also included in the repository. 
 
 ## How to compile
