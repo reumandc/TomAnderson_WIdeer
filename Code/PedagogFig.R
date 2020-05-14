@@ -246,7 +246,7 @@ par(fig=c((ywd)/totwd,
           (xht+3*panht.b+panht.s+3*gap)/totht),
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25)
 plot(tm,d1ns[1,],type='l',xlim=xlimits,ylim=ylimits.bns,col=colmap[1],
-     xaxt='n')
+     xaxt='n',las=1)
 mtext("Env. noise",side=2,line=1.2)
 for (counter in 2:numts)
 {
@@ -265,7 +265,7 @@ par(fig=c((ywd)/totwd,
           (xht+2*panht.b+panht.s+2*gap)/totht),
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=TRUE)
 plot(tm,d1[1,],type='l',xlim=xlimits,ylim=ylimits.b,col=colmap[1],
-     xaxt='n')
+     xaxt='n',las=1)
 mtext("Populations",side=2,line=1.2)
 for (counter in 2:numts)
 {
@@ -283,7 +283,7 @@ ylimits.s<-range(d1sm,d2sm,d3sm)
 ylimits.s[2]<-ylimits.s[2]+.25*diff(ylimits.s)
 plot(tm,d1sm,type='l',xlim=xlimits,ylim=ylimits.s,
      yaxt='n')
-axis(side=2,at=c(300,400),labels=c("300","400"),cex.axis=1)
+axis(side=2,at=c(300,400),labels=c("300","400"),cex.axis=1,las=1)
 text(xlimits[1],ylimits.s[2],'J)',adj=c(0,1),font=2)
 mtext("Tot. pop.",side=2,line=1.2)
 
@@ -301,7 +301,7 @@ l2ts<-log2(wmf1$timescales)
 image(x=tm,y=l2ts,z=Mod(wmf1$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r')
 ylocs <- pretty(wmf1$timescales, n = 8)
-axis(2, at = log2(ylocs), labels = ylocs)
+axis(2, at = log2(ylocs), labels = ylocs,las=1)
 mtext("Timescale (yrs)",side=2,line=1.2)
 text(xlimits[1],max(l2ts),'G)',adj=c(0,1),font=2)
 
