@@ -82,7 +82,7 @@ for (counter in 2:numts)
 }
 mtext(text = "A)",side=3,adj=0.05,font=2,line=-1)
 axis(side=1,labels=FALSE)
-axis(2,labels=TRUE,cex.axis=0.75)
+axis(2,labels=TRUE,cex.axis=0.75,las=1)
 mtext("Env. noise",side=2,line=1.2,cex=0.75)
 
 #Panel D
@@ -102,7 +102,7 @@ for (counter in 2:numts)
 }
 mtext(text = "D)",side=3,adj=0.05,font=2,line=-1)
 axis(side=1,labels=FALSE)
-axis(2,labels=TRUE,cex.axis=0.75)
+axis(2,labels=TRUE,cex.axis=0.75,las=1)
 mtext("Populations",side=2,line=1.2,cex=0.75)
 
 #Panel G
@@ -335,7 +335,7 @@ par(fig=c((3*ywd+2*panwd.b+2*gap)/totwd, #left side
 ylimits<-c(-2000,2000)
 ylimits[2]<-ylimits[2]+.15*diff(ylimits)
 plot(1987:2016,(apply(cty.list$Crashes[,-c(1:6)],2,sum)-apply(dvcsurr,2,mean)),type="l",lwd=1,cex=0.75,
-     xlab="",ylab="",ylim=ylimits,las=1,yaxt="n",xaxt="n")
+     xlab="",ylab="",ylim=ylimits,las=1,yaxt="n",xaxt="n",cex.axis=0.75)
 axis(1,labels=TRUE,cex.axis=0.75)
 axis(2,labels= format(seq(-2000,2500,500)/1000,scientific=F),at = seq(-2000,2500,500),las=1,cex.axis=0.75)
 mtext(expression(Delta~"from Surrog. Mean (K)"),side=2,line=1.2,cex=0.75)
