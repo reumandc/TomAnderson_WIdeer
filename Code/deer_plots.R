@@ -63,8 +63,8 @@ image(x=abun.wmf$times,y=l2ts,z=Mod(abun.wmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',xaxt="n",yaxs='r',ylab="",xlab="")
 ylocs <- pretty(abun.wmf$timescales, n = 6)
 xlocs <- pretty(abun.wmf$times, n = 8)
-axis(1, at = xlocs, labels = xlocs)
-axis(2, at = log2(ylocs), labels = ylocs,las=1)
+axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
+axis(2, at = log2(ylocs), labels = ylocs,las=1,cex.axis=0.75)
 #mtext("Year",side=1,line=1.2)
 mtext("Timescale (yrs)",side=2,line=1.2)
 text(xlimits[1],max(l2ts),'A)',adj=c(0,1),font=2)
@@ -98,9 +98,9 @@ l2ts<-log2(abun.wpmf$timescales)
 image(x=abun.wpmf$times,y=l2ts,z=Mod(abun.wpmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r',ylab="",xlab="")
 ylocs <- pretty(abun.wpmf$timescales, n = 6)
-axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+axis(2, at = log2(ylocs), labels = rep("",length(ylocs)),cex.axis=0.75)
 xlocs <- pretty(abun.wmf$times, n = 8)
-axis(1, at = xlocs, labels = xlocs)
+axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
 mtext("Year",side=1,line=1.2)
 text(xlimits[1],max(l2ts),'B)',adj=c(0,1),font=2)
 par(fig=c((ywd+pan.wd+gap)/tot.wd,
@@ -196,8 +196,8 @@ image(x=dvc.wmf$times,y=l2ts,z=Mod(dvc.wmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',xaxt="n",yaxs='r',ylab="",xlab="")
 ylocs <- pretty(dvc.wmf$timescales, n = 6)
 xlocs <- pretty(dvc.wmf$times, n = 8)
-axis(1, at = xlocs, labels = xlocs)
-axis(2, at = log2(ylocs), labels = ylocs,las=1)
+axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
+axis(2, at = log2(ylocs), labels = ylocs,las=1,cex.axis=0.75)
 #mtext("Year",side=1,line=1.2)
 mtext("Timescale (yrs)",side=2,line=1.2)
 text(xlimits[1],max(l2ts),'A)',adj=c(0,1),font=2)
@@ -232,9 +232,9 @@ l2ts<-log2(dvc.wpmf$timescales)
 image(x=dvc.wpmf$times,y=l2ts,z=Mod(dvc.wpmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r',ylab="",xlab="")
 ylocs <- pretty(dvc.wpmf$timescales, n = 6)
-axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+axis(2, at = log2(ylocs), labels = rep("",length(ylocs)),cex.axis=0.75)
 xlocs <- pretty(dvc.wmf$times, n = 8)
-axis(1, at = xlocs, labels = xlocs)
+axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
 mtext("Year",side=1,line=1.2)
 text(xlimits[1],max(l2ts),'B)',adj=c(0,1),font=2)
 par(fig=c((ywd+pan.wd+gap)/tot.wd,
@@ -274,7 +274,7 @@ l2ts<-log2(dvc.wmf$timescales)
 
 #plot predicted synchrony
 image(x = dvc.wmf$times, y = log2(dvc.wmf$timescales), z = Mod(predsync(wlm_dvc)[[3]]),xlim=xlimits,
-      zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r',ylab="",xlab="")
+      zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',yaxs='r',ylab="",xlab="",cex.axis=0.75)
 par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
           (ywd+3*pan.wd+2*gap)/tot.wd,
           (xht)/tot.ht,
@@ -282,7 +282,7 @@ par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 contour(x = dvc.wmf$times, y = log2(dvc.wmf$timescales),z=Mod(dvc.wmf$values),add=T,frame=F,las=1,lwd=1)
 ylocs <- pretty(dvc.wmf$timescales, n = 6)
-axis(2, at = log2(ylocs), labels = rep("",length(ylocs)))
+axis(2, at = log2(ylocs), labels = rep("",length(ylocs)),cex.axis=0.75)
 #mtext("Year",side=1,line=1.2)
 text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)
 abline(h=c(log2(3),log2(7)),lty=2)

@@ -146,7 +146,7 @@ tslen<-35
 numts<-15 #length and number of time series actually displayed
 
 #parameters for figure layout, units inches
-panwd.b<-1.25
+panwd.b<-1.5
 panht.b<-panwd.b
 panwd.s<-panwd.b
 panht.s<-panwd.s/2.25

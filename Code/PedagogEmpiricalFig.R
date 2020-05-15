@@ -1,7 +1,7 @@
 #Load results and data
-cty.list<-readRDS("Results/cty.list.rds")
-winter.clim<-readRDS("Results/winter.clim.rds")
-climindex<-readRDS("Results/climindex.rds")
+# cty.list<-readRDS("Results/cty.list.rds")
+# winter.clim<-readRDS("Results/winter.clim.rds")
+# climindex<-readRDS("Results/climindex.rds")
 abunsurr<-read.csv("Data/abunsurrsum.csv")
 dvcsurr<-read.csv("Data/dvcsurrsum.csv")
 
@@ -16,7 +16,7 @@ dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 #4 x 3 panel figure
 
 #parameters for figure layout, units inches
-panwd.b<-1.25
+panwd.b<-1.55
 panht.b<-panwd.b
 #panwd.s<-panwd.b
 #panht.s<-panwd.s/2.25
@@ -28,7 +28,7 @@ totht<-xht+4*panht.b+7*gap
 adjmt<-0.5
 
 #pdf("Results/PedagogEmpFig.pdf",height=totht,width=totwd)
-png("Results/PedagogEmpFig.png",res=600,height=totht,width=totwd)
+png("Results/PedagogEmpFig.png",res=600,height=totht,width=totwd,units="in")
 ##Left Column
 
 #do the sims for the left column of panels
