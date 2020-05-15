@@ -30,7 +30,7 @@ dvc.wpmf<-wsyn::wpmf(dvc.dt,times = 1987:maxyear,sigmethod = "quick")
 dvc.wmf<-wsyn::wmf(dvc.dt,times = 1987:maxyear)
 
 #set dimensions for Figures 2 and 3
-pan.wd<-1.25
+pan.wd<-1.5
 xht<-0.5   #height of x axis label region
 ywd<-0.5    #width of y axis label region
 gap<-.1   #small gap
@@ -167,7 +167,7 @@ axis(2, at=c(0,0.2,0.4,0.6,0.8,1),labels=c(0,0.2,0.4,0.6,0.8,1),
 dev.off()
 
 #set dimensions for Figures 2 and 3
-pan.wd<-1.25
+pan.wd<-1.55
 xht<-0.5   #height of x axis label region
 ywd<-0.5    #width of y axis label region
 gap<-.1   #small gap
