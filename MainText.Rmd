@@ -358,7 +358,7 @@ to use a combination of wavelet and Fourier methods
 for the empirical analyses (below). 
 <!--***DAN: Make sure to do what it says I will do in the above sentence-->
 All wavelet analyses were done via software in the open-source `wsyn`
-package for the R programming language [@wsyn], which is itself well documented.
+package for the R programming language [@wsyn].<!--, which is itself well documented.-->
 <!--***DAN: The perspective we used to use above was that we explain methods operationally and
 the reader has to look elsewhere. But the referee does not like that, so I changed the wording 
 above, and then you have to go and change substance, i.e., add quite a bit more description of 
@@ -627,7 +627,7 @@ statewide oscillations in deer and DVCs disappear (Fig.
 \ref{Fig5_StateWideFluctuations}) when synchrony between counties on $3-7$-year 
 timescales is removed via a randomization procedure (*Methods*). Therefore, it is spatial synchrony 
 that causes local dynamics to sum to a substantial 
-semi-periodic oscillatory phenomenon on statewide spatial scales. Depending on 
+semi-periodic oscillatory phenomenon on statewide spatial scales. Thus, our theoretical results were born out in our empirical results (compare Figure \ref{Fig1_example} to Figure \ref{SM-PedagogEmp_Fig}) Depending on 
 assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:methods}; [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp]), 
 statewide DVC damages 
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 

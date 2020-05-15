@@ -11,6 +11,10 @@ source("Code/TheoryExample1.R")
 source("Code/TheoryExample2.R")
 source("Code/TheoryExample3.R")
 
+#make new figure connecting theory and empirical reuslts
+source("Code/PedagogEmpiricalFig.R")
+
+
 #clean data for Figs 2 and 3
 abun.dt<-cleandat(cty.list$Abun,clev=5,times=minyear:maxyear)$cdat
 dvc.dt<-cleandat(cty.list$Crashes[,!is.na(colSums(cty.list$Crashes))],clev=5,times=1987:maxyear)$cdat

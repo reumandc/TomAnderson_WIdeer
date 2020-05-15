@@ -27,7 +27,8 @@ totwd<-3*ywd+3*panwd.b+3*gap
 totht<-xht+4*panht.b+7*gap
 adjmt<-0.5
 
-pdf("Results/FigXXX.pdf",height=totht,width=totwd)
+#pdf("Results/PedagogEmpFig.pdf",height=totht,width=totwd)
+png("Results/PedagogEmpFig.png",res=600,height=totht,width=totwd)
 ##Left Column
 
 #do the sims for the left column of panels

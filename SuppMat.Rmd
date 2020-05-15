@@ -1754,6 +1754,14 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 \clearpage
 
 \begin{figure}[!h]
+\includegraphics[height=.8\textheight]{Results/PedagogEmpFig.png}
+\caption[Comparison of theoretical to empirical results]{Raw time series of predictors variables (A-C), response variables (D-F), wavelet mean field magnitudes (G-I), and state-total time series (J-L) for theory (left column), deer (middle column) and DVCs (right column). Horizontal and vertical axes differ between left and right panels because time series were shorter for DVCs. \label{PedagogEmp_Fig}}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/Fourier1.png}
 \caption[Spectral power, $3-7$-year band, state-total deer and Fig. \ref{MT-Fig5_StateWideFluctuations}A surrogates]{The red dot shows 
 total spectral power, in the $3-7$-year timescale range, of the detrended state-total deer population time series for WI, whereas the 
