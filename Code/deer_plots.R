@@ -61,7 +61,7 @@ colorfill<-grDevices::colorRampPalette(jetcolors)
 #plot wmf
 image(x=abun.wmf$times,y=l2ts,z=Mod(abun.wmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',xaxt="n",yaxs='r',ylab="",xlab="")
-ylocs <- pretty(abun.wmf$timescales, n = 6)
+ylocs <- pretty(abun.wmf$timescales, n = 5)
 xlocs <- pretty(abun.wmf$times, n = 8)
 axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
 axis(2, at = log2(ylocs), labels = ylocs,las=1,cex.axis=0.75)
@@ -97,7 +97,7 @@ l2ts<-log2(abun.wpmf$timescales)
 #plot wpmf
 image(x=abun.wpmf$times,y=l2ts,z=Mod(abun.wpmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r',ylab="",xlab="")
-ylocs <- pretty(abun.wpmf$timescales, n = 6)
+ylocs <- pretty(abun.wpmf$timescales, n = 5)
 axis(2, at = log2(ylocs), labels = rep("",length(ylocs)),cex.axis=0.75)
 xlocs <- pretty(abun.wmf$times, n = 8)
 axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
@@ -194,7 +194,7 @@ l2ts<-log2(dvc.wmf$timescales)
 #plot wmf
 image(x=dvc.wmf$times,y=l2ts,z=Mod(dvc.wmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxs='r',xaxt="n",yaxs='r',ylab="",xlab="")
-ylocs <- pretty(dvc.wmf$timescales, n = 6)
+ylocs <- pretty(dvc.wmf$timescales, n = 5)
 xlocs <- pretty(dvc.wmf$times, n = 8)
 axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
 axis(2, at = log2(ylocs), labels = ylocs,las=1,cex.axis=0.75)
@@ -231,7 +231,7 @@ l2ts<-log2(dvc.wpmf$timescales)
 #plot wpmf
 image(x=dvc.wpmf$times,y=l2ts,z=Mod(dvc.wpmf$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r',ylab="",xlab="")
-ylocs <- pretty(dvc.wpmf$timescales, n = 6)
+ylocs <- pretty(dvc.wpmf$timescales, n = 5)
 axis(2, at = log2(ylocs), labels = rep("",length(ylocs)),cex.axis=0.75)
 xlocs <- pretty(dvc.wmf$times, n = 8)
 axis(1, at = xlocs, labels = xlocs,cex.axis=0.75)
@@ -281,7 +281,7 @@ par(fig=c((ywd+2*pan.wd+2*gap)/tot.wd,
           (xht+pan.ht)/tot.ht),
     mai=c(0,0,0,0),mgp=c(3,.15,0),tcl=-.25,new=T)
 contour(x = dvc.wmf$times, y = log2(dvc.wmf$timescales),z=Mod(dvc.wmf$values),add=T,frame=F,las=1,lwd=1)
-ylocs <- pretty(dvc.wmf$timescales, n = 6)
+ylocs <- pretty(dvc.wmf$timescales, n = 5)
 axis(2, at = log2(ylocs), labels = rep("",length(ylocs)),cex.axis=0.75)
 #mtext("Year",side=1,line=1.2)
 text(xlimits[1],max(l2ts),'C)',adj=c(0,1),font=2)

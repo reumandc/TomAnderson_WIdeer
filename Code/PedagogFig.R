@@ -300,7 +300,7 @@ colorfill <- colorRampPalette(jetcolors)
 l2ts<-log2(wmf1$timescales)
 image(x=tm,y=l2ts,z=Mod(wmf1$values),xlim=xlimits,
       zlim=zlimits,col=colorfill(100),yaxt='n',xaxt="n",xaxs='r',yaxs='r')
-ylocs <- pretty(wmf1$timescales, n = 8)
+ylocs <- pretty(wmf1$timescales, n = 5)
 axis(2, at = log2(ylocs), labels = ylocs,las=1)
 mtext("Timescale (yrs)",side=2,line=1.2)
 text(xlimits[1],max(l2ts),'G)',adj=c(0,1),font=2)
