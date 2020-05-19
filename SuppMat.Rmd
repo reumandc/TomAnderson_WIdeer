@@ -1078,7 +1078,7 @@ because the $w^{(1)}_{i,\sigma}(t)$ are the same for all $i$ [@Sheppard2016_aphi
 it is straightforward to show that 
 $\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2=1$. So therefore
 $\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{wmf},0)}_{\sigma}(t)|^2  = |\Pi^{(01)}_{\sigma}|^2 + \frac{1}{T} \sum_{t=1}^{T} \left| \frac{1}{N} \sum_{i=1}^{N} d_{i,\sigma}(t) \right|^2$, and the synchrony in deer abundance 
-explained by winter MEI is just $|\Pi^{(01)}_{\sigma}|^2$. This is the quantity we statistically tested to 
+explained by winter MEI is just $|\Pi^{(01)}_{\sigma}|^2$. This is the quantity we statistically tested using surrogates to 
 determine if it is larger than expected under the null hypothesis, and it was for $3-7$-year timescales
 (Table \ref{MT-Tab1_CountyCoherenceSummary}), 
 supporting the claim that winter MEI explains a significant portion of the synchrony in deer abundance.
@@ -1097,7 +1097,7 @@ that there is probably a real association between winter MEI and deer fluctuatio
 form of a spurious association between MEI and additional local variability in deer abundance that is actually 
 independent of MEI, exagerating the apparent coherence between deer and MEI.  So the lack of spatial resolution in the 
 winter MEI index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and MEI
-(and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
+(and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
 deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
 Moran theorem suggests that winter MEI explains $X\%$ of deer abundance synchrony 
 on $3-7$-year timescales and $Y\%$ on $4-7$-year timescales. 
@@ -1754,8 +1754,27 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 \clearpage
 
 \begin{figure}[!h]
-\includegraphics[height=.8\textheight]{Results/PedagogEmpFig.png}
-\caption[Comparison of theoretical to empirical results]{Raw time series of predictors variables (A-C), response variables (D-F), wavelet mean field magnitudes (G-I), and state-total time series (J-L) for theory (left column), deer (middle column) and DVCs (right column). Horizontal and vertical axes differ between left and right panels because time series were shorter for DVCs. \label{PedagogEmp_Fig}}
+\includegraphics[height=.55\textheight]{Results/PedagogEmpFig.png}
+\caption[Summary comparison of theoretical and empirical results]{Panels show theoretical (left panels), deer (middle panels), 
+and DVC (right panels) results, in summary format, to facilitate theoretical-empirical comparisons. Raw time series of 
+Moran drivers of synchrony (A-C) are shown for each case, as well as the 
+corresponding variables in which synchrony occurs as a result of the Moran drivers (D-F), wavelet mean 
+field magnitude plots (G-I) showing
+the synchrony, and state-total time series (J-L) showing the large-spatial-scale cycling that is the result of synchrony. 
+Left panels were produced
+exactly as in scenarios 2 and 3 of Fig. \ref{MT-Fig1_example}, but using a periodicity $w=5$ of the synchronous component
+of the environmental time series. As in Fig. \ref{MT-Fig1_example}, the weak and not visually obvious $5$-year syncrony in the 
+environmental time series of (A) produced likewise weak $5$-year synchrony in model population time series (B, C), which, in spite
+of its weakness, resulted in  a substantial $5$-year-period cycle when time series were summed. Likewise, and as explained
+in detail in the main text, snow depth and winter MEI (B) produced a combined Moran effect on deer (E), which caused 
+synchrony in deer (H) on about $5$-year timescales ($3-7$-years), thereby resulting a substantial deer cycle on 
+statewide spatial scales (K). Also as explained in detail in the main text, deer abundance (C) produced a Moran effect
+on DVCs (F), which casued synchrony in DVCs (I) on $3-7$-year timescales, thereby resulting in a DVC cycle on statewide
+spatial scales (L). Some horizontal and vertical axis extents differ among the three cases considered
+because available time series were shorter for DVCs
+than for deer. Panels (K) and (L) show state-total time series with linear (K) and nonlinear (L) trends removed, as explained
+in the main text. Middle and right panels reproduce information from the main text figures exactly, and are reproduced 
+here in summary format solely to facilitate comparison with theoretical results. \label{PedagogEmp_Fig}}
 \end{figure}
 
 \newpage
