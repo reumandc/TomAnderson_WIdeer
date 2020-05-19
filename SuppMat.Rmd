@@ -1330,7 +1330,7 @@ considered (SI section \ref{SI:methods}), there were five parameter combinations
 $(\sqrt{V},c)$ for which the sum of the squares of the fractional deviations
 $|A(\sqrt{V},c)-A_0|/A_0$, $|B(\sqrt{V},c)-B_0|/B_0$ and $|C(\sqrt{V},c)-C_0|/C_0$ was less than $0.005$
 (Fig. \ref{InflationFig}, Table \ref{InflationTable}), and for those parameter combinations the indivual fractional 
-deviations were always less than $6\%$. Thus parameters were available for which our model gave reasonable
+deviations were always less than $0.06$. Thus parameters were available for which our model gave reasonable
 agreement with the actual data in the three ways for which agreement was tested. For these parameters,
 synchrony explained, as estimated using 36 years of data, was between $1.1885$ and $1.3050$ greater than 
 an unbiased estimate of synchrony explained using 10000 years of simulated data (Table \ref{InflationTable}).
@@ -1338,9 +1338,9 @@ These are synchrony inflation factors, and they describe the extent to which our
 deer synchrony explained by winter MEI may have been inflated. Averaging across the parameter sets used, 
 the factor by which synchrony 
 explained was estimated to be inflated when using 36-year data was $1.2528$. Thus our prior, naive 
-estimate, based solely on the wavelet Moran theorem, that winter MEI explained $`r round(abunwmeiSyncExp37,2)`\%$
+estimate, based solely on the wavelet Moran theorem, that winter MEI explained $`r round(abunwmeiSyncExp37)`\%$
 of deer abundance synchrony was probably an overestimate by approximately $25\%$; an adjusted 
-value was $`r round(1.2528*abunwmeiSyncExp37,2)`\%$.
+value was $`r round(abunwmeiSyncExp37/1.2528)`\%$.
 This adjusted quantity is still substantial. 
 
 \textbf{USDA district results.} Using district-level data, deer abundance 
