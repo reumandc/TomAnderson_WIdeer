@@ -97,8 +97,11 @@ options(scipen = 999999)
 #load in results
 options(scipen=6)
 #Load tables of results
-TabS2_results<-readRDS(file = "Results/TableS2.rds")
 Tab1_results<-readRDS(file = "Results/Table1.rds")
+abunwmeiSyncExp37<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="3-7"],2)
+abunwmeiSyncExp47<-round(Tab1_results$SynchronyExplained[Tab1_results$Predictor=="Winter MEI"&Tab1_results$Timescale=="4-7"],2)
+
+TabS2_results<-readRDS(file = "Results/TableS2.rds")
 for(i in 1:nrow(TabS2_results)){
   if(grepl("Winter",TabS2_results$Predictor[i])||grepl("Summer",TabS2_results$Predictor[i])){
     TabS2_results$SynchronyExplained[i]<-NA
@@ -1099,8 +1102,8 @@ independent of MEI, exagerating the apparent coherence between deer and MEI.  So
 winter MEI index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and MEI
 (and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
 deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
-Moran theorem suggests that winter MEI explains $X\%$ of deer abundance synchrony 
-on $3-7$-year timescales and $Y\%$ on $4-7$-year timescales. 
+Moran theorem suggests that winter MEI explains $`r round(abunwmeiSyncExp37,0)`\%$ of deer abundance synchrony 
+on $3-7$-year timescales and $`r round(abunwmeiSyncExp47,0)`\%$ on $4-7$-year timescales. 
 <!--***DAN: Tom, can you please fill these values in? I forgot what they are, 
 and they have been
 deleted from Table 1. These would be for the model with sole predictor MEI. Please 
