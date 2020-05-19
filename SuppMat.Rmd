@@ -1338,10 +1338,9 @@ These are synchrony inflation factors, and they describe the extent to which our
 deer synchrony explained by winter MEI may have been inflated. Averaging across the parameter sets used, 
 the factor by which synchrony 
 explained was estimated to be inflated when using 36-year data was $1.2528$. Thus our prior, naive 
-estimate, based solely on the wavelet Moran theorem, that winter MEI explained $X\%$
-<!--***DAN: Tom, please insert autolinked value here-->
-of deer abundance synchrony was probably an overestimate by approximately $25\%$; an adjusted value was $Y\%$.
-<!--***DAN: Tim, please insert autolink - should be the X from above divided by 1.2528-->
+estimate, based solely on the wavelet Moran theorem, that winter MEI explained $`r round(abunwmeiSyncExp37,2)`\%$
+of deer abundance synchrony was probably an overestimate by approximately $25\%$; an adjusted 
+value was $`r round(1.2528*abunwmeiSyncExp37,2)`\%$.
 This adjusted quantity is still substantial. 
 
 \textbf{USDA district results.} Using district-level data, deer abundance 
