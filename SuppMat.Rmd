@@ -1102,7 +1102,7 @@ independent of MEI, exagerating the apparent coherence between deer and MEI.  So
 winter MEI index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and MEI
 (and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
 deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
-Moran theorem suggests that winter MEI explains $`r round(abunwmeiSyncExp37,2)`\%$ of deer abundance synchrony 
+Moran theorem suggests that winter MEI explains $`r round(abunwmeiSyncExp37,0)`\%$ of deer abundance synchrony 
 on $3-7$-year timescales and $`r round(abunwmeiSyncExp47,0)`\%$ on $4-7$-year timescales. 
 <!--***DAN: Tom, can you please fill these values in? I forgot what they are, 
 and they have been
