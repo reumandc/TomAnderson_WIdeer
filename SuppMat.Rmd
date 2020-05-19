@@ -1085,7 +1085,7 @@ supporting the claim that winter MEI explains a significant portion of the synch
 
 However, distributions of surrogate spatial wavelet coherence values, albeit generally smaller than the 
 observed spatial wavelet coherence values, $|\Pi^{(01)}_{\sigma}|$, on $3-7$-year timescales, were 
-not centred on zero.   Spurious 
+not centered on zero.   Spurious 
 associations between time series produce non-zero coherence, and this bias apparent in the surrogate 
 distribution becomes stronger as fewer independent samples of the phase difference between the variables 
 are available.   For long-timescale wavelet components of the transform of an autocorrelated variable, the 
@@ -1122,18 +1122,18 @@ time steps to eliminate possible transient dynamics. We then used the resulting 
 to drive a model of deer abundance, $x_i(t)$, in county $i$ ($i=1,\ldots,N$ for $N=71$ counties), as follows: 
 $x_i(t)=\text{MEI}_{\text{w}}(t)+\epsilon_i(t)$, where the $\epsilon(t)=(\epsilon_1(t),\ldots,\epsilon_{N}(t))$
 were independent draws from a multi-variate normal random variable with mean $(0,\ldots,0)$ and 
-covariance matrix having variance terms $v$ along the diagonal and all off-diagonal (covariance)
-terms equal to $vc$, so that the correlation of noises in different places was $c$. 
-We later also consider an AR(1)-type model (see below). For given values of the parameters $\sqrt{v}$ and $c$, we performed wavelet transforms and 
+covariance matrix having variance terms $V$ along the diagonal and all off-diagonal (covariance)
+terms equal to $Vc$, so that the correlation of noises in different places was $c$. 
+We later also consider an AR(1)-type model (see below). For given values of the parameters $\sqrt{V}$ and $c$, we performed wavelet transforms and 
 obtained a wavelet model $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$
 expressing the transforms, $w^{(0)}_{i,\sigma}(t)$, of the simulated deer time series in terms of the 
-transforms, $w^{(1)}_{i,\sigma}(t)$, of the MEI, which were the same for all $i$. For each simulated set of deer
+transforms, $w^{(1)}_{i,\sigma}(t)$, of the simulated MEI, which were the same for all $i$. For each simulated set of deer
 time series we used an independent simulated MEI time series. After some preliminary investigation of the parameter 
-space, we considered $\sqrt{v}$ varying from $1.6\exp(-0.4)$ to $1.6\exp(0.4)$ in multiplicative increments
+space, we considered $\sqrt{V}$ varying from $1.6\exp(-0.4)$ to $1.6\exp(0.4)$ in multiplicative increments
 of $\exp(0.08)$, and we considered $c$ varying from $0.175$ to $0.625$ in additive increments of $0.025$.
-For each of these combinations of $\sqrt{v}$ and $c$ we computed three quantities, described in the next 
+For each of these combinations of $\sqrt{V}$ and $c$ we computed three quantities, described in the next 
 paragraph, and compared these quantities to values of the same statistics computed for the actual winter 
-MEI and deer abundance time series in order to find the values of $\sqrt{v}$ and $c$ for which agreement was good.
+MEI and deer abundance time series in order to find the values of $\sqrt{V}$ and $c$ for which agreement was good.
 
 The three quantities were as follows. The first quantity was the spatial synchrony, measured using a 
 time- and band-averaged squared mean field magnitude, of the simulated deer data. In other words: 
@@ -1153,14 +1153,14 @@ with $|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sig
 $3-7$-year band. Note, however, that $\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2=1$,
 so this is an average of the squared spatial wavelet coherence. For the real data, these three quantities were,
 respectively, $0.530557437095931$, $0.418327023890617$, and $0.364288221245834$, and we denote these values
-by $A_0$, $B_0$, and $C_0$, respectively. We denote by $A(\sqrt{v},c)$ the median, over $500$ simulations,
-of the first quantity described above for the simulations. Likewise $B(\sqrt{v},c)$ and $C(\sqrt{v},c)$ 
-denote medians over $500$ simulatuions of the second and third quantities above. 
+by $A_0$, $B_0$, and $C_0$, respectively. We denote by $A(\sqrt{V},c)$ the median, over $1000$ simulations,
+of the first quantity described above for the simulations. Likewise $B(\sqrt{V},c)$ and $C(\sqrt{V},c)$ 
+denote medians over $1000$ simulations of the second and third quantities above. 
 Agreement between actual and simulation-based quantities was judged with fractional deviations, 
-$|A(\sqrt{v},c)-A_0|/A_0$, $|B(\sqrt{v},c)-B_0|/B_0$ and $|C(\sqrt{v},c)-C_0|/C_0$.
+$|A(\sqrt{V},c)-A_0|/A_0$, $|B(\sqrt{V},c)-B_0|/B_0$ and $|C(\sqrt{V},c)-C_0|/C_0$.
 
-For each parameter set $(\sqrt{v},c)$ for which $A(\sqrt{v},c)$, $B(\sqrt{v},c)$
-and $C(\sqrt{v},c)$ were determined, as above, to match adequately with 
+For each parameter set $(\sqrt{V},c)$ for which $A(\sqrt{V},c)$, $B(\sqrt{V},c)$
+and $C(\sqrt{V},c)$ were determined, as above, to match adequately with 
 $A_0$, $B_0$ and $C_0$, respectively, we calculated the median fraction of synchrony 
 apparently explained in the 36 year models, and then simulated a further 10000 years of data 
 and refitted to get a reliable estimate of synchrony explained, thereby 
@@ -1322,80 +1322,24 @@ means that $3-7$-year spectral power is also influenced by the amount of low-fre
 
 # Supplementary results \label{SI:results}
 
-\textbf{Fraction of deer synchrony explained by winter MEI, county data, technical results.} 
-
-<!--Qs for L and his answers as of 2020 05 12:
-1) In your notes you sent, and which we saved on google drive, it says: " We considerd the median results to be a good fit if the sum squared fractional deviation of the three median results was found less than 0.05. "
-BUT, in the table, first row, it says: "sum squared closeness of fit (best 6, $<$0.005)" and the values are less than 0.005. So is it 0.05 or 0.005, or did you mean two different things here? 
-The value 0.05 is a typo, 0.005 is correct
-
-Also, it says "best 6" but there are 8 numbers given, can I assume these were the best 8 and that these were the only ones under the cutoff you used (0.005 or 0.05)?
-Relic from an earlier version, there were 8 good fits in this run.
-
-2) In the table it says 1000 sims were done, but in the text it says 500. Which?
-Relic from an earlier version, there were 500 done.
-
-3) In the table, is "strength of local noises" your parameter eps? I.e., the standard deviation, not the variance of the noise.
-4) In the table, is "correlation of local noises" meant to be the value of c, which is not a correlation but rather a covariance? A correlation would be c/eps^2
-
-I defined a covariance matrix with ones on the diagonal, equal to c everywhere else.   So this is also a correlation matrix.   I generated deer noise with this covariance matrix using chol.m.   I multiplied the noise by strength eps when simulating the AR process.
-***DAN: I fixed this in the Methods
-
-5) Do the three lines "Power closeness of fit", "Synchrony predicted closeness of fit", and "Synchrony found closeness of fit" correspond to A, B and C? 
-
-Yes.
-
-Are the values here A(eps,c)-A_0/A_0 (rather than the absolute value of that), and that's why some are negative?
-
-Yes.
-
-6) In your email sent 5/5, you sent 8 numbers, and I am assuming these should replace the last row of the table. Is that correct? The second and third rows of the table should also be replaced, I think, to make all the results consistent. In order to avoid having anything lost in translation, can you please just send a new, updated version of the table, or replace the one in google drive with a new one?
-
-there are going to be some incosistencies in this table because of the way it is cobbled together from two different runs.   I am starting to think that I should do a clean repeat of the exercise and make a whole new table.
--->
-
-
-
-<!--***DAN: Lawrence is re-running over the weekend and will send a new versions of this-->
-\begin{table}[h!]
-\begin{center}
-\caption{Summary of best results}
-\label{tab:table1}
-\begin{tabular}{r|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-sum squared closeness of fit (best 6, $<$0.005) &
-0.0040 0.0036 0.0043 0.0008 0.0026 0.0008 0.0020 0.0043\\
-
-Actual (10000 yr) fraction of sync explained &
-0.6316 0.6175 0.5845 0.5704 0.6005 0.5426 0.5345 0.4777\\
-
-Synchrony explained (median of 1000 instances, 36 years of data) &
-0.7592 0.7421 0.7353 0.7109 0.7185 0.7029 0.6953 0.6626\\
-Wavelet power explained (median of 1000 instances, 36 years of data) &
-0.4195 0.4225 0.4289 0.4097 0.4251 0.4079 0.4026 0.3971\\
-Strength of local noises &
-1.6000 1.6000 1.6000 1.7333 1.6000 1.7333 1.7333 1.8776\\
-
-Correlation of local noises &
-0.3000 0.3250 0.3500 0.3500 0.3750 0.3750 0.4000 0.4250\\
-
-Power closeness of fit &
-0.0028 0.0100 0.0254 -0.0205 0.0162 -0.0249 -0.0375 -0.0507\\
-
-Synchrony predicted closeness of fit &
-0.0308 0.0559 0.0596 0.0039 0.0433 0.0072 -0.0104 -0.0186\\
-
-Synchrony found closeness of fit &
--0.0551 -0.0193 0.0074 -0.0186 0.0217 0.0113 0.0230 0.0372\\
-
-RMS closeness of fit &
-0.0365 0.0346 0.0377 0.0161 0.0295 0.0163 0.0261 0.0379\\
-
-Synchrony explained inflation factor &
-1.2021 1.2018 1.2580 1.2463 1.1966 1.2954 1.3010 1.3873\\
-
-\end{tabular}
-\end{center}
-\end{table}
+\textbf{Fraction of deer synchrony explained by winter MEI, county data, technical results.} Of the parameters 
+considered (SI section \ref{SI:methods}), there were five parameter combinations 
+$(\sqrt{V},c)$ for which the sum of the squares of the fractional deviations
+$|A(\sqrt{V},c)-A_0|/A_0$, $|B(\sqrt{V},c)-B_0|/B_0$ and $|C(\sqrt{V},c)-C_0|/C_0$ was less than $0.005$
+(Fig. \ref{InflationFig}, Table \ref{InflationTable}), and for those parameter combinations the indivual fractional 
+deviations were always less than $6\%$. Thus parameters were available for which our model gave reasonable
+agreement with the actual data in the three ways for which agreement was tested. For these parameters,
+synchrony explained, as estimated using 36 years of data, was between $1.1885$ and $1.3050$ greater than 
+an unbiased estimate of synchrony explained using 10000 years of simulated data (Table \ref{InflationTable}).
+These are synchrony inflation factors, and they describe the extent to which our estimates of the fraction of 
+deer synchrony explained by winter MEI may have been inflated. Averaging across the parameter sets used, 
+the factor by which synchrony 
+explained was estimated to be inflated when using 36-year data was $1.2528$. Thus our prior, naive 
+estimate, based solely on the wavelet Moran theorem, that winter MEI explained $X\%$
+<!--***DAN: Tom, please insert autolinked value here-->
+of deer abundance synchrony was probably an overestimate by approximately $25\%$; an adjusted value was $Y\%$.
+<!--***DAN: Tim, please insert autolink - should be the X from above divided by 1.2528-->
+This adjusted quantity is still substantial. 
 
 \textbf{USDA district results.} Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$-year 
@@ -1730,6 +1674,19 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 \clearpage
 
 \begin{figure}[!h]
+\includegraphics[width=\textwidth]{Results/LawrenceSupMatFig.png}
+\caption[Parameters for determining inflation of synchrony explained]{Fractional deviation
+quantities used for identifying parameters for a model for estimating the degree to which
+fraction of deer syncrony explained by winter MEI was inflated. See SI section \ref{SI:methods}. 
+Cell colour gives the value for the parameters at the top 
+right corner of each cell. Overall best fitting parameter pairs (Table \ref{InflationTable}) are 
+identified with red circles.\label{InflationFig}}
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!h]
 \includegraphics[width=.3\textwidth]{Results/FigS6.png}
 \caption[Hunter mean fields and predictions of deer synchrony based on hunters]{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance 
 time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunter 
@@ -1754,7 +1711,7 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 \clearpage
 
 \begin{figure}[!h]
-\includegraphics[height=.55\textheight]{Results/PedagogEmpFig.png}
+\includegraphics[height=.65\textheight]{Results/PedagogEmpFig.png}
 \caption[Summary comparison of theoretical and empirical results]{Panels show theoretical (left panels), deer (middle panels), 
 and DVC (right panels) results, in summary format, to facilitate theoretical-empirical comparisons. Raw time series of 
 Moran drivers of synchrony (A-C) are shown for each case, as well as the 
@@ -1916,6 +1873,68 @@ knitr::kable(TabS2_results,
              caption = "Summary of spatial wavelet coherence tests and related results using USDA district-level data (\\textit{Methods}). $P$-values and mean phases are from tests of spatial wavelet coherence (\\textit{Methods}) of the variables in columns 1 and 2 over the indicated timescale band. Mean phases over the timescale band (units of $\\pi$ radians) are provided only when meaningful, i.e., when spatial wavelet coherence was significant, $P < 0.05$, or marginally significant. A positive mean phase indicates the variable in the column \\textit{Response} is leading, and a negative mean phase indicates the variable in the column \\textit{Predictor} is leading. The \\textit{Synchrony explained} and \\textit{Average cross terms}  columns (which give percentages) are based on the wavelet Moran theorem (\\textit{Methods}). When cross terms are low, synchrony explained is interpretable as the approximate percentage of synchrony in the response explainable as due to the synchrony in the predictor. They were low enough for all results in this table. \\textit{Synchrony Explained} and \\textit{Average cross terms} are not reported for climate-index predictors because the climate indices are not spatially resolved (\\textit{Methods}). All values were rounded to display four digits. \\label{TabS2_SummaryDistrict}",
              booktabs=T)
 ```
+
+\newpage
+\clearpage
+
+```{r LawrenceTable,echo=F,results='markup'}
+tabres<-matrix(c(1.6000,1.6000,1.7333,1.7333,1.7333,
+                 0.3000,0.3250,0.3500,0.3750,0.4000,
+                 -0.0520,-0.0249,-0.0304,0.0180,0.0529,
+                 0.0064,0.0013,-0.0556,-0.0226,-0.0043,
+                 0.0400,0.0415,-0.0259,0.0238,0.0431,
+                 0.0043,0.0023,0.0047,0.0014,0.0047,
+                 0.7674,0.7435,0.7071,0.7063,0.6942,
+                 0.6334,0.6256,0.5531,0.5413,0.5422,
+                 1.2117,1.1885,1.2783,1.3050,1.2803),9,5,byrow=TRUE)
+rownames(tabres)<-c("Strength of local noises, $\\sqrt{V}$",
+                    "Correlation of local noises, $c$",
+                    "Synchrony found closeness of fit, $(A-A_0)/A_0$",
+                    "Power closeness of fit, $(B-B_0)/B_0$",
+                    "Synchrony predicted closeness of fit, $(C-C_0)/C_0$",
+                    "Sum squared closeness of fit",
+                    "Synchrony explained (median of 1000 instances, 36 years of data)",
+                    "Actual (10000 yr) fraction of sync explained",
+                    "Synchrony explained inflation factor")
+knitr::kable(tabres,
+             format='latex',align="l",escape=F,
+             digits=4,
+             caption.short="Best model parameters for inflation of synchrony explained",
+             caption = "Model parameters for estimation of 
+inflation of synchrony explained. See SI section \\ref{SI:methods}. All parameters tried for which sum
+squared closeness of fit was less than $0.005$ are displayed. See also Fig. \\ref{InflationFig}. \\label{InflationTable}",
+             booktabs=T)
+```
+<!--
+\begin{table}[h!]
+\begin{center}
+\caption[Best model parameters for inflation of synchrony explained]{Model parameters for estimation of 
+inflation of synchrony explained. See SI section \ref{SI:methods}. All parameters tried for which sum
+squared closeness of fit was less than $0.005$ are displayed. See also Fig. \ref{InflationFig}.}
+\label{InflationTable}
+\begin{tabular}{r|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+Strength of local noises, $\sqrt{V} &
+1.6000    1.6000    1.7333    1.7333    1.7333\\
+Correlation of local noises, $c$ &
+0.3000    0.3250    0.3500    0.3750    0.4000\\
+Synchrony found closeness of fit, $(A-A_0)/A_0$ &
+-0.0520   -0.0249   -0.0304    0.0180    0.0529\\
+Power closeness of fit, $(B-B_0)/B_0$ &
+0.0064    0.0013   -0.0556   -0.0226   -0.0043\\
+Synchrony predicted closeness of fit, $(C-C_0)/C_0$ &
+0.0400    0.0415   -0.0259    0.0238    0.0431\\
+Sum squared closeness of fit &
+0.0043    0.0023    0.0047    0.0014    0.0047\\
+Synchrony explained (median of 1000 instances, 36 years of data) &
+0.7674    0.7435    0.7071    0.7063    0.6942\\
+Actual (10000 yr) fraction of sync explained &
+0.6334    0.6256    0.5531    0.5413    0.5422\\
+Synchrony explained inflation factor &
+1.2117    1.1885    1.2783    1.3050    1.2803\\
+\end{tabular}
+\end{center}
+\end{table}
+-->
 
 ```{r AR_AIC_Table,echo=F,results='markup'}
 rownames(AR_AIC_Table)<-NULL

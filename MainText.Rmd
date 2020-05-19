@@ -571,7 +571,8 @@ Such estimates were complicated, and artefactually inflated. Furthermore, such e
 to substantiate our argument that deer are environmentally synchronized in the $3-7$-year
 band, since this is adequately demonstrated by our wavelet coherence results between deer and MEI,
 and our results for snow depth. Thus such estimates were placed in SI section
-\ref{SM-SI:results}, where attempts to quantify the degree of inflation are also described.
+\ref{SM-SI:results}, where attempts to quantify the degree of inflation are also described 
+(see also Fig. \ref{SM-InflationFig} and Table \ref{SM-InflationTable}).
 <!--***DAN: Don't forget to add the material described above-->
 <!--***DAN: Tom, can you please make the following changes to Table 1:-->
 <!--1) add back in the column for timescale band--><!--TOM: Done-->
@@ -594,6 +595,8 @@ with our results for snow depth) is enough to support our argument that deer are
 synchroinzed in the 3-7-year band, but we still do not know what specific weather variables (other
 than snow depth) are acting here, and for which MEI serves as a surrogate. This could be investigated in
 future work-->
+
+<!--***DAN: make sure all new sup mat figs and tables are cited from the main text, and in the right order-->
 
 Deer abundance synchrony on $3-7$-year timescales was not caused by hunting. County-level hunter and deer abundances were not significantly spatially coherent 
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
@@ -634,12 +637,15 @@ vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgd
 between peak and trough years. 
 
 Supplementary results using Fourier approaches (*Methods*, SI section \ref{SM-SI:methods}) demonstrated 
-clearly (SI section \ref{SM-SI:results}) that: 1) there was a meaningful spectral peak in the
+clearly (SI section \ref{SM-SI:results}, Figs \ref{SM-FigS_SpectPow3to7Fig5Surrogs}-\ref{SM-FigS_StateVCounty},
+Table \ref{SM-InflationTable}) 
+that: 1) there was a meaningful spectral peak in the
 $3-7$-year timescale band for the state-total deer time series for WI, and it was substantially caused by 
 synchrony because when $3-7$-year synchrony was removed from county-level time series the peak was also removed;
 2) the same spectral peaks did not occur in county-level deer time series, i.e, combining 
 time series across space produced the peak by combining weak but synchronous fluctuations in the $3-7$-year timescale band.
-Similar results also held for DVCs (SI section \ref{SM-SI:results}). 
+Similar results also held for DVCs (SI section \ref{SM-SI:results}, 
+Figs \ref{SM-FigS_DVCSpectPow3to7Fig5Surrogs}-\ref{SM-FigS_DVCSpectraFig5Surrogs}). 
 
 # Discussion
 
