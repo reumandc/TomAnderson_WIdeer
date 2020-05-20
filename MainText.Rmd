@@ -159,11 +159,11 @@ Supporting Information (SI) sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}.
 spent examining empirical evidence for the mechanism.
 
 <!--***DAN: deleted an instance of the word "major" to be more understated and to address a referee concern about overselling the applied significance-->
-One applied concern is that if
+One potential applied concern is that if
 fluctuations in local time series do become amplified in a
 timescale-specific manner as outlined above, outbreaks of pests or disease
 could follow [@Rohani_etal1999]. For example, timescale-specific
-synchrony of local populations of pests may produce major cycles in the
+synchrony of local populations of pests may produce cycles in the
 regional total pest population and therefore in the damage they cause. 
 Timescale-specific
 synchrony could also be important for industries, such as hunting,

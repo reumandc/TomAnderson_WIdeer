@@ -1341,7 +1341,9 @@ explained was estimated to be inflated when using 36-year data was $1.2528$. Thu
 estimate, based solely on the wavelet Moran theorem, that winter MEI explained $`r round(abunwmeiSyncExp37)`\%$
 of deer abundance synchrony was probably an overestimate by approximately $25\%$; an adjusted 
 value was $`r round(abunwmeiSyncExp37/1.2528)`\%$.
-This adjusted quantity is still substantial. 
+This adjusted quantity is still substantial. As mentioned briefly in the corresponding section of 
+SI section \ref{SI:methods}, we repeated our analysis using an AR(1) model for deer dynamics, obtaining very
+similar inflation factor results under that alternative assumption.
 
 \textbf{USDA district results.} Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$-year 
