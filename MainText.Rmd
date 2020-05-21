@@ -335,8 +335,8 @@ influenced, for our purposes, by possible shortcomings of the SAK procedure at t
 
 Each time series was Box-Cox transformed to help ensure Gaussian marginal 
 distributions [@Sheppard2016_aphids], which are necessary for
-the Fourier-surrogate-based spatial wavelet coherence and wavelet linear
-regression testing procedures described below. This process also included linear detrending
+the Fourier-surrogate-based spatial wavelet coherence 
+testing procedures described below. This process also included linear detrending
 (and subtracting the mean), to remove trends that might otherwise
 obscure patterns of synchrony [@Buonaccorsi2001], as well as variance standardization 
 (SI section \ref{SM-SI:methods}).
@@ -356,19 +356,13 @@ why it was an appropriate choice to use Fourier methods for the theoretical
 development (above and in SI sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}), and 
 to use a combination of wavelet and Fourier methods
 for the empirical analyses (below). 
-<!--***DAN: Make sure to do what it says I will do in the above sentence-->
 All wavelet analyses were done via software in the open-source `wsyn`
-package for the R programming language [@wsyn].<!--, which is itself well documented.-->
-<!--***DAN: The perspective we used to use above was that we explain methods operationally and
-the reader has to look elsewhere. But the referee does not like that, so I changed the wording 
-above, and then you have to go and change substance, i.e., add quite a bit more description of 
-the techniques in the sup mat, at least. -->
+package for the R programming language [@wsyn].
 
-<!--***DAN: Add technical details for the below techniques to the sup mat, and then make the references refer to the 
-new as well as the existing stuff-->
+
 We characterized the spatial synchrony of spatiotemporal variables (e.g., deer
 abundance) using wavelet mean field magnitudes and wavelet
-phasor mean field magnitudes (SE section \ref{SM-SI:methods}; SI Fig.
+phasor mean field magnitudes (SI section \ref{SM-SI:methods}; SI Fig.
 \ref{SM-PedagogFigWMF}; @Sheppard2013, @Sheppard2016_aphids). Both methods take as input
 standardized (see above) timeseries data from multiple locations and provide as
 output plots which display the degree of synchrony among locations as a function
@@ -623,15 +617,15 @@ Statistical significance, phase relationships, and the amount of DVC synchrony e
 abundance remained similar after adjusting DVCs to account for
 fluctuations in traffic volume (Table \ref{Tab1_CountyCoherenceSummary}, SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}, Fig. \ref{SM-FigS4_PhaseDiffs}F).
 
-Statewide oscillations due to synchrony correspond to a typical difference of $~ `r round(avgdeerfluc,-4)`$ deer and $~ `r round(avgdvcfluc,-2)`$ 
+Statewide oscillations due to synchrony correspond to a typical difference of about $`r round(avgdeerfluc,-4)`$ deer and about $`r round(avgdvcfluc,-2)`$ 
 DVCs between peak and trough years 
 (Fig. \ref{Fig5_StateWideFluctuations}). Importantly, these high amplitude 
 statewide oscillations in deer and DVCs disappear (Fig. 
 \ref{Fig5_StateWideFluctuations}) when synchrony between counties on $3-7$-year 
 timescales is removed via a randomization procedure (*Methods*). Therefore, it is spatial synchrony 
 that causes local dynamics to sum to a substantial 
-semi-periodic oscillatory phenomenon on statewide spatial scales. Thus, the essence of our theoretical results was borne out in our empirical results (compare Figure \ref{Fig1_example} to Figure \ref{SM-PedagogEmp_Fig}). Depending on 
-assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:methods}; [@Huijser2008_dvc;@Marcoux2010_dvc;@Conover2011_bookchp]), 
+semi-periodic oscillatory phenomenon on statewide spatial scales. Thus, the essence of our theoretical results was borne out in our empirical results (Figure \ref{SM-PedagogEmp_Fig}). Depending on 
+assumptions made about costs and reporting rates of DVCs (SI section \ref{SM-SI:methods};  @Huijser2008_dvc; @Marcoux2010_dvc; @Conover2011_bookchp), 
 statewide DVC damages 
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years. 
@@ -651,13 +645,13 @@ Figs \ref{SM-FigS_DVCSpectPow3to7Fig5Surrogs}-\ref{SM-FigS_DVCSpectraFig5Surrogs
 
 <!--summary-->
 Overall, we demonstrated that timescale-specific Moran effects, by 
-synchronizing local population dynamics, can cause major cycles in the 
+synchronizing local population dynamics, can cause substantial cycles in the 
 regional total population. This is a new mechanism by which the environment can 
 produce population cycles. Previous attemps to link environmental factors to population cycles have either been unsubstantiated [e.g., sun spots;
 @Sinclair1992_sunspots;@Selas2004_sunspots], or provided a useful but patial explanation for cycles, as in studies of 
 tetraonids [@watson2000] or small mammals [@kausrud2008] which demonstrated that environmental factors tend to modify cycles 
-produced by density dependent factors, rather than producing them outright. Our study differs from some of these 
-previous attempts in part because the new mechanism does not require a highly regular environmental 
+produced by density dependent factors, rather than producing them outright. Our study differs from these 
+previous attempts, in part because the new mechanism does not require a highly regular environmental 
 oscillator such as sun spots. Rather, it is sufficient simply for irregular environmental drivers 
 such as winter climatic factors to be coherent with populations over a particular timescale band, thereby inducing 
 synchrony in that band and leading to total-population cycles on the same timescales. Our results also provide 
@@ -711,7 +705,7 @@ were the primary determinants of deer synchrony. Deer populations lagged $\text{
 $\text{PDO}_{\text{w}}$ by 1-2 years, a similar delay to other reported lag times of climatic effects on deer 
 populations [@Post1998_popgrowth;@forchhammer1998]. Winter weather and climate probably influenced deer
 populations because deeper snow limits access to winter food resources in ungulates, which subsequently 
-affects body condition, leading to greater susceptibility to starvation or predators and reduced 
+affects body condition, leading to greater susceptibility to starvation or predators, and reduced 
 parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. 
 The influence of winter weather on deer extends outside as well as inside WI,
 so for larger regions including WI, cycling of total regional deer populations and 
@@ -719,7 +713,7 @@ DVCs are likely to be even stronger than what we have documented because
 a larger number of synchronized local populations accentuates the effect we described.
 
 <!--It aint hunters. -->
-Hunters were not the principle driver of deer synchrony. These results are consistent with the
+Hunters were not the principal driver of deer synchrony. These results are consistent with the
 hypothesis that hunters can regulate deer populations over short timescales and small spatial 
 areas [@fryxell1991;@denicola2008] but have more limited effects over longer timescales and at 
 large spatial extents [@brown2000;@simard2013]. The lack of longer-timescale ($3-7$-year) spatial wavelet 

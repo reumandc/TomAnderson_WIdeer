@@ -632,13 +632,12 @@ Fig. \ref{FigS7_WMFAndPredictionsDistricts}), suggesting results for counties we
 meaningfully influenced by possible inaccuracies in SAK abundance estimation 
 procedures at the county level. We also emphasize that inaccuracies 
 in the estimation of deer abundances may have obscured the patterns of
-timescale-specific synchrony and the spatial wavelet coherence and 
-wavelet linear model results we 
+timescale-specific synchrony and the spatial wavelet coherence results we 
 report, but could not reasonably have artefactually created them.
 
 We performed an optimal Box-Cox transformation on each time series to help ensure Gaussian marginal 
 distributions [@Sheppard2016_aphids], which are necessary for the Fourier-surrogate-based spatial 
-wavelet coherence and wavelet linear regression testing procedures described below. This process also 
+wavelet coherence testing procedures described below. This process also 
 included linear detrending (and subtracting the mean) to remove any long-term trends that might 
 otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the 
@@ -1322,6 +1321,26 @@ use AR(1) surrogates with DVC time series were not undertaken. Comparisons, via 
 also considered inappropriate for DVCs for similar reasons. Finally, comparison of variance-standardized 
 state- and county-level time series was not appropriate for DVCs because the variance standardization 
 means that $3-7$-year spectral power is also influenced by the amount of low-frequency power.  
+
+\textbf{Use of Fourier methods for the theory and wavelets for the empirical analysis}. Fourier and
+wavelet methods were used principally
+for our theoretical and empirical analyses, respectively, though some Fouier analyses were also used
+for our empirical analyses. It was appropriate, for several reasons, to use Fourier methods for 
+the theory and wavelet methods for the data. First, both sets of methods are in the broader category of 
+spectral methods, and
+Fourier and wavelet approaches are related. So there is no actual mismatch produced when wavelet methods
+are used to empirically test theory that was developed with Fourier methods.
+For instance, the wavelet spectrum gives the same information as the Fourier spectrum, but without 
+the necessity of assuming stationarity. And the wavelet transform is a filtered cross spectrum.
+Wavelet methods and Fourier methods often serve very similar goals. Second, differences
+that do exist between Fourier and wavelet approaches are consistent with differences between our 
+theoretical and empirical analyses. Fourier analyses make more structural assumptions 
+about the data, notably, they
+assume stationarity. At the same time, various techniques of mathematical analysis are 
+commonly used for Fourier approaches, under an assumption of stationarity. We developed 
+our theory in an idealized setting, for which Fourier methods and 
+mathematical analysis were possible, but then used
+wavelet methods, which are more suited to the complexities of real data, for our empirical work.
 
 # Supplementary results \label{SI:results}
 
