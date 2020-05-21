@@ -598,8 +598,8 @@ approximate growing season (Apr-Nov), and separately across the winter
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
 (main text Fig. \ref{MT-Fig2_Timeseries}). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
-snow depth, and precipitation; winter NAO$\text{NAO}_{\text{w}}$, MEI$\text{MEI}_{\text{w}}$, and PDO$\text{PDO}_{\text{w}}$; 
-growing-season NAO$\text{NAO}_{\text{s}}$, MEI$\text{MEI}_{\text{s}}$ and PDO$\text{PDO}_{\text{s}}$; and the WSI. 
+snow depth, and precipitation; winter NAO ($\text{NAO}_{\text{w}}$), MEI ($\text{MEI}_{\text{w}}$), and PDO ($\text{PDO}_{\text{w}}$); 
+growing-season NAO ($\text{NAO}_{\text{s}}$), MEI ($\text{MEI}_{\text{s}}$) and PDO ($\text{PDO}_{\text{s}}$); and the WSI. 
 
 \textbf{Data pre-processing.} We performed all analyses described below and in the main text 
 at three spatial scales: counties (N = 44-`r dim(cty.list$Abun)[1]` depending on 
@@ -1675,9 +1675,9 @@ Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate lo
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary}, county-level data: A) $\text{MEI}_{\text{w}}$ ($\text{MEI}_{\text{w}}$) 
+\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary}, county-level data: A) $\text{MEI}_{\text{w}}$ 
 and deer abundance, B) $\text{MEI}_{\text{s}}$ and 
-deer abundance, C) ($\text{PDO}_{\text{w}}$) and deer abundance, 
+deer abundance, C) $\text{PDO}_{\text{w}}$ and deer abundance, 
 D) snow depth and deer abundance, E) deer abundance and 
 deer-vehicle collisions, F) deer abundance and deer-vehicle collisions adjusted for traffic volume, and 
 G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$
