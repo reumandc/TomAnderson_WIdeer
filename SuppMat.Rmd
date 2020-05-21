@@ -166,7 +166,7 @@ habitat patch $i$ ($i=1,\ldots,N$) at time $t$ from an equilibrium value $x_{i}^
 The environmental noise process $\epsilon=(\epsilon_{1},\ldots,\epsilon_{N})$
 is assumed to be a second-order stationary stochastic process with $\E(\epsilon_{i})=0$
 for all $i$. Without loss of generality, $c_n \neq 0$ and $q_m \neq 0$. We also assume
-the complex roots of the polynomial $1-c_1 z - c_2 - \cdots - c_n z^n=0$
+the complex roots of the polynomial $1-c_1 z - c_2 z^2 - \cdots - c_n z^n=0$
 have modulus greater than one. This assumption is a necessary and sufficient condition 
 for stability of the equilibrium of the general model of which (\ref{eq:mainmodel})
 is a linearization (@Desharnais2018, their supplementary information section 1.2) 
