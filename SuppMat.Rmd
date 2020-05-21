@@ -598,8 +598,8 @@ approximate growing season (Apr-Nov), and separately across the winter
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$) for each index 
 (main text Fig. \ref{MT-Fig2_Timeseries}). We used a total of 11 weather and 
 climate variables in subsequent analyses: winter Tmin, Tmax, 
-snow depth, and precipitation; winter NAO, MEI, and PDO; 
-growing-season NAO, MEI and PDO; and the WSI. 
+snow depth, and precipitation; winter NAO$\text{NAO}_{\text{w}}$, MEI$\text{MEI}_{\text{w}}$, and PDO$\text{PDO}_{\text{w}}$; 
+growing-season NAO$\text{NAO}_{\text{s}}$, MEI$\text{MEI}_{\text{s}}$ and PDO$\text{PDO}_{\text{s}}$; and the WSI. 
 
 \textbf{Data pre-processing.} We performed all analyses described below and in the main text 
 at three spatial scales: counties (N = 44-`r dim(cty.list$Abun)[1]` depending on 
@@ -1048,9 +1048,9 @@ q(\sigma)=\frac{|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{\emp
 \end{equation}
 \noindent This was averaged over a timescale band of interest.  
 
-\textbf{Fraction of deer synchrony explained by winter MEI, technical methods.} Fractions of deer abundance synchrony explained by snow depth and fractions of DVC synchrony
+\textbf{Fraction of deer synchrony explained by $\text{MEI}_{\text{w}}$, technical methods.} Fractions of deer abundance synchrony explained by snow depth and fractions of DVC synchrony
 explain by deer, and related results, were presented in the main text, but we did not there present results
-on fractions of deer abundance synchrony explained by winter MEI, even though deer abundance and winter MEI
+on fractions of deer abundance synchrony explained by $\text{MEI}_{\text{w}}$, even though deer abundance and $\text{MEI}_{\text{w}}$
 were significantly coherent, supporting the 
 hypothesis that a Moran effect related to MEI was partly responsible for deer
 synchrony. As mentioned briefly in the main text, this choice was because the wavelet Moran theorem and 
@@ -1068,7 +1068,7 @@ all the links. While you are at it, read and edit all the SI again - I have a fe
 more round of that.-->
 
 It is possible to apply the formalism of the wavelet Moran theorem to deer abundance data and 
-winter MEI, even though doing so results in complications, as we will explain. We can thus write 
+$\text{MEI}_{\text{w}}$, even though doing so results in complications, as we will explain. We can thus write 
 $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$, as in the 
 statement of the wavelet Moran theorem,
 where the $w^{(0)}_{i,\sigma}(t)$ are the power-normalized wavelet transforms of the deer abundance
@@ -1080,10 +1080,10 @@ because the $w^{(1)}_{i,\sigma}(t)$ are the same for all $i$ [@Sheppard2016_aphi
 it is straightforward to show that 
 $\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2=1$. So therefore
 $\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{wmf},0)}_{\sigma}(t)|^2  = |\Pi^{(01)}_{\sigma}|^2 + \frac{1}{T} \sum_{t=1}^{T} \left| \frac{1}{N} \sum_{i=1}^{N} d_{i,\sigma}(t) \right|^2$, and the synchrony in deer abundance 
-explained by winter MEI is just $|\Pi^{(01)}_{\sigma}|^2$. This is the quantity we statistically tested using surrogates to 
+explained by $\text{MEI}_{\text{w}}$ is just $|\Pi^{(01)}_{\sigma}|^2$. This is the quantity we statistically tested using surrogates to 
 determine if it is larger than expected under the null hypothesis, and it was for $3-7$-year timescales
 (Table \ref{MT-Tab1_CountyCoherenceSummary}), 
-supporting the claim that winter MEI explains a significant portion of the synchrony in deer abundance.
+supporting the claim that $\text{MEI}_{\text{w}}$ explains a significant portion of the synchrony in deer abundance.
 
 However, distributions of surrogate spatial wavelet coherence values, albeit generally smaller than the 
 observed spatial wavelet coherence values, $|\Pi^{(01)}_{\sigma}|$, on $3-7$-year timescales, were 
@@ -1095,13 +1095,13 @@ rate of phase growth changes slowly in time and a spurious initial phase associa
 throughout the data, giving spuriously high coherence.   Where separately measured data are available for each site, 
 this spurious association would be expected to have a different phase at each site and be averaged out in the 
 spatial coherence. But MEI data were not spatial. Whereas we can conclude, due to the significance testing results, 
-that there is probably a real association between winter MEI and deer fluctuations, bias may still manifest in the 
+that there is probably a real association between $\text{MEI}_{\text{w}}$ and deer fluctuations, bias may still manifest in the 
 form of a spurious association between MEI and additional local variability in deer abundance that is actually 
 independent of MEI, exagerating the apparent coherence between deer and MEI.  So the lack of spatial resolution in the 
-winter MEI index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and MEI
+$\text{MEI}_{\text{w}}$ index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and MEI
 (and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
 deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
-Moran theorem suggests that winter MEI explains $`r round(abunwmeiSyncExp37,0)`\%$ of deer abundance synchrony 
+Moran theorem suggests that $\text{MEI}_{\text{w}}$ explains $`r round(abunwmeiSyncExp37,0)`\%$ of deer abundance synchrony 
 on $3-7$-year timescales and $`r round(abunwmeiSyncExp47,0)`\%$ on $4-7$-year timescales. 
 <!--***DAN: Tom, can you please fill these values in? I forgot what they are, 
 and they have been
@@ -1116,11 +1116,11 @@ deer synchrony explained by
 MEI, we performed simulation exercises with artificial data chosen to mimic properties of the real time-series, but 
 with the advantage that we could simulate extremely long time series and thus obtain unbiased estimates of 
 coherence and synchrony explained, for comparison with the estimates based on realistic-length data.
-We first fitted an AR(2) model to the $36$-year winter MEI time series we used for our other analyses, obtaining
+We first fitted an AR(2) model to the $36$-year $\text{MEI}_{\text{w}}$ time series we used for our other analyses, obtaining
 the maximum-likelihood result $\text{MEI}_{\text{w}}(t+1)=a\text{MEI}_{\text{w}}(t)+b\text{MEI}_{\text{w}}(t-1)+\delta(t)$
 where $a=-0.1702$, $b=-0.2877$, and the standard deviation of $\delta$ was $0.9745$. We then used the resulting 
 fitted model to generate artificial MEI time series of any desired length, always after discarding a burn-in of $>100$
-time steps to eliminate possible transient dynamics. We then used the resulting simulated winter MEI stand-in time series
+time steps to eliminate possible transient dynamics. We then used the resulting simulated $\text{MEI}_{\text{w}}$ stand-in time series
 to drive a model of deer abundance, $x_i(t)$, in county $i$ ($i=1,\ldots,N$ for $N=71$ counties), as follows: 
 $x_i(t)=\text{MEI}_{\text{w}}(t)+\epsilon_i(t)$, where the $\epsilon(t)=(\epsilon_1(t),\ldots,\epsilon_{N}(t))$
 were independent draws from a multi-variate normal random variable with mean $(0,\ldots,0)$ and 
@@ -1344,7 +1344,7 @@ wavelet methods, which are more suited to the complexities of real data, for our
 
 # Supplementary results \label{SI:results}
 
-\textbf{Fraction of deer synchrony explained by winter MEI, county data, technical results.} Of the parameters 
+\textbf{Fraction of deer synchrony explained by $\text{MEI}_{\text{w}}$, county data, technical results.} Of the parameters 
 considered (SI section \ref{SI:methods}), there were five parameter combinations 
 $(\sqrt{V},c)$ for which the sum of the squares of the fractional deviations
 $|A(\sqrt{V},c)-A_0|/A_0$, $|B(\sqrt{V},c)-B_0|/B_0$ and $|C(\sqrt{V},c)-C_0|/C_0$ was less than $0.005$
@@ -1354,10 +1354,10 @@ agreement with the actual data in the three ways for which agreement was tested.
 synchrony explained, as estimated using 36 years of data, was between $1.1885$ and $1.3050$ greater than 
 an unbiased estimate of synchrony explained using 10000 years of simulated data (Table \ref{InflationTable}).
 These are synchrony inflation factors, and they describe the extent to which our estimates of the fraction of 
-deer synchrony explained by winter MEI may have been inflated. Averaging across the parameter sets used, 
+deer synchrony explained by $\text{MEI}_{\text{w}}$ may have been inflated. Averaging across the parameter sets used, 
 the factor by which synchrony 
 explained was estimated to be inflated when using 36-year data was $1.2528$. Thus our prior, naive 
-estimate, based solely on the wavelet Moran theorem, that winter MEI explained $`r round(abunwmeiSyncExp37)`\%$
+estimate, based solely on the wavelet Moran theorem, that $\text{MEI}_{\text{w}}$ explained $`r round(abunwmeiSyncExp37)`\%$
 of deer abundance synchrony was probably an overestimate by approximately $25\%$; an adjusted 
 value was $`r round(abunwmeiSyncExp37/1.2528)`\%$.
 This adjusted quantity is still substantial. As mentioned briefly in the corresponding section of 
@@ -1675,9 +1675,9 @@ Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate lo
 
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/FigS4.png}
-\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary}, county-level data: A) winter MEI ($\text{MEI}_{\text{w}}$) 
-and deer abundance, B) summer MEI and 
-deer abundance, C) winter PDO ($\text{PDO}_{\text{w}}$) and deer abundance, 
+\caption[Phase differences between variables]{Phase differences between variables as a function of timescale for the main significant relationships of main text Table \ref{MT-Tab1_CountyCoherenceSummary}, county-level data: A) $\text{MEI}_{\text{w}}$ ($\text{MEI}_{\text{w}}$) 
+and deer abundance, B) $\text{MEI}_{\text{s}}$ and 
+deer abundance, C) ($\text{PDO}_{\text{w}}$) and deer abundance, 
 D) snow depth and deer abundance, E) deer abundance and 
 deer-vehicle collisions, F) deer abundance and deer-vehicle collisions adjusted for traffic volume, and 
 G) deer abundance and hunter abundance. $\bar{\theta}$ indicates the mean phase (in units of $\pi$
@@ -1700,7 +1700,7 @@ time ranges of available data for different variables. \label{FigS4_PhaseDiffs}}
 \includegraphics[width=\textwidth]{Results/LawrenceSupMatFig.png}
 \caption[Parameters for determining inflation of synchrony explained]{Fractional deviation
 quantities used for identifying parameters for a model for estimating the degree to which
-fraction of deer syncrony explained by winter MEI was inflated. See SI section \ref{SI:methods}. 
+fraction of deer syncrony explained by $\text{MEI}_{\text{w}}$ was inflated. See SI section \ref{SI:methods}. 
 Cell colour gives the value for the parameters at the top 
 right corner of each cell. Overall best fitting parameter pairs (Table \ref{InflationTable}) are 
 identified with red circles.\label{InflationFig}}
@@ -1746,7 +1746,7 @@ exactly as in scenarios 2 and 3 of Fig. \ref{MT-Fig1_example}, but using a perio
 of the environmental time series. As in Fig. \ref{MT-Fig1_example}, the weak and not visually obvious $5$-year syncrony in the 
 environmental time series of (A) produced likewise weak $5$-year synchrony in model population time series (B, C), which, in spite
 of its weakness, resulted in  a substantial $5$-year-period cycle when time series were summed. Likewise, and as explained
-in detail in the main text, snow depth and winter MEI (B) produced a combined Moran effect on deer (E), which caused 
+in detail in the main text, snow depth and $\text{MEI}_{\text{w}}$ (B) produced a combined Moran effect on deer (E), which caused 
 synchrony in deer (H) on about $5$-year timescales ($3-7$-years), thereby resulting a substantial deer cycle on 
 statewide spatial scales (K). Also as explained in detail in the main text, deer abundance (C) produced a Moran effect
 on DVCs (F), which casued synchrony in DVCs (I) on $3-7$-year timescales, thereby resulting in a DVC cycle on statewide
