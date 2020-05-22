@@ -301,7 +301,7 @@ Thus a total of 11 weather and climate variables were
 used: winter Tmin, Tmax, snow depth, and precipitation; winter NAO, MEI, and PDO; 
 growing-season NAO, MEI and PDO; and the WSI. 
 See Fig. \ref{Fig2_Timeseries} for plots of some data, and 
-SI section \ref{SM-SI:methods} for details of all methods.
+SI section \ref{SM-SI:methods} for details of all data and methods.
 
 \textbf{Data pre-processing.} We performed all analyses described below 
 at the three spatial scales mentioned in the *Introduction*: counties (N = 44-`r dim(cty.list$Abun)[1]` depending on 
@@ -409,17 +409,12 @@ MEI were more complex, and were not needed
 for our research goals, so are in SI sections \ref{SM-SI:methods} (methods) 
 and \ref{SM-SI:results} (results).
 
-<!--***made it here-->
-
-
-<!--***DAN: Make sure there are sufficient technical details for the below techniques in the 
-sup mat, and then make the references refer to the new as well as the existing stuff-->
 To quantify the degree to which synchronizing effects are responsible for
-fluctuations (cycling) in statewide total deer and DVC time series, we adapted the standard
+cycling in statewide total deer and DVC time series, we adapted the standard
 Fourier surrogate procedure of @Theiler1992. We constructed artificial
 time series data, for both variables for each location, that had the same spectral
-characteristics as the original data, except that they were not spatially synchronized over
-the $3-7$-year timescale band of interest. We accomplished this by randomizing
+characteristics as the original data, except they were not spatially synchronized over
+the $3-7$-year timescale band. We accomplished this by randomizing
 phases of the Fourier transforms of the county-level time series 
 (SI section \ref{SM-SI:methods}). We summed each set of
 surrogate time series spatially to produce surrogate statewide total time series for both
@@ -429,19 +424,15 @@ actual state-total deer abundance and DVC time series to determine to what exten
 additional variance and cycling intensity in the
 empirical state-total time series were attributable to synchrony. 
 
-<!--***DAN: Added a section here on the fact that we also carried out Fourier analyses.
-Need to correspondingly mention the Fourier results at the end of the Results section-->
-Although wavelet tools were the most appropriate appropriate 
-overall choice for our research goals, some of the main components of our theoretical 
-mechanism can also be detected in our data using Fourier analyses which may be more familiar to
-some readers. Supplementary Fourier approaches are described in 
-SI section \ref{SM-SI:methods}. All Fourier approaches we used are standard techniques, used in many fields.
+Although wavelet tools were the most appropriate 
+overall choice for our research goals, some components of our theoretical 
+mechanism can also be detected in our data using Fourier analyses. 
+Our supplementary Fourier approaches are described in 
+SI section \ref{SM-SI:methods}, and use standard techniques.
 Fourier approaches
 were used, for instance, to examine whether: 1) the spectral power in the state-total deer time series
 in the $3-7$-year timescale band is greater than it would be without synchrony in that band; and
 2) the same spectral peaks in the $3-7$-year band do not occur in county-level deer time series.
-Further details of all datasets,
-data pre-processing, and analytic methods are in SI section \ref{SM-SI:methods}.
 
 \textbf{Data availability.} All data will be made available in the Dryad digital repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
