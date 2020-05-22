@@ -648,20 +648,18 @@ Overall, we demonstrated that timescale-specific Moran effects, by
 synchronizing local population dynamics, can cause substantial cycles in the 
 regional total population. This is a new mechanism by which the environment can 
 produce population cycles. Previous attemps to link environmental factors to population cycles have either been unsubstantiated [e.g., sun spots;
-@Sinclair1992_sunspots;@Selas2004_sunspots], or provided a useful but patial explanation for cycles, as in studies of 
-tetraonids [@watson2000] or small mammals [@kausrud2008] which demonstrated that environmental factors tend to modify cycles 
-produced by density dependent factors, rather than producing them outright. Our study differs from these 
+@Sinclair1992_sunspots;@Selas2004_sunspots] or provided a useful but only partial explanation, along with density dependence for cycles [@watson2000;@kausrud2008]. Our study differs from these 
 previous attempts, in part because the new mechanism does not require a highly regular environmental 
 oscillator such as sun spots. Rather, it is sufficient simply for irregular environmental drivers 
-such as winter climatic factors to be coherent with populations over a particular timescale band, thereby inducing 
+such as winter climate to be coherent with populations over a particular timescale band, thereby inducing 
 synchrony in that band and leading to total-population cycles on the same timescales. Our results also provide 
 an additional example of Moran effects causing synchrony [@Leibhold2004_sync;@hansen2020]. 
 Finally, we have presented what is, to our knowledge, the first demonstration that synchrony 
 can be transmitted in a 
-Moran-like effect from ecological to human systems (deer to DVCs). Prior work demonstrated the
+Moran-like effect from ecological to human systems (deer to DVCs). <!--TOM: I think we can delete this sentence. Prior work demonstrated the
 transmission of synchrony through trophic interactions within ecosystems [e.g., @Haynes2009],
 but our results show similar mechanisms can also cause synchrony to pass from ecological
-to human systems. Thus if climate change alters synchrony, as a growing number
+to human systems.--> Thus if climate change alters synchrony, as a growing number
 of papers indicate is likely occurring 
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
 @Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018;@hansen2020], 
@@ -688,11 +686,9 @@ and then local dynamics sum to produce population cycles.
 The alternatives would be difficult to distinguish with certainty, but the former mechanism
 may be more likely because winter climatic factors are known to influence ungulate
 dynamics [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer],
-and we are unaware of any evidence suggesting that deer populations can be intrinsically
-cyclic. Eliminating synchrony via randomizations eliminated the state-wide 
-cyclic oscillation (Fig. \ref{Fig5_StateWideFluctuations}), even though the
-randomizations preserved the structure of the local fluctuations, demonstrating that
-it was, indeed, the synchrony that produced the observed large-spatial-scale cycling.
+and we are unaware of any evidence suggesting that deer populations are intrinsically
+cyclic. Randomizations that removed synchrony but preserved the structure of the local fluctuations eliminated the state-wide 
+cyclic oscillation (Fig. \ref{Fig5_StateWideFluctuations}), demonstrating synchrony likely produced the observed large-spatial-scale cycling.
 
 <!--Reasonableness of the drivers we found in relation to other studies and biological
 mechanisms-->
@@ -707,8 +703,7 @@ populations [@Post1998_popgrowth;@forchhammer1998]. Winter weather and climate p
 populations because deeper snow limits access to winter food resources in ungulates, which subsequently 
 affects body condition, leading to greater susceptibility to starvation or predators, and reduced 
 parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. 
-The influence of winter weather on deer extends outside as well as inside WI,
-so for larger regions including WI, cycling of total regional deer populations and 
+The influence of winter weather on deer extends to larger regions beyond WI, indicating cycling of total regional deer populations and 
 DVCs are likely to be even stronger than what we have documented because
 a larger number of synchronized local populations accentuates the effect we described.
 
