@@ -539,11 +539,13 @@ the estimated abundances of the county's intersections with DMUs.
 We dropped one county (Menominee) due to incomplete data for most 
 variables, leaving `r length(unique(dat$COUNTY_NAM))` counties for statistical analysis.
 
-We also calculated estimated hunter abundance, also from data from the WINDR, 
+We also calculated estimated hunter abundance during the first 
+two days of the annual 9-day gun hunting season, also from data from the WINDR, 
 for each county for the years 1992-`r maxyear`
 (main text Fig. \ref{MT-Fig2_Timeseries}); these data constituted an index of the estimated 
 number of hunters during the first two days of the 9-day gun 
-hunting season [@widnr2001]. Gun hunters on average represent $`r gunhunter_percent`\%$ of the total hunters in WI
+hunting season [@widnr2001] and hence were an index of overall hunting pressure. Gun hunters 
+on average represent $`r gunhunter_percent`\%$ of the total hunters in WI
 each year over the years of this study. We estimated hunter abundances for counties
 using the same method as for deer abundance. We dropped 18 counties due to incomplete
 survey efforts of hunters or missing data, leaving 53 counties for analysis that used
@@ -928,7 +930,7 @@ for the single surrogate, the process then being repeated for each surrogate. Th
 across the band was computed for the data and for each surrogate, and the data mean rank was appropriately compared to the 
 distribution of surrogate mean ranks to form the band-aggregate test of significance.
 
-\textbf{Wavelet Moran theorem, fractions of synchrony explained, and predicted synchrony.} We calculated 
+\textbf{Wavelet Moran theorem, fractions of synchrony explained, and the "predicted synchrony" plot.} We calculated 
 fractions of deer abundance 
 synchrony explained by snow depth and hunter abundance, as well as the fraction of DVC 
 synchrony explained by deer abundance, following 
@@ -945,7 +947,7 @@ wavelet Moran theorem to estimate fractions of
 synchrony explained. Cross terms less than $10\%$ 
 of estimated fractions of synchrony explained were 
 considered necessary to make statements about fractions of synchrony explained. 
-The wavelet Moran theorem also provides a "predicted synchrony plot," which has the same format
+The wavelet Moran theorem also provides a "predicted synchrony" plot, which has the same format
 as the wavelet mean field magnitude plot, and can be compared to it, but shows what the pattern
 of synchrony in a variable, e.g., DVCs, would look like if the only synchronizing
 influences on it were those of another variable, e.g., deer abundance [@Sheppard_wavmodel]. 
@@ -953,7 +955,7 @@ If the predicted synchrony plot is similar to the actual wavelet mean field magn
 for DVCs then it provides visual support for the hypothesis that deer synchrony causes DVC synchrony.
 The function `wlm` and related functions from `wsyn` implement these tools.
 
-\textbf{Wavelet Moran theorem, fractions of synchrony explained, and predicted synchrony, technical background.}
+\textbf{Wavelet Moran theorem, fractions of synchrony explained, and the "predicted synchrony" plot", technical background.}
 Technical background on the wavelet Moran theorem and related ideas was taken from
 @Sheppard2016_aphids and @Sheppard_wavmodel, and is reproduced here for reader convenience.
 If $x_i^{(0)}(t)$ and $x_i^{(1)}(t)$ are again two quantities measured
@@ -1712,8 +1714,8 @@ identified with red circles.\label{InflationFig}}
 \begin{figure}[!h]
 \includegraphics[width=.3\textwidth]{Results/FigS6.png}
 \caption[Hunter mean fields and predictions of deer synchrony based on hunters]{Wavelet mean field (A) and wavelet phasor mean field (B) magnitudes of county-level hunter abundance 
-time series, and predicted synchrony of deer abundance based on a wavelet model with sole predictor hunter 
-abundance (C). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
+time series, and a predicted synchrony plot of deer abundance based on a wavelet model with sole predictor hunter 
+abundance (C; see SI section \ref{SI:methods}). Higher values in A, B indicate greater synchrony (A) or phase synchrony (B) of hunter abundance 
 time series at the indicated times and timescales. Contours on (B) indicate statistical significance of phase 
 synchrony at $P = 0.001$. Colors in (C) show predicted synchrony in deer abundance, while contours show the 
 actual wavelet mean field magnitude of deer abundance, similar to the contours shown in main text Fig. \ref{MT-Fig3_DeerSync}C. Slight differences exist here vs main text Fig. \ref{MT-Fig3_DeerSync}C because of different spatiotemporal extents of the data used in hunter analyses. Agreement is poor between colors and contours 
@@ -1727,7 +1729,7 @@ well on $3-7$-year timescales.\label{FigS6_WMFHunter}}
 
 \begin{figure}[!h]
 \includegraphics[height=.8\textheight]{Results/FigS7.png}
-\caption[Mean fields and predicted synchrony for deer and DVCs, USDA district data]{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and predicted synchrony (E) for deer abundance (A, C) and DVCs (B, D, E) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are the actual wavelet mean field magnitude of DVCs from (B). Agreement is good, giving a visual indication of the statistical result that deer abudance explains DVCs. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS7_WMFAndPredictionsDistricts}}
+\caption[Mean fields and predicted synchrony for deer and DVCs, USDA district data]{Wavelet mean field (A, B) and phasor mean field (C, D) magnitudes, and a predicted synchrony plot (E; see SI section \ref{SI:methods}) for deer abundance (A, C) and DVCs (B, D, E) using USDA-district data. Higher values in A-D indicate greater synchrony (A, B) or phase synchrony (C, D) at the indicated times and timescales. Contours on (C, D) indicate statistical significance of phase synchrony at $P = 0.001$. Colors in (E) show synchrony in DVCs predicted by a wavelet model with sole predictor deer abundance, while contours are the actual wavelet mean field magnitude of DVCs from (B). Agreement is good, giving a visual indication of the statistical result that deer abudance explains DVCs. Vertical axes differ between left and right panels because time series were shorter for DVCs. \label{FigS7_WMFAndPredictionsDistricts}}
 \end{figure}
 
 \newpage
