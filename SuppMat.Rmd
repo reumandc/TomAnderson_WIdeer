@@ -1058,9 +1058,9 @@ hypothesis that a Moran effect related to MEI was partly responsible for deer
 synchrony. As mentioned briefly in the main text, this choice was because the wavelet Moran theorem and 
 related techniques are more complex and less effective when 
 data are not spatially resolved. MEI is a single index, so was not spatially resolved. What follows is a 
-technical description of 1) why applying the wavelet Moran theorem to MEI and deer abundance 
+technical description of 1) why applying the wavelet Moran theorem to $\text{MEI}_{\text{w}}$ and deer abundance 
 can produce overfitted models and inflated estimates of fractions of deer synchrony explained
-by MEI; and 2) steps we took to try to quantify the degree of inflation. Results of the
+by $\text{MEI}_{\text{w}}$; and 2) steps we took to try to quantify the degree of inflation. Results of the
 procedures described here are in SI section \ref{SI:results}.
 
 <!--***DAN: once this is all written, go through and make sure the sub sections of the SI Methods and 
@@ -1074,8 +1074,7 @@ $\text{MEI}_{\text{w}}$, even though doing so results in complications, as we wi
 $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$, as in the 
 statement of the wavelet Moran theorem,
 where the $w^{(0)}_{i,\sigma}(t)$ are the power-normalized wavelet transforms of the deer abundance
-time series and the $w^{(1)}_{i,\sigma}(t)$ are the power-normalized wavelet transforms of winter 
-MEI and therefore are the same for all locations, $i$. The theorem then provides a decomposition 
+time series and the $w^{(1)}_{i,\sigma}(t)$ are the power-normalized wavelet transforms of $\text{MEI}_{\text{w}}$ and therefore are the same for all locations, $i$. The theorem then provides a decomposition 
 of synchrony, $\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{wmf},0)}_{\sigma}(t)|^2  = |\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2 + \frac{1}{T} \sum_{t=1}^{T} \left| \frac{1}{N} \sum_{i=1}^{N} d_{i,\sigma}(t) \right|^2$.
 The cross terms of (\ref{eq:T2}) are identically zero in the present case
 because the $w^{(1)}_{i,\sigma}(t)$ are the same for all $i$ [@Sheppard2016_aphids]. For the same reason, 
@@ -1098,9 +1097,9 @@ throughout the data, giving spuriously high coherence.   Where separately measur
 this spurious association would be expected to have a different phase at each site and be averaged out in the 
 spatial coherence. But MEI data were not spatial. Whereas we can conclude, due to the significance testing results, 
 that there is probably a real association between $\text{MEI}_{\text{w}}$ and deer fluctuations, bias may still manifest in the 
-form of a spurious association between MEI and additional local variability in deer abundance that is actually 
-independent of MEI, exagerating the apparent coherence between deer and MEI.  So the lack of spatial resolution in the 
-$\text{MEI}_{\text{w}}$ index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and MEI
+form of a spurious association between $\text{MEI}_{\text{w}}$ and additional local variability in deer abundance that is actually 
+independent of MEI, exagerating the apparent coherence between deer and $\text{MEI}_{\text{w}}$.  So the lack of spatial resolution in the 
+$\text{MEI}_{\text{w}}$ index means, in summary, that the estimated coherence, $|\Pi^{(01)}_{\sigma}|$ between deer abundance and $\text{MEI}_{\text{w}}$
 (and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
 deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
 Moran theorem suggests that $\text{MEI}_{\text{w}}$ explains $`r round(abunwmeiSyncExp37,0)`\%$ of deer abundance synchrony 
@@ -1113,9 +1112,9 @@ The goal now is to estimate
 to what extent these values are inflated.
 
 <!--Description of procedure for estimating inflation-->
-To assess the levels of inflation in MEI-deer coherence estimates and therefore in estimates of amount of 
+To assess the levels of inflation in $\text{MEI}_{\text{w}}$-deer coherence estimates and therefore in estimates of amount of 
 deer synchrony explained by
-MEI, we performed simulation exercises with artificial data chosen to mimic properties of the real time-series, but 
+$\text{MEI}_{\text{w}}$, we performed simulation exercises with artificial data chosen to mimic properties of the real time-series, but 
 with the advantage that we could simulate extremely long time series and thus obtain unbiased estimates of 
 coherence and synchrony explained, for comparison with the estimates based on realistic-length data.
 We first fitted an AR(2) model to the $36$-year $\text{MEI}_{\text{w}}$ time series we used for our other analyses, obtaining
@@ -1136,8 +1135,7 @@ time series we used an independent simulated MEI time series. After some prelimi
 space, we considered $\sqrt{V}$ varying from $1.6\exp(-0.4)$ to $1.6\exp(0.4)$ in multiplicative increments
 of $\exp(0.08)$, and we considered $c$ varying from $0.175$ to $0.625$ in additive increments of $0.025$.
 For each of these combinations of $\sqrt{V}$ and $c$ we computed three quantities, described in the next 
-paragraph, and compared these quantities to values of the same statistics computed for the actual winter 
-MEI and deer abundance time series in order to find the values of $\sqrt{V}$ and $c$ for which agreement was good.
+paragraph, and compared these quantities to values of the same statistics computed for the actual $\text{MEI}_{\text{w}}$ and deer abundance time series in order to find the values of $\sqrt{V}$ and $c$ for which agreement was good.
 
 The three quantities were as follows. The first quantity was the spatial synchrony, measured using a 
 time- and band-averaged squared mean field magnitude, of the simulated deer data. In other words: 
@@ -1379,9 +1377,9 @@ between these variables and deer abundance were also very similar
 to county-level relationships: snow depth and 
 deer abundance were nearly in anti-phase; and climate 
 indices and deer abundance showed approximately 
-quarter-cycle phase shifts (Table \ref{TabS2_SummaryDistrict}). Combined, snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ explained $`r round(usda.abunmodelSyncExp,0)`\%$ of the 
+quarter-cycle phase shifts (Table \ref{TabS2_SummaryDistrict}). <!--Tom: I think we have to take out this sentence since it uses wavelet multiple regression to get the synchrony explainedCombined, snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ explained $`r round(usda.abunmodelSyncExp,0)`\%$ of the 
 synchrony in deer abundance using 
-USDA district data, and patterns of synchrony in deer abundance predicted by that model closely resembled actual patterns of deer abundance synchrony (Fig. \ref{FigS7_WMFAndPredictionsDistricts}E). Cross terms for this model were of small magnitude, $`r round(usda.abunmodelXterms,0)`\%$.
+USDA district data, and patterns of synchrony in deer abundance predicted by that model closely resembled actual patterns of deer abundance synchrony (Fig. \ref{FigS7_WMFAndPredictionsDistricts}E). Cross terms for this model were of small magnitude, $`r round(usda.abunmodelXterms,0)`\%$.-->
 
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
@@ -1409,7 +1407,7 @@ effects on the statistics of dispersal of
 deer between counties or movements of cars between 
 counties, but such effects would be
 reduced at the larger district level because reduced fractions of deer and cars disperse from one spatial unit to another for these larger spatial units. 
-Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS7_WMFAndPredictionsDistricts}F). 
+Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS7_WMFAndPredictionsDistricts}E). 
 
 \textbf{Statewide Analysis and Results.} For statewide analyses, for which all 
 variables were represented only by single, state-average or 
