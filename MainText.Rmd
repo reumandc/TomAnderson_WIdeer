@@ -101,62 +101,60 @@ changes to population cycles may arise via the new mechanism.
 
 #Introduction
 
-The causes of population cycles have mystified ecologists for over 100 years 
-[@Myers2018_cycles]. An early hypothesis for the cause of cycles, for the iconic Canadian 
+Population cycles have intrigued ecologists for 100 years 
+[@Myers2018_cycles]. An early hypothesis for the cause of cycles, for the Canadian 
 lynx-snowshoe hare system and 
-for other systems, posited that strongly cyclic environmental phenomena such as sun spots may drive 
+other systems, posited that strongly cyclic environmental phenomena such as sun spots may drive 
 population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. The sun spot hypothesis was 
 refuted, however [@Nilssen2007_nosunspots;@Myers2013_nosunspots], and whereas it is now recognized that environmental drivers 
 such as winter weather can alter cycles through their interactions with intrisic population
 processes [@watson2000;@kausrud2008], for decades 
-research has focused instead on explanations which principally involve nonlinear or delayed density dependence, 
-often via predator-prey interactions, parasitism, and disease 
+research has focused instead on explanations which involve nonlinear or delayed density dependence, 
+often via predator-prey interactions and parasitism 
 [@kausrud2008;@Krebs2018_harereview;@Krebs2013_book;@Myers2013_nosunspots;@MartinezPadilla2014_grouse].
 
 Population cycles are fundamentally linked with spatial synchrony, the 
 tendency for geographically distinct populations to 
 exhibit correlated temporal fluctuations. 
-Theory predicts that cyclic populations can easily be brought into synchrony via weak 
-coupling from dispersal or via shared exogenous forcing of weather (Moran effects), in a 
+Theory predicts that cyclic populations can be synchronized via weak 
+coupling from dispersal or via shared exogenous forcing (Moran effects), in a 
 process known as nonlinear phase locking [@Bjornstad2000]. Empirical evidence from laboratory 
 experiments [@VassuerFox_2009;@HopsonFox_2019] and observational data 
 [@Haynes_etal2019] support these predictions. Indeed, the 
-lynx-hare system features predator-prey cycles thought to be synchronized regionally 
+lynx-hare system features cycles thought to be synchronized regionally 
 by phase locking through Moran effects [@stenseth1999;@stenseth2004]. 
 As a consequence, the prevailing paradigm is that cycles and synchrony are linked because 
-populations whose dynamics are intrinsically cyclic are easy to synchronize; that is, population 
-cycles help give rise to spatial synchrony.
+populations whose dynamics are intrinsically cyclic are easy to synchronize: population 
+cycles help cause spatial synchrony.
 
-We here propose and provide evidence for a mechanism by which the direction of causality can be 
+We here propose a mechanism by which the direction of causality can be 
 reversed: instead, spatial synchrony can give rise to population cycles. The
 mechanism comprises the following two steps. First, an exogenous driver synchronizes non-cyclic local
 population fluctuations *on a particular timescale*. Many large climate phenomena
-fluctuate, either episodically or consistently, with emphasis on particular timescales. 
+fluctuate, episodically or consistently, with emphasis on particular timescales. 
 For example, from ca.
-1965-1995, fluctuations in the North Atlantic Oscillation (NAO) contained a substantial 
+1965-1995, the North Atlantic Oscillation (NAO) contained a substantial 
 10-year oscillatory component 
-[@Sheppard2016_aphids], and the El Ni$\~{n}$o Southern Oscillation (ENSO) also has 
-periodic content [@tudhope2001]. Thus local weather variables influenced by 
+[@Sheppard2016_aphids]. Thus local weather variables influenced by 
 climatic oscillations can contain periodic components which are synchronous across
 large areas. These components may be weak and therefore hardly noticable, 
 in comparison with asynchronous,
 local fluctuations with which they are combined.
 Synchronous periodic components in local weather can nevertheless propogate, via Moran
 effects, to produce weak, synchronous periodic components 
-in local population dynamics. Evidence
-indicates that timescale-specific spatial synchrony of populations is probably common 
+in local population dynamics. Timescale-specific spatial synchrony of populations is probably common 
 [@Defriez2016_plankton;@Sheppard2016_aphids;@Defriez2017_marine;@Defriez2017_terrestrial;@Sheppard2017_surrogates;@Walter2017_geogsync;@Anderson2019_LO;@Sheppard_wavmodel;@Haynes_etal2019]. 
 Second, the weak periodic components
 of local population dynamics, being synchronous across space, reinforce each other
-in the total population computed across the region, whereas stronger, asynchronous
+in the total regional population, whereas stronger, asynchronous
 components on other timescales cancel in the spatial total. Thus periodicities
 in dynamics which may be unnoticable at the local spatial scale become
 dominant at the regional scale. 
 The key here is that synchrony occurs *on a particular timescale*.
 Dynamics of the total, regional population are then dominated by a cycle on that timescale. See
-Fig. \ref{Fig1_example} for a simulated example. A theoretical approach to the mechanism is summarized below and elaborated in
-Supporting Information (SI) sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}. The bulk of the paper is 
-spent examining empirical evidence for the mechanism.
+Fig. \ref{Fig1_example} for a simulated example. A theoretical approach is summarized below and elaborated in
+Supporting Information (SI) sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}. The bulk of the paper 
+presents empirical evidence for the mechanism.
 
 <!--***DAN: deleted an instance of the word "major" to be more understated and to address a referee concern about overselling the applied significance-->
 One potential applied concern is that if
@@ -182,12 +180,12 @@ studied.
 The ecological system for which we explore the importance of these ideas 
 centers on white-tailed deer (*Odocoileus virginianus*) populations across
 the state of Wisconsin (WI), USA, and on rates of deer-vehicle collisions (DVCs).
-White-tailed deer is a species of considerable interest due to its
+White-tailed deer is a species of interest due to its
 economic and cultural benefits and ecosystem impacts [@Cote2004_deerimpacts;@Conover2011_bookchp]. Across 
 the USA in 2011, US\$$34$Bn were spent on hunting big game, including deer [@usfws2011_survey]. 
 In WI, hunting-related economic activity is ~$1\%$ of state GDP [@usfws2011_survey]. DVCs cause about 
 50 human fatalities and US\$$1.5$Bn in vehicular damage annually across the USA [@Conover2011_bookchp]. Thus it 
-is an important applied question what drives the year-to-year variability in statewide deer abundance and DVC 
+is an important question what drives the year-to-year variability in statewide deer abundance and DVC 
 totals. We consider potential drivers of deer populations including both environmental factors and the direct 
 effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) aggregated at three 
 spatial resolutions: counties ($n=71$), United States Department of Agricultural (USDA) districts 
@@ -205,8 +203,8 @@ produced synchrony in DVCs on 3-7 year timescales.
 Timescale-specific synchrony caused substantial fluctuations on 3-7-year
 timescales in state-total deer populations and DVCs. 
 Our results provide a theoretical description and empirical support for 
-the importance of a new mechanism of population cycles, and for its
-potential importance for human concerns. In contrast to the well-understood
+the importance of a new mechanism of cycles, and for its
+potential applied importance. In contrast to the well-understood
 mechanism by which cycles can beget synchrony, our mechanism shows 
 that synchrony, when specific to certain timescales, can also produce
 cycles.
@@ -217,7 +215,7 @@ The statement of our main theoretical result requires a conceptual understanding
 of the *power spectrum* (or, simply, *spectrum*) of a population or other 
 time series, and of the *cospectrum* of two time series. 
 The spectrum is useful for studying population cycling because peaks in the 
-spectrum of a population indicate cyclic dynamics. Given a time series
+spectrum indicate cyclic dynamics. Given a time series
 or stochastic process, $w_i(t)$, measured in location $i$, the spectrum $S_{w_iw_i}(f)$ 
 is a function of frequency, $f$. The frequency of a periodic oscillation is one over
 its timescale, i.e., one over its period. The value of the spectrum $S_{w_iw_i}(f)$ is larger for 
@@ -225,13 +223,13 @@ frequencies on which $w_i(t)$ oscillates with greater strength. So,
 for instance, a population that exhibits strong (respectively, weak) 10-year-timescale 
 oscillations will have a spectrum with a large (respectively, small) peak at 
 the frequency $1/10 \text{yr}^{-1}$. The spectrum decomposes the variance, $\var(w_i(t))$, according 
-to the timescales on which it occurs, in the sense that an appropriate integral of 
+to the timescales on which it occurs, i.e., an appropriate integral of 
 $S_{w_iw_i}(f)$ across all frequencies equals $\var(w_i(t))$. The cospectrum
 of two time series, $w_i(t)$ and $w_j(t)$, decomposes their covariance, $\cov(w_i(t),w_j(t))$,
 in a similar way: the cospectrum, $C_{w_iw_j}(f)$, is a function of frequency
 with peaks occurring at frequencies for which oscillations in $w_i(t)$ and
 $w_j(t)$ are strong and coincident in their phases, i.e., synchronous; an 
-appropriate integral of $C_{w_i w_j}(f)$ equals $\cov(w_i(t),w_j(t))$.
+integral of $C_{w_i w_j}(f)$ equals $\cov(w_i(t),w_j(t))$.
 
 Our main theoretical result expresses the spectrum, $S_{\text{tot}}$, of a total
 population across a region composed of $i=1,\ldots,N$ local areas in the form
@@ -240,9 +238,9 @@ S_{\text{\emph{tot}}}(f) = F_{\text{popdyn}}(f) \left[ \sum_{i=1}^N S_{\epsilon_
 \sum_{\substack{i,j=1 \\ i \neq j}}^N C_{\epsilon_{i}\epsilon_{j}}(f)\right],\label{mainresmt}
 \end{equation}
 \noindent where $F_{\text{popdyn}}(f)$ reflects 
-the nature of population dynamics within the local areas, and the $S_{\epsilon_i\epsilon_i}$
+population dynamics within the local areas, and the $S_{\epsilon_i\epsilon_i}$
 are spectra and the $C_{\epsilon_i\epsilon_j}$ are cospectra of environmental noise time 
-series in the local areas. The derivation of this result is performed for a model exhibiting 
+series in the local areas. This result is for a model exhibiting 
 autoregressive moving average (ARMA) dynamics 
 within a habitat patch, and $F_{\text{popdyn}}(f)$
 is a function that depends only on the ARMA coefficients (SI section \ref{SM-SI:theory}). 
@@ -256,18 +254,18 @@ $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}(f)$ in (\ref{mainresmt}) encapsula
 the effects of timescale-specific synchrony on whether the total population
 exhibits cycling. The key observation here is that, when $N$ is large so that the
 region being considered is a combination of a large number of local areas, the first term
-is likely to make a much smaller contribution to $S_{\text{tot}}$ than is the second
+is likely to make a smaller contribution to $S_{\text{tot}}$ than the second
 term; the first term is a sum of only $N$ quantities and the second is a sum of
-$N^2-N$ quantities, and $N^2-N$ is much greater than $N$, for large $N$. Thus theory predicts
+$N^2-N$ quantities, and $N^2-N \gg N$ for large $N$. Thus theory predicts
 that timescale-specific patterns of synchrony are very important for whether
 spatial-total populations exhibit cycling. Of course, which of the two terms
 in brackets in (\ref{mainresmt}) is larger depends not only on the number of summands
-in each term, but also on the values of the summands. We explore 
+in each term, but also on their values. We explore 
 reasonable scenarios in the SI
-and find that the initial intuition is correct, for a general model setup, 
-that timescale-specific synchrony is a very important determinant of
+and find that the initial intuition is correct, 
+that timescale-specific synchrony is often a very important determinant of
 regional population cycles. See SI sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}
-for the the general theory and 
+for the the theory and 
 SI section \ref{SM-SI:theory} and Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
 \ref{SM-TheoryExample3} for examples.
 
@@ -589,76 +587,75 @@ Figs \ref{SM-FigS_DVCSpectPow3to7Fig5Surrogs}-\ref{SM-FigS_DVCSpectraFig5Surrogs
 
 <!--summary-->
 Overall, we demonstrated that timescale-specific Moran effects, by 
-synchronizing local population dynamics, can cause substantial cycles in the 
+synchronizing local dynamics, can cause substantial cycles in the 
 regional total population. This is a new mechanism by which the environment can 
-produce population cycles. Previous attemps to link environmental factors to population cycles have either been unsubstantiated [e.g., sun spots;
-@Sinclair1992_sunspots;@Selas2004_sunspots] or provided a useful but only partial explanation, along with density dependence for cycles [@watson2000;@kausrud2008]. Our study differs from these 
-previous attempts, in part because the new mechanism does not require a highly regular environmental 
-oscillator such as sun spots. Rather, it is sufficient simply for irregular environmental drivers 
+produce population cycles. 
+Previous attemps to link environmental factors to population cycles have either been unsubstantiated [e.g., 
+sun spots; @Sinclair1992_sunspots;@Selas2004_sunspots], or provided a useful but patial explanation for cycles, 
+as in studies of tetraonids [@watson2000] or small mammals [@kausrud2008] which demonstrated that environmental 
+factors tend to modify cycles produced by density dependent factors, rather than producing them outright.
+Our study differs from previous work, in part because the new mechanism does not require a highly regular environmental 
+oscillator such as sun spots. Rather, it is sufficient for irregular environmental drivers 
 such as winter climate to be coherent with populations over a particular timescale band, thereby inducing 
 synchrony in that band and leading to total-population cycles on the same timescales. Our results also provide 
 an additional example of Moran effects causing synchrony [@Leibhold2004_sync;@hansen2020]. 
 Finally, we have presented what is, to our knowledge, the first demonstration that synchrony 
 can be transmitted in a 
-Moran-like effect from ecological to human systems (deer to DVCs). <!--TOM: I think we can delete this sentence. Prior work demonstrated the
-transmission of synchrony through trophic interactions within ecosystems [e.g., @Haynes2009],
-but our results show similar mechanisms can also cause synchrony to pass from ecological
-to human systems.--> Thus if climate change alters synchrony, as a growing number
+Moran-like effect from ecological to human systems (deer to DVCs).
+Thus if climate change alters synchrony, as a growing number
 of papers indicate is likely occurring 
 [@Post2004_greenland;@Allstad2015_gypsysync;@Defriez2016_plankton;
 @Sheppard2016_aphids;@Koenig2016_birdsync;@Shestakova2016_forestsync;@Black2018;@hansen2020], 
-our results show that large-spatial-scale cycles
+our results show that cycles
 in both populations and human systems may change as a consequence.
 
 <!--Variants of the mechanism. -->
-There are two alternative elaborations of the mechanism we present by which
-synchronous effects produce population cycles.
+There are two alternative elaborations of our mechanism.
 First, synchronous fluctuations in environmental drivers may have produced
-small oscillations on $3-7$-year timescales in county-level deer population time series, and 
-also brought these oscillations into spatial synchrony, thereby causing them to sum across
+small oscillations on $3-7$-year timescales in county-level deer populations, and 
+also brought these oscillations into synchrony, thereby causing them to sum across
 counties to produce noticable statewide fluctuations. Second, the local population oscillations 
 may have been due partly to the intrinsic dynamics of deer, resulting 
 from density-dependent effects, maternal effects, or 
 other mechanisms of nonlinear population dynamics. Synchronous environmental drivers 
 would then have brought the intrinsically oscillating local dynamics into synchrony. 
-<!--This second hypothesis is the pattern typically described from theoretical and experimental studies, where exogenous drivers or dispersal couple intrinsically cyclic populations via nonlinear phase-locking [@Bjornstad2000;@VassuerFox_2009;@HopsonFox_2019]. Recent evidence from observational studies on gypsy moths also support the hypothesis of cyclic-dynamics-leading-to-synchrony [@Haynes_etal2019]. -->
 The difference between these alternatives is whether local population
 oscillations were produced and synchronized, or merely synchronized but 
-not produced, by synchronous environmental drivers. But in either case our mechanism is the
+not produced, by synchronous environmental drivers. In either case our mechanism is the
 same whereby Moran effects synchronize local dynamics in a timescale-specific manner,
 and then local dynamics sum to produce population cycles.
 The alternatives would be difficult to distinguish with certainty, but the former mechanism
 may be more likely because winter climatic factors are known to influence ungulate
 dynamics [@Mysterud2008_deerclimate; @Hegel2012_caribou; @Post2004_greenland; @Grotan2005_roedeer],
 and we are unaware of any evidence suggesting that deer populations are intrinsically
-cyclic. Randomizations that removed synchrony but preserved the structure of the local fluctuations eliminated the state-wide 
+cyclic. Randomizations that removed synchrony but preserved the structure of local fluctuations eliminated the state-wide 
 cyclic oscillation (Fig. \ref{Fig5_StateWideFluctuations}), demonstrating synchrony likely produced the observed large-spatial-scale cycling.
 
 <!--Reasonableness of the drivers we found in relation to other studies and biological
 mechanisms-->
-Large-scale climatic patterns and local winter weather conditions are known to influence spatial synchrony 
+Large-scale climatic patterns and local winter weather conditions are known to influence synchrony 
 via Moran effects in other ungulates, including reindeer, 
 caribou [@post2002;@aanes2003;@Post2004_greenland;@Hegel2012_caribou], roe deer [@Grotan2005_roedeer], 
-and musk oxen [@post2002], and thus the cycling mechanism we observed may occur as well 
+and musk oxen [@post2002], and thus the cycling mechanism we observed may also occur 
 in other ungulates. Here, winter snow depth,  $\text{MEI}_{\text{w}}$ and $\text{PDO}_{\text{w}}$ 
 were the primary determinants of deer synchrony. Deer populations lagged $\text{MEI}_{\text{w}}$ and 
 $\text{PDO}_{\text{w}}$ by 1-2 years, a similar delay to other reported lag times of climatic effects on deer 
 populations [@Post1998_popgrowth;@forchhammer1998]. Winter weather and climate probably influenced deer
-populations because deeper snow limits access to winter food resources in ungulates, which subsequently 
+populations because deeper snow limits access to winter food in ungulates, which subsequently 
 affects body condition, leading to greater susceptibility to starvation or predators, and reduced 
 parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. 
-The influence of winter weather on deer extends to larger regions beyond WI, indicating cycling of total regional deer populations and 
-DVCs are likely to be even stronger than what we have documented because
-a larger number of synchronized local populations accentuates the effect we described.
+The influence of winter weather on deer extends to larger regions beyond WI. Cycling 
+over larger regions may be even stronger than what we have documented because
+a larger number of synchronized local populations can accentuate the effect we described.
 
 <!--It aint hunters. -->
 Hunters were not the principal driver of deer synchrony. These results are consistent with the
-hypothesis that hunters can regulate deer populations over short timescales and small spatial 
-areas [@fryxell1991;@denicola2008] but have more limited effects over longer timescales and at 
-large spatial extents [@brown2000;@simard2013]. The lack of longer-timescale ($3-7$-year) spatial wavelet 
+hypothesis that hunters can regulate deer populations over short timescales and small 
+areas [@fryxell1991;@denicola2008] but have limited effects over longer timescales and 
+large areas [@brown2000;@simard2013]. The lack of longer-timescale ($3-7$-year) spatial wavelet 
 coherence between hunters and deer abundance is likely also related to the facts that hunters 
 typically prefer to shoot bucks, the removal of
-which has limited population effects; and the state regulates antlerless harvest in an attempt to
+which has limited population effects; and the state regulates antlerless harvest to
 maintain populations at a desirable size.
 
 <!--applied reasons to care, link to climate change-->
@@ -667,7 +664,7 @@ this change contributes to efforts to tone down the claims of how important this
 I put this note so I don't forget I made this change when I write responses to referees.-->
 Our results provide a previously unrecognized applied motivation for studies 
 of synchrony in populations.
-Fluctuations of a quarter million deer, statewide, which we showed are caused by synchrony, 
+Fluctuations of a quarter million deer, statewide, caused by synchrony, 
 likely will have considerable consequences for agricultural crop damage, forest regeneration 
 [@Cote2004_deerimpacts], and hunting success, all of which can have socioeconomic impacts. 
 We also showed that Moran effects subsequently pass from deer to DVCs in a cascading manner. 
@@ -681,31 +678,30 @@ causes fluctuations of more than 2500 annual documented DVCs through time.
 sentence with something like "...though we have not examined whether a fluctuation of 2500
 DVCs is sufficient, relative to other fluctuations that occur in accident rates, to be of concern..."-->
 Such fluctuations may influence insurance and accident recovery industries, though we have not examined 
-whether a fluctuation of this magnitude is sufficient, relative to other fluctuations that occur in accident rates, to be of substantial concern.
+whether a fluctuation of this magnitude is big enough to be of substantial concern.
 Our results provide another reason that
 additional studies of climate-change influences on synchrony [@hansen2020] should be undertaken: 
-because such influences may alter the cycling of populations, which can in turn
-influence human activities. 
+because such influences may alter the cycling of populations, then influencing human activities. 
 
 <!--specificity to timescales, and the strengths of our methods-->
 An important aspect in all of the phenomena we explore is their specificity to 
 certain timescales. Deer population cycles would not have manifested had deer synchrony 
-not been specific to certain timescales ($3-7$-years).
+not been specific to certain timescales.
 Timescale specificity in synchrony is now know to be common 
 [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel;@Haynes_etal2019;@Anderson2019_LO].
 Many past analyses of synchrony have 
 used correlation methods [@Leibhold2004_sync] that conflate timescales, but this can hinder 
 detection of synchronous phenomena and inferences of drivers of synchrony 
 by obscuring synchrony on some timescales with 
-asynchronous or noisy dynamics on other timescales [@Sheppard2016_aphids].
-The analytic methods used here [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel]
-were able to isolate the timescales on which synchrony occurred ($3-7$ years),
+asynchronous dynamics on other timescales [@Sheppard2016_aphids].
+The methods used here [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel]
+were able to isolate the timescales on which synchrony occurred,
 facilitating more precise determination of drivers of synchrony.
-Historically, determination of the causes of synchrony was identified as a
+Historically, determination of causes of synchrony was identified as a
 difficult problem [@Leibhold2004_sync;@Kendall2000_moran;@Abbott2007_moran], but in our previous
 work [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel],
 and again here, we showed that using timescale-specific methods can help 
-ameliorate this difficulty and can reveal new phenomena and previously unrecognized mechanisms.
+ameliorate this difficulty and can reveal new phenomena and mechanisms.
 
 # Acknowledgements
 D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and annonymous referees for very useful feedback. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature

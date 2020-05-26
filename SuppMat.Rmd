@@ -1377,9 +1377,7 @@ between these variables and deer abundance were also very similar
 to county-level relationships: snow depth and 
 deer abundance were nearly in anti-phase; and climate 
 indices and deer abundance showed approximately 
-quarter-cycle phase shifts (Table \ref{TabS2_SummaryDistrict}). <!--Tom: I think we have to take out this sentence since it uses wavelet multiple regression to get the synchrony explainedCombined, snow depth, $\text{MEI}_{\text{w}}$, and $\text{PDO}_{\text{w}}$ explained $`r round(usda.abunmodelSyncExp,0)`\%$ of the 
-synchrony in deer abundance using 
-USDA district data, and patterns of synchrony in deer abundance predicted by that model closely resembled actual patterns of deer abundance synchrony (Fig. \ref{FigS7_WMFAndPredictionsDistricts}E). Cross terms for this model were of small magnitude, $`r round(usda.abunmodelXterms,0)`\%$.-->
+quarter-cycle phase shifts (Table \ref{TabS2_SummaryDistrict}). 
 
 The climate indices explained similar amounts of 
 deer abundance synchrony as for the county-level 
