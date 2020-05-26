@@ -1749,7 +1749,7 @@ of its weakness, resulted in  a substantial $5$-year-period cycle when time seri
 in detail in the main text, snow depth and $\text{MEI}_{\text{w}}$ (B) produced a combined Moran effect on deer (E), which caused 
 synchrony in deer (H) on about $5$-year timescales ($3-7$-years), thereby resulting a substantial deer cycle on 
 statewide spatial scales (K). Also as explained in detail in the main text, deer abundance (C) produced a Moran effect
-on DVCs (F), which casued synchrony in DVCs (I) on $3-7$-year timescales, thereby resulting in a DVC cycle on statewide
+on DVCs (F), which caused synchrony in DVCs (I) on $3-7$-year timescales, thereby resulting in a DVC cycle on statewide
 spatial scales (L). Some horizontal and vertical axis extents differ among the three cases considered
 because available time series were shorter for DVCs
 than for deer. Panels (K) and (L) show state-total time series with linear (K) and nonlinear (L) trends removed, as explained
