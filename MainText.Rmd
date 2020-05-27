@@ -284,8 +284,7 @@ to $\text{Mar}_t$) weather by county for snow depth,
 precipitation amount, and minimum and maximum air temperature - here called Tmin and Tmax. 
 We also calculated a Winter Severity Index (WSI), previously known to relate to winter 
 impacts on deer populations [@widnr2001]. 
-Winter and growing-season (Apr-Nov) annual time series for the North Atlantic 
-Oscillation (NAO), the multivariate El Ni$\~{n}$o Southern Oscillation Index (MEI), and the Pacific 
+Winter and growing-season (Apr-Nov) annual time series for the NAO, the multivariate El Ni$\~{n}$o Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO) were obtained by averaging month values.
 All of these have been shown to 
 influence large ungulate population dynamics in the north central 
@@ -349,7 +348,7 @@ the degree of synchrony in both phases and amplitudes of oscillation.
 The statistical significance of a wavelet phasor mean field magnitude plot, at any given
 time and timescale, can be assessed though 
 comparison to a null hypothesis of random phases (SI 
-section \ref{SM-SI:methods}; [@Sheppard2013, @Sheppard2016_aphids, @Sheppard_wavmodel]). 
+section \ref{SM-SI:methods}; [@Sheppard2013; @Sheppard2016_aphids; @Sheppard_wavmodel]). 
 We used a significance threshold  of $P < 0.001$. 
 
 For both county- and district-level data, we assessed pairwise relationships

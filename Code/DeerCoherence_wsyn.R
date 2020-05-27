@@ -129,6 +129,7 @@ TabS1<-cbind(matrix(unlist(strsplit(row.names(TabS1),'.',fixed=TRUE)),ncol=2,byr
 TabS1$mn_phs<-as.numeric(as.character(ifelse(TabS1$p_val>0.06,"",TabS1$mn_phs)))
 TableS1<-data.frame(TabS1[,1:2],paste(TabS1$ts_low_bd,TabS1$ts_hi_bd,sep="-"),TabS1[,c("p_val","mn_phs")])
 colnames(TableS1)<-c("Predictor","Response","Timescale","Pvalue","MeanPhase")
+TableS1$MeanPhase<-TableS1$MeanPhase/pi #change units to pi radians
 levels(TableS1$Predictor)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
                                 "Summer PDO"="SummerPDO","Summer MEI"="SummerMEI", "Summer NAO"="SummerNAO")
 levels(TableS1$Response)<-list("Winter PDO"="WinterPDO","Winter MEI"="WinterMEI", "Winter NAO"="WinterNAO",
