@@ -188,7 +188,7 @@ effects of hunting. We use data from 1981-2016 (Fig.  \ref{Fig2_Timeseries}) agg
 spatial resolutions: counties ($n=71$), United States Department of Agricultural (USDA) districts 
 ($n=9$), and statewide (*Methods*). 
 
-Here we demonstrate, using deer data, how timescale-specific
+Here we demonstrate, using theory and deer data, how timescale-specific
 spatial synchrony can produce regional population cycles. We also show that
 timescale-specific deer population synchrony begets timescale-specific synchrony
 in DVCs across the state, producing cycles in 
@@ -366,7 +366,7 @@ unrelated to each other (SI section \ref{SM-SI:methods}; [@Theiler1992;@Schreibe
 We calculated how often observed spatial wavelet coherence between pairs of variables was 
 ranked higher than coherences of surrogate data sets, aggregating across the timescale 
 band of interest using an
-average-rank-based method (SI section \ref{SM-SI:methods}; @Sheppard2016_aphids). A p-value 
+average-rank-based method (SI section \ref{SM-SI:methods}; @Sheppard2016_aphids). A $P$-value 
 of less than $0.05$ means that the average empirical spatial wavelet coherence rank was higher than 
 the same quantity calculated for at least 95% of the surrogate data sets
 which represent the null hypothesis of no relationship. Ranks of
@@ -497,11 +497,6 @@ band, since this is adequately demonstrated by our wavelet coherence results bet
 and our results for snow depth. Thus such estimates were placed in SI section
 \ref{SM-SI:results}, where attempts to quantify the degree of inflation are also described 
 (see also Fig. \ref{SM-InflationFig} and Table \ref{SM-InflationTable}).
-<!--***DAN: Dan, you may want to add something to the discussion that coherence with MEI/PDO (together
-with our results for snow depth) is enough to support our argument that deer are environmentally 
-synchroinzed in the 3-7-year band, but we still do not know what specific weather variables (other
-than snow depth) are acting here, and for which MEI serves as a surrogate. This could be investigated in
-future work-->
 
 Deer synchrony on $3-7$-year timescales was not caused by hunting. County-level hunter and deer abundances were not significantly spatially coherent 
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
@@ -705,19 +700,18 @@ timescale-specific synchrony can cause population cycling. Three scenarios with 
 environmental synchrony result in different outcomes: scenario 1, an asynchronous-environment scenario, results in no 
 population synchrony or cycling; scenario 2 has environmental synchrony on a 3-year timescale, resulting in
 3-year population synchrony and 3-year regional-scale cycles; scenario 3 has environmental synchrony on a 10-year timescale, resulting in
-10-year population synchrony and 10-year cycles. In scenario 1, the asynchronous-environment scenario,
+10-year population synchrony and 10-year cycles. In scenario 1, 
 environmental noise in location $i$ ($i=1,\dots,71$; first $15$ locations
 shown in A) was modeled as 
 $e^{(1)}_i(t)=\sin(2 \pi t/w^{(1)}+2 \pi u^{(1)}_i)+3\epsilon^{(1)}_i(t)$, where $w^{(1)}=3$, 
 the $u^{(1)}_i$ were independent
 draws from the uniform distribution on $(0,1)$, and the local noises $\epsilon^{(1)}_i(t)$ were
-standard normal and independent across locations and times. In scenario 2, the 3-year-synchrony scenario,
+standard normal and independent across locations and times. In scenario 2, 
 noise ($15$ locations shown in B) 
 was $e^{(2)}_i(t)=\sin(2 \pi t/w^{(2)}+2 \pi u^{(2)})+3\epsilon^{(2)}_i(t)$
 where $w^{(2)}=3$, $u^{(2)}$ was one single standard-normally distributed random number used for all
 locations, and the $\epsilon^{(2)}_i(t)$ were again
-standard normal and independent.
-Noise for scenario 3, the 10-year-synchrony scenario (C), 
+standard normal and independent. Noise for scenario 3 (C), 
 was like scenario 2 but used $w^{(3)}=10$. Thus the noises in 
 scenarios 2 and 3 had weak and not visually obvious timescale-specific synchrony and those in 1 had no synchrony.
 Populations were modelled as $p^{(s)}_{i}(t+1)=\rho p^{(s)}_i (t)+e^{(s)}_i(t)$ using $\rho=0.4$
@@ -762,8 +756,6 @@ $P =$ 0.001. Horizontal lines in (A) and (B) indicate the timescales that were t
 analysis, $3-7$-years. 
 \label{Fig3_DeerSync}}
 \end{figure}
-<!--***DAN: Tom, on 2020 05 12 I looked at the knitted version of the above fig and the y-axis number labels
-were runnign into each other. Please fix.-->
 
 \newpage
 
@@ -777,8 +769,6 @@ show the actual wavelet mean field magnitude of DVCs from (A), for comparison. A
 visual indication of the statistical result that deer synchrony explains DVC synchrony.
 \label{Fig4_DvcSync}}
 \end{figure}
-<!--***DAN: Tom, on 2020 05 12 I looked at the knitted version of the above fig and the y-axis number labels
-were runnign into each other. Please fix.-->
 
 \newpage
 
