@@ -1875,7 +1875,7 @@ knitr::kable(TableS1,
              format='latex',align="l",escape=F,
              digits=4,
              caption.short="Wavelet coherence tests between climate indices",
-             caption = "$P$-values of wavelet coherence tests, and associated mean phase differences for significant and marginally significant tests, between climate indices. Values are over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS1_PairwiseClimVarSpatCoh}",
+             caption = "$P$-values of wavelet coherence tests, and associated mean phase differences (units if $\\pi$ radians) for significant and marginally significant tests, between climate indices. Values are over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS1_PairwiseClimVarSpatCoh}",
              booktabs=T)
 ```
 
