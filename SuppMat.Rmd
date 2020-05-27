@@ -159,14 +159,14 @@ with very little or no change in wording
 from that reference.
 Suppose population dynamics are given by
 \begin{equation}
-w_{i} = c_1 w_i(t-1)+ \cdots + c_n w_i(t-n)+q_0 \epsilon_{i}(t)+\cdots+q_{m}\epsilon_{i}(t-m),\label{eq:mainmodel}
+w_{i} = b_1 w_i(t-1)+ \cdots + b_n w_i(t-n)+p_0 \epsilon_{i}(t)+\cdots+p_{m}\epsilon_{i}(t-m),\label{eq:mainmodel}
 \end{equation}
 \noindent where $w_{i}(t)$ is the deviation of a population index $x_{i}(t)$ in
 habitat patch $i$ ($i=1,\ldots,N$) at time $t$ from an equilibrium value $x_{i}^{*}$. 
 The environmental noise process $\epsilon=(\epsilon_{1},\ldots,\epsilon_{N})$
 is assumed to be a second-order stationary stochastic process with $\E(\epsilon_{i})=0$
-for all $i$. Without loss of generality, $c_n \neq 0$ and $q_m \neq 0$. We also assume
-the complex roots of the polynomial $1-c_1 z - c_2 z^2 - \cdots - c_n z^n=0$
+for all $i$. Without loss of generality, $b_n \neq 0$ and $p_m \neq 0$. We also assume
+the complex roots of the polynomial $1-b_1 z - b_2 z^2 - \cdots - b_n z^n=0$
 have modulus greater than one. This assumption is a necessary and sufficient condition 
 for stability of the equilibrium of the general model of which (\ref{eq:mainmodel})
 is a linearization (@Desharnais2018, their supplementary information section 1.2) 
@@ -204,8 +204,8 @@ the spectrum of $w_{\text{tot}}$ (which is the same as the spectrum of $x_{\text
 The main theoretical result is as follows.
 \begin{thm}
 Let $\mu=\exp(-2\pi \iota f)$, where $\iota$ (the Greek letter iota) is the imaginary unit, 
-and define $\gamma=q_{ 0}+q_{ 1}\mu+\cdots+q_{m}\mu^{m}$ and
-$\lambda=c_{ 1 }\mu+c_{ 2}\mu^{2}+\cdots+c_{n}\mu^{n}$ in terms of $\mu$ and the 
+and define $\gamma=p_{ 0}+p_{ 1}\mu+\cdots+p_{m}\mu^{m}$ and
+$\lambda=b_{ 1 }\mu+b_{ 2}\mu^{2}+\cdots+b_{n}\mu^{n}$ in terms of $\mu$ and the 
 coefficients of the population model. Then
 $S_{\text{\emph{tot}}} = \left| \frac{\gamma}{1-\lambda} \right|^{ 2} \left[ \sum_i S_{\epsilon_{i}\epsilon_{i}} +\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}\right]$.
 \label{prop:mainthm}
@@ -215,7 +215,7 @@ Thus the power spectrum of the total population, which tells us whether and how 
 total population time series cycles, is influenced by three terms.
 First, $\left| \frac{\gamma}{1-\lambda} \right|^{ 2}$, which reflects the nature of
 dynamics intrinsic to the population ($\gamma$ and $\lambda$ are determined by
-the model coefficients $c_1,\ldots,c_n$ and $q_0,\ldots,q_m$). This is the quantity 
+the model coefficients $b_1,\ldots,b_n$ and $p_0,\ldots,p_m$). This is the quantity 
 denoted $F_{\text{popdyn}}(f)$ in the main text. Second,
 $\sum_i S_{\epsilon_{i}\epsilon_{i}}$, the  sum of the power
 spectra of the environmental noise time series, which reflects the extent to which the noise
@@ -273,18 +273,18 @@ noise spectra and estimates based on simulations are in Fig.
 For cases 1 and 2 of example 1 and for all cases of all
 subsequent theoretical examples, population dynamics were governed
 in all sampling locations by an AR(1) process, i.e., $n=1$ and $m=0$ in 
-equation (\ref{eq:mainmodel}). In all examples and cases we used $c_1=0.15$.
+equation (\ref{eq:mainmodel}). In all examples and cases we used $b_1=0.15$ and $p_0=1$.
 An AR(1) population model ensures that populations are not intrinsically 
 cyclic in any sense, so any periodicity that arises comes ultimately
 from the environmental noise and its synchrony.
 
 Applying the theorem, 
 \begin{equation}
-S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+S_{\text{tot}} = \left| \frac{1}{1-b_1 \mu} \right|^2
 \left|\frac{1}{1-c_1 \mu - c_2 \mu^2} \right|^2
 \left[N + (N^2-N)\rho \right].
 \end{equation}
-\noindent The first factor here, $\left| \frac{1}{1-\rho_p \mu} \right|^2$,
+\noindent The first factor here, $\left| \frac{1}{1-b_1 \mu} \right|^2$,
 captures the influence of population dynamics on $S_{\text{tot}}$.
 The second term is the factor common to the sums $\sum_i S_{\epsilon_{i}\epsilon_{i}}$
 and $\sum_{i \neq j} C_{\epsilon_{i}\epsilon_{j}}$ in the expression of 
@@ -297,7 +297,7 @@ $\rho=0.8$, the contribution of synchrony to $S_{\text{tot}}$
 dwarfs the contribution due directly to periodicity of the noise
 ($N=70$ and $(N^2-N)\rho=3864$).
 In case 2, for which we used $\rho=0$, there is no synchrony, and as
-a result the total power of $w_{\text{tot}}$ (equal to the integral under
+a result the total power of $w_{\text{tot}}$ (equal to an integral of
 $S_{\text{tot}}$) is very small. $S_{\text{tot}}$ is plotted for
 cases 1 and 2, respectively, in Fig. \ref{TheoryExample1}E-F. The much greater
 power and periodicity in $w_{\text{tot}}$ can be seen in example time 
@@ -353,12 +353,12 @@ noise spectra and estimates based on simulations are in Fig.
 
 Applying the theorem, 
 \begin{equation}
-S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+S_{\text{tot}} = \left| \frac{1}{1-b_1 \mu} \right|^2
 \left[(N^2-N)\left( \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+\rho_2 \right)+N\left( \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1 \right)\right].\label{eq:stotexamp2}
 \end{equation}
 \noindent In case 1, this is
 \begin{equation}
-S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+S_{\text{tot}} = \left| \frac{1}{1-b_1 \mu} \right|^2
 \left[(N^2-N)\rho_2+N\left( \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1 \right)\right].
 \end{equation}
 \noindent Because $N^2-N \gg N$, the dominant term inside the hard brackets is the first term,
@@ -367,7 +367,7 @@ the total population is non-periodic. Recall that case 1 is the case
 in which synchrony was not timescale specific. In case 2, equation (\ref{eq:stotexamp2})
 becomes 
 \begin{equation}
-S_{\text{tot}} = \left| \frac{1}{1-\rho_p \mu} \right|^2
+S_{\text{tot}} = \left| \frac{1}{1-b_1 \mu} \right|^2
 \left[(N^2-N)\left( \rho_1 \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2 \right)+N\left( \left| \frac{1}{1-c_1 \mu -c_2 \mu^2} \right|^2+1 \right)\right].
 \end{equation}
 \noindent The dominant term inside the hard brackets is now peaked as a function of 
@@ -426,10 +426,10 @@ noise spectra and estimates based on simulations are in Fig.
 
 Applying the theorem, 
 \begin{align}
-S_{\text{tot}} &= \left| \frac{1}{1-\rho_p \mu} \right|^2
+S_{\text{tot}} &= \left| \frac{1}{1-b_1 \mu} \right|^2
 N\left[ \left| \frac{1}{1-c_1^{(1)}\mu-c_2^{(1)}\mu^2} \right|^2 
 + \left| \frac{1}{1-c_1^{(2)}\mu-c_2^{(2)}\mu^2} \right|^2\right] \\
-&+ \left| \frac{1}{1-\rho_p \mu} \right|^2
+&+ \left| \frac{1}{1-b_1 \mu} \right|^2
 (N^2-N)\left[ \rho^{(1)} \left| \frac{1}{1-c_1^{(1)}\mu-c_2^{(1)}\mu^2} \right|^2+ \rho^{(2)}\left| \frac{1}{1-c_1^{(2)}\mu-c_2^{(2)}\mu^2} \right|^2 \right].
 \end{align}
 \noindent The first term here is dominated by the second in both cases. The periodicity 
@@ -469,12 +469,12 @@ S_{\epsilon \epsilon}$.
 
 \noindent \emph{Proof.} The model (\ref{eq:mainmodel}) for $i=1,\ldots,N$ can be rewritten as 
 \begin{equation}
-\mathcal{C} w = \mathcal{Q} \epsilon \label{eq:linfiltmod}
+\mathcal{B} w = \mathcal{P} \epsilon \label{eq:linfiltmod}
 \end{equation}
 \noindent for the linear filters
 \begin{align}
-\mathcal{C} &= I-c_1 IB - c_2 IB^2 - \cdots - c_n IB^n \\
-\mathcal{Q} &= q_0 I + q_1 IB + \cdots + q_m IB^m,
+\mathcal{B} &= I-b_1 IB - b_2 IB^2 - \cdots - b_n IB^n \\
+\mathcal{P} &= p_0 I + p_1 IB + \cdots + p_m IB^m,
 \end{align}
 \noindent where $I$ is the $N \times N$ identity matrix. 
 Here $B$ is the backshift operator,
@@ -483,14 +483,14 @@ See @Reinsel1997, @Shumway2000, and @Brillinger2001
 for background on linear filters. Computing the spectral matrices of both
 sides of (\ref{eq:linfiltmod}) gives
 \begin{equation}
-T(\mathcal{C}) S_{ww} \overline{T(\mathcal{C})} = T(\mathcal{Q}) S_{\epsilon\epsilon}
-\overline{T(\mathcal{Q})}
+T(\mathcal{B}) S_{ww} \overline{T(\mathcal{B})} = T(\mathcal{P}) S_{\epsilon\epsilon}
+\overline{T(\mathcal{P})}
 \end{equation}
-\noindent where $T(\mathcal{C})$ and $T(\mathcal{Q})$ 
+\noindent where $T(\mathcal{B})$ and $T(\mathcal{P})$ 
 are the transfer function matrices of the linear filters
-$\mathcal{C}$ and $\mathcal{Q}$, respectively (see, for instance,
+$\mathcal{B}$ and $\mathcal{P}$, respectively (see, for instance,
 section 1.1.3 of @Reinsel1997). But 
-$T(\mathcal{C}) = (1-\lambda)I$ and $T(\mathcal{Q})=\gamma I$
+$T(\mathcal{B}) = (1-\lambda)I$ and $T(\mathcal{P})=\gamma I$
 (section 1.1.3 of @Reinsel1997), so
 \begin{align}
 S_{ww} &= (1-\lambda)^{-1} I \gamma I S_{\epsilon\epsilon} \overline{\gamma} I (1-\overline{\lambda})^{-1}I \\
