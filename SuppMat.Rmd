@@ -1074,12 +1074,6 @@ can produce overfitted models and inflated estimates of fractions of deer synchr
 by $\text{MEI}_{\text{w}}$; and 2) steps we took to try to quantify the degree of inflation. Results of the
 procedures described here are in SI section \ref{SI:results}.
 
-<!--***DAN: once this is all written, go through and make sure the sub sections of the SI Methods and 
-SI Results are A) in the same order, and B) in the order in which they are cited in the main text, to make
-everything easier to find. The easiest way to do this is probably to just read the main text and follow
-all the links. While you are at it, read and edit all the SI again - I have a feeling it needs one 
-more round of that.-->
-
 It is possible to apply the formalism of the wavelet Moran theorem to deer abundance data and 
 $\text{MEI}_{\text{w}}$, even though doing so results in complications, as we will explain. We can thus write 
 $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$, as in the 
@@ -1115,10 +1109,6 @@ $\text{MEI}_{\text{w}}$ index means, in summary, that the estimated coherence, $
 deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
 Moran theorem suggests that $\text{MEI}_{\text{w}}$ explains $`r round(abunwmeiSyncExp37,0)`\%$ of deer abundance synchrony 
 on $3-7$-year timescales and $`r round(abunwmeiSyncExp47,0)`\%$ on $4-7$-year timescales. 
-<!--***DAN: Tom, can you please fill these values in? I forgot what they are, 
-and they have been
-deleted from Table 1. These would be for the model with sole predictor MEI. Please 
-use autolinks instead of typing in the answer.-->
 The goal now is to estimate
 to what extent these values are inflated.
 
@@ -1180,7 +1170,7 @@ and refitted to get a reliable estimate of synchrony explained, thereby
 giving us an estimate of the factor by which apparent synchrony explained was inflated.
 Synchrony explained was as in (\ref{eq:syncexpl}), averaged over $3-7$-year timescales.
 
-\subsection{Randomization procedure for removing synchrony at $3-7$-year timescales}\label{SI:methods:surrogs} 
+\subsection{ Randomization procedure for removing synchrony at $3-7$-year timescales}\label{SI:methods:surrogs} 
 \noindent In order to quantify the degree to which 
 synchronizing effects are responsible for 
 fluctuations in statewide total deer and DVC time 
@@ -1229,7 +1219,7 @@ time series were compared to the actual time series
 additional variance in the state-total time series 
 that was attributable to synchrony (main text Fig. \ref{MT-Fig5_StateWideFluctuations}).
 
-\subsection{Details on estimating approximate monetary impact of DVCs}\label{SI:methods:DVCimpact} 
+\subsection{ Details on estimating approximate monetary impact of DVCs}\label{SI:methods:DVCimpact} 
 \noindent We estimated the approximate monetary impact of 
 synchrony in DVCs based on several reported 
 assumptions about DVCs. Using an average difference in DVCs
@@ -1247,7 +1237,7 @@ difference between peak and trough years in DVC
 costs may exceed US\$22M.    
 
 <!--Fourier methods that were used to generate supporting results-->
-\subsection{Fourier methods}\label{SI:methods:Fouriermethods} 
+\subsection{ Fourier methods}\label{SI:methods:Fouriermethods} 
 \noindent Although our wavelet methods were most appropriate for initial discovery
 of our results, many of our
 results can also be demonstrated, \emph{post hoc}, using Fourier methods. So we here describe Fourier methods we
@@ -1336,7 +1326,7 @@ also considered inappropriate for DVCs for similar reasons. Finally, comparison 
 state- and county-level time series was not appropriate for DVCs because the variance standardization 
 means that $3-7$-year spectral power is also influenced by the amount of low-frequency power.  
 
-\subsection{Use of Fourier methods for the theory and wavelets for the empirical analysis}\label{SI:methods:methodsmismatch} 
+\subsection{ Use of Fourier methods for the theory and wavelets for the empirical analysis}\label{SI:methods:methodsmismatch} 
 \noindent Fourier and
 wavelet methods were used principally
 for our theoretical and empirical analyses, respectively, though some Fouier analyses were also used
