@@ -148,7 +148,8 @@ source("Code/FourierAnalysesDVCs.R")
 
 # Theory \label{SI:theory}
 
-\textbf{Model and main theorem.} We start by specifying the general model we consider. 
+\subsection{Model and main theorem}\label{SI:theory:modeltheorem}
+\noindent We start by specifying the general model we consider. 
 The model is similar to those used in the supplementary information of 
 @Desharnais2018, but in
 contrast to their models, our model
@@ -239,7 +240,8 @@ cospectra are correspondingly smaller than spectra, on average, by around 2 orde
 of magnitude. The following three examples make clear the overwhelming importance 
 of synchrony for cycling of the spatial-total population.
 
-\textbf{Example 1.} For example 1, we constrasted a case for which
+\subsection{Example 1} \label{SI:theory:example1}
+\noindent For example 1, we constrasted a case for which
 environmental noise was asynchronous with a case for which environmental noise
 had timescale-specific synchrony to show that, in the latter case, cycling
 of the regional-total population was much more noticable. The nature
@@ -311,7 +313,8 @@ in the diagonal. Let $\epsilon_i(t)=c_1 \epsilon_i(t-1) + c_2 \epsilon_i(t-2)+\d
 Theorem \ref{thm:lem} in SI section \ref{sect:mainproof} provides the spectra
 and cross spectra of the noise process $\epsilon$ which are stated above.
 
-\textbf{Example 2.} For example 2, we contrasted a case in which
+\subsection{Example 2} \label{SI:theory:example2} 
+\noindent For example 2, we contrasted a case in which
 the synchrony of environmental noise was not timescale specific, with a case
 for which it was, to show that timescale specificity of environmental synchrony
 is what produces cycling in the regional-total population. The nature
@@ -390,7 +393,8 @@ Let $\epsilon^{(2)}(t) = (\epsilon^{(2)}_1(t),\ldots,\epsilon^{(2)}_N(t))$ be dr
 and covariance matrix consisting of entries $\rho_2$ in the off diagonal and $1$
 in the diagonal. The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
-\textbf{Example 3.} For example 3, we contrasted a case in 
+\subsection{Example 3} \label{SI:theory:example3} 
+\noindent For example 3, we contrasted a case in 
 which the synchrony of environmental noise was specific to one timescale band
 with a case in which the synchrony of environmental noise was specific to
 another timescale band, to show that the cycling of the regional total
@@ -509,8 +513,8 @@ theorem \ref{thm:lem}.
 
 # Supplementary methods \label{SI:methods}
 
-\textbf{Deer, DVC, and hunter data.}
-For `r length(unique(dat$COUNTY_NAM))` counties, we calculated deer abundance estimates 
+\subsection{Deer, DVC, and hunter data}\label{SI:methods:deerDVChunter}
+\noindent For `r length(unique(dat$COUNTY_NAM))` counties, we calculated deer abundance estimates 
 spanning the `r dim(cty.list$Abun)[2]`-year period `r minyear`-`r maxyear` (main text Fig. 
 \ref{MT-Fig2_Timeseries}). These time series were based on 
 data from "deer management units," provided by 
@@ -574,8 +578,8 @@ We also obtained traffic volume estimates (millions of miles
 driven) for each county spanning the years 1988-`r maxyear` from the 
 WIDOT, to control for traffic in our analysis of DVCs.
 
-\textbf{Climate data notes.}
-We obtained daily weather data (snow depth, 
+\subsection{Climate data notes}\label{SI:methods:climatedata}
+\noindent We obtained daily weather data (snow depth, 
 precipitation, and minimum and maximum air temperature - here called Tmin and Tmax) from all available weather stations in each county from the 
 National Climatic Data Center ([`https://www.ncdc.noaa.gov/`](https://www.ncdc.noaa.gov/)). We 
 averaged daily values across the winter ($\text{Dec}_{t-1}$ 
@@ -603,7 +607,8 @@ climate variables in subsequent analyses: winter Tmin, Tmax,
 snow depth, and precipitation; winter NAO ($\text{NAO}_{\text{w}}$), MEI ($\text{MEI}_{\text{w}}$), and PDO ($\text{PDO}_{\text{w}}$); 
 growing-season NAO ($\text{NAO}_{\text{s}}$), MEI ($\text{MEI}_{\text{s}}$) and PDO ($\text{PDO}_{\text{s}}$); and the WSI. 
 
-\textbf{Data pre-processing.} We performed all analyses described below and in the main text 
+\subsection{Data pre-processing} \label{SI:methods:preprocessing} 
+\noindent We performed all analyses described below and in the main text 
 at three spatial scales: counties (N = 44-`r dim(cty.list$Abun)[1]` depending on 
 the variables involved; mean county 
 area $\pm$ SD = `r round(mean(gps$Area_km2),0)` $\pm$ `r round(sd(gps$Area_km2),0)` $\text{km}^2$), 
@@ -645,7 +650,8 @@ otherwise obscure patterns of synchrony [@Buonaccorsi2001]. Time series
 variances were also standardized to 1. These steps were done via the `cleandat` function in the 
 `wsyn` package for the R programming language [@wsyn].
 
-\textbf{The wavelet mean field and wavelet phasor mean field.} We assessed the strength of synchrony 
+\subsection{The wavelet mean field and wavelet phasor mean field}\label{SI:methods:meanfields} 
+\noindent We assessed the strength of synchrony 
 and its dependence on time and timescale for 
 all spatiotemporal variables using two 
 statistical tools: the wavelet mean field and 
@@ -670,21 +676,22 @@ tendency of oscillatory components on any
 given timescale to have magnitudes which are 
 correlated through time across the sampling 
 locations (i.e., oscillations on a given timescale
-tend to all be strong, respectively, weak, at the same times). 
+tend to all be strong, or, respectively, weak, at the same times). 
 Both the wavelet phasor and wavelet mean fields are based 
 on complex Morlet 
 wavelet transforms of each input time series. 
 All plots based on wavelet transforms are "scalloped", i.e., values corresponding 
 to longer timescales and times closer to the start or end of available data are not plotted. 
 This is because the wavelet transform is based on convolutions of wavelet functions with 
-the timeseries being transformed. Convolutions for which a substantial portion of the wavelet 
+the timeseries being transformed. Convolution values for which a substantial portion of the wavelet 
 function overhangs the edge of the data are unreliable. "Scalloping" wavelet plots is 
 standard practice.
 Wavelet mean fields were computed using the
 function `wmf` and wavelet phasor mean fields were computed 
 using the function `wpmf` in the `wsyn` package [@wsyn].
 
-\textbf{The wavelet mean field and wavelet phasor mean field, technical background.} Technical background on the wavelet mean field was taken from 
+\subsection{The wavelet mean field and wavelet phasor mean field, technical background}\label{SI:methods:meanfieldstech} 
+\noindent Technical background on the wavelet mean field was taken from 
 @Sheppard2016_aphids, and is reproduced here for reader convenience. Letting 
 $x_i(t)$ denote a population index for habitat patch $i$ ($i=1,\ldots,N$) at time $t$
 ($t=1,\ldots,T$), and denoting by $W_{i,\sigma}(t)$ the wavelet transform of this
@@ -753,7 +760,8 @@ wavelet phasor mean field magnitude plots for
 winter weather variables are in 
 Fig. \ref{FigS8_WMFsAndWPMFsAncillary}.
 
-\textbf{Spatial wavelet coherence and wavelet coherence.} For both county- and district-level data, we 
+\subsection{Spatial wavelet coherence and wavelet coherence}\label{SI:methods:coherence} 
+\noindent For both county- and district-level data, we 
 assessed pairwise relationships between 
 spatiotemporal variables using the spatial wavelet coherence 
 technique [@Sheppard2013;@Sheppard2016_aphids;@Sheppard2017_surrogates]. Spatial wavelet coherence tests whether two 
@@ -769,7 +777,7 @@ that retain the same
 temporal and spatial autocorrelation properties as 
 the original time series but are otherwise 
 unrelated to each other [@Theiler1992;@Schreiber2000]. Standard Fourier 
-surrogates were used [@Schreiber2000;@Sheppard2013;@Sheppard2016_aphids] (see below for further details). 
+surrogates were used [@Schreiber2000;@Sheppard2013;@Sheppard2016_aphids], see below for further details. 
 We calculated how often observed spatial wavelet coherence 
 between pairs of variables was ranked higher than 
 coherences of surrogate data sets, aggregating 
@@ -863,8 +871,9 @@ and phase relationships provides strong evidence for the statements made in the 
 that weather/climatic synchrony partly causes deer synchrony and deer synchrony partly causes DVC synchrony
 on the $3-7$-year timescale band.
 
-\textbf{Spatial wavelet coherence and wavelet coherence, technical background.} Technical background on the spatial wavelet coherence was taken from
-@Sheppard2016_aphids and @Sheppard_wavmodel (but is also available elsewhere, e.g, @Prichard1994), and is reproduced 
+\subsection{Spatial wavelet coherence and wavelet coherence, technical background}\label{SI:methods:coherencetech} 
+\noindent Technical background on the spatial wavelet coherence was taken from
+@Sheppard2016_aphids and @Sheppard_wavmodel, but is also available elsewhere, e.g, @Prichard1994. It is reproduced 
 here for reader convenience. If $x_i^{(0)}(t)$ and $x_i^{(1)}(t)$ are two quantities measured
 at locations $i=1,\ldots,N$ and times $t=1,\ldots,T$, then the spatial wavelet coherence
 is the magnitude of
@@ -878,7 +887,7 @@ between $w^{(0)}_{i,\sigma}(t)$ and $w^{(1)}_{i,\sigma}(t)$, so the sum over $i$
 (\ref{eq:spatwavcoh}) will be large if this phase difference is consistent over space and time,
 and will tend to be small otherwise. The wavelet components $w^{(0)}_{i,\sigma}(t)$ and $w^{(1)}_{i,\sigma}(t)$
 can also have varying magnitudes, and the spatial wavelet coherence will be larger if 
-there are correlations in how these amplitudes fluctuate. The aptial wavelet coherence 
+there are correlations in how these amplitudes fluctuate. The spatial wavelet coherence 
 is between $0$ and $1$ [@Sheppard2016_aphids]. When $N=1$, the spatial
 wavelet coherence is the wavelet coherence, a standard method [@Torrence1998; @addison2002].
 The wavelet coherence and spatial wavelet coherence also relate to the phase coherence 
@@ -920,8 +929,8 @@ coherence of data in the set of surrogate spatial wavelet coherence values, for 
 test of significance of coherence for that timescale (Fig. \ref{FigS5_RanksInSurrogs}).
 However, to reduce multiple-testing problems and because wavelet statistics based on finite-length
 data have finite capacity to resolve timescales, we instead relied principally on whether spatial wavelet
-coherence was significant in an average sense across a timescale band of interest (e.g., $3-7$ years;
-@Sheppard2016_aphids, @Sheppard_wavmodel).
+coherence was significant in an average sense across a timescale band of interest, e.g., $3-7$ years
+[@Sheppard2016_aphids;@Sheppard_wavmodel].
 To produce aggregate significance values for spatial wavelet coherence for a timescale band, the rank of coherence
 relative to surrogates (rank 1 was highest) was averaged across the band. The same procedure was then 
 applied to each surrogate individually, i.e., for each timescale, a surrogate spatial wavelet
@@ -930,7 +939,8 @@ for the single surrogate, the process then being repeated for each surrogate. Th
 across the band was computed for the data and for each surrogate, and the data mean rank was appropriately compared to the 
 distribution of surrogate mean ranks to form the band-aggregate test of significance.
 
-\textbf{Wavelet Moran theorem, fractions of synchrony explained, and the "predicted synchrony" plot.} We calculated 
+\subsection{Wavelet Moran theorem, fractions of synchrony explained, and the "predicted synchrony" plot}label{SI:methods:Morantheorem} 
+\noindent We calculated 
 fractions of deer abundance 
 synchrony explained by snow depth and hunter abundance, as well as the fraction of DVC 
 synchrony explained by deer abundance, following 
@@ -955,8 +965,8 @@ If the predicted synchrony plot is similar to the actual wavelet mean field magn
 for DVCs then it provides visual support for the hypothesis that deer synchrony causes DVC synchrony.
 The function `wlm` and related functions from `wsyn` implement these tools.
 
-\textbf{Wavelet Moran theorem, fractions of synchrony explained, and the "predicted synchrony" plot", technical background.}
-Technical background on the wavelet Moran theorem and related ideas was taken from
+\subsection{Wavelet Moran theorem, fractions of synchrony explained, and the "predicted synchrony" plot, technical background}\label{SI:methods:Morantheoremtech}
+\noindent Technical background on the wavelet Moran theorem and related ideas was taken from
 @Sheppard2016_aphids and @Sheppard_wavmodel, and is reproduced here for reader convenience.
 If $x_i^{(0)}(t)$ and $x_i^{(1)}(t)$ are again two quantities measured
 at locations $i=1,\ldots,N$ and times $t=1,\ldots,T$, and again denoting by $w^{(k)}_{i,\sigma}(t)$ 
@@ -1040,17 +1050,18 @@ fraction of synchrony explained. Also the predicted synchrony plots.-->
 Using the wavelet Moran theorem, and assuming cross terms are negligible, 
 the pattern of synchrony in $x_i^{(0)}(t)$ that would be predicted if the only
 synchronizing influence on it were $x_i^{(1)}(t)$ is 
-$|\Pi^{(01)}_{\sigma}||r^{(\text{\emph{wmf}},1)}_{\sigma}(t)|$. This is similar to (\ref{eq:Moranmain1}),
+$|\Pi^{(01)}_{\sigma}||r^{(\text{wmf},1)}_{\sigma}(t)|$. This is similar to (\ref{eq:Moranmain1}),
 but without the time averages and taking a square root. The predicted synchrony expression follows
 from the proof of the wavelet Moran theorem [@Sheppard2016_aphids; @Sheppard_wavmodel].
 The fraction of the synchrony in $x_i^{(0)}(t)$ explained by synchrony in $x_i^{(1)}(t)$,
 as a function of timescale, is 
 \begin{equation}
-q(\sigma)=\frac{|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{\emph{wmf}},1)}_{\sigma}(t)|^2}{\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{\emph{wmf}},0)}_{\sigma}(t)|^2}.\label{eq:syncexpl}
+q(\sigma)=\frac{|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2}{\frac{1}{T}\sum_{t=1}^{T}|r^{(\text{wmf},0)}_{\sigma}(t)|^2}.\label{eq:syncexpl}
 \end{equation}
 \noindent This was averaged over a timescale band of interest.  
 
-\textbf{Fraction of deer synchrony explained by $\text{MEI}_{\text{w}}$, technical methods.} Fractions of deer abundance synchrony explained by snow depth and fractions of DVC synchrony
+\subsection{ Fraction of deer synchrony explained by $\text{MEI}_{\text{w}}$, technical methods}\label{SI:methods:fractionMEI} 
+\noindent Fractions of deer abundance synchrony explained by snow depth and fractions of DVC synchrony
 explain by deer, and related results, were presented in the main text, but we did not there present results
 on fractions of deer abundance synchrony explained by $\text{MEI}_{\text{w}}$, even though deer abundance and $\text{MEI}_{\text{w}}$
 were significantly coherent, supporting the 
@@ -1169,7 +1180,8 @@ and refitted to get a reliable estimate of synchrony explained, thereby
 giving us an estimate of the factor by which apparent synchrony explained was inflated.
 Synchrony explained was as in (\ref{eq:syncexpl}), averaged over $3-7$-year timescales.
 
-\textbf{Randomization procedure for removing synchrony at $3-7$-year timescales.} In order to quantify the degree to which 
+\subsection{Randomization procedure for removing synchrony at $3-7$-year timescales}\label{SI:methods:surrogs} 
+\noindent In order to quantify the degree to which 
 synchronizing effects are responsible for 
 fluctuations in statewide total deer and DVC time 
 series (main text Fig. \ref{MT-Fig5_StateWideFluctuations} and associated text), 
@@ -1217,7 +1229,8 @@ time series were compared to the actual time series
 additional variance in the state-total time series 
 that was attributable to synchrony (main text Fig. \ref{MT-Fig5_StateWideFluctuations}).
 
-\textbf{Details on estimating approximate monetary impact of DVCs.} We estimated the approximate monetary impact of 
+\subsection{Details on estimating approximate monetary impact of DVCs}\label{SI:methods:DVCimpact} 
+\noindent We estimated the approximate monetary impact of 
 synchrony in DVCs based on several reported 
 assumptions about DVCs. Using an average difference in DVCs
 between peak and trough years 
@@ -1234,7 +1247,8 @@ difference between peak and trough years in DVC
 costs may exceed US\$22M.    
 
 <!--Fourier methods that were used to generate supporting results-->
-\textbf{Fourier methods.} Although our wavelet methods were most appropriate for initial discovery
+\subsection{Fourier methods}\label{SI:methods:Fouriermethods} 
+\noindent Although our wavelet methods were most appropriate for initial discovery
 of our results, many of our
 results can also be demonstrated, \emph{post hoc}, using Fourier methods. So we here describe Fourier methods we
 applied, which support our wavelet results. 
@@ -1322,7 +1336,8 @@ also considered inappropriate for DVCs for similar reasons. Finally, comparison 
 state- and county-level time series was not appropriate for DVCs because the variance standardization 
 means that $3-7$-year spectral power is also influenced by the amount of low-frequency power.  
 
-\textbf{Use of Fourier methods for the theory and wavelets for the empirical analysis}. Fourier and
+\subsection{Use of Fourier methods for the theory and wavelets for the empirical analysis}\label{SI:methods:methodsmismatch} 
+\noindent Fourier and
 wavelet methods were used principally
 for our theoretical and empirical analyses, respectively, though some Fouier analyses were also used
 for our empirical analyses. It was appropriate, for several reasons, to use Fourier methods for 
@@ -1344,7 +1359,8 @@ wavelet methods, which are more suited to the complexities of real data, for our
 
 # Supplementary results \label{SI:results}
 
-\textbf{Fraction of deer synchrony explained by $\text{MEI}_{\text{w}}$, county data, technical results.} Of the parameters 
+\subsection{Fraction of deer synchrony explained by $\text{MEI}_{\text{w}}$, county data, technical results}\label{SI:results:} 
+\noindent Of the parameters 
 considered (SI section \ref{SI:methods}), there were five parameter combinations 
 $(\sqrt{V},c)$ for which the sum of the squares of the fractional deviations
 $|A(\sqrt{V},c)-A_0|/A_0$, $|B(\sqrt{V},c)-B_0|/B_0$ and $|C(\sqrt{V},c)-C_0|/C_0$ was less than $0.005$
@@ -1364,7 +1380,8 @@ This adjusted quantity is still substantial. As mentioned briefly in the corresp
 SI section \ref{SI:methods}, we repeated our analysis using an AR(1) model for deer dynamics, obtaining very
 similar inflation factor results under that alternative assumption.
 
-\textbf{USDA district results.} Using district-level data, deer abundance 
+\subsection{USDA district results} \label{SI:results:districts}
+\noindent Using district-level data, deer abundance 
 again showed a prominent synchrony feature at $3-7$-year 
 timescales, similar to the county-level analysis 
 (Fig. \ref{FigS7_WMFAndPredictionsDistricts}A,C). Deer abundance was significantly related to $\text{MEI}_{\text{w}}$, 
@@ -1407,7 +1424,8 @@ counties, but such effects would be
 reduced at the larger district level because reduced fractions of deer and cars disperse from one spatial unit to another for these larger spatial units. 
 Patterns of synchrony in DVCs predicted by synchrony in deer looked similar to actual patterns of synchrony in DVCs (Fig. \ref{FigS7_WMFAndPredictionsDistricts}E). 
 
-\textbf{Statewide Analysis and Results.} For statewide analyses, for which all 
+\subsection{Statewide results} \label{SI:methods:statewide}
+\noindent For statewide analyses, for which all 
 variables were represented only by single, state-average or 
 total time series rather than spatiotemporal data, timescale-specific relationships 
 between variables were tested using ordinary 
@@ -1440,7 +1458,8 @@ abundance were not significantly coherent at the
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
 
 <!--Fourier results-->
-\textbf{Fourier results.} Total spectral power in the $3-7$-year timescale band for detrended state-total
+\subsection{Fourier results} \label{SI:results:Fourierresults}
+\noindent Total spectral power in the $3-7$-year timescale band for detrended state-total
 deer time series (see SI section \ref{SI:methods} for methods) was much greater than the same quantity
 computed for the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}; this was true for
 all the surrogates used (Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). Since the surrogates represent a case 
@@ -1585,7 +1604,8 @@ model setup for the example. Plot format is like that of Fig. \ref{TheoryExample
 \includegraphics[width=\textwidth]{Results/PedagogFig_WMF.png}
 \caption[Demonstration of the wavelet mean field]{Detecting time- and timescale-specific
 synchrony with the wavelet mean field. This figure was taken without change from
-Sheppard \emph{et al.} (2016), where additional details are also available. Panels a-d show the principle of how synchrony
+Sheppard \emph{et al.} (2016). Additional details can be found there and in SI section \ref{SI:methods}. 
+Panels a-d show the principle of how synchrony
 can differ for different timescales of dynamics. Time series y1 and y2 (a)
 are exactly anti-correlated (out of phase), as are y3 and y4 (b). Combining
 y1 with y3 and y1 with y4
@@ -1612,9 +1632,10 @@ showed clear color bands at 10-year period for $t<50$ and 5-year period for
 $t>50$. The wavelet mean field magnitude displays strength of
 synchrony as a function of timescale
 of dynamics and time, here with red indicating synchrony and blue asynchrony.
-Wavelet phasor mean fields provide magnitude plots similar to (k) but with values
-between 0 and 1 that indicate the strength of phase synchrony and that can be
-straightforwardly significance tested as described by Sheppard \emph{et al.} (2019). \label{PedagogFigWMF}}
+Wavelet phasor mean field magnitude plots are similar to (k), but with values
+between 0 and 1 that indicate the strength of phase synchrony. These values can be
+straightforwardly significance tested as described in SI section \ref{SI:methods}, and
+by Sheppard \emph{et al.} (2019). \label{PedagogFigWMF}}
 \end{figure}
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 
@@ -1653,10 +1674,10 @@ defined as $>4$ years) but no relationship
 (right $P$-value) for short timescales ($<4$ years). The red line on g is the
 spatial wavelet coherence and black lines are
 $50$th, $95$th, and $99$th percentiles of spatial wavelet coherences
-of synchrony-preserving surrogate (randomized) data sets (Sheppard \emph{et al.} 2016)
+of synchrony-preserving surrogate (randomized) data sets (SI section \ref{SI:methods}; Sheppard \emph{et al.} 2016)
 appropriately representing the
 null hypothesis of no relationship between the $x$ and $y$.
-Also see Sheppard \emph{et al.} (2016) for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
+Also see SI section \ref{SI:methods} and Sheppard \emph{et al.} (2016) for a description of how the aggregate long- and short-timescale $P$-values were computed. \label{PedagogFigSpatCoh}}
 \end{figure}
 <!---***TOM: Citations in caption above are not dynamic links, need to change manualy--->
 
@@ -1875,7 +1896,7 @@ knitr::kable(TableS1,
              format='latex',align="l",escape=F,
              digits=4,
              caption.short="Wavelet coherence tests between climate indices",
-             caption = "$P$-values of wavelet coherence tests, and associated mean phase differences (units if $\\pi$ radians) for significant and marginally significant tests, between climate indices. Values are over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS1_PairwiseClimVarSpatCoh}",
+             caption = "$P$-values of wavelet coherence tests, and associated mean phase differences (units of $\\pi$ radians) for significant and marginally significant tests, between climate indices. Values are over $3-7$ year timescales. All values were rounded to display four digits. \\label{TabS1_PairwiseClimVarSpatCoh}",
              booktabs=T)
 ```
 
