@@ -26,7 +26,6 @@ urlcolor: blue
 1) add the sentence explaining the summer MEI coherence with deer, including a ref from Tom
 2) make sure the length stats in the front matter are correct
 3) maybe mention in the cover letter that data will be deposited in Dryad when the time comes 
-$) finish going through the response
 -->
 
 \noindent Short title: Spatial synchrony leads to populations cycles  
