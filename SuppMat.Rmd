@@ -1332,7 +1332,6 @@ state- and county-level time series was not appropriate for DVCs because the var
 means that $3-7$-year spectral power is also influenced by the amount of low-frequency power.  
 
 \subsection{ Use of Fourier methods for the theory and wavelets for the empirical analysis}\label{SI:methods:methodsmismatch} 
-<!--***DAN: reread this section and check wording and so on-->
 \noindent Fourier and
 wavelet methods were used principally
 for our theoretical and empirical analyses, respectively, though some Fouier analyses were also used
@@ -1343,12 +1342,12 @@ Fourier and wavelet approaches are related. So there is no actual mismatch produ
 are used to empirically test theory that was developed with Fourier methods.
 Wavelet methods and Fourier methods often serve very similar goals. Second, differences
 that do exist between Fourier and wavelet approaches are consistent with differences between our 
-theoretical and empirical analyses. Fourier analyses make more structural assumptions 
+theoretical and empirical analyses. Many Fourier analyses make more structural assumptions 
 about the data, notably, they
 assume stationarity. At the same time, various techniques of mathematical analysis are 
 commonly used for Fourier approaches, under an assumption of stationarity. We developed 
 our theory in an idealized setting, for which Fourier methods and 
-mathematical analysis were possible, but then used
+mathematical analysis were possible. We then used
 wavelet methods, which are more suited to the complexities of real data, for our empirical work.
 
 # Supplementary results \label{SI:results}
