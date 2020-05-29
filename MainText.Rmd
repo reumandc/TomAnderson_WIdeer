@@ -112,7 +112,7 @@ Population cycles have intrigued ecologists for over 100 years
 lynx-snowshoe hare system and 
 other systems, posited that strongly cyclic environmental phenomena such as sun spots may drive 
 population cycles [@Sinclair1992_sunspots;@Selas2004_sunspots]. The sun spot hypothesis was 
-refuted, however [@Nilssen2007_nosunspots;@Myers2013_nosunspots], and whereas it is now recognized that environmental drivers can alter cycles through their interactions with intrisic population
+refuted, however [@Nilssen2007_nosunspots;@Myers2013_nosunspots], and whereas it is now recognized that environmental drivers can alter cycles through their interactions with intrinsic population
 processes [@watson2000;@kausrud2008], for decades 
 research has focused instead on explanations of the origin of cycles 
 which involve nonlinear or delayed density dependence, 
@@ -343,7 +343,7 @@ software package for the R language [@wsyn].
 We characterized the spatial synchrony of spatiotemporal variables (e.g., deer
 abundance) using wavelet mean field magnitudes and wavelet
 phasor mean field magnitudes. Both methods take as input
-standardized (see above) timeseries data from multiple locations and provide as
+standardized (see above) time series data from multiple locations and provide as
 output plots which display the degree of synchrony among locations as a function
 of time and timescale (Figs \ref{Fig1_example}G-I, SI 
 Fig. \ref{SM-PedagogFigWMF}). Thus the plots reveal at what times, during the 
@@ -559,7 +559,7 @@ Overall, we demonstrated that timescale-specific Moran effects can cause cycles 
 regional population. This is a new mechanism by which the environment can 
 produce population cycles. 
 Previous attemps to link environmental factors to population cycles have either been unsubstantiated [e.g., 
-sun spots; @Sinclair1992_sunspots;@Selas2004_sunspots], or provided a useful but patial explanation for cycles, 
+sun spots; @Sinclair1992_sunspots;@Selas2004_sunspots], or provided a useful but partial explanation for cycles, 
 as in studies of tetraonids [@watson2000] or small mammals [@kausrud2008] which demonstrated that environmental 
 factors tend to modify cycles produced by density dependent factors, rather than producing them outright.
 Our study differs from previous work, in part because the new mechanism does not require a regular environmental 
