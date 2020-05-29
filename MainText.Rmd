@@ -466,7 +466,7 @@ to the multivariate El Ni$\~{n}$o Southern Oscillation index
 Table \ref{Tab1_CountyCoherenceSummary}, SI Fig. \ref{SM-FigS4_PhaseDiffs}A,C), both averaged over the winter months
 ($\text{Dec}_{t-1}$ to $\text{Mar}_t$, abbreviations $\text{MEI}_{\text{w}}$ and
 $\text{PDO}_{\text{w}}$). These two indices were strongly coherent and in-phase with
-each other on $3-7$-year timescales over 1981-2016 (wavelet coherence, $P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter MEI" & TabS1_results$Response=="Winter PDO" ],4)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI" & TabS1_results$Response=="Winter PDO" ],2)`, SI Table \ref{SM-TabS1_PairwiseClimVarSpatCoh}). 
+each other on $3-7$-year timescales over 1981-2016 (wavelet coherence, $P =$ `r round(TabS1_results$Pvalue[TabS1_results$Predictor=="Winter MEI" & TabS1_results$Response=="Winter PDO" ],4)`, $\bar{\theta}  =$ `r round(TabS1_results$MeanPhase[TabS1_results$Predictor=="Winter MEI" & TabS1_results$Response=="Winter PDO" ],2)`, SI Table \ref{SM-TabS1_PairwiseClimVarSpatCoh}). Deer abundance was also significantly coherent with growing-season MEI (Table \ref{Tab1_CountyCoherenceSummary}), but likely only because $\text{MEI}_{\text{w}}$ and growing-season MEI were coherent (SI Table \ref{SM-TabS1_PairwiseClimVarSpatCoh}). 
 At $5$-yr periodicity, the quarter-cycle phase lags between deer abundance and $\text{MEI}_{\text{w}}$/$\text{PDO}_{\text{w}}$
 correspond to deer populations
 peaking about `r round(-5*Tab1_results$MeanPhase[Tab1_results$Predictor=="Winter PDO"&Tab1_results$Timescale=="3-7"]/2,1)` or 
@@ -784,11 +784,11 @@ oscillations due to synchrony are particularly notable when trends and long-time
 (longer than 7 years) variability are filtered out by subtracting the mean of the 
 grey lines (B for deer, in thousands; D for DVCs). $\Delta$ represents the difference in values from 
 the surrogate mean. Red arrows highlight examples of the strong cycling that is 
-attributable to synchrony. For DVCs, the typical fluctuation in numbers of DVCs due 
-to synchrony amounts to an estimated difference between peak and trough years of 
-US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn in damages 
-statewide (\textit{Methods}). 
+attributable to synchrony.
 \label{Fig5_StateWideFluctuations}}
 \end{figure}
 
-
+ <!--Deleted from Fig. 5 caption. For DVCs, the typical fluctuation in numbers of DVCs due 
+to synchrony amounts to an estimated difference between peak and trough years of 
+US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn in damages 
+statewide (\textit{Methods}).-->
