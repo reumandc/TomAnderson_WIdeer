@@ -495,12 +495,11 @@ bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{SM-FigS5_RanksInSu
 The wavelet Moran theorem of @Sheppard2016_aphids could not straightforwardly be
 applied to estimate percentages of synchrony in deer explained by $\text{MEI}_{\text{w}}$,
 because $\text{MEI}_{\text{w}}$ is not a spatially resolved variable (*Methods*).
-Such estimates were complicated, artefactually inflated, and not necessary
+Such estimates are not necessary, however,
 for our argument that deer are environmentally synchronized in the $3-7$-year
-band, since this is adequately demonstrated by our wavelet coherence results for deer and $\text{MEI}_{\text{w}}$,
-and our snow depth results. Thus such estimates are in SI section
-\ref{SM-SI:results}, where a quantification of the degree of inflation is also described 
-(see also Fig. \ref{SM-InflationFig} and Table \ref{SM-InflationTable}).
+band since this is already adequately demonstrated by our wavelet coherence results.
+See SI section \ref{SM-SI:results} (also Fig. \ref{SM-InflationFig} and Table \ref{SM-InflationTable}) 
+for further discussion.
 
 Deer synchrony on $3-7$-year timescales was not caused by hunting. County-level hunter and deer abundances were not significantly spatially coherent 
 ($P =$ `r round(Tab1_results$Pvalue[Tab1_results$Predictor=="Hunters" & Tab1_results$Timescale=="3-7"],2)`) over $3-7$-year timescales 
@@ -643,7 +642,7 @@ Such fluctuations may influence insurance and accident recovery industries, thou
 whether a fluctuation of this magnitude is big enough to be of substantial concern to these industries.
 Our results provide another reason that
 additional studies of climate-change influences on synchrony [@hansen2020] should be undertaken: 
-such influences may alter the cycling of populations. 
+such influences may alter the cycling of populations, including populations of socioeconomic importance. 
 
 <!--specificity to timescales, and the strengths of our methods-->
 An important aspect in the phenomena we explore is their specificity to 
@@ -660,13 +659,13 @@ The methods used here [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017
 were able to isolate the timescales on which synchrony occurred,
 facilitating precise determination of drivers of synchrony.
 Historically, determination of causes of synchrony was called 
-difficult  [@Leibhold2004_sync;@Kendall2000_moran;@Abbott2007_moran], but in our previous
+difficult [@Leibhold2004_sync;@Kendall2000_moran;@Abbott2007_moran], but in our previous
 work [@Sheppard2016_aphids;@Sheppard2017_surrogates;@Walter2017_geogsync;@Sheppard_wavmodel],
 and again here, we showed that using timescale-specific methods can help 
 ameliorate this difficulty and can reveal new phenomena and mechanisms.
 
 # Acknowledgements
-D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and annonymous referees for very useful feedback. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
+D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and anonymous referees for very useful feedback. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
 <!--Load sup mat workspace for the methods, which used to be in the sup mat-->

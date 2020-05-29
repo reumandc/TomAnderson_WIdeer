@@ -708,7 +708,7 @@ transforms, i.e., the denominator of the equation above is the square root of th
 average wavelet power of the time series over habitat patches. That denominator is
 only a positive scalar, so the $w_{i,\sigma}(t)$ comprise basically the same information
 as the $W_{i,\sigma}(t)$. For instance, the phases of the $w_{i,\sigma}(t)$
-are identical to the phases of the $W_{i,\sigma}(t)$, and equal the phase of oscillation
+are identical to the phases of the $W_{i,\sigma}(t)$, and represent the phase of oscillation
 in $x_i(t)$ at time $t$ and timescale $\sigma$. 
 
 The magnitude of the 
@@ -1108,9 +1108,7 @@ $\text{MEI}_{\text{w}}$ index means, in summary, that the estimated coherence, $
 (and therefore the deer synchrony, $|\Pi^{(01)}_{\sigma}|^2$, explained by MEI), was significant, but may be inflated: we know MEI-related Moran effects probably helped cause
 deer abundance synchrony, but we do not know to what extent. Naive application of the wavelet
 Moran theorem suggests that $\text{MEI}_{\text{w}}$ explains $`r round(abunwmeiSyncExp37,0)`\%$ of deer abundance synchrony 
-on $3-7$-year timescales and $`r round(abunwmeiSyncExp47,0)`\%$ on $4-7$-year timescales. 
-The goal now is to estimate
-to what extent these values are inflated.
+on $3-7$-year timescales. The goal now is to estimate to what extent these values are inflated.
 
 <!--Description of procedure for estimating inflation-->
 To assess the levels of inflation in $\text{MEI}_{\text{w}}$-deer coherence estimates and therefore in estimates of amount of 
@@ -1138,23 +1136,30 @@ of $\exp(0.08)$, and we considered $c$ varying from $0.175$ to $0.625$ in additi
 For each of these combinations of $\sqrt{V}$ and $c$ we computed three quantities, described in the next 
 paragraph, and compared these quantities to values of the same statistics computed for the actual $\text{MEI}_{\text{w}}$ and deer abundance time series in order to find the values of $\sqrt{V}$ and $c$ for which agreement was good.
 
-The three quantities were as follows. The first quantity was the spatial synchrony, measured using a 
+The three quantities were as follows. 
+\begin{enumerate}
+\item The first quantity ($A$) was the spatial synchrony, measured using a 
 time- and band-averaged squared mean field magnitude, of the simulated deer data. In other words: 
 1) $|r_\sigma^{(\text{wmf},0)}(t)|^2$ was computed for the simulated deer time series; 2) for each 
 $\sigma$, the quantity was averaged over all times for which it was defined; and 3) those results
-were averaged over $3-7$-year timescales. The second quantity was the fraction of wavelet power, on average
-over the $3-7$-year band, explained by the model $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$. The denominator of this quantity was computed by:
-1) computing, for each $\sigma$ and $i$, the average of $|w^{(0)}_{i,\sigma}(t)|^2$ over all available times;
-2) then averaging the results of the first step over locations, $i$, and then over timescales
-$\sigma$ in the $3-7$-year band. This is an average wavelet power for deer. The numerator was obtained
-in the same way, but starting from $|\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)|^2$ instead of
-from $|w^{(0)}_{i,\sigma}(t)|^2$. The third quantity was the spatial synchrony, again measured
+were averaged over $3-7$-year timescales. 
+\item The second quantity ($B$) was the fraction of wavelet power for deer, on average
+over the $3-7$-year band, explained by the wavelet model. The wavelet power of deer fluctuations at scale $\sigma$ is 
+$P^{(0)}_{\sigma}=\frac{1}{NT}\sum_{i=1}^N\sum_{t=1}^T|W^{(0)}_{i,\sigma}(t)|^2$, where the $W^{(0)}_{i,\sigma}(t)$ are the 
+wavelet transforms of the deer time series. We integrated this quantity over the $3-7$-year band to obtain the denominator of 
+$B$. The wavelet power explained by $W^{(1)}_{i,\sigma}(t)$ (the wavelet transforms of the $\text{MEI}_{\text{w}}$ 
+time series, the 
+same for all locations, $i$) at scale $\sigma$ is $|\Pi^{(01)}_{\sigma}|^2P^{(0)}_{\sigma}$ according to our model. 
+We integrated this quantity over the $3-7$-year band to obtain the numerator of $B$.
+\item The third quantity ($C$) was the spatial synchrony, again measured
 in a time- and band-averaged way, predicted by the wavelet model according to the wavelet
 Moran theorem. This was computed by: 1) starting 
 with $|\Pi^{(01)}_{\sigma}|^2\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2$; and then 
 2) averaging over times, and then timescales in the 
 $3-7$-year band. Note, however, that $\frac{1}{T}\sum_{t=1}^{T} |r^{(\text{wmf},1)}_{\sigma}(t)|^2=1$,
-so this is an average of the squared spatial wavelet coherence. For the real data, these three quantities were,
+so this is an average of the squared spatial wavelet coherence. 
+\end{enumerate}
+For the real data, these three quantities were,
 respectively, $0.530557437095931$, $0.418327023890617$, and $0.364288221245834$, and we denote these values
 by $A_0$, $B_0$, and $C_0$, respectively. We denote by $A(\sqrt{V},c)$ the median, over $1000$ simulations,
 of the first quantity described above for the simulations. Likewise $B(\sqrt{V},c)$ and $C(\sqrt{V},c)$ 
@@ -1327,6 +1332,7 @@ state- and county-level time series was not appropriate for DVCs because the var
 means that $3-7$-year spectral power is also influenced by the amount of low-frequency power.  
 
 \subsection{ Use of Fourier methods for the theory and wavelets for the empirical analysis}\label{SI:methods:methodsmismatch} 
+<!--***DAN: reread this section and check wording and so on-->
 \noindent Fourier and
 wavelet methods were used principally
 for our theoretical and empirical analyses, respectively, though some Fouier analyses were also used
@@ -1335,8 +1341,6 @@ the theory and wavelet methods for the data. First, both sets of methods are in 
 spectral methods, and
 Fourier and wavelet approaches are related. So there is no actual mismatch produced when wavelet methods
 are used to empirically test theory that was developed with Fourier methods.
-For instance, the wavelet spectrum gives the same information as the Fourier spectrum, but without 
-the necessity of assuming stationarity. And the wavelet transform is a filtered cross spectrum.
 Wavelet methods and Fourier methods often serve very similar goals. Second, differences
 that do exist between Fourier and wavelet approaches are consistent with differences between our 
 theoretical and empirical analyses. Fourier analyses make more structural assumptions 
