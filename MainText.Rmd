@@ -605,8 +605,8 @@ populations [@Post1998_popgrowth;@forchhammer1998]. Winter weather and climate p
 because deeper snow limits access to winter food, which then increases 
 susceptibility to starvation or predators and reduces 
 parturition rates [@Mysterud2008_deerclimate;@Hegel2012_caribou]. 
-Winter weather influences deer beyond WI. Cycling 
-over larger regions may be even stronger than what we documented because
+Winter weather influences deer beyond WI, so timescale-specific synchrony may extend further than WI. Cycling 
+over larger regions may then be even stronger than what we documented because
 a larger number of synchronized local populations can accentuate the effect we described.
 
 <!--It aint hunters. -->
