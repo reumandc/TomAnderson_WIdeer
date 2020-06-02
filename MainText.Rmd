@@ -27,7 +27,7 @@ Author Contributions: TLA and DCR conceived the project; RER provided assistance
 Type of Article: Letter  
 Key Words: population cycle, synchrony, Moran effect, population dynamics, white-tailed deer  
 Number of words in abstract: 150  
-Number of words in main text: 4993
+Number of words in main text: 5000  
 Number of figures and tables: 5 figures, 1 table  
 Number of references: 58  
 <!--***DAN: I updated this on 2020 05 29--> <!--***Tom: will double check for the final submission-->
