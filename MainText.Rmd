@@ -270,7 +270,7 @@ SI section \ref{SM-SI:theory} and Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryEx
 
 \textbf{Empirical Data.} Using data provided by the Wisconsin Department of Natural Resources 
 (WIDNR), we calculated annual deer abundance estimates for the 
-period `r minyear`-`r maxyear` for each of `r length(unique(dat$COUNTY_NAM))` counties in WI; 
+period `r minyear`-`r maxyear` for each of `r length(unique(dat$COUNTY_NAM))` WI counties; 
 and an index of hunter abundance for each 
 county for 1992-`r maxyear`. We obtained 
 estimates of DVCs for each county for 1987-`r maxyear` 
@@ -309,7 +309,7 @@ counties (SI Fig. \ref{SM-FigS1_map}); likewise for statewide data.
 Results remained unchanged in their main substance using larger 
 spatial scales (see *Results*).
 
-Each time series was Box-Cox transformed to help ensure Gaussian marginal 
+Each time series was Box-Cox transformed to ensure Gaussian marginal 
 distributions [@Sheppard2016_aphids], which are necessary for
 the Fourier-surrogate-based spatial wavelet coherence 
 testing procedures described below. This process also included linear detrending, 
@@ -346,7 +346,7 @@ The wavelet phasor mean field magnitude plot describes the degree
 of phase synchrony among time series, whereas the wavelet mean field magnitude plot describes
 the degree of synchrony in both phases and amplitudes of oscillation.
 The statistical significance of a wavelet phasor mean field magnitude plot, at any given
-time and timescale, can be assessed though 
+time and timescale, can be assessed through 
 comparison to a null hypothesis of random phases (SI 
 section \ref{SM-SI:methods}; [@Sheppard2013; @Sheppard2016_aphids; @Sheppard_wavmodel]). 
 We used a significance threshold  of $P < 0.001$. 
