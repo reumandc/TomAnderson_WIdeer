@@ -6,9 +6,19 @@ deer<-d$Abun
 totdeer<-apply(FUN=sum,X=deer,MARGIN=2)
 deeryr<-1981:2016
 
+#extract the dvc data from file above
+dvcs<-d$Crashes
+dvcs<-dvcs[,7:(dim(dvcs)[2])]
+totdvcs<-apply(FUN=sum,X=dvcs,MARGIN=2)
+dvcyr<-1987:2016
+
 #pull in the Fourier surrogates developed for Fig 5
 abunsurr<-read.csv("Data/abunsurrsum.csv")
 abunsurr<-as.matrix(abunsurr)
+
+#pull in the Fourier surrogates developed for Fig 5
+dvcsurr<-read.csv("Data/dvcsurrsum.csv")
+dvcsurr<-as.matrix(dvcsurr)
 
 #pull in raw (un-transformed) winter weather data
 ww<-readRDS(file="Results/winter.clim.rds")
