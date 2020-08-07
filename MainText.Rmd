@@ -231,7 +231,7 @@ integral of $C_{w_i w_j}(f)$ equals $\cov(w_i(t),w_j(t))$.
 Our main theoretical result expresses the spectrum, $S_{\text{tot}}$, of a total
 population across a region composed of $i=1,\ldots,N$ local areas in the form
 \begin{equation}
-S_{\text{\emph{tot}}}(f) = F_{\text{popdyn}}(f) \left[ \sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f) +
+S_{\text{tot}}(f) = F_{\text{popdyn}}(f) \left[ \sum_{i=1}^N S_{\epsilon_{i}\epsilon_{i}}(f) +
 \sum_{\substack{i,j=1 \\ i \neq j}}^N C_{\epsilon_{i}\epsilon_{j}}(f)\right],\label{mainresmt}
 \end{equation}
 \noindent where $F_{\text{popdyn}}(f)$ reflects 
@@ -659,7 +659,7 @@ and again here, we showed that using timescale-specific methods can help
 ameliorate this difficulty and can reveal new phenomena and mechanisms.
 
 # Acknowledgements
-D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and anonymous referees for very useful feedback. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
+D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and anonymous referees for very useful feedback and some code. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
 <!--Load sup mat workspace for the methods, which used to be in the sup mat-->

@@ -1,3 +1,6 @@
+#This code was generated in response to some reviewer comments on the second submission to Ecology Letters. The code
+#uses correlation and Fourier methods (as opposed to wavelet coherence) to quantify the importance of snow depth and MEI
+#for deer fluctuations.
 
 #***
 #Functions
@@ -181,13 +184,13 @@ stat2_for_dat<-mean(allcorslag1)
 stat3_for_dat<-mean(allcorslag2)
 
 #get the same statistics for appropriate surrogates
-nsurrogs<-10000
-snow_noNA_cl_s<-wsyn::surrog(dat=snow_noNA_cl,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-deer_forsnow_cl_s<-wsyn::surrog(dat=deer_forsnow_cl,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-stat1_for_s<-NA*numeric(nsurrogs)
-stat2_for_s<-NA*numeric(nsurrogs)
-stat3_for_s<-NA*numeric(nsurrogs)
-for (scounter in 1:nsurrogs)
+nsurr<-10000
+snow_noNA_cl_s<-wsyn::surrog(dat=snow_noNA_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+deer_forsnow_cl_s<-wsyn::surrog(dat=deer_forsnow_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+stat1_for_s<-NA*numeric(nsurr)
+stat2_for_s<-NA*numeric(nsurr)
+stat3_for_s<-NA*numeric(nsurr)
+for (scounter in 1:nsurr)
 {
   d<-deer_forsnow_cl_s[[scounter]]
   s<-snow_noNA_cl_s[[scounter]]
@@ -208,32 +211,32 @@ for (scounter in 1:nsurrogs)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1<-1-sum(stat1_for_dat<stat1_for_s)/nsurrogs 
+p_onetailed_stat1<-1-sum(stat1_for_dat<stat1_for_s)/nsurr 
 p_onetailed_stat1 #significant
-p_onetailed_stat2<-sum(stat2_for_dat<stat2_for_s)/nsurrogs
+p_onetailed_stat2<-sum(stat2_for_dat<stat2_for_s)/nsurr
 p_onetailed_stat2 #not quite significant
-p_onetailed_stat3<-sum(stat3_for_dat<stat3_for_s)/nsurrogs
+p_onetailed_stat3<-sum(stat3_for_dat<stat3_for_s)/nsurr
 p_onetailed_stat3 #significant
 stat4_for_dat<-(stat2_for_dat+stat3_for_dat)/2
 stat4_for_s<-(stat2_for_s+stat3_for_s)/2 #This last statistic actually 
 #makes the most sense of all of them. Probably we can dispense with 
 #stats 2 and 3.
-p_onetailed_stat4<-sum(stat4_for_dat<stat4_for_s)/nsurrogs 
+p_onetailed_stat4<-sum(stat4_for_dat<stat4_for_s)/nsurr 
 p_onetailed_stat4 #significant
 
 #make some histograms, just to see
-hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
-     main=paste0("p=",round(p_onetailed_stat1,4)))
-points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
-hist(stat2_for_s,100,xlim=range(stat2_for_s,stat2_for_dat),
-     main=paste0("p=",round(p_onetailed_stat2,4)))
-points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
-hist(stat3_for_s,100,xlim=range(stat3_for_s,stat3_for_dat),
-     main=paste0("p=",round(p_onetailed_stat3,4)))
-points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
-hist(stat4_for_s,100,xlim=range(stat4_for_s,stat4_for_dat),
-     main=paste0("p=",round(p_onetailed_stat4,4)))
-points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat1,4)))
+#points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat2_for_s,100,xlim=range(stat2_for_s,stat2_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat2,4)))
+#points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat3_for_s,100,xlim=range(stat3_for_s,stat3_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat3,4)))
+#points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat4_for_s,100,xlim=range(stat4_for_s,stat4_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat4,4)))
+#points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
 
 #***now do another similar analysis after filtering
 
@@ -262,12 +265,12 @@ stat2_for_dat_filt<-mean(allcorslag1_filt)
 stat3_for_dat_filt<-mean(allcorslag2_filt)
 
 #get the same statistics for appropriate surrogates
-snow_noNA_cl_filt_s<-wsyn::surrog(dat=snow_noNA_cl_filt,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-deer_forsnow_cl_filt_s<-wsyn::surrog(dat=deer_forsnow_cl_filt,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-stat1_for_s_filt<-NA*numeric(nsurrogs)
-stat2_for_s_filt<-NA*numeric(nsurrogs)
-stat3_for_s_filt<-NA*numeric(nsurrogs)
-for (scounter in 1:nsurrogs)
+snow_noNA_cl_filt_s<-wsyn::surrog(dat=snow_noNA_cl_filt,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+deer_forsnow_cl_filt_s<-wsyn::surrog(dat=deer_forsnow_cl_filt,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+stat1_for_s_filt<-NA*numeric(nsurr)
+stat2_for_s_filt<-NA*numeric(nsurr)
+stat3_for_s_filt<-NA*numeric(nsurr)
+for (scounter in 1:nsurr)
 {
   d<-deer_forsnow_cl_filt_s[[scounter]]
   s<-snow_noNA_cl_filt_s[[scounter]]
@@ -288,34 +291,34 @@ for (scounter in 1:nsurrogs)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1_filt<-1-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurrogs 
+p_onetailed_stat1_filt<-1-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurr 
 p_onetailed_stat1_filt #significant
-p_onetailed_stat2_filt<-sum(stat2_for_dat_filt<stat2_for_s_filt)/nsurrogs
+p_onetailed_stat2_filt<-sum(stat2_for_dat_filt<stat2_for_s_filt)/nsurr
 p_onetailed_stat2_filt #not significant
-p_onetailed_stat3_filt<-sum(stat3_for_dat_filt<stat3_for_s_filt)/nsurrogs
+p_onetailed_stat3_filt<-sum(stat3_for_dat_filt<stat3_for_s_filt)/nsurr
 p_onetailed_stat3_filt #not significant
 stat4_for_dat_filt<-(stat2_for_dat_filt+stat3_for_dat_filt)/2
 stat4_for_s_filt<-(stat2_for_s_filt+stat3_for_s_filt)/2 
-p_onetailed_stat4_filt<-sum(stat4_for_dat_filt<stat4_for_s_filt)/nsurrogs 
+p_onetailed_stat4_filt<-sum(stat4_for_dat_filt<stat4_for_s_filt)/nsurr 
 p_onetailed_stat4_filt #significant 
 
 #make some histograms, just to see
-hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
-points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-hist(stat2_for_s_filt,100,xlim=range(stat2_for_s_filt,stat2_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat2_filt,4)))
-points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-hist(stat3_for_s_filt,100,xlim=range(stat3_for_s_filt,stat3_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat3_filt,4)))
-points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-hist(stat4_for_s_filt,100,xlim=range(stat4_for_s_filt,stat4_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat4_filt,4)))
-points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
+#points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat2_for_s_filt,100,xlim=range(stat2_for_s_filt,stat2_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat2_filt,4)))
+#points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat3_for_s_filt,100,xlim=range(stat3_for_s_filt,stat3_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat3_filt,4)))
+#points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat4_for_s_filt,100,xlim=range(stat4_for_s_filt,stat4_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat4_filt,4)))
+#points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
 #so we again get significance in the two stats we settled on
 
 #store the results in a variable, for reporting in the paper
-pvals_deer_snow<-c(p_onetailed_stat1=p_onetailed_stat1,
+cor_pvals_deer_snow<-c(p_onetailed_stat1=p_onetailed_stat1,
                    p_onetailed_stat2=p_onetailed_stat2,
                    p_onetailed_stat3=p_onetailed_stat3,
                    p_onetailed_stat4=p_onetailed_stat4,
@@ -367,12 +370,12 @@ stat2_for_dat<-mean(allcorslag2)
 stat3_for_dat<-mean(allcorslag3)
 
 #get the same statistics for appropriate surrogates
-mei_cl_s<-wsyn::surrog(dat=mei_cl,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-deer_cl_s<-wsyn::surrog(dat=deer_cl,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-stat1_for_s<-NA*numeric(nsurrogs)
-stat2_for_s<-NA*numeric(nsurrogs)
-stat3_for_s<-NA*numeric(nsurrogs)
-for (scounter in 1:nsurrogs)
+mei_cl_s<-wsyn::surrog(dat=mei_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+deer_cl_s<-wsyn::surrog(dat=deer_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+stat1_for_s<-NA*numeric(nsurr)
+stat2_for_s<-NA*numeric(nsurr)
+stat3_for_s<-NA*numeric(nsurr)
+for (scounter in 1:nsurr)
 {
   d<-deer_cl_s[[scounter]]
   s<-mei_cl_s[[scounter]]
@@ -393,30 +396,30 @@ for (scounter in 1:nsurrogs)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1<-sum(stat1_for_dat<stat1_for_s)/nsurrogs 
+p_onetailed_stat1<-sum(stat1_for_dat<stat1_for_s)/nsurr 
 p_onetailed_stat1 
-p_onetailed_stat2<-sum(stat2_for_dat<stat2_for_s)/nsurrogs
+p_onetailed_stat2<-sum(stat2_for_dat<stat2_for_s)/nsurr
 p_onetailed_stat2 
-p_onetailed_stat3<-sum(stat3_for_dat<stat3_for_s)/nsurrogs
+p_onetailed_stat3<-sum(stat3_for_dat<stat3_for_s)/nsurr
 p_onetailed_stat3 
 stat4_for_dat<-(stat1_for_dat+stat2_for_dat+stat2_for_dat)/3
 stat4_for_s<-(stat1_for_s+stat2_for_s+stat2_for_s)/3 
-p_onetailed_stat4<-sum(stat4_for_dat<stat4_for_s)/nsurrogs 
+p_onetailed_stat4<-sum(stat4_for_dat<stat4_for_s)/nsurr 
 p_onetailed_stat4 #this last one is the most appropriate one
 
 #make some histograms, just to see
-hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
-     main=paste0("p=",round(p_onetailed_stat1,4)))
-points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
-hist(stat2_for_s,100,xlim=range(stat2_for_s,stat2_for_dat),
-     main=paste0("p=",round(p_onetailed_stat2,4)))
-points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
-hist(stat3_for_s,100,xlim=range(stat3_for_s,stat3_for_dat),
-     main=paste0("p=",round(p_onetailed_stat3,4)))
-points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
-hist(stat4_for_s,100,xlim=range(stat4_for_s,stat4_for_dat),
-     main=paste0("p=",round(p_onetailed_stat4,4)))
-points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat1,4)))
+#points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat2_for_s,100,xlim=range(stat2_for_s,stat2_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat2,4)))
+#points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat3_for_s,100,xlim=range(stat3_for_s,stat3_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat3,4)))
+#points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat4_for_s,100,xlim=range(stat4_for_s,stat4_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat4,4)))
+#points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
 #this is all good - we get significance in the stat we care most about (stat4)
 
 #***now do another similar analysis after filtering
@@ -441,12 +444,12 @@ stat2_for_dat_filt<-mean(allcorslag2)
 stat3_for_dat_filt<-mean(allcorslag3)
 
 #get the same statistics for appropriate surrogates
-mei_cl_filt_s<-wsyn::surrog(dat=mei_cl_filt,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-deer_cl_filt_s<-wsyn::surrog(dat=deer_cl_filt,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-stat1_for_s_filt<-NA*numeric(nsurrogs)
-stat2_for_s_filt<-NA*numeric(nsurrogs)
-stat3_for_s_filt<-NA*numeric(nsurrogs)
-for (scounter in 1:nsurrogs)
+mei_cl_filt_s<-wsyn::surrog(dat=mei_cl_filt,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+deer_cl_filt_s<-wsyn::surrog(dat=deer_cl_filt,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+stat1_for_s_filt<-NA*numeric(nsurr)
+stat2_for_s_filt<-NA*numeric(nsurr)
+stat3_for_s_filt<-NA*numeric(nsurr)
+for (scounter in 1:nsurr)
 {
   d<-deer_cl_filt_s[[scounter]]
   s<-mei_cl_filt_s[[scounter]]
@@ -467,34 +470,34 @@ for (scounter in 1:nsurrogs)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1_filt<-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurrogs 
+p_onetailed_stat1_filt<-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurr 
 p_onetailed_stat1_filt 
-p_onetailed_stat2_filt<-sum(stat2_for_dat_filt<stat2_for_s_filt)/nsurrogs
+p_onetailed_stat2_filt<-sum(stat2_for_dat_filt<stat2_for_s_filt)/nsurr
 p_onetailed_stat2_filt 
-p_onetailed_stat3_filt<-sum(stat3_for_dat_filt<stat3_for_s_filt)/nsurrogs
+p_onetailed_stat3_filt<-sum(stat3_for_dat_filt<stat3_for_s_filt)/nsurr
 p_onetailed_stat3_filt 
 stat4_for_dat_filt<-(stat1_for_dat_filt+stat2_for_dat_filt+stat2_for_dat_filt)/3
 stat4_for_s_filt<-(stat1_for_s_filt+stat2_for_s_filt+stat2_for_s_filt)/3 
-p_onetailed_stat4_filt<-sum(stat4_for_dat_filt<stat4_for_s_filt)/nsurrogs 
+p_onetailed_stat4_filt<-sum(stat4_for_dat_filt<stat4_for_s_filt)/nsurr 
 p_onetailed_stat4_filt
 
 #make some histograms, just to see
-hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
-points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-hist(stat2_for_s_filt,100,xlim=range(stat2_for_s_filt,stat2_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat2_filt,4)))
-points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-hist(stat3_for_s_filt,100,xlim=range(stat3_for_s_filt,stat3_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat3_filt,4)))
-points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-hist(stat4_for_s_filt,100,xlim=range(stat4_for_s_filt,stat4_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat4_filt,4)))
-points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
+#points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat2_for_s_filt,100,xlim=range(stat2_for_s_filt,stat2_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat2_filt,4)))
+#points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat3_for_s_filt,100,xlim=range(stat3_for_s_filt,stat3_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat3_filt,4)))
+#points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat4_for_s_filt,100,xlim=range(stat4_for_s_filt,stat4_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat4_filt,4)))
+#points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
 #this is all good - we again get significance in the stat we care most about (stat4)
 
 #store the results in a variable, for reporting in the paper
-pvals_deer_mei<-c(p_onetailed_stat1=p_onetailed_stat1,
+cor_pvals_deer_mei<-c(p_onetailed_stat1=p_onetailed_stat1,
                    p_onetailed_stat2=p_onetailed_stat2,
                    p_onetailed_stat3=p_onetailed_stat3,
                    p_onetailed_stat4=p_onetailed_stat4,
@@ -534,10 +537,10 @@ stat1_for_dat<-mean(allcors)
 #analysis reveals between deer and dvcs is so close to 0 (in phase)
 
 #get the same statistic for appropriate surrogates
-dvcs_cl_s<-wsyn::surrog(dat=dvcs_cl,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-deer_fordvcs_cl_s<-wsyn::surrog(dat=deer_fordvcs_cl,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-stat1_for_s<-NA*numeric(nsurrogs)
-for (scounter in 1:nsurrogs)
+dvcs_cl_s<-wsyn::surrog(dat=dvcs_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+deer_fordvcs_cl_s<-wsyn::surrog(dat=deer_fordvcs_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+stat1_for_s<-NA*numeric(nsurr)
+for (scounter in 1:nsurr)
 {
   d<-deer_fordvcs_cl_s[[scounter]]
   s<-dvcs_cl_s[[scounter]]
@@ -552,13 +555,13 @@ for (scounter in 1:nsurrogs)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1<-sum(stat1_for_dat<stat1_for_s)/nsurrogs 
+p_onetailed_stat1<-sum(stat1_for_dat<stat1_for_s)/nsurr 
 p_onetailed_stat1
 
 #make a histogram, just to see
-hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
-     main=paste0("p=",round(p_onetailed_stat1,4)))
-points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
+#hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
+#     main=paste0("p=",round(p_onetailed_stat1,4)))
+#points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
 
 #***now do another similar analysis after filtering
 
@@ -575,10 +578,10 @@ for (counter in 1:dim(deer_fordvcs_cl_filt)[1])
 stat1_for_dat_filt<-mean(allcors) 
 
 #get the same statistics for appropriate surrogates
-dvcs_cl_filt_s<-wsyn::surrog(dat=dvcs_cl_filt,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-deer_fordvcs_cl_filt_s<-wsyn::surrog(dat=deer_fordvcs_cl_filt,nsurrogs=nsurrogs,surrtype="fft",syncpres=TRUE)
-stat1_for_s_filt<-NA*numeric(nsurrogs)
-for (scounter in 1:nsurrogs)
+dvcs_cl_filt_s<-wsyn::surrog(dat=dvcs_cl_filt,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+deer_fordvcs_cl_filt_s<-wsyn::surrog(dat=deer_fordvcs_cl_filt,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+stat1_for_s_filt<-NA*numeric(nsurr)
+for (scounter in 1:nsurr)
 {
   d<-deer_fordvcs_cl_filt_s[[scounter]]
   s<-dvcs_cl_filt_s[[scounter]]
@@ -593,14 +596,18 @@ for (scounter in 1:nsurrogs)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1_filt<-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurrogs 
+p_onetailed_stat1_filt<-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurr 
 p_onetailed_stat1_filt
 
 #make a histogram, just to see
-hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
-     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
-points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
+#     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
+#points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
 
 #store the results in a variable, for reporting in the paper
-pvals_deer_dvcs<-c(p_onetailed_stat1=p_onetailed_stat1,
+cor_pvals_deer_dvcs<-c(p_onetailed_stat1=p_onetailed_stat1,
                    p_onetailed_stat1_filt=p_onetailed_stat1_filt)
+
+
+
+

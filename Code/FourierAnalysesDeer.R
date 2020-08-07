@@ -1,3 +1,4 @@
+
 #****
 #Some spectral tools
 #****
@@ -44,7 +45,7 @@ myspecbrill<-function(x,detrend=TRUE)
   #get the raw periodogram
   fftx<-fft(x)
   I<-(Mod(fftx))^2/(2*pi*Tx)
-  I[1]<-0 #Set zero frequency to 0. Should be zero anyway, yto within rounding error, because of the detrending
+  I[1]<-0 #Set zero frequency to 0. Should be zero anyway, to within rounding error, because of the detrending
   freq<-(0:(Tx-1))/Tx
   freq<-2*pi*freq #to make frequencies be in units of radians per sampling interval
   
@@ -63,7 +64,7 @@ myspecbrill<-function(x,detrend=TRUE)
     spec<-spec+temp[c((AbsShift+1):lenI,1:AbsShift)]+temp[c((lenI-AbsShift+1):lenI,1:(lenI-AbsShift))]
   }
   
-  #remove the 0 frequency, and change the units back to radians per sampling interval,
+  #remove the 0 frequency, and change the units back to cycles per sampling interval,
   #and cut the redundant part of the spectrum
   freq<-freq[-1]
   spec<-spec[-1]

@@ -141,10 +141,17 @@ save.image(file="WholeWorkspace.RData")
 ```
 
 <!--The new Fourier analyses developed in response to Ecology Letters reviewer, 2020 03-->
-```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("dvcsurrsum.csv"),                                                                                mtime("Code/FourierAnalysesDeer.R"),mtime("Code/FourierAnalysesDVCs.R"))}
+```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),                                                                                mtime("Code/FourierAnalysesDeer.R"),mtime("Code/FourierAnalysesDVCs.R"),mtime("Results/cty.list.rds"),mtime("Results/cty.list.rds"))}
 source("Code/FourierAnalysesDeer.R")
 source("Code/FourierAnalysesDVCs.R")
 ```
+
+<!--The new Fourier and correlation analyses developed in response to the same reviewer, second review, 2020 07-->
+```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/Review2_Analysis_CoherenceSupport.R"),mtime("Code/Review2_Analysis_FourierDecomp.R"),mtime("Results/cty.list.rds"),mtime("Results/winter.clim.rds"),mtime("Results/climindex.rds"))}
+source("Code/Review2_Analysis_CoherenceSupport.R")
+source("Code/Review2_Analysis_FourierDecomp.R")
+```
+
 
 # Theory \label{SI:theory}
 
@@ -1242,18 +1249,18 @@ difference between peak and trough years in DVC
 costs may exceed US\$22M.    
 
 <!--Fourier methods that were used to generate supporting results-->
-\subsection{ Fourier methods}\label{SI:methods:Fouriermethods} 
+\subsection{ Fourier and correlation methods}\label{SI:methods:Fouriermethods} 
 \noindent Although our wavelet methods were most appropriate for initial discovery
 of our results, many of our
-results can also be demonstrated, \emph{post hoc}, using Fourier methods. So we here describe Fourier methods we
-applied, which support our wavelet results. 
+results can also be supported, \emph{post hoc}, using Fourier and correlation methods. We here 
+describe the Fourier and correlation methods we applied to further test our theory and support our wavelet results. 
 
 After discovering (Fig. \ref{MT-Fig3_DeerSync}A) that synchrony in deer is primarily at $3-7$-year timescales, to 
-test whether the theory presented above is reflected in our deer data, it suffices to show
-that spectral power in the $3-7$-year timescale band was much greater for the total deer time series 
+test whether the theory presented above (SI sections \ref{SI:theory} and \ref{sect:mainproof}) is reflected in our deer data, 
+we tested whether spectral power in the $3-7$-year timescale band was much greater for the total deer time series 
 for WI than it would have been without synchrony between county-level deer time series in the $3-7$-year 
 band. In other words, if synchrony in the $3-7$-year band were a cause of $3-7$-year deer population 
-cycling at the state level, then when synchrony is removed but county-level time series are 
+cycling at the state level, as predicted by the theory, then when synchrony is removed but county-level time series are 
 kept otherwise statistically similar, state-level cycling should be significantly and substantially reduced. 
 We calculated spectral power in the $3-7$-year band and compared the result to the same statistic calculated 
 for the surrogate time series of Fig. \ref{MT-Fig5_StateWideFluctuations}A (grey lines - methods for 
@@ -1278,8 +1285,9 @@ $0.05/3=0.0166$, -->
 Although the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}A are most appropriate for our
 research goals, autoregressive surrogates are fairly common and have been used for significance testing
 spectral quantities. AR(1) models have no spectral peak, so they have been used to test
-for the significance of spectral peaks. Therefore, we also tested our 
-results using AR(1) surrogates, for completeness. But we emphasize that we consider 
+for the significance of spectral peaks. Therefore, we also tested whether the spectral peak in 
+the state-total deer time series was significant compared to AR(1) surrogates, 
+for completeness. But we emphasize that we consider 
 autoregressive surrogates less appropriate for our research goals because they do not 
 correspond to a null hypothesis that is explicitly about synchrony. We fitted an AR(1)
 model by maximum likelihood to the detrended state-total deer time series, and then
@@ -1295,16 +1303,21 @@ involves smoothing the raw periodigram across nearby frequencies), and equating 
 to be $0.05/7=0.0071$. Second, using the same approach but for all 18 timescales
 for which spectra were available, the Bonferroni-corrected threshold was $0.05/18=0.0027$. -->
 
-Finally, we used maximum likelihood to fit autoregressive models of different orders to 
+To provide still more evidence that state-total deer populations in WI were indeed cyclic, 
+with periodicity in the $3-7$-year range and a statistical meaningful spectral peak within that timescale range, 
+we used maximum likelihood to fit autoregressive models of different orders to 
 detrended state-total deer time series, comparing orders using the Akaike Information
-Criterion (AIC). Recall that lower AIC values indicate better model-data correspondence. 
+Criterion (AIC); and we also displayed the detrended state-total time series for examination of whether the
+periodicity is visually apparent. Recall that lower AIC values indicate better model-data correspondence. 
 Spectra were displayed for the fitted models of orders for which the
 AIC indicated the best correspondence with data. If these spectra were peaked, and spectra of
 higher-AIC models were not (AR(0) and AR(1) models have non-peaked spectra), this supports
 peakedness of spectra against a non-peaked alternative. 
 
-If our theory is reflected in deer data, then periodicity at $3-7$-year timescales should be stronger 
-for the state-total deer time series than it is for the county-level deer time series, so we tested this. 
+If our theory is reflected in deer data, then periodicity at $3-7$-year timescales should be 
+not only statistically meaningful, as will be demonstrated with the methods described above, 
+but should also be stronger 
+for the state-total deer time series than it is for the county-level deer time series. So we tested this hypothesis. 
 We first detrended both the state-total and county deer time series and standardized the variance of each of these time series. 
 We then computed total spectral power in the $3-7$-year timescale band for all these time series
 and compared the state- and county-level results. Variance standardization was used prior
@@ -1317,6 +1330,20 @@ proportion of time series variance was concentrated in the $3-7$-year band for t
 than for the county-level time series (i.e., if the state-level spectrum was more peaked
 within the $3-7$-year band than were the county-level spectra), which is what our post-standardization 
 analysis tests for.  
+
+Finally, if our theory is reflected in deer data, then the decomposition of $S_{\text{tot}}$ into spectral and cospectral 
+contribitions (equation (\ref{MT-mainresmt}) of the main text) should reveal much greater cospectral contributions to the 
+peak of $S_{\text{tot}}$ on $3-7$-year timescales. We tested this 
+
+The equation 
+\begin{equation}
+S_{\text{tot}}=\sum_{i,j} C_{w_i w_j} = \sum_i C_{w_i w_i} + \sum_{i \neq j} C_{w_i w_j}
+\end{equation}
+follows straightforwardly from the definitions of the spectra and cospectra of the population processes $w_i$ in 
+the locations $i$ and the spectrum, $S_{\text{tot}}$, of $w_{\text{tot}}=\sum_i w_i$ (see )
+
+
+
 
 For DVCs, we tested whether spectral power in the $3-7$-year timescale band was much greater for the total DVC time series 
 for WI than it would have been without synchrony between county-level DVC time series in the $3-7$-year 
