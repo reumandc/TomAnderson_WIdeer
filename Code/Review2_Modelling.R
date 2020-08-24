@@ -1,29 +1,4 @@
-#***
-#Thinking about models
-#***
-
-#The purpose here is to think about using ARMA models of deer driven by snow and MEI.
-#What models? To what purpose?
-
-#What models:
-#1) In each location model deer with an TBD number of AR lags (though the above results may shed some light) and
-#using noise drivers snow depth and MEI. You'll probably also need another error term, but not sure what kinds of 
-#assumptions to make about it. 
-
-#To what purpose:
-#1) Broadly, to substantiate the argument that Moran effects from snow and MEI are causing the timescale-specific
-#synchrony we see. 
-#2) It would be nice if we could set up a model and argue it's a good fit, and then simulate the model and the sims
-#have the same or similar patterns of timescale-specific synchrony as the real deer.
-#3) The referee seems to want us to establish the drivers and then show they give the synchrony patterns in deer. He 
-#even wants us to explain the lack of synchrony in deer at long timescales. 
-#4) What if we cannot do anything about the long timescales, but we can get a model using snow and MEI and it generates 
-#the right synchrony at 3-7-year timescales and then when you unsynchronize snow and simulate, you loose the deer 
-#synchrony at 3-4 and when you unsynchronize MEI you loose the deer synchrony at 4-7?
-#5) If you have an ARMA model driven by some noises, what's the coherence between noise and population and how does it
-#depend on the ARMA coefficients?
-
-
+#This script is to...
 
 #***
 #***Load the data
@@ -82,6 +57,144 @@ plot(deeryr,mei[1,],type="l",ylim=range(mei),main="MEI, cleaned and transformed"
      xlab="Year",ylab="Transformed MEI")
 
 #***
+#make some autocorrelation diagrams
+#***
+
+#For making the autocorrelation function that is appropriate in this case
+#
+#d        A matrix with time series in the rows
+#maxlag   The maximum lag to use
+#
+#Output - a vector of length maxlag
+#
+autocorrfun<-function(d,maxlag)
+{
+  dd2<-dim(d)[2]
+  
+  res<-NA*numeric(maxlag)
+  for (counter in 1:maxlag)
+  {
+    res[counter]<-mean(diag(cor(t(d[,1:(dd2-counter)]),t(d[,(1+counter):dd2]))))
+  }
+  
+  return(res)
+}
+
+#get the autocorrelation function for deer
+maxlag<-15
+deer_autocor<-autocorrfun(deer,maxlag)
+
+#test against reshuffled data, two types of reshuffling
+nsurr<-1000
+deer_autocor_s1<-matrix(NA,nsurr,length(deer_autocor))
+deer_autocor_s2<-matrix(NA,nsurr,length(deer_autocor))
+for (counter in 1:nsurr)
+{
+  deer_s1<-deer[,sample(dim(deer)[2],dim(deer)[2],replace=TRUE)]
+  deer_autocor_s1[counter,]<-autocorrfun(deer_s1,maxlag)
+  
+  newinds<-matrix(sample(dim(deer)[2],prod(dim(deer)),replace=TRUE),dim(deer)[1],dim(deer)[2])
+  deer_s2<-deer
+  for (dr in 1:(dim(deer)[1]))
+  {
+    deer_s2[dr,]<-deer[dr,newinds[dr,]]
+  }
+  deer_autocor_s2[counter,]<-autocorrfun(deer_s2,maxlag)
+}
+qs1<-apply(FUN=quantile,X=deer_autocor_s1,MARGIN=2,probs=c(.025,.975))
+qs2<-apply(FUN=quantile,X=deer_autocor_s2,MARGIN=2,probs=c(.025,.975))
+
+plot(1:maxlag,deer_autocor,type="b",ylim=range(deer_autocor,qs))
+lines(c(1,maxlag),c(0,0),type="l",lty="solid")
+lines(1:maxlag,qs1[1,],lty="dotted")
+lines(1:maxlag,qs1[2,],lty="dotted")
+lines(1:maxlag,qs2[1,],lty="dashed")
+lines(1:maxlag,qs2[2,],lty="dashed")
+
+#Note: these are not really appropriate for judging what deer AR lags to use in a model,
+#since deer autocorrelation can result from density dependence or from the influence of 
+#external drivers. It's not entirely clear to me what this plot is good for, I just made
+#it because when one with an ARX model one often starts with an autocorrelation plot. 
+
+#***
+#make some cross correlation diagrams
+#***
+
+#For making cross correlations functions that are appropriate in this case
+#
+#d1         A matrix with time series in the rows
+#d2         Another such
+#maxlag     The maximum lag to use
+#
+#Output - a data frame with these entries
+#lag        -maxlag up to maxlag
+#cor        The lagged correlation
+#
+crosscorrfun<-function(d1,d2,maxlag)
+{
+  if (any(dim(d1)!=dim(d2)))
+  {
+    stop("Error in crosscorrfun: nonconformable arguments d1 and d2")
+  }
+  
+  dd2<-dim(d1)[2]
+  
+  res<-data.frame(lag=(-maxlag):maxlag,cor=NA)
+  for (lag in (-maxlag):maxlag)
+  {
+    if (lag<0)
+    {
+      res[res$lag==lag,2]<-mean(diag(cor(t(d1[,1:(dd2+lag)]),t(d2[,(-lag+1):dd2]))))
+    }
+    if (lag>0)
+    {
+      res[res$lag==lag,2]<-mean(diag(cor(t(d1[,(lag+1):dd2]),t(d2[,1:(dd2-lag)]))))
+    }
+    if (lag==0)
+    {
+      res[res$lag==lag,2]<-mean(diag(cor(t(d1),t(d2))))
+    }
+  }
+  
+  return(res)
+}
+
+#get the cross correlation function for deer and snow
+maxlag<-15
+deer_snow_crosscor<-crosscorrfun(deer,snow,maxlag)
+
+#get the cross correlation function for deer and mei
+maxlag<-15
+deer_mei_crosscor<-crosscorrfun(deer,mei,maxlag)
+
+#test against surrogate data
+deer_s<-wsyn::surrog(dat=deer,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+mei_s<-wsyn::surrog(dat=mei,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+snow_s<-wsyn::surrog(dat=snow,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
+deer_mei_crosscor_s<-matrix(NA,nsurr,dim(deer_mei_crosscor)[1])
+deer_snow_crosscor_s<-matrix(NA,nsurr,dim(deer_snow_crosscor)[1])
+for (counter in 1:nsurr)
+{
+  h<-crosscorrfun(deer_s[[counter]],snow_s[[counter]],maxlag)
+  deer_snow_crosscor_s[counter,]<-h$cor
+  h<-crosscorrfun(deer_s[[counter]],mei_s[[counter]],maxlag)
+  deer_mei_crosscor_s[counter,]<-h$cor
+}
+qs_snow<-apply(FUN=quantile,MARGIN=2,X=deer_snow_crosscor_s,prob=c(.025,.975))
+qs_mei<-apply(FUN=quantile,MARGIN=2,X=deer_mei_crosscor_s,prob=c(.025,.975))
+
+#make plots
+plot(deer_snow_crosscor$lag,deer_snow_crosscor$cor,type="b",ylim=range(deer_snow_crosscor$cor,qs_snow))
+lines(range(deer_snow_crosscor$lag),c(0,0),type="l",lty="dashed")
+lines(deer_snow_crosscor$lag,qs_snow[1,],lty="dotted")
+lines(deer_snow_crosscor$lag,qs_snow[2,],lty="dotted")
+
+plot(deer_mei_crosscor$lag,deer_mei_crosscor$cor,type="b",ylim=range(deer_mei_crosscor$cor,qs_mei))
+lines(range(deer_mei_crosscor$lag),c(0,0),type="l",lty="dashed")
+lines(deer_mei_crosscor$lag,qs_mei[1,],lty="dotted")
+lines(deer_mei_crosscor$lag,qs_mei[2,],lty="dotted")
+
+#***
 #Now do some fitting, class 1
 #***
 
@@ -100,6 +213,7 @@ plot(deeryr,mei[1,],type="l",ylim=range(mei),main="MEI, cleaned and transformed"
 #ARo_mei      AR order for MEI - similar to ARo_snow, but for MEI.
 #sd_innov     Standard deviation parameter for the innovations. NOT AN ARGUMENT BUT CONTAINED IN parms.
 #cor_innov    Correlation parameters for the innovations. NOT AN ARGUMENT BUT CONTAINED IN parms.
+#fixedminyr   Used for making sure the same amount of data are used for different lags
 #deer         Deer data, pre-treated as above
 #snow         Snow data, pre-treated as above
 #mei          MEI data, pre-treated as above
@@ -108,7 +222,7 @@ plot(deeryr,mei[1,],type="l",ylim=range(mei),main="MEI, cleaned and transformed"
 #
 #Output - the ln likelihood of the model
 #
-logLik_class1<-function(parms,ARo_deer,ARo_snow,ARo_mei,deer,snow,mei,deeryr,innovs=FALSE)
+logLik_class1<-function(parms,ARo_deer,ARo_snow,ARo_mei,fixedminyr,deer,snow,mei,deeryr,innovs=FALSE)
 {
   #***no systematic error checking is done, just a few things
   numparms<-ARo_deer+2
@@ -131,7 +245,7 @@ logLik_class1<-function(parms,ARo_deer,ARo_snow,ARo_mei,deer,snow,mei,deeryr,inn
   snow<-unname(snow[,(ncol(snow)):1])
   mei<-unname(mei[,(ncol(mei)):1])
   
-  #***solve for the innovations
+  #***solve for the innovations, do it for all years for which it's possible
   
   #the actual deer numbers and corresponding years
   actual<-deer
@@ -195,8 +309,10 @@ logLik_class1<-function(parms,ARo_deer,ARo_snow,ARo_mei,deer,snow,mei,deeryr,inn
   }
   
   #now add up all the components of the prediction and subtract from the actual to get the
-  #innovations
-  minyr<-max(min(actual_yr),min(pred_deer_yr),min(pred_snow_yr),min(pred_mei_yr))
+  #innovations, but only for the years controlled by fixedminyr
+  minyr<-max(min(actual_yr),min(pred_deer_yr),min(pred_snow_yr),min(pred_mei_yr)) #the min year for which it would be possible to get the innovation
+  if (minyr>fixedminyr){stop("Error in logLik_class1: lags too large for fixedminyr")}
+  minyr<-fixedminyr
   resids<-actual[,which(actual_yr>=minyr)]-pred_deer[,which(pred_deer_yr>=minyr)]-
     pred_snow[,which(actual_yr>=minyr)]-pred_mei[,which(actual_yr>=minyr)]
   
@@ -222,18 +338,21 @@ logLik_class1<-function(parms,ARo_deer,ARo_snow,ARo_mei,deer,snow,mei,deeryr,inn
 #ARo_snow<-1
 #ARo_mei<-1
 #parms<-c(.9,1,1,1,1,.5,.4)
+#fixedminyr<-1986
 
 #for line-by-line testing, 2
 #ARo_deer<-2
 #ARo_snow<-1
 #ARo_mei<-1
 #parms<-c(.9,.2,1,1,1,1,.5,.4)
+#fixedminyr<-1982
 
 #just try calling this new likelihood function a few times
 #logLik_class1(parms=c(.9,.2,1,1,1,1,.5,.4),
 #              ARo_deer=2,
 #              ARo_snow=1,
 #              ARo_mei=1,
+#              fixedminyr=1986,
 #              deer=deer,
 #              snow=snow,
 #              mei=mei,
@@ -242,185 +361,20 @@ logLik_class1<-function(parms,ARo_deer,ARo_snow,ARo_mei,deer,snow,mei,deeryr,inn
 #              ARo_deer=3,
 #              ARo_snow=2,
 #              ARo_mei=2,
+#              fixedminyr=1986,
 #              deer=deer,
 #              snow=snow,
 #              mei=mei,
 #              deeryr=deeryr)
 
-#***now do some optimization, starting from coordinates determined by regression, using lags of
-#1 for deer (AR(1) model for deer), 2 for snow (so this year's snow, last year's, and the 
-#year before can influence deer), and 3 for MEI
+#***now write a function to automate model comparison across different choices of lags
 
-#the lags
-#ARo_deer<-1
-#ARo_snow<-2
-#ARo_mei<-3
-
-#a random guess, just to get things working
-#startpar<-c(.9,1,1,1,1,1,1,1,.5,.2) 
-#
-#optres1<-optim(par=startpar,
-#               fn=logLik_class1,
-#               method="Nelder-Mead",
-#               control=list(trace=10000,fnscale=-1,maxit=1000),
-#               ARo_deer=ARo_deer,
-#               ARo_snow=ARo_snow,
-#               ARo_mei=ARo_mei,
-#               deer=deer,
-#               snow=snow,
-#               mei=mei,
-#               deeryr=deeryr)
-#optres1$value
-#logLik_class1(parms=optres1$par,
-#              ARo_deer=ARo_deer,
-#              ARo_snow=ARo_snow,
-#              ARo_mei=ARo_mei,
-#              deer=deer,
-#              snow=snow,
-#              mei=mei,
-#              deeryr=deeryr)
-
-#now get startpar using regression
-#regdat<-data.frame(deer_resp=as.vector(deer[,4:(ncol(deer))]),
-#                   deer_pred_1=as.vector(deer[,3:(ncol(deer)-1)]),
-#                   snow_pred_0=as.vector(snow[,4:(ncol(deer))]),
-#                   snow_pred_1=as.vector(snow[,3:(ncol(deer)-1)]),
-#                   snow_pred_2=as.vector(snow[,2:(ncol(deer)-2)]),
-#                   mei_pred_0=as.vector(mei[,4:(ncol(deer))]),
-#                   mei_pred_1=as.vector(mei[,3:(ncol(deer)-1)]),
-#                   mei_pred_2=as.vector(mei[,2:(ncol(deer)-2)]),
-#                   mei_pred_3=as.vector(mei[,1:(ncol(deer)-3)]))
-#lmres<-lm(deer_resp~deer_pred_1+snow_pred_0+snow_pred_1+snow_pred_2+mei_pred_0+mei_pred_1+mei_pred_2+mei_pred_3-1,
-#   data=regdat)
-#coefs<-coef(lmres)
-#startpar<-c(unname(coefs),.5,.2)
-
-#now do the optimization
-#optres1<-optim(par=startpar,
-#      fn=logLik_class1,
-#      method="Nelder-Mead",
-#      control=list(trace=10000,fnscale=-1,maxit=10000),
-#      ARo_deer=ARo_deer,
-#      ARo_snow=ARo_snow,
-#      ARo_mei=ARo_mei,
-#      deer=deer,
-#      snow=snow,
-#      mei=mei,
-#      deeryr=deeryr)
-#optres1$convergence
-#optres1$value
-#optres1$par
-
-#now try optimizing from other start locations
-#set.seed(101)
-
-#numoptims<-9
-#alloptres1<-matrix(NA,numoptims+1,2+length(optres1$par))
-#colnames(alloptres1)<-c("convergence",'value',paste0(rep("par",length(optres1$par)),1:length(optres1$par)))
-#alloptres1[1,1]<-optres1$convergence
-#alloptres1[1,2]<-optres1$value
-#alloptres1[1,3:12]<-optres1$par
-#for (counter in 1:numoptims)
-#{
-#  print(paste0("Optimization ",counter," of ",numoptims))
-#  startpar_p<-startpar*runif(length(startpar),min=.07,max=1.3)
-#  optresn<-optim(par=startpar_p,
-#                 fn=logLik_class1,
-#                 method="Nelder-Mead",
-#                 control=list(trace=0,fnscale=-1,maxit=10000),
-#                 ARo_deer=ARo_deer,
-#                 ARo_snow=ARo_snow,
-#                 ARo_mei=ARo_mei,
-#                 deer=deer,
-#                 snow=snow,
-#                 mei=mei,
-#                 deeryr=deeryr)
-#  alloptres1[counter+1,1]<-optresn$convergence
-#  alloptres1[counter+1,2]<-optresn$value
-#  alloptres1[counter+1,3:12]<-optresn$par
-#}
-
-#get the AIC
-#AIC1<-2*length(startpar)-2*max(alloptres1[,"value"])
-
-#***now try lags of 2 for deer (AR(2) model for deer), 2 for snow (so this year's snow, last 
-#year's, and the year before can influence deer), and 3 for MEI
-
-#the lags
-#ARo_deer<-2
-#ARo_snow<-2
-#ARo_mei<-3
-
-#now get startpar using regression
-#regdat<-data.frame(deer_resp=as.vector(deer[,4:(ncol(deer))]),
-#                   deer_pred_1=as.vector(deer[,3:(ncol(deer)-1)]),
-#                   deer_pred_2=as.vector(deer[,2:(ncol(deer)-2)]),
-#                   snow_pred_0=as.vector(snow[,4:(ncol(deer))]),
-#                   snow_pred_1=as.vector(snow[,3:(ncol(deer)-1)]),
-#                   snow_pred_2=as.vector(snow[,2:(ncol(deer)-2)]),
-#                   mei_pred_0=as.vector(mei[,4:(ncol(deer))]),
-#                   mei_pred_1=as.vector(mei[,3:(ncol(deer)-1)]),
-#                   mei_pred_2=as.vector(mei[,2:(ncol(deer)-2)]),
-#                   mei_pred_3=as.vector(mei[,1:(ncol(deer)-3)]))
-#lmres<-lm(deer_resp~deer_pred_1+deer_pred_2+snow_pred_0+snow_pred_1+snow_pred_2+mei_pred_0+mei_pred_1+mei_pred_2+mei_pred_3-1,
-#          data=regdat)
-#coefs<-coef(lmres)
-#startpar<-c(unname(coefs),.5,.2)
-
-#now do the optimization
-#optres1<-optim(par=startpar,
-#               fn=logLik_class1,
-#               method="Nelder-Mead",
-#               control=list(trace=10000,fnscale=-1,maxit=10000),
-#               ARo_deer=ARo_deer,
-#               ARo_snow=ARo_snow,
-#               ARo_mei=ARo_mei,
-#               deer=deer,
-#               snow=snow,
-#               mei=mei,
-#               deeryr=deeryr)
-#optres1$convergence
-#optres1$value
-#optres1$par
-
-#now try optimizing from other start locations
-#set.seed(101)
-
-#numoptims<-9
-#alloptres2<-matrix(NA,numoptims+1,2+length(optres1$par))
-#colnames(alloptres2)<-c("convergence",'value',paste0(rep("par",length(optres1$par)),1:length(optres1$par)))
-#alloptres2[1,1]<-optres1$convergence
-#alloptres2[1,2]<-optres1$value
-#alloptres2[1,3:13]<-optres1$par
-#for (counter in 1:numoptims)
-#{
-#  print(paste0("Optimization ",counter," of ",numoptims))
-#  startpar_p<-startpar*runif(length(startpar),min=.07,max=1.3)
-#  optresn<-optim(par=startpar_p,
-#                 fn=logLik_class1,
-#                 method="Nelder-Mead",
-#                 control=list(trace=0,fnscale=-1,maxit=10000),
-#                 ARo_deer=ARo_deer,
-#                 ARo_snow=ARo_snow,
-#                 ARo_mei=ARo_mei,
-#                 deer=deer,
-#                 snow=snow,
-#                 mei=mei,
-#                 deeryr=deeryr)
-#  alloptres2[counter+1,1]<-optresn$convergence
-#  alloptres2[counter+1,2]<-optresn$value
-#  alloptres2[counter+1,3:13]<-optresn$par
-#}
-
-#get the AIC
-#AIC2<-2*length(startpar)-2*max(alloptres2[,"value"])
-
-#***now write a function to automate things for different choices of lags
-
-getAICgivenlags<-function(ARo_deer,ARo_snow,ARo_mei)
+getAICgivenlags<-function(ARo_deer,ARo_snow,ARo_mei,fixedminyr,numoptims)
 {
   #get startpar using regression
   maxlag<-max(ARo_deer,ARo_snow,ARo_mei)
+  if (deeryr[maxlag+1]>fixedminyr){stop("Error in getAICgivenlags: lags too big for fixedminyr")}
+  maxlag<-fixedminyr-min(deeryr) #this is to make different lags use the same data 
   regdat<-data.frame(deer_resp=as.vector(deer[,(maxlag+1):(ncol(deer))]))
   regform<-"deer_resp~"
   d2rd<-1
@@ -462,8 +416,7 @@ getAICgivenlags<-function(ARo_deer,ARo_snow,ARo_mei)
   coefs<-coef(lmres)
   startpar<-c(unname(coefs),.5,.2) #random choices for the last two parameters
   
-  #now do an optimization, prep to do several, and save the results from the first one
-  numoptims<-5
+  #now do an optimization, prep to do several more, and save the results from the first one
   print(paste0("Optimization ",1," of ",numoptims))
   optres1<-optim(par=startpar,
                  fn=logLik_class1,
@@ -472,6 +425,7 @@ getAICgivenlags<-function(ARo_deer,ARo_snow,ARo_mei)
                  ARo_deer=ARo_deer,
                  ARo_snow=ARo_snow,
                  ARo_mei=ARo_mei,
+                 fixedminyr=fixedminyr,
                  deer=deer,
                  snow=snow,
                  mei=mei,
@@ -494,6 +448,7 @@ getAICgivenlags<-function(ARo_deer,ARo_snow,ARo_mei)
                    ARo_deer=ARo_deer,
                    ARo_snow=ARo_snow,
                    ARo_mei=ARo_mei,
+                   fixedminyr=fixedminyr,
                    deer=deer,
                    snow=snow,
                    mei=mei,
@@ -506,59 +461,63 @@ getAICgivenlags<-function(ARo_deer,ARo_snow,ARo_mei)
   return(list(alloptres=alloptres,numparams=length(startpar)))
 }
 
-#***now call the function on the two cases done manually above, for comparison with the above
-#results, as a test
-
-#set.seed(101)
-#res1_f<-getAICgivenlags(ARo_deer=1,ARo_snow=2,ARo_mei=3)
-#alloptres1_f<-res1_f$alloptres
-#AIC1_f<-2*res1_f$numparams-2*max(res1_f$alloptres[,"value"])
-
-#alloptres1
-#alloptres1_f
-#max(abs(alloptres1-alloptres1_f))
-#AIC1
-#AIC1_f
-#AIC1-AIC1_f
-
-#set.seed(101)
-#res2_f<-getAICgivenlags(ARo_deer=2,ARo_snow=2,ARo_mei=3)
-#alloptres2_f<-res2_f$alloptres
-#AIC2_f<-2*res2_f$numparams-2*max(res2_f$alloptres[,"value"])
-
-#alloptres2
-#alloptres2_f
-#max(abs(alloptres2-alloptres2_f))
-#AIC2
-#AIC2_f
-#AIC2-AIC2_f
-
 #***now iterate through various combinations of lags to find out which has the lowest AIC,
 #in order to pick a model
 
-allres<-list()
-allres_summary<-data.frame(ARo_deer=NA*numeric(27),ARo_snow=NA*numeric(27),ARo_mei=NA*numeric(27),
-                   AIC=NA*numeric(27))
-counter<-1
-for (ARo_deer in c(0,1,2))
+#to make it possible to use mclapply in the parallel package
+getAICgivenlags_wrapper<-function(x)
 {
-  print(paste0("ARo_deer=",ARo_deer))
-  for (ARo_snow in c(-1,0,1,2,3))
+  #set.seed(101)
+  return(c(ARo_deer=x$ARo_deer,
+           ARo_snow=x$ARo_snow,
+           ARo_mei=x$ARo_mei,
+           fixedminyr=x$fixedminyr,
+           numoptims=x$numoptims,
+           getAICgivenlags(x$ARo_deer,x$ARo_snow,x$ARo_mei,x$fixedminyr,x$numoptims)))
+}
+
+#set up the argument list
+fixedminyr<-1985
+numoptims<-5
+ARo_deer_vals<-c(0,1,2)
+ARo_snow_vals<-c(-1,0,1,2,3,4)
+ARo_mei_vals<-c(-1,0,1,2,3,4)
+arglist<-list()
+counter<-1
+for (ARo_deer in ARo_deer_vals)
+{
+  for (ARo_snow in ARo_snow_vals)
   {
-    print(paste0("  ARo_snow=",ARo_snow))
-    for (ARo_mei in c(-1,0,1,2,3,4,5))
+    for (ARo_mei in ARo_mei_vals)
     {
-      print(paste0("    ARo_mei=",ARo_mei))
-      allres[[counter]]<-getAICgivenlags(ARo_deer,ARo_snow,ARo_mei)
-      allres_summary[counter,]<-c(ARo_deer,ARo_snow,ARo_mei,
-                                  2*allres[[counter]]$numparams-2*max(allres[[counter]]$alloptres[,"value"]))
+      arglist[[counter]]<-list(ARo_deer=ARo_deer,
+                               ARo_snow=ARo_snow,
+                               ARo_mei=ARo_mei,
+                               fixedminyr=fixedminyr,numoptims=numoptims)
       counter<-counter+1
     }
   }
 }
-allres_summary<-cbind(allres_summary,delta_AIC=allres_summary$AIC-min(allres_summary$AIC))
+
+allres<-parallel::mclapply(arglist,getAICgivenlags_wrapper,mc.cores=5)
+
+dars<-length(allres)
+allres_summary<-data.frame(ARo_deer=NA*numeric(dars),ARo_snow=NA*numeric(dars),ARo_mei=NA*numeric(dars),
+                   AIC=NA*numeric(dars))
+for (counter in 1:dars)
+{
+  allres_summary$ARo_deer[counter]<-allres[[counter]]$ARo_deer
+  allres_summary$ARo_snow[counter]<-allres[[counter]]$ARo_snow
+  allres_summary$ARo_mei[counter]<-allres[[counter]]$ARo_mei
+  allres_summary$AIC[counter]<-2*allres[[counter]]$numparams-2*max(allres[[counter]]$alloptres[,"value"])
+}
+allres_summary<-cbind(allres_summary,DeltaAIC=allres_summary$AIC-min(allres_summary$AIC))
 allres_summary
-save.image(file="OvernightRun20200806.RData")
+allres_summary[allres_summary$DeltaAIC<=4,]
+save.image(file="OvernightRun20200807v02.RData")
+
+
+
 
 #***Sim the AIC-best model and see if the results look like the deer when plotted. Use the actual
 #snow and MEI time series, and the actual initial conditions.
@@ -575,21 +534,24 @@ save.image(file="OvernightRun20200806.RData")
 #Maybe also see if you can change something appropriate and make the synchrony of deer change. One
 #thing you might want to change is to simply eliminate the influence of snow or mei (drop from the
 #model), or else replace snow or mei with asynchronous versions of themselves using asynchronous
-#Fourier surrogates. Not clear either of these is the right thing to do.
+#Fourier surrogates. Not clear either of these is the right thing to do. You could drop both from the
+#model, at once, but this seems like it will clearly result in some synchrony, but not timescale-specific.
+#So maybe that makes sense to do.
 
 
 
 #***Can analyze the new model semi-analytically (some terms of the theory can be computed directly
 #from model coefficients, but you have to estimate spectral quantities of the noise) to illustrate
 #how the synchrony passes from the noise to the deer, and hopefully this will parallel the direct
-#empirical analysis (using the new theory) of the same thing.
+#empirical analysis (using the new theory) of the same thing. Actually can't do that because the model
+#has two drivers.
 
 
 
 #***Some things that maybe still need to be done, some currently vague, the most important ones 
-#explained in greater depth below.
+#explained in greater depth above.
 #1) see if the AIC-best model is a good fit using a bootstrapped ML approach
-#2) see if the AIC-bets model has good properties of the residuals, inc. temporal independence,
+#2) see if the AIC-best model has good properties of the residuals, inc. temporal independence,
 #normal marginals of equal variance, etc.
 #3) ***see if sims of the AIC-best model look like sims of deer
 #4) see if synchrony of sims of the AIC-best model look like sims of deer, and then see if you can

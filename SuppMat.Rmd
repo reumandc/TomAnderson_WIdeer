@@ -494,12 +494,12 @@ See @Reinsel1997, @Shumway2000, and @Brillinger2001
 for background on linear filters. Computing the spectral matrices of both
 sides of (\ref{eq:linfiltmod}) gives
 \begin{equation}
-T(\mathcal{B}) S_{ww} \overline{T(\mathcal{B})} = T(\mathcal{P}) S_{\epsilon\epsilon}
-\overline{T(\mathcal{P})}
+T(\mathcal{B}) S_{ww} T(\mathcal{B})^* = T(\mathcal{P}) S_{\epsilon\epsilon}
+T(\mathcal{P})^*
 \end{equation}
 \noindent where $T(\mathcal{B})$ and $T(\mathcal{P})$ 
 are the transfer function matrices of the linear filters
-$\mathcal{B}$ and $\mathcal{P}$, respectively (see, for instance,
+$\mathcal{B}$ and $\mathcal{P}$, respectively, and the superscript $*$ denotes conjugate transpose (see, for instance,
 section 1.1.3 of @Reinsel1997). But 
 $T(\mathcal{B}) = (1-\lambda)I$ and $T(\mathcal{P})=\gamma I$
 (section 1.1.3 of @Reinsel1997), so
