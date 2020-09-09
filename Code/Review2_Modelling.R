@@ -1,4 +1,4 @@
-#This script is to...
+#This script is to do some ML fitting of ARMA-type models to deer data, along with some prelims. Reuman.
 
 #***
 #***Load the data
