@@ -467,7 +467,7 @@ and covariance matrix consisting of entries $\rho^{(2)}$ in the off diagonal and
 in the diagonal. Let $\epsilon^{(2)}_i(t)=c_1^{(2)} \epsilon^{(2)}_i(t-1) + c_2^{(2)} \epsilon^{(2)}_i(t-2)+\delta^{(2)}_i(t)$.
 The noise used was $\epsilon(t)=\epsilon^{(1)}(t)+\epsilon^{(2)}(t)$.
 
-# Proof of the main theorem \label{sect:mainproof}
+## Proof of the main theorem \label{sect:mainproof}
 
 To prove theorem \ref{prop:mainthm}, we first state and prove, and then apply,
 a result that follows from basic properties of filters and stochastic processes.

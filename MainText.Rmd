@@ -153,7 +153,7 @@ dominant at the regional scale.
 The key here is that synchrony occurs *on a particular timescale*.
 Dynamics of the total, regional population are then dominated by a cycle on that timescale. See
 Fig. \ref{Fig1_example} for a simulated example. A theoretical approach is summarized below and elaborated in
-Supporting Information (SI) sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}. The bulk of the paper 
+Supporting Information (SI) section \ref{SM-SI:theory}. The bulk of the paper 
 presents empirical evidence for the mechanism.
 
 One potential applied concern is that if
@@ -261,10 +261,9 @@ in each term, but also on their values. We explore
 reasonable scenarios in the SI
 and find that the initial intuition is correct, 
 that timescale-specific synchrony is often a very important determinant of
-regional population cycles. See SI sections \ref{SM-SI:theory}-\ref{SM-sect:mainproof}
-for the the theory and 
-SI section \ref{SM-SI:theory} and Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
-\ref{SM-TheoryExample3} for examples.
+regional population cycles. See SI section \ref{SM-SI:theory}
+for the theory and for examples, including Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
+\ref{SM-TheoryExample3}.
 
 # Methods
 
@@ -317,20 +316,19 @@ to remove trends that might otherwise
 obscure patterns of synchrony [@Buonaccorsi2001], as well as variance standardization 
 (SI section \ref{SM-SI:methods}).
 
-\textbf{Analysis.} We use wavelet transforms in most analyses,
-complemented by a few classic Fourier approaches.
+\textbf{Analysis.} We use wavelet transforms in all analyses.
 Wavelets are ideal for detecting periodic components in complex field data
-[@addison2002]. Fourier methods, which may be more familiar to some readers, could be used, *post hoc*,
-to confirm some results. The methods we use are 
+[@addison2002]. The methods we use are 
 well established, standard tools in many fields, or are simple extensions thereof. 
 So we provide in the main text an operational description, only,
 of each method, i.e., what it takes as input, what it provides as output, and how to
 interpret the output, with technical details in SI 
 section \ref{SM-SI:methods}. 
+<!--***DAN: this may end up getting moved elsewhere:
 It is also explained in SI section \ref{SM-SI:methods}
 why it is appropriate to use Fourier methods for the theory (above) and 
 to additionally use wavelet methods
-for the empirical analyses (below). 
+for the empirical analyses (below). -->
 All wavelet analyses were done via the open-source `wsyn`
 software package for the R language [@wsyn].
 
@@ -419,14 +417,14 @@ additional variance and cycling intensity in the
 empirical state-total time series were attributable to synchrony. 
 
 Although wavelet tools were the most appropriate 
-overall choice for our research goals, some components of our theoretical 
-mechanism can also be detected in our data using Fourier analyses. 
-Supplementary Fourier approaches are described in 
-SI section \ref{SM-SI:methods}, and use standard techniques.
-Fourier approaches
-were used, for instance, to examine: 1) whether the spectral power in the state-total deer time series
-in the $3-7$-year timescale band is greater than it would be without synchrony in that band; and
-whether 2) the same spectral peaks in the $3-7$-year band do not occur in county-level deer time series.
+overall choice for our research goals and are now standard, some readers may be more familiar with Fourier analyses,
+which have a longer history. Also, some readers may perceive a mismatch between our theory, which uses
+the Fourier language of stationary stochastic processes, and our empirical analyses based on wavelets.
+A suite of alternative analyses based solely on Fourier approaches is presented in SI section X,
+and the results of these alternative analyses are in SI section Y.
+<!--***DAN: insert references to these sections-->
+All main results of the paper were obtained both through our wavelet methods and through our
+alternative Fourier approaches, with the different approaches agreeing in all cases.
 
 \textbf{Data availability.} All data will be published in the Dryad repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
@@ -535,6 +533,7 @@ statewide DVC damages
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years. 
 
+<!--***DAN: I don't think this is needed anymore but keeping it just in case:
 Supplementary results using Fourier approaches (*Methods*, SI section \ref{SM-SI:methods}) demonstrated 
 clearly (SI section \ref{SM-SI:results}, Figs \ref{SM-FigS_SpectPow3to7Fig5Surrogs}-\ref{SM-FigS_StateVCounty},
 Table \ref{SM-InflationTable}) 
@@ -544,7 +543,7 @@ synchrony because when $3-7$-year synchrony was removed from county-level time s
 2) the same spectral peaks did not occur in county-level deer time series, i.e, combining 
 time series across space produced the peak by combining weak but synchronous fluctuations in the $3-7$-year timescale band.
 Similar results also held for DVCs (SI section \ref{SM-SI:results}, 
-Figs \ref{SM-FigS_DVCSpectPow3to7Fig5Surrogs}-\ref{SM-FigS_DVCSpectraFig5Surrogs}). 
+Figs \ref{SM-FigS_DVCSpectPow3to7Fig5Surrogs}-\ref{SM-FigS_DVCSpectraFig5Surrogs}). -->
 
 # Discussion
 
