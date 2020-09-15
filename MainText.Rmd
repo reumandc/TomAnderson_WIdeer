@@ -419,12 +419,11 @@ empirical state-total time series were attributable to synchrony.
 Although wavelet tools were the most appropriate 
 overall choice for our research goals and are now standard, some readers may be more familiar with Fourier analyses,
 which have a longer history. Also, some readers may perceive a mismatch between our theory, which uses
-the Fourier language of stationary stochastic processes, and our empirical analyses based on wavelets.
+the Fourier language of stochastic processes, and our empirical analyses based on wavelets.
 A suite of alternative analyses based solely on Fourier approaches is presented in SI section X,
 and the results of these alternative analyses are in SI section Y.
 <!--***DAN: insert references to these sections-->
-All main results of the paper were obtained both through our wavelet methods and through our
-alternative Fourier approaches, with the different approaches agreeing in all cases.
+All main results were obtained both through our wavelet and Fourier approaches, with the two approaches agreeing in all cases.
 
 \textbf{Data availability.} All data will be published in the Dryad repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper

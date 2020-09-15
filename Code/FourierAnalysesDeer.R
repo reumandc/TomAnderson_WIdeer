@@ -3,84 +3,7 @@
 #Some spectral tools
 #****
 
-#A raw, unsmoothed periodigram. Detrending is done by this function. 
-#
-#Args
-#x      A time series as a vector
-#
-myspecraw<-function(x)
-{
-  tforx<-1:length(x)
-  x<-residuals(lm(x~tforx))
-  h<-fft(x)
-  h<-Re(h*Conj(h))
-  freq<-(0:length(x))/length(x)
-  h<-h[-1]
-  freq<-freq[-1]
-  h<-h[freq<=0.5]
-  freq<-freq[freq<=0.5]
-  return(list(freq=freq,spec=h))
-}
-
-#The power spectrum, Brillinger's consistent estimator (5.6 of Brillinger's 2001 
-#book). The only difference from what is described there is frequency is here in 
-#units of cycles per sampling interval in the output here, and was in radians per 
-#sampling interval in Brillinger. Detrending is done by this function. The function 
-#actually returns the log scale power spectrum.
-#
-#Args
-#x      A time series as a vector
-#
-myspecbrill<-function(x,detrend=TRUE)
-{
-  Tx<-length(x)
-  
-  #detrend, if desired
-  if (detrend==TRUE)
-  {
-    tforx<-1:Tx
-    x<-residuals(lm(x~tforx))
-  }
-  
-  #get the raw periodogram
-  fftx<-fft(x)
-  I<-(Mod(fftx))^2/(2*pi*Tx)
-  I[1]<-0 #Set zero frequency to 0. Should be zero anyway, to within rounding error, because of the detrending
-  freq<-(0:(Tx-1))/Tx
-  freq<-2*pi*freq #to make frequencies be in units of radians per sampling interval
-  
-  #now do the smoothing that makes the estimator
-  BTx<-0.5/sqrt(Tx) #adjust BT to adjust the bias-variance tradeoff
-  TxBTx<-Tx*BTx
-  xforW<-(0:floor(TxBTx))/TxBTx
-  WT<-(15/(16*2*pi))*((xforW-1)^2)*((xforW+1)^2)
-  intWsquare<-(15/(32*pi))^2*4*pi*(1/9-4/7+6/5-4/3+1)
-  spec<-WT[1]*I
-  lenI<-length(I)
-  for (AbsShift in 1:(length(WT)-1))
-  {
-    temp<-WT[AbsShift+1]*I
-    #spec<-spec + temp([(AbsShift+1):end 1:AbsShift],:) + temp([(end-AbsShift+1):end 1:(end-AbsShift)],:);
-    spec<-spec+temp[c((AbsShift+1):lenI,1:AbsShift)]+temp[c((lenI-AbsShift+1):lenI,1:(lenI-AbsShift))]
-  }
-  
-  #remove the 0 frequency, and change the units back to cycles per sampling interval,
-  #and cut the redundant part of the spectrum
-  freq<-freq[-1]
-  spec<-spec[-1]
-  freq<-freq/(2*pi)
-  spec<-spec[freq<=0.5]
-  freq<-freq[freq<=0.5]
-  
-  #put in some normalization factors
-  spec<-spec*2*pi/TxBTx
-  
-  #now get confidence intervals
-  p<-0.95 #for 95% confidence intervals
-  conf<-qnorm((1+p)/2,mean=0,sd=1)*0.4343*sqrt(2*pi*intWsquare/(TxBTx));
-  
-  return(list(freq=freq,log10spec=log10(spec),conf=conf))
-}
+source("./Code/SpectralTools.R")
 
 #***
 #Comparison of Fourier transforms of deer and the surrogates developed for fig. 5
@@ -140,14 +63,14 @@ totdeerres<-totdeer-coef(dtmod)[2]*deeryr-coef(dtmod)[1]
 abunsurrres<-abunsurr-coef(dtmod)[2]*matrix(rep(deeryr,each=dim(abunsurr)[1]),dim(abunsurr)[1],length(deeryr))-coef(dtmod)[1]
 
 #Now get Brillinger consistent estimators of the spectra of data and surrogates
-deerlog10specbrill<-myspecbrill(totdeerres,detrend=FALSE)
+deerlog10specbrill<-myspecbrill(totdeerres,detrend=FALSE,BiasVariance = 0.25)
 freqs<-deerlog10specbrill$freq
 deerlog10specbrill<-deerlog10specbrill$log10spec
 surrlog10specsbrill<-matrix(NA,dim(abunsurr)[1],length(freqs))
 for (counter in 1:dim(abunsurr)[1])
 {
   x<-unname(abunsurrres[counter,])
-  h<-myspecbrill(x,detrend=FALSE)
+  h<-myspecbrill(x,detrend=FALSE,BiasVariance = 0.25)
   surrlog10specsbrill[counter,]<-h$log10spec
 }
 
@@ -248,14 +171,14 @@ Fourier3BonferThresh<-0.05/ceiling(Fourier3NumEquivTests)
 saveRDS(Fourier3BonferThresh,file="Results/Fourier3BonferroniThreshold.rds")
 
 #Now get Brillinger consistent estimators of the spectra of data and surrogates
-deerlog10specbrill<-myspecbrill(totdeer)
+deerlog10specbrill<-myspecbrill(totdeer,BiasVariance = 0.25)
 freqs<-deerlog10specbrill$freq
 deerlog10specbrill<-deerlog10specbrill$log10spec
 surrlog10specsbrill<-matrix(NA,dim(abunsurr)[1],length(freqs))
 for (counter in 1:dim(abunsurr)[1])
 {
   x<-unname(abunsurr[counter,])
-  h<-myspecbrill(x)
+  h<-myspecbrill(x,BiasVariance = 0.25)
   surrlog10specsbrill[counter,]<-h$log10spec
 }
 
@@ -463,11 +386,11 @@ dev.off()
 
 #Now look directly at the spectra. Compute the spectra (Brillinger consistent estimator).
 #Again using the standardized time series.
-totspec<-myspecbrill(totdeerSV,detrend=FALSE)
+totspec<-myspecbrill(totdeerSV,detrend=FALSE,BiasVariance = 0.25)
 countyspec<-list()
 for (counter in 1:dim(deer)[1])
 {
-  countyspec[[counter]]<-myspecbrill(deerSV[counter,],detrend=FALSE)
+  countyspec[[counter]]<-myspecbrill(deerSV[counter,],detrend=FALSE,BiasVariance = 0.25)
 }
 
 #now isolate what you want to plot

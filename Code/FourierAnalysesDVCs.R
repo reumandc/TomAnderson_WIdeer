@@ -57,14 +57,14 @@ totdvcres<-totdvcs-coef(dtmod)[2]*dvcyr-coef(dtmod)[1]
 dvcsurrres<-dvcsurr-coef(dtmod)[2]*matrix(rep(dvcyr,each=dim(dvcsurr)[1]),dim(dvcsurr)[1],length(dvcyr))-coef(dtmod)[1]
 
 #Now get Brillinger consistent estimators of the spectra of data and surrogates
-dvclog10specbrill<-myspecbrill(totdvcres,detrend=FALSE)
+dvclog10specbrill<-myspecbrill(totdvcres,detrend=FALSE,BiasVariance = 0.25)
 freqs<-dvclog10specbrill$freq
 dvclog10specbrill<-dvclog10specbrill$log10spec
 surrlog10specsbrill<-matrix(NA,dim(dvcsurr)[1],length(freqs))
 for (counter in 1:dim(dvcsurr)[1])
 {
   x<-unname(dvcsurrres[counter,])
-  h<-myspecbrill(x,detrend=FALSE)
+  h<-myspecbrill(x,detrend=FALSE,BiasVariance = 0.25)
   surrlog10specsbrill[counter,]<-h$log10spec
 }
 
