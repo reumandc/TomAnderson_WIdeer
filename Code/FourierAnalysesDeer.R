@@ -1,3 +1,4 @@
+#This code is for a Fourier-only investigation of whether timescale-specific synchrony causes the state-level cycling in deer.
 
 #****
 #Some spectral tools

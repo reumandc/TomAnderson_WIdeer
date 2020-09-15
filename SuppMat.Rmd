@@ -144,18 +144,19 @@ save.image(file="WholeWorkspace.RData")
 
 <!--Step 1 of the alternative Fourier analysis shows that synchrony of deer and DVCs is timescale specific-->
 ```{r alt_Fourier_1, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("/Code/SpectralTools.R"),mtime("Results/cty.list.rds"),mtime("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R"))}
-
-source("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R")
+1+1
+#source("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R")
 ```
 
 <!--Step 2 of the alternative Fourier analysis shows that Moran effects cause synchrony->
 
 
 <!--Step 3 of the alternative Fourier analysis shows that timescale-specific synchrony cause state-level cycling-->
-<!--The new Fourier analyses developed in response to Ecology Letters reviewer, 2020 03-->
 ```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),                                                                                mtime("Code/FourierAnalysesDeer.R"),mtime("Code/FourierAnalysesDVCs.R"),mtime("Results/cty.list.rds"),mtime("Results/cty.list.rds"))}
-source("Code/FourierAnalysesDeer.R")
-source("Code/FourierAnalysesDVCs.R")
+1+1
+#source("Code/FourierAnalysesDeer.R")
+#source("Code/FourierAnalysesDVCs.R")
+#source("Code/FourierAnalysesDecomp.R")
 ```
 
 
@@ -1402,7 +1403,7 @@ standardization means this equals
 \rho_w (f) = \frac{1}{N(N-1)}\sum_{i \neq j} C_{w_i w_j}(f)=\frac{1}{N(N-1)}\sum_{i \neq j} S_{w_i w_j}(f),
 \end{equation}
 \noindent where we remind the reader that $S_{w_i w_j}$ is the cross spectrum and $C_{w_i w_j}=\Rp(S_{w_i w_j})$ is the cospectrum.
-These quantities were estimated from available data using the consistent estimator of @Brillinger2001 (section 5.6 
+These quantities were estimated from available data using the consistent estimator of @Brillinger2001 (section 7.4 
 of that text). 
 The frequency-specific metric, $\rho_w (f)$, can be appropriately integrated across frequencies to recover the 
 non-frequency-specific metric, (\ref{eq:nonfssyncmeasure}). The analogous quantity
@@ -1528,20 +1529,27 @@ than for the county-level time series (i.e., if the state-level spectrum was mor
 within the $3-7$-year band than were the county-level spectra), which is what our post-standardization 
 analysis tests for.  
 
-<!--***DAN: got to here-->
-
-
 Finally, if our theory is reflected in deer data, then the decomposition of $S_{\text{tot}}$ into spectral and cospectral 
-contribitions (equation (\ref{MT-mainresmt}) of the main text) should reveal much greater cospectral contributions to the 
-peak of $S_{\text{tot}}$ on $3-7$-year timescales. We tested this 
-
-The equation 
+contribitions (equation (\ref{MT-mainresmt}) of the main text, Theorem \ref{prop:mainthm} of SI section \ref{SI:theory}) 
+should reveal much greater cospectral contributions to the peak of $S_{\text{tot}}$ on $3-7$-year timescales. We tested this.
+Another formulation of equation (\ref{MT-mainresmt}) is 
 \begin{equation}
-S_{\text{tot}}=\sum_{i,j} C_{w_i w_j} = \sum_i C_{w_i w_i} + \sum_{i \neq j} C_{w_i w_j}
+S_{\text{tot}}=\sum_{i,j} C_{w_i w_j} = \sum_i C_{w_i w_i} + \sum_{i \neq j} C_{w_i w_j},
 \end{equation}
-follows straightforwardly from the definitions of the spectra and cospectra of the population processes $w_i$ in 
-the locations $i$ and the spectrum, $S_{\text{tot}}$, of $w_{\text{tot}}=\sum_i w_i$ (see )
-<!--***DAN: Obviously this is someting you started and did not finish yet-->
+which also follows straightforwardly from the definitions of the spectra and cospectra of the population processes $w_i$ 
+and the spectrum, $S_{\text{tot}}$, of $w_{\text{tot}}=\sum_i w_i$. We computed estimates of $\sum_i C_{w_i w_i}$ and 
+$\sum_{i \neq j} C_{w_i w_j}$, as well as their sum $S_{\text{tot}}=\sum_{i,j} C_{w_i w_j}$, and displayed them 
+all on the same axes, for the purpose of comparing the relative contributions of $\sum_i C_{w_i w_i}$ and 
+$\sum_{i \neq j} C_{w_i w_j}$. The consistent estimator of @Brillinger2001 (section 7.4 of that text) was used. 
+We also computed these same quantities for surrogate datasets that had been independently phase-randomized at
+all frequencies, and at frequencies in the $3-7$-year timescale range, in separate computations. These randomizations
+do not influence $\sum_i C_{w_i w_i}$, but they do reduce $\sum_{i \neq j} C_{w_i w_j}$ to zero, up to sampling variation.
+If theory was manifest in data, we should have $\sum_{i \neq j} C_{w_i w_j} \gg \sum_i C_{w_i w_i}$, and 
+$\sum_{i \neq j} C_{w_i w_j}$ should also be highly significant in comparison to its value for the surrogates.
+
+<!--***DAN: got to here in this section-->
+
+
 
 
 

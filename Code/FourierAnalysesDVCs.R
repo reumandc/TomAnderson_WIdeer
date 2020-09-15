@@ -1,3 +1,5 @@
+#This code is for a Fourier-only investigation of whether timescale-specific synchrony causes the state-level cycling in DVCs.
+
 #***
 #Comparison of Fourier transforms of DVCs and the surrogates developed for fig. 5
 #***
