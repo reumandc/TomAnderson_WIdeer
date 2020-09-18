@@ -143,32 +143,30 @@ save.image(file="WholeWorkspace.RData")
 <!--The alternative Fourier approach developed in response to an Ecology Letters reviewer is in the below chunks-->
 
 <!--Step 1 of the alternative Fourier analysis shows that synchrony of deer and DVCs is timescale specific-->
-```{r alt_Fourier_1, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("/Code/SpectralTools.R"),mtime("Results/cty.list.rds"),mtime("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R"))}
-1+1
-#source("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R")
+```{r alt_Fourier_1, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/SpectralTools.R"),mtime("Results/cty.list.rds"),mtime("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R"))}
+
+source("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R")
 ```
 
-<!--Step 2 of the alternative Fourier analysis shows that Moran effects cause synchrony->
+<!--Step 2 of the alternative Fourier analysis shows that Moran effects cause synchrony-->
+
+<!--Step 2, part 1: first steps - correlation analyses and correlation analyses with pre filtering-->
+```{r alt_Fourier_2_p1, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/Review2_Analysis_CoherenceSupport.R"),mtime("Code/SpectralTools.R"),mtime("Results/cty.list.rds"),mtime("Results/winter.clim.rds"),mtime("Results/climindex.rds"))}
+
+source("Code/Review2_Analysis_CoherenceSupport.R")
+```
+
+<!--Step 2, part 2-->
+
 
 
 <!--Step 3 of the alternative Fourier analysis shows that timescale-specific synchrony cause state-level cycling-->
-```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),                                                                                mtime("Code/FourierAnalysesDeer.R"),mtime("Code/FourierAnalysesDVCs.R"),mtime("Results/cty.list.rds"),mtime("Results/cty.list.rds"))}
-1+1
-#source("Code/FourierAnalysesDeer.R")
-#source("Code/FourierAnalysesDVCs.R")
-#source("Code/FourierAnalysesDecomp.R")
+```{r alt_Fourier_3, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Data/abunsurrsum.csv"),mtime("Data/dvcsurrsum.csv"),                                                                                mtime("Code/FourierAnalysesDeer.R"),mtime("Code/FourierAnalysesDVCs.R"),mtime("Code/FourierAnalysesDecomp.R"),mtime("Results/cty.list.rds"))}
+
+source("Code/FourierAnalysesDeer.R")
+source("Code/FourierAnalysesDVCs.R")
+source("Code/FourierAnalysesDecomp.R")
 ```
-
-
-<!--***DAN: The below chunks should eventually be consolidated into the above chunks-->
-
-
-<!--The new Fourier and correlation analyses developed in response to the same reviewer, second review, 2020 07-->
-```{r echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/Review2_Analysis_CoherenceSupport.R"),mtime("Code/Review2_Analysis_FourierDecomp.R"),mtime("Results/cty.list.rds"),mtime("Results/winter.clim.rds"),mtime("Results/climindex.rds"))}
-source("Code/Review2_Analysis_CoherenceSupport.R")
-source("Code/Review2_Analysis_FourierDecomp.R")
-```
-
 
 # Theory \label{SI:theory}
 
@@ -227,6 +225,7 @@ in the off-diagonal. The special notation $S_{\text{tot}}(f)$ is used for
 the spectrum of $w_{\text{tot}}$ (which is the same as the spectrum of $x_{\text{tot}}$).
 
 The main theoretical result is as follows.
+
 \begin{thm}
 Let $\mu=\exp(-2\pi \iota f)$, where $\iota$ (the Greek letter iota) is the imaginary unit, 
 and define $\gamma=p_{ 0}+p_{ 1}\mu+\cdots+p_{m}\mu^{m}$ and
@@ -1008,6 +1007,7 @@ understand, and the variable $x_i^{(1)}(t)$ is taken to be an environmental or o
 may help cause synchrony in $x_i^{(0)}(t)$, through a Moran effect.
 
 The wavelet Moran theorem, as stated by @Sheppard2016_aphids, is as follows.
+
 \begin{thm}\label{th:MoranTheorem}
 \emph{The wavelet Moran theorem.}
 We can write $w^{(0)}_{i,\sigma}(t)=\Pi^{(01)}_{\sigma} w^{(1)}_{i,\sigma}(t)+d_{i,\sigma}(t)$, where this equation defines
@@ -1366,7 +1366,7 @@ Hunter abundance and deer
 abundance were not significantly coherent at the 
 state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$) or $2-2.5$-year timescales ($P = `r round(ann.abun.hunter_pval2_2.5,4)`$).
 
-# Alternative analysis: methods \label{sect:alt_methods}
+# Alternative analyses: methods \label{sect:alt_methods}
 
 \noindent After presenting our theory (main text and SI section \ref{SI:theory}), we used wavelet statistical 
 tools in the main text to argue that the theory was substantiated by deer and DVC data from Wisconsin, i.e., that 
@@ -1445,7 +1445,379 @@ chance if synchrony were evenly distributed across frequencies.
 
 \subsection{How to show that synchrony is due to timescale-specific Moran effects}\label{sect:FourierMoran}
 
-\noindent 
+\noindent We developed a Fourier framework for attributing population synchrony to environmental drivers, 
+and we applied it to our deer and DVC data. We here introduce the framework
+and the numeric and other methods necessary to apply it to our data. Results of applying it are in SI
+section \ref{sect:FourierMoran_res}. 
+
+\subsubsection{Theoretical framework}
+<!--***DAN: this should have the model setup, the main theorem, the content of the two sections on interptreting
+the Fourier Moran theorem for the two specific models, reframed as corrollaries. Also the "statistically 
+attributable" section-->
+
+We begin by framing two specific population models, followed by a general mathematical framework which covers both models
+as special cases.
+Although the general framework does not have a straightforward ecological interpretation, the
+specific models do. This approach
+enables a more parsimonious presentation of mathematical results, since some results can be stated and
+proved for the general framework. The model setup is similar to that of SI section \ref{SI:theory:modeltheorem}, but two
+stochastic environmental factors act at once on the populations.
+
+\textbf{The first specific model.} The first specific model is
+\begin{equation}
+w_i(t)=b_1 w_i(t-1)+\cdots+b_n w_i(t-n)+p_0^{(1)}\epsilon^{(1)}(t)+\cdots+p_m^{(1)}\epsilon^{(1)}(t-m)+
+p_0^{(2)}\epsilon_i^{(2)}(t)+\cdots+p_m^{(2)}\epsilon_i^{(2)}(t-m),\label{eq:themodel1}
+\end{equation}
+\noindent with $i=1,\ldots,N$ indexing distinct habitat patches or population sampling locations.
+The process $w=(w_1,w_2,\ldots,w_N)$ is an index of population density for each habitat patch.
+The process $\epsilon^{(1)}$ is interpreted as a univariate climate process affecting populations in all habitat patches, whereas
+the $N$-dimensional process $\epsilon^{(2)}=(\epsilon_1^{(2)},\epsilon_2^{(2)},\ldots,\epsilon_N^{(2)})$
+is a local weather variable, potentially taking different values in each patch. The combined process $\epsilon=(\epsilon^{(1)},\epsilon_1^{(2)},\epsilon_2^{(2)},\ldots,\epsilon_N^{(2)})$
+is assumed to be a second-order stationary stochastic process with $\E(\epsilon^{(1)})=0$ and $\E(\epsilon_i^{(2)})=0$
+for $i=1,\ldots,N$. The complex roots of the polynomial
+$1-b_1 z-b_2 z^2 -\cdots-b_n z^n$ are assumed to have modulus greater than $1$. We assume
+$\epsilon^{(1)}$ and $w$ were measured for a finite set of times $t=1,2,\ldots,T$, but that
+$\epsilon^{(2)}$ is unmeasured, influencing the populations but unknown to the human observer.
+We also assume the power spectrum $S_{\epsilon^{(1)} \epsilon^{(1)}}(f)$ of $\epsilon^{(1)}$ is
+nonzero for all frequencies, $f$, a reasonable assumption since most environmental signals are broadband.
+We define the linear filter
+\begin{equation}
+\mathcal{B}=I_N-b_1I_NB-b_2 I_N B^2 - \cdots - b_n I_N B^n,
+\end{equation}
+\noindent where $I_N$ is the $N \times N$ identity matrix and $B$ is the backshift operator.
+The assumption that roots of $1-b_1 z-b_2 z^2 -\cdots-b_n z^n$ have modulus greater than $1$
+means $\mathcal{B}$ is an invertible filter [@Brillinger2001].
+We also define the filter
+\begin{equation}
+\mathcal{P}^{(1)}=p_0^{(1)}e+p_1^{(1)} e B + \cdots + p_m^{(1)} e B^m,
+\end{equation}
+\noindent where $e$ is an $N \times 1$ matrix of $1$s, as well as the filter
+\begin{equation}
+\mathcal{P}^{(2)}=p_0^{(2)}I_N+p_1^{(2)} I_N B + \cdots + p_m^{(2)} I_N B^m.
+\end{equation}
+\noindent The model can then be written as
+\begin{equation}
+\mathcal{B} w = \mathcal{P}^{(1)} \epsilon^{(1)} + \mathcal{P}^{(2)} \epsilon^{(2)},\label{eq:themodel1version2}
+\end{equation}
+\noindent a formulation which is more convenient for subsequent calculations with Fourier transforms
+and transfer functions. See @Brillinger2001, as well as @Shumway2000, @Reinsel1997 and many other references 
+for background on stochastic processes and linear filters. The first specific model will be applied, for instance, 
+to consideration of how and to what extent synchrony in deer can be attributed to MEI. The $w_i$ will model
+deer and $\epsilon^{(1)}$ will represent MEI. The combination of other, unmeasured drivers is represented
+by $\epsilon^{(2)}$.
+<!--***DAN: I have not thought about doing this Moran work for deer causing DVC synchrony yet, do I 
+need to go back and do that?-->
+
+\textbf{The second specific model.} The second specific model is
+\begin{equation}
+w_i(t)=b_1 w_i(t-1)+\cdots+b_n w_i(t-n)+p_0^{(1)}\epsilon_i^{(1)}(t)+\cdots+p_m^{(1)}\epsilon_i^{(1)}(t-m)+
+p_0^{(2)}\epsilon_i^{(2)}(t)+\cdots+p_m^{(2)}\epsilon_i^{(2)}(t-m),\label{eq:themodel2}
+\end{equation}
+\noindent with $i=1,\ldots,N$ again indexing distinct habitat patches or population sampling locations. The processes
+$\epsilon^{(1)}=(\epsilon_1^{(1)},\epsilon_2^{(1)},\ldots,\epsilon_N^{(1)})$ and
+$\epsilon^{(2)}=(\epsilon_1^{(2)},\epsilon_2^{(2)},\ldots,\epsilon_N^{(2)})$ are both local weather
+variables which influence the populations $w=(w_1,\ldots,w_N)$. The combined process $\epsilon=(\epsilon_1^{(1)},\ldots,\epsilon_N^{(1)},\epsilon_1^{(2)},\ldots,\epsilon_N^{(2)})$
+is assumed to be a second-order stationary stochastic process with the expected values of each component
+equal to $0$. The complex roots of the polynomial
+$1-b_1 z-b_2 z^2 -\cdots-b_n z^n$ are again assumed to have modulus greater than $1$.
+We assume $\epsilon^{(1)}$ and $w$ were measured, in all habitat patches,
+for a finite set of times $t=1,2,\ldots,T$, but that
+$\epsilon^{(2)}$ is unmeasured by the human observer. We assume the spectral matrix
+$S_{\epsilon^{(1)} \epsilon^{(1)}}(f)$ of $\epsilon^{(1)}$ is nonsingular for all frequencies, $f$.
+For this model, we redefine the linear filter $\mathcal{P}^{(1)}$ as
+\begin{equation}
+\mathcal{P}^{(1)}=p_0^{(1)}I_N+p_1^{(1)} I_N B + \cdots + p_m^{(1)} I_N B^m,
+\end{equation}
+\noindent noting that the model can then be written as
+\begin{equation}
+\mathcal{B} w = \mathcal{P}^{(1)} \epsilon^{(1)} + \mathcal{P}^{(2)} \epsilon^{(2)}.\label{eq:themodel2version2}
+\end{equation}
+\noindent The fact that (\ref{eq:themodel1version2}) and (\ref{eq:themodel2version2}) look the same (though
+$\mathcal{P}^{(1)}$ represents two different filters in these two equations) suggests the general framework
+to follow. The second specific model will be applied, for instance, 
+to consideration of how and to what extent synchrony in deer can be attributed to fluctuations in snow depth. 
+The $w_i$ will model
+deer and $\epsilon^{(1)}$ will represent snow depth (which depends on both time and location). The combination 
+of other, unmeasured drivers is again represented
+by $\epsilon^{(2)}$.
+
+\textbf{General framework.} The framework is
+\begin{equation}
+\mathcal{B} w = \mathcal{P}^{(1)} \epsilon^{(1)} + \mathcal{P}^{(2)} \epsilon^{(2)},\label{eq:modelgeneral}
+\end{equation}
+\noindent where $\epsilon^{(1)}$ and $\epsilon^{(2)}$ are now second-order stationary stochastic processes of any dimension
+with all component expected values equal to $0$. We further assume that the combined stochastic process
+$\epsilon= (\epsilon^{(1)},\epsilon^{(2)})$ is second-order stationary.
+The filters $\mathcal{P}^{(1)}$ and $\mathcal{P}^{(2)}$ are taken to be absolutely summable.
+The filter $\mathcal{B}$ is assumed to take the
+special form $\mathcal{B}=I_N-b_1I_NB-b_2 I_N B^2 - \cdots - b_n I_N B^n$. The spectral matrix
+$S_{\epsilon^{(1)} \epsilon^{(1)}}(f)$ is assumed invertible for all frequencies $f$, and the complex roots
+of the polynomial $1-b_1 z - b_2 z - \cdots - b_n z^n$ are assumed to have modulus greater than $1$.
+The processes $\epsilon^{(1)}$ and $\epsilon^{(2)}$ are again interpreted as
+measured and unmeasured processes that influence the populations, and it is assumed that the populations
+were measured for the same times as were the $\epsilon_i^{(1)}$.
+
+The general framework lacks a straightforward
+ecological interpretation because the dimensions of $\epsilon^{(1)}$ and $\epsilon^{(2)}$
+are arbitrary and the corresponding filters $\mathcal{P}^{(1)}$ and $\mathcal{P}^{(2)}$ are not "scalar".
+When the dimension of $\epsilon^{(j)}$ is $N$ and the corresponding filter
+$\mathcal{P}^{(j)}$ is a so-called scalar filter, i.e., it can be written in terms of $N \times N$ scalar
+matrices and the backshift operator, it is possible to interpret $\epsilon^{(j)}$ as a local environmental
+factor like local temperature or precipitation, which directly influences the local population.
+On the other hand, when the dimension of $\epsilon^{(j)}$ is $1$, it is possible to interpret $\epsilon^{(j)}$
+as a large-scale climatic factor. But the ecological interpretation of other arrangements
+is less straightforward. Nevertheless, the general framework is useful because it includes both specific models
+as special cases. Results proved for the general framework immediately apply to both
+specific models.
+
+\textbf{The population cross spectral matrix and a Fourier Moran theorem.} To calculate $\rho_w (f)$
+for our general model framework, we need $S_{w_i w_j}(f)$ for all $i \neq j$, so we here calculate
+it. We start by engineering a simplification to the model.
+Let $A=S_{\epsilon^{(2)} \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1}$. Now let $\mathcal{A}$ be the filter
+with transfer function $A$. This filter exists and is absolutely summable (see theorem
+8.3.1 of @Brillinger2001).
+Now let $\widetilde{\epsilon^{(2)}}=\epsilon^{(2)}-
+\mathcal{A}\epsilon^{(1)}$, so $\epsilon^{(2)}=\widetilde{\epsilon^{(2)}}+\mathcal{A}\epsilon^{(1)}$.
+So our population model becomes
+\begin{equation}
+\mathcal{B} w = \widetilde{\mathcal{P}^{(1)}} \epsilon^{(1)} + \mathcal{P}^{(2)} \widetilde{\epsilon^{(2)}},\label{eq:modelaftervariablechange}
+\end{equation}
+\noindent where $\widetilde{\mathcal{P}^{(1)}}=\mathcal{P}^{(1)}+\mathcal{P}^{(2)}\mathcal{A}$.
+The benefit of making this change of variable is that $S_{\epsilon^{(1)} \widetilde{\epsilon^{(2)}}}=0$,
+whereas $S_{\epsilon^{(1)} \epsilon^{(2)}}$ was not necessarily $0$. This will be important below.
+
+Now taking the spectral matrix of both sides of (\ref{eq:modelaftervariablechange}), we get
+\begin{equation}
+T(\mathcal{B}) S_{ww} T(\mathcal{B})^* = T(\widetilde{\mathcal{P}^{(1)}})
+S_{\epsilon^{(1)} \epsilon^{(1)}} T(\widetilde{\mathcal{P}^{(1)}})^* +
+T(\mathcal{P}^{(2)})
+S_{\widetilde{\epsilon^{(2)}} \widetilde{\epsilon^{(2)}}} T(\mathcal{P}^{(2)})^*\label{eq:modeltransformed}
+\end{equation}
+\noindent where $T$ represents the transfer function of a filter and the superscript $*$ indicates
+conjugate transpose. There are no cross-spectral terms on the right side of
+(\ref{eq:modeltransformed}) because
+$S_{\epsilon^{(1)} \widetilde{\epsilon^{(2)}}}=S_{\widetilde{\epsilon^{(2)}} \epsilon^{(1)}}=0$, by design.
+Equation (\ref{eq:modeltransformed}) then becomes
+\begin{equation}
+S_{ww} = T(\mathcal{B}^{-1}) T(\widetilde{\mathcal{P}^{(1)}})
+S_{\epsilon^{(1)} \epsilon^{(1)}} T(\widetilde{\mathcal{P}^{(1)}})^* T(\mathcal{B}^{-1})^* +
+T(\mathcal{B}^{-1}) T(\mathcal{P}^{(2)})
+S_{\widetilde{\epsilon^{(2)}} \widetilde{\epsilon^{(2)}}} T(\mathcal{P}^{(2)})^* T(\mathcal{B}^{-1})^*,\label{eq:twopartspectralmat}
+\end{equation}
+\noindent which gives $S_{w_i w_j}(f)$ for all $i \neq j$, as desired. The first summand on the right
+in (\ref{eq:twopartspectralmat}) is the portion of the spectral matrix of $w$
+statistically attributable
+to $\epsilon^{(1)}$ (more below on what, precisely, we mean by "statistically attributable"), and the second summand is the portion attributable to
+$\widetilde{\epsilon^{(2)}}$. The first summand includes contributions due directly to
+$\epsilon^{(1)}$, as well as contributions due to $\epsilon^{(2)}$ that "line up" with
+the contributions due directly to $\epsilon^{(1)}$ (see below).
+These cannot be separated, since $\epsilon^{(2)}$ was not measured.
+Our expression for $S_{ww}$ leads to the following:
+
+\begin{thm}\label{thm:FMT}
+\textbf{\emph{Fourier Moran theorem.}} Given the general model framework and notation described in the previous text, the portion of synchrony, $\rho_w (f)$, in the population process $w$ that can be statistically attributed to the measured noise
+$\epsilon^{(1)}$ can be obtained by summing the off-diagonal elements of the matrix
+\begin{equation}
+M=T(\mathcal{B}^{-1}) T(\widetilde{\mathcal{P}^{(1)}})
+S_{\epsilon^{(1)} \epsilon^{(1)}} T(\widetilde{\mathcal{P}^{(1)}})^* T(\mathcal{B}^{-1})^* \label{eq:contrib}
+\end{equation}
+\noindent and then dividing by $N(N-1)$. The matrix (\ref{eq:contrib}) equals
+\begin{equation}
+M=S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} S_{w \epsilon^{(1)}}^*,
+\label{eq:contrib2}
+\end{equation}
+\noindent which is based only on the measured quantities $w$ and
+$\epsilon^{(1)}$. So to estimate the portion of synchrony, $\rho_w (f)$, in the population process $w$ that can be statistically attributed to the measured noise
+$\epsilon^{(1)}$, it suffices to estimate (\ref{eq:contrib2}), sum
+the off-diagonal entries of the estimate, and divide the result by $N(N-1)$.
+We henceforth
+denote this quantity by $\rho_w^{(\epsilon^{(1)})}(f)$. It can be compared to $\rho_w(f)$.
+\end{thm}
+\begin{proof}
+We have
+\begin{equation}
+\rho_w (f) = \frac{1}{N(N-1)} \sum_{i \neq j} S_{w_i w_j}.
+\end{equation}
+But according to (\ref{eq:twopartspectralmat}), the portion of $S_{ww}$ statistically
+attributable to $\epsilon^{(1)}$ is the matrix
+\begin{equation}
+M=T(\mathcal{B}^{-1}) T(\widetilde{\mathcal{P}^{(1)}})
+S_{\epsilon^{(1)} \epsilon^{(1)}} T(\widetilde{\mathcal{P}^{(1)}})^* T(\mathcal{B}^{-1})^*.\label{eq:Mexpr1}
+\end{equation}
+So, summing the entries $M_{ij}$ of this matrix over all $i \neq j$ and dividing
+by $N(N-1)$ gives the portion of $\rho_w (f)$ statistically attributable to $\epsilon^{(1)}$.
+
+To show that $M=S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} S_{w \epsilon^{(1)}}^*$, note that
+\begin{equation}
+w= \mathcal{B}^{-1} \widetilde{\mathcal{P}^{(1)}} \epsilon^{(1)} +
+\mathcal{B}^{-1} \mathcal{P}^{(2)} \widetilde{\epsilon^{(2)}},
+\end{equation}
+so, by taking the cross spectrum of both sides of this equation with $\epsilon^{(1)}$,
+\begin{align}
+S_{w \epsilon^{(1)}} &= T(\mathcal{B}^{-1} \widetilde{\mathcal{P}^{(1)}})
+S_{\epsilon^{(1)} \epsilon^{(1)}} + T(\mathcal{B}^{-1}\mathcal{P}^{(2)})
+S_{\widetilde{\epsilon^{(2)}} \epsilon^{(1)}} \\
+&= T(\mathcal{B}^{-1} \widetilde{\mathcal{P}^{(1)}})
+S_{\epsilon^{(1)} \epsilon^{(1)}}.\label{eq:needed}
+\end{align}
+Therefore we have
+\begin{equation}
+T(\mathcal{B}^{-1} \widetilde{\mathcal{P}^{(1)}}) = S_{w \epsilon^{(1)}}
+S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1}.
+\end{equation}
+Substituting into (\ref{eq:Mexpr1}), this gives
+\begin{align}
+M &= T(\mathcal{B}^{-1}) T(\widetilde{\mathcal{P}^{(1)}})
+S_{\epsilon^{(1)} \epsilon^{(1)}} T(\widetilde{\mathcal{P}^{(1)}})^* T(\mathcal{B}^{-1})^* \label{eq:expressionforM}\\
+&= S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1}
+S_{\epsilon^{(1)} \epsilon^{(1)}}
+(S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1})^* \\
+&= S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} S_{w \epsilon^{(1)}}^*,
+\end{align}
+as was to be proved.
+\end{proof}
+\noindent As was the case for $S_{ww}$, note that the portion of $\rho_w (f)$ "statistically attributable" to $\epsilon^{(1)}$
+includes a portion due to the component of $\epsilon^{(2)}$ that happens to "line up"
+with $\epsilon^{(1)}$. This is unavoidable, since $\epsilon^{(2)}$ was not measured.
+The issue is explored in more detail below.
+
+\textbf{Interpreting the Fourier Moran theorem for the first specific model.} For the first specific 
+model, for which $S_{\epsilon^{(1)} \epsilon^{(1)}}(f)$ was assumed to be a non-zero
+scalar quantity for each frequency $f$, the matrix $M$ of the Fourier Moran theorem takes the form
+\begin{align}
+M &= S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} S_{w \epsilon^{(1)}}^* \\
+&= S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} S_{w \epsilon^{(1)}} S_{w \epsilon^{(1)}}^* \\
+&= S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} \left[ S_{w_i \epsilon^{(1)}} \overline{S_{w_j \epsilon^{(1)}}} \right]_{ij}.
+\end{align}
+\noindent Adding up all the off-diagonal entries of $M$ reveals the following corollary.
+
+\begin{corl}
+For the first specific model, the portion of population synchrony statistically attributable to $\epsilon^{(1)}$ is
+\begin{equation}
+\rho_w^{(\epsilon^{(1)})}=\frac{1}{N(N-1)S_{\epsilon^{(1)} \epsilon^{(1)}}}\sum_{i \neq j} S_{w_i \epsilon^{(1)}} \overline{S_{w_j \epsilon^{(1)}}}.
+\end{equation}
+\end{corl}
+\noindent This quantity should typically be straightforward to estimate from available data using standard tools for estimating 
+cross spectra [@Brillinger2001]. 
+
+Given data, plotting estimates of $\rho_w^{(\epsilon^{(1)})}$ and $\rho_w$ on the same axes
+gives an indication of how much of the population synchrony can be attributed to $\epsilon^{(1)}$, and how that 
+varies with timescale.
+Given a timescale band, summing the values of an estimate of $\rho_w^{(\epsilon^{(1)})}(f)$ across frequencies
+corresponding to timescales in the band, and also summing values of an estimate of $\rho_w(f)$ in the same way, and then taking the 
+quotient, can be interpreted as the overall fraction of population synchrony in the 
+band which was statistically attributable to $\epsilon^{(1)}$. 
+
+\textbf{Interpreting the Fourier Moran theorem for the second specific model, a special case.} For the second 
+specific model, $\mathcal{A}$ is an $N \times N$ filter. In the special case for which $\mathcal{A}$ is a scalar filter, i.e., 
+the case for which $\mathcal{A}$ can be 
+written in terms of scalar matrices and the backshift operator, $B$
+(or, equivalently, its transfer function, $A$, is a scalar matrix), then because
+$\widetilde{\mathcal{P}^{(1)}}=\mathcal{P}^{(1)}+\mathcal{P}^{(2)}\mathcal{A}$ and because $\mathcal{P}^{(1)}$ and
+$\mathcal{P}^{(2)}$ are scalar filters, $\widetilde{\mathcal{P}^{(1)}}$ is also a scalar filter.
+The filter $\mathcal{B}$ is also scalar. Therefore
+$T(\mathcal{B}^{-1})T(\widetilde{\mathcal{P}^{(1)}})=T(\mathcal{B}^{-1}\widetilde{\mathcal{P}^{(1)}})$ is a
+scalar matrix, which we denote $\alpha I_N$. Applying this to expression (\ref{eq:expressionforM})
+for $M$ gives $M=|\alpha|^2 S_{\epsilon^{(1)}\epsilon^{(1)}}$, which leads to the following corollary.
+
+\begin{corl}
+For the second specific model,
+and additionally assuming that $\mathcal{A}$ is a scalar filter, the portion of population synchrony 
+statistically attributable to $\epsilon^{(1)}$ equals
+\begin{equation}
+\rho_w^{(\epsilon^{(1)})}(f)=\left| \frac{S_{w_i \epsilon_j^{(1)}}}{S_{\epsilon_i^{(1)} \epsilon_j^{(1)}}} \right|^2 \rho_{\epsilon^{(1)}}(f),\label{eq:maineqspecialMoran}
+\end{equation}
+for any $i$ and $j$.
+\end{corl}
+\begin{proof}
+As argued above, under the listed assumptions, $T(\mathcal{B}^{-1})T(\widetilde{\mathcal{P}^{(1)}})=T(\mathcal{B}^{-1}\widetilde{\mathcal{P}^{(1)}})$
+is a scalar matrix $\alpha I_N$. But, by (\ref{eq:needed}),
+$S_{w \epsilon^{(1)}}=T(\mathcal{B}^{-1} \widetilde{\mathcal{P}^{(1)}})S_{\epsilon^{(1)} \epsilon^{(1)}}$,
+so $S_{w \epsilon^{(1)}}=\alpha S_{\epsilon^{(1)} \epsilon^{(1)}}$, and $\alpha = \frac{S_{w_i \epsilon_j^{(1)}}}{S_{\epsilon_i^{(1)} \epsilon_j^{(1)}}}$ for any $i$ and $j$. But, as argued above,
+$M=|\alpha|^2 S_{\epsilon^{(1)} \epsilon^{(1)}}$, so
+$M=\left| \frac{S_{w_i \epsilon_j^{(1)}}}{S_{\epsilon_i^{(1)} \epsilon_j^{(1)}}} \right|^2 S_{\epsilon^{(1)} \epsilon^{(1)}}$.
+Summing over all off-diagonal entries of this matrix and applying theorem \ref{thm:FMT} gives the desired result.
+\end{proof}
+\noindent This special-case Fourier Moran theorem has the pleasing property
+that the portion of $\rho_w$ explained
+by $\epsilon^{(1)}$ is a simple product of a prefactor times the noise synchrony $\rho_{\epsilon^{(1)}}$.
+We note also that (\ref{eq:maineqspecialMoran}) should be straightforward to estimate
+from available data using standard spectral tools. 
+
+\textbf{What we mean by "statistically attributable".} The population model is expressible as
+\begin{align}
+w &= \mathcal{B}^{-1} \mathcal{P}^{(1)} \epsilon^{(1)} + \mathcal{B}^{-1} \mathcal{P}^{(2)} \epsilon^{(2)} \\
+&= \mathcal{B}^{-1} \mathcal{P}^{(1)} \epsilon^{(1)} + \mathcal{B}^{-1} \mathcal{P}^{(2)} (\widetilde{\epsilon^{(2)}} + \mathcal{A} \epsilon^{(1)}) \\
+&= \mathcal{B}^{-1} \mathcal{P}^{(1)} \epsilon^{(1)} + \mathcal{B}^{-1} \mathcal{P}^{(2)} \mathcal{A} \epsilon^{(1)} + \mathcal{B}^{-1} \mathcal{P}^{(2)} \widetilde{\epsilon^{(2)}}.
+\end{align}
+\noindent Taking spectral matrices of both sides and making use of the fact that
+$S_{\epsilon^{(1)} \widetilde{\epsilon^{(2)}}} = S_{\widetilde{\epsilon^{(2)}} \epsilon^{(1)}} = 0$, we have
+\begin{align}
+S_{ww} &= S_{\mathcal{B}^{-1} \mathcal{P}^{(1)} \epsilon^{(1)},\mathcal{B}^{-1}\mathcal{P}^{(1)}\epsilon^{(1)}} \label{eq:E1}\\
+&+ S_{\mathcal{B}^{-1}\mathcal{P}^{(2)}\mathcal{A}\epsilon^{(1)},\mathcal{B}^{-1}\mathcal{P}^{(2)}\mathcal{A}\epsilon^{(1)}} \label{eq:E2}\\
+&+ S_{\mathcal{B}^{-1}\mathcal{P}^{(2)}\widetilde{\epsilon^{(2)}},\mathcal{B}^{-1}\mathcal{P}^{(2)}\widetilde{\epsilon^{(2)}}} \label{eq:E3}\\
+&+ S_{\mathcal{B}^{-1} \mathcal{P}^{(1)} \epsilon^{(1)},\mathcal{B}^{-1}\mathcal{P}^{(2)}\mathcal{A}\epsilon^{(1)}} \label{eq:E4}\\
+&+ S_{\mathcal{B}^{-1}\mathcal{P}^{(2)}\mathcal{A}\epsilon^{(1)},\mathcal{B}^{-1} \mathcal{P}^{(1)} \epsilon^{(1)}}. \label{eq:E5}
+\end{align}
+\noindent This also equals
+\begin{align}
+S_{ww} &= T(\mathcal{B}^{-1} \mathcal{P}^{(1)}) S_{\epsilon^{(1)} \epsilon^{(1)}} T(\mathcal{B}^{-1} \mathcal{P}^{(1)})^* \label{eq:star1}\\
+&+ T(\mathcal{B}^{-1}\mathcal{P}^{(2)}) S_{\mathcal{A}\epsilon^{(1)},\mathcal{A}\epsilon^{(1)}} T(\mathcal{B}^{-1}\mathcal{P}^{(2)})^* \label{eq:star2}\\
+&+ T(\mathcal{B}^{-1}\mathcal{P}^{(2)}) S_{\widetilde{\epsilon^{(2)}}\widetilde{\epsilon^{(2)}}} T(\mathcal{B}^{-1}\mathcal{P}^{(2)})^* \label{eq:star3}\\
+&+ T(\mathcal{B}^{-1} \mathcal{P}^{(1)}) S_{\epsilon^{(1)},\mathcal{A}\epsilon^{(1)}} T(\mathcal{B}^{-1} \mathcal{P}^{(2)})^* \label{eq:star4}\\
+&+ T(\mathcal{B}^{-1}\mathcal{P}^{(2)}) S_{\mathcal{A}\epsilon^{(1)},\epsilon^{(1)}} T(\mathcal{B}^{-1}\mathcal{P}^{(1)})^*.\label{eq:star5}
+\end{align}
+\noindent Note that, for the second specific model, 
+all the transfer functions in (\ref{eq:star1})-(\ref{eq:star5}) are scalar matrices, and hence commute
+with the spectral matrices they multiply. Thus (\ref{eq:star1})-(\ref{eq:star5}) could be reduced to a simple
+expression for $S_{ww}$ in terms of the model coefficients listed in (\ref{eq:themodel1}) and the spectral
+and cross-spectral matrices $S_{\epsilon^{(1)}\epsilon^{(1)}}$, $S_{\mathcal{A}\epsilon^{(1)},\mathcal{A}\epsilon^{(1)}}$,
+$S_{\widetilde{\epsilon^{(2)}}\widetilde{\epsilon^{(2)}}}$, $S_{\epsilon^{(1)},\mathcal{A}\epsilon^{(1)}}$, and
+$S_{\mathcal{A}\epsilon^{(1)},\epsilon^{(1)}}$. We do not take the trouble to write these equations out because
+the assumption that only $w$ and $\epsilon^{(1)}$ were measured reduces their usefulness.
+
+The terms (\ref{eq:E1})-(\ref{eq:E5}), or, equivalently, (\ref{eq:star1})-(\ref{eq:star5}), are interpretable as
+distinct contributions to $S_{ww}$, as follows. The term (\ref{eq:E1}) is the direct contribution of $\epsilon^{(1)}$.
+The term (\ref{eq:E2}) is the direct contribution of $\mathcal{A}\epsilon^{(1)}$ to $S_{ww}$, which is the
+contribution of the component of $\epsilon^{(2)}$ that is left when one removes the part of $\epsilon^{(2)}$
+that is orthogonal to $\epsilon^{(1)}$, i.e., when one removes $\widetilde{\epsilon^{(2)}}$.
+The term (\ref{eq:E3}) is the direct contribution of $\widetilde{\epsilon^{(2)}}$ to $S_{ww}$.
+The terms (\ref{eq:E4}) and (\ref{eq:E5}) are contributions to $S_{ww}$ of interactions between $\epsilon^{(1)}$
+and $\mathcal{A}\epsilon^{(1)}$, i.e., between $\epsilon^{(1)}$ and the component of $\epsilon^{(2)}$ that remains
+after removing the part orthogonal to $\epsilon^{(1)}$. Some of these quantities cannot be estimated from the
+data we have assumed are available (data on $w$ and $\epsilon^{(1)}$). However, it is straightforward to show
+that the sum of (\ref{eq:E1}), (\ref{eq:E2}), (\ref{eq:E4}), and (\ref{eq:E5}) equals the matrix $M$ of a previous section.
+Thus the portion of $S_{ww}$ considered "statistically attributable" to $\epsilon^{(1)}$ consists of
+direct contributions of $\epsilon^{(1)}$, direct contributions of $\mathcal{A}\epsilon^{(1)}$, and interaction
+terms between $\epsilon^{(1)}$ and $\mathcal{A}\epsilon^{(1)}$. The process $\mathcal{A}\epsilon^{(1)}$ is, again,
+the part of $\epsilon^{(2)}$ that remains after the component of $\epsilon^{(2)}$ that is orthogonal to $\epsilon^{(1)}$ (i.e.,
+has $0$ cross spectrum with it) is removed. It is impossible to separate the contributions
+(\ref{eq:E1}), (\ref{eq:E2}), (\ref{eq:E4}), and (\ref{eq:E5}) without measurements of $\epsilon^{(2)}$ or
+\emph{a priori} knowledge of model coefficients, in essence because it is impossible to separate the effects of
+any variable from the effects of an unmeasured variable that is partially coincident with the first variable - the combination
+of these influences will always be attributed to the measured variable.
+
+\subsubsection{How to tell whether the framework is suitable for our data}
+<!--***DAN: One thing that probably goes in here is the correlation and Foueri results you produced early after getting the
+second round of reviews which show relationships between snow and MEI and deer. Or maybe that goes in the corresponding results
+section, but the methods go here. Another thing is the modelling which actually
+fits model of deer with drivers MEI and snow. Though you have a bit more work to do to complete that - you need to validate that the 
+AIC-best model you selected is actually an OK model (hopefully it is).-->
+
+\subsubsection{Numeric and significance procedures associated with the first specific model}
+<!--***DAN: You have written it, but you need to add details to make it transition at the end to being
+more like a methods section specifying exactly what we're doing with our actual data--> 
+<!--***DAN: this and the next section have to be written under the assumption that the framework is
+validated to be suitable for the data, since we will have presented the methods of the previous 
+section at this stage, but not the results-->
+
+\subsubsection{Numeric and significance procedures associated with the second specific model}
+<!--***DAN: You have written it, but you need to add details to make it transition at the end to being
+more like a methods section specifying exactly what we're doing with our actual data--> 
+
+
+
+
 
 \subsection{How to show that cycles are due to timescale-specific synchrony}\label{sect:FourierCycles}
 
@@ -1536,8 +1908,9 @@ Another formulation of equation (\ref{MT-mainresmt}) is
 \begin{equation}
 S_{\text{tot}}=\sum_{i,j} C_{w_i w_j} = \sum_i C_{w_i w_i} + \sum_{i \neq j} C_{w_i w_j},
 \end{equation}
-which also follows straightforwardly from the definitions of the spectra and cospectra of the population processes $w_i$ 
-and the spectrum, $S_{\text{tot}}$, of $w_{\text{tot}}=\sum_i w_i$. We computed estimates of $\sum_i C_{w_i w_i}$ and 
+\noindent which also follows straightforwardly from the definitions of the spectra and cospectra of the population processes $w_i$ 
+and the spectrum, $S_{\text{tot}}$, of $w_{\text{tot}}=\sum_i w_i$. Note that the second term in the above decomposition, 
+$\sum_{i \neq j} C_{w_i w_j}$, equals $\rho_w$. We computed estimates of $\sum_i C_{w_i w_i}$ and 
 $\sum_{i \neq j} C_{w_i w_j}$, as well as their sum $S_{\text{tot}}=\sum_{i,j} C_{w_i w_j}$, and displayed them 
 all on the same axes, for the purpose of comparing the relative contributions of $\sum_i C_{w_i w_i}$ and 
 $\sum_{i \neq j} C_{w_i w_j}$. The consistent estimator of @Brillinger2001 (section 7.4 of that text) was used. 
@@ -1546,12 +1919,6 @@ all frequencies, and at frequencies in the $3-7$-year timescale range, in separa
 do not influence $\sum_i C_{w_i w_i}$, but they do reduce $\sum_{i \neq j} C_{w_i w_j}$ to zero, up to sampling variation.
 If theory was manifest in data, we should have $\sum_{i \neq j} C_{w_i w_j} \gg \sum_i C_{w_i w_i}$, and 
 $\sum_{i \neq j} C_{w_i w_j}$ should also be highly significant in comparison to its value for the surrogates.
-
-<!--***DAN: got to here in this section-->
-
-
-
-
 
 For DVCs, we tested whether spectral power in the $3-7$-year timescale band was much greater for the total DVC time series 
 for WI than it would have been without synchrony between county-level DVC time series in the $3-7$-year 
@@ -1564,8 +1931,8 @@ because AR(1) surrogates were considered less appropriate anyway for our researc
 use AR(1) surrogates with DVC time series were not undertaken. Comparisons, via AIC, of the fits of AR models of different orders were 
 also considered inappropriate for DVCs for similar reasons. Finally, comparison of variance-standardized 
 state- and county-level time series was not appropriate for DVCs because the variance standardization 
-means that $3-7$-year spectral power is also influenced by the amount of low-frequency power.  
-
+means that $3-7$-year spectral power is also influenced by the amount of low-frequency power. We did, however, produce a 
+decomposition of $S_{\text{tot}}$ for DVCs analogous to that performed for deer (see previous paragraph).
 
 \subsection{Use of Fourier approaches for the theory and wavelets for the empirical analysis}\label{SI:methods:methodsmismatch}
 
@@ -1625,37 +1992,47 @@ $\rho_w(f)$ in the $3-7$-year timescale range was a meaningful spectral feature
 
 \subsection{Synchrony is due to timescale-specific Moran effects}\label{sect:FourierMoran_res}
 
+\subsubsection{Deer and MEI}
+<!--***DAN: you'll first need evidence that our Fourier Moran framework is suitable for these data
+(which may include the prelim stuff in Review2_Analysis_CoherenceSupport.R) and then you will need to 
+present the results for deer and MEI-->
+
+
+\subsubsection{Deer and snow depth}
+<!--***DAN: you'll first need evidence that our Fourier Moran framework is suitable for these data
+(which may include the prelim stuff in Review2_Analysis_CoherenceSupport.R) and then you will need to 
+present the results for deer and MEI-->
+
+
+\subsubsection{DVCs and deer}
+<!--***DAN: you'll first need evidence that our Fourier Moran framework is suitable for these data
+(which may include the prelim stuff in Review2_Analysis_CoherenceSupport.R) and then you will need to 
+present the results for deer and MEI-->
+
+
 
 \subsection{Cycles are due to timescale-specific synchrony}\label{sect:FourierCycles_res}
 
-
-
-
-
-<!--***DAN: The rest of this section is material from the last version, stored here for now-->
-
-<!--Fourier results-->
-\subsection{Fourier results} \label{SI:results:Fourierresults}
 \noindent Total spectral power in the $3-7$-year timescale band for detrended state-total
-deer time series (see SI section \ref{SI:methods} for methods) was much greater than the same quantity
+deer time series (see SI section \ref{sect:FourierCycles} for methods) was much greater than the same quantity
 computed for the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}; this was true for
 all the surrogates used (Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). Since the surrogates represent a case 
 in which synchrony in the $3-7$-year timescale band is absent but county-level deer time series are 
 kept otherwise statistically similar, this result shows that synchrony in the $3-7$-year timescale band
 markedly increases state-total population cycling on $3-7$-year timescales. The corresponding $p$-value
-(SI section \ref{SI:methods}) would be vanishingly small. The power spectrum of the state-total
+(SI section \ref{sect:FourierCycles}) would be vanishingly small. The power spectrum of the state-total
 deer time series was above the spectra of all surrogates at nearly all frequencies corresponding
 to timescales in the $3-7$-year range (Fig. \ref{FigS_SpectraFig5Surrogs}).
 
 Total spectral power in the $3-7$-year timescale band for detrended state-total
 deer time series was also greater than the same quantity computed for all but a fraction `r round(Fourier3PvalRes,4)` 
 of AR(1) surrogates (Fig. \ref{FigS_SpectPow3to7ARSurrogs}). Thus `r round(Fourier3PvalRes,4)` is a $p$-value for a test of the 
-null hypothesis corresponding to AR(1) surrogates. However, we emphasize, as explained in SI section \ref{SI:methods},
+null hypothesis corresponding to AR(1) surrogates. However, we emphasize, as explained in SI section \ref{sect:FourierCycles},
 that that null hypothesis does not explicitly relate to synchrony, and so is less appropriate for our research purposes
 then the null hypothesis represented by the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}, for which the $p$-value was
 vanishingly small, much lower than `r round(Fourier3PvalRes,4)` (see previous paragraph and 
-Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). We nevertheless provide these 
-alternative analyses to demonstrate the robustness of our conclusions.
+Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). We nevertheless provide the 
+AR analyses to demonstrate the robustness of our conclusions.
 <!--Because the tests in the two preceding
 paragraphs focused on timescales in the $3-7$-year range, but spectra were generated for timescales across a broader range, we applied Bonferroni-corrections to our results, with the Bonferroni-adjusted $p$-value threshold for a 
 family-wise error rate of $5\%$ to be 
@@ -1694,16 +2071,16 @@ deer population time series. Periodicity seems visually evident, consistent with
 
 After detrending and standardizing variance, we tested whether spectral power in the $3-7$-year band 
 was greater in the state-total deer population time series than in county-level time series
-(see SI section \ref{SI:methods} for methods). This was a test of whether periodicity on these
+(see SI section \ref{sect:FourierCycles} for methods). This was a test of whether periodicity on these
 timescales was greater at the state level, as predicted by theory, than it was at the county level.
 Spectral power in the $3-7$-year band was greater for the state total than it was for every one of the
 counties (Fig. \ref{FigS_StateVCounty}).
 
-Overall, the fourier results support the conclusions that:
-1) there was a meaningful spectral peak in the $3-7$-year timescale band for the state-total deer time 
-series for WI, and it was substantially caused by synchrony; and
-2) the spectral peak in the $3-7$-year band is substantially greater for the state-total deer time series than 
-for the county-level time series.
+The decomposition of $S_{\text{tot}}$ into its components $\sum_i C_{w_i w_i}$ and $\rho_w=\sum_{i \neq j} C_{w_i w_j}$
+(see SI section{sect:FourierCycles}) for deer revealed that synchrony, $\rho_w$, contributed much more to 
+$S_{\text{tot}}$ than did spectral power, $\sum_i C_{w_i w_i}$, of the individual deer time series
+(Fig. \ref{Fig:StructureDecomp_deer}), consistent with our theory. As may have been expected from earlier results
+on $\rho_w$, $\sum_{i \neq j} C_{w_i w_j}$ was highly significant compared to phase randomized surrogates (Fig. \ref{Fig:StructureDecomp_deer}).
 
 <!--For DVCs, we tested whether spectral power in the $3-7$-year timescale band was much greater for the total DVC time series 
 for WI than it would have been without synchrony between county-level DVC time series in the $3-7$-year 
@@ -1729,6 +2106,16 @@ timescale band markedly increases state-total DVC cycling (Fig. \ref{FigS_DVCSpe
 The power spectrum of the state-total
 DVC time series was above the spectra of all surrogates at all frequencies corresponding
 to timescales in the $3-7$-year range (Fig. \ref{FigS_DVCSpectraFig5Surrogs}).
+As was the case for deer, the decomposition of $S_{\text{tot}}$ into its components $\sum_i C_{w_i w_i}$ and $\rho_w=\sum_{i \neq j} C_{w_i w_j}$
+for DVCs revealed that synchrony, $\rho_w$, contributed much more to 
+$S_{\text{tot}}$ than did spectral power, $\sum_i C_{w_i w_i}$, of the individual DVC time series
+(Fig. \ref{Fig:StructureDecomp_DVCs}), consistent with our theory. Again consistent with earlier results, synchrony,
+$\rho_w=\sum_{i \neq j} C_{w_i w_j}$, was highly significant compared to phase randomized surrogates (Fig. \ref{Fig:StructureDecomp_DVCs}).
+
+Overall, Fourier results consistently agreed with wavelet results and supported the conclusions that:
+1) synchrony in deer and DVCs was timescale specific and had a peak at $3-7$-year timescales;
+2) synchrony was due to environmental Moran effects (deer) or Moran effects of deer (DVCs); and
+3) statewide cycles in deer and DVCs occurred and can be largely attributed to the timescale-specific synchrony.
 
 \newpage
 
@@ -2067,6 +2454,22 @@ statistic for county-level time series.}\label{FigS_StateVCounty}
 \newpage
 \clearpage
 
+\begin{figure}
+\includegraphics[width=.5\textwidth]{Results/Review2_Fourier1.png}
+\includegraphics[width=.5\textwidth]{Results/Review2_Fourier2.png} \\
+\caption[Decomposition of $S_{\text{tot}}$ into components, deer]{Decomposition of $S_{\text{tot}}$ 
+into the components $\sum_i C_{w_i w_i}$ and $\sum_{i \neq j} C_{w_i w_j}$ (the latter
+of which equals $\rho_w$) for deer, along with significance testing of $\sum_{i \neq j} C_{w_i w_j}$
+against null hypotheses of phase-randomized surrogates. Phase randomizations were performed at all timescales (A)
+or at $3-7$-year timescales only (B). Black lines are $S_{\text{tot}}=\sum_i C_{w_i w_i}+\sum_{i \neq j} C_{w_i w_j}$, 
+solid red lines are $\sum_{i \neq j} C_{w_i w_j}$, blue lines are $\sum_i C_{w_i w_i}$, and dashed red lines are
+$2.5$th and $97.5$th quantiles of surrogate values of $\sum_{i \neq j} C_{w_i w_j}$. Dashed vertical lines
+bound the $3-7$-year timescale range. See SI section \ref{sect:FourierCycles} for additional details.} \label{Fig:StructureDecomp_deer}
+\end{figure}
+
+\newpage
+\clearpage
+
 \begin{figure}[!h]
 \includegraphics[width=\textwidth]{Results/Fourier11.png}
 \caption[Spectral power, $3-7$-year band, state-total DVC and Fig. \ref{MT-Fig5_StateWideFluctuations}C surrogates]{The red dot shows 
@@ -2092,6 +2495,18 @@ Spectra are non-identical slightly outside the $3-7$-year timescale range becaus
 nearby frequencies.}\label{FigS_DVCSpectraFig5Surrogs}
 \end{figure}
 
+\begin{figure}
+\includegraphics[width=.5\textwidth]{Results/Review2_Fourier3.png}
+\includegraphics[width=.5\textwidth]{Results/Review2_Fourier4.png}
+\caption[Decomposition of $S_{\text{tot}}$ into components, DVCs]{Decomposition of $S_{\text{tot}}$ 
+into the components $\sum_i C_{w_i w_i}$ and $\sum_{i \neq j} C_{w_i w_j}$ (the latter
+of which equals $\rho_w$) for DVCs, along with significance testing of $\sum_{i \neq j} C_{w_i w_j}$
+against a null hypothesis of phase-randomized surrogates. Phase randomizations were performed at all timescales (A)
+or at $3-7$-year timescales only (B). Black lines are $S_{\text{tot}}=\sum_i C_{w_i w_i}+\sum_{i \neq j} C_{w_i w_j}$, 
+solid red lines are $\sum_{i \neq j} C_{w_i w_j}$, blue lines are $\sum_i C_{w_i w_i}$, and dashed red lines are
+$2.5$th and $97.5$th quantiles of surrogate values of $\sum_{i \neq j} C_{w_i w_j}$. Dashed vertical lines
+bound the $3-7$-year timescale range. See SI section \ref{sect:FourierCycles} for additional details.} \label{Fig:StructureDecomp_DVCs}
+\end{figure}
 
 \newpage
 \clearpage

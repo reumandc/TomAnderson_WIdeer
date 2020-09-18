@@ -262,7 +262,7 @@ reasonable scenarios in the SI
 and find that the initial intuition is correct, 
 that timescale-specific synchrony is often a very important determinant of
 regional population cycles. See SI section \ref{SM-SI:theory}
-for the theory and for examples, including Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
+for the theory and for examples, including SI Figs \ref{SM-TheoryExample1}, \ref{SM-TheoryExample2},
 \ref{SM-TheoryExample3}.
 
 # Methods
@@ -419,11 +419,14 @@ empirical state-total time series were attributable to synchrony.
 Although wavelet tools were the most appropriate 
 overall choice for our research goals and are now standard, some readers may be more familiar with Fourier analyses,
 which have a longer history. Also, some readers may perceive a mismatch between our theory, which uses
-the Fourier language of stochastic processes, and our empirical analyses based on wavelets.
-A suite of alternative analyses based solely on Fourier approaches is presented in SI section X,
-and the results of these alternative analyses are in SI section Y.
-<!--***DAN: insert references to these sections-->
-All main results were obtained both through our wavelet and Fourier approaches, with the two approaches agreeing in all cases.
+the Fourier language of stochastic processes, and our empirical analyses based on wavelets (see SI section \ref{SM-SI:methods:methodsmismatch}).
+A suite of alternative analyses based solely on Fourier approaches is presented in SI section \ref{SM-sect:alt_methods},
+and the results of these alternative analyses are in SI section \ref{SM-sect:alt_results}.
+<!--***DAN: You may get into trouble with citing an SI section out of order here, in which case you'll have to reorder the methods mismatch section, maybe.
+It seems I only cite top-level sections of SI from the MT, so perhaps the best way to do this is to put the mismatch subsection first in the alt-methods
+SI section, and then just cite the top-level alt-methods section here. You are also going to have to cite all the SI figures and maybe also tables
+from the main text somewhere (just do summary citations of ranges of figures as appropriate).-->
+All main conclusions were dually supported by both wavelet and Fourier approaches.
 
 \textbf{Data availability.} All data will be published in the Dryad repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
@@ -438,7 +441,7 @@ chiefly at $3-7$-year timescales (Fig. \ref{Fig3_DeerSync}A). The wavelet
 phasor mean field showed the strong statistical significance of this phenomenon (Fig.
 \ref{Fig3_DeerSync}B). We therefore focused subsequent analysis on the $3-7$-year timescale band.
 Mean field magnitude plots for all
-winter weather variables are in Fig. \ref{SM-FigS8_WMFsAndWPMFsAncillary}.
+winter weather variables are in SI Fig. \ref{SM-FigS8_WMFsAndWPMFsAncillary}.
 
 Spatial wavelet coherence demonstrated that 
 deer abundance synchrony on $3-7$-year timescales was partly caused by climatic Moran effects. 
@@ -532,17 +535,15 @@ statewide DVC damages
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
 between peak and trough years. 
 
-<!--***DAN: I don't think this is needed anymore but keeping it just in case:
-Supplementary results using Fourier approaches (*Methods*, SI section \ref{SM-SI:methods}) demonstrated 
-clearly (SI section \ref{SM-SI:results}, Figs \ref{SM-FigS_SpectPow3to7Fig5Surrogs}-\ref{SM-FigS_StateVCounty},
-Table \ref{SM-InflationTable}) 
-that: 1) there was a meaningful spectral peak in the
-$3-7$-year timescale band for the state-total deer time series for WI, and it was substantially caused by 
-synchrony because when $3-7$-year synchrony was removed from county-level time series the peak was also removed;
-2) the same spectral peaks did not occur in county-level deer time series, i.e, combining 
-time series across space produced the peak by combining weak but synchronous fluctuations in the $3-7$-year timescale band.
-Similar results also held for DVCs (SI section \ref{SM-SI:results}, 
-Figs \ref{SM-FigS_DVCSpectPow3to7Fig5Surrogs}-\ref{SM-FigS_DVCSpectraFig5Surrogs}). -->
+Supplementary results using Fourier approaches (*Methods*, SI section \ref{SM-sect:alt_methods})
+agreed with wavelet results, confirming the same main conclusions that: 
+1) synchrony in deer and DVCs was timescale specific and had a peak at $3-7$-year timescales;
+2) deer synchrony was due to environmental Moran effects and DVC synchrony was due to the effects of deer; and
+3) statewide cycles in deer and DVCs occurred, and can be attributed to the timescale-specific synchrony
+in these variables (SI section \ref{SM-sect:alt_results}).
+<!--***DAN: also cite all the spectral figs and tables here, all in one batch, to maintain the custom of citing all
+sup mat figs and tables from the main text and having them appear in the sup mat in the order they are cited in the
+main text-->
 
 # Discussion
 

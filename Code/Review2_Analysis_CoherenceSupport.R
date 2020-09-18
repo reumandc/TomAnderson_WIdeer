@@ -6,25 +6,7 @@
 #Functions
 #***
 
-#Takes the fft of each row of the matrix x
-#
-#Args
-#x      A matrix
-#
-myfft<-function(x)
-{
-  return(t(mvfft(t(x))))
-}
-
-#Inverse of the above
-#
-#Args
-#x      A matrix
-#
-imyfft<-function(x)
-{
-  return(t(mvfft(t(x),inverse=TRUE))/dim(x)[2])
-}
+source("Code/SpectralTools.R")
 
 #Removes periodicities outside the specified range by zero-ing out the appropriate
 #components of the Fourier transform
@@ -57,15 +39,6 @@ remper<-function(x,ts)
 #***
 #Tests of functions
 #***
-
-#x<-matrix(rnorm(10*100),10,100)
-#fx<-myfft(x)
-#max(abs(fx[1,]-fft(x[1,])))
-#max(abs(fx[2,]-fft(x[2,])))
-#max(abs(fx[3,]-fft(x[3,])))
-
-#ifx<-imyfft(fx)
-#max(abs(x-ifx))
 
 #x<-matrix(rnorm(10*100),10,100)
 #xrem<-remper(x,c(1/4,1/3))
@@ -118,8 +91,6 @@ mei<-wc$WinterMEI #is the matrix of repeating values, counties X years, same dim
 mei<-mei[c(1:54,56:59,55,60:71),] #except for getting the rownames right, this makes no difference, because 
                                   #data are the same in all locations 
 
-#cbind(rownames(deer),rownames(dvcs),rownames(snow),rownames(mei))
-
 #***
 #***Deer/snow comparisons
 #***
@@ -155,9 +126,9 @@ stat1_for_dat<-mean(allcors) #This is one statistic that we can compare to the s
 #to surrogates. This is also the hypothesis one would make based purely on the biological
 #consideration that deer do poorly when snow depth is large. Suggests a 1-tailed test.
 
-#%%%DAN: Lawrence pointed out that, because of the B-C normalization, the correlation of the 
+#***DAN: Lawrence pointed out that, because of the Box-Cox normalization, the correlation of the 
 #two matrices #should be the same as the mean correlation of the time series (check). Might be 
-#good to point out because it means no arbitrary choice has been made.
+#good to point out in a write-up because it means no arbitrary choice has been made.
 
 #Now we want another statistic that corresponds to a lag that corresponds to the 
 #phase diff we got from the wavelet analysis. The above was just for exactly out-of-phase,
@@ -168,9 +139,7 @@ stat1_for_dat<-mean(allcors) #This is one statistic that we can compare to the s
 #closest integers, so we should see if deer at time t-1 or t-2 is correlated with snow depth.
 #So we hypothesize these statistics will be positive, and significantly different from 
 #their values on surrogates. If we take the wavelet analyses as prior knowledge, it suggests
-#a 1-tailed test. And we sort of have to take them as prior knowledge since there's no 
-#reasonable scenario I can think of where one would have thought to do these tests
-#without having first done the wavelet analyses.
+#a 1-tailed test. 
 allcorslag1<-c()
 allcorslag2<-c()
 for (counter in 1:dim(deer_forsnow_cl)[1])
@@ -185,6 +154,7 @@ stat3_for_dat<-mean(allcorslag2)
 
 #get the same statistics for appropriate surrogates
 nsurr<-10000
+set.seed(101)
 snow_noNA_cl_s<-wsyn::surrog(dat=snow_noNA_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
 deer_forsnow_cl_s<-wsyn::surrog(dat=deer_forsnow_cl,nsurrogs=nsurr,surrtype="fft",syncpres=TRUE)
 stat1_for_s<-NA*numeric(nsurr)
@@ -211,32 +181,83 @@ for (scounter in 1:nsurr)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1<-1-sum(stat1_for_dat<stat1_for_s)/nsurr 
-p_onetailed_stat1 #significant
-p_onetailed_stat2<-sum(stat2_for_dat<stat2_for_s)/nsurr
-p_onetailed_stat2 #not quite significant
-p_onetailed_stat3<-sum(stat3_for_dat<stat3_for_s)/nsurr
-p_onetailed_stat3 #significant
+p_deersnow_onetailed_stat1<-1-sum(stat1_for_dat<stat1_for_s)/nsurr 
+#p_deersnow_onetailed_stat1 #significant
+p_deersnow_onetailed_stat2<-sum(stat2_for_dat<stat2_for_s)/nsurr
+#p_deersnow_onetailed_stat2 #not quite significant
+p_deersnow_onetailed_stat3<-sum(stat3_for_dat<stat3_for_s)/nsurr
+#p_deersnow_onetailed_stat3 #significant
 stat4_for_dat<-(stat2_for_dat+stat3_for_dat)/2
 stat4_for_s<-(stat2_for_s+stat3_for_s)/2 #This last statistic actually 
 #makes the most sense of all of them. Probably we can dispense with 
 #stats 2 and 3.
-p_onetailed_stat4<-sum(stat4_for_dat<stat4_for_s)/nsurr 
-p_onetailed_stat4 #significant
+p_deersnow_onetailed_stat4<-sum(stat4_for_dat<stat4_for_s)/nsurr 
+#p_deersnow_onetailed_stat4 #significant
 
-#make some histograms, just to see
-#hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat1,4)))
-#points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
-#hist(stat2_for_s,100,xlim=range(stat2_for_s,stat2_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat2,4)))
-#points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
-#hist(stat3_for_s,100,xlim=range(stat3_for_s,stat3_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat3,4)))
-#points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
-#hist(stat4_for_s,100,xlim=range(stat4_for_s,stat4_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat4,4)))
-#points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
+#make some histograms, just to make the comparisons that yield the above p-values visual
+tot.wd<-4
+tot.ht<-4
+ywd<-.65
+xht<-.65
+gap<-0.1
+pan.wd<-tot.wd-ywd-gap
+pan.ht<-tot.ht-xht-gap
+
+png("Results/Fourier_Step2_prelims_deersnow_1.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat1_for_s,stat1_for_dat)
+hist(stat1_for_s,100,xlim=xlimits,main="")
+points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)     
+mtext("Deer/snow correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],250,paste0("p=",round(p_deersnow_onetailed_stat1,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deersnow_2.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits=range(stat2_for_s,stat2_for_dat)
+hist(stat2_for_s,100,xlim=xlimits,main="")
+points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/snow lag-1 correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],250,paste0("p=",round(p_deersnow_onetailed_stat2,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deersnow_3.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat3_for_s,stat3_for_dat)
+hist(stat3_for_s,100,xlim=xlimits,main="")
+points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/snow lag-2 correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],250,paste0("p=",round(p_deersnow_onetailed_stat3,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deersnow_4.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat4_for_s,stat4_for_dat)
+hist(stat4_for_s,100,xlim=xlimits,main="")
+points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/snow lag-1/2 correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],350,paste0("p=",round(p_deersnow_onetailed_stat4,4)),adj=c(1,1))
+dev.off()
 
 #***now do another similar analysis after filtering
 
@@ -291,41 +312,85 @@ for (scounter in 1:nsurr)
 }
 
 #compare the data and surrogate statistics
-p_onetailed_stat1_filt<-1-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurr 
-p_onetailed_stat1_filt #significant
-p_onetailed_stat2_filt<-sum(stat2_for_dat_filt<stat2_for_s_filt)/nsurr
-p_onetailed_stat2_filt #not significant
-p_onetailed_stat3_filt<-sum(stat3_for_dat_filt<stat3_for_s_filt)/nsurr
-p_onetailed_stat3_filt #not significant
+p_deersnow_onetailed_stat1_filt<-1-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurr 
+#p_deersnow_onetailed_stat1_filt #significant
+p_deersnow_onetailed_stat2_filt<-sum(stat2_for_dat_filt<stat2_for_s_filt)/nsurr
+#p_deersnow_onetailed_stat2_filt #not significant
+p_deersnow_onetailed_stat3_filt<-sum(stat3_for_dat_filt<stat3_for_s_filt)/nsurr
+#p_deersnow_onetailed_stat3_filt #not significant
 stat4_for_dat_filt<-(stat2_for_dat_filt+stat3_for_dat_filt)/2
 stat4_for_s_filt<-(stat2_for_s_filt+stat3_for_s_filt)/2 
-p_onetailed_stat4_filt<-sum(stat4_for_dat_filt<stat4_for_s_filt)/nsurr 
-p_onetailed_stat4_filt #significant 
-
-#make some histograms, just to see
-#hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
-#points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-#hist(stat2_for_s_filt,100,xlim=range(stat2_for_s_filt,stat2_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat2_filt,4)))
-#points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-#hist(stat3_for_s_filt,100,xlim=range(stat3_for_s_filt,stat3_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat3_filt,4)))
-#points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-#hist(stat4_for_s_filt,100,xlim=range(stat4_for_s_filt,stat4_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat4_filt,4)))
-#points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+p_deersnow_onetailed_stat4_filt<-sum(stat4_for_dat_filt<stat4_for_s_filt)/nsurr 
+#p_deersnow_onetailed_stat4_filt #significant 
+#Again, probably stat4 superceeds 2 and 3
 #so we again get significance in the two stats we settled on
 
+#make some histograms, just to to make the comparisons that yield the above p-values visual
+png("Results/Fourier_Step2_prelims_deersnow_1filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat1_for_s_filt,stat1_for_dat_filt)
+hist(stat1_for_s_filt,100,xlim=xlimits,main="")
+points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/snow correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],175,paste0("p=",round(p_deersnow_onetailed_stat1_filt,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deersnow_2filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat2_for_s_filt,stat2_for_dat_filt)
+hist(stat2_for_s_filt,100,xlim=xlimits,main="")
+points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/snow lag-1 correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],200,paste0("p=",round(p_deersnow_onetailed_stat2_filt,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deersnow_3filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat3_for_s_filt,stat3_for_dat_filt)
+hist(stat3_for_s_filt,100,xlim=xlimits,main="")
+points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/snow lag-2 correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],200,paste0("p=",round(p_deersnow_onetailed_stat3_filt,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deersnow_4filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat4_for_s_filt,stat4_for_dat_filt)
+hist(stat4_for_s_filt,100,xlim=xlimits,main="")
+points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/snow lag-1/2 correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],150,paste0("p=",round(p_deersnow_onetailed_stat4_filt,4)),adj=c(1,1))
+dev.off()
+
 #store the results in a variable, for reporting in the paper
-cor_pvals_deer_snow<-c(p_onetailed_stat1=p_onetailed_stat1,
-                   p_onetailed_stat2=p_onetailed_stat2,
-                   p_onetailed_stat3=p_onetailed_stat3,
-                   p_onetailed_stat4=p_onetailed_stat4,
-                   p_onetailed_stat1_filt=p_onetailed_stat1_filt,
-                   p_onetailed_stat2_filt=p_onetailed_stat2_filt,
-                   p_onetailed_stat3_filt=p_onetailed_stat3_filt,
-                   p_onetailed_stat4_filt=p_onetailed_stat4_filt)
+cor_pvals_deer_snow<-c(p_onetailed_stat1=p_deersnow_onetailed_stat1,
+                   p_onetailed_stat2=p_deersnow_onetailed_stat2,
+                   p_onetailed_stat3=p_deersnow_onetailed_stat3,
+                   p_onetailed_stat4=p_deersnow_onetailed_stat4,
+                   p_onetailed_stat1_filt=p_deersnow_onetailed_stat1_filt,
+                   p_onetailed_stat2_filt=p_deersnow_onetailed_stat2_filt,
+                   p_onetailed_stat3_filt=p_deersnow_onetailed_stat3_filt,
+                   p_onetailed_stat4_filt=p_deersnow_onetailed_stat4_filt)
 
 #***
 #***Deer/MEI comparisons
@@ -397,29 +462,72 @@ for (scounter in 1:nsurr)
 
 #compare the data and surrogate statistics
 p_onetailed_stat1<-sum(stat1_for_dat<stat1_for_s)/nsurr 
-p_onetailed_stat1 
+#p_onetailed_stat1 
 p_onetailed_stat2<-sum(stat2_for_dat<stat2_for_s)/nsurr
-p_onetailed_stat2 
+#p_onetailed_stat2 
 p_onetailed_stat3<-sum(stat3_for_dat<stat3_for_s)/nsurr
-p_onetailed_stat3 
+#p_onetailed_stat3 
 stat4_for_dat<-(stat1_for_dat+stat2_for_dat+stat2_for_dat)/3
 stat4_for_s<-(stat1_for_s+stat2_for_s+stat2_for_s)/3 
 p_onetailed_stat4<-sum(stat4_for_dat<stat4_for_s)/nsurr 
-p_onetailed_stat4 #this last one is the most appropriate one
+#p_onetailed_stat4 #this last one is the most appropriate one, use it only
 
-#make some histograms, just to see
-#hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat1,4)))
-#points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
-#hist(stat2_for_s,100,xlim=range(stat2_for_s,stat2_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat2,4)))
-#points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
-#hist(stat3_for_s,100,xlim=range(stat3_for_s,stat3_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat3,4)))
-#points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
-#hist(stat4_for_s,100,xlim=range(stat4_for_s,stat4_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat4,4)))
-#points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
+#make some histograms, to make things visual
+png("Results/Fourier_Step2_prelims_deermei_1.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat1_for_s,stat1_for_dat)
+hist(stat1_for_s,100,xlim=xlimits,main="")
+points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-1 correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],250,paste0("p=",round(p_onetailed_stat1,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deermei_2.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat2_for_s,stat2_for_dat)
+hist(stat2_for_s,100,xlim=xlimits,main="")
+points(stat2_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-2 correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],250,paste0("p=",round(p_onetailed_stat2,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deermei_3.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat3_for_s,stat3_for_dat)
+hist(stat3_for_s,100,xlim=xlimits,main="")
+points(stat3_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-3 correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],250,paste0("p=",round(p_onetailed_stat3,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deermei_4.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat4_for_s,stat4_for_dat)
+hist(stat4_for_s,100,xlim=xlimits,main="")
+points(stat4_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-1/2/3 correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],300,paste0("p=",round(p_onetailed_stat4,4)),adj=c(1,1))
+dev.off()
 #this is all good - we get significance in the stat we care most about (stat4)
 
 #***now do another similar analysis after filtering
@@ -471,29 +579,72 @@ for (scounter in 1:nsurr)
 
 #compare the data and surrogate statistics
 p_onetailed_stat1_filt<-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurr 
-p_onetailed_stat1_filt 
+#p_onetailed_stat1_filt 
 p_onetailed_stat2_filt<-sum(stat2_for_dat_filt<stat2_for_s_filt)/nsurr
-p_onetailed_stat2_filt 
+#p_onetailed_stat2_filt 
 p_onetailed_stat3_filt<-sum(stat3_for_dat_filt<stat3_for_s_filt)/nsurr
-p_onetailed_stat3_filt 
+#p_onetailed_stat3_filt 
 stat4_for_dat_filt<-(stat1_for_dat_filt+stat2_for_dat_filt+stat2_for_dat_filt)/3
 stat4_for_s_filt<-(stat1_for_s_filt+stat2_for_s_filt+stat2_for_s_filt)/3 
 p_onetailed_stat4_filt<-sum(stat4_for_dat_filt<stat4_for_s_filt)/nsurr 
-p_onetailed_stat4_filt
+#p_onetailed_stat4_filt
 
-#make some histograms, just to see
-#hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
-#points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-#hist(stat2_for_s_filt,100,xlim=range(stat2_for_s_filt,stat2_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat2_filt,4)))
-#points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-#hist(stat3_for_s_filt,100,xlim=range(stat3_for_s_filt,stat3_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat3_filt,4)))
-#points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
-#hist(stat4_for_s_filt,100,xlim=range(stat4_for_s_filt,stat4_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat4_filt,4)))
-#points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#make some histograms, to make these results visual
+png("Results/Fourier_Step2_prelims_deermei_1filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat1_for_s_filt,stat1_for_dat_filt)
+hist(stat1_for_s_filt,100,xlim=xlimits,main="")
+points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-1 correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],300,paste0("p=",round(p_onetailed_stat1_filt,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deermei_2filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat2_for_s_filt,stat2_for_dat_filt)
+hist(stat2_for_s_filt,100,xlim=xlimits,main="")
+points(stat2_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-2 correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],300,paste0("p=",round(p_onetailed_stat2_filt,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deermei_3filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat3_for_s_filt,stat3_for_dat_filt)
+hist(stat3_for_s_filt,100,xlim=xlimits,main="")
+points(stat3_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-3 correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],300,paste0("p=",round(p_onetailed_stat3_filt,4)),adj=c(1,1))
+dev.off()
+
+png("Results/Fourier_Step2_prelims_deermei_4filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat4_for_s_filt,stat4_for_dat_filt)
+hist(stat4_for_s_filt,100,xlim=xlimits,main="")
+points(stat4_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("Deer/mei lag-1/2/3 correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],175,paste0("p=",round(p_onetailed_stat4_filt,4)),adj=c(1,1))
+dev.off()
 #this is all good - we again get significance in the stat we care most about (stat4)
 
 #store the results in a variable, for reporting in the paper
@@ -556,12 +707,22 @@ for (scounter in 1:nsurr)
 
 #compare the data and surrogate statistics
 p_onetailed_stat1<-sum(stat1_for_dat<stat1_for_s)/nsurr 
-p_onetailed_stat1
+#p_onetailed_stat1
 
-#make a histogram, just to see
-#hist(stat1_for_s,100,xlim=range(stat1_for_s,stat1_for_dat),
-#     main=paste0("p=",round(p_onetailed_stat1,4)))
-#points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
+#make a histogram
+png("Results/Fourier_Step2_prelims_DVCdeer.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat1_for_s,stat1_for_dat)
+hist(stat1_for_s,100,xlim=xlimits,main="")
+points(stat1_for_dat,0,type="p",col="red",pch=20,cex=2)
+mtext("DVCs/deer correlation statistic",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],300,paste0("p=",round(p_onetailed_stat1,4)),adj=c(1,1))
+dev.off()
 
 #***now do another similar analysis after filtering
 
@@ -597,15 +758,25 @@ for (scounter in 1:nsurr)
 
 #compare the data and surrogate statistics
 p_onetailed_stat1_filt<-sum(stat1_for_dat_filt<stat1_for_s_filt)/nsurr 
-p_onetailed_stat1_filt
+#p_onetailed_stat1_filt
 
-#make a histogram, just to see
-#hist(stat1_for_s_filt,100,xlim=range(stat1_for_s_filt,stat1_for_dat_filt),
-#     main=paste0("p=",round(p_onetailed_stat1_filt,4)))
-#points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+#make a histogram
+png("Results/Fourier_Step2_prelims_DVCdeer_filt.png",res=600,units="in",width = tot.wd,height = tot.ht)
+par(fig=c(ywd/tot.wd,
+          (ywd+pan.wd)/tot.wd,
+          (xht)/tot.ht,
+          (xht+pan.ht)/tot.ht),
+    mai=c(0,0,0,0),mgp=c(3,0.75,0))
+xlimits<-range(stat1_for_s_filt,stat1_for_dat_filt)
+hist(stat1_for_s_filt,100,xlim=xlimits,main="")
+points(stat1_for_dat_filt,0,type="p",col="red",pch=20,cex=2)
+mtext("DVCs/deer correlation statistic, filtered",side=1,line=2,cex=1)
+mtext("Count",side=2,line=2,cex=1)
+text(xlimits[2],210,paste0("p=",round(p_onetailed_stat1_filt,4)),adj=c(1,1))
+dev.off()
 
 #store the results in a variable, for reporting in the paper
-cor_pvals_deer_dvcs<-c(p_onetailed_stat1=p_onetailed_stat1,
+cor_pvals_dvcs_deer<-c(p_onetailed_stat1=p_onetailed_stat1,
                    p_onetailed_stat1_filt=p_onetailed_stat1_filt)
 
 
