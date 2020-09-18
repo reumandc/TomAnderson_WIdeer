@@ -1,4 +1,5 @@
-#This script is to do some ML fitting of ARMA-type models to deer data, along with some prelims. Reuman.
+#This script is to do some ML fitting of ARMA-type models to deer data, along with some prelims. This is part of a much
+#larger effort to respond to one of the Ecol Lett reviews, second round of reviews. Reuman.
 
 #***
 #***Load the data
@@ -56,65 +57,66 @@ for (counter in 2:(dim(snow)[1]))
 plot(deeryr,mei[1,],type="l",ylim=range(mei),main="MEI, cleaned and transformed",
      xlab="Year",ylab="Transformed MEI")
 
-#***
-#make some autocorrelation diagrams
-#***
-
-#For making the autocorrelation function that is appropriate in this case
-#
-#d        A matrix with time series in the rows
-#maxlag   The maximum lag to use
-#
-#Output - a vector of length maxlag
-#
-autocorrfun<-function(d,maxlag)
-{
-  dd2<-dim(d)[2]
-  
-  res<-NA*numeric(maxlag)
-  for (counter in 1:maxlag)
-  {
-    res[counter]<-mean(diag(cor(t(d[,1:(dd2-counter)]),t(d[,(1+counter):dd2]))))
-  }
-  
-  return(res)
-}
-
-#get the autocorrelation function for deer
-maxlag<-15
-deer_autocor<-autocorrfun(deer,maxlag)
-
-#test against reshuffled data, two types of reshuffling
-nsurr<-1000
-deer_autocor_s1<-matrix(NA,nsurr,length(deer_autocor))
-deer_autocor_s2<-matrix(NA,nsurr,length(deer_autocor))
-for (counter in 1:nsurr)
-{
-  deer_s1<-deer[,sample(dim(deer)[2],dim(deer)[2],replace=TRUE)]
-  deer_autocor_s1[counter,]<-autocorrfun(deer_s1,maxlag)
-  
-  newinds<-matrix(sample(dim(deer)[2],prod(dim(deer)),replace=TRUE),dim(deer)[1],dim(deer)[2])
-  deer_s2<-deer
-  for (dr in 1:(dim(deer)[1]))
-  {
-    deer_s2[dr,]<-deer[dr,newinds[dr,]]
-  }
-  deer_autocor_s2[counter,]<-autocorrfun(deer_s2,maxlag)
-}
-qs1<-apply(FUN=quantile,X=deer_autocor_s1,MARGIN=2,probs=c(.025,.975))
-qs2<-apply(FUN=quantile,X=deer_autocor_s2,MARGIN=2,probs=c(.025,.975))
-
-plot(1:maxlag,deer_autocor,type="b",ylim=range(deer_autocor,qs))
-lines(c(1,maxlag),c(0,0),type="l",lty="solid")
-lines(1:maxlag,qs1[1,],lty="dotted")
-lines(1:maxlag,qs1[2,],lty="dotted")
-lines(1:maxlag,qs2[1,],lty="dashed")
-lines(1:maxlag,qs2[2,],lty="dashed")
-
-#Note: these are not really appropriate for judging what deer AR lags to use in a model,
-#since deer autocorrelation can result from density dependence or from the influence of 
-#external drivers. It's not entirely clear to me what this plot is good for, I just made
-#it because when one with an ARX model one often starts with an autocorrelation plot. 
+# #***
+# #make some autocorrelation diagrams
+# #***
+# 
+# #For making the autocorrelation function that is appropriate in this case
+# #
+# #d        A matrix with time series in the rows
+# #maxlag   The maximum lag to use
+# #
+# #Output - a vector of length maxlag
+# #
+# autocorrfun<-function(d,maxlag)
+# {
+#   dd2<-dim(d)[2]
+#   
+#   res<-NA*numeric(maxlag)
+#   for (counter in 1:maxlag)
+#   {
+#     res[counter]<-mean(diag(cor(t(d[,1:(dd2-counter)]),t(d[,(1+counter):dd2]))))
+#   }
+#   
+#   return(res)
+# }
+# 
+# #get the autocorrelation function for deer
+# maxlag<-15
+# deer_autocor<-autocorrfun(deer,maxlag)
+# 
+# #test against reshuffled data, two types of reshuffling
+# nsurr<-1000
+# deer_autocor_s1<-matrix(NA,nsurr,length(deer_autocor))
+# deer_autocor_s2<-matrix(NA,nsurr,length(deer_autocor))
+# for (counter in 1:nsurr)
+# {
+#   deer_s1<-deer[,sample(dim(deer)[2],dim(deer)[2],replace=TRUE)]
+#   deer_autocor_s1[counter,]<-autocorrfun(deer_s1,maxlag)
+#   
+#   newinds<-matrix(sample(dim(deer)[2],prod(dim(deer)),replace=TRUE),dim(deer)[1],dim(deer)[2])
+#   deer_s2<-deer
+#   for (dr in 1:(dim(deer)[1]))
+#   {
+#     deer_s2[dr,]<-deer[dr,newinds[dr,]]
+#   }
+#   deer_autocor_s2[counter,]<-autocorrfun(deer_s2,maxlag)
+# }
+# qs1<-apply(FUN=quantile,X=deer_autocor_s1,MARGIN=2,probs=c(.025,.975))
+# qs2<-apply(FUN=quantile,X=deer_autocor_s2,MARGIN=2,probs=c(.025,.975))
+# 
+# plot(1:maxlag,deer_autocor,type="b",ylim=range(deer_autocor,qs1,qs2))
+# lines(c(1,maxlag),c(0,0),type="l",lty="solid")
+# lines(1:maxlag,qs1[1,],lty="dotted")
+# lines(1:maxlag,qs1[2,],lty="dotted")
+# lines(1:maxlag,qs2[1,],lty="dashed")
+# lines(1:maxlag,qs2[2,],lty="dashed")
+# 
+# #Note: these are not really appropriate for judging what deer AR lags to use in a model,
+# #since deer autocorrelation can result from density dependence or from the influence of 
+# #external drivers. It's not entirely clear to me what this plot is good for, I just made
+# #it because when one with an ARX model one often starts with an autocorrelation plot. 
+# #That's why I commented this stuff out, and may later delete it.
 
 #***
 #make some cross correlation diagrams
@@ -516,7 +518,7 @@ allres_summary
 allres_summary[allres_summary$DeltaAIC<=4,]
 save.image(file="OvernightRun20200807v02.RData")
 
-
+load(file="OvernightRun20200807v02.RData")
 
 
 #***Sim the AIC-best model and see if the results look like the deer when plotted. Use the actual
