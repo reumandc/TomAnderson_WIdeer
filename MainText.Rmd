@@ -286,8 +286,7 @@ impacts on deer populations [@widnr2001].
 Winter and growing-season (Apr-Nov) annual time series for the NAO, the multivariate El Ni$\~{n}$o Southern Oscillation Index (MEI), and the Pacific 
 Decadal Oscillation (PDO) were obtained by averaging monthly values.
 All of these have been shown to 
-influence large ungulate population dynamics in the north central 
-USA [@Post1998_popgrowth;@Post2004_greenland]. 
+influence large ungulate population dynamics in North America [@Post1998_popgrowth;@Post2004_greenland;@Ciuti2015]. 
 High values of these indices generally correspond to mild winter weather over 
 WI [@Rodionov2003_elnino].
 Thus a total of 11 weather and climate variables were 
@@ -418,16 +417,12 @@ empirical state-total time series were attributable to synchrony.
 
 Although wavelet tools were the most appropriate 
 overall choice for our research goals and are now standard, some readers may be more familiar with Fourier analyses,
-which have a longer history. Also, some readers may perceive a mismatch between our theory, which uses
-the Fourier language of stochastic processes, and our empirical analyses based on wavelets (but see the beginning of 
-SI section \ref{SM-sect:alt_methods}).
-A suite of alternative analyses based solely on Fourier approaches is presented in SI section \ref{SM-sect:alt_methods},
-and the results of these alternative analyses are in SI section \ref{SM-sect:alt_results}.
-<!--***DAN: You may get into trouble with citing an SI section out of order here, in which case you'll have to reorder the methods mismatch section, maybe.
-It seems I only cite top-level sections of SI from the MT, so perhaps the best way to do this is to put the mismatch subsection first in the alt-methods
-SI section, and then just cite the top-level alt-methods section here. You are also going to have to cite all the SI figures and maybe also tables
-from the main text somewhere (just do summary citations of ranges of figures as appropriate).-->
-All main conclusions were dually supported by both wavelet and Fourier approaches.
+which have a longer history. Also, there may be a perceived mismatch between our theory, which uses
+the Fourier language of stochastic processes, and our empirical analyses based on wavelets. In SI, after presenting 
+supplementary wavelet results (SI section \ref{SM-SI:results}), we discuss why there is no real mismatch in 
+approaches (beginning of SI section \ref{SM-sect:alt_methods}); but we also introduce (SI section \ref{SM-sect:alt_methods})
+and apply (SI section \ref{SM-sect:alt_results}) a comprehensive suite of alternative analyses of data, based solely on Fourier
+approaches. All main conclusions of our work were dually supported by both our wavelet and alternative Fourier approaches.
 
 \textbf{Data availability.} All data will be published in the Dryad repository. 
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
@@ -542,10 +537,9 @@ agreed with wavelet results, confirming the same main conclusions that:
 1) synchrony in deer and DVCs was timescale specific and had a peak at $3-7$-year timescales;
 2) deer synchrony was due to environmental Moran effects and DVC synchrony was due to the synchronizing effects of deer; and
 3) statewide cycles in deer and DVCs occurred, and can be attributed to the timescale-specific synchrony
-in these variables (SI section \ref{SM-sect:alt_results}).
-<!--***DAN: also cite all the spectral figs and tables here, all in one batch, to maintain the custom of citing all
-sup mat figs and tables from the main text and having them appear in the sup mat in the order they are cited in the
-main text-->
+in these variables (SI section \ref{SM-sect:alt_results}, 
+Figs \ref{SM-ComprehensiveFourier_SynchronyIsTimescaleSpecific_phase}-\ref{SM-Fig:StructureDecomp_DVCs}, 
+Table \ref{SM-Table_AR_AIC_Table}).
 
 # Discussion
 
