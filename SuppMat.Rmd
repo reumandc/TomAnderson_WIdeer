@@ -150,21 +150,17 @@ source("Code/ComprehensiveFourier_SynchronyIsTimescaleSpecific.R")
 
 <!--Step 2 of the alternative Fourier analysis shows that Moran effects cause synchrony-->
 
-<!--Step 2, part 1: first steps - correlation analyses and correlation analyses with pre filtering.-->
+<!--Step 2: first steps - correlation analyses and correlation analyses with pre filtering.-->
 ```{r alt_Fourier_2_p1, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/Review2_Analysis_CoherenceSupport.R"),mtime("Code/SpectralTools.R"),mtime("Results/cty.list.rds"),mtime("Results/winter.clim.rds"),mtime("Results/climindex.rds"))}
 
 source("Code/Review2_Analysis_CoherenceSupport.R")
 ```
 
+<!--Step 2: first steps - lagged regressions-->
+```{r alt_Fourier_2_p2, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/Review2_LaggedRegressions.R"),mtime("Results/cty.list.rds"),mtime("Results/winter.clim.rds"),mtime("Results/climindex.rds"))}
 
-
-<!--Step 2, part 2: fitting of an ARX model - ***DAN: seems likely to turn out to be unnecessary-->
-```{r alt_Fourier_2_p2p1, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/Review2_Modelling.R"),mtime("Results/cty.list.rds"),mtime("Results/winter.clim.rds"),mtime("Results/climindex.rds"))}
-
-source("Code/Review2_Modelling.R")
+source("Code/Review2_LaggedRegressions.R")
 ```
-<!--***DAN: I also have some code which is the beginnings of testing the model which is fitted above. I also think it'll be unnecessary. I had
-not yet invoked it in a chunk here when I realized it would probably be unnecessary.-->
 
 <!--Step 2, deer-->
 ```{r alt_Fourier_2_deer, echo=FALSE, results="hide", cache=TRUE, fig.show="hide", cache.extra=list(mtime("Code/Review2_BasedOnFourierMoranv02.R"),mtime("Code/SpectralTools.R"),mtime("Results/cty.list.rds"),mtime("Results/winter.clim.rds"),mtime("Results/climindex.rds"))}
@@ -1386,16 +1382,35 @@ state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$)
 
 # Alternative analyses: methods \label{sect:alt_methods}
 
-\noindent After presenting our theory (main text and SI section \ref{SI:theory}), we used wavelet statistical 
-tools in the main text to argue that the theory was substantiated by deer and DVC data from Wisconsin, i.e., that 
-timescale-specific synchrony is responsible for cycles observed at large spatial scales in deer and DVC data. 
-The overall logic was: 1) we showed that synchrony in both deer and DVCs is timescale specific,
+\noindent Fourier methods were used in our theory (main text and SI section \ref{SI:theory})
+and wavelet methods were used in analyses of data (main text and SI sections \ref{SI:methods} and \ref{SI:results}).
+Some readers may perceive a mismatch, here. Though we do not think there is as mismatch, this section and SI section 
+\ref{sect:alt_results} are devoted to an alternative set of empirical analyses using purely Fourier methods. All
+main wavelet results were also supported by the Fourier approach, strengthening our overall argument.
+
+It was appropriate, for several reasons, to use Fourier methods for 
+the theory and wavelet methods for the data analyses of the main text. First, both sets of methods are
+spectral methods, and are closely related and serve similar goals. Second, differences
+that do exist between the two approaches are consistent with differences between 
+theory and empirical analyses. Fourier analyses make more structural assumptions, notably, they
+assume stationarity of time series. But extensive analytic machinery is also available under these assumptions. 
+It was appropriate to develop our theoretical approach under a set of simplifying assumptions that 
+made possible the use of powerful mathematical tools.
+We then used wavelet methods, which do not assume stationarity and are more suited to the 
+complexities of real data, for empirical work.
+Although we again emphasize that Fourier and wavelet approaches are so closely related that we do not
+see a mismatch, we nevertheless still provide a complete set of Fourier-only analyses for 
+readers that remain skeptical.  
+
+In the main text, we argued that 
+timescale-specific synchrony causes cycles in deer and DVC data via the following overarching logical
+steps: 1) we showed that synchrony in both deer and DVCs is timescale specific,
 occurring principally on $3-7$-year timescales (Figs \ref{MT-Fig3_DeerSync}, \ref{MT-Fig4_DvcSync}, \ref{FigS7_WMFAndPredictionsDistricts});
 2) we showed that patterns of deer and DVC synchrony are due to timescale-specific Moran effects (Tables \ref{MT-Tab1_CountyCoherenceSummary},
 \ref{TabS2_SummaryDistrict}, Figs \ref{FigS4_PhaseDiffs}, \ref{FigS5_RanksInSurrogs}); and 3) we showed 
 state-level cycles were a result of timescale-specific synchrony (Fig. \ref{MT-Fig5_StateWideFluctuations}).
-The alternative Fourier approach we decribe here follows the same overall logic. The logical steps correspond to 
-the subsections below. 
+The alternative Fourier approach of this section and SI section \ref{sect:alt_results} follows the same overarching logical steps. 
+These steps correspond to the subsections below, as well as to the subsections of SI section \ref{sect:alt_results}. 
 
 \subsection{How to show that patterns of synchrony in deer and DVCs are timescale specific}\label{sect:FourierTSSync}
 
@@ -1405,7 +1420,6 @@ Suppose data are available for population indices $w_i(t)$ for locations $i=1,\l
 times $t=1,\ldots,T$ and these data have been pre-treated to detrend,
 normalize location marginal distributions, and standardize variance to $1$ for
 all location time series (as described in Methods in the main text). One standard [@Leibhold2004_sync]
-<!--***DAN: make sure to automate citations when you embed, also search generally for "REF" and "REFS"-->
 measure of synchrony is
 \begin{equation}
 \frac{1}{N(N-1)}\sum_{i \neq j} \cor(w_i(t),w_j(t)),
@@ -1420,7 +1434,8 @@ standardization means this equals
 \begin{equation}
 \rho_w (f) = \frac{1}{N(N-1)}\sum_{i \neq j} C_{w_i w_j}(f)=\frac{1}{N(N-1)}\sum_{i \neq j} S_{w_i w_j}(f),
 \end{equation}
-\noindent where we remind the reader that $S_{w_i w_j}$ is the cross spectrum and $C_{w_i w_j}=\Rp(S_{w_i w_j})$ is the cospectrum.
+\noindent where we remind the reader that $S_{w_i w_j}$ is the cross spectrum and $C_{w_i w_j}=\Rp(S_{w_i w_j})$ is the cospectrum
+of $w_i$ and $w_j$.
 These quantities were estimated from available data using the consistent estimator of @Brillinger2001 (section 7.4 
 of that text). 
 The frequency-specific metric, $\rho_w (f)$, can be appropriately integrated across frequencies to recover the 
@@ -1440,25 +1455,28 @@ band (as was done in SI section \ref{SI:methods:surrogs}). The quantity $\rho_w 
 of values of the same statistic computed for $10000$ of these surrogates. For frequencies for which the value of $\rho_w (f)$ for data
 rose above the $95$th quantile of values for surrogates, $\rho_w (f)$ was considered significant.
 
-We also judged if peaks in $\rho_w (f)$ represented significant spectral features by comparing $\rho_w (f)$ for real data to 
+We also judged if peaks in $\rho_w (f)$ represented significant spectral features, and therefore if synchrony was timescale specific, 
+by comparing $\rho_w (f)$ for real data to 
 values of the same statistic computed for a second type of surrogate. To produce one surrogate dataset of
 this second type, the values $w_i(t)$ were randomly permuted, using the same permutation for each
 sampling location, $i$. Synchrony as reckoned using standard correlation and covariance measures 
 was unchanged for such a surrogate dataset, but synchrony was distributed evenly across frequencies for these surrogates,
 up to sampling variation. We plotted $\rho_w (f)$ for real data and for surrogates on the same axes, to compare. 
 When $\rho_w (f)$ rose above the $97.5$th quantile of surrogate values, synchrony at the corresponding frequencies
-was higher than would have been expected if synchrony was evenly distributed across frequencies. When 
+was higher that could reasonably have been the case if synchrony were evenly distributed across frequencies. When 
 $\rho_w (f)$ sank below the $2.5$th quantile of surrogate values, synchrony at the corresponding frequencies was less than would have
-been expected if synchrony was evenly distributed across frequencies. Thus this approach revealed 
+been expected if synchrony were evenly distributed across frequencies. Thus this approach revealed 
 timescale specificity in synchrony.
 
-We also computed the value of a "peakiness" statistic for $\rho_w (f)$, as computed using data, to values of the same
+We also used a second approach to detect timescale specificity of synchrony. We compared the value 
+of a "peakiness" statistic for $\rho_w (f)$, as computed using data, to values of the same
 peakiness statistic computed for surrogates of the second type described above. The peakiness statistic was 
 $\rho_w (f_2)-(\rho_w (f_1)+\rho_w (f_3))/2$ for $f_2$ a frequency in the middle of the peak in $\rho_w (f)$
 that manifested for real data, and $f_1$ and $f_3$ frequencies on either side of the peak. The fraction of 
 surrogate-based values of the peakiness statistic that exceeded the value for real data was a $p$-value for
-a test of the null hypothesis that peakiness from data was no greater than would have been expected by
-chance if synchrony were evenly distributed across frequencies. 
+a test of the null hypothesis that a particular peak in the plot of $\rho_w(f)$ for data was no greater than 
+would have been expected by chance if synchrony were evenly distributed across frequencies. Therefore
+this test examines whether synchrony was timescale specific and whether particular timescales were more synchronous.
 
 \subsection{How to show that synchrony is due to timescale-specific Moran effects}\label{sect:FourierMoran}
 
@@ -1467,7 +1485,7 @@ and we applied it to our deer and DVC data. We here introduce the framework
 and the numeric and other methods necessary to apply it to our data. Results of applying it are in SI
 section \ref{sect:FourierMoran_res}. 
 
-\subsubsection{Theoretical framework}
+\subsubsection{Theoretical framework}\label{theoretical_framework}
 
 \noindent We begin by framing two specific population models, followed by a general mathematical framework which covers both models
 as special cases.
@@ -1486,7 +1504,13 @@ p_0^{(2)}\epsilon_i^{(2)}(t)+\cdots+p_m^{(2)}\epsilon_i^{(2)}(t-m),\label{eq:the
 The process $w=(w_1,w_2,\ldots,w_N)$ is an index of population density for each habitat patch.
 The process $\epsilon^{(1)}$ is interpreted as a univariate climate process affecting populations in all habitat patches, whereas
 the $N$-dimensional process $\epsilon^{(2)}=(\epsilon_1^{(2)},\epsilon_2^{(2)},\ldots,\epsilon_N^{(2)})$
-is a local weather variable, potentially taking different values in each patch. The combined process $\epsilon=(\epsilon^{(1)},\epsilon_1^{(2)},\epsilon_2^{(2)},\ldots,\epsilon_N^{(2)})$
+is a local weather variable, potentially taking different values in each patch. 
+The first specific model will be applied, for instance, 
+to consideration of how and to what extent synchrony in deer can be attributed to MEI. 
+The $w_i$ will model
+deer and $\epsilon^{(1)}$ will represent MEI. The combination of other, unmeasured drivers is represented
+by $\epsilon^{(2)}$.
+The combined process $\epsilon=(\epsilon^{(1)},\epsilon_1^{(2)},\epsilon_2^{(2)},\ldots,\epsilon_N^{(2)})$
 is assumed to be a second-order stationary stochastic process with $\E(\epsilon^{(1)})=0$ and $\E(\epsilon_i^{(2)})=0$
 for $i=1,\ldots,N$. The complex roots of the polynomial
 $1-b_1 z-b_2 z^2 -\cdots-b_n z^n$ are assumed to have modulus greater than $1$. We assume
@@ -1515,10 +1539,7 @@ We also define the filter
 \end{equation}
 \noindent a formulation which is more convenient for subsequent calculations with Fourier transforms
 and transfer functions. See @Brillinger2001, as well as @Shumway2000, @Reinsel1997 and many other references 
-for background on stochastic processes and linear filters. The first specific model will be applied, for instance, 
-to consideration of how and to what extent synchrony in deer can be attributed to MEI. The $w_i$ will model
-deer and $\epsilon^{(1)}$ will represent MEI. The combination of other, unmeasured drivers is represented
-by $\epsilon^{(2)}$.
+for background on stochastic processes and linear filters. 
 
 \textbf{The second specific model.} The second specific model is
 \begin{equation}
@@ -1528,7 +1549,14 @@ p_0^{(2)}\epsilon_i^{(2)}(t)+\cdots+p_m^{(2)}\epsilon_i^{(2)}(t-m),\label{eq:the
 \noindent with $i=1,\ldots,N$ again indexing distinct habitat patches or population sampling locations. The processes
 $\epsilon^{(1)}=(\epsilon_1^{(1)},\epsilon_2^{(1)},\ldots,\epsilon_N^{(1)})$ and
 $\epsilon^{(2)}=(\epsilon_1^{(2)},\epsilon_2^{(2)},\ldots,\epsilon_N^{(2)})$ are both local weather
-variables which influence the populations $w=(w_1,\ldots,w_N)$. The combined process $\epsilon=(\epsilon_1^{(1)},\ldots,\epsilon_N^{(1)},\epsilon_1^{(2)},\ldots,\epsilon_N^{(2)})$
+variables which influence the populations $w=(w_1,\ldots,w_N)$. 
+The second specific model will be applied, for instance, 
+to consideration of how and to what extent synchrony in deer can be attributed to fluctuations in snow depth. 
+The $w_i$ will model
+deer and $\epsilon^{(1)}$ will represent snow depth (which depends on both time and location). The combination 
+of other, unmeasured drivers is again represented
+by $\epsilon^{(2)}$.
+The combined process $\epsilon=(\epsilon_1^{(1)},\ldots,\epsilon_N^{(1)},\epsilon_1^{(2)},\ldots,\epsilon_N^{(2)})$
 is assumed to be a second-order stationary stochastic process with the expected values of each component
 equal to $0$. The complex roots of the polynomial
 $1-b_1 z-b_2 z^2 -\cdots-b_n z^n$ are again assumed to have modulus greater than $1$.
@@ -1545,13 +1573,8 @@ For this model, we redefine the linear filter $\mathcal{P}^{(1)}$ as
 \mathcal{B} w = \mathcal{P}^{(1)} \epsilon^{(1)} + \mathcal{P}^{(2)} \epsilon^{(2)}.\label{eq:themodel2version2}
 \end{equation}
 \noindent The fact that (\ref{eq:themodel1version2}) and (\ref{eq:themodel2version2}) look the same (though
-$\mathcal{P}^{(1)}$ represents two different filters in these two equations) suggests the general framework
-to follow. The second specific model will be applied, for instance, 
-to consideration of how and to what extent synchrony in deer can be attributed to fluctuations in snow depth. 
-The $w_i$ will model
-deer and $\epsilon^{(1)}$ will represent snow depth (which depends on both time and location). The combination 
-of other, unmeasured drivers is again represented
-by $\epsilon^{(2)}$.
+$\mathcal{P}^{(1)}$ and $\epsilon^{(1)}$ represent different quantities in these equations) suggests the general framework
+to follow. 
 
 \textbf{General framework.} The framework is
 \begin{equation}
@@ -1579,7 +1602,7 @@ factor like local temperature or precipitation, which directly influences the lo
 On the other hand, when the dimension of $\epsilon^{(j)}$ is $1$, it is possible to interpret $\epsilon^{(j)}$
 as a large-scale climatic factor. But the ecological interpretation of other arrangements
 is less straightforward. Nevertheless, the general framework is useful because it includes both specific models
-as special cases. Results proved for the general framework immediately apply to both
+as special cases, so results proved for the general framework apply to both
 specific models.
 
 \textbf{The population cross spectral matrix and a Fourier Moran theorem.} To calculate $\rho_w (f)$
@@ -1638,12 +1661,13 @@ S_{\epsilon^{(1)} \epsilon^{(1)}} T(\widetilde{\mathcal{P}^{(1)}})^* T(\mathcal{
 M=S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} S_{w \epsilon^{(1)}}^*,
 \label{eq:contrib2}
 \end{equation}
-\noindent which is based only on the measured quantities $w$ and
+\noindent which depends only on the measured quantities $w$ and
 $\epsilon^{(1)}$. So to estimate the portion of synchrony, $\rho_w (f)$, in the population process $w$ that can be statistically attributed to the measured noise
 $\epsilon^{(1)}$, it suffices to estimate (\ref{eq:contrib2}), sum
 the off-diagonal entries of the estimate, and divide the result by $N(N-1)$.
 We henceforth
-denote this quantity by $\rho_w^{(\epsilon^{(1)})}(f)$. It can be compared to $\rho_w(f)$.
+denote this quantity by $\rho_w^{(\epsilon^{(1)})}(f)$. It can be compared to $\rho_w(f)$ to understand the fraction of 
+synchrony attributable to $\epsilon^{(1)}$.
 \end{thm}
 \begin{proof}
 We have
@@ -1718,7 +1742,8 @@ varies with timescale.
 Given a timescale band, summing the values of an estimate of $\rho_w^{(\epsilon^{(1)})}(f)$ across frequencies
 corresponding to timescales in the band, and also summing values of an estimate of $\rho_w(f)$ in the same way, and then taking the 
 quotient, can be interpreted as the overall fraction of population synchrony in the 
-band which was statistically attributable to $\epsilon^{(1)}$. 
+band which was statistically attributable to $\epsilon^{(1)}$. Thus our Fourier Moran theorem can help illuminate the extent to which
+deer synchrony may be due to MEI. 
 
 \textbf{Interpreting the Fourier Moran theorem for the second specific model, a special case.} For the second 
 specific model, $\mathcal{A}$ is an $N \times N$ filter. In the special case for which $\mathcal{A}$ is a scalar filter, i.e., 
@@ -1807,50 +1832,59 @@ has $0$ cross spectrum with it) is removed. It is impossible to separate the con
 (\ref{eq:E1}), (\ref{eq:E2}), (\ref{eq:E4}), and (\ref{eq:E5}) without measurements of $\epsilon^{(2)}$ or
 \emph{a priori} knowledge of model coefficients, in essence because it is impossible to separate the effects of
 any variable from the effects of an unmeasured variable that is partially coincident with the first variable - the combination
-of these influences will always be attributed to the measured variable.
+of these influences will always be attributed to the measured variable. 
 
 \subsubsection{How to tell whether the framework is suitable for our data}\label{suitable_framework}
 
 \noindent In order to apply our first specific model to our deer time series
 (as $w$ in (\ref{eq:themodel1})) and to our MEI time series (as $\epsilon^{(1)}$ in (\ref{eq:themodel1}); all time series
-detrended, normalized, and variance-stabilized prior to application of the model), we need to first consider whether model 
+detrended, normalized, and variance-standardized prior to application of the model), we need to first consider whether model 
 assumptions are adequately met by the data. But this turns out to be essentially automatic, as we here explain.
 Likewise the second specific model is applicable to our deer (as $w$) and snow-depth (as $\epsilon^{(1)}$) time series, 
-or, seperately, to our DVC (as $w$) and deer (as $\epsilon^{(1)}$) time series. The reason our first and second specific models apply to
+and, seperately, to our DVC (as $w$) and deer (as $\epsilon^{(1)}$) time series. The reason our first and second specific models apply to
 our data essentially boils down to the fact that these models are flexible: the unknown process $\epsilon^{(2)}$
 is allowed to be any second-order stationary process, and the application of the models and the Fourier Moran theorem
-to our data does not hinge on $\epsilon^{(2)}$. Likewise the application of our theory to our data does not hinge on
-what parameters $b_1,\ldots,b_n$ and $p_0^{(1)},\ldots,p_m^{(1)}$ turn out to be the right ones to render our models 
-adequate for our data: in the end the only quantities our Fourier Moran approach makes use of are the spectral matrix
+to our data does not hinge on any specific characteristics of $\epsilon^{(2)}$. Likewise, the 
+application of our theory to our data does not hinge on
+what specific values of the parameters $b_1,\ldots,b_n$ and $p_0^{(1)},\ldots,p_m^{(1)}$ turn out to be the right values to render our models 
+optimal for our data: in the end the only quantities our Fourier Moran approach makes use of are the spectral matrix
 of $\epsilon^{(1)}$ and the cross spectral matrix of $w$ and $\epsilon^{(1)}$, which can be computed without first 
 determining model parameters. 
 
 After selecting reasonable values for $n$ and $m$, regression could be used to choose reasonable values for $b_1,\ldots,b_n$
 and $p_0^{(1)},\ldots,p_m^{(1)}$. Then $\epsilon^{(2)}$ could be simply defined as $\mathcal{B}w-\mathcal{P}^{(1)}\epsilon^{(1)}$
-and $\mathcal{P}^{(2)}$ taken as the identity filter. Since pre-treatment of the data makes it reasonable to assume 
+and $\mathcal{P}^{(2)}$ could be taken to be the identity filter. By construction, the model equation 
+$\mathcal{B}w=\mathcal{P}^{(1)}\epsilon^{(1)}+\mathcal{P}^{(2)}\epsilon^{(2)}$ then holds, and it is reasonable to
+apply the modelling framework. Since pre-treatment of the data makes it reasonable to assume 
 $w$ and $\epsilon^{(1)}$ are second-order stationary stochastic processes, $\epsilon^{(2)}$, thus defined, is also a second-order
-stationary process. 
+stationary process, as assumed. 
 We do not actually have to determine the most appropriate values of $b_1,\ldots,b_n$ and $p_0^{(1)},\ldots,p_m^{(1)}$ in 
 order to apply our approach since all we need is the spectral matrices $S_{\epsilon^{(1)} \epsilon^{(1)}}$ and 
 $S_{w \epsilon^{(1)}}$. We tested our assumption that $S_{\epsilon^{(1)} \epsilon^{(1)}}$ is non-zero for $\epsilon^{(1)}$
-being MEI, and our assumption that $S_{\epsilon^{(1)} \epsilon^{(1)}}$ is invertible for $\epsilon^{(1)}$
-equal to snow depth or deer data from subsets of sampling locations (see SI section \ref{numerics_model2} for the reasons
-subsets were used) and found these assumptions to be supported. We verified (see below) that for reasonable choices of
-$b_1,\ldots,b_n$ the complex roots of the polynomial $1-b_1 z- \cdots - b_n z^n$ all have modulus greater than 1, as assumed.
+representing MEI, and our assumption that $S_{\epsilon^{(1)} \epsilon^{(1)}}$ is invertible for $\epsilon^{(1)}$
+representing snow depth, or deer abundance, from subsets of sampling locations (see SI section \ref{numerics_model2} for the reasons
+subsets were used). We found these assumptions to be supported. We also verified that, for reasonable choices of
+$b_1,\ldots,b_n$, the complex roots of the polynomial $1-b_1 z- \cdots - b_n z^n$ all have modulus greater than 1, as assumed (see below).
 
-Although the above logic is sound, we carried out some elementary cross correlation analyses and lagged regression analyses
-to further support our modelling choices with some concrete comparisons. Average (across locations)
+Although the above logic is sound, we also carried out some elementary cross correlation analyses and lagged regression analyses
+to further support our choice to model deer in terms of snow depth and MEI using some concrete and commonly used tools. Average (across locations)
 correlation between deer and snow depth was computed for various lags, and compared to distributions of the same statistics for surrogate datasets
 for which Fourier phases of the snow data were randomized while retaining the spatial and temporal autocorrelation properties of the data. 
+Spatial autocorrelation properties of the data were retained in the surrogates because the same phase randomization was used, for a given frequency, 
+in all sampling locations. 
 Similar analyses were also carried out comparing deer and MEI, and deer and DVCs. The same analyses were also repeated
 after pre-filtering time series to retain only the variation occurring on the timescale bands of interest (in the $3-7$-year range). 
-Regressions were also carried out of deer against lagged deer, and present and lagged snow depth and MEI (lags up to 3 years). 
-Results are in SI section \ref{Crosscorr_and_regression}.
+Regressions were also carried out of deer against lagged deer, snow depth and MEI (lags up to 3 years). 
+Results (SI section \ref{Crosscorr_and_regression}) provide additional support for the overall contention that our modelling 
+frameworks are adequately suited to our data, i.e., that it makes sense to model deer population data using an autoregressive 
+process influenced by snow depth and MEI. Parameters determined through regressions were used to test whether the complex roots of 
+the polynomial $1-b_1 z- \cdots - b_n z^n$ have modulus greater than 1.
 
 \subsubsection{Numeric and significance procedures associated with the first specific model}\label{numerics_model1}
 
-\noindent We applied the first specific model of the previous section to deer populations (as $w$) and MEI (as $\epsilon^{(1)}$). 
-Given data, and as specified in the previous section, we plotted estimates of $\rho_w^{(\epsilon^{(1)})}$ 
+\noindent We applied our first specific model of SI section \ref{theoretical_framework} to deer populations (modelled as $w$) 
+and MEI (modelled as $\epsilon^{(1)}$). 
+Given data, and as specified in SI section \ref{theoretical_framework}, we plotted estimates of $\rho_w^{(\epsilon^{(1)})}$ 
 and $\rho_w$ on the same axes to
 indicate how much of deer population synchrony can be attributed to MEI, and how that 
 varies with timescale.
@@ -1858,7 +1892,9 @@ Given a timescale band, summing the values of our estimate of $\rho_w^{(\epsilon
 corresponding to timescales in the band, and also summing values of our estimate of $\rho_w(f)$ in the same way, and then taking the 
 quotient, can be interpreted as the overall fraction of population synchrony in the 
 band which was statistically attributable to $\epsilon^{(1)}$. We here describe the numerics of 
-these procedures and methods we used to assess statistical significance of results.
+these procedures and methods we used to assess statistical significance of results. When our first specific model is 
+applied to deer and MEI, and if results are revealed as significant by the below procedures, then the results constitute evidence that 
+MEI is implicated in Moran effects generating synchrony in deer.
 
 All spectral matrices, and quantities based on them, were estimated using the consistent estimator of @Brillinger2001 (section 7.4 of that text). 
 To test statistical significance of $\rho_w^{(\epsilon^{(1)})}$ for the first specific model,
@@ -1866,7 +1902,7 @@ $1000$ Fourier surrogate datasets, $\delta_j^{(1)}$, $j=1,\ldots,1000$, were pro
 the phases of the univariate time series $\epsilon^{(1)}$.
 Then $\rho_w^{(\delta_j^{(1)})}$ was computed for each $j$, and $\rho_w^{(\epsilon^{(1)})}$ was compared to the
 distribution of the quantities $\rho_w^{(\delta_j^{(1)})}$. This tests to see whether the portion of population synchrony
-explained by $\epsilon^{(1)}$ (i.e., $\rho_w^{(\epsilon^{(1)})}$) was greater than the portion ``explained"
+explained by $\epsilon^{(1)}$ (i.e., $\rho_w^{(\epsilon^{(1)})}$) was greater than the portion "explained"
 by surrogate datasets which were in no way related to $w$, but which had the same temporal autocorrelation
 properties as $\epsilon^{(1)}$. 
 
@@ -1891,6 +1927,9 @@ mean ranks greater than the actual mean rank provided a $p$-value for the band.
 snow depth data as $\epsilon^{(1)}$; and DVCs as $w$ and deer data as $\epsilon^{(1)}$.
 We here describe numeric methods associated with the applications of our mathematical results to these cases, 
 as well as methods we used to assess statistical significance of results.
+If results are revealed as significant by the below procedures, then the results constitute evidence that 
+snow depth is implicated in Moran effects generating synchrony in deer, or that deer are implicated 
+in generating synchrony in DVCs.
 
 Estimation of the matrix $M=S_{w \epsilon^{(1)}} S_{\epsilon^{(1)} \epsilon^{(1)}}^{-1} S_{w \epsilon^{(1)}}^*$
 for the second specific model when $\mathcal{A}$ is not a scalar filter triggers numeric difficulties.
@@ -1960,7 +1999,7 @@ $\rho_{w,\Omega}^{(\delta_j^{(1)})}(f)$ across the subsets $\Omega_i$ was produc
 surrogate, $j$, and the quantity $\rho_{w,\Omega}^{(\epsilon^{(1)})}(f)$ was compared to the
 surrogate-based quantities $\rho_{w,\Omega}^{(\delta_j^{(1)})}(f)$. This tests to see whether
 the portion of synchrony explained by $\epsilon^{(1)}$ (i.e., $\rho_{w,\Omega}^{(\epsilon^{(1)})}(f)$)
-was greater than the portion ``explained" by surrogate datasets which were in no way related to
+was greater than the portion "explained" by surrogate datasets which were in no way related to
 $w$, but which had the same spatial and temporal autocorrelation properties as $\epsilon^{(1)}$.
 
 To get a single $p$-value associated with the comparison, across a whole timescale band,
@@ -2082,10 +2121,10 @@ $\sum_{i \neq j} C_{w_i w_j}$ should also be highly significant in comparison to
 
 For DVCs, we tested whether spectral power in the $3-7$-year timescale band was much greater for the total DVC time series 
 for WI than it would have been without synchrony between county-level DVC time series in the $3-7$-year 
-band, using the same methods employed for deer (Fig.  \ref{MT-Fig3_DeerSync}C surrogates). We also visually compared spectra of 
-the state-total DVC time series and the surrogates of Fig.  \ref{MT-Fig3_DeerSync}C. AR(1)
+band, using the same methods employed for deer (Fig.  \ref{MT-Fig5_StateWideFluctuations}C surrogates). We also visually compared spectra of 
+the state-total DVC time series and the surrogates of Fig.  \ref{MT-Fig5_StateWideFluctuations}C. AR(1)
 surrogates were not appropriate for significance testing the contribution of synchrony to $3-7$-year periodicity in
-the state-total DVC time series, because the state-total DVC time series had substantial low-frequency power (Fig.  \ref{MT-Fig3_DeerSync}C),
+the state-total DVC time series, because the state-total DVC time series had substantial low-frequency power (Fig.  \ref{MT-Fig5_StateWideFluctuations}C),
 and that power would inappropriately influence the fitted AR(1). Although there may be a modified approch, 
 because AR(1) surrogates were considered less appropriate anyway for our research questions, further efforts to 
 use AR(1) surrogates with DVC time series were not undertaken. Comparisons, via AIC, of the fits of AR models of different orders were 
@@ -2094,47 +2133,27 @@ state- and county-level time series was not appropriate for DVCs because the var
 means that $3-7$-year spectral power is also influenced by the amount of low-frequency power. We did, however, produce a 
 decomposition of $S_{\text{tot}}$ for DVCs analogous to that performed for deer (see previous paragraph).
 
-\subsection{Use of Fourier approaches for the theory and wavelets for the empirical analysis}\label{SI:methods:methodsmismatch}
 
-<!--***DAN: I just parked this material here, I have not revisited or adapted it yet. 2020 09 10.-->
-\noindent Fourier and
-wavelet methods were used principally
-for our theoretical and empirical analyses, respectively, though some Fouier analyses were also used
-for our empirical analyses. It was appropriate, for several reasons, to use Fourier methods for 
-the theory and wavelet methods for the data. First, both sets of methods are in the broader category of 
-spectral methods, and
-Fourier and wavelet approaches are related. So there is no actual mismatch produced when wavelet methods
-are used to empirically test theory that was developed with Fourier methods.
-Wavelet methods and Fourier methods often serve very similar goals. Second, differences
-that do exist between Fourier and wavelet approaches are consistent with differences between our 
-theoretical and empirical analyses. Many Fourier analyses make more structural assumptions 
-about the data, notably, they
-assume stationarity. At the same time, various techniques of mathematical analysis are 
-commonly used for Fourier approaches, under an assumption of stationarity. We developed 
-our theory in an idealized setting, for which Fourier methods and 
-mathematical analysis were possible. We then used
-wavelet methods, which are more suited to the complexities of real data, for our empirical work.
-
-
-
-
-
-
-# Alternative analysis: results \label{sect:alt_results}
+# Alternative analyses: results \label{sect:alt_results}
 
 \subsection{Patterns of synchrony in deer and DVCs are timescale specific}\label{sect:FourierTSSync_res}
 
+Fourier results summarized in this section corroborate our conclusions based on wavelet analyses 
+(Figs \ref{MT-Fig3_DeerSync}, \ref{MT-Fig4_DvcSync}, \ref{FigS7_WMFAndPredictionsDistricts}) that 
+synchrony in both deer and DVCs was timescale specific, occurring principally on $3-7$-year timescales.
+
 Plots of $\rho_w(f)$ were clearly peaked in the $3-7$-year timescale range for both deer and DVCs. Synchrony was revealed by these plots
-to be highly statistically significant in comparison to phase-randomized surrogates (Fig. \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_phase}).
-See SI section \ref{sect:FourierTSSync} for details on phase-randomized surrogates.
+to be highly statistically significant in comparison to independently 
+phase-randomized surrogates (Fig. \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_phase}).
+See SI section \ref{sect:FourierTSSync} for details on these phase-randomized surrogates.
 
 For deer, comparison of $\rho_w(f)$ to values of the same statistic for random-permutation surrogates 
 (see SI section \ref{sect:FourierTSSync} for details on random-permutation surrogates) revealed that the peak
 in the $3-7$-year timescale range was much higher than could reasonably have occurred if synchrony were evenly distributed across
-timescales (Fig. \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_permute}). This demonstrates that deer
+timescales (Fig. \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_permute}A). This demonstrates that deer
 synchrony was timescale specific, with a preponderance of the synchrony occurring in the $3-7$-year range. 
 Our "peakiness" statistic (SI section \ref{sect:FourierTSSync}) took a larger value for deer data than it did for
-$`r round(100-100*pval_deer_peakiness,2)`$% of the random-permutation surrogates we used. Thus the null 
+a fraction $`r round(1-pval_deer_peakiness,4)`$ of the random-permutation surrogates we used. Thus the null 
 hypothesis was firmly rejected that $\rho_w(f)$ was no more peaked in the $3-7$-year timescale 
 range than could have been expected by chance if synchrony 
 were evenly distributed across timescales ($p = `r round(pval_deer_peakiness,4)`$, based on $10000$ surrogates). 
@@ -2145,17 +2164,26 @@ the $2.5$th quantile (Fig. \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecifi
 demonstrated that synchrony was timescale-specific for DVCs, $\rho_w(f)$ was between 
 these surrogate quantiles for the $3-7$-year timescale range. But this
 was only because DVC synchrony was very high for long timescales (low frequencies) and very low for short timescales (high 
-frequencies). Our "peakiness" statistic (SI section \ref{sect:FourierTSSync}) took a larger value for DVC data than it did for
-$`r round(100-100*pval_dvcs_peakiness,2)`$% of random-permutation surrogates, demonstrating that the peak in 
+frequencies). Our "peakiness" statistic (SI section \ref{sect:FourierTSSync}) took a larger value for DVC data than it did for a fraction
+$`r round(1-pval_dvcs_peakiness,4)`$ of random-permutation surrogates, demonstrating that the peak in 
 $\rho_w(f)$ in the $3-7$-year timescale range was a meaningful spectral feature 
 ($p = `r round(pval_dvcs_peakiness,4)`$, based on $10000$ surrogates).
 
 \subsection{Synchrony is due to timescale-specific Moran effects}\label{sect:FourierMoran_res}
 
+Fourier results summarized in this section corroborate our conclusions based on wavelet analyses 
+(Tables \ref{MT-Tab1_CountyCoherenceSummary},
+\ref{TabS2_SummaryDistrict}, Figs \ref{FigS4_PhaseDiffs}, \ref{FigS5_RanksInSurrogs}) that 
+timescale-specific patterns of deer and DVC synchrony are due to timescale-specific Moran effects. We first
+provide additional evidence that it is reasonable to apply our modelling framework (SI section \ref{theoretical_framework})
+to deer, snow depth, and MEI, and to DVCs and deer (SI section \ref{Crosscorr_and_regression}); then we summarize results of applying the
+framework to deer and MEI (SI section \ref{Deer_MEI_FMT_results}), to deer and snow depth (SI section \ref{Deer_snow_FMT_results}), and to DVCs and deer
+(SI section \ref{DVC_deer_FMT_results}). Results agreed in every case with our wavelet results.
+
 \subsubsection{Cross correlation and regression analyses}\label{Crosscorr_and_regression}
 
 \noindent To further support the reasoning of SI section \ref{suitable_framework} that our first and
-second specific models were appropriate for our data, we carried out the elementary regression and 
+second specific models were adequately suited to our data, we carried out the elementary regression and 
 correlation analyses described in that section. 
 
 Using pre-treated data (detrended, normalized, standardized variance), we computed the mean
@@ -2169,55 +2197,65 @@ snow depth time series were more correlated than expected by chance.
 
 We also examined lagged correlations 
 between deer and snow depth, because wavelet analyses suggested a lagged or phase-shifted relationship
-between these variables. 
-<!--***DAN: insert a specific referece to a wavelet result here-->
+between these variables (Table \ref{MT-Tab1_CountyCoherenceSummary}, Fig. \ref{FigS4_PhaseDiffs}). 
 We computed the average, across locations, of lag-1 correlations between deer and
 snow depth time series, and the same for lag 2. We averaged these two quantities to form a statistic. 
 We used lags of 1 and 2 because these are the lags suggested by the phase relationships detected in 
 wavelet analyses between deer and snow depth time series on $3-4$-year timescales, where wavelet results
-showed the strongest relationship between deer and snow depth.
-<!--***DAN: insert a specific referece to a wavelet result here-->
+showed the strongest relationship between deer and snow depth (Table \ref{MT-Tab1_CountyCoherenceSummary}).
 The same statistic was also computed using $10000$ surrogate snow depth datasets. Only a fraction
 `r round(cor_pvals_deer_snow["p_onetailed_stat4"],4)` of surrogate values were greater than the value for the 
-original data, again indicating a relationship between deer and snow depth, and supporting the 
-wavelet results. 
+original data, again indicating a relationship between deer and snow depth, and supporting the reasonableness of 
+modelling deer in terms of snow depth. 
 
 We repeated the same two analyses of deer and snow depth data, but this time using data which were pre-filtered to
-remove all variation outside the $3-4$-year range (both deer and snow depth time series were 
-                                                   filtered). This was done because the relationships between deer and snow depth revealed by wavelet 
-analyses were primarily on $3-4$-year timescales. The $p$-value result using the un-lagged correlation
+remove all variation outside the $3-4$-year range. Both deer and snow depth time series were 
+filtered by removing Fourier components outside that timescale range. This was done because the 
+relationship between deer and snow depth revealed by wavelet 
+analyses were primarily on $3-4$-year timescales (Table \ref{MT-Tab1_CountyCoherenceSummary}, Fig. \ref{FigS5_RanksInSurrogs}), 
+so correlations between these variables should be present when only
+the variation on those timescales was present. The $p$-value result based on using the un-lagged correlation
 statistic described above was `r round(cor_pvals_deer_snow["p_onetailed_stat1_filt"],4)`, and the result using the
-lagged statistic was `r round(cor_pvals_deer_snow["p_onetailed_stat4_filt"],4)`, again supporting our wavelet results.
+lagged statistic was `r round(cor_pvals_deer_snow["p_onetailed_stat4_filt"],4)`.
 
 We also carried out similar analyses for deer and MEI, though we did not do an unlagged correlation analysis
-because wavelet analyses indicated a quarter-phase relationship between deer and MEI, 
-<!--***DAN: insert a specific referece to a wavelet result here-->
-  and quarter-phase relationships are associated with correlations of zero. We averaged lagged correlations between 
-deer and MEI across locations and across lags 1, 2 and 3, because these were the closest lags corresponging to the
+for these variables because wavelet analyses indicated a quarter-phase relationship between deer and MEI
+(Table \ref{MT-Tab1_CountyCoherenceSummary}, Fig. \ref{FigS4_PhaseDiffs}), 
+and quarter-phase relationships are associated with correlations of zero. We averaged lagged correlations between 
+deer and MEI across lags 1, 2 and 3, and across locations. We used lags 1, 2 and 3 
+because these were the closest lags corresponging to the
 phase relationship between these variables that was indicated by the wavelet analyses.
-<!--***DAN: insert a specific referece to a wavelet result here-->
-  The approach was the same as above of comparing the value of a statistic computed for data to a distribution of
+The approach was the same as above of comparing the value of a statistic computed for data to a distribution of
 values of the same statistic computed for surrogates. A $p$-value of `r round(cor_pvals_deer_mei["p_onetailed_stat4"],4)`
 was obtained, and a $p$-value of `r round(cor_pvals_deer_mei["p_onetailed_stat4_filt"],4)` for a parallel analysis using 
 data which was pre-filtered to remove all variation outside the $4-7$-year timescale range. This was
-the range where wavelet analyses revealed the strongest relationship between deer and MEI.
-<!--***DAN: insert a specific referece to a wavelet result here-->
-  These results again supported our wavelet-based conclusion that deer and MEI are meaningfully related. 
+the range where wavelet analyses revealed the strongest relationship between deer and MEI
+(Table \ref{MT-Tab1_CountyCoherenceSummary}, Fig. \ref{FigS5_RanksInSurrogs}).
+These results again supported as reasonable our decision to model deer in terms of MEI. 
 
-Finally, we did a simple, unlagged correlation analysis of the relationship between deer and DVCs. 
+We did a simple, unlagged correlation analysis of the relationship between deer and DVCs. 
 We computed the mean (across locations) correlation between deer and DVC time series, and compared that value
 to values of the same statistic computed using surrogates. We did not carry out lagged correlation analyses because wavelet
-analyses indicated an in-phase relationship between deer and DVCs.
-<!--***DAN: insert a specific referece to a wavelet result here-->
-  The $p$-value result was `r round(cor_pvals_dvcs_deer["p_onetailed_stat1"],4)`, and the $p$-value result of the
+analyses indicated an in-phase relationship between deer and DVCs
+(Table \ref{MT-Tab1_CountyCoherenceSummary}, Fig. \ref{FigS4_PhaseDiffs}).
+The $p$-value result was `r round(cor_pvals_dvcs_deer["p_onetailed_stat1"],4)` (this and all $p$-values obtained from 
+randomization-based approaches should be understood to be accurate within the precision available from the number of 
+surrogate datasets used, in this case $10000$), and the $p$-value result of the
 parallel analysis using data pre-filtered to the $3-7$-year timescale range was `r round(cor_pvals_dvcs_deer["p_onetailed_stat1_filt"],4)`.
-These results again supported our wavelet results.
+These results again supported as reasonable our modelling framework.
+
+Finally, we regressed deer in year $t$ against deer in years $t-1$, $t-2$ and $t-3$, and against snow depth in years
+$t$ back to $t-3$, and against MEI in years $t$ back to $t-3$. The regression model treated all locations in the 
+same way, consistent with the spatial homogeneity assumptions of our first and second specific models (SI section \ref{theoretical_framework}). 
+The lags $0$ to $3$ were chosen arbitrarily since, as explained in SI section \ref{suitable_framework}, there is no need to 
+determine the optimal lags nor the optimal model parameter values. Instead, our goals were simply to demonstrate that the influence
+of snow depth and MEI on deer is apparent in our data, to show that our modelling framework is reasonable, and to 
+check the assumption that the complex roots of the polynomial $1-b_1 z - \cdots - b_n z^n$ had modulus greater than 1.
+The regression model explained a fraction `r round(summary(lmres_deer_vs_lags)$adj.r.squared,4)` of the variation
+in the response variable. Using the regression model to get $b_1$, $b_2$ and $b_3$, the complex roots of
+$1-b_1 z - b_2 z^2 - b_3 z^3$ all had modulus greater than $1$.
 
 \subsubsection{Deer and MEI}\label{Deer_MEI_FMT_results}
-<!--***DAN: you'll first need evidence that our Fourier Moran framework is suitable for these data
-(which may include the prelim stuff in Review2_Analysis_CoherenceSupport.R) and then you will need to 
-present the results for deer and MEI. Actually I now think this first step won't be necessary here, 
-as it will have been taken care of in a methods section above. Same for the subsequent sections.-->
 
 \noindent The plot of $\rho_w^{(\epsilon^{(1)})}$ and $\rho_w$ on the same axes (SI section \ref{numerics_model1})
 revealed that MEI explained a substantial portion of the synchrony in deer in parts of the $3-7$-year range
@@ -2233,14 +2271,12 @@ were `r round(pvalresFMT_mei_3to7,4)`, `r round(pvalresFMT_mei_3to4,4)` and `r r
 respectively. Thus statistical results confirmed the visual indication provided by SI Fig. 
 \ref{Fourier_Step2_deermei_results} that MEI can statistically explain a significant portion of deer synchrony in
 the $4-7$-year and $3-7$-year ranges, but not in the $3-4$-year range. These results are consistent with our wavelet
-results, both in the general result that MEI can explain deer synchrony across the $3-7$-year timescale range, and in 
-the specific results that MEI is a better explainer of deer synchrony in the $4-7$-year sub-range than it is in the
+results (Table \ref{MT-Tab1_CountyCoherenceSummary}, \ref{FigS5_RanksInSurrogs}), both in the general result 
+that MEI can explain deer synchrony across the $3-7$-year timescale range, and in 
+the specific result that MEI is a better explainer of deer synchrony in the $4-7$-year sub-range than it is in the
 $3-4$-year sub-range.
 
 \subsubsection{Deer and snow depth}\label{Deer_snow_FMT_results}
-<!--***DAN: you'll first need evidence that our Fourier Moran framework is suitable for these data
-(which may include the prelim stuff in Review2_Analysis_CoherenceSupport.R) and then you will need to 
-present the results for deer and MEI-->
 
 \noindent The plot of $\rho_w^{(\epsilon^{(1)})}$ and $\rho_w$ on the same axes (SI section \ref{numerics_model2})
 revealed that snow depth also explained a substantial portion of the synchrony in deer in parts of the $3-7$-year range
@@ -2257,20 +2293,18 @@ respectively. Thus statistical results confirmed the visual indication provided 
 \ref{Fourier_Step2_deersnow_results} that snow depth can statistically explain a significant portion of deer synchrony in
 the $3-4$-year and $3-7$-year ranges, and also in the $4-7$-year range, though the effect seems slightly weaker in that latter range. 
 These results are consistent with our wavelet
-results, both in the general result that snow depth can explain deer synchrony across the $3-7$-year timescale range, and in 
-the specific results that snow depth appears to be a better explainer of deer synchrony in the $3-4$-year sub-range than it is in the
+results (Table \ref{MT-Tab1_CountyCoherenceSummary}, \ref{FigS5_RanksInSurrogs}), both in the general result that snow 
+depth can explain deer synchrony across the $3-7$-year timescale range, and in 
+the specific result that snow depth appears to be a better explainer of deer synchrony in the $3-4$-year sub-range than it is in the
 $4-7$-year sub-range.
 
 \subsubsection{DVCs and deer}\label{DVC_deer_FMT_results}
-<!--***DAN: you'll first need evidence that our Fourier Moran framework is suitable for these data
-(which may include the prelim stuff in Review2_Analysis_CoherenceSupport.R) and then you will need to 
-present the results for deer and MEI-->
 
 \noindent The plot of $\rho_w^{(\epsilon^{(1)})}$ and $\rho_w$ on the same axes (SI section \ref{numerics_model2})
 revealed that deer explained a substantial portion of the synchrony in DVCs in the $3-7$-year range
 (SI Fig. \ref{Fourier_Step2_dvcdeer_results}).
 The plot of $\rho_w^{(\epsilon^{(1)})}$ was in the upper part of the distribution of the surrogate quantities
-$\rho_w^{(\delta_j^{(1)})}$ for many frequencies in the $3-y$-year timescale range. 
+$\rho_w^{(\delta_j^{(1)})}$ for many frequencies in the $3-7$-year timescale range. 
 The $p$-value result of comparing $\rho_w^{(\epsilon^{(1)})}$
 to the distribution of $\rho_w^{(\delta_j^{(1)})}$ in an aggregate fashion across the $3-7$-year timescale range, 
 using the first method described in SI section \ref{numerics_model2},
@@ -2279,11 +2313,14 @@ section \ref{numerics_model2} (the rank of ranks method)
 was `r round(pvalresFMT_dvcs_by_deer_3to7,4)`. Thus statistical results confirmed the visual indication provided by SI Fig. 
 \ref{Fourier_Step2_dvcdeer_results} that deer can statistically explain a significant portion of DVC synchrony in
 the $3-7$-year timescale range. These results are consistent with our wavelet
-results.
+results (Table \ref{MT-Tab1_CountyCoherenceSummary}, \ref{FigS5_RanksInSurrogs}).
 
 \subsection{Cycles are due to timescale-specific synchrony}\label{sect:FourierCycles_res}
 
-\noindent Total spectral power in the $3-7$-year timescale band for detrended state-total
+\noindent Fourier results summarized in this section corroborate our conclusions based on wavelet analyses 
+(Fig. \ref{MT-Fig5_StateWideFluctuations}) that state-level cycles in deer and DVCs were a result of timescale-specific synchrony.
+
+Total spectral power in the $3-7$-year timescale band for detrended state-total
 deer time series (see SI section \ref{sect:FourierCycles} for methods) was much greater than the same quantity
 computed for the surrogates of Fig. \ref{MT-Fig5_StateWideFluctuations}; this was true for
 all the surrogates used (Fig. \ref{FigS_SpectPow3to7Fig5Surrogs}). Since the surrogates represent a case 
@@ -2347,7 +2384,7 @@ Spectral power in the $3-7$-year band was greater for the state total than it wa
 counties (Fig. \ref{FigS_StateVCounty}).
 
 The decomposition of $S_{\text{tot}}$ into its components $\sum_i C_{w_i w_i}$ and $\rho_w=\sum_{i \neq j} C_{w_i w_j}$
-(see SI section{sect:FourierCycles}) for deer revealed that synchrony, $\rho_w$, contributed much more to 
+(see SI section \ref{sect:FourierCycles}) for deer revealed that synchrony, $\rho_w$, contributed much more to 
 $S_{\text{tot}}$ than did spectral power, $\sum_i C_{w_i w_i}$, of the individual deer time series
 (Fig. \ref{Fig:StructureDecomp_deer}), consistent with our theory. As may have been expected from earlier results
 on $\rho_w$, $\sum_{i \neq j} C_{w_i w_j}$ was highly significant compared to phase randomized surrogates (Fig. \ref{Fig:StructureDecomp_deer}).
@@ -2371,7 +2408,7 @@ may have rendered such comparisons appropriate for application to DVCs, such amm
 *ad hoc*, and also unnecessary given the analysis described at the start of this paragraph, and its analogue 
 for deer, were considered the appropriate analyses for our goals. -->
 Spectral power in the $3-7$-year band was much greater for the state-total DVC time series than it was
-for all of the surrogate time series of Fig.  \ref{MT-Fig3_DeerSync}C, indicating that synchrony in the $3-7$-year 
+for all of the surrogate time series of Fig.  \ref{MT-Fig5_StateWideFluctuations}C, indicating that synchrony in the $3-7$-year 
 timescale band markedly increases state-total DVC cycling (Fig. \ref{FigS_DVCSpectPow3to7Fig5Surrogs}).
 The power spectrum of the state-total
 DVC time series was above the spectra of all surrogates at all frequencies corresponding
@@ -2652,7 +2689,7 @@ the dashed red line is $\rho_w^{(\epsilon^{(1)})}$, and the dotted red lines are
 of the surrogate quantities $\rho_w^{(\delta_j^{(1)})}$. The vertical lines are at frequencies corresponding to 
 timescales $3$, $4$, and $7$ years. The black line does not appear identical to the black lines of SI Figs
 \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_phase}A and \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_permute}A 
-because a greater degree of smoothing was used here, to help deal with the numerical
+because a greater degree of smoothing was used here, to help deal with the numeric
 problems described in SI section \ref{numerics_model2}. See SI section \ref{numerics_model1} for methodological 
 details and SI section \ref{Deer_MEI_FMT_results} for 
 accompanying $p$-value results.\label{Fourier_Step2_deermei_results}}
@@ -2668,7 +2705,7 @@ the dashed red line is $\rho_{w,\Omega}^{(\epsilon^{(1)})}$, and the dotted red 
 of the surrogate quantities $\rho_{w,\Omega}^{(\delta_j^{(1)})}$. The vertical lines are at frequencies corresponding to 
 timescales $3$, $4$, and $7$ years. The black line does not appear identical to the black lines of SI Figs
 \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_phase}A and \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_permute}A 
-because a greater degree of smoothing was used here, to help deal with the numerical
+because a greater degree of smoothing was used here, to help deal with the numeric
 problems described in SI section \ref{numerics_model2}. See SI section \ref{numerics_model2} for methodological 
 details and SI section \ref{Deer_snow_FMT_results} for 
 accompanying $p$-value results.\label{Fourier_Step2_deersnow_results}}
@@ -2725,7 +2762,7 @@ Spectra are non-identical slightly outside the $3-7$-year timescale range becaus
 \caption[Spectral power, $3-7$-year band, state-total deer and AR(1) surrogates]{The red dot shows 
 total spectral power, in the $3-7$-year timescale range, of the detrended state-total deer population time series for WI, whereas the 
 histogram shows values of the same statistic computed for the AR(1) surrogates (again detrended; see SI 
-section \ref{SI:methods}).}\label{FigS_SpectPow3to7ARSurrogs}
+section \ref{sect:FourierCycles}).}\label{FigS_SpectPow3to7ARSurrogs}
 \end{figure}
 
 \newpage
@@ -2765,7 +2802,7 @@ which is alternately black and red.}\label{FigS_SpectraARFits}
 \includegraphics[width=\textwidth]{Results/Fourier8.png}
 \caption[Greater periodicity in state-total compared to county-level deer time series]{The red dot shows 
 total spectral power, in the $3-7$-year timescale range, of the detrended, variance-standardized state-total deer 
-population time series for WI (see SI section \ref{SI:methods}), whereas the histogram shows values of the same 
+population time series for WI (see SI section \ref{sect:FourierCycles}), whereas the histogram shows values of the same 
 statistic for county-level time series.}\label{FigS_StateVCounty}
 \end{figure}
 
@@ -2925,7 +2962,7 @@ rownames(AR_AIC_Table)<-NULL
 knitr::kable(AR_AIC_Table,
              format='latex',align="l",escape=F,
              digits=4,
-             col.names=c("AR order","AIC"),
+             col.names=c("AR order","$\\Delta$ AIC"),
              caption.short="AR fits by order for detrended state-total deer time series",
              caption="Autoregressive models of each order were fitted by maximum likelihood to the detrended state-total deer population time series, and AIC differences from the lowest-AIC order are reported. \\label{Table_AR_AIC_Table}",
              booktabs=TRUE)

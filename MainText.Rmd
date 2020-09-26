@@ -419,7 +419,8 @@ empirical state-total time series were attributable to synchrony.
 Although wavelet tools were the most appropriate 
 overall choice for our research goals and are now standard, some readers may be more familiar with Fourier analyses,
 which have a longer history. Also, some readers may perceive a mismatch between our theory, which uses
-the Fourier language of stochastic processes, and our empirical analyses based on wavelets (see SI section \ref{SM-SI:methods:methodsmismatch}).
+the Fourier language of stochastic processes, and our empirical analyses based on wavelets (but see the beginning of 
+SI section \ref{SM-sect:alt_methods}).
 A suite of alternative analyses based solely on Fourier approaches is presented in SI section \ref{SM-sect:alt_methods},
 and the results of these alternative analyses are in SI section \ref{SM-sect:alt_results}.
 <!--***DAN: You may get into trouble with citing an SI section out of order here, in which case you'll have to reorder the methods mismatch section, maybe.
@@ -476,16 +477,16 @@ provides additional evidence that Moran effects on deer are occurring.
 Deer dynamics at $3-4$-year timescales were not significantly spatially coherent with either 
 $\text{MEI}_{\text{w}}$ or $\text{PDO}_{\text{w}}$, which instead were strongly coherent with
 deer on $4-7$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}, see also 
-Fig. \ref{SM-FigS5_RanksInSurrogs}A and Table \ref{SM-TabS2_SummaryDistrict}).
+SI Fig. \ref{SM-FigS5_RanksInSurrogs}A and Table \ref{SM-TabS2_SummaryDistrict}).
 In contrast, spatial wavelet coherence between snow depth and deer was 
 not significant on $4-7$-year timescales, but was significant on $3-4$-year timescales
 (Table \ref{Tab1_CountyCoherenceSummary}). 
 Applying the wavelet Moran theorem, snow depth explained $`r round(snowabunSyncExp3_7,0)`\%$ of 
 synchrony in deer abundance at $3-7$-year timescales, but $`r round(snowabunSyncExp3_4,0)`\%$ of synchrony in deer
 abundance at $3-4$-year timescales (Table \ref{Tab1_CountyCoherenceSummary}; see also
-USDA district level results for the $3-4$-year band, Table \ref{SM-TabS2_SummaryDistrict},
+USDA district level results for the $3-4$-year band, SI Table \ref{SM-TabS2_SummaryDistrict},
 which were similar but had smaller cross terms). The timescale
-bands $3-4$ and $4-7$ were chosen by examination of Fig. \ref{SM-FigS5_RanksInSurrogs}.
+bands $3-4$ and $4-7$ were chosen by examination of SI Fig. \ref{SM-FigS5_RanksInSurrogs}.
 The wavelet Moran theorem of @Sheppard2016_aphids could not straightforwardly be
 applied to estimate percentages of synchrony in deer explained by $\text{MEI}_{\text{w}}$,
 because $\text{MEI}_{\text{w}}$ is not a spatially resolved variable (*Methods*).
@@ -520,7 +521,7 @@ how such a plot is produced), closely matched the patterns actually present in D
 synchrony (Fig. \ref{Fig4_DvcSync}C). 
 Statistical significance, phase relationships, and the amount of DVC synchrony explained by deer
 abundance remained similar after adjusting DVCs to account for
-fluctuations in traffic volume (Table \ref{Tab1_CountyCoherenceSummary}, SI section \ref{SM-SI:results} and Table \ref{SM-TabS2_SummaryDistrict}, Fig. \ref{SM-FigS4_PhaseDiffs}F).
+fluctuations in traffic volume (Table \ref{Tab1_CountyCoherenceSummary}, and SI section \ref{SM-SI:results}, Table \ref{SM-TabS2_SummaryDistrict}, and Fig. \ref{SM-FigS4_PhaseDiffs}F).
 
 Statewide oscillations due to synchrony correspond to a typical difference of about $`r round(avgdeerfluc,-4)`$ deer and about $`r round(avgdvcfluc,-2)`$ 
 DVCs between peak and trough years 
@@ -529,7 +530,8 @@ statewide oscillations in deer and DVCs disappear (Fig.
 \ref{Fig5_StateWideFluctuations}) when synchrony between counties on $3-7$-year 
 timescales is removed via a randomization procedure (*Methods*). Therefore, it is spatial synchrony 
 that causes local dynamics to sum to a substantial 
-semi-periodic oscillatory phenomenon on statewide spatial scales. Thus, the essence of our theoretical results was borne out in our empirical results (Figure \ref{SM-PedagogEmp_Fig}). Depending on 
+semi-periodic oscillatory phenomenon on statewide spatial scales. Thus, the essence of our theoretical results was borne 
+out in our empirical results (SI Fig. \ref{SM-PedagogEmp_Fig}). Depending on 
 assumptions made about DVC costs and reporting rates (SI section \ref{SM-SI:methods};  @Huijser2008_dvc; @Marcoux2010_dvc; @Conover2011_bookchp), 
 statewide DVC damages 
 vary by US\$$`r floor(round(2*avgdvccostsLow,-6))/1000000`-`r floor(round(2*avgdvccostsHigh,-6))/1000000`$Mn 
@@ -538,7 +540,7 @@ between peak and trough years.
 Supplementary results using Fourier approaches (*Methods*, SI section \ref{SM-sect:alt_methods})
 agreed with wavelet results, confirming the same main conclusions that: 
 1) synchrony in deer and DVCs was timescale specific and had a peak at $3-7$-year timescales;
-2) deer synchrony was due to environmental Moran effects and DVC synchrony was due to the effects of deer; and
+2) deer synchrony was due to environmental Moran effects and DVC synchrony was due to the synchronizing effects of deer; and
 3) statewide cycles in deer and DVCs occurred, and can be attributed to the timescale-specific synchrony
 in these variables (SI section \ref{SM-sect:alt_results}).
 <!--***DAN: also cite all the spectral figs and tables here, all in one batch, to maintain the custom of citing all
@@ -658,7 +660,7 @@ and again here, we showed that using timescale-specific methods can help
 ameliorate this difficulty and can reveal new phenomena and mechanisms.
 
 # Acknowledgements
-D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and anonymous referees for very useful feedback and some code. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595 and 1714195, United States Department of Agriculture award 2016-67012-24694, and The Nature
+D. Lyden, J. Steinglein and the WIDNR for data; D. Storm, T. Van Deelen, J. Millspaugh, J. Fox, K. Haynes, and A. Liebhold for consultation; and anonymous referees for very useful feedback and some code. Funding was provided by the James S McDonnell Foundation, United States National Science Foundation grants 1442595, 1714195, and 2023474, United States Department of Agriculture award 2016-67012-24694, and The Nature
 Conservancy. 
 
 <!--Load sup mat workspace for the methods, which used to be in the sup mat-->
