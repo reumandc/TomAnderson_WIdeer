@@ -1383,25 +1383,29 @@ state level on $3-7$-year timescales ($P = `r round(ann.abun.hunter_pval37,4)`$)
 # Alternative analyses: methods \label{sect:alt_methods}
 
 \noindent Fourier methods were used in our theory (main text and SI section \ref{SI:theory})
-and wavelet methods were used in analyses of data (main text and SI sections \ref{SI:methods} and \ref{SI:results}).
-Some readers may perceive a mismatch, here. Though we do not think there is as mismatch, this section and SI section 
+and wavelet methods were used in analyses of data (main text and SI sections \ref{SI:methods} and \ref{SI:results}),
+which may be perceived as a mismatch. Though we do not think there is as mismatch, this section and SI section 
 \ref{sect:alt_results} are devoted to an alternative set of empirical analyses using purely Fourier methods. All
 main wavelet results were also supported by the Fourier approach, strengthening our overall argument.
 
 It was appropriate, for several reasons, to use Fourier methods for 
-the theory and wavelet methods for the data analyses of the main text. First, both sets of methods are
-spectral methods, and are closely related and serve similar goals. Second, differences
+the theory and wavelet methods for the data analyses of the main text - there is no mismatch. First, both sets of methods are
+spectral methods, and are closely related and serve similar goals. 
+Our methods, based on the continuous Morlet wavelet transform, can be derived from Fourier methods and can be defined in terms of Fourier transforms.
+Second, differences
 that do exist between the two approaches are consistent with differences between 
 theory and empirical analyses. Fourier analyses make more structural assumptions, notably, they
-assume stationarity of time series. But extensive analytic machinery is also available under these assumptions. 
+assume stationarity of time series. But extensive analytic machinery is also available with Fourier analyses, under these assumptions. 
 It was appropriate to develop our theoretical approach under a set of simplifying assumptions that 
-made possible the use of powerful mathematical tools.
+made possible the use of powerful mathematical tools, leading to analytic results.
 We then used wavelet methods, which do not assume stationarity and are more suited to the 
-complexities of real data, for empirical work.
-Although we again emphasize that Fourier and wavelet approaches are so closely related that we do not
-see a mismatch, we nevertheless still provide a complete set of Fourier-only analyses for 
-readers that remain skeptical.  
+complexities of real data, for empirical work. Wavelet methods have been applied recently in work on
+the timescale specificity of synchrony, and these tools have been frequently shown, in recent years, to be useful for such 
+investigations [@Sheppard2016_aphids;@Walter2017_geogsync;@Anderson2019_LO;@Sheppard_wavmodel;@Walter_etal_2019;@Walter_etal_InPress].
+Wavelet methods provide detailed visualizations, and tracking of time-varying features that is difficult under a traditional Fourier approach. 
 
+Although we again emphasize that Fourier and wavelet approaches are so closely related that we do not
+see a mismatch, we nevertheless still provide a complete set of Fourier-only analyses as additional support for our conclusions. 
 In the main text, we argued that 
 timescale-specific synchrony causes cycles in deer and DVC data via the following overarching logical
 steps: 1) we showed that synchrony in both deer and DVCs is timescale specific,
@@ -1459,7 +1463,7 @@ We also judged if peaks in $\rho_w (f)$ represented significant spectral feature
 by comparing $\rho_w (f)$ for real data to 
 values of the same statistic computed for a second type of surrogate. To produce one surrogate dataset of
 this second type, the values $w_i(t)$ were randomly permuted, using the same permutation for each
-sampling location, $i$. Synchrony as reckoned using standard correlation and covariance measures 
+sampling location, $i$. Synchrony as measured using standard correlation and covariance measures 
 was unchanged for such a surrogate dataset, but synchrony was distributed evenly across frequencies for these surrogates,
 up to sampling variation. We plotted $\rho_w (f)$ for real data and for surrogates on the same axes, to compare. 
 When $\rho_w (f)$ rose above the $97.5$th quantile of surrogate values, synchrony at the corresponding frequencies
@@ -1979,7 +1983,7 @@ computable; but it has a qualitatively similar meaning and can be interpreted in
 as a portion of population synchrony explained by $\epsilon^{(1)}$. Although the subsets $\Omega_i$
 consisted of only $5$ locations each, these locations were selected ramdomly, not by grouping nearby
 sampling locations together. So the quantities $\rho_{w,\Omega}^{(\epsilon^{(1)})}(f)$ and 
-$\rho_{w,\Omega}(f)$ are not unduly focussed on short-range synchrony.
+$\rho_{w,\Omega}(f)$ are not unduly focused on short-range synchrony.
 
 Given data, we plotted estimates of $\rho_{w,\Omega}^{(\epsilon^{(1)})}$ and 
 $\rho_{w,\Omega}$ against frequency. Given a timescale band, we also summed the values of 
@@ -2153,7 +2157,9 @@ in the $3-7$-year timescale range was much higher than could reasonably have occ
 timescales (Fig. \ref{ComprehensiveFourier_SynchronyIsTimescaleSpecific_permute}A). This demonstrates that deer
 synchrony was timescale specific, with a preponderance of the synchrony occurring in the $3-7$-year range. 
 Our "peakiness" statistic (SI section \ref{sect:FourierTSSync}) took a larger value for deer data than it did for
-a fraction $`r round(1-pval_deer_peakiness,4)`$ of the random-permutation surrogates we used. Thus the null 
+a fraction $`r round(1-pval_deer_peakiness,4)`$ of the random-permutation surrogates we used. The frequencies 
+$f_1$, $f_2$ and $f_3$ we used for the peakiness statistic, measured in cycles per time step (see SI section \ref{sect:FourierTSSync}), 
+were $f_1 \approx 0.111$, $f_2 \approx 0.194$ and $f_3 \approx 0.278$. Thus the null 
 hypothesis was firmly rejected that $\rho_w(f)$ was no more peaked in the $3-7$-year timescale 
 range than could have been expected by chance if synchrony 
 were evenly distributed across timescales ($p = `r round(pval_deer_peakiness,4)`$, based on $10000$ surrogates). 
@@ -2167,7 +2173,9 @@ was only because DVC synchrony was very high for long timescales (low frequencie
 frequencies). Our "peakiness" statistic (SI section \ref{sect:FourierTSSync}) took a larger value for DVC data than it did for a fraction
 $`r round(1-pval_dvcs_peakiness,4)`$ of random-permutation surrogates, demonstrating that the peak in 
 $\rho_w(f)$ in the $3-7$-year timescale range was a meaningful spectral feature 
-($p = `r round(pval_dvcs_peakiness,4)`$, based on $10000$ surrogates).
+($p = `r round(pval_dvcs_peakiness,4)`$, based on $10000$ surrogates). We here 
+used $f_1 \approx 0.167$, $f_2 \approx 0.233$ and $f_3 \approx 0.333$ (see SI section \ref{sect:FourierTSSync}) 
+for the peakiness statistic. 
 
 \subsection{Synchrony is due to timescale-specific Moran effects}\label{sect:FourierMoran_res}
 
