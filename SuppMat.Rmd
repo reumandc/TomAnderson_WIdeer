@@ -1391,21 +1391,39 @@ main wavelet results were also supported by the Fourier approach, strengthening 
 It was appropriate, for several reasons, to use Fourier methods for 
 the theory and wavelet methods for the data analyses of the main text - there is no mismatch. First, both sets of methods are
 spectral methods, and are closely related and serve similar goals. 
-Our methods, based on the continuous Morlet wavelet transform, can be derived from Fourier methods and can be defined in terms of Fourier transforms.
+Our wavelet approach, based on the continuous Morlet wavelet transform, can be derived from Fourier methods 
+and can be defined in terms of Fourier transforms. For instance, 
+because the continuous Morlet wavelet transform at a given timescale is defined as the convolution of a wavelet function with
+that scale with the time series, it can also be defined (by the convolution theorem) simply as the inverse Fourier transform of the product of the 
+Fourier transform of the wavelet function with the Fourier transform of the time series. 
+Because all our wavelet approaches are based on the continuous Morlet wavelet transform, and because we have just argued that 
+that transform can be defined in terms of Fourier transforms, in fact all our wavelet methods actually \emph{are} Fourier methods.
+Although there may appear to be a mismatch between a Fourier theory and a wavelet empirical analysis, the fact that wavelets actually 
+are Fourier methods would tend to suggest this is only superficially a mismatch. 
+Not only can the continuous Morlet wavelet transform be formally defined in terms of Fourier analyses, but wavelet quantities can also be interpreted
+in the same way as Fourier quantities. The wavelet power (an integral of the square magnitude of the wavelet transform)
+can be interpreted in the same way as the power spectrum. An average through time of the wavelet phase difference between two time series
+can be interpreted in the same way as the phase of the cross spectrum of the time series.
+The average of a wavelet mean field over time is interpretable in the same way as the average of all pairwise
+cospectra of a set of time series. 
+Actually wavelet analysis is really nothing more than time-localized Fourier analysis. Theoretical results from a Fourier 
+approach can certainly be compared to empirical results using wavelets.
+
 Second, differences
 that do exist between the two approaches are consistent with differences between 
-theory and empirical analyses. Fourier analyses make more structural assumptions, notably, they
+theory and empirical analyses. Fourier analyses make more structural assumptions. Notably, they
 assume stationarity of time series. But extensive analytic machinery is also available with Fourier analyses, under these assumptions. 
 It was appropriate to develop our theoretical approach under a set of simplifying assumptions that 
 made possible the use of powerful mathematical tools, leading to analytic results.
 We then used wavelet methods, which do not assume stationarity and are more suited to the 
-complexities of real data, for empirical work. Wavelet methods have been applied recently in work on
-the timescale specificity of synchrony, and these tools have been frequently shown, in recent years, to be useful for such 
-investigations [@Sheppard2016_aphids;@Walter2017_geogsync;@Anderson2019_LO;@Sheppard_wavmodel;@Walter_etal_2019;@Walter_etal_InPress].
+complexities of real data, to discover whether our theoretical results 
+are also substantially reflected in real data. Wavelet methods have frequently been applied and shown to be very useful, recently, in work on
+the timescale specificity of synchrony [@Sheppard2016_aphids;@Walter2017_geogsync;@Anderson2019_LO;@Sheppard_wavmodel;@Walter_etal_2019;@Walter_etal_InPress].
 Wavelet methods provide detailed visualizations, and tracking of time-varying features that is difficult under a traditional Fourier approach. 
 
 Although we again emphasize that Fourier and wavelet approaches are so closely related that we do not
-see a mismatch, we nevertheless still provide a complete set of Fourier-only analyses as additional support for our conclusions. 
+see a mismatch between our Fourier-based theory and our wavelet empirical results, we nevertheless still 
+provide a complete set of Fourier-only data analyses as additional support for our empirical conclusions. 
 In the main text, we argued that 
 timescale-specific synchrony causes cycles in deer and DVC data via the following overarching logical
 steps: 1) we showed that synchrony in both deer and DVCs is timescale specific,
