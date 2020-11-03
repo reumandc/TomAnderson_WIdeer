@@ -1609,7 +1609,7 @@ The filters $\mathcal{P}^{(1)}$ and $\mathcal{P}^{(2)}$ are taken to be absolute
 The filter $\mathcal{B}$ is assumed to take the
 special form $\mathcal{B}=I_N-b_1I_NB-b_2 I_N B^2 - \cdots - b_n I_N B^n$. The spectral matrix
 $S_{\epsilon^{(1)} \epsilon^{(1)}}(f)$ is assumed invertible for all frequencies $f$, and the complex roots
-of the polynomial $1-b_1 z - b_2 z - \cdots - b_n z^n$ are assumed to have modulus greater than $1$.
+of the polynomial $1-b_1 z - b_2 z^2 - \cdots - b_n z^n$ are assumed to have modulus greater than $1$.
 The processes $\epsilon^{(1)}$ and $\epsilon^{(2)}$ are again interpreted as
 measured and unmeasured processes that influence the populations, and it is assumed that the populations
 were measured for the same times as were the $\epsilon_i^{(1)}$.
