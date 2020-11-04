@@ -32,7 +32,7 @@ Number of figures and tables: 5 figures, 1 table
 Number of references: 59  
 <!--***DAN: I updated this on 2020 09 29--> <!--***Tom: will double check for the final submission-->
 
-\textbf{Data accessibility.} All data will be made available in the Dryad digital repository. 
+\textbf{Data accessibility.} All data are available from the Dryad digital repository: https://doi.org/10.5061/dryad.rn8pk0p85  
 <!--***DAN: Tom to mention in the cover letter that data will be so deposited when the paper
 is accepted, and Tom also to replace XYZ with the repo number when the time comes, please.-->
 All data and code producing this paper are also archived at `www.github.com/reumandc/TomAnderson_WIdeer`.

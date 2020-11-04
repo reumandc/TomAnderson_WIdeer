@@ -38,6 +38,7 @@ climabun_se<-lapply(climabun_se,function(x){colnames(x)<-colnames(tmp.se)[3:dim(
 climabun_se<-lapply(climabun_se,function(x){row.names(x)<-paste(bands[,1],bands[,2],sep="-");x})
 
 #Run coherence of winter weather and deer abundance
+winter.clim<-lapply(winter.clim,function(x){x<-x[match(rownames(cty.list$Abun), rownames(x)),]}) #make sure rows of deer and weather line up
 weath.res<-list()
 wlm_weathabun<-list()
 for(j in names(winter.clim)){
