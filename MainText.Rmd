@@ -3,7 +3,8 @@ title: Synchronous effects produce cycles in deer populations
   and deer-vehicle collisions
 author:
  - Thomas L. Anderson\textsuperscript{1,2,6}, Lawrence W. Sheppard\textsuperscript{2}, Jonathan A. Walter\textsuperscript{2,3}, Robert E. Rolley\textsuperscript{4},  Daniel C. Reuman\textsuperscript{2,5}  
- - \textsuperscript{1}Department of Biology, Appalachian State University, 572 Rivers St., Boone, NC 28608, USA; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas, 2101 Constant Ave, Lawrence, KS 66049, USA;  \textsuperscript{3}Department of Environmental Sciences, University of Virginia 291 McCormick Rd, Charlottesville, VA 22904, USA; \textsuperscript{4}Wisconsin Department of Natural Resources, 101 S. Webster St., Madison, WI 53707, USA; \textsuperscript{5}Laboratory of Populations, Rockefeller University, 1230 York Ave., New York, NY 10065, USA; \textsuperscript{6}Current address: Department of Biology, Southern Illinois University Edwardsville, Box 1651, Edwardsville, IL 62026, USA
+ - \textsuperscript{1}Department of Biology, Appalachian State University, 572 Rivers St., Boone, NC 28608, USA; \textsuperscript{2}Deparment of Ecology and Evolutionary Biology and Kansas Biological Survey, University of Kansas, 2101 Constant Ave, Lawrence, KS 66049, USA;  \textsuperscript{3}Department of Environmental Sciences, University of Virginia 291 McCormick Rd, Charlottesville, VA 22904, USA; \textsuperscript{4}Wisconsin Department of Natural Resources, 101 S. Webster St., Madison, WI 53707, USA; \textsuperscript{5}Laboratory of Populations, Rockefeller University, 1230 York Ave., New York, NY 10065, USA;  \textsuperscript{6}Current address- Department of Biology, Southern Illinois University Edwardsville, Box 1651, Edwardsville, IL 62026, USA;
+ 
 date: 'correspondence to: anderstl@gmail.com, reuman@ku.edu'
 output:
   pdf_document:
